@@ -139,7 +139,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">Math 340 Notes</a></li>
+<li><a href="https://github.com/mphitchman/math340.git" target="blank">Math 340 Notes</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
@@ -411,7 +411,7 @@ Alternatively, the variance can be computed via
 <h2><span class="header-section-number">C.4</span> Sampling<a href="R-discreteRV.html#sampling" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The following code draws a random sample of size 10 from our distribution.</p>
 <div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="R-discreteRV.html#cb192-1" tabindex="-1"></a><span class="fu">sample</span>(X,<span class="dv">10</span>,<span class="at">replace=</span><span class="cn">TRUE</span>,<span class="at">prob=</span>Px)</span></code></pre></div>
-<pre><code>##  [1] 7 7 8 6 8 5 8 9 6 7</code></pre>
+<pre><code>##  [1] 6 7 8 8 8 7 6 8 5 8</code></pre>
 <p>If we take a large sample, and make a frequency plot of the results, it should be close to the shape of the Px plot above.</p>
 <div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="R-discreteRV.html#cb194-1" tabindex="-1"></a>trials<span class="ot">=</span><span class="dv">1000</span></span>
 <span id="cb194-2"><a href="R-discreteRV.html#cb194-2" tabindex="-1"></a>results<span class="ot">=</span><span class="fu">table</span>(<span class="fu">sample</span>(X,trials,<span class="at">replace=</span><span class="cn">TRUE</span>,Px))</span>
@@ -439,16 +439,16 @@ Alternatively, the variance can be computed via
 <span id="cb196-9"><a href="R-discreteRV.html#cb196-9" tabindex="-1"></a>  }</span>
 <span id="cb196-10"><a href="R-discreteRV.html#cb196-10" tabindex="-1"></a>  results[i]<span class="ot">=</span>flips <span class="co">#updates results to include flips required for consec heads in this trial</span></span>
 <span id="cb196-11"><a href="R-discreteRV.html#cb196-11" tabindex="-1"></a>}</span></code></pre></div>
-<p>We note that the maximum number of flips it took to get consecutive Heads in these trials was <code>max(results)</code> = 50! So we don’t list the full table of results here, just the first 10:</p>
+<p>We note that the maximum number of flips it took to get consecutive Heads in these trials was <code>max(results)</code> = 49! So we don’t list the full table of results here, just the first 10:</p>
 <div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="R-discreteRV.html#cb197-1" tabindex="-1"></a><span class="fu">table</span>(results)[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code></pre></div>
 <pre><code>## results
 ##    2    3    4    5    6    7    8    9   10   11 
-## 2509 1235 1291  932  801  571  502  417  323  269</code></pre>
+## 2525 1221 1259  977  747  619  501  426  339  286</code></pre>
 <p>The <strong>relative frequencies</strong> of these results provide our estimate for the probability density function:</p>
 <div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="R-discreteRV.html#cb199-1" tabindex="-1"></a><span class="fu">table</span>(results)[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]<span class="sc">/</span>trials</span></code></pre></div>
 <pre><code>## results
 ##      2      3      4      5      6      7      8      9     10     11 
-## 0.2509 0.1235 0.1291 0.0932 0.0801 0.0571 0.0502 0.0417 0.0323 0.0269</code></pre>
+## 0.2525 0.1221 0.1259 0.0977 0.0747 0.0619 0.0501 0.0426 0.0339 0.0286</code></pre>
 <p>These values compare closely to the actual probability values <span class="math inline">\(F_{x+1}/2^x\)</span>:</p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -518,34 +518,34 @@ x
 Rel_freq
 </td>
 <td style="text-align:left;">
-0.2509
+0.2525
 </td>
 <td style="text-align:left;">
-0.1235
+0.1221
 </td>
 <td style="text-align:left;">
-0.1291
+0.1259
 </td>
 <td style="text-align:left;">
-0.0932
+0.0977
 </td>
 <td style="text-align:left;">
-0.0801
+0.0747
 </td>
 <td style="text-align:left;">
-0.0571
+0.0619
 </td>
 <td style="text-align:left;">
-0.0502
+0.0501
 </td>
 <td style="text-align:left;">
-0.0417
+0.0426
 </td>
 <td style="text-align:left;">
-0.0323
+0.0339
 </td>
 <td style="text-align:left;">
-0.0269
+0.0286
 </td>
 </tr>
 <tr>
@@ -603,7 +603,7 @@ p(x)
 <div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="R-discreteRV.html#cb202-1" tabindex="-1"></a>results<span class="ot">=</span><span class="fu">sample</span>(family,<span class="dv">10000</span>,<span class="at">replace=</span><span class="cn">TRUE</span>)</span>
 <span id="cb202-2"><a href="R-discreteRV.html#cb202-2" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(results),<span class="at">col=</span><span class="st">&quot;seagreen&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;seal&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;freq&quot;</span>,<span class="at">main=</span><span class="st">&quot;Pick a seal, any seal!&quot;</span>)</span></code></pre></div>
 <p><img src="math340-notes_files/figure-html/unnamed-chunk-142-1.png" width="672" /></p>
-<p>Way to go Ruth, you over achiever!</p>
+<p>Way to go Slarftel, you over achiever!</p>
 </div>
 </div>
 <div id="r-4distn-functions" class="section level2 hasAnchor" number="16.7">
@@ -676,14 +676,14 @@ For <span class="math inline">\(x = 0, 1, \ldots, n\)</span>, <span class="math 
 <p><code>rbinom(10,20,.4)</code> will generate a random sample of size 10 drawn from a <span class="math inline">\(b(20,.4)\)</span> distribution. This sample is stored as a vector</p>
 </blockquote>
 <div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="R-discreteRV.html#cb215-1" tabindex="-1"></a><span class="fu">rbinom</span>(<span class="dv">10</span>,<span class="dv">20</span>,.<span class="dv">4</span>)</span></code></pre></div>
-<pre><code>##  [1] 7 7 3 6 8 9 8 7 8 7</code></pre>
+<pre><code>##  [1]  8  7  8  8  6 10  6  9  9  8</code></pre>
 <p>We can use <code>r___</code> to run simulations, and to visualize the shape of a distribution.</p>
 <p>For a <strong>discrete distribution</strong> we can use <code>barplot()</code> and <code>table()</code> to tabulate the results. The <code>table()</code> command gives the total counts for each possible outcome, and the <code>barplot()</code> command applied to a table visualizes those counts.</p>
 <div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="R-discreteRV.html#cb217-1" tabindex="-1"></a>sim_data <span class="ot">=</span> <span class="fu">rbinom</span>(<span class="dv">1000</span>,<span class="dv">20</span>,.<span class="dv">4</span>) <span class="co"># draw a random sample of size 1000 from the binomial distribution b(20,.4).</span></span>
 <span id="cb217-2"><a href="R-discreteRV.html#cb217-2" tabindex="-1"></a><span class="fu">table</span>(sim_data)</span></code></pre></div>
 <pre><code>## sim_data
 ##   2   3   4   5   6   7   8   9  10  11  12  13  14  15 
-##   1  10  42  69 136 172 181 145 109  75  27  21  10   2</code></pre>
+##   2  12  25  69 121 191 163 168 121  72  38  14   3   1</code></pre>
 <div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="R-discreteRV.html#cb219-1" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(sim_data))</span></code></pre></div>
 <p><img src="math340-notes_files/figure-html/unnamed-chunk-151-1.png" width="480" /></p>
 </div>
@@ -732,7 +732,7 @@ For <span class="math inline">\(x = 1, 2, 3, \ldots\)</span>, <span class="math 
 <div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="R-discreteRV.html#cb226-1" tabindex="-1"></a>results<span class="ot">=</span><span class="fu">rgeom</span>(<span class="dv">10000</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">6</span>)<span class="sc">+</span><span class="dv">1</span></span>
 <span id="cb226-2"><a href="R-discreteRV.html#cb226-2" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(results))</span></code></pre></div>
 <p><img src="math340-notes_files/figure-html/unnamed-chunk-155-1.png" width="672" /></p>
-<p>OMG notice from the barplot that one depressing game required 64 rolls to see my first 4.</p>
+<p>OMG notice from the barplot that one depressing game required 46 rolls to see my first 4.</p>
 </div>
 </div>
 <div id="negative-binomial-distribution-nbinom" class="section level3 hasAnchor" number="16.7.3">
@@ -1263,8 +1263,8 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mphitchman/math340/edit/main/source/R03-discrete-RV.Rmd",
-"text": "Edit"
+"link": null,
+"text": null
 },
 "history": {
 "link": null,

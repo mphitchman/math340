@@ -139,7 +139,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">Math 340 Notes</a></li>
+<li><a href="https://github.com/mphitchman/math340.git" target="blank">Math 340 Notes</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
@@ -378,10 +378,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <p>Let’s look at the actual rolls first:</p>
 <div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="R-sim-probability.html#cb127-1" tabindex="-1"></a>rolls</span></code></pre></div>
-<pre><code>## [1] 5 5 5 6 1</code></pre>
+<pre><code>## [1]  4 10  2  4  8</code></pre>
 <p>We need to check 5 things: Are rolls 1-4 all less than 8, and is roll 5 greater than 8? We can ask these five questions and store the answers in a vector:</p>
 <div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="R-sim-probability.html#cb129-1" tabindex="-1"></a><span class="fu">c</span>(rolls[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]<span class="sc">&lt;</span><span class="dv">8</span>,rolls[<span class="dv">5</span>]<span class="sc">&gt;=</span><span class="dv">8</span>)</span></code></pre></div>
-<pre><code>## [1]  TRUE  TRUE  TRUE  TRUE FALSE</code></pre>
+<pre><code>## [1]  TRUE FALSE  TRUE  TRUE  TRUE</code></pre>
 <p>Recal, the <code>sum()</code> of a logical vector counts the number of TRUE values. We need the sum to be 5 to have a <em>good</em> sequence of 5 rolls.</p>
 <div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="R-sim-probability.html#cb131-1" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">c</span>(rolls[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]<span class="sc">&lt;</span><span class="dv">8</span>,rolls[<span class="dv">5</span>]<span class="sc">&gt;=</span><span class="dv">8</span>))</span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
@@ -401,10 +401,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="R-sim-probability.html#cb134-1" tabindex="-1"></a><span class="fu">table</span>(results)</span></code></pre></div>
 <pre><code>## results
 ##    0    1    2    3    4    5 
-##   45  533 2073 3742 2915  692</code></pre>
+##   61  537 2106 3601 2968  727</code></pre>
 <p>Based on our simulation, we estimate the probability of a <em>good</em> sequence of 5 rolls by the proportion of time the <code>results</code> vector took a value of 5.</p>
 <div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="R-sim-probability.html#cb136-1" tabindex="-1"></a><span class="fu">sum</span>(results<span class="sc">==</span><span class="st">&quot;5&quot;</span>)<span class="sc">/</span>trials</span></code></pre></div>
-<pre><code>## [1] 0.0692</code></pre>
+<pre><code>## [1] 0.0727</code></pre>
 <p>This estimate is likely very close to what we calculate by our counting tools <span class="math display">\[\frac{7^4\cdot 3}{10^5} \approx .07203.\]</span></p>
 </div>
 </div>
@@ -429,8 +429,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="R-sim-probability.html#cb139-1" tabindex="-1"></a><span class="fu">table</span>(results)</span></code></pre></div>
 <pre><code>## results
 ##    0    1    2    3    4    5 
-## 1711 2754 2220 1664 1094  557</code></pre>
-<p>Conclusion: It appears we should expect the difference in the two dice to be 1 about 27.5% of the time.</p>
+## 1677 2766 2214 1649 1117  577</code></pre>
+<p>Conclusion: It appears we should expect the difference in the two dice to be 1 about 27.7% of the time.</p>
 <p>Note: In this example we added to the <code>results</code> vector by specifying <code>results[i]</code> in each trial, as opposed to the concatenation method we followed in the 10-sided die example.</p>
 <p>By constructing a 6x6 grid recording the difference for each of the 36 possible outcomes, we would find the actual probability equal to 10/36 <span class="math inline">\(\approx\)</span> 0.278.</p>
 <table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
@@ -628,8 +628,8 @@ Die1&amp;#124;Die2
 <span id="cb141-8"><a href="R-sim-probability.html#cb141-8" tabindex="-1"></a><span class="fu">table</span>(heads)</span></code></pre></div>
 <pre><code>## heads
 ##    0    1    2    3    4    5 
-##  306 1595 3148 3069 1578  304</code></pre>
-<p>Conclusion: It appears we should expect to flip exactly 1 heads in 5 tries about 15.9% of the time.</p>
+##  311 1551 3163 3084 1588  303</code></pre>
+<p>Conclusion: It appears we should expect to flip exactly 1 heads in 5 tries about 15.5% of the time.</p>
 <p>By our counting tools, we can calculate the actual probability of getting exactly one heads in 5 flips as follows:</p>
 <p><span class="math display">\[5\cdot \left(\frac{1}{2}\right)^5 = 0.15625.\]</span>
 <!-- exact answer:  dbinom(1,5,1/2) --></p>
@@ -650,11 +650,11 @@ Die1&amp;#124;Die2
 <span id="cb143-9"><a href="R-sim-probability.html#cb143-9" tabindex="-1"></a><span class="fu">table</span>(results)</span></code></pre></div>
 <pre><code>## results
 ##    0    1    2    3    4    5    6    7    8 
-##  384 1510 2733 2705 1765  704  174   22    3</code></pre>
+##  350 1555 2709 2804 1747  645  158   31    1</code></pre>
 <p>We can enter <code>sum(results &gt; 5)</code> to see how often we grabbed more than 5 orange marbles in our sample of size 8, and <code>sum(results &gt; 5)/trials</code> is a good estimate of the likelihood of this happening.</p>
-<p>Conclusion: It appears we should expect the more than 5 orange marbles in our sample of 8 about 2% of the time:</p>
+<p>Conclusion: It appears we should expect the more than 5 orange marbles in our sample of 8 about 1.9% of the time:</p>
 <div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="R-sim-probability.html#cb145-1" tabindex="-1"></a><span class="fu">sum</span>(results <span class="sc">&gt;</span> <span class="dv">5</span>)<span class="sc">/</span>trials</span></code></pre></div>
-<pre><code>## [1] 0.0199</code></pre>
+<pre><code>## [1] 0.019</code></pre>
 <p>This question is a classic “good potatoes/bad potatoes” problem, and by our counting techniques, we know the probability is <span class="math display">\[\frac{\binom{100}{6}\cdot\binom{200}{2}}{\binom{300}{8}}+
 \frac{\binom{100}{7}\cdot\binom{200}{1}}{\binom{300}{8}}+
 \frac{\binom{100}{8}\cdot\binom{200}{0}}{\binom{300}{8}},\]</span>
@@ -681,9 +681,9 @@ which we can evaluate in R as a check:</p>
 <span id="cb149-6"><a href="R-sim-probability.html#cb149-6" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Subgroup 1: &quot;</span>, sub1, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>,</span>
 <span id="cb149-7"><a href="R-sim-probability.html#cb149-7" tabindex="-1"></a>    <span class="st">&quot;Subgroup 2: &quot;</span>, sub2, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>,</span>
 <span id="cb149-8"><a href="R-sim-probability.html#cb149-8" tabindex="-1"></a>    <span class="st">&quot;Subgroup 3: &quot;</span>, sub3, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
-<pre><code>## Subgroup 1: JFJJJ
-## Subgroup 2: FJSS
-## Subgroup 3: SSJ</code></pre>
+<pre><code>## Subgroup 1: JJFSJ
+## Subgroup 2: JSSJ
+## Subgroup 3: JSF</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Count the number of first-years in each subgroup, and record these numbers as a vector of length 3:</li>
 </ol>
@@ -691,7 +691,7 @@ which we can evaluate in R as a check:</p>
 <span id="cb151-2"><a href="R-sim-probability.html#cb151-2" tabindex="-1"></a>            <span class="fu">sum</span>(sub2<span class="sc">==</span><span class="st">&quot;F&quot;</span>),</span>
 <span id="cb151-3"><a href="R-sim-probability.html#cb151-3" tabindex="-1"></a>            <span class="fu">sum</span>(sub3<span class="sc">==</span><span class="st">&quot;F&quot;</span>))</span>
 <span id="cb151-4"><a href="R-sim-probability.html#cb151-4" tabindex="-1"></a><span class="fu">print</span>(count)</span></code></pre></div>
-<pre><code>## [1] 1 1 0</code></pre>
+<pre><code>## [1] 1 0 1</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li>The two first-years are in the same subgroup if and only if <code>count</code> contains a 2. The following code uses an <code>ifelse()</code> command to record 1 if both first-years are in the same group, and 0 if not.</li>
 </ol>
@@ -716,10 +716,10 @@ which we can evaluate in R as a check:</p>
 <span id="cb155-14"><a href="R-sim-probability.html#cb155-14" tabindex="-1"></a><span class="fu">table</span>(results)</span></code></pre></div>
 <pre><code>## results
 ##    0    1 
-## 7100 2900</code></pre>
+## 7092 2908</code></pre>
 <p>Based on this simulation, we estimate the probability that both first-years end up in the same subgroup as</p>
 <div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="R-sim-probability.html#cb157-1" tabindex="-1"></a><span class="fu">sum</span>(results<span class="sc">==</span><span class="dv">1</span>)<span class="sc">/</span>trials</span></code></pre></div>
-<pre><code>## [1] 0.29</code></pre>
+<pre><code>## [1] 0.2908</code></pre>
 <p>Using our counting tools to calculate the probability:</p>
 <p><span class="math display">\[\frac{\binom{10}{3~4~3}+\binom{10}{5~2~3}+\binom{10}{5~4~1}}{\binom{12}{5~4~3}}\]</span>
 which evaluates to 7980/27720 <span class="math inline">\(\approx 0.288\)</span>:</p>
@@ -742,7 +742,7 @@ which evaluates to 7980/27720 <span class="math inline">\(\approx 0.288\)</span>
 <div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="R-sim-probability.html#cb163-1" tabindex="-1"></a>plate <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">sample</span>(LETTERS,<span class="dv">3</span>,<span class="at">replace=</span><span class="cn">TRUE</span>),</span>
 <span id="cb163-2"><a href="R-sim-probability.html#cb163-2" tabindex="-1"></a>          <span class="fu">sample</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">9</span>,<span class="dv">3</span>,<span class="at">replace=</span><span class="cn">TRUE</span>))</span>
 <span id="cb163-3"><a href="R-sim-probability.html#cb163-3" tabindex="-1"></a>plate</span></code></pre></div>
-<pre><code>## [1] &quot;I&quot; &quot;W&quot; &quot;D&quot; &quot;5&quot; &quot;1&quot; &quot;3&quot;</code></pre>
+<pre><code>## [1] &quot;E&quot; &quot;L&quot; &quot;L&quot; &quot;9&quot; &quot;5&quot; &quot;5&quot;</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>We can record the number of “8”s in the plate</li>
 </ol>
@@ -761,10 +761,10 @@ which evaluates to 7980/27720 <span class="math inline">\(\approx 0.288\)</span>
 <span id="cb167-9"><a href="R-sim-probability.html#cb167-9" tabindex="-1"></a><span class="fu">table</span>(results)</span></code></pre></div>
 <pre><code>## results
 ##    0    1    2    3 
-## 7205 2523  264    8</code></pre>
+## 7398 2327  266    9</code></pre>
 <p>Based on this simulation, we estimate the probability of having a plate with exactly 2 “8”s</p>
 <div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="R-sim-probability.html#cb169-1" tabindex="-1"></a><span class="fu">sum</span>(results<span class="sc">==</span><span class="st">&quot;2&quot;</span>)<span class="sc">/</span>trials</span></code></pre></div>
-<pre><code>## [1] 0.0264</code></pre>
+<pre><code>## [1] 0.0266</code></pre>
 <p>Using our counting tools to calculate the probability:</p>
 <p><span class="math display">\[\frac{26\cdot 26\cdot 26 \cdot \binom{3}{2} \cdot 1 \cdot 1 \cdot 9}{26^3\cdot 10^3}= \frac{27}{1000} = 0.027.\]</span></p>
 </div>
@@ -779,7 +779,7 @@ which evaluates to 7980/27720 <span class="math inline">\(\approx 0.288\)</span>
 <span id="cb171-2"><a href="R-sim-probability.html#cb171-2" tabindex="-1"></a><span class="fu">table</span>(one_poll)</span></code></pre></div>
 <pre><code>## one_poll
 ##   D   R 
-## 509 491</code></pre>
+## 503 497</code></pre>
 <p>Of course, the goal is to use the poll to predict the winner of the election.
 We use the <code>sum()</code> command to count how many elements in <code>one_poll</code> equal “D” (use those double equal signs), and the <code>ifelse()</code> command to record the predicted winner.</p>
 <div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="R-sim-probability.html#cb173-1" tabindex="-1"></a><span class="fu">ifelse</span>(<span class="fu">sum</span>(one_poll<span class="sc">==</span><span class="st">&quot;D&quot;</span>) <span class="sc">&gt;</span> <span class="dv">500</span>,<span class="st">&quot;Dem wins&quot;</span>,<span class="st">&quot;Tie or Rep wins&quot;</span>)</span></code></pre></div>
@@ -802,8 +802,8 @@ We use the <code>sum()</code> command to count how many elements in <code>one_po
 <span id="cb175-15"><a href="R-sim-probability.html#cb175-15" tabindex="-1"></a><span class="fu">table</span>(results)</span></code></pre></div>
 <pre><code>## results
 ##        D Tie or R 
-##     8864     1136</code></pre>
-<p>This table gives us a sense of the likelihood that the pollsters plan will result in an accurate prediction of which candidate will win the election. Based on our simulation, that likelihood is about 0.886.</p>
+##     8888     1112</code></pre>
+<p>This table gives us a sense of the likelihood that the pollsters plan will result in an accurate prediction of which candidate will win the election. Based on our simulation, that likelihood is about 0.889.</p>
 </div>
 <div id="same-birthday-R" class="section level2 hasAnchor" number="15.8">
 <h2><span class="header-section-number">B.8</span> Matching Birthdays<a href="R-sim-probability.html#same-birthday-R" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -880,8 +880,8 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mphitchman/math340/edit/main/source/R02-sim-probability.Rmd",
-"text": "Edit"
+"link": null,
+"text": null
 },
 "history": {
 "link": null,

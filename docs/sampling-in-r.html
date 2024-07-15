@@ -139,7 +139,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">Math 340 Notes</a></li>
+<li><a href="https://github.com/mphitchman/math340.git" target="blank">Math 340 Notes</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
@@ -615,13 +615,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We use the <code>sample(x,...)</code> command to sample from vector <code>x</code>.</p>
 <p>For instance, we can draw a random sample of size 2 from <code>hr</code>:</p>
 <div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="sampling-in-r.html#cb99-1" tabindex="-1"></a><span class="fu">sample</span>(hr,<span class="dv">2</span>)</span></code></pre></div>
-<pre><code>## [1] 29 40</code></pre>
+<pre><code>## [1] 39 20</code></pre>
 <p>Here’s another example. Let’s grab 20 skittles at random from the bag <code>skittles</code> we created in example <a href="sampling-in-r.html#exm:skittles">A.1</a> and count how many orange ones we get:</p>
 <div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="sampling-in-r.html#cb101-1" tabindex="-1"></a>grab<span class="ot">=</span><span class="fu">sample</span>(skittles,<span class="dv">20</span>)</span>
 <span id="cb101-2"><a href="sampling-in-r.html#cb101-2" tabindex="-1"></a><span class="fu">table</span>(grab)</span></code></pre></div>
 <pre><code>## grab
 ##  green orange purple    red yellow 
-##      6      4      1      3      6</code></pre>
+##     10      4      1      2      3</code></pre>
 <p>The <code>table()</code> command counts how many of each color :).</p>
 <p>We could have found the orange count directly with</p>
 <div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="sampling-in-r.html#cb103-1" tabindex="-1"></a><span class="fu">sum</span>(grab<span class="sc">==</span><span class="st">&quot;orange&quot;</span>)</span></code></pre></div>
@@ -648,7 +648,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4><span class="header-section-number">A.3.1.1</span> Permutations<a href="sampling-in-r.html#permutations-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Use <code>sample(x)</code> to generate a <em>random permutation</em> of <code>x</code>:</p>
 <div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="sampling-in-r.html#cb106-1" tabindex="-1"></a><span class="fu">sample</span>(animals) <span class="co">#default size is the length of the vector</span></span></code></pre></div>
-<pre><code>## [1] &quot;rabbit&quot;   &quot;cat&quot;      &quot;dog&quot;      &quot;hedgehog&quot;</code></pre>
+<pre><code>## [1] &quot;dog&quot;      &quot;cat&quot;      &quot;hedgehog&quot; &quot;rabbit&quot;</code></pre>
 </div>
 <div id="repeated-sampling-of-1-element" class="section level4 hasAnchor" number="14.3.1.2">
 <h4><span class="header-section-number">A.3.1.2</span> Repeated sampling of 1 element<a href="sampling-in-r.html#repeated-sampling-of-1-element" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -658,8 +658,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb108-2"><a href="sampling-in-r.html#cb108-2" tabindex="-1"></a><span class="fu">table</span>(picks) </span></code></pre></div>
 <pre><code>## picks
 ##      cat      dog hedgehog   rabbit 
-##      252      258      256      234</code></pre>
-<p>And the winner is… dog!</p>
+##      238      230      235      297</code></pre>
+<p>And the winner is… rabbit!</p>
 <p>Or, since we fear rabbits and love dogs, we can do repeated sampling of a single element with <strong>custom probabilities</strong>:</p>
 <div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="sampling-in-r.html#cb110-1" tabindex="-1"></a>picks2 <span class="ot">=</span> <span class="fu">sample</span>(animals,</span>
 <span id="cb110-2"><a href="sampling-in-r.html#cb110-2" tabindex="-1"></a>                <span class="at">size=</span><span class="dv">1000</span>,</span>
@@ -668,7 +668,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb110-5"><a href="sampling-in-r.html#cb110-5" tabindex="-1"></a><span class="fu">table</span>(picks2)</span></code></pre></div>
 <pre><code>## picks2
 ##      cat      dog hedgehog   rabbit 
-##      194      396      300      110</code></pre>
+##      196      432      281       91</code></pre>
 <p>Nice!</p>
 <p>Remember, the default option for <code>sample()</code> is to sample without replacement, and with equal probabilities.</p>
 </div>
@@ -680,7 +680,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 Pick 4 students at random from a class of 9 to race around Taylor Hall. (Assumes we have numbered the students 1-9).</p>
 </blockquote>
 <div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="sampling-in-r.html#cb112-1" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>,<span class="dv">4</span>)</span></code></pre></div>
-<pre><code>## [1] 2 4 6 5</code></pre>
+<pre><code>## [1] 9 8 7 2</code></pre>
 </div>
 <div id="sample-with-replacement" class="section level3 hasAnchor" number="14.3.3">
 <h3><span class="header-section-number">A.3.3</span> Sample with replacement<a href="sampling-in-r.html#sample-with-replacement" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -689,7 +689,7 @@ Pick 4 students at random from a class of 9 to race around Taylor Hall. (Assumes
 On twelve consecutive days, ask one student at random, in a class of size 9, to write a solution on the board.</p>
 </blockquote>
 <div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="sampling-in-r.html#cb114-1" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>,<span class="dv">12</span>,<span class="at">replace=</span><span class="cn">TRUE</span>)</span></code></pre></div>
-<pre><code>##  [1] 5 8 4 4 7 4 6 7 8 7 6 9</code></pre>
+<pre><code>##  [1] 3 7 3 8 8 1 9 4 1 8 1 4</code></pre>
 </div>
 <div id="sample-with-custom-probabilities" class="section level3 hasAnchor" number="14.3.4">
 <h3><span class="header-section-number">A.3.4</span> Sample with custom probabilities<a href="sampling-in-r.html#sample-with-custom-probabilities" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -728,7 +728,7 @@ Roll a weighted 6 sided die with the following probability distribution 100 time
 <span id="cb116-5"><a href="sampling-in-r.html#cb116-5" tabindex="-1"></a><span class="fu">table</span>(rolls)</span></code></pre></div>
 <pre><code>## rolls
 ##  1  2  3  4  5  6 
-## 17 17  4 40  9 13</code></pre>
+## 17 10  7 45  9 12</code></pre>
 </div>
 <div id="example-lefties" class="section level3 hasAnchor" number="14.3.5">
 <h3><span class="header-section-number">A.3.5</span> Example: Lefties<a href="sampling-in-r.html#example-lefties" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -747,7 +747,7 @@ Roll a weighted 6 sided die with the following probability distribution 100 time
 <span id="cb120-2"><a href="sampling-in-r.html#cb120-2" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">sample</span>(die,<span class="at">size=</span><span class="dv">45</span>,<span class="at">replace=</span><span class="cn">TRUE</span>,<span class="at">prob=</span><span class="fu">c</span>(.<span class="dv">08</span>,.<span class="dv">92</span>)))</span></code></pre></div>
 <pre><code>## 
 ##  L  R 
-##  5 40</code></pre>
+##  3 42</code></pre>
 <p>A third approach: Use a binomial distribution (later)</p>
 </div>
 </div>
@@ -792,17 +792,17 @@ The sampling distribution provides information about what sorts of orange marble
 <tr class="odd">
 <td align="left">mean</td>
 <td align="left"><code>mean(orange_counts)</code></td>
-<td align="left">20.9871</td>
+<td align="left">21.0128</td>
 </tr>
 <tr class="even">
 <td align="left">standard deviation</td>
 <td align="left"><code>sd(orange_counts)</code></td>
-<td align="left">3.4834964</td>
+<td align="left">3.4676272</td>
 </tr>
 <tr class="odd">
 <td align="left">five number summary</td>
 <td align="left"><code>fivenum(orange_counts)</code></td>
-<td align="left">8, 19, 21, 23, 35</td>
+<td align="left">9, 19, 21, 23, 36</td>
 </tr>
 </tbody>
 </table>
@@ -894,19 +894,19 @@ The sampling distribution provides information about what sorts of orange marble
 <tbody>
 <tr class="odd">
 <td align="left">permutation of <code>x</code></td>
-<td align="left"><code>sample(x) =</code> 3, 1, 5, 4, 6, 2</td>
+<td align="left"><code>sample(x) =</code> 3, 4, 1, 5, 6, 2</td>
 </tr>
 <tr class="even">
 <td align="left">sample <span class="math inline">\(n\)</span> elements without replacement</td>
-<td align="left"><code>sample(x,3) =</code> 2, 3, 5</td>
+<td align="left"><code>sample(x,3) =</code> 3, 2, 6</td>
 </tr>
 <tr class="odd">
 <td align="left">sample <span class="math inline">\(n\)</span> elements with replacement</td>
-<td align="left"><code>sample(x,5,replace=T) =</code> 2, 4, 1, 3, 2</td>
+<td align="left"><code>sample(x,5,replace=T) =</code> 6, 5, 3, 2, 4</td>
 </tr>
 <tr class="even">
 <td align="left">sample with custom probabilities</td>
-<td align="left"><code>sample(x,10,replace=T,prob= c(0,.2,0,.5,.1,.2)) =</code> 2, 6, 5, 4, 6, 6, 4, 4, 4, 4</td>
+<td align="left"><code>sample(x,10,replace=T,prob= c(0,.2,0,.5,.1,.2)) =</code> 2, 2, 4, 2, 4, 4, 4, 4, 4, 4</td>
 </tr>
 </tbody>
 </table>
@@ -941,8 +941,8 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mphitchman/math340/edit/main/source/R01-sampling.Rmd",
-"text": "Edit"
+"link": null,
+"text": null
 },
 "history": {
 "link": null,

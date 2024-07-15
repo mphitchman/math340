@@ -139,7 +139,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">Math 340 Notes</a></li>
+<li><a href="https://github.com/mphitchman/math340.git" target="blank">Math 340 Notes</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
@@ -379,7 +379,7 @@ we may write <span class="math inline">\(X ~\sim~ U(\theta_1,\theta_2)\)</span> 
 <p>In R we access the uniform distribution with <code>unif</code>. For instance, we can generate a random sample of <span class="math inline">\(n\)</span> numbers in the interval <span class="math inline">\([a,b]\)</span> with the <code>runif()</code> command:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="important-continuous-rv.html#cb10-1" tabindex="-1"></a>n<span class="ot">=</span><span class="dv">6</span>; a <span class="ot">=</span> <span class="dv">0</span>; b <span class="ot">=</span> <span class="dv">10</span>;</span>
 <span id="cb10-2"><a href="important-continuous-rv.html#cb10-2" tabindex="-1"></a><span class="fu">runif</span>(n,a,b)</span></code></pre></div>
-<pre><code>## [1] 6.568844 1.960350 7.399103 9.909517 6.322930 6.412869</code></pre>
+<pre><code>## [1] 6.856279 4.916077 4.671873 9.869101 3.647201 1.705125</code></pre>
 <div class="example">
 <p><span id="exm:unlabeled-div-37" class="example"><strong>Example 10.1  (Average value of a function) </strong></span></p>
 <blockquote>
@@ -388,7 +388,7 @@ we may write <span class="math inline">\(X ~\sim~ U(\theta_1,\theta_2)\)</span> 
 <p>Our strategy: Select a large random sample of points in the interval [0,2] and then compute the average of their squares.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="important-continuous-rv.html#cb12-1" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">runif</span>(<span class="dv">1000</span>,<span class="dv">0</span>,<span class="dv">2</span>) <span class="co">#picking 1000 points in [0,2]</span></span>
 <span id="cb12-2"><a href="important-continuous-rv.html#cb12-2" tabindex="-1"></a><span class="fu">mean</span>(x<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
-<pre><code>## [1] 1.388822</code></pre>
+<pre><code>## [1] 1.364186</code></pre>
 <p><strong>Note</strong>: From Calc I, we know the average value of a function <span class="math inline">\(f\)</span> over the interval <span class="math inline">\([a,b]\)</span> is <span class="math display">\[\frac{1}{b-a} \int_a^b f(x)~dx,\]</span>
 so here it’s <span class="math display">\[\frac{1}{2}\int_0^2 x^2~dx = \frac{1}{6} x^3 ~\biggr|_0^2 = 4/3 \approx 1.333.\]</span></p>
 </div>
@@ -694,8 +694,8 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mphitchman/math340/edit/main/source/10-important-continuous-RV.Rmd",
-"text": "Edit"
+"link": null,
+"text": null
 },
 "history": {
 "link": null,
