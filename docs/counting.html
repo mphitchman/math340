@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4 Counting Techniques | MATH 340 Notes</title>
+  <meta name="description" content="4 Counting Techniques | MATH 340 Notes" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4 Counting Techniques | MATH 340 Notes" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4 Counting Techniques | MATH 340 Notes" />
+  
+  
+  
+
+<meta name="author" content="Mike Hitchman" />
+
+
+<meta name="date" content="2024-07-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="discrete-probability-distributions.html"/>
+<link rel="next" href="probability-theory.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Math 340 Notes</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="sets.html"><a href="sets.html"><i class="fa fa-check"></i><b>2</b> Sets</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="sets.html"><a href="sets.html#algebra-of-sets"><i class="fa fa-check"></i><b>2.1</b> Algebra of Sets</a></li>
+<li class="chapter" data-level="2.2" data-path="sets.html"><a href="sets.html#size-of-sets"><i class="fa fa-check"></i><b>2.2</b> Set sizes</a></li>
+<li class="chapter" data-level="2.3" data-path="sets.html"><a href="sets.html#sets-in-r"><i class="fa fa-check"></i><b>2.3</b> Sets in R</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="discrete-probability-distributions.html"><a href="discrete-probability-distributions.html"><i class="fa fa-check"></i><b>3</b> Discrete Probability Distributions</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="discrete-probability-distributions.html"><a href="discrete-probability-distributions.html#sample-space"><i class="fa fa-check"></i><b>3.1</b> Sample Space</a></li>
+<li class="chapter" data-level="3.2" data-path="discrete-probability-distributions.html"><a href="discrete-probability-distributions.html#discrete-random-variables"><i class="fa fa-check"></i><b>3.2</b> Discrete Random Variables</a></li>
+<li class="chapter" data-level="3.3" data-path="discrete-probability-distributions.html"><a href="discrete-probability-distributions.html#calculating-probabilities"><i class="fa fa-check"></i><b>3.3</b> Calculating Probabilities</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="discrete-probability-distributions.html"><a href="discrete-probability-distributions.html#sample-point-method"><i class="fa fa-check"></i><b>3.3.1</b> Sample Point Method</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="counting.html"><a href="counting.html"><i class="fa fa-check"></i><b>4</b> Counting Techniques</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="counting.html"><a href="counting.html#multipiclation-principle"><i class="fa fa-check"></i><b>4.1</b> Multipiclation Principle</a></li>
+<li class="chapter" data-level="4.2" data-path="counting.html"><a href="counting.html#permutations"><i class="fa fa-check"></i><b>4.2</b> Permutations</a></li>
+<li class="chapter" data-level="4.3" data-path="counting.html"><a href="counting.html#combinations"><i class="fa fa-check"></i><b>4.3</b> Combinations</a></li>
+<li class="chapter" data-level="4.4" data-path="counting.html"><a href="counting.html#multinomial-coefficients"><i class="fa fa-check"></i><b>4.4</b> Multinomial Coefficients</a></li>
+<li class="chapter" data-level="4.5" data-path="counting.html"><a href="counting.html#balls-and-bins"><i class="fa fa-check"></i><b>4.5</b> Balls and Bins</a></li>
+<li class="chapter" data-level="4.6" data-path="counting.html"><a href="counting.html#prob-with-counting-tools"><i class="fa fa-check"></i><b>4.6</b> Calculating More Probabilities</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="probability-theory.html"><a href="probability-theory.html"><i class="fa fa-check"></i><b>5</b> Probability Theory</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="probability-theory.html"><a href="probability-theory.html#conditional-probability-and-independence"><i class="fa fa-check"></i><b>5.1</b> Conditional Probability and Independence</a></li>
+<li class="chapter" data-level="5.2" data-path="probability-theory.html"><a href="probability-theory.html#two-laws-of-probability"><i class="fa fa-check"></i><b>5.2</b> Two Laws of Probability</a></li>
+<li class="chapter" data-level="5.3" data-path="probability-theory.html"><a href="probability-theory.html#event-composition-method"><i class="fa fa-check"></i><b>5.3</b> Event-Composition Method</a></li>
+<li class="chapter" data-level="5.4" data-path="probability-theory.html"><a href="probability-theory.html#bayes-rule"><i class="fa fa-check"></i><b>5.4</b> Bayes’ Rule</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="discrete-random-variables-1.html"><a href="discrete-random-variables-1.html"><i class="fa fa-check"></i><b>6</b> Discrete Random Variables</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="discrete-random-variables-1.html"><a href="discrete-random-variables-1.html#expected-value"><i class="fa fa-check"></i><b>6.1</b> Expected Value</a></li>
+<li class="chapter" data-level="6.2" data-path="discrete-random-variables-1.html"><a href="discrete-random-variables-1.html#variance"><i class="fa fa-check"></i><b>6.2</b> Variance</a></li>
+<li class="chapter" data-level="6.3" data-path="discrete-random-variables-1.html"><a href="discrete-random-variables-1.html#properties-of-expected-value"><i class="fa fa-check"></i><b>6.3</b> Properties of Expected Value</a></li>
+<li class="chapter" data-level="6.4" data-path="discrete-random-variables-1.html"><a href="discrete-random-variables-1.html#tchebysheffs-theorem"><i class="fa fa-check"></i><b>6.4</b> Tchebysheff’s Theorem</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html"><i class="fa fa-check"></i><b>7</b> Important Discrete Random Variables</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html#binomial"><i class="fa fa-check"></i><b>7.1</b> Binomial Distributions</a></li>
+<li class="chapter" data-level="7.2" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html#geometric"><i class="fa fa-check"></i><b>7.2</b> Geometric Distributions</a></li>
+<li class="chapter" data-level="7.3" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html#negative-binomial"><i class="fa fa-check"></i><b>7.3</b> Negative Binomial Distribution</a></li>
+<li class="chapter" data-level="7.4" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html#hypergometric"><i class="fa fa-check"></i><b>7.4</b> Hypergeometric Distribution</a></li>
+<li class="chapter" data-level="7.5" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html#poisson"><i class="fa fa-check"></i><b>7.5</b> Poisson Distribution</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html#poisson-process"><i class="fa fa-check"></i><b>7.5.1</b> Poisson Process</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="moments-and-moment-generating-functions.html"><a href="moments-and-moment-generating-functions.html"><i class="fa fa-check"></i><b>8</b> Moments and Moment-Generating Functions</a></li>
+<li class="chapter" data-level="9" data-path="continuous-rv.html"><a href="continuous-rv.html"><i class="fa fa-check"></i><b>9</b> Continuous Random Variables</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="continuous-rv.html"><a href="continuous-rv.html#distribution-functions"><i class="fa fa-check"></i><b>9.1</b> Distribution Functions</a></li>
+<li class="chapter" data-level="9.2" data-path="continuous-rv.html"><a href="continuous-rv.html#expected-value-for-continuous-random-variables"><i class="fa fa-check"></i><b>9.2</b> Expected Value for Continuous Random Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html"><i class="fa fa-check"></i><b>10</b> Important Continuous Random Variables</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#uniform-continuous"><i class="fa fa-check"></i><b>10.1</b> Uniform Distribution</a></li>
+<li class="chapter" data-level="10.2" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#exponential-distribution"><i class="fa fa-check"></i><b>10.2</b> Exponential Distribution</a></li>
+<li class="chapter" data-level="10.3" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#normal"><i class="fa fa-check"></i><b>10.3</b> Normal Distribution</a></li>
+<li class="chapter" data-level="10.4" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#gamma-distribution"><i class="fa fa-check"></i><b>10.4</b> Gamma Distribution</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#exponential-distribution-1"><i class="fa fa-check"></i><b>10.4.1</b> Exponential Distribution</a></li>
+<li class="chapter" data-level="10.4.2" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#chi-square-distribution"><i class="fa fa-check"></i><b>10.4.2</b> Chi-square distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#beta-distribution"><i class="fa fa-check"></i><b>10.5</b> Beta Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="mgf.html"><a href="mgf.html"><i class="fa fa-check"></i><b>11</b> Moment Generating Functions</a></li>
+<li class="chapter" data-level="12" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html"><i class="fa fa-check"></i><b>12</b> Central Limit Theorem</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#sums-of-random-variables"><i class="fa fa-check"></i><b>12.1</b> Sums of Random Variables</a></li>
+<li class="chapter" data-level="12.2" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#t-distribution"><i class="fa fa-check"></i><b>12.2</b> T distribution</a></li>
+<li class="chapter" data-level="12.3" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#the-central-limit-theorem"><i class="fa fa-check"></i><b>12.3</b> The Central Limit Theorem</a></li>
+<li class="chapter" data-level="12.4" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#normal-approximation-to-a-binomial-distribution"><i class="fa fa-check"></i><b>12.4</b> Normal Approximation to a binomial distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="estimation.html"><a href="estimation.html"><i class="fa fa-check"></i><b>13</b> Estimation</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="estimation.html"><a href="estimation.html#unbiased-estimators"><i class="fa fa-check"></i><b>13.1</b> Unbiased Estimators</a></li>
+<li class="chapter" data-level="13.2" data-path="estimation.html"><a href="estimation.html#order-statistics"><i class="fa fa-check"></i><b>13.2</b> Order Statistics</a></li>
+<li class="chapter" data-level="13.3" data-path="estimation.html"><a href="estimation.html#common-unbiased-estimators"><i class="fa fa-check"></i><b>13.3</b> Common Unbiased Estimators</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="estimation.html"><a href="estimation.html#estimating-mu-a-population-mean"><i class="fa fa-check"></i><b>13.3.1</b> Estimating <span class="math inline">\(\mu\)</span>, a population mean</a></li>
+<li class="chapter" data-level="13.3.2" data-path="estimation.html"><a href="estimation.html#estimating-p-a-population-proportion"><i class="fa fa-check"></i><b>13.3.2</b> Estimating <span class="math inline">\(p\)</span>, a population proportion</a></li>
+<li class="chapter" data-level="13.3.3" data-path="estimation.html"><a href="estimation.html#estimating-mu_1---mu_2-the-difference-of-two-population-means"><i class="fa fa-check"></i><b>13.3.3</b> Estimating <span class="math inline">\(\mu_1 - \mu_2\)</span>, the difference of two population means</a></li>
+<li class="chapter" data-level="13.3.4" data-path="estimation.html"><a href="estimation.html#estimating-p_1---p_2-the-difference-of-two-population-proportions"><i class="fa fa-check"></i><b>13.3.4</b> Estimating <span class="math inline">\(p_1 - p_2\)</span>, the difference of two population proportions</a></li>
+</ul></li>
+</ul></li>
+<li class="appendix"><span><b>Using R</b></span></li>
+<li class="chapter" data-level="A" data-path="sampling-in-r.html"><a href="sampling-in-r.html"><i class="fa fa-check"></i><b>A</b> Sampling in R</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="sampling-in-r.html"><a href="sampling-in-r.html#vectors-R"><i class="fa fa-check"></i><b>A.1</b> Data vectors</a>
+<ul>
+<li class="chapter" data-level="A.1.1" data-path="sampling-in-r.html"><a href="sampling-in-r.html#vector-types"><i class="fa fa-check"></i><b>A.1.1</b> vector types</a></li>
+<li class="chapter" data-level="A.1.2" data-path="sampling-in-r.html"><a href="sampling-in-r.html#matrices"><i class="fa fa-check"></i><b>A.1.2</b> Matrices</a></li>
+<li class="chapter" data-level="A.1.3" data-path="sampling-in-r.html"><a href="sampling-in-r.html#data-frames"><i class="fa fa-check"></i><b>A.1.3</b> data frames</a></li>
+<li class="chapter" data-level="A.1.4" data-path="sampling-in-r.html"><a href="sampling-in-r.html#common-vector-commands"><i class="fa fa-check"></i><b>A.1.4</b> common vector commands</a></li>
+<li class="chapter" data-level="A.1.5" data-path="sampling-in-r.html"><a href="sampling-in-r.html#comparison-operators"><i class="fa fa-check"></i><b>A.1.5</b> Comparison Operators</a></li>
+<li class="chapter" data-level="A.1.6" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sum-and-which"><i class="fa fa-check"></i><b>A.1.6</b> <code>sum()</code> and <code>which()</code></a></li>
+<li class="chapter" data-level="A.1.7" data-path="sampling-in-r.html"><a href="sampling-in-r.html#extracting-elements"><i class="fa fa-check"></i><b>A.1.7</b> extracting elements</a></li>
+<li class="chapter" data-level="A.1.8" data-path="sampling-in-r.html"><a href="sampling-in-r.html#comparing-vectors"><i class="fa fa-check"></i><b>A.1.8</b> comparing vectors</a></li>
+<li class="chapter" data-level="A.1.9" data-path="sampling-in-r.html"><a href="sampling-in-r.html#vector-arithmetic"><i class="fa fa-check"></i><b>A.1.9</b> vector arithmetic</a></li>
+<li class="chapter" data-level="A.1.10" data-path="sampling-in-r.html"><a href="sampling-in-r.html#concatenate-vectors"><i class="fa fa-check"></i><b>A.1.10</b> concatenate vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="A.2" data-path="sampling-in-r.html"><a href="sampling-in-r.html#special-vectors"><i class="fa fa-check"></i><b>A.2</b> Special vectors</a>
+<ul>
+<li class="chapter" data-level="A.2.1" data-path="sampling-in-r.html"><a href="sampling-in-r.html#consecutive-integers"><i class="fa fa-check"></i><b>A.2.1</b> consecutive integers</a></li>
+<li class="chapter" data-level="A.2.2" data-path="sampling-in-r.html"><a href="sampling-in-r.html#letters"><i class="fa fa-check"></i><b>A.2.2</b> letters</a></li>
+<li class="chapter" data-level="A.2.3" data-path="sampling-in-r.html"><a href="sampling-in-r.html#rep"><i class="fa fa-check"></i><b>A.2.3</b> <code>rep()</code></a></li>
+<li class="chapter" data-level="A.2.4" data-path="sampling-in-r.html"><a href="sampling-in-r.html#table"><i class="fa fa-check"></i><b>A.2.4</b> <code>table()</code></a></li>
+<li class="chapter" data-level="A.2.5" data-path="sampling-in-r.html"><a href="sampling-in-r.html#seq"><i class="fa fa-check"></i><b>A.2.5</b> <code>seq()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="A.3" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sampling-in-R"><i class="fa fa-check"></i><b>A.3</b> Sampling</a>
+<ul>
+<li class="chapter" data-level="A.3.1" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sample-options"><i class="fa fa-check"></i><b>A.3.1</b> <code>sample()</code> options</a></li>
+<li class="chapter" data-level="A.3.2" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sample-without-replacement"><i class="fa fa-check"></i><b>A.3.2</b> Sample without replacement</a></li>
+<li class="chapter" data-level="A.3.3" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sample-with-replacement"><i class="fa fa-check"></i><b>A.3.3</b> Sample with replacement</a></li>
+<li class="chapter" data-level="A.3.4" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sample-with-custom-probabilities"><i class="fa fa-check"></i><b>A.3.4</b> Sample with custom probabilities</a></li>
+<li class="chapter" data-level="A.3.5" data-path="sampling-in-r.html"><a href="sampling-in-r.html#example-lefties"><i class="fa fa-check"></i><b>A.3.5</b> Example: Lefties</a></li>
+</ul></li>
+<li class="chapter" data-level="A.4" data-path="sampling-in-r.html"><a href="sampling-in-r.html#repeated-sampling"><i class="fa fa-check"></i><b>A.4</b> Repeated Sampling</a>
+<ul>
+<li class="chapter" data-level="A.4.1" data-path="sampling-in-r.html"><a href="sampling-in-r.html#using-a-for-loop"><i class="fa fa-check"></i><b>A.4.1</b> using a <code>for</code> loop</a></li>
+<li class="chapter" data-level="A.4.2" data-path="sampling-in-r.html"><a href="sampling-in-r.html#using-replicate"><i class="fa fa-check"></i><b>A.4.2</b> using <code>replicate()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="A.5" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sampling-commands"><i class="fa fa-check"></i><b>A.5</b> Summary of R commands</a>
+<ul>
+<li class="chapter" data-level="A.5.1" data-path="sampling-in-r.html"><a href="sampling-in-r.html#defining-vectors"><i class="fa fa-check"></i><b>A.5.1</b> defining vectors</a></li>
+<li class="chapter" data-level="A.5.2" data-path="sampling-in-r.html"><a href="sampling-in-r.html#summarizing-vectors"><i class="fa fa-check"></i><b>A.5.2</b> summarizing vectors</a></li>
+<li class="chapter" data-level="A.5.3" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sampling-from-vectors"><i class="fa fa-check"></i><b>A.5.3</b> sampling from vectors</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="R-sim-probability.html"><a href="R-sim-probability.html"><i class="fa fa-check"></i><b>B</b> Simulating Probability in R</a>
+<ul>
+<li class="chapter" data-level="B.1" data-path="R-sim-probability.html"><a href="R-sim-probability.html#id_10sided-die-R"><i class="fa fa-check"></i><b>B.1</b> Rolling a 10-sided die</a>
+<ul>
+<li class="chapter" data-level="B.1.1" data-path="R-sim-probability.html"><a href="R-sim-probability.html#final-code"><i class="fa fa-check"></i><b>B.1.1</b> Final Code</a></li>
+</ul></li>
+<li class="chapter" data-level="B.2" data-path="R-sim-probability.html"><a href="R-sim-probability.html#diff-2dice-R"><i class="fa fa-check"></i><b>B.2</b> Difference of two dice</a></li>
+<li class="chapter" data-level="B.3" data-path="R-sim-probability.html"><a href="R-sim-probability.html#flip-coin-R"><i class="fa fa-check"></i><b>B.3</b> Flipping a coin</a></li>
+<li class="chapter" data-level="B.4" data-path="R-sim-probability.html"><a href="R-sim-probability.html#marbles-urn-R"><i class="fa fa-check"></i><b>B.4</b> Marbles from an urn</a></li>
+<li class="chapter" data-level="B.5" data-path="R-sim-probability.html"><a href="R-sim-probability.html#partition-set-R"><i class="fa fa-check"></i><b>B.5</b> Splitting a set into multiple subsets</a>
+<ul>
+<li class="chapter" data-level="B.5.1" data-path="R-sim-probability.html"><a href="R-sim-probability.html#final-code-1"><i class="fa fa-check"></i><b>B.5.1</b> Final Code</a></li>
+</ul></li>
+<li class="chapter" data-level="B.6" data-path="R-sim-probability.html"><a href="R-sim-probability.html#license-plates-R"><i class="fa fa-check"></i><b>B.6</b> Oregon License Plates</a>
+<ul>
+<li class="chapter" data-level="B.6.1" data-path="R-sim-probability.html"><a href="R-sim-probability.html#final-code-2"><i class="fa fa-check"></i><b>B.6.1</b> Final Code</a></li>
+</ul></li>
+<li class="chapter" data-level="B.7" data-path="R-sim-probability.html"><a href="R-sim-probability.html#pollsters-R"><i class="fa fa-check"></i><b>B.7</b> Pollsters</a></li>
+<li class="chapter" data-level="B.8" data-path="R-sim-probability.html"><a href="R-sim-probability.html#same-birthday-R"><i class="fa fa-check"></i><b>B.8</b> Matching Birthdays</a></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="R-discreteRV.html"><a href="R-discreteRV.html"><i class="fa fa-check"></i><b>C</b> Discrete Random Variables in R</a>
+<ul>
+<li class="chapter" data-level="C.1" data-path="R-discreteRV.html"><a href="R-discreteRV.html#expected-value-of-x"><i class="fa fa-check"></i><b>C.1</b> Expected Value of <span class="math inline">\(X\)</span></a></li>
+<li class="chapter" data-level="C.2" data-path="R-discreteRV.html"><a href="R-discreteRV.html#variance-of-x"><i class="fa fa-check"></i><b>C.2</b> Variance of <span class="math inline">\(X\)</span></a></li>
+<li class="chapter" data-level="C.3" data-path="R-discreteRV.html"><a href="R-discreteRV.html#distribution-plots"><i class="fa fa-check"></i><b>C.3</b> Distribution Plots</a></li>
+<li class="chapter" data-level="C.4" data-path="R-discreteRV.html"><a href="R-discreteRV.html#sampling"><i class="fa fa-check"></i><b>C.4</b> Sampling</a></li>
+<li class="chapter" data-level="C.5" data-path="R-discreteRV.html"><a href="R-discreteRV.html#estimating-distributions-via-simulation"><i class="fa fa-check"></i><b>C.5</b> Estimating Distributions via Simulation</a></li>
+<li class="chapter" data-level="C.6" data-path="R-discreteRV.html"><a href="R-discreteRV.html#discrete-uniform-distribution"><i class="fa fa-check"></i><b>C.6</b> Discrete Uniform Distribution</a></li>
+<li class="chapter" data-level="C.7" data-path="R-discreteRV.html"><a href="R-discreteRV.html#r-4distn-functions"><i class="fa fa-check"></i><b>C.7</b> Important discrete random variables</a>
+<ul>
+<li class="chapter" data-level="C.7.1" data-path="R-discreteRV.html"><a href="R-discreteRV.html#binomial-distribution-binom"><i class="fa fa-check"></i><b>C.7.1</b> Binomial Distribution <code>binom</code></a></li>
+<li class="chapter" data-level="C.7.2" data-path="R-discreteRV.html"><a href="R-discreteRV.html#geometric-distribution-geom"><i class="fa fa-check"></i><b>C.7.2</b> Geometric Distribution <code>geom</code></a></li>
+<li class="chapter" data-level="C.7.3" data-path="R-discreteRV.html"><a href="R-discreteRV.html#negative-binomial-distribution-nbinom"><i class="fa fa-check"></i><b>C.7.3</b> Negative Binomial Distribution <code>nbinom</code></a></li>
+<li class="chapter" data-level="C.7.4" data-path="R-discreteRV.html"><a href="R-discreteRV.html#hypergeometric-distribution-hyper"><i class="fa fa-check"></i><b>C.7.4</b> Hypergeometric Distribution <code>hyper</code></a></li>
+<li class="chapter" data-level="C.7.5" data-path="R-discreteRV.html"><a href="R-discreteRV.html#poisson-distribution-pois"><i class="fa fa-check"></i><b>C.7.5</b> Poisson Distribution <code>pois</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="D" data-path="R-continuousRV.html"><a href="R-continuousRV.html"><i class="fa fa-check"></i><b>D</b> Continuous Random Variables in R</a>
+<ul>
+<li class="chapter" data-level="D.1" data-path="R-continuousRV.html"><a href="R-continuousRV.html#unifR"><i class="fa fa-check"></i><b>D.1</b> Uniform Distribution</a>
+<ul>
+<li class="chapter" data-level="D.1.1" data-path="R-continuousRV.html"><a href="R-continuousRV.html#picking-random-numbers"><i class="fa fa-check"></i><b>D.1.1</b> Picking random numbers!</a></li>
+<li class="chapter" data-level="D.1.2" data-path="R-continuousRV.html"><a href="R-continuousRV.html#picking-random-points-in-the-unit-square"><i class="fa fa-check"></i><b>D.1.2</b> Picking random points in the unit square!</a></li>
+<li class="chapter" data-level="D.1.3" data-path="R-continuousRV.html"><a href="R-continuousRV.html#estimate-the-value-of-pi"><i class="fa fa-check"></i><b>D.1.3</b> Estimate the value of <span class="math inline">\(\pi\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="D.2" data-path="R-continuousRV.html"><a href="R-continuousRV.html#normalR"><i class="fa fa-check"></i><b>D.2</b> Normal Distribution <code>norm</code></a>
+<ul>
+<li class="chapter" data-level="D.2.1" data-path="R-continuousRV.html"><a href="R-continuousRV.html#sampling-distribution-of-a-sample-mean"><i class="fa fa-check"></i><b>D.2.1</b> Sampling Distribution of a sample mean</a></li>
+</ul></li>
+<li class="chapter" data-level="D.3" data-path="R-continuousRV.html"><a href="R-continuousRV.html#expR"><i class="fa fa-check"></i><b>D.3</b> Exponential Distribution <code>exp</code></a></li>
+<li class="chapter" data-level="D.4" data-path="R-continuousRV.html"><a href="R-continuousRV.html#gammaR"><i class="fa fa-check"></i><b>D.4</b> Gamma Distribution <code>gamma</code></a></li>
+<li class="chapter" data-level="D.5" data-path="R-continuousRV.html"><a href="R-continuousRV.html#chiR"><i class="fa fa-check"></i><b>D.5</b> Chi-square Distribution <code>chisq</code></a></li>
+<li class="chapter" data-level="D.6" data-path="R-continuousRV.html"><a href="R-continuousRV.html#betaR"><i class="fa fa-check"></i><b>D.6</b> Beta distribution <code>beta</code></a></li>
+<li class="chapter" data-level="D.7" data-path="R-continuousRV.html"><a href="R-continuousRV.html#customR"><i class="fa fa-check"></i><b>D.7</b> Homemade Continuous Random Variables</a>
+<ul>
+<li class="chapter" data-level="D.7.1" data-path="R-continuousRV.html"><a href="R-continuousRV.html#input-the-density-function"><i class="fa fa-check"></i><b>D.7.1</b> Input the density function</a></li>
+<li class="chapter" data-level="D.7.2" data-path="R-continuousRV.html"><a href="R-continuousRV.html#visualize-the-density-function"><i class="fa fa-check"></i><b>D.7.2</b> Visualize the density function</a></li>
+<li class="chapter" data-level="D.7.3" data-path="R-continuousRV.html"><a href="R-continuousRV.html#estimating-integrals-with-riemann-sums"><i class="fa fa-check"></i><b>D.7.3</b> Estimating Integrals with Riemann Sums</a></li>
+<li class="chapter" data-level="D.7.4" data-path="R-continuousRV.html"><a href="R-continuousRV.html#estimating-probabilities"><i class="fa fa-check"></i><b>D.7.4</b> Estimating Probabilities</a></li>
+<li class="chapter" data-level="D.7.5" data-path="R-continuousRV.html"><a href="R-continuousRV.html#the-distribution-function-fx"><i class="fa fa-check"></i><b>D.7.5</b> The distribution function <span class="math inline">\(F(X)\)</span></a></li>
+<li class="chapter" data-level="D.7.6" data-path="R-continuousRV.html"><a href="R-continuousRV.html#estimating-moments"><i class="fa fa-check"></i><b>D.7.6</b> Estimating Moments</a></li>
+<li class="chapter" data-level="D.7.7" data-path="R-continuousRV.html"><a href="R-continuousRV.html#expected-value-1"><i class="fa fa-check"></i><b>D.7.7</b> Expected Value</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MATH 340 Notes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="counting" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">4</span> Counting Techniques<a href="counting.html#counting" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Here we develop a toolbox of counting techniques to help us calculate probabilities.</p>
+<div id="multipiclation-principle" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Multipiclation Principle<a href="counting.html#multipiclation-principle" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="proposition">
+<p><span id="prp:unlabeled-div-2" class="proposition"><strong>Proposition 4.1  (Addition Principle) </strong></span>Let <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> be disjoint sets with <span class="math inline">\(m\)</span> and <span class="math inline">\(n\)</span> elements, respectively. Then the total number of elements of <span class="math inline">\(A \cup B\)</span> is <span class="math inline">\(m+n\)</span>.</p>
+</div>
+<p>The addition principle extends to any number of pairwise disjoint sets: The size of the union of pairwise disjoint sets equals the sum of the individual set sizes.</p>
+<p>We use the addition principle when we count the size of a set by first breaking the set into disjoint subsets and then counting the size of each subset. The addition principle just says that the size of the original set is found by adding the sizes of these disjoint subsets.</p>
+<p>Here’s a simple example to illustrate the point:</p>
+<blockquote>
+<p>How many Major League Baseball teams are there?</p>
+</blockquote>
+<p>Ok, I can do this! Major League Baseball (MLB) is the (dijoint) union of two leagues, the American League (AL), which has 15 teams, and the National League (NL), which also has 15 teams. So all of Major League Baseball has 15 + 15 = 30 teams!</p>
+<div class="proposition">
+<p><span id="prp:unlabeled-div-3" class="proposition"><strong>Proposition 4.2  (Multiplication Principle) </strong></span>Given a set <span class="math inline">\(A\)</span> with <span class="math inline">\(m\)</span> elements, and a set <span class="math inline">\(B\)</span> with <span class="math inline">\(n\)</span> elements, it is possible to form <span class="math inline">\(m \cdot n\)</span> pairs containing one element from each set.</p>
+</div>
+<p>A simple illustration of the multiplication principle:</p>
+<p>In Major League Baseball, the world series is a best-of-7 series between the champion of the AL and the champion of the NL.</p>
+<blockquote>
+<p>How many different world series matchups are possible?</p>
+</blockquote>
+<p>We have 15 possible AL champions and 15 possible NL champions, so we have <span class="math inline">\(15 \cdot 15 = 225\)</span> possible world series matchups (none of which, in all the years past, have included the Seattle Mariners).</p>
+<p>The multiplication principle is the hammer of our counting toolbox.</p>
+<p>We often use this hammer in the following manner: Suppose a task is completed by completing <span class="math inline">\(k\)</span> subtasks. If the subtasks can be completed in <span class="math inline">\(n_1, n_2, \ldots, n_k\)</span> ways, respectively, then the task itself can be completed in <span class="math inline">\(n_1 \cdot n_2 \cdot \cdots \cdot n_k\)</span> ways.</p>
+<p>The World Series example above fits this mold. We can think of determining the World Series matchup as our task, which we complete by completing two subtasks: (1) Choose the AL champion (15 choices); and (2) Choose the NL champion (15 choices). So we can build ourselves a World Series matchup in <span class="math inline">\(15^2\)</span> ways.</p>
+<p>Let’s look at several more examples.</p>
+<div class="example">
+<p><span id="exm:mult-principle" class="example"><strong>Example 4.1  </strong></span></p>
+<blockquote>
+<p><strong>a)</strong>
+A menu at a restaurant has 5 salads, 7 main dishes, and 4 desserts. If a dinner consists of ordering a salad, main dish, and dessert (because you’re hungry), how many different dinners are possible?</p>
+</blockquote>
+<ul>
+<li>Subtask 1: order a salad (5 choices);</li>
+<li>Subtask 2: order a main dish (7 choices);</li>
+<li>Subtask 3: order a dessert (4 choices).</li>
+</ul>
+<p>So we have <span class="math inline">\(5 \cdot 7 \cdot 4 = 140\)</span> possible dinners. If we go to this restaurant once a week, it will take about 2.7 years to try every possible dinner.</p>
+<blockquote>
+<p><strong>b)</strong>
+Suppose a license plate consists of six characters, where each character can be a letter (A-Z) or a digit (0-9). How many different license plates are there?</p>
+</blockquote>
+<p>Here’s a blank license plate, needing to be created:</p>
+<p><span class="math display">\[\underline{~~~} ~~~ \underline{~~~} ~~~ \underline{~~~} ~~~ \underline{~~~} ~~~ \underline{~~~} ~~~ \underline{~~~}\]</span>
+To create the plate, we pick a character for each of the six spots. We have 36 choices at each stage, so the number of distinct plates is <span class="math display">\[\underline{36}\cdot \underline{36} \cdot \underline{36} \cdot \underline{36} \cdot \underline{36} \cdot \underline{36} = 36^6 = 2,176,782,336,\]</span> just shy of 2.18 billion.</p>
+<blockquote>
+<p><strong>c)</strong>
+How many 7-digit phone numbers are there, assuming the first digit cannot be 0 or 1?</p>
+</blockquote>
+<p>Count our digit choices at each stage in the process of creating a valid number, and multiply our choices:
+<span class="math display">\[\underline{8}\cdot \underline{10} \cdot \underline{10} \cdot \underline{10} \cdot \underline{10} \cdot \underline{10} \cdot \underline{10} = 8\cdot10^6,\]</span> 8 million on the nose. If we have more than 8 million phones in an area, we need more than one area code.</p>
+<blockquote>
+<p><strong>d)</strong>
+A baseball team has 13 batters. How many different batting lineups of 9 players are possible?</p>
+</blockquote>
+<p>We have to create a lineup with 9 players, and the total number of lineups possible will be found by multiplying our choices at each stage. Since we can’t pick the same player twice, the number of choices decreases by one at each stage in the selection process:
+<span class="math display">\[\underline{13}\cdot \underline{12} \cdot \underline{11} \cdot \underline{10} \cdot \underline{9} \cdot \underline{8} \cdot \underline{7} \cdot \underline{6} \cdot \underline{5}= 259,459,200.\]</span>
+Over quarter of a billion possible lineups? The season isn’t quite long enough to test out every possible lineup.</p>
+<blockquote>
+<p><strong>e)</strong>
+How many 4-digit integers bigger than 5000 have distinct odd digits?</p>
+</blockquote>
+<p>Record our choices as we set about building such a four-digit number:</p>
+<p><span class="math display">\[\underline{~~~} ~~~ \underline{~~~} ~~~ \underline{~~~} ~~~ \underline{~~~}\]</span>
+Each digit must be odd (1, 3, 5, 7, or 9), and since the number must be bigger than 5000, we only have 3 choices for the “thousands place” (5,7, or 9). Once that has been chosen, we have 4 odd numbers left, so we have 4 choices for the hundreds place. Then 3 choices remain for the tens place, and 2 for the ones place. Multiplying these choices we have
+<span class="math display">\[\underline{3}\cdot \underline{4} \cdot \underline{3} \cdot \underline{2} = 72\]</span> 4-digit integers bigger than 5000 with distinct odd digits.</p>
+</div>
+<p>In examples (b)-(e) above, we counted the number of <strong>ordered arrangements</strong> - order matters when you’re dialing a phone number, or writing down a license plate, or sending players up to bat, or expressing a 4-digit number. In the case of license plates and phone numbers, the same value can be chosen twice. With the lineup no repeat choices are allowed, the lineup must consist of distinct batters. No repeats for those special 4-digit integers either.</p>
+<p>To summarize, in the examples so far we have effectively used what we might call the <strong>enumerate subtasks</strong> strategy of counting how many different objects are possible as follows:</p>
+<ul>
+<li>break the task of creating the object into a sequence of subtasks</li>
+<li>count how many choices we have for completing each subtask, and</li>
+<li>multiply all these choice counts.</li>
+</ul>
+<p>This process works as long as we would create each object we’re trying to count exactly once if we followed every possible combination of step choices.</p>
+<div class="example">
+<p><span id="exm:unlabeled-div-4" class="example"><strong>Example 4.2  (With or Without Replacement) </strong></span>We have reason to consider two variations on the theme of “pick <span class="math inline">\(k\)</span> elements from the set <span class="math inline">\(A\)</span>.” We can either pick <strong>with replacement</strong>, meaning each pick is made from the entire set (allowing the same element to be picked multiple times), or we pick <strong>without replacement</strong>, meaning once an element has been picked, it can’t be picked again.</p>
+<p>How many ways can we pick 3 names from the set <span class="math inline">\(M = \{\)</span>Evelyn, Eddie, Gordon, Oriana<span class="math inline">\(\}\)</span>:</p>
+<ul>
+<li>with replacement? <span class="math inline">\(\displaystyle \underline{4}\cdot \underline{4}\cdot \underline{4} = 4^3 = 64.\)</span></li>
+<li>without replacement? <span class="math inline">\(\displaystyle \underline{4}\cdot \underline{3}\cdot \underline{2} = 24.\)</span></li>
+</ul>
+</div>
+</div>
+<div id="permutations" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Permutations<a href="counting.html#permutations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="definition">
+<p><span id="def:permutation" class="definition"><strong>Definition 4.1  </strong></span>A <strong>permutation</strong> is an ordered arrangement of distinct objects. The number of ways of ordering <span class="math inline">\(n\)</span> distinct objects taken <span class="math inline">\(r\)</span> at a time will be denoted <span class="math inline">\(\displaystyle P^n_r\)</span>.</p>
+</div>
+<p>The symbol <span class="math inline">\(\displaystyle P^n_r\)</span> denotes the number of ways to create an ordered list of length <span class="math inline">\(r\)</span> without repeats from a set of <span class="math inline">\(n\)</span> distinct elements. So, in the baseball lineup example we found <span class="math inline">\(\displaystyle P^{13}_9 = 259,459,200.\)</span></p>
+<p>In general, <span class="math display">\[P^n_r = n \cdot (n-1) \cdot \cdots \cdot (n-r+1),\]</span></p>
+<p>though we can more effectively express <span class="math inline">\(\displaystyle P^n_r\)</span> via factorials.</p>
+<p>Recall, <span class="math inline">\(n!\)</span> (read ``<strong>n factorial</strong>”), is shorthand for <span class="math display">\[n! = n \cdot (n-1) \cdot \cdots \cdot 2 \cdot 1.\]</span></p>
+<p>For instance, <span class="math inline">\(5! = 5 \cdot 4 \cdot 3 \cdot 2 \cdot 1 = 120\)</span>.</p>
+<p>Two notes:</p>
+<ol style="list-style-type: decimal">
+<li>We set <span class="math inline">\(0! = 1\)</span></li>
+<li>Notice that <span class="math inline">\(n! = n \cdot (n-1)!\)</span>, so <span class="math inline">\(\displaystyle \frac{n!}{(n-1)!} = n\)</span>.</li>
+</ol>
+<p>So we have the following formula for <span class="math inline">\(\displaystyle P^n_r\)</span>:</p>
+<p><span class="math display" id="eq:Pnr">\[\begin{equation}
+  P^n_r = \frac{n!}{(n-r)!}.
+  \tag{4.1}
+\end{equation}\]</span></p>
+<p>Referring to the random phones example <a href="discrete-probability-distributions.html#exm:random-phones">3.4</a>, without listing all the possible ordered arrangements we know there will be <span class="math inline">\(4!= 24\)</span> ways to return the phones to the 4 students at random (4 phones to choose from when returning one to the first student, 3 phones for the second student, 2 for the third, and 1 for the fourth).</p>
+</div>
+<div id="combinations" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Combinations<a href="counting.html#combinations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We let <span class="math inline">\(\displaystyle C^n_r\)</span> equal the number of ways to choose an unordered arrangement of <span class="math inline">\(r\)</span> distinct elements from a set of <span class="math inline">\(n\)</span> distinct objects. We also let <span class="math inline">\(\displaystyle\binom{n}{k}\)</span> denote this number (read as “n choose r”).</p>
+<p>For instance, <span class="math inline">\(\displaystyle\binom{4}{2}\)</span> gives how many distinct subsets of size 2 can be formed from a set of size 4, and we see that <span class="math inline">\(\displaystyle\binom{4}{2} = 6\)</span> because one can form 6 distinct subsets of size 2 from the set <span class="math inline">\(\{A,B,C,D\}\)</span>: <span class="math inline">\(\{A,B\}\)</span>, <span class="math inline">\(\{A,C\}\)</span>,<span class="math inline">\(\{A,D\}\)</span>, <span class="math inline">\(\{B,C\}\)</span>,<span class="math inline">\(\{B,D\}\)</span>, <span class="math inline">\(\{C,D\}\)</span>.</p>
+<p>We have the following formula for <span class="math inline">\(\displaystyle \binom{n}{r}\)</span>:</p>
+<p><span class="math display" id="eq:Cnr">\[\begin{equation}
+  C^n_r = \binom{n}{r} = \frac{n!}{(n-r)!\cdot r!}.
+  \tag{4.2}
+\end{equation}\]</span></p>
+<div class="proof">
+<p><span id="unlabeled-div-5" class="proof"><em>Proof</em>. </span>We may build an ordered list of <span class="math inline">\(r\)</span> distinct elements from a set of <span class="math inline">\(n\)</span> distinct elements by completing these two tasks:</p>
+<ol style="list-style-type: decimal">
+<li>Choose a combination of size <span class="math inline">\(r\)</span> from the set of size <span class="math inline">\(n\)</span>. The number of ways to do this is exactly what we’re calling <span class="math inline">\(\binom{n}{r}\)</span>.</li>
+<li>We may choose a particular ordering of the “unordered” <span class="math inline">\(r\)</span> chosen in step 1 in <span class="math inline">\(r!\)</span> ways.</li>
+</ol>
+<p>The result is an ordered arrangement of <span class="math inline">\(r\)</span> chosen from a set of <span class="math inline">\(n\)</span>, and the number of such ordered arrangements will be <span class="math display">\[\binom{n}{r} \cdot r!\]</span> by the multiplication principle.</p>
+<p>But we’ve also denoted the number of ordered arrangments of <span class="math inline">\(r\)</span> from <span class="math inline">\(n\)</span>, as <span class="math inline">\(P^n_r\)</span>, so <span class="math display">\[P^n_r = \binom{n}{r} \cdot r!,\]</span> and since <span class="math inline">\(P^n_r = n!/(n-r)!\)</span>, it follows that
+<span class="math display">\[C^n_r = \binom{n}{r} = \frac{n!}{(n-r)!\cdot r!}.\]</span></p>
+</div>
+<div class="theorem">
+<p><span id="thm:Cnrfacts" class="theorem"><strong>Theorem 4.1  </strong></span>Facts about <span class="math inline">\(\displaystyle \binom{n}{r}\)</span> for <span class="math inline">\(n \geq 1\)</span> and <span class="math inline">\(0 \leq r \leq n\)</span>:</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\displaystyle \binom{n}{0} = 1\)</span>; <span class="math inline">\(\displaystyle \binom{n}{1}=n\)</span>; <span class="math inline">\(\displaystyle \binom{n}{n}=1.\)</span></li>
+<li><span class="math inline">\(\displaystyle \binom{n}{r} = \binom{n}{n-r}\)</span>.</li>
+<li><strong>Pascal’s Formula</strong>: <span class="math inline">\(\displaystyle \binom{n}{r} = \binom{n-1}{r-1} + \binom{n-1}{r}\)</span>.</li>
+<li><strong>Binomial Theorem</strong>: For real numbers <span class="math inline">\(x, y\)</span> and <span class="math inline">\(n\in\mathbb{N}\)</span>, <span class="math display">\[(x+y)^n = \sum_{r=0}^n \binom{n}{r}x^{n-r}y^r.\]</span></li>
+<li><span class="math inline">\(\displaystyle \sum_{r = 0}^n \binom{n}{r} = 2^n.\)</span></li>
+</ol>
+</div>
+<p>Counting arguments justifying these properties are fun, we’ll do these in class, and Pascal’s triangle encodes most of them. Because of the binomial theorem, <span class="math inline">\(\displaystyle \binom{n}{k}\)</span> are also called <strong>binomial coefficients</strong>.</p>
+<p>With these binomial coefficients in our toolbox, let’s return to counting.</p>
+<div class="example">
+<p><span id="exm:cnr-subcommittees" class="example"><strong>Example 4.3  </strong></span></p>
+<blockquote>
+<p>How many subcommittees of size 3 can be formed from a group of 7 people?</p>
+</blockquote>
+<p>We treat a subcommittee as an unordered subset of the group, so the number of possible subcommittees of size 3 will be <span class="math inline">\(\binom{7}{3} = 35\)</span>. I would arrive at the number with paper and pencil by first taking advantage of a lot of cancellations:</p>
+<p><span class="math display">\[\begin{align*}
+\binom{7}{3} &amp;= \frac{7!}{4! \cdot 3!}\\
+&amp;= \frac{7\cdot 6 \cdot 5 \cdot 4!}{4! \cdot 3!}\\
+&amp;= \frac{7\cdot 6 \cdot 5}{3!} &amp;\text{ canceling the } 4! \text{ terms}\\
+&amp;= \frac{7\cdot 6 \cdot 5}{6} &amp;\text{ since } 3! = 6\\
+&amp;= 7 \cdot 5 \\
+&amp;= 35.
+\end{align*}\]</span></p>
+</div>
+<div class="example">
+<p><span id="exm:cnr-2-ultimate-vans" class="example"><strong>Example 4.4  </strong></span></p>
+<blockquote>
+<p>An ultimate frisbee team is travelling in two vans to a tournament. The purple van seats 8, and the white van seats 12. How many different ways can the 20-player team be split into two groups, the purple group of size 8 and the white group of size 12?</p>
+</blockquote>
+<p>There are <span class="math inline">\(\binom{20}{8}\)</span> ways to choose the purple group, and once they’re chosen, the white group has also been formed, so there are <span class="math inline">\(\binom{20}{8} = 125,970\)</span> ways to split the teams into two groups. (Of coures, we could have also answered the question by finding the number of ways to choose the white group, which is <span class="math inline">\(\binom{20}{12}\)</span>. This produces the same answer, a fact stated in generality in Part 2 of Theorem <a href="counting.html#thm:Cnrfacts">4.1</a>.</p>
+</div>
+<div class="example">
+<p><span id="exm:cnr-choose-corn" class="example"><strong>Example 4.5  </strong></span></p>
+<blockquote>
+<p>A market stand has 20 ears of corn left. We plan to purchase 5 ears. How many different combinations of 5 ears can we purchase? If 3 of the 20 ears are actually “bad”, how many of these possible purchase combinations would have at least one bad ear?</p>
+</blockquote>
+<p>The first question is answered by finding <span class="math display">\[\binom{20}{5} = \frac{20!}{15!\cdot 5!} = 15,504.\]</span>
+In R, binomial coefficients are computed with <code>choose(n,r)</code>.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="counting.html#cb2-1" tabindex="-1"></a><span class="fu">choose</span>(<span class="dv">20</span>,<span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## [1] 15504</code></pre>
+<p>The second question is more interesting.</p>
+<p>Let <span class="math inline">\(A\)</span> denote the set of all combinations of size 5 that have at least one bad ear. We want to know the size of <span class="math inline">\(A\)</span>, <span class="math inline">\(|A|\)</span>. It’s actually easier to find <span class="math inline">\(|\overline{A}|\)</span>, the size of the complement of <span class="math inline">\(A\)</span>; that is, it’s easier to count how many combinations of size 5 have zero bad ears.</p>
+<p>The entire stand has 20 ears, 3 of which are bad, meaning 17 are good. So, the number of combinations with 5 good ears (and hence 0 bad ears) is <span class="math display">\[|\overline{A}| = \binom{17}{5} = 6188.\]</span>
+So, of the 15504 different combinations of 5 we could purchase, 6188 of them have zero bad ears, and 9316 have at least one bad ear.</p>
+<p>So, if 3 out of 20 are bad, and you pick 5 at random to buy, chances are good you’ll end up with at least one bad one: about a 60% chance (9316/15504).</p>
+</div>
+<div class="example">
+<p><span id="exm:lottery-balls" class="example"><strong>Example 4.6  </strong></span>You inherit a working lottery ping-pong ball machine from a magnificent uncle. The machine has 20 ping-pong balls, numbered 1 through 20. You want to set up a weekly lottery for your favorite charity, and you are considering two options:</p>
+<p>Scenario 1: Have the machine pick 4 balls at random, and record the <em>ordered</em> arrangement. In this scenario, hopeful lottery participants fill out the lottery card with an ordered list of 4 distinct numbers (from the set 1 to 20).</p>
+<p>Scenario 2: Have the machine pick 4 balls at once (it can do this!), record the <em>unordered</em> arrangement. Then put all the balls back, and pick one ball as the “wildcat” number. In this scenario, hopeful lottery participants fill out the lottery card with an unordered list of 4 distinct numbers, followed by a choice (from 1 to 20) for the wildcat.</p>
+<blockquote>
+<p>Which lottery game would be more difficult to win?</p>
+</blockquote>
+<p>We count how many distinct tickets are possible in each scenario, using our enumerate subtasks strategy.</p>
+<p>In Scenario 1 we see there will be
+<span class="math display">\[\underline{20} \cdot \underline{19} \cdot \underline{18} \cdot \underline{17} = 116,280\]</span> distinct tickets.</p>
+<p>For Scenario 2 we have <span class="math inline">\(\binom{20}{4}\)</span> ways to choose 4 numbers from the 20, and then 20 choices for the wildcat number, giving
+<span class="math display">\[\binom{20}{4}\cdot 20 = \frac{20\cdot 19 \cdot 18 \cdot 17}{4!}\cdot 20 = 96,900.\]</span>
+It looks like a lottery following scenario 1 would be a bit more difficult to win than the scenario 2 lottery.</p>
+</div>
+<div class="example">
+<p><span id="exm:poker" class="example"><strong>Example 4.7  (Poker) </strong></span>Poker is a family of card games where players bet on who has the best hand according to the rules of the particular game. Most poker games use a standard deck having 52 cards. Each card has two features:</p>
+<ul>
+<li>a <strong>rank</strong>, and there are 13 ranks: 2, 3, 4, 5, 6, 7, 8, 9, 10, J (jack), Q (queen), K (king), and A (ace).</li>
+<li>a <strong>suit</strong>, and there are 4 suits: “spades”, “hearts”, “diamonds”, and “clubs”.</li>
+</ul>
+<p>Here are 5 random cards from a standard deck:
+<!--a 5 of hearts
+(\hearts{5}), 
+jack of spades (\spades{J}), 
+ace of clubs (\clubs{A}), 
+queen of diamonds (\diamonds{Q}), and
+8 of spades (\spades{8}):--></p>
+<p><img src="images/cards/hearts_5.svg" width="15%" /><img src="images/cards/spades_jack.svg" width="15%" /><img src="images/cards/clubs_ace.svg" width="15%" /><img src="images/cards/diamonds_queen.svg" width="15%" /><img src="images/cards/spades_2.svg" width="15%" /></p>
+<blockquote>
+<p>How many different 5 card poker hands are there?</p>
+</blockquote>
+<p>52 distinct cards, choose 5, order doesn’t matter here, so the answer is <span class="math display">\[\binom{52}{5} = \frac{52!}{47!\cdot 5!}=2,595,960.\]</span></p>
+<p>Now let’s consider a few types of poker hands.</p>
+<p>A <strong>Three of a Kind</strong> is a hand of five cards that has 3 of one rank, and the other 2 cards do not have equal rank, such as this hand:</p>
+<p><img src="images/cards/hearts_4.svg" width="15%" /><img src="images/cards/spades_jack.svg" width="15%" /><img src="images/cards/clubs_ace.svg" width="15%" /><img src="images/cards/clubs_4.svg" width="15%" /><img src="images/cards/spades_4.svg" width="15%" /></p>
+<blockquote>
+<p>How many different “Three of a Kind” hands are there?</p>
+</blockquote>
+<p>We count the number of ways to build such a hand (we need to fill in each card with a rank and a suit).</p>
+<ol style="list-style-type: decimal">
+<li>Pick the rank that appears 3 times - 13 choices.</li>
+<li>Pick the 3 suits for this rank- we can choose 3 of the 4 possible suits in <span class="math inline">\(\binom{4}{3}\)</span> ways.</li>
+<li>Pick the remaining (distinct) 2 ranks - <span class="math inline">\(\binom{12}{2}\)</span> ways (since the hand is unordered we do not impose an order on the choice of the remaining 2 ranks).</li>
+<li>Pick the remaining 2 suits- each of the remaining 2 cards can have any of the 4 suits, we have <span class="math inline">\(4 \cdot 4\)</span> ways to pick these suits.</li>
+</ol>
+<p>The total number of Three of a Kind hands is thus <span class="math display">\[13\cdot\binom{4}{3}\cdot\binom{12}{2}\cdot4\cdot4 = 54912.\]</span></p>
+<p>And we may reasonably define the probability of obtaining a 3-of-a-kind in a deal of 5 cards to be <span class="math display">\[\frac{54912}{\binom{52}{5}}\approx 0.021.\]</span></p>
+<blockquote>
+<p>How many different full house hands are possible?</p>
+</blockquote>
+<p>A <strong>full house</strong> is a five card hand which has 3 cards of one rank, and 2 cards of another rank.</p>
+<ol style="list-style-type: decimal">
+<li>Choose the rank that appears three times. We have <span class="math inline">\(\binom{13}{1} = 13\)</span> ways to do this.</li>
+<li>Choose three of the four suits for these three cards: <span class="math inline">\(\binom{4}{3}\)</span>.</li>
+<li>Choose the rank that appears twice in the hand. We have 12 ranks left to choose from, so we have <span class="math inline">\(\binom{12}{1} = 12\)</span> ways to do that.</li>
+<li>Choose two of the four suits for the pair: <span class="math inline">\(\binom{4}{2}\)</span>.</li>
+</ol>
+<p>Completing these steps builds a full house, so we have
+<span class="math display">\[\binom{13}{1}\cdot\binom{4}{3}\cdot \binom{12}{1}\cdot \binom{4}{2} = 3744\]</span> different full houses.</p>
+<blockquote>
+<p>How many different “Two Pair” hands are possible?</p>
+</blockquote>
+<p>A <strong>Two Pair</strong> is a five card hand which has 3 cards of one rank, and 2 cards of another rank.</p>
+<p>We present two arguments, but <em>only one of them is correct</em>. Which is it?</p>
+<p>First argument:</p>
+<ol style="list-style-type: decimal">
+<li>Pick distinct ranks for the two pairs. We have <span class="math inline">\(\binom{13}{2}\)</span> ways to do this.</li>
+<li>Choose two of the four suits for one pair: <span class="math inline">\(\binom{4}{2}\)</span>.</li>
+<li>Choose two of the four suits for the other pair: <span class="math inline">\(\binom{4}{2}\)</span>.</li>
+<li>The fifth card can be any of the remaining 44 cards: <span class="math inline">\(\binom{44}{1}\)</span>.</li>
+</ol>
+<p>Second Argument:</p>
+<ol style="list-style-type: decimal">
+<li>Pick the rank for the first pair. We have <span class="math inline">\(\binom{13}{1}\)</span> ways to do this.</li>
+<li>Choose two of the four suits for the first pair: <span class="math inline">\(\binom{4}{2}\)</span>.</li>
+<li>Pick the rank for the second pair. We have <span class="math inline">\(\binom{12}{1}\)</span> ways to do this.</li>
+<li>Choose two of the four suits for the second pair: <span class="math inline">\(\binom{4}{2}\)</span>.</li>
+<li>The fifth card can be any of the remaining 44 cards: <span class="math inline">\(\binom{44}{1}\)</span>.</li>
+</ol>
+<p>The first argument gives us this number:
+<span class="math display">\[\binom{13}{2}\cdot\binom{4}{2}\cdot \binom{4}{2} \cdot \binom{44}{1} = 123552.\]</span></p>
+<p>The second argument gives us a number that is twice as big as the first:
+<span class="math display">\[\binom{13}{1}\cdot\binom{4}{2} \cdot \binom{12}{1} \cdot \binom{4}{2} \cdot \binom{44}{1} = 247104.\]</span>
+Which number is correct?</p>
+<p>It turns out the second argument double counts. By picking the two ranks separately in the second argument, we impose an order on the ranks that is not a part of a poker hand. For instance, the second argument allows us to build the following famous Two Pair in two different ways:</p>
+<p><img src="images/cards/spades_ace.svg" width="15%" /><img src="images/cards/clubs_ace.svg" width="15%" /><img src="images/cards/spades_8.svg" width="15%" /><img src="images/cards/clubs_8.svg" width="15%" /><img src="images/cards/diamonds_10.svg" width="15%" /></p>
+<p>The first way to build the hand following the second argument:</p>
+<ol style="list-style-type: decimal">
+<li>Choose the rank ace (A).</li>
+<li>Choose the suits clubs and spades for the aces.</li>
+<li>Choose the rank 8.</li>
+<li>Choose the suits clubs and spades for the eights.</li>
+<li>Choose the last card (10 of diamonds).</li>
+</ol>
+<p>The second way to build the hand following the second argument:</p>
+<ol style="list-style-type: decimal">
+<li>Choose the rank 8.</li>
+<li>Choose the suits clubs and spades for the eights.</li>
+<li>Choose the rank A.</li>
+<li>Choose the suits clubs and spades for the aces.</li>
+<li>Choose the last card (10 of diamonds).</li>
+</ol>
+<p>In the end the two hands are the same because the order of the cards in your hand doesn’t matter, so the second argument double counts. The first argument gives the correct answer.</p>
+<p>The number of Two Pair hands is 123552.</p>
+</div>
+</div>
+<div id="multinomial-coefficients" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Multinomial Coefficients<a href="counting.html#multinomial-coefficients" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Recall, <span class="math inline">\(\binom{n}{r}\)</span> counts the number of ways to choose <span class="math inline">\(r\)</span> from a set of <span class="math inline">\(n\)</span>. Effectively, then, <span class="math inline">\(\binom{n}{r}\)</span> counts the number of ways to assign <span class="math inline">\(n\)</span> elements to two groups of a specific size: <span class="math inline">\(r\)</span> in the “chosen” group, and <span class="math inline">\(n-r\)</span> in the “not chosen” group.</p>
+<p>We can generalize this scene to <span class="math inline">\(k\)</span> groups for <span class="math inline">\(k \geq 2\)</span>.</p>
+<div class="definition">
+<p><span id="def:multinomial-coefficients" class="definition"><strong>Definition 4.2  </strong></span>Let
+<span class="math display">\[\binom{n}{n_1, n_2, \cdots, n_k}\]</span> denote the number of ways of partitioning <span class="math inline">\(n\)</span> distinct objects into <span class="math inline">\(k\)</span> groups whose sizes are <span class="math inline">\(n_1, n_2, \ldots, n_k\)</span>, where <span class="math inline">\(n_1 + n_2 + \cdots + n_k = n\)</span>. These expressions are called <strong>multinomial coefficients</strong>.</p>
+</div>
+<p>Fact:
+<span class="math display" id="eq:multinomial">\[\begin{equation}
+  \binom{n}{n_1, n_2, \cdots, n_k} = \frac{n!}{n_1! \cdot n_2! \cdot \cdots \cdot n_k!}
+  \tag{4.3}
+\end{equation}\]</span></p>
+<p>Note that the binomial coefficent <span class="math inline">\(\displaystyle \binom{n}{r}\)</span> can be written as a multinomial coefficent: <span class="math inline">\(\displaystyle \binom{n}{r, n-r}\)</span>.</p>
+<div class="example">
+<p><span id="exm:Break-group-into-5" class="example"><strong>Example 4.8  </strong></span>A group of 15 volunteers will be split into 5 groups of 3, with each group working on a distinct project (weeding, spreading bark, setting up irrigation, constructing raised beds, and putting a roof on a shed).</p>
+<blockquote>
+<p>How many distinct ways can the volunteers be split into five groups of three to work on these distinct projects?</p>
+</blockquote>
+<p>The multinomial coefficient
+<span class="math display">\[\binom{15}{3, 3, 3, 3, 3} = \frac{15!}{(3!)^5} = 168,168,000\]</span>
+counts the number of ways to do this if we treat the groups as distinct, which we should because the work done by each group is different: Mike in the weeding group is a much different scenario than Mike in the roof-raising group!</p>
+</div>
+<div class="example">
+<p><span id="exm:bananas" class="example"><strong>Example 4.9  </strong></span></p>
+<blockquote>
+<p>How many “words” are spelled from the letters in ‘BANANAS.’</p>
+</blockquote>
+<p>If all seven letters in the word were distinct, we could form <span class="math inline">\(7!\)</span> words, but we have repeat letters: 3 As, 2 Ns, 1 B, and 1 S.</p>
+<p>We can arrive at the number of “words” from the ‘enumerate subtasks’ approach:</p>
+<p>We have to build a 7 letter word from the letters in BANANAS.</p>
+<ol style="list-style-type: decimal">
+<li>Pick a location for the unique B: 7 choices</li>
+<li>Pick a location for the unique S: 6 choices left</li>
+<li>Choose 2 locations from the remaining 5 for the 2 identical Ns: <span class="math inline">\(\binom{5}{2}\)</span></li>
+<li>Choose 3 locations from the remaining 3 for the 3 identical As: <span class="math inline">\(\binom{3}{3} = 1\)</span></li>
+</ol>
+<p>All told, we have <span class="math inline">\(7 \cdot 6 \cdot \binom{5}{2} \cdot {3}{3} = 420\)</span> “words”.</p>
+<p>Alternatively, the number of words equals the multinomial coefficient <span class="math display">\[\binom{7}{3, 2, 1, 1} = 420\]</span> because it counts the number of ways to assign 7 distinct elements (the 7 spots for letters in the word) into four groups of size 3, 2, 1, and 1 (3 locations for the As group, 2 for the Ns, 1 for the B and 1 for the S).</p>
+</div>
+</div>
+<div id="balls-and-bins" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> Balls and Bins<a href="counting.html#balls-and-bins" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Suppose I have 30 Watermelon <em>Jolly Ranchers</em> to give away to 8 friends.</p>
+<blockquote>
+<p>How many ways can I pass them out so that each person gets at least 1?</p>
+</blockquote>
+<p>To be precise, if we let <span class="math inline">\(n_i\)</span> denote the number of jolly ranchers that person <span class="math inline">\(i\)</span> receives (<span class="math inline">\(i\)</span> runs from 1 to 8), I want to count how many different vectors <span class="math inline">\((n_1, n_2, \ldots, n_8)\)</span> are possible with the conditions that each <span class="math inline">\(n_i \geq 1\)</span> and the sum of the <span class="math inline">\(n_i\)</span> equals 30.</p>
+<p>To answer this question, we first consider balls and bins.</p>
+<div class="theorem">
+<p><span id="thm:distribute-identical-balls-into-distinct-bins" class="theorem"><strong>Theorem 4.2  </strong></span>The number of ways to distribute <span class="math inline">\(n\)</span> identical balls into <span class="math inline">\(r\)</span> distinct bins is <span class="math display">\[\binom{n+r-1}{r-1}.\]</span></p>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-6" class="proof"><em>Proof</em>. </span>Here’s an outline of the proof. Say we have 8 balls and 3 bins. Here’s a schematic of one way to distribute them:</p>
+<p><span class="math display">\[\underline{\vert \text{ oo } \vert}~~~\underline{\vert \text{ oooo } \vert} ~~~ \underline{\vert \text{ oo } \vert}\]</span>
+Two balls into the first bin, 4 into the second, and 2 into the third. We can also represent the distribution by pushing the bins together so that they share walls:</p>
+<p><span class="math display">\[\underline{\vert \text{ oo } \vert \text{ oooo } \vert \text{ oo } \vert}\]</span></p>
+<p>In fact, we don’t really need those two outermost walls to communicate the distribution, or the bin bottoms for that matter:</p>
+<p><span class="math display">\[ \text{oo} \vert \text{oooo} \vert \text{oo}\]</span>
+So each distribution of the 8 balls into 3 bins corresponds to an ordered arrangement of 8 balls and 2 “inner walls”, and we have <span class="math inline">\(\displaystyle\binom{10}{2}\)</span> ways to choose the 2 spots for the inner walls from the 10 spots needed to create the arrangement.</p>
+<p>More generally, with <span class="math inline">\(n\)</span> balls and <span class="math inline">\(r\)</span> bins we will have <span class="math inline">\(r-1\)</span> inner walls, which leads us to the formula <span class="math display">\[\binom{n+r-1}{r-1}.\]</span></p>
+</div>
+<p>Let’s return to the Watermelon <em>Jolly Ranchers</em>.</p>
+<p>In this scenario, the friends are the bins, and the candies are the balls, and the number of ways to distribute the candies to the 8 friends is <span class="math inline">\(\displaystyle \binom{30+8-1}{8-1}=\binom{37}{7},\)</span>
+which we can calculate in R: <code>choose(37,7)</code> = 10295472. I’ve got options.</p>
+<p>However, this count doesn’t answer the original question because it counts <em>all</em> the ways to distribute the candies, including, say, all 30 going to one person. The original question here was to count the number of ways we can distribute the candies so that each friend gets at least 1.</p>
+<p>So we do the following: first give each friend one <em>Jolly Rancher</em>, then count the number of ways to distribute the remaining 22 using balls (22) and bins (8). It follows that the number of ways to distribute the candies so that each friend gets at least 1 is
+<span class="math display">\[\binom{22+8-1}{8-1} = \binom{29}{7},\]</span>
+which is <code>choose(29,7)</code> = 1560780. Still, I’ve got options.</p>
+</div>
+<div id="prob-with-counting-tools" class="section level2 hasAnchor" number="4.6">
+<h2><span class="header-section-number">4.6</span> Calculating More Probabilities<a href="counting.html#prob-with-counting-tools" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>With our counting tools in hand, we can set about calculating the probability that an event <span class="math inline">\(A\)</span> happens without having to first every possible outcome in the sample space.</p>
+<p>Here’s the general scene in this section. We have some random experiment with finite sample space <span class="math inline">\(S\)</span>, defined in such a way that the probability of each outcome in <span class="math inline">\(S\)</span> is the same. In this case, the probability of any event <span class="math inline">\(A\)</span> will simply be the size of the set <span class="math inline">\(A\)</span> divided by the size of the set <span class="math inline">\(S\)</span>:
+<span class="math display">\[P(A) = \frac{|A|}{|S|}.\]</span></p>
+<div class="example">
+<p><span id="exm:R-D-subcommittees" class="example"><strong>Example 4.10  </strong></span></p>
+<blockquote>
+<p>Suppose we want to pick a 4 person subcommitee from a committee of 8 having 5 Republicans, and 3 Democrats. If we pick the subcommittee at random, what is the probability that all three Democrats are on it?</p>
+</blockquote>
+<p>The sample space <span class="math inline">\(S\)</span> here is all possible subcommittees of size 4. Treating each of the 8 members as distinct people we have <span class="math display">\[|S| = \binom{8}{4}.\]</span></p>
+<p>The event <span class="math inline">\(A\)</span> that all Democrats are in the subcommitte can be enumerated as follows:</p>
+<ol style="list-style-type: decimal">
+<li>Choose all 3 Democrats for the subcommittee: <span class="math inline">\(\binom{3}{3} = 1\)</span> way to do that!</li>
+<li>Choose 1 Republican from 5 to fill out the subcommittee: <span class="math inline">\(\binom{5}{1} = 5.\)</span></li>
+</ol>
+<p>So <span class="math inline">\(|A|\)</span> = 5, and using pencil and paper for this one:</p>
+<p><span class="math display">\[\begin{align*}
+P(|A|) &amp;= \frac{5}{(8\cdot 7 \cdot 6 \cdot 5)/4!} \\
+       &amp;= \frac{4!}{8 \cdot 7 \cdot 6}\\
+       &amp;= \frac{4 \cdot 3 \cdot 2}{8 \cdot 7 \cdot 6}\\
+       &amp;= \frac{3}{7 \cdot 6}\\
+       &amp;= \frac{1}{7 \cdot 2}\\
+       &amp;=\frac{1}{14}.
+\end{align*}\]</span></p>
+</div>
+<div class="example">
+<p><span id="exm:wine-expert" class="example"><strong>Example 4.11  </strong></span></p>
+<blockquote>
+<p>A wine expert samples 8 wines blindly, two of which are genuinely “high quality,” and the others are “budget wines.” The expert choses their 3 favorites. If they are really just picking at random, what is the probability that they pick both high quality wines?</p>
+</blockquote>
+<p>The sample space <span class="math inline">\(S\)</span> consists of all possible ways to choose 3 from 8, and we consider each of these combinations of 3 equally likely.</p>
+<p>We have <span class="math inline">\(\displaystyle |S| = \binom{8}{3} = 56.\)</span></p>
+<p>The event of interest here, <span class="math inline">\(A\)</span>, is choosing a combination that contains both “high quality” wines, and <span class="math inline">\(|A| = \displaystyle \binom{2}{2}\cdot\binom{6}{1} = 6\)</span> (choose both of the high quality wines and choose one of the six budget wines). Thus,
+<span class="math display">\[P(A) = \frac{6}{56},\]</span> about a 10% chance of picking both high quality wines if, in fact, the expert is simply picking at random.</p>
+<p>This probability is useful to know. If the expert does select both the high quality wines, does this suggest to you they know their business?</p>
+</div>
+<div class="example">
+<p><span id="exm:potatoes" class="example"><strong>Example 4.12  (Good Potatoes Bad Potatoes) </strong></span>A truck has 3000 potatoes (of which 75 are bad). We inspect 50 potatoes at random. We reject the shipment if more than two of the potates in the sample are bad.</p>
+<blockquote>
+<p>What is the probability that we reject the shipment?</p>
+</blockquote>
+<p>We have 3000 potatoes, 2925 good potatoes, and 75 bad potatoes.</p>
+<p>The sample space <span class="math inline">\(S\)</span> here is all combinations of size 50, so <span class="math display">\[|S| = \binom{3000}{50}.\]</span></p>
+<p>The event of interest <span class="math inline">\(A\)</span> is chosing a sample with more than 2 bad potatoes.</p>
+<p>The number of samples of size 50 with 50 good and 0 bad potatoes is: <span class="math display">\[\binom{2925}{50} \cdot \binom{75}{0}.\]</span>
+The number of samples of size 50 with 49 good and 1 bad potato is: <span class="math display">\[\binom{2925}{49} \cdot \binom{75}{1}.\]</span>
+The number of samples of size 50 with 48 good and 2 bad potatoes is: <span class="math display">\[\binom{2925}{48} \cdot \binom{75}{2}.\]</span></p>
+<p>The number of samples with <em>more than 2</em> bad potatoes is thus
+<span class="math display">\[|A| = |S| - \left[\binom{2925}{50} \cdot \binom{75}{0} +
+\binom{2925}{49} \cdot \binom{75}{1} +
+\binom{2925}{48} \cdot \binom{75}{2}\right],\]</span>
+and the probability of rejecting the sample is
+<span class="math display">\[P(A) = \frac{|A|}{|S|} \approx 0.1279.\]</span></p>
+</div>
+<div class="example">
+<p><span id="exm:poker-2" class="example"><strong>Example 4.13  (Poker II) </strong></span></p>
+<blockquote>
+<p>Detemrine the probabilty of drawing each of these standard 5 card poker hands: a Straight, a Flush, and a Straight Flush.</p>
+</blockquote>
+<p>These poker hands just keep on coming!</p>
+<p>A <strong>Straight Flush</strong> is a five cards poker hand in which all five suits are the same, and all five ranks form a run (either 2-6, 3-7, 4-8, 5-9, 6-10, 7-J, 8-Q, 9-K, 10-A).</p>
+<p>A <strong>Straight</strong> consists of five cards such that all five ranks form a run and the hand is not a Straight Flush.</p>
+<p>A <strong>Flush</strong> consists of five cards such that all five suits are the same and the hand is not a Straight Flush.</p>
+<p>Here the sample space is <span class="math inline">\(S = \{\text{all possible 5 card hands}\}\)</span>, and we know <span class="math inline">\(|S| = \binom{52}{5}\)</span>.</p>
+<p>How many different Straight Flushes are possible. Let’s build one in steps, counting choices:</p>
+<ol style="list-style-type: decimal">
+<li>Pick the low card for the run (which then determines all 5 ranks): 9 choices (2, 3, 4, 5, 6, 7, 8, 9, or 10)</li>
+<li>Pick the one suit for all five cards: 4 choices.</li>
+</ol>
+<p>So there are <span class="math inline">\(9 \cdot 4 = 36\)</span> Straight Flushes, and the probability of being dealt a Straight Flush is <span class="math display">\[P(\text{Straight Flush}) = \frac{36}{\binom{52}{5}} \approx 0.00001385.\]</span></p>
+<p>We now turn to the Straight.</p>
+<p>As we saw in the case of the Straight Flush, we have 9 choices for the rank of the low card in a straight. Once that has been chosen, all five ranks are determined.</p>
+<p>We have 4 choices for the suit of each of the 5 cards (allowing for the possibility that all five cards have the same suit), so <span class="math inline">\(9\cdot 4^5\)</span> counts the number of Straights + Straight Flushes. The number of Straights is thus <span class="math inline">\(9 \cdot 4^5 - 36 = 9180\)</span>. It follows that <span class="math display">\[P(\text{Straight}) = \frac{9180}{\binom{52}{5}} \approx 0.00353.\]</span></p>
+<p>Finally, we count Flushes:</p>
+<ol style="list-style-type: decimal">
+<li>Choose the flush suit: <span class="math inline">\(\binom{4}{1}\)</span> ways.</li>
+<li>Choose the 5 ranks: <span class="math inline">\(\binom{13}{5}\)</span> ways.</li>
+</ol>
+<p>Then <span class="math inline">\(\displaystyle \binom{4}{1} \cdot \binom{13}{5} = 5148\)</span> counts the number of Flushes, <em>almost</em>. When we chose the 5 ranks, we allowed for the possibility that the ranks also formed a straight, so we must subtract out the Straight Flushes. The total number of Flushes: <span class="math inline">\(5148 - 36 = 5112.\)</span></p>
+<p>So <span class="math display">\[P(\text{Flush}) = \frac{5112}{\binom{52}{5}} = .00197.\]</span>
+So we have about a 1 in 500 chance of being dealt a Flush, and we note that a Flush is less common than a Straight (which is why a Flush beats a Straight in regular 5-card draw).</p>
+</div>
+<div class="example">
+<p><span id="exm:license-plates" class="example"><strong>Example 4.14  </strong></span>Classic Oregon license plates consist of 3 digits (0-9) followed by three letters (A-Z).</p>
+<blockquote>
+<p>Find the probability that a randomly selected classic Oregon license plate has two 8s.</p>
+</blockquote>
+<p>The sample space <span class="math inline">\(S\)</span> consists of all possible license plates, and <span class="math inline">\(|S| = 10^3\cdot 26^3\)</span>, since order matters for license plates.</p>
+<p>We enumerate the event <span class="math inline">\(A\)</span> of drawing a plate with two 8s as follows:</p>
+<ol style="list-style-type: decimal">
+<li>Choose the 2 spots for the 8s: <span class="math inline">\(\binom{3}{2} = 3\)</span> choices</li>
+<li>Pick the other number: <span class="math inline">\(9\)</span> choices</li>
+<li>Pick the three letters: <span class="math inline">\(26^3\)</span> choices.</li>
+</ol>
+<p>So <span class="math display">\[P(A) = \frac{3 \cdot 9 \cdot 26^3}{10^3\cdot 26^3} = \frac{27}{1000} = 0.027.\]</span></p>
+</div>
+<div class="example">
+<p><span id="exm:10sided-die" class="example"><strong>Example 4.15  </strong></span></p>
+<blockquote>
+<p>Determine the probability that the first time we roll an 8 or higher with a 10-sided die is on the 5th roll.</p>
+</blockquote>
+<p>The sample space <span class="math inline">\(S\)</span> consists of all sequences of 5 rolls of the die. For instance, <span class="math inline">\((4,5,2,9,5)\)</span> is one element of <span class="math inline">\(S\)</span>, and <span class="math inline">\(|S| = 10^5\)</span>.</p>
+<p>The event of interest is <span class="math display">\[A = \{ \text{roll 7 or lower in the first four rolls and 8 or higher on the 5th} \}.\]</span>
+Then <span class="math inline">\(|A| = 7^4 \cdot 3\)</span> (7 choices for the 1st roll, 7 for the second, 7 for the 3rd, 7 for the 4th, and 3 for the 5th).</p>
+<p>So <span class="math display">\[P(A) = \frac{7^4 \cdot 3}{10^5}.\]</span></p>
+</div>
+<div class="example">
+<p><span id="exm:partition-set" class="example"><strong>Example 4.16  </strong></span></p>
+<blockquote>
+<p>A class has 12 people: 6 juniors, 4 sophomores, and 2 first-years. The class is randomly divided into 3 subgroups of size 5, 4, and 3. What is the probability that the 2 first-years are in the same subgroup?</p>
+</blockquote>
+<p>The sample space <span class="math inline">\(S\)</span> consists of all possible partitions of the 12 people into the 3 subgroups, and we know</p>
+<p><span class="math display">\[\begin{align*}
+|S| &amp;= \binom{12}{5,4,3} \\
+    &amp;= \frac{12!}{5! \cdot 4! \cdot 3!}\\
+    &amp;= \frac{12\cdot 11 \cdot 10 \cdot 9 \cdot 8 \cdot 7 \cdot 6}{24 \cdot 6}\\
+    &amp;= 27,720.
+\end{align*}\]</span></p>
+<p>The event of interest, <span class="math inline">\(A\)</span>, consists of all partitions in which the two first-years are in the same subgroup. To count <span class="math inline">\(|A|\)</span> we consider three cases:</p>
+<p>Case 1: The two first-years are in the subgroup of 5. This means, after placing them in there, we have 10 people left to place in groups of size 3, 4, and 3, and we can do this in <span class="math display">\[\binom{10}{3, 4, 3}\]</span> ways.</p>
+<p>Case 2: The two first-years are in the subgroup of 4, leaving 10 to place in groups of size 5, 2, and 3: <span class="math display">\[\binom{10}{5,2,3}.\]</span></p>
+<p>Case 3: The two first-years are in the subgroup of 3, which can happen in <span class="math display">\[\binom{10}{5,4,1}\]</span> ways.</p>
+<p>So,<span class="math display">\[|A| = \binom{10}{3, 4, 3} + \binom{10}{5, 2, 3} + \binom{10}{5, 4, 1},\]</span> which evaluates to <span class="math inline">\(|A| = 7980\)</span>. So, <span class="math display">\[P(A) = \frac{7980}{27720} \approx 0.288.\]</span></p>
+</div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="discrete-probability-distributions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="probability-theory.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/mphitchman/math340/edit/main/source/04-counting.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["math340-notes.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

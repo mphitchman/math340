@@ -1,0 +1,8 @@
+book_filename: "math340-notes"
+#following merge and knit approach; for knit (chapters separately) and merge approach, insert new_session: yes. (This requires loading necessary packages in each chapter)
+delete_merged_file: true
+rmd_subdir: true
+output_dir: "docs"
+language:
+  ui:
+    chapter_name: ""

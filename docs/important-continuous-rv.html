@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>10 Important Continuous Random Variables | MATH 340 Notes</title>
+  <meta name="description" content="10 Important Continuous Random Variables | MATH 340 Notes" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="10 Important Continuous Random Variables | MATH 340 Notes" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="10 Important Continuous Random Variables | MATH 340 Notes" />
+  
+  
+  
+
+<meta name="author" content="Mike Hitchman" />
+
+
+<meta name="date" content="2024-07-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="continuous-rv.html"/>
+<link rel="next" href="mgf.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Math 340 Notes</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="sets.html"><a href="sets.html"><i class="fa fa-check"></i><b>2</b> Sets</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="sets.html"><a href="sets.html#algebra-of-sets"><i class="fa fa-check"></i><b>2.1</b> Algebra of Sets</a></li>
+<li class="chapter" data-level="2.2" data-path="sets.html"><a href="sets.html#size-of-sets"><i class="fa fa-check"></i><b>2.2</b> Set sizes</a></li>
+<li class="chapter" data-level="2.3" data-path="sets.html"><a href="sets.html#sets-in-r"><i class="fa fa-check"></i><b>2.3</b> Sets in R</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="discrete-probability-distributions.html"><a href="discrete-probability-distributions.html"><i class="fa fa-check"></i><b>3</b> Discrete Probability Distributions</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="discrete-probability-distributions.html"><a href="discrete-probability-distributions.html#sample-space"><i class="fa fa-check"></i><b>3.1</b> Sample Space</a></li>
+<li class="chapter" data-level="3.2" data-path="discrete-probability-distributions.html"><a href="discrete-probability-distributions.html#discrete-random-variables"><i class="fa fa-check"></i><b>3.2</b> Discrete Random Variables</a></li>
+<li class="chapter" data-level="3.3" data-path="discrete-probability-distributions.html"><a href="discrete-probability-distributions.html#calculating-probabilities"><i class="fa fa-check"></i><b>3.3</b> Calculating Probabilities</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="discrete-probability-distributions.html"><a href="discrete-probability-distributions.html#sample-point-method"><i class="fa fa-check"></i><b>3.3.1</b> Sample Point Method</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="counting.html"><a href="counting.html"><i class="fa fa-check"></i><b>4</b> Counting Techniques</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="counting.html"><a href="counting.html#multipiclation-principle"><i class="fa fa-check"></i><b>4.1</b> Multipiclation Principle</a></li>
+<li class="chapter" data-level="4.2" data-path="counting.html"><a href="counting.html#permutations"><i class="fa fa-check"></i><b>4.2</b> Permutations</a></li>
+<li class="chapter" data-level="4.3" data-path="counting.html"><a href="counting.html#combinations"><i class="fa fa-check"></i><b>4.3</b> Combinations</a></li>
+<li class="chapter" data-level="4.4" data-path="counting.html"><a href="counting.html#multinomial-coefficients"><i class="fa fa-check"></i><b>4.4</b> Multinomial Coefficients</a></li>
+<li class="chapter" data-level="4.5" data-path="counting.html"><a href="counting.html#balls-and-bins"><i class="fa fa-check"></i><b>4.5</b> Balls and Bins</a></li>
+<li class="chapter" data-level="4.6" data-path="counting.html"><a href="counting.html#prob-with-counting-tools"><i class="fa fa-check"></i><b>4.6</b> Calculating More Probabilities</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="probability-theory.html"><a href="probability-theory.html"><i class="fa fa-check"></i><b>5</b> Probability Theory</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="probability-theory.html"><a href="probability-theory.html#conditional-probability-and-independence"><i class="fa fa-check"></i><b>5.1</b> Conditional Probability and Independence</a></li>
+<li class="chapter" data-level="5.2" data-path="probability-theory.html"><a href="probability-theory.html#two-laws-of-probability"><i class="fa fa-check"></i><b>5.2</b> Two Laws of Probability</a></li>
+<li class="chapter" data-level="5.3" data-path="probability-theory.html"><a href="probability-theory.html#event-composition-method"><i class="fa fa-check"></i><b>5.3</b> Event-Composition Method</a></li>
+<li class="chapter" data-level="5.4" data-path="probability-theory.html"><a href="probability-theory.html#bayes-rule"><i class="fa fa-check"></i><b>5.4</b> Bayes’ Rule</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="discrete-random-variables-1.html"><a href="discrete-random-variables-1.html"><i class="fa fa-check"></i><b>6</b> Discrete Random Variables</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="discrete-random-variables-1.html"><a href="discrete-random-variables-1.html#expected-value"><i class="fa fa-check"></i><b>6.1</b> Expected Value</a></li>
+<li class="chapter" data-level="6.2" data-path="discrete-random-variables-1.html"><a href="discrete-random-variables-1.html#variance"><i class="fa fa-check"></i><b>6.2</b> Variance</a></li>
+<li class="chapter" data-level="6.3" data-path="discrete-random-variables-1.html"><a href="discrete-random-variables-1.html#properties-of-expected-value"><i class="fa fa-check"></i><b>6.3</b> Properties of Expected Value</a></li>
+<li class="chapter" data-level="6.4" data-path="discrete-random-variables-1.html"><a href="discrete-random-variables-1.html#tchebysheffs-theorem"><i class="fa fa-check"></i><b>6.4</b> Tchebysheff’s Theorem</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html"><i class="fa fa-check"></i><b>7</b> Important Discrete Random Variables</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html#binomial"><i class="fa fa-check"></i><b>7.1</b> Binomial Distributions</a></li>
+<li class="chapter" data-level="7.2" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html#geometric"><i class="fa fa-check"></i><b>7.2</b> Geometric Distributions</a></li>
+<li class="chapter" data-level="7.3" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html#negative-binomial"><i class="fa fa-check"></i><b>7.3</b> Negative Binomial Distribution</a></li>
+<li class="chapter" data-level="7.4" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html#hypergometric"><i class="fa fa-check"></i><b>7.4</b> Hypergeometric Distribution</a></li>
+<li class="chapter" data-level="7.5" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html#poisson"><i class="fa fa-check"></i><b>7.5</b> Poisson Distribution</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html#poisson-process"><i class="fa fa-check"></i><b>7.5.1</b> Poisson Process</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="moments-and-moment-generating-functions.html"><a href="moments-and-moment-generating-functions.html"><i class="fa fa-check"></i><b>8</b> Moments and Moment-Generating Functions</a></li>
+<li class="chapter" data-level="9" data-path="continuous-rv.html"><a href="continuous-rv.html"><i class="fa fa-check"></i><b>9</b> Continuous Random Variables</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="continuous-rv.html"><a href="continuous-rv.html#distribution-functions"><i class="fa fa-check"></i><b>9.1</b> Distribution Functions</a></li>
+<li class="chapter" data-level="9.2" data-path="continuous-rv.html"><a href="continuous-rv.html#expected-value-for-continuous-random-variables"><i class="fa fa-check"></i><b>9.2</b> Expected Value for Continuous Random Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html"><i class="fa fa-check"></i><b>10</b> Important Continuous Random Variables</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#uniform-continuous"><i class="fa fa-check"></i><b>10.1</b> Uniform Distribution</a></li>
+<li class="chapter" data-level="10.2" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#exponential-distribution"><i class="fa fa-check"></i><b>10.2</b> Exponential Distribution</a></li>
+<li class="chapter" data-level="10.3" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#normal"><i class="fa fa-check"></i><b>10.3</b> Normal Distribution</a></li>
+<li class="chapter" data-level="10.4" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#gamma-distribution"><i class="fa fa-check"></i><b>10.4</b> Gamma Distribution</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#exponential-distribution-1"><i class="fa fa-check"></i><b>10.4.1</b> Exponential Distribution</a></li>
+<li class="chapter" data-level="10.4.2" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#chi-square-distribution"><i class="fa fa-check"></i><b>10.4.2</b> Chi-square distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#beta-distribution"><i class="fa fa-check"></i><b>10.5</b> Beta Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="mgf.html"><a href="mgf.html"><i class="fa fa-check"></i><b>11</b> Moment Generating Functions</a></li>
+<li class="chapter" data-level="12" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html"><i class="fa fa-check"></i><b>12</b> Central Limit Theorem</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#sums-of-random-variables"><i class="fa fa-check"></i><b>12.1</b> Sums of Random Variables</a></li>
+<li class="chapter" data-level="12.2" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#t-distribution"><i class="fa fa-check"></i><b>12.2</b> T distribution</a></li>
+<li class="chapter" data-level="12.3" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#the-central-limit-theorem"><i class="fa fa-check"></i><b>12.3</b> The Central Limit Theorem</a></li>
+<li class="chapter" data-level="12.4" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#normal-approximation-to-a-binomial-distribution"><i class="fa fa-check"></i><b>12.4</b> Normal Approximation to a binomial distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="estimation.html"><a href="estimation.html"><i class="fa fa-check"></i><b>13</b> Estimation</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="estimation.html"><a href="estimation.html#unbiased-estimators"><i class="fa fa-check"></i><b>13.1</b> Unbiased Estimators</a></li>
+<li class="chapter" data-level="13.2" data-path="estimation.html"><a href="estimation.html#order-statistics"><i class="fa fa-check"></i><b>13.2</b> Order Statistics</a></li>
+<li class="chapter" data-level="13.3" data-path="estimation.html"><a href="estimation.html#common-unbiased-estimators"><i class="fa fa-check"></i><b>13.3</b> Common Unbiased Estimators</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="estimation.html"><a href="estimation.html#estimating-mu-a-population-mean"><i class="fa fa-check"></i><b>13.3.1</b> Estimating <span class="math inline">\(\mu\)</span>, a population mean</a></li>
+<li class="chapter" data-level="13.3.2" data-path="estimation.html"><a href="estimation.html#estimating-p-a-population-proportion"><i class="fa fa-check"></i><b>13.3.2</b> Estimating <span class="math inline">\(p\)</span>, a population proportion</a></li>
+<li class="chapter" data-level="13.3.3" data-path="estimation.html"><a href="estimation.html#estimating-mu_1---mu_2-the-difference-of-two-population-means"><i class="fa fa-check"></i><b>13.3.3</b> Estimating <span class="math inline">\(\mu_1 - \mu_2\)</span>, the difference of two population means</a></li>
+<li class="chapter" data-level="13.3.4" data-path="estimation.html"><a href="estimation.html#estimating-p_1---p_2-the-difference-of-two-population-proportions"><i class="fa fa-check"></i><b>13.3.4</b> Estimating <span class="math inline">\(p_1 - p_2\)</span>, the difference of two population proportions</a></li>
+</ul></li>
+</ul></li>
+<li class="appendix"><span><b>Using R</b></span></li>
+<li class="chapter" data-level="A" data-path="sampling-in-r.html"><a href="sampling-in-r.html"><i class="fa fa-check"></i><b>A</b> Sampling in R</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="sampling-in-r.html"><a href="sampling-in-r.html#vectors-R"><i class="fa fa-check"></i><b>A.1</b> Data vectors</a>
+<ul>
+<li class="chapter" data-level="A.1.1" data-path="sampling-in-r.html"><a href="sampling-in-r.html#vector-types"><i class="fa fa-check"></i><b>A.1.1</b> vector types</a></li>
+<li class="chapter" data-level="A.1.2" data-path="sampling-in-r.html"><a href="sampling-in-r.html#matrices"><i class="fa fa-check"></i><b>A.1.2</b> Matrices</a></li>
+<li class="chapter" data-level="A.1.3" data-path="sampling-in-r.html"><a href="sampling-in-r.html#data-frames"><i class="fa fa-check"></i><b>A.1.3</b> data frames</a></li>
+<li class="chapter" data-level="A.1.4" data-path="sampling-in-r.html"><a href="sampling-in-r.html#common-vector-commands"><i class="fa fa-check"></i><b>A.1.4</b> common vector commands</a></li>
+<li class="chapter" data-level="A.1.5" data-path="sampling-in-r.html"><a href="sampling-in-r.html#comparison-operators"><i class="fa fa-check"></i><b>A.1.5</b> Comparison Operators</a></li>
+<li class="chapter" data-level="A.1.6" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sum-and-which"><i class="fa fa-check"></i><b>A.1.6</b> <code>sum()</code> and <code>which()</code></a></li>
+<li class="chapter" data-level="A.1.7" data-path="sampling-in-r.html"><a href="sampling-in-r.html#extracting-elements"><i class="fa fa-check"></i><b>A.1.7</b> extracting elements</a></li>
+<li class="chapter" data-level="A.1.8" data-path="sampling-in-r.html"><a href="sampling-in-r.html#comparing-vectors"><i class="fa fa-check"></i><b>A.1.8</b> comparing vectors</a></li>
+<li class="chapter" data-level="A.1.9" data-path="sampling-in-r.html"><a href="sampling-in-r.html#vector-arithmetic"><i class="fa fa-check"></i><b>A.1.9</b> vector arithmetic</a></li>
+<li class="chapter" data-level="A.1.10" data-path="sampling-in-r.html"><a href="sampling-in-r.html#concatenate-vectors"><i class="fa fa-check"></i><b>A.1.10</b> concatenate vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="A.2" data-path="sampling-in-r.html"><a href="sampling-in-r.html#special-vectors"><i class="fa fa-check"></i><b>A.2</b> Special vectors</a>
+<ul>
+<li class="chapter" data-level="A.2.1" data-path="sampling-in-r.html"><a href="sampling-in-r.html#consecutive-integers"><i class="fa fa-check"></i><b>A.2.1</b> consecutive integers</a></li>
+<li class="chapter" data-level="A.2.2" data-path="sampling-in-r.html"><a href="sampling-in-r.html#letters"><i class="fa fa-check"></i><b>A.2.2</b> letters</a></li>
+<li class="chapter" data-level="A.2.3" data-path="sampling-in-r.html"><a href="sampling-in-r.html#rep"><i class="fa fa-check"></i><b>A.2.3</b> <code>rep()</code></a></li>
+<li class="chapter" data-level="A.2.4" data-path="sampling-in-r.html"><a href="sampling-in-r.html#table"><i class="fa fa-check"></i><b>A.2.4</b> <code>table()</code></a></li>
+<li class="chapter" data-level="A.2.5" data-path="sampling-in-r.html"><a href="sampling-in-r.html#seq"><i class="fa fa-check"></i><b>A.2.5</b> <code>seq()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="A.3" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sampling-in-R"><i class="fa fa-check"></i><b>A.3</b> Sampling</a>
+<ul>
+<li class="chapter" data-level="A.3.1" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sample-options"><i class="fa fa-check"></i><b>A.3.1</b> <code>sample()</code> options</a></li>
+<li class="chapter" data-level="A.3.2" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sample-without-replacement"><i class="fa fa-check"></i><b>A.3.2</b> Sample without replacement</a></li>
+<li class="chapter" data-level="A.3.3" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sample-with-replacement"><i class="fa fa-check"></i><b>A.3.3</b> Sample with replacement</a></li>
+<li class="chapter" data-level="A.3.4" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sample-with-custom-probabilities"><i class="fa fa-check"></i><b>A.3.4</b> Sample with custom probabilities</a></li>
+<li class="chapter" data-level="A.3.5" data-path="sampling-in-r.html"><a href="sampling-in-r.html#example-lefties"><i class="fa fa-check"></i><b>A.3.5</b> Example: Lefties</a></li>
+</ul></li>
+<li class="chapter" data-level="A.4" data-path="sampling-in-r.html"><a href="sampling-in-r.html#repeated-sampling"><i class="fa fa-check"></i><b>A.4</b> Repeated Sampling</a>
+<ul>
+<li class="chapter" data-level="A.4.1" data-path="sampling-in-r.html"><a href="sampling-in-r.html#using-a-for-loop"><i class="fa fa-check"></i><b>A.4.1</b> using a <code>for</code> loop</a></li>
+<li class="chapter" data-level="A.4.2" data-path="sampling-in-r.html"><a href="sampling-in-r.html#using-replicate"><i class="fa fa-check"></i><b>A.4.2</b> using <code>replicate()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="A.5" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sampling-commands"><i class="fa fa-check"></i><b>A.5</b> Summary of R commands</a>
+<ul>
+<li class="chapter" data-level="A.5.1" data-path="sampling-in-r.html"><a href="sampling-in-r.html#defining-vectors"><i class="fa fa-check"></i><b>A.5.1</b> defining vectors</a></li>
+<li class="chapter" data-level="A.5.2" data-path="sampling-in-r.html"><a href="sampling-in-r.html#summarizing-vectors"><i class="fa fa-check"></i><b>A.5.2</b> summarizing vectors</a></li>
+<li class="chapter" data-level="A.5.3" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sampling-from-vectors"><i class="fa fa-check"></i><b>A.5.3</b> sampling from vectors</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="R-sim-probability.html"><a href="R-sim-probability.html"><i class="fa fa-check"></i><b>B</b> Simulating Probability in R</a>
+<ul>
+<li class="chapter" data-level="B.1" data-path="R-sim-probability.html"><a href="R-sim-probability.html#id_10sided-die-R"><i class="fa fa-check"></i><b>B.1</b> Rolling a 10-sided die</a>
+<ul>
+<li class="chapter" data-level="B.1.1" data-path="R-sim-probability.html"><a href="R-sim-probability.html#final-code"><i class="fa fa-check"></i><b>B.1.1</b> Final Code</a></li>
+</ul></li>
+<li class="chapter" data-level="B.2" data-path="R-sim-probability.html"><a href="R-sim-probability.html#diff-2dice-R"><i class="fa fa-check"></i><b>B.2</b> Difference of two dice</a></li>
+<li class="chapter" data-level="B.3" data-path="R-sim-probability.html"><a href="R-sim-probability.html#flip-coin-R"><i class="fa fa-check"></i><b>B.3</b> Flipping a coin</a></li>
+<li class="chapter" data-level="B.4" data-path="R-sim-probability.html"><a href="R-sim-probability.html#marbles-urn-R"><i class="fa fa-check"></i><b>B.4</b> Marbles from an urn</a></li>
+<li class="chapter" data-level="B.5" data-path="R-sim-probability.html"><a href="R-sim-probability.html#partition-set-R"><i class="fa fa-check"></i><b>B.5</b> Splitting a set into multiple subsets</a>
+<ul>
+<li class="chapter" data-level="B.5.1" data-path="R-sim-probability.html"><a href="R-sim-probability.html#final-code-1"><i class="fa fa-check"></i><b>B.5.1</b> Final Code</a></li>
+</ul></li>
+<li class="chapter" data-level="B.6" data-path="R-sim-probability.html"><a href="R-sim-probability.html#license-plates-R"><i class="fa fa-check"></i><b>B.6</b> Oregon License Plates</a>
+<ul>
+<li class="chapter" data-level="B.6.1" data-path="R-sim-probability.html"><a href="R-sim-probability.html#final-code-2"><i class="fa fa-check"></i><b>B.6.1</b> Final Code</a></li>
+</ul></li>
+<li class="chapter" data-level="B.7" data-path="R-sim-probability.html"><a href="R-sim-probability.html#pollsters-R"><i class="fa fa-check"></i><b>B.7</b> Pollsters</a></li>
+<li class="chapter" data-level="B.8" data-path="R-sim-probability.html"><a href="R-sim-probability.html#same-birthday-R"><i class="fa fa-check"></i><b>B.8</b> Matching Birthdays</a></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="R-discreteRV.html"><a href="R-discreteRV.html"><i class="fa fa-check"></i><b>C</b> Discrete Random Variables in R</a>
+<ul>
+<li class="chapter" data-level="C.1" data-path="R-discreteRV.html"><a href="R-discreteRV.html#expected-value-of-x"><i class="fa fa-check"></i><b>C.1</b> Expected Value of <span class="math inline">\(X\)</span></a></li>
+<li class="chapter" data-level="C.2" data-path="R-discreteRV.html"><a href="R-discreteRV.html#variance-of-x"><i class="fa fa-check"></i><b>C.2</b> Variance of <span class="math inline">\(X\)</span></a></li>
+<li class="chapter" data-level="C.3" data-path="R-discreteRV.html"><a href="R-discreteRV.html#distribution-plots"><i class="fa fa-check"></i><b>C.3</b> Distribution Plots</a></li>
+<li class="chapter" data-level="C.4" data-path="R-discreteRV.html"><a href="R-discreteRV.html#sampling"><i class="fa fa-check"></i><b>C.4</b> Sampling</a></li>
+<li class="chapter" data-level="C.5" data-path="R-discreteRV.html"><a href="R-discreteRV.html#estimating-distributions-via-simulation"><i class="fa fa-check"></i><b>C.5</b> Estimating Distributions via Simulation</a></li>
+<li class="chapter" data-level="C.6" data-path="R-discreteRV.html"><a href="R-discreteRV.html#discrete-uniform-distribution"><i class="fa fa-check"></i><b>C.6</b> Discrete Uniform Distribution</a></li>
+<li class="chapter" data-level="C.7" data-path="R-discreteRV.html"><a href="R-discreteRV.html#r-4distn-functions"><i class="fa fa-check"></i><b>C.7</b> Important discrete random variables</a>
+<ul>
+<li class="chapter" data-level="C.7.1" data-path="R-discreteRV.html"><a href="R-discreteRV.html#binomial-distribution-binom"><i class="fa fa-check"></i><b>C.7.1</b> Binomial Distribution <code>binom</code></a></li>
+<li class="chapter" data-level="C.7.2" data-path="R-discreteRV.html"><a href="R-discreteRV.html#geometric-distribution-geom"><i class="fa fa-check"></i><b>C.7.2</b> Geometric Distribution <code>geom</code></a></li>
+<li class="chapter" data-level="C.7.3" data-path="R-discreteRV.html"><a href="R-discreteRV.html#negative-binomial-distribution-nbinom"><i class="fa fa-check"></i><b>C.7.3</b> Negative Binomial Distribution <code>nbinom</code></a></li>
+<li class="chapter" data-level="C.7.4" data-path="R-discreteRV.html"><a href="R-discreteRV.html#hypergeometric-distribution-hyper"><i class="fa fa-check"></i><b>C.7.4</b> Hypergeometric Distribution <code>hyper</code></a></li>
+<li class="chapter" data-level="C.7.5" data-path="R-discreteRV.html"><a href="R-discreteRV.html#poisson-distribution-pois"><i class="fa fa-check"></i><b>C.7.5</b> Poisson Distribution <code>pois</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="D" data-path="R-continuousRV.html"><a href="R-continuousRV.html"><i class="fa fa-check"></i><b>D</b> Continuous Random Variables in R</a>
+<ul>
+<li class="chapter" data-level="D.1" data-path="R-continuousRV.html"><a href="R-continuousRV.html#unifR"><i class="fa fa-check"></i><b>D.1</b> Uniform Distribution</a>
+<ul>
+<li class="chapter" data-level="D.1.1" data-path="R-continuousRV.html"><a href="R-continuousRV.html#picking-random-numbers"><i class="fa fa-check"></i><b>D.1.1</b> Picking random numbers!</a></li>
+<li class="chapter" data-level="D.1.2" data-path="R-continuousRV.html"><a href="R-continuousRV.html#picking-random-points-in-the-unit-square"><i class="fa fa-check"></i><b>D.1.2</b> Picking random points in the unit square!</a></li>
+<li class="chapter" data-level="D.1.3" data-path="R-continuousRV.html"><a href="R-continuousRV.html#estimate-the-value-of-pi"><i class="fa fa-check"></i><b>D.1.3</b> Estimate the value of <span class="math inline">\(\pi\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="D.2" data-path="R-continuousRV.html"><a href="R-continuousRV.html#normalR"><i class="fa fa-check"></i><b>D.2</b> Normal Distribution <code>norm</code></a>
+<ul>
+<li class="chapter" data-level="D.2.1" data-path="R-continuousRV.html"><a href="R-continuousRV.html#sampling-distribution-of-a-sample-mean"><i class="fa fa-check"></i><b>D.2.1</b> Sampling Distribution of a sample mean</a></li>
+</ul></li>
+<li class="chapter" data-level="D.3" data-path="R-continuousRV.html"><a href="R-continuousRV.html#expR"><i class="fa fa-check"></i><b>D.3</b> Exponential Distribution <code>exp</code></a></li>
+<li class="chapter" data-level="D.4" data-path="R-continuousRV.html"><a href="R-continuousRV.html#gammaR"><i class="fa fa-check"></i><b>D.4</b> Gamma Distribution <code>gamma</code></a></li>
+<li class="chapter" data-level="D.5" data-path="R-continuousRV.html"><a href="R-continuousRV.html#chiR"><i class="fa fa-check"></i><b>D.5</b> Chi-square Distribution <code>chisq</code></a></li>
+<li class="chapter" data-level="D.6" data-path="R-continuousRV.html"><a href="R-continuousRV.html#betaR"><i class="fa fa-check"></i><b>D.6</b> Beta distribution <code>beta</code></a></li>
+<li class="chapter" data-level="D.7" data-path="R-continuousRV.html"><a href="R-continuousRV.html#customR"><i class="fa fa-check"></i><b>D.7</b> Homemade Continuous Random Variables</a>
+<ul>
+<li class="chapter" data-level="D.7.1" data-path="R-continuousRV.html"><a href="R-continuousRV.html#input-the-density-function"><i class="fa fa-check"></i><b>D.7.1</b> Input the density function</a></li>
+<li class="chapter" data-level="D.7.2" data-path="R-continuousRV.html"><a href="R-continuousRV.html#visualize-the-density-function"><i class="fa fa-check"></i><b>D.7.2</b> Visualize the density function</a></li>
+<li class="chapter" data-level="D.7.3" data-path="R-continuousRV.html"><a href="R-continuousRV.html#estimating-integrals-with-riemann-sums"><i class="fa fa-check"></i><b>D.7.3</b> Estimating Integrals with Riemann Sums</a></li>
+<li class="chapter" data-level="D.7.4" data-path="R-continuousRV.html"><a href="R-continuousRV.html#estimating-probabilities"><i class="fa fa-check"></i><b>D.7.4</b> Estimating Probabilities</a></li>
+<li class="chapter" data-level="D.7.5" data-path="R-continuousRV.html"><a href="R-continuousRV.html#the-distribution-function-fx"><i class="fa fa-check"></i><b>D.7.5</b> The distribution function <span class="math inline">\(F(X)\)</span></a></li>
+<li class="chapter" data-level="D.7.6" data-path="R-continuousRV.html"><a href="R-continuousRV.html#estimating-moments"><i class="fa fa-check"></i><b>D.7.6</b> Estimating Moments</a></li>
+<li class="chapter" data-level="D.7.7" data-path="R-continuousRV.html"><a href="R-continuousRV.html#expected-value-1"><i class="fa fa-check"></i><b>D.7.7</b> Expected Value</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MATH 340 Notes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="important-continuous-rv" class="section level1 hasAnchor" number="10">
+<h1><span class="header-section-number">10</span> Important Continuous Random Variables<a href="important-continuous-rv.html#important-continuous-rv" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In this chapter we introduce the following well-known continuous random variables:
+uniform, normal, exponential, gamma, chi-square, and beta.</p>
+<div id="uniform-continuous" class="section level2 hasAnchor" number="10.1">
+<h2><span class="header-section-number">10.1</span> Uniform Distribution<a href="important-continuous-rv.html#uniform-continuous" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="definition">
+<p><span id="def:uniform-distribution" class="definition"><strong>Definition 10.1  </strong></span>Let <span class="math inline">\(\theta_1 &lt; \theta_2\)</span> be distinct real numbers. A random variable <span class="math inline">\(X\)</span> has <strong>uniform distribution on the interval <span class="math inline">\([\theta_1,\theta_2]\)</span></strong> if it has probability density function
+<span class="math display">\[
+f(x)=
+\begin{cases}
+\frac{1}{\theta_2 - \theta_1} &amp;\text{ if }\theta_1 \leq x \leq \theta_2 \\
+0 &amp;\text{ else.}
+\end{cases}
+\]</span>
+we may write <span class="math inline">\(X ~\sim~ U(\theta_1,\theta_2)\)</span> to mean <span class="math inline">\(X\)</span> is uniform on <span class="math inline">\([\theta_1,\theta_2]\)</span>.</p>
+</div>
+<p>A uniform random variable is a good model for picking a random real number between <span class="math inline">\(\theta_1\)</span> and <span class="math inline">\(\theta_2\)</span>.</p>
+<p>In R we access the uniform distribution with <code>unif</code>. For instance, we can generate a random sample of <span class="math inline">\(n\)</span> numbers in the interval <span class="math inline">\([a,b]\)</span> with the <code>runif()</code> command:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="important-continuous-rv.html#cb10-1" tabindex="-1"></a>n<span class="ot">=</span><span class="dv">6</span>; a <span class="ot">=</span> <span class="dv">0</span>; b <span class="ot">=</span> <span class="dv">10</span>;</span>
+<span id="cb10-2"><a href="important-continuous-rv.html#cb10-2" tabindex="-1"></a><span class="fu">runif</span>(n,a,b)</span></code></pre></div>
+<pre><code>## [1] 6.568844 1.960350 7.399103 9.909517 6.322930 6.412869</code></pre>
+<div class="example">
+<p><span id="exm:unlabeled-div-37" class="example"><strong>Example 10.1  (Average value of a function) </strong></span></p>
+<blockquote>
+<p>Use R to estimate the average value of <span class="math inline">\(f(x) = x^2\)</span> over the interval [0,2].</p>
+</blockquote>
+<p>Our strategy: Select a large random sample of points in the interval [0,2] and then compute the average of their squares.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="important-continuous-rv.html#cb12-1" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">runif</span>(<span class="dv">1000</span>,<span class="dv">0</span>,<span class="dv">2</span>) <span class="co">#picking 1000 points in [0,2]</span></span>
+<span id="cb12-2"><a href="important-continuous-rv.html#cb12-2" tabindex="-1"></a><span class="fu">mean</span>(x<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 1.388822</code></pre>
+<p><strong>Note</strong>: From Calc I, we know the average value of a function <span class="math inline">\(f\)</span> over the interval <span class="math inline">\([a,b]\)</span> is <span class="math display">\[\frac{1}{b-a} \int_a^b f(x)~dx,\]</span>
+so here it’s <span class="math display">\[\frac{1}{2}\int_0^2 x^2~dx = \frac{1}{6} x^3 ~\biggr|_0^2 = 4/3 \approx 1.333.\]</span></p>
+</div>
+<div class="theorem">
+<p><span id="thm:uniform-EandV" class="theorem"><strong>Theorem 10.1  </strong></span>If <span class="math inline">\(X\)</span> is <span class="math inline">\(U(\theta_1,\theta_2)\)</span>, then <span class="math display">\[E(X) = \frac{\theta_1 + \theta_2}{2}, ~~~ \text{ and } ~~~ V(X) = \frac{(\theta_2-\theta_1)^2}{12}.\]</span></p>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-38" class="proof"><em>Proof</em>. </span>Recall, <span class="math inline">\(X\)</span> has pdf
+<span class="math display">\[
+f(x)=
+\begin{cases}
+\frac{1}{\theta_2 - \theta_1} &amp;\text{ if }\theta_1 \leq x \leq \theta_2 \\
+0 &amp;\text{ else.}
+\end{cases}
+\]</span>
+So</p>
+<p><span class="math display">\[\begin{align*}
+E(X) &amp;= \int_{\theta_1}^{\theta_2} x \cdot \frac{1}{\theta_2-\theta_1}~dx\\
+      &amp;= \frac{1}{\theta_2-\theta_1} \cdot \frac{1}{2}x^2 ~\biggr|_{\theta_1}^{\theta_2}\\
+      &amp;= \frac{1}{\theta_2-\theta_1} \cdot \frac{1}{2}(\theta_2^2-\theta_1^2) \\
+      &amp;= \frac{1}{\theta_2-\theta_1} \cdot \frac{1}{2}(\theta_2-\theta_1)(\theta_2+\theta_1) \\
+      &amp;= \frac{\theta_1+\theta_2}{2}.
+\end{align*}\]</span></p>
+<p>One can show similarly, that <span class="math display">\[E(X^2) = \int_{\theta_1}^{\theta_2} x^2 \cdot \frac{1}{\theta_2-\theta_1}~dx = \cdots =  \frac{\theta_2^2 + \theta_1\theta_2 + \theta_1^2}{3},\]</span>
+so that <span class="math display">\[V(X) = E(X^2) - E(X)^2 = \frac{(\theta_2-\theta_1)^2}{12}.\]</span> The fun algebra details are left to the reader.</p>
+</div>
+</div>
+<div id="exponential-distribution" class="section level2 hasAnchor" number="10.2">
+<h2><span class="header-section-number">10.2</span> Exponential Distribution<a href="important-continuous-rv.html#exponential-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The exponential distribution is often used to model experiments that aim to investigate: How long until something happens?</p>
+<div class="definition">
+<p><span id="def:exp-distribution" class="definition"><strong>Definition 10.2  </strong></span>A random variable <span class="math inline">\(X\)</span> has an <strong>exponential probability distribution with parameter <span class="math inline">\(\beta\)</span></strong>, denoted <span class="math inline">\(\text{Exp}(\beta)\)</span>, if it has probability density function
+<span class="math display">\[
+f(x)=
+\frac{1}{\beta}e^{-(x/\beta)} ~~~ \text{ for }x \geq 0~~~ \text{ (and }f(x) = 0\text{ else.)}
+\]</span></p>
+</div>
+<p>First, let’s check that the total area under <span class="math inline">\(f(x)\)</span> is 1.</p>
+<p><span class="math display">\[\begin{align*}
+\int_0^\infty \frac{1}{\beta}e^{-x/\beta}~dx &amp;= \lim_{b\to\infty}\left[\int_0^b \frac{1}{\beta}e^{-x/\beta}~dx\right] \\
+&amp;= \lim_{b\to\infty}\left[-e^{-x/\beta}\biggr|_0^b \right] &amp; \text{(try u-sub.} u=-x/\beta \\
+&amp;= \lim_{b \to \infty}\left[1 - \frac{1}{e^{b/\beta}}\right]\\
+&amp;= 1.
+\end{align*}\]</span></p>
+<p>Having done the above integral, we can write down a formula for the cumulative distribution function for an exponential distribution:</p>
+<p>If <span class="math inline">\(X\)</span> is <span class="math inline">\(\text{Exp}(\beta)\)</span> then for <span class="math inline">\(x \geq 0\)</span>,
+<span class="math display">\[\begin{align*}
+F(x) &amp;= \int_0^x \frac{1}{\beta}e^{-t/beta}~dt\\
+    &amp;= 1 - e^{-x/\beta}.
+\end{align*}\]</span></p>
+<div class="example">
+<p><span id="exm:unlabeled-div-39" class="example"><strong>Example 10.2  </strong></span>Suppose <span class="math inline">\(X\)</span> is Exp(4). Find <span class="math inline">\(P(X &lt; 8)\)</span>.</p>
+<p>Well,
+<span class="math display">\[\begin{align*}
+P(X &lt; 8) &amp;= F(8)\\
+        &amp;= 1 - e^{-8/4} \\
+        &amp;= 1 - e^{-2} \\
+        &amp;\approx .865.
+\end{align*}\]</span></p>
+</div>
+<div class="theorem">
+<p><span id="thm:exponential-EandV" class="theorem"><strong>Theorem 10.2  </strong></span>If <span class="math inline">\(X\)</span> is <span class="math inline">\(\text{Exp}(\beta))\)</span>, then <span class="math display">\[E(X) = \beta, ~~~ \text{ and } ~~~ V(X) = \beta^2.\]</span></p>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-40" class="proof"><em>Proof</em>. </span><span class="math display">\[\begin{align*}
+E(X)&amp;= \int_0^\infty x\cdot\frac{1}{\beta} e^{-x/\beta}~dx \\
+    &amp;= \lim_{b \to \infty}\left[\int_0^b x\cdot\frac{1}{\beta} e^{-x/\beta}~dx\right]
+\end{align*}\]</span></p>
+<p>To evaluate this integral, try integration by parts with <span class="math inline">\(u = x\)</span> and <span class="math inline">\(dv = e^{-x/\beta}~dx\)</span>. Doing so, we obtain
+<span class="math display">\[\begin{align*}
+E(X) &amp;= \lim_{b \to \infty}\left[\int_0^b x\cdot\frac{1}{\beta} e^{-x/\beta}~dx\right]\\
+    &amp;= \lim_{b \to \infty}\left[-xe^{-x/\beta} - \beta e^{-x/\beta}\biggr|_0^b\right]\\
+    &amp;= \lim_{b \to \infty}\left[\left(\frac{-b}{e^{b/\beta}} - \frac{\beta}{e^{b/\beta}}\right) - \left(0 - \beta\right)\right].
+\end{align*}\]</span>
+Since <span class="math inline">\(\displaystyle \frac{b}{e^{b/\beta}} \to 0\)</span> and <span class="math inline">\(\displaystyle \frac{\beta}{e^{b/\beta}} \to 0\)</span> as <span class="math inline">\(b \to \infty\)</span>, we have proved that <span class="math inline">\(E(X) = \beta.\)</span></p>
+<p>To prove that <span class="math inline">\(V(X) = \beta^2\)</span>, first find <span class="math inline">\(E(X^2)=\int_0^\infty x^2 f(x)~dx\)</span> by integration by parts, and then use the fact that <span class="math inline">\(V(X) = E(X^2)-E(X)^2\)</span>. We leave details to those nostalgic for Calc II. :)</p>
+</div>
+</div>
+<div id="normal" class="section level2 hasAnchor" number="10.3">
+<h2><span class="header-section-number">10.3</span> Normal Distribution<a href="important-continuous-rv.html#normal" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="definition">
+<p><span id="def:normal-distribution" class="definition"><strong>Definition 10.3  </strong></span>A random variable <span class="math inline">\(X\)</span> has a <strong>normal probability distribution with parameters <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma &gt; 0\)</span></strong>, denoted <span class="math inline">\(N(\mu,\sigma)\)</span>, if it has probability density function
+<span class="math display">\[
+f(x)=\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}, \text{ for } -\infty &lt; x &lt; \infty.
+\]</span></p>
+</div>
+<p>The graph of a normal density curve is bell-shaped, with peak at <span class="math inline">\(x = \mu\)</span>, and inflection points at <span class="math inline">\(x = \mu \pm \sigma\)</span>, facts we can readily demonstrate by analyzing the first and second derivative of <span class="math inline">\(f\)</span>.</p>
+<div class="figure"><span style="display:block;" id="fig:bell-curve"></span>
+<img src="math340-notes_files/figure-html/bell-curve-1.png" alt="A Normal density curve" width="384" />
+<p class="caption">
+Figure 10.1: A Normal density curve
+</p>
+</div>
+<div class="theorem">
+<p><span id="thm:normal-EandV" class="theorem"><strong>Theorem 10.3  </strong></span>If <span class="math inline">\(X\)</span> is <span class="math inline">\(N(\mu,\sigma)\)</span>, then <span class="math display">\[E(X) = \mu, ~~~ \text{ and } ~~~ V(X) = \sigma^2.\]</span></p>
+</div>
+<div class="definition">
+<p><span id="def:standard-normal" class="definition"><strong>Definition 10.4  </strong></span>The <strong>standard normal probability distribution</strong> is <span class="math inline">\(N(0,1)\)</span>. If <span class="math inline">\(Z\)</span> is <span class="math inline">\(N(0,1)\)</span>, its pdf is <span class="math display">\[f(z) = \frac{1}{\sqrt{2\pi}}e^{-z^2/2}, \text{ for all real numbers } z.\]</span></p>
+</div>
+<p>As we shall see, the family of normal distributions <span class="math inline">\(N(\mu,\sigma)\)</span> has a special place of importance in statistics; many distributions have a bell-shape (physical measurements, for instance, such as heights of adult males, weights of newborns, wingspans of adult female bald eagles, ). But its special place of importance in statistics comes from the fact that the distribution of sample means from repeated sampling, as we shall see, are well-modeled by normal distributions.</p>
+<div class="theorem">
+<p><span id="thm:standardizing-normal-distributions" class="theorem"><strong>Theorem 10.4  </strong></span>If <span class="math inline">\(X\)</span> is <span class="math inline">\(N(\mu,\sigma)\)</span> then <span class="math inline">\(Z = (X-\mu)/\sigma\)</span> is <span class="math inline">\(N(0,1)\)</span>.</p>
+</div>
+<p>We prove this theorem later.</p>
+<p>In practice, shifting from <span class="math inline">\(X\)</span> to <span class="math display">\[Z = \frac{X-\mu}{\sigma}\]</span> gives us a way to consider unitless, standardized “Z-scores” associated to values in <span class="math inline">\(X\)</span>.</p>
+<p>A Z-score for <span class="math inline">\(X\)</span> gives the number of standard deviations above or below the mean <span class="math inline">\(X\)</span> is in its distribution.</p>
+<div class="example">
+<p><span id="exm:normal-rule-of-thumb" class="example"><strong>Example 10.3  (The 68-95-99.7 Rule) </strong></span>In any normal distribution <span class="math inline">\(N(\mu, \sigma)\)</span>:</p>
+<ul>
+<li>About 68% of the distribution is within 1 standard deviation of the mean.</li>
+<li>About 95% of the distribution is within 2 standard deviations of the mean.</li>
+<li>About 99.7% of the distribution is within 2 standard deviations of the mean.</li>
+</ul>
+<p><img src="math340-notes_files/figure-html/unnamed-chunk-19-1.png" width="480" /></p>
+<p>For instance, in <span class="math inline">\(N(10,3)\)</span>,</p>
+<ul>
+<li>Roughly, 68% of the distribution is between 7 and 13, and</li>
+<li>95% of the distribution is between 4 and 16, and</li>
+<li>99.7% of the distribution is between 1 and 19.</li>
+</ul>
+</div>
+<div class="example">
+<p><span id="exm:comparing-values-with-z-scores" class="example"><strong>Example 10.4  </strong></span>Which is more “impressive”: hitting 50 home runs in a season when the league home run distribution is <span class="math inline">\(N(35,9)\)</span>, or hitting 35 home runs in a season when the league distribution is <span class="math inline">\(N(24,5)\)</span>?</p>
+<p>For 50 in <span class="math inline">\(N(35,9)\)</span>, <span class="math display">\[Z = \frac{50-35}{9} = \frac{5}{3} \approx 1.67.\]</span></p>
+<p><img src="math340-notes_files/figure-html/unnamed-chunk-20-1.png" width="480" /></p>
+<p>For 35 in <span class="math inline">\(N(24,5)\)</span>, <span class="math display">\[Z = \frac{35-24}{5} = \frac{11}{5} = 2.2.\]</span></p>
+<p><img src="math340-notes_files/figure-html/unnamed-chunk-21-1.png" width="480" /></p>
+<p>A person hitting 35 HR in a league with distribution <span class="math inline">\(N(24,5)\)</span> is more extreme (at the high end), and so more impressive in that sense.</p>
+</div>
+<p>Now we focus on some fine print, proving that the density function for a normal distribution is, indeed, a valid density function.</p>
+<div class="lemma">
+<p><span id="lem:unlabeled-div-41" class="lemma"><strong>Lemma 10.1  </strong></span><span class="math display">\[\int_{-\infty}^{\infty} e^{-x^2/2}~dx = \sqrt{2\pi}.\]</span></p>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-42" class="proof"><em>Proof</em>. </span>First, we remark that the integral converges by comparison with <span class="math inline">\(\displaystyle \int_{-\infty}^{\infty} e^{-x/2}~dx.\)</span></p>
+<p>Suppose the value of the integral we want to calculate is <span class="math inline">\(A\)</span>. We use some integration techniques from vector calculus to first find the value of <span class="math inline">\(A^2\)</span>. If you haven’t seen vector calculus, don’t sweat the details, but demand your vector calculus prof prove this lemma when you take the class :). Ok, let’s look at <span class="math inline">\(A^2\)</span>.
+<span class="math display">\[\begin{align*}
+A^2 &amp;= \left(\int_{-\infty}^{\infty} e^{-x^2/2}~dx \right)\left(\int_{-\infty}^{\infty} e^{-y^2/2}~dy \right)\\
+    &amp;= \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} e^{-x^2/2} e^{-y^2/2} dx dy \\
+    &amp;= \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} e^\frac{-(x^2+y^2)}{2} ~dx dy \\
+    &amp;= \int_0^{2\pi}\int_0^\infty e^{-r^2/2}~r ~dr~ d\theta &amp;\text{ change to polar coordinates}\\
+    &amp;= 2\pi \int_0^\infty e^{-r^2/2}~r ~dr \\
+    &amp;= -\pi \int_0^\infty e^{-u} ~du &amp; \text{ let } u = r^2/2 \\
+    &amp;= 2\pi \left[-e^{-u} \biggr|_0^\infty \right]
+    &amp;= 2\pi [-0 + 1] \\
+    &amp;= 2\pi
+\end{align*}\]</span></p>
+<p>Since <span class="math inline">\(A^2 = 2\pi\)</span>, <span class="math inline">\(A = \sqrt{2\pi}\)</span>.</p>
+</div>
+<p>We have the following corollaries to this lemma.</p>
+<div class="corollary">
+<p><span id="cor:unlabeled-div-43" class="corollary"><strong>Corollary 10.1  </strong></span>The function <span class="math inline">\(f(x) = \frac{1}{\sqrt{2\pi}}e^{-x^2/2}\)</span>, for <span class="math inline">\(-\infty &lt; x &lt; \infty\)</span>, is a valid probability density function.</p>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-44" class="proof"><em>Proof</em>. </span>Clearly, <span class="math inline">\(f(x) \geq 0\)</span> for all <span class="math inline">\(x\)</span>, and the previous lemma ensures that <span class="math inline">\(\int_{-\infty}^\infty f(x)~dx = 1.\)</span>.</p>
+</div>
+<div class="corollary">
+<p><span id="cor:unlabeled-div-45" class="corollary"><strong>Corollary 10.2  </strong></span>The function <span class="math inline">\(f(x) = \frac{1}{\sigma\sqrt{2\pi}}e^{-(x-\mu)^2/(2\sigma^2)}\)</span>, for <span class="math inline">\(-\infty &lt; x &lt;  \infty\)</span>, is a valid probability density function.</p>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-46" class="proof"><em>Proof</em>. </span>Clearly, <span class="math inline">\(f(x) \geq 0\)</span> for all <span class="math inline">\(x\)</span>, and after <span class="math inline">\(u\)</span>-substitution of <span class="math inline">\(u = (x-\mu)/\sigma\)</span>, the previous lemma ensures that <span class="math inline">\(\int_{-\infty}^\infty f(x)~dx = 1\)</span>.</p>
+</div>
+</div>
+<div id="gamma-distribution" class="section level2 hasAnchor" number="10.4">
+<h2><span class="header-section-number">10.4</span> Gamma Distribution<a href="important-continuous-rv.html#gamma-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Some random variables are always nonnegative, and yield distributions of data that are skewed right, as pictured below.</p>
+<p><img src="math340-notes_files/figure-html/unnamed-chunk-22-1.png" width="384" /></p>
+<p>Some typically skewed right distributions include household incomes in a city, the length of time between malfunctions of some machine, and major league baseball salaries. The gamma probability distribution, which has two parameters <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>, can model such skewed right distributions. The parameter <span class="math inline">\(\alpha\)</span> is sometimes called the <strong>shape</strong> parameter, <span class="math inline">\(\beta\)</span> is called the <strong>scale</strong> parameter, and its reciprocal <span class="math inline">\(1/\beta\)</span> is called the <strong>rate</strong>.</p>
+<p>The density function for a gamma distribution looks formidable, so we’ll take time to go through it carefully.</p>
+<div class="definition">
+<p><span id="def:gamma-distribution" class="definition"><strong>Definition 10.5  </strong></span>A random variable <span class="math inline">\(X\)</span> has a <strong>gamma probability distribution with parameters <span class="math inline">\(\alpha&gt;0\)</span> and <span class="math inline">\(\beta&gt;0\)</span></strong> if and only if it has probability density function
+<span class="math display">\[
+f(x)=
+\frac{1}{\beta^\alpha \Gamma(\alpha)}x^{\alpha-1}e^{-(x/\beta)}~~~ \text{ for }x \geq 0~~~ \text{ (and }f(x) = 0\text{ else)}
+\]</span>
+where <span class="math inline">\(\displaystyle\Gamma(\alpha) = \int_0^\infty t^{\alpha-1}e^{-t}~dt\)</span>.
+If <span class="math inline">\(X\)</span> has such a pdf we might say <span class="math inline">\(X\)</span> is <span class="math inline">\(\text{gamma}(\alpha,\beta)\)</span>.</p>
+</div>
+<p>Here are plots of three different gamma distributions.</p>
+<p><img src="math340-notes_files/figure-html/unnamed-chunk-23-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>The quantity <span class="math inline">\(\Gamma(\alpha)\)</span> is called the <strong>gamma function</strong>, which has some nice features.</p>
+<div class="lemma">
+<p><span id="lem:gamma-fcn-ind-step" class="lemma"><strong>Lemma 10.2  </strong></span>If <span class="math inline">\(n &gt; 0\)</span> then <span class="math inline">\(\Gamma(n+1) = n \cdot \Gamma(n).\)</span></p>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-47" class="proof"><em>Proof</em>. </span>This follows by integration by parts!
+First note,
+<span class="math display">\[
+\Gamma(n+1) = \int_0^\infty t^{(n+1)-1}e^{-t}~dt = \int_0^\infty t^n e^{-t}~dt.
+\]</span></p>
+<p>Let <span class="math inline">\(u = t^n\)</span>, and <span class="math inline">\(dv = e^{-t}~dt\)</span>. Then <span class="math inline">\(du = nt^{n-1}~dt\)</span> and <span class="math inline">\(v = -e^{-t}\)</span>, and</p>
+<p><span class="math display">\[\begin{align*}
+\int_0^\infty t^n e^{-t}~dt &amp;= -t^ne^{-t}\biggr|_0^\infty - \int_0^\infty nt^{n-1}(-e^{-t})~dt \\
+      &amp;= \lim_{b \to \infty}\left[-t^ne^{-t}\biggr|_0^b\right]+n\int_0^\infty t^{n-1}e^{-t}~dt
+\end{align*}\]</span></p>
+<p>Apply l’hopital’s rule to see that the limit term above evaluates to 0, and note the integral term above is precisely the definition of <span class="math inline">\(\Gamma(n)\)</span>.
+Thus, we have
+<span class="math display">\[ \Gamma(n+1) = n \cdot \Gamma(n).\]</span></p>
+</div>
+<p>This lemma provides us with the following</p>
+<blockquote>
+<p><strong>Fun Fact</strong>:
+<span class="math inline">\(\Gamma(n) = (n-1)!\)</span> for any positive integer <span class="math inline">\(n\)</span>.</p>
+</blockquote>
+<p>To see why this is the case, we first show <span class="math inline">\(\Gamma(1) = 1\)</span>:</p>
+<p><span class="math display">\[\begin{align*}
+\Gamma(1) &amp;= \int_0^\infty t^0e^{-t}~dt\\
+          &amp;= \lim_{b\to\infty}\left[\int_0^b e^{-t}~dt\right]\\
+          &amp;= \lim_{b\to\infty}^\infty\left[-e^{-t}\biggr|_0^b\right]\\
+          &amp;= \lim_{b\to\infty}^\infty\left[-e^{-b}+1\right]\\
+          &amp;= 1.
+\end{align*}\]</span></p>
+<p>Next, the lemma gives us a recursive way to find
+<span class="math inline">\(\Gamma(2), \Gamma(3), \Gamma(4)\)</span> and so on. Or, using mathematical induction, <span class="math inline">\(\Gamma(1) = 1\)</span> is our basis step, and the inductive step is proved as follows:
+Suppose <span class="math inline">\(\Gamma(k) = (k-1)!\)</span> for some <span class="math inline">\(k \geq 1\)</span>. Then</p>
+<p><span class="math display">\[\begin{align*}
+\Gamma(k+1) &amp;= k\cdot \Gamma(k) &amp;\text{ by the lemma }\\
+            &amp;= k \cdot (k-1)! &amp;\text{ by substitution}\\
+            &amp;= k!
+\end{align*}\]</span></p>
+<p>It follows that <span class="math inline">\(\Gamma(n) = (n-1)!\)</span> for all positive integers <span class="math inline">\(n\)</span>.</p>
+<p>The family of gamma distributions contain two special sub-families, one of which we’ve already seen!</p>
+<div class="theorem">
+<p><span id="thm:gamma-EandV" class="theorem"><strong>Theorem 10.5  </strong></span>If <span class="math inline">\(X\)</span> is <span class="math inline">\(\text{gamma}(\alpha,\beta))\)</span>, then <span class="math display">\[E(X) = \alpha\beta, ~~~ \text{ and } ~~~ V(X) = \alpha\beta^2.\]</span></p>
+</div>
+<p>We prove this later in Chapter <a href="mgf.html#mgf">11</a>.</p>
+<div class="example">
+<p><span id="exm:unlabeled-div-48" class="example"><strong>Example 10.5  </strong></span>Where does the peak of the gamma<span class="math inline">\((\alpha,\beta)\)</span> pdf occur?</p>
+<p>This looks like a question for calculus. We can find <span class="math inline">\(f^\prime\)</span>, set it to 0, and consider critical points.</p>
+<p>We leave the details to the reader for now, but find the following results:</p>
+<ul>
+<li>if <span class="math inline">\(\alpha \leq 1\)</span>, <span class="math inline">\(f^\prime(x) &lt; 0\)</span> for all <span class="math inline">\(x &gt; 0\)</span>, so <span class="math inline">\(f\)</span> is always decreasing and the peak occurs when <span class="math inline">\(x = 0\)</span>.</li>
+<li>If <span class="math inline">\(\alpha &gt; 1\)</span>, the pdf for <span class="math inline">\(X \sim \text{gamma}(\alpha, \beta)\)</span> has its peak at <span class="math inline">\(x = (\alpha-1)\beta.\)</span></li>
+</ul>
+</div>
+<div id="exponential-distribution-1" class="section level3 hasAnchor" number="10.4.1">
+<h3><span class="header-section-number">10.4.1</span> Exponential Distribution<a href="important-continuous-rv.html#exponential-distribution-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Set <span class="math inline">\(\alpha = 1\)</span> and you will find <span class="math inline">\(\text{gamma}(1,\beta) = \text{ Exp}(\beta),\)</span>
+because their density functions are identical. So exponential distributions are special gamma distributions.</p>
+</div>
+<div id="chi-square-distribution" class="section level3 hasAnchor" number="10.4.2">
+<h3><span class="header-section-number">10.4.2</span> Chi-square distribution<a href="important-continuous-rv.html#chi-square-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="definition">
+<p><span id="def:chi-square" class="definition"><strong>Definition 10.6  </strong></span>Let <span class="math inline">\(\nu\)</span> be a positive integer. <span class="math inline">\(X\)</span> has a <strong>chi-square distribution with <span class="math inline">\(\nu\)</span> degrees of freedom</strong>, denoted <span class="math inline">\(X\)</span> is <span class="math inline">\(\chi^2(\nu)\)</span>, if <span class="math inline">\(X\)</span> is <span class="math inline">\(\text{gamma}(\alpha = \nu/2, \beta = 2).\)</span></p>
+</div>
+<p>Here are plots of three different chi-square distributions.</p>
+<p><img src="math340-notes_files/figure-html/unnamed-chunk-24-1.png" width="480" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="beta-distribution" class="section level2 hasAnchor" number="10.5">
+<h2><span class="header-section-number">10.5</span> Beta Distribution<a href="important-continuous-rv.html#beta-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The beta probability distribution provides a way to model random variables whose possible outcomes are all real numbers between 0 and 1. Such distributions are useful for modeling proportions. As with the gamma and normal distributions, this is a 2-parameter family of distributions. Altering the parameters <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> gives us, well, different shapes for the density curves.</p>
+<div class="definition">
+<p><span id="def:beta-distribution" class="definition"><strong>Definition 10.7  </strong></span>A random variable <span class="math inline">\(X\)</span> has a <strong>beta probability distribution with parameters <span class="math inline">\(\alpha&gt;0\)</span> and <span class="math inline">\(\beta&gt;0\)</span></strong> if and only if it has probability density function
+<span class="math display">\[
+f(x)=
+\frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha)\cdot \Gamma(\beta)}x^{\alpha-1}(1-x)^{\beta-1}~~~ \text{ for }0 \leq x \leq 1~~~ \text{ (and }f(x) = 0\text{ else)}
+\]</span></p>
+<p>If <span class="math inline">\(X\)</span> has such a pdf we say that <span class="math inline">\(X\)</span> is <span class="math inline">\(\text{beta}(\alpha,\beta)\)</span>.</p>
+</div>
+<p>The gamma function (<a href="important-continuous-rv.html#def:gamma-distribution">10.5</a>) appears in this pdf three times. Recall that for positive integers <span class="math inline">\(n\)</span>, <span class="math inline">\(\Gamma(n) = (n-1)!\)</span> so for integer values of <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>, the beta density function is fairly nice.
+Indeed,</p>
+<ul>
+<li><span class="math inline">\(\displaystyle X \sim \text{beta}(1,1) \Rightarrow f(x) = \frac{\Gamma(2)}{\Gamma(1)\Gamma(1)}x^0(1-x)^0 = 1\)</span>. Whoa! <span class="math inline">\(\text{beta}(1,1)\)</span> is the uniform distribution <span class="math inline">\(U(0,1).\)</span></li>
+<li><span class="math inline">\(\displaystyle X \sim \text{beta}(1,2) \Rightarrow f(x) = 2(1-x)\)</span>.</li>
+<li><span class="math inline">\(\displaystyle X \sim \text{beta}(2,1) \Rightarrow f(x) = 2x\)</span>.</li>
+<li><span class="math inline">\(\displaystyle X \sim \text{beta}(2,2) \Rightarrow f(x) = 6x(1-x)\)</span>.</li>
+<li><span class="math inline">\(\displaystyle X \sim \text{beta}(n,1) \Rightarrow f(x) = nx^{n-1}\)</span>.</li>
+<li><span class="math inline">\(\displaystyle X \sim \text{beta}(1,n) \Rightarrow f(x) = n(1-x)^{n-1}\)</span>.</li>
+</ul>
+<p>Here are a few beta distributions:
+<img src="math340-notes_files/figure-html/unnamed-chunk-25-1.png" width="480" /></p>
+<div class="theorem">
+<p><span id="thm:beta-EandV" class="theorem"><strong>Theorem 10.6  </strong></span>If <span class="math inline">\(X\)</span> is <span class="math inline">\(\text{beta}(\alpha,\beta))\)</span>, then <span class="math display">\[E(X) = \frac{\alpha}{\alpha+\beta}, ~~~ \text{ and } ~~~ V(X) = \frac{\alpha\beta}{(\alpha+\beta)^2(\alpha+\beta+1)}.\]</span></p>
+</div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="continuous-rv.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="mgf.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/mphitchman/math340/edit/main/source/10-important-continuous-RV.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["math340-notes.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

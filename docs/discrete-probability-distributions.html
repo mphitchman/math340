@@ -1,0 +1,1655 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3 Discrete Probability Distributions | MATH 340 Notes</title>
+  <meta name="description" content="3 Discrete Probability Distributions | MATH 340 Notes" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3 Discrete Probability Distributions | MATH 340 Notes" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3 Discrete Probability Distributions | MATH 340 Notes" />
+  
+  
+  
+
+<meta name="author" content="Mike Hitchman" />
+
+
+<meta name="date" content="2024-07-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="sets.html"/>
+<link rel="next" href="counting.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Math 340 Notes</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="sets.html"><a href="sets.html"><i class="fa fa-check"></i><b>2</b> Sets</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="sets.html"><a href="sets.html#algebra-of-sets"><i class="fa fa-check"></i><b>2.1</b> Algebra of Sets</a></li>
+<li class="chapter" data-level="2.2" data-path="sets.html"><a href="sets.html#size-of-sets"><i class="fa fa-check"></i><b>2.2</b> Set sizes</a></li>
+<li class="chapter" data-level="2.3" data-path="sets.html"><a href="sets.html#sets-in-r"><i class="fa fa-check"></i><b>2.3</b> Sets in R</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="discrete-probability-distributions.html"><a href="discrete-probability-distributions.html"><i class="fa fa-check"></i><b>3</b> Discrete Probability Distributions</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="discrete-probability-distributions.html"><a href="discrete-probability-distributions.html#sample-space"><i class="fa fa-check"></i><b>3.1</b> Sample Space</a></li>
+<li class="chapter" data-level="3.2" data-path="discrete-probability-distributions.html"><a href="discrete-probability-distributions.html#discrete-random-variables"><i class="fa fa-check"></i><b>3.2</b> Discrete Random Variables</a></li>
+<li class="chapter" data-level="3.3" data-path="discrete-probability-distributions.html"><a href="discrete-probability-distributions.html#calculating-probabilities"><i class="fa fa-check"></i><b>3.3</b> Calculating Probabilities</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="discrete-probability-distributions.html"><a href="discrete-probability-distributions.html#sample-point-method"><i class="fa fa-check"></i><b>3.3.1</b> Sample Point Method</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="counting.html"><a href="counting.html"><i class="fa fa-check"></i><b>4</b> Counting Techniques</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="counting.html"><a href="counting.html#multipiclation-principle"><i class="fa fa-check"></i><b>4.1</b> Multipiclation Principle</a></li>
+<li class="chapter" data-level="4.2" data-path="counting.html"><a href="counting.html#permutations"><i class="fa fa-check"></i><b>4.2</b> Permutations</a></li>
+<li class="chapter" data-level="4.3" data-path="counting.html"><a href="counting.html#combinations"><i class="fa fa-check"></i><b>4.3</b> Combinations</a></li>
+<li class="chapter" data-level="4.4" data-path="counting.html"><a href="counting.html#multinomial-coefficients"><i class="fa fa-check"></i><b>4.4</b> Multinomial Coefficients</a></li>
+<li class="chapter" data-level="4.5" data-path="counting.html"><a href="counting.html#balls-and-bins"><i class="fa fa-check"></i><b>4.5</b> Balls and Bins</a></li>
+<li class="chapter" data-level="4.6" data-path="counting.html"><a href="counting.html#prob-with-counting-tools"><i class="fa fa-check"></i><b>4.6</b> Calculating More Probabilities</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="probability-theory.html"><a href="probability-theory.html"><i class="fa fa-check"></i><b>5</b> Probability Theory</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="probability-theory.html"><a href="probability-theory.html#conditional-probability-and-independence"><i class="fa fa-check"></i><b>5.1</b> Conditional Probability and Independence</a></li>
+<li class="chapter" data-level="5.2" data-path="probability-theory.html"><a href="probability-theory.html#two-laws-of-probability"><i class="fa fa-check"></i><b>5.2</b> Two Laws of Probability</a></li>
+<li class="chapter" data-level="5.3" data-path="probability-theory.html"><a href="probability-theory.html#event-composition-method"><i class="fa fa-check"></i><b>5.3</b> Event-Composition Method</a></li>
+<li class="chapter" data-level="5.4" data-path="probability-theory.html"><a href="probability-theory.html#bayes-rule"><i class="fa fa-check"></i><b>5.4</b> Bayes’ Rule</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="discrete-random-variables-1.html"><a href="discrete-random-variables-1.html"><i class="fa fa-check"></i><b>6</b> Discrete Random Variables</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="discrete-random-variables-1.html"><a href="discrete-random-variables-1.html#expected-value"><i class="fa fa-check"></i><b>6.1</b> Expected Value</a></li>
+<li class="chapter" data-level="6.2" data-path="discrete-random-variables-1.html"><a href="discrete-random-variables-1.html#variance"><i class="fa fa-check"></i><b>6.2</b> Variance</a></li>
+<li class="chapter" data-level="6.3" data-path="discrete-random-variables-1.html"><a href="discrete-random-variables-1.html#properties-of-expected-value"><i class="fa fa-check"></i><b>6.3</b> Properties of Expected Value</a></li>
+<li class="chapter" data-level="6.4" data-path="discrete-random-variables-1.html"><a href="discrete-random-variables-1.html#tchebysheffs-theorem"><i class="fa fa-check"></i><b>6.4</b> Tchebysheff’s Theorem</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html"><i class="fa fa-check"></i><b>7</b> Important Discrete Random Variables</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html#binomial"><i class="fa fa-check"></i><b>7.1</b> Binomial Distributions</a></li>
+<li class="chapter" data-level="7.2" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html#geometric"><i class="fa fa-check"></i><b>7.2</b> Geometric Distributions</a></li>
+<li class="chapter" data-level="7.3" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html#negative-binomial"><i class="fa fa-check"></i><b>7.3</b> Negative Binomial Distribution</a></li>
+<li class="chapter" data-level="7.4" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html#hypergometric"><i class="fa fa-check"></i><b>7.4</b> Hypergeometric Distribution</a></li>
+<li class="chapter" data-level="7.5" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html#poisson"><i class="fa fa-check"></i><b>7.5</b> Poisson Distribution</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html#poisson-process"><i class="fa fa-check"></i><b>7.5.1</b> Poisson Process</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="moments-and-moment-generating-functions.html"><a href="moments-and-moment-generating-functions.html"><i class="fa fa-check"></i><b>8</b> Moments and Moment-Generating Functions</a></li>
+<li class="chapter" data-level="9" data-path="continuous-rv.html"><a href="continuous-rv.html"><i class="fa fa-check"></i><b>9</b> Continuous Random Variables</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="continuous-rv.html"><a href="continuous-rv.html#distribution-functions"><i class="fa fa-check"></i><b>9.1</b> Distribution Functions</a></li>
+<li class="chapter" data-level="9.2" data-path="continuous-rv.html"><a href="continuous-rv.html#expected-value-for-continuous-random-variables"><i class="fa fa-check"></i><b>9.2</b> Expected Value for Continuous Random Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html"><i class="fa fa-check"></i><b>10</b> Important Continuous Random Variables</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#uniform-continuous"><i class="fa fa-check"></i><b>10.1</b> Uniform Distribution</a></li>
+<li class="chapter" data-level="10.2" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#exponential-distribution"><i class="fa fa-check"></i><b>10.2</b> Exponential Distribution</a></li>
+<li class="chapter" data-level="10.3" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#normal"><i class="fa fa-check"></i><b>10.3</b> Normal Distribution</a></li>
+<li class="chapter" data-level="10.4" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#gamma-distribution"><i class="fa fa-check"></i><b>10.4</b> Gamma Distribution</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#exponential-distribution-1"><i class="fa fa-check"></i><b>10.4.1</b> Exponential Distribution</a></li>
+<li class="chapter" data-level="10.4.2" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#chi-square-distribution"><i class="fa fa-check"></i><b>10.4.2</b> Chi-square distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#beta-distribution"><i class="fa fa-check"></i><b>10.5</b> Beta Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="mgf.html"><a href="mgf.html"><i class="fa fa-check"></i><b>11</b> Moment Generating Functions</a></li>
+<li class="chapter" data-level="12" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html"><i class="fa fa-check"></i><b>12</b> Central Limit Theorem</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#sums-of-random-variables"><i class="fa fa-check"></i><b>12.1</b> Sums of Random Variables</a></li>
+<li class="chapter" data-level="12.2" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#t-distribution"><i class="fa fa-check"></i><b>12.2</b> T distribution</a></li>
+<li class="chapter" data-level="12.3" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#the-central-limit-theorem"><i class="fa fa-check"></i><b>12.3</b> The Central Limit Theorem</a></li>
+<li class="chapter" data-level="12.4" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#normal-approximation-to-a-binomial-distribution"><i class="fa fa-check"></i><b>12.4</b> Normal Approximation to a binomial distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="estimation.html"><a href="estimation.html"><i class="fa fa-check"></i><b>13</b> Estimation</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="estimation.html"><a href="estimation.html#unbiased-estimators"><i class="fa fa-check"></i><b>13.1</b> Unbiased Estimators</a></li>
+<li class="chapter" data-level="13.2" data-path="estimation.html"><a href="estimation.html#order-statistics"><i class="fa fa-check"></i><b>13.2</b> Order Statistics</a></li>
+<li class="chapter" data-level="13.3" data-path="estimation.html"><a href="estimation.html#common-unbiased-estimators"><i class="fa fa-check"></i><b>13.3</b> Common Unbiased Estimators</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="estimation.html"><a href="estimation.html#estimating-mu-a-population-mean"><i class="fa fa-check"></i><b>13.3.1</b> Estimating <span class="math inline">\(\mu\)</span>, a population mean</a></li>
+<li class="chapter" data-level="13.3.2" data-path="estimation.html"><a href="estimation.html#estimating-p-a-population-proportion"><i class="fa fa-check"></i><b>13.3.2</b> Estimating <span class="math inline">\(p\)</span>, a population proportion</a></li>
+<li class="chapter" data-level="13.3.3" data-path="estimation.html"><a href="estimation.html#estimating-mu_1---mu_2-the-difference-of-two-population-means"><i class="fa fa-check"></i><b>13.3.3</b> Estimating <span class="math inline">\(\mu_1 - \mu_2\)</span>, the difference of two population means</a></li>
+<li class="chapter" data-level="13.3.4" data-path="estimation.html"><a href="estimation.html#estimating-p_1---p_2-the-difference-of-two-population-proportions"><i class="fa fa-check"></i><b>13.3.4</b> Estimating <span class="math inline">\(p_1 - p_2\)</span>, the difference of two population proportions</a></li>
+</ul></li>
+</ul></li>
+<li class="appendix"><span><b>Using R</b></span></li>
+<li class="chapter" data-level="A" data-path="sampling-in-r.html"><a href="sampling-in-r.html"><i class="fa fa-check"></i><b>A</b> Sampling in R</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="sampling-in-r.html"><a href="sampling-in-r.html#vectors-R"><i class="fa fa-check"></i><b>A.1</b> Data vectors</a>
+<ul>
+<li class="chapter" data-level="A.1.1" data-path="sampling-in-r.html"><a href="sampling-in-r.html#vector-types"><i class="fa fa-check"></i><b>A.1.1</b> vector types</a></li>
+<li class="chapter" data-level="A.1.2" data-path="sampling-in-r.html"><a href="sampling-in-r.html#matrices"><i class="fa fa-check"></i><b>A.1.2</b> Matrices</a></li>
+<li class="chapter" data-level="A.1.3" data-path="sampling-in-r.html"><a href="sampling-in-r.html#data-frames"><i class="fa fa-check"></i><b>A.1.3</b> data frames</a></li>
+<li class="chapter" data-level="A.1.4" data-path="sampling-in-r.html"><a href="sampling-in-r.html#common-vector-commands"><i class="fa fa-check"></i><b>A.1.4</b> common vector commands</a></li>
+<li class="chapter" data-level="A.1.5" data-path="sampling-in-r.html"><a href="sampling-in-r.html#comparison-operators"><i class="fa fa-check"></i><b>A.1.5</b> Comparison Operators</a></li>
+<li class="chapter" data-level="A.1.6" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sum-and-which"><i class="fa fa-check"></i><b>A.1.6</b> <code>sum()</code> and <code>which()</code></a></li>
+<li class="chapter" data-level="A.1.7" data-path="sampling-in-r.html"><a href="sampling-in-r.html#extracting-elements"><i class="fa fa-check"></i><b>A.1.7</b> extracting elements</a></li>
+<li class="chapter" data-level="A.1.8" data-path="sampling-in-r.html"><a href="sampling-in-r.html#comparing-vectors"><i class="fa fa-check"></i><b>A.1.8</b> comparing vectors</a></li>
+<li class="chapter" data-level="A.1.9" data-path="sampling-in-r.html"><a href="sampling-in-r.html#vector-arithmetic"><i class="fa fa-check"></i><b>A.1.9</b> vector arithmetic</a></li>
+<li class="chapter" data-level="A.1.10" data-path="sampling-in-r.html"><a href="sampling-in-r.html#concatenate-vectors"><i class="fa fa-check"></i><b>A.1.10</b> concatenate vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="A.2" data-path="sampling-in-r.html"><a href="sampling-in-r.html#special-vectors"><i class="fa fa-check"></i><b>A.2</b> Special vectors</a>
+<ul>
+<li class="chapter" data-level="A.2.1" data-path="sampling-in-r.html"><a href="sampling-in-r.html#consecutive-integers"><i class="fa fa-check"></i><b>A.2.1</b> consecutive integers</a></li>
+<li class="chapter" data-level="A.2.2" data-path="sampling-in-r.html"><a href="sampling-in-r.html#letters"><i class="fa fa-check"></i><b>A.2.2</b> letters</a></li>
+<li class="chapter" data-level="A.2.3" data-path="sampling-in-r.html"><a href="sampling-in-r.html#rep"><i class="fa fa-check"></i><b>A.2.3</b> <code>rep()</code></a></li>
+<li class="chapter" data-level="A.2.4" data-path="sampling-in-r.html"><a href="sampling-in-r.html#table"><i class="fa fa-check"></i><b>A.2.4</b> <code>table()</code></a></li>
+<li class="chapter" data-level="A.2.5" data-path="sampling-in-r.html"><a href="sampling-in-r.html#seq"><i class="fa fa-check"></i><b>A.2.5</b> <code>seq()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="A.3" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sampling-in-R"><i class="fa fa-check"></i><b>A.3</b> Sampling</a>
+<ul>
+<li class="chapter" data-level="A.3.1" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sample-options"><i class="fa fa-check"></i><b>A.3.1</b> <code>sample()</code> options</a></li>
+<li class="chapter" data-level="A.3.2" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sample-without-replacement"><i class="fa fa-check"></i><b>A.3.2</b> Sample without replacement</a></li>
+<li class="chapter" data-level="A.3.3" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sample-with-replacement"><i class="fa fa-check"></i><b>A.3.3</b> Sample with replacement</a></li>
+<li class="chapter" data-level="A.3.4" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sample-with-custom-probabilities"><i class="fa fa-check"></i><b>A.3.4</b> Sample with custom probabilities</a></li>
+<li class="chapter" data-level="A.3.5" data-path="sampling-in-r.html"><a href="sampling-in-r.html#example-lefties"><i class="fa fa-check"></i><b>A.3.5</b> Example: Lefties</a></li>
+</ul></li>
+<li class="chapter" data-level="A.4" data-path="sampling-in-r.html"><a href="sampling-in-r.html#repeated-sampling"><i class="fa fa-check"></i><b>A.4</b> Repeated Sampling</a>
+<ul>
+<li class="chapter" data-level="A.4.1" data-path="sampling-in-r.html"><a href="sampling-in-r.html#using-a-for-loop"><i class="fa fa-check"></i><b>A.4.1</b> using a <code>for</code> loop</a></li>
+<li class="chapter" data-level="A.4.2" data-path="sampling-in-r.html"><a href="sampling-in-r.html#using-replicate"><i class="fa fa-check"></i><b>A.4.2</b> using <code>replicate()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="A.5" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sampling-commands"><i class="fa fa-check"></i><b>A.5</b> Summary of R commands</a>
+<ul>
+<li class="chapter" data-level="A.5.1" data-path="sampling-in-r.html"><a href="sampling-in-r.html#defining-vectors"><i class="fa fa-check"></i><b>A.5.1</b> defining vectors</a></li>
+<li class="chapter" data-level="A.5.2" data-path="sampling-in-r.html"><a href="sampling-in-r.html#summarizing-vectors"><i class="fa fa-check"></i><b>A.5.2</b> summarizing vectors</a></li>
+<li class="chapter" data-level="A.5.3" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sampling-from-vectors"><i class="fa fa-check"></i><b>A.5.3</b> sampling from vectors</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="R-sim-probability.html"><a href="R-sim-probability.html"><i class="fa fa-check"></i><b>B</b> Simulating Probability in R</a>
+<ul>
+<li class="chapter" data-level="B.1" data-path="R-sim-probability.html"><a href="R-sim-probability.html#id_10sided-die-R"><i class="fa fa-check"></i><b>B.1</b> Rolling a 10-sided die</a>
+<ul>
+<li class="chapter" data-level="B.1.1" data-path="R-sim-probability.html"><a href="R-sim-probability.html#final-code"><i class="fa fa-check"></i><b>B.1.1</b> Final Code</a></li>
+</ul></li>
+<li class="chapter" data-level="B.2" data-path="R-sim-probability.html"><a href="R-sim-probability.html#diff-2dice-R"><i class="fa fa-check"></i><b>B.2</b> Difference of two dice</a></li>
+<li class="chapter" data-level="B.3" data-path="R-sim-probability.html"><a href="R-sim-probability.html#flip-coin-R"><i class="fa fa-check"></i><b>B.3</b> Flipping a coin</a></li>
+<li class="chapter" data-level="B.4" data-path="R-sim-probability.html"><a href="R-sim-probability.html#marbles-urn-R"><i class="fa fa-check"></i><b>B.4</b> Marbles from an urn</a></li>
+<li class="chapter" data-level="B.5" data-path="R-sim-probability.html"><a href="R-sim-probability.html#partition-set-R"><i class="fa fa-check"></i><b>B.5</b> Splitting a set into multiple subsets</a>
+<ul>
+<li class="chapter" data-level="B.5.1" data-path="R-sim-probability.html"><a href="R-sim-probability.html#final-code-1"><i class="fa fa-check"></i><b>B.5.1</b> Final Code</a></li>
+</ul></li>
+<li class="chapter" data-level="B.6" data-path="R-sim-probability.html"><a href="R-sim-probability.html#license-plates-R"><i class="fa fa-check"></i><b>B.6</b> Oregon License Plates</a>
+<ul>
+<li class="chapter" data-level="B.6.1" data-path="R-sim-probability.html"><a href="R-sim-probability.html#final-code-2"><i class="fa fa-check"></i><b>B.6.1</b> Final Code</a></li>
+</ul></li>
+<li class="chapter" data-level="B.7" data-path="R-sim-probability.html"><a href="R-sim-probability.html#pollsters-R"><i class="fa fa-check"></i><b>B.7</b> Pollsters</a></li>
+<li class="chapter" data-level="B.8" data-path="R-sim-probability.html"><a href="R-sim-probability.html#same-birthday-R"><i class="fa fa-check"></i><b>B.8</b> Matching Birthdays</a></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="R-discreteRV.html"><a href="R-discreteRV.html"><i class="fa fa-check"></i><b>C</b> Discrete Random Variables in R</a>
+<ul>
+<li class="chapter" data-level="C.1" data-path="R-discreteRV.html"><a href="R-discreteRV.html#expected-value-of-x"><i class="fa fa-check"></i><b>C.1</b> Expected Value of <span class="math inline">\(X\)</span></a></li>
+<li class="chapter" data-level="C.2" data-path="R-discreteRV.html"><a href="R-discreteRV.html#variance-of-x"><i class="fa fa-check"></i><b>C.2</b> Variance of <span class="math inline">\(X\)</span></a></li>
+<li class="chapter" data-level="C.3" data-path="R-discreteRV.html"><a href="R-discreteRV.html#distribution-plots"><i class="fa fa-check"></i><b>C.3</b> Distribution Plots</a></li>
+<li class="chapter" data-level="C.4" data-path="R-discreteRV.html"><a href="R-discreteRV.html#sampling"><i class="fa fa-check"></i><b>C.4</b> Sampling</a></li>
+<li class="chapter" data-level="C.5" data-path="R-discreteRV.html"><a href="R-discreteRV.html#estimating-distributions-via-simulation"><i class="fa fa-check"></i><b>C.5</b> Estimating Distributions via Simulation</a></li>
+<li class="chapter" data-level="C.6" data-path="R-discreteRV.html"><a href="R-discreteRV.html#discrete-uniform-distribution"><i class="fa fa-check"></i><b>C.6</b> Discrete Uniform Distribution</a></li>
+<li class="chapter" data-level="C.7" data-path="R-discreteRV.html"><a href="R-discreteRV.html#r-4distn-functions"><i class="fa fa-check"></i><b>C.7</b> Important discrete random variables</a>
+<ul>
+<li class="chapter" data-level="C.7.1" data-path="R-discreteRV.html"><a href="R-discreteRV.html#binomial-distribution-binom"><i class="fa fa-check"></i><b>C.7.1</b> Binomial Distribution <code>binom</code></a></li>
+<li class="chapter" data-level="C.7.2" data-path="R-discreteRV.html"><a href="R-discreteRV.html#geometric-distribution-geom"><i class="fa fa-check"></i><b>C.7.2</b> Geometric Distribution <code>geom</code></a></li>
+<li class="chapter" data-level="C.7.3" data-path="R-discreteRV.html"><a href="R-discreteRV.html#negative-binomial-distribution-nbinom"><i class="fa fa-check"></i><b>C.7.3</b> Negative Binomial Distribution <code>nbinom</code></a></li>
+<li class="chapter" data-level="C.7.4" data-path="R-discreteRV.html"><a href="R-discreteRV.html#hypergeometric-distribution-hyper"><i class="fa fa-check"></i><b>C.7.4</b> Hypergeometric Distribution <code>hyper</code></a></li>
+<li class="chapter" data-level="C.7.5" data-path="R-discreteRV.html"><a href="R-discreteRV.html#poisson-distribution-pois"><i class="fa fa-check"></i><b>C.7.5</b> Poisson Distribution <code>pois</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="D" data-path="R-continuousRV.html"><a href="R-continuousRV.html"><i class="fa fa-check"></i><b>D</b> Continuous Random Variables in R</a>
+<ul>
+<li class="chapter" data-level="D.1" data-path="R-continuousRV.html"><a href="R-continuousRV.html#unifR"><i class="fa fa-check"></i><b>D.1</b> Uniform Distribution</a>
+<ul>
+<li class="chapter" data-level="D.1.1" data-path="R-continuousRV.html"><a href="R-continuousRV.html#picking-random-numbers"><i class="fa fa-check"></i><b>D.1.1</b> Picking random numbers!</a></li>
+<li class="chapter" data-level="D.1.2" data-path="R-continuousRV.html"><a href="R-continuousRV.html#picking-random-points-in-the-unit-square"><i class="fa fa-check"></i><b>D.1.2</b> Picking random points in the unit square!</a></li>
+<li class="chapter" data-level="D.1.3" data-path="R-continuousRV.html"><a href="R-continuousRV.html#estimate-the-value-of-pi"><i class="fa fa-check"></i><b>D.1.3</b> Estimate the value of <span class="math inline">\(\pi\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="D.2" data-path="R-continuousRV.html"><a href="R-continuousRV.html#normalR"><i class="fa fa-check"></i><b>D.2</b> Normal Distribution <code>norm</code></a>
+<ul>
+<li class="chapter" data-level="D.2.1" data-path="R-continuousRV.html"><a href="R-continuousRV.html#sampling-distribution-of-a-sample-mean"><i class="fa fa-check"></i><b>D.2.1</b> Sampling Distribution of a sample mean</a></li>
+</ul></li>
+<li class="chapter" data-level="D.3" data-path="R-continuousRV.html"><a href="R-continuousRV.html#expR"><i class="fa fa-check"></i><b>D.3</b> Exponential Distribution <code>exp</code></a></li>
+<li class="chapter" data-level="D.4" data-path="R-continuousRV.html"><a href="R-continuousRV.html#gammaR"><i class="fa fa-check"></i><b>D.4</b> Gamma Distribution <code>gamma</code></a></li>
+<li class="chapter" data-level="D.5" data-path="R-continuousRV.html"><a href="R-continuousRV.html#chiR"><i class="fa fa-check"></i><b>D.5</b> Chi-square Distribution <code>chisq</code></a></li>
+<li class="chapter" data-level="D.6" data-path="R-continuousRV.html"><a href="R-continuousRV.html#betaR"><i class="fa fa-check"></i><b>D.6</b> Beta distribution <code>beta</code></a></li>
+<li class="chapter" data-level="D.7" data-path="R-continuousRV.html"><a href="R-continuousRV.html#customR"><i class="fa fa-check"></i><b>D.7</b> Homemade Continuous Random Variables</a>
+<ul>
+<li class="chapter" data-level="D.7.1" data-path="R-continuousRV.html"><a href="R-continuousRV.html#input-the-density-function"><i class="fa fa-check"></i><b>D.7.1</b> Input the density function</a></li>
+<li class="chapter" data-level="D.7.2" data-path="R-continuousRV.html"><a href="R-continuousRV.html#visualize-the-density-function"><i class="fa fa-check"></i><b>D.7.2</b> Visualize the density function</a></li>
+<li class="chapter" data-level="D.7.3" data-path="R-continuousRV.html"><a href="R-continuousRV.html#estimating-integrals-with-riemann-sums"><i class="fa fa-check"></i><b>D.7.3</b> Estimating Integrals with Riemann Sums</a></li>
+<li class="chapter" data-level="D.7.4" data-path="R-continuousRV.html"><a href="R-continuousRV.html#estimating-probabilities"><i class="fa fa-check"></i><b>D.7.4</b> Estimating Probabilities</a></li>
+<li class="chapter" data-level="D.7.5" data-path="R-continuousRV.html"><a href="R-continuousRV.html#the-distribution-function-fx"><i class="fa fa-check"></i><b>D.7.5</b> The distribution function <span class="math inline">\(F(X)\)</span></a></li>
+<li class="chapter" data-level="D.7.6" data-path="R-continuousRV.html"><a href="R-continuousRV.html#estimating-moments"><i class="fa fa-check"></i><b>D.7.6</b> Estimating Moments</a></li>
+<li class="chapter" data-level="D.7.7" data-path="R-continuousRV.html"><a href="R-continuousRV.html#expected-value-1"><i class="fa fa-check"></i><b>D.7.7</b> Expected Value</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MATH 340 Notes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="discrete-probability-distributions" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">3</span> Discrete Probability Distributions<a href="discrete-probability-distributions.html#discrete-probability-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In this chapter we consider chance experiments and develop basic notions of a probability model for such an experiment.</p>
+<div id="sample-space" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Sample Space<a href="discrete-probability-distributions.html#sample-space" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A chance experiment is some repeatable process whose outcome on any given trial cannot be known ahead of time. Here are a few examples of chance experiments:</p>
+<ol style="list-style-type: decimal">
+<li>Flip a coin.</li>
+<li>Roll a 6-sided die.</li>
+<li>Flip a coin three times.</li>
+<li>Shoot free throws until we’ve made three.</li>
+<li>Count “scintilations” in 72 second intervals caused by radioactive decay of a quantity of polonium (Rutherford and Geiger).</li>
+</ol>
+<div class="definition">
+<p><span id="def:sample-space" class="definition"><strong>Definition 3.1  </strong></span>The <strong>sample space</strong> of a chance experiment is the set of possible basic outcomes of the experiment. The elements of a sample space are called <strong>sample points</strong> or <strong>simple events</strong>, and any subset of a sample space is called an <strong>event</strong>.</p>
+</div>
+<p>We often have some chioce in how to record the possible outcomes of a chance experiment. For instance, we might record the sample spaces for the experiments above as follows:</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(S = \{ H, T \}\)</span> (<span class="math inline">\(H\)</span> for heads, <span class="math inline">\(T\)</span> for tails).</li>
+<li><span class="math inline">\(S = \{1,2,3,4,5,6\}\)</span> (recording the value that is face up after rolling the die.)</li>
+<li><span class="math inline">\(S = \{HHH,HHT,HTH,THH,HTT,THT,TTH,TTT\}\)</span> (record the result of each flip in order). Alternatively, we might just record how many heads we flipped, in which case <span class="math inline">\(S = \{0,1,2,3\}\)</span>, but we lose some information about the experiment in doing so.</li>
+<li><span class="math inline">\(S = \{111, 1101, 1011, 0111, 11001, 10101, 01101, 10011, 01011, 00111, \ldots \}\)</span>, where 0 represents missing a shot, and 1 represents making a shot.</li>
+<li><span class="math inline">\(S = \{0, 1, 2, 3, 4, \ldots \}\)</span>.</li>
+</ol>
+<p>In the first three examples, <span class="math inline">\(S\)</span> is a finite set, while <span class="math inline">\(S\)</span> appears to be an infinite set in the last two examples. There is, of course, a limit to how many free throws I can attempt in my life (if I shoot one free throw every 15 seconds for 100 years, that’s only about 210 million attempts :)), but, in the context of building a probability model to describe the chance experiment of shooting free throws until I’ve made three, I have no reason to limit how many attempts I need to get that done.</p>
+<p>Although infinite, the sample spaces in the last two examples are <em>countably</em> infinite. Recall, a set is <strong>countably infinite</strong> if its elements can be counted, i.e., can be put in one-to-one correspondence with the positive integers.</p>
+<div class="definition">
+<p><span id="def:discrete-sample-space" class="definition"><strong>Definition 3.2  </strong></span>The sample space of a chance experiment is called <strong>discrete</strong> if the sample space is finite or countably infinite.</p>
+</div>
+<p>If you asked me to pick a random real number from the unit interval <span class="math inline">\(I = [0,1]\)</span>, this is a chance experiment with an uncountable sample space, and something we are not considering in this chapter. We focus on such games in Chapter <a href="continuous-rv.html#continuous-rv">9</a>.</p>
+<div class="definition">
+<p><span id="def:probability-distribution-function" class="definition"><strong>Definition 3.3  </strong></span>Given a chance experiment with sample space <span class="math inline">\(S\)</span> that is finite or countably infinite, a <strong>probability distribution function</strong> on the elements of <span class="math inline">\(S\)</span> is a real-valued function <span class="math inline">\(m\)</span> which satisfies these two conditions:</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(m(s) \geq 0\)</span> for all <span class="math inline">\(s \in S\)</span>, and</li>
+<li><span class="math inline">\(\displaystyle \sum_{s \in S} m(s) = 1.\)</span></li>
+</ol>
+<p>We define the probability of any event <span class="math inline">\(E\)</span> of <span class="math inline">\(S\)</span> to be <span class="math display">\[P(E) = \sum_{s \in E} m(s).\]</span></p>
+</div>
+<p>Let’s consider our first three chance experiments once more.</p>
+<ol style="list-style-type: decimal">
+<li><p>If we flip a fair coin once, then <span class="math inline">\(S = \{H,T\}\)</span>, and it is reasonable to assign the probabilities <span class="math display">\[m(H) = \frac{1}{2}, ~ m(T) = \frac{1}{2}.\]</span></p></li>
+<li><p>If a 6-sided die is balanced, it is reasonable to assign the probabilities <span class="math display">\[m(i) = \frac{1}{6}\]</span> for each <span class="math inline">\(i = 1, 2, 3, 4, 5, 6\)</span>.</p></li>
+<li><p>If we flip a fair coin 3 times, it seems reasonable that each of the 8 possible sequences of three flips in <span class="math inline">\(S\)</span> is equally likely, so we can assign the probability distribution function <span class="math inline">\(m(s) = 1/8\)</span> for each element <span class="math inline">\(s \in S\)</span>.</p></li>
+</ol>
+<p>In the case of a countably infinite sample space (such as shooting free throws until we’ve made three), defining a valid probability function requires more care: to check that the sum of all <span class="math inline">\(m(s)\)</span> equals 1 requires the evaluation of an infinite series from Calc II.</p>
+</div>
+<div id="discrete-random-variables" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Discrete Random Variables<a href="discrete-probability-distributions.html#discrete-random-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="definition">
+<p><span id="def:random-variable" class="definition"><strong>Definition 3.4  </strong></span>A <strong>discrete random variable</strong> is a real-valued function defined over a discrete sample space. We usually let <span class="math inline">\(X\)</span> or <span class="math inline">\(Y\)</span> denote a random variable. Given random variable <span class="math inline">\(X\)</span>, the <strong>space of <span class="math inline">\(X\)</span></strong> is the set of possible outcomes for <span class="math inline">\(X\)</span>.</p>
+</div>
+<div class="example">
+<p><span id="exm:flip-three-times" class="example"><strong>Example 3.1  (Flip a coin 3 times) </strong></span>Consider the experiment of flipping a coin three times. We record as much information as possible about this experiment by providing the sequence of the results of the three flips. Thus, the sample space for this experiment is:
+<span class="math display">\[S = \{HHH,HHT,HTH,THH,HTT,THT,TTH,TTT\}.\]</span></p>
+<p>We might be interested in knowing how many times we flipped heads, or perhaps we want to know whether we ever flipped heads twice in a row. We can use random variables to keep track of these sorts of things.</p>
+<p>Let <span class="math display">\[X = \text{the number of heads in three flips}.\]</span> Note that the space of <span class="math inline">\(X\)</span> is the set <span class="math inline">\(\{0, 1, 2, 3\}\)</span> (we can get anywhere between 0 and 3 heads in 3 flips).</p>
+<p>Or, if we’re interested in whether we ever flipped consecutive heads in our 3 flips, we could let
+<span class="math display">\[Y =  \begin{cases}
+    1 &amp; \text{if we ever flipped consecutive heads} \\
+    0 &amp; \text{else.}
+    \end{cases}\]</span>
+The space of <span class="math inline">\(Y\)</span> is <span class="math inline">\(\{0,1\}\)</span>.</p>
+<p>Again, formally, the random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are functions whose inputs are elements in <span class="math inline">\(S\)</span>, and whose outputs are real numbers. We can display these functions in table form when the sample space is small, as in Table <a href="discrete-probability-distributions.html#tab:flip-3-coins">3.1</a>.</p>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:flip-3-coins">Table 3.1: </span><span id="tab:flip-3-coins">Table 3.2: </span>Random variables X and Y associated to the event of flipping a coin 3 times.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;border-right:1px solid;">
+S
+</td>
+<td style="text-align:center;">
+HHH
+</td>
+<td style="text-align:center;">
+HHT
+</td>
+<td style="text-align:center;">
+HTH
+</td>
+<td style="text-align:center;">
+THH
+</td>
+<td style="text-align:center;">
+HTT
+</td>
+<td style="text-align:center;">
+THT
+</td>
+<td style="text-align:center;">
+TTH
+</td>
+<td style="text-align:center;">
+TTT
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-right:1px solid;">
+X
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-right:1px solid;">
+Y
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+0
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>If <span class="math inline">\(X\)</span> is a random variable associated to an experiment, and we have a probability distribution function assigned to the sample space <span class="math inline">\(S\)</span>, we can naturally ask about the probability that <span class="math inline">\(X\)</span> takes on a particular value <span class="math inline">\(x\)</span>.</p>
+<div class="definition">
+<p><span id="def:prob-distribution-discete-rv" class="definition"><strong>Definition 3.5  </strong></span>The probability that a random variable <span class="math inline">\(X\)</span> takes on value <span class="math inline">\(x\)</span>, denoted <span class="math inline">\(P(X = x)\)</span> or <span class="math inline">\(p(x)\)</span>, is defined as the sum of the probabilities of all sample points in <span class="math inline">\(S\)</span> that are assigned the value <span class="math inline">\(x\)</span>. The function <span class="math inline">\(p(x)\)</span> is called the <strong>distribution function</strong> of the discrete random variable <span class="math inline">\(X\)</span>, and the <strong>probability distribution</strong> of <span class="math inline">\(X\)</span> refers to the the list of possible values for <span class="math inline">\(x\)</span> along with their associated probabilities <span class="math inline">\(p(x)\)</span> (usually given as a table or function).</p>
+</div>
+<div class="example">
+<p><span id="exm:flip-three-times-probs" class="example"><strong>Example 3.2  (Flip a coin 3 times (Part II)) </strong></span>Consider again the “flip a coin three times” Example <a href="discrete-probability-distributions.html#exm:flip-three-times">3.1</a> and the associated random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, which counted the number of heads flipped, and whether we flipped consecutive heads, respectively. Table <a href="discrete-probability-distributions.html#tab:flip-3-coins">3.1</a> provides the values for these random variables.</p>
+<p>We assume <span class="math inline">\(m(s) = 1/8\)</span> for each <span class="math inline">\(s \in S\)</span> (all 8 sequences are equally likely), so we have the following probability distributions:</p>
+<p><span class="math display">\[
+\begin{array}{c|c|c|c|c}
+x &amp; 0 &amp; 1 &amp; 2 &amp; 3 \\ \hline
+p(x) &amp; 1/8 &amp; 3/8 &amp; 3/8 &amp; 1/8
+\end{array}
+\]</span>
+and</p>
+<p><span class="math display">\[
+\begin{array}{c|c|c}
+y &amp; 0 &amp; 1  \\ \hline
+p(y) &amp; 5/8 &amp; 3/8  
+\end{array}
+\]</span></p>
+</div>
+<div class="example">
+<p><span id="exm:roll2dice" class="example"><strong>Example 3.3  (Rolling Two Dice) </strong></span>The chance experiment of rolling two regular 6-sided dice is a staple of the board game industry. A convenient way to describe the sample space in this setting is to treat the dice as distinct (say, one red die and one blue die), and write down all possible pairs of values <span class="math inline">\((r,b)\)</span> where <span class="math inline">\(r\)</span> is the red die value, <span class="math inline">\(b\)</span> is the blue die value. The sample space for rolling two 6-sided dice thus has 36 elements, which we can describe via a <span class="math inline">\(6 \times 6\)</span> grid.</p>
+<table class="table lightable-classic-2" style="margin-left: auto; margin-right: auto; font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-3">Table 3.3: </span>The sample space for rolling two dice
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;color: blue !important;">
+</th>
+<th style="text-align:center;color: blue !important;">
+1
+</th>
+<th style="text-align:center;color: blue !important;">
+2
+</th>
+<th style="text-align:center;color: blue !important;">
+3
+</th>
+<th style="text-align:center;color: blue !important;">
+4
+</th>
+<th style="text-align:center;color: blue !important;">
+5
+</th>
+<th style="text-align:center;color: blue !important;">
+6
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;color: red !important;">
+1
+</td>
+<td style="text-align:center;border-left:1px solid;">
+(1,1)
+</td>
+<td style="text-align:center;">
+(1,2)
+</td>
+<td style="text-align:center;">
+(1,3)
+</td>
+<td style="text-align:center;">
+(1,4)
+</td>
+<td style="text-align:center;">
+(1,5)
+</td>
+<td style="text-align:center;">
+(1,6)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;color: red !important;">
+2
+</td>
+<td style="text-align:center;border-left:1px solid;">
+(2,1)
+</td>
+<td style="text-align:center;">
+(2,2)
+</td>
+<td style="text-align:center;">
+(2,3)
+</td>
+<td style="text-align:center;">
+(2,4)
+</td>
+<td style="text-align:center;">
+(2,5)
+</td>
+<td style="text-align:center;">
+(2,6)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;color: red !important;">
+3
+</td>
+<td style="text-align:center;border-left:1px solid;">
+(3,1)
+</td>
+<td style="text-align:center;">
+(3,2)
+</td>
+<td style="text-align:center;">
+(3,3)
+</td>
+<td style="text-align:center;">
+(3,4)
+</td>
+<td style="text-align:center;">
+(3,5)
+</td>
+<td style="text-align:center;">
+(3,6)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;color: red !important;">
+4
+</td>
+<td style="text-align:center;border-left:1px solid;">
+(4,1)
+</td>
+<td style="text-align:center;">
+(4,2)
+</td>
+<td style="text-align:center;">
+(4,3)
+</td>
+<td style="text-align:center;">
+(4,4)
+</td>
+<td style="text-align:center;">
+(4,5)
+</td>
+<td style="text-align:center;">
+(4,6)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;color: red !important;">
+5
+</td>
+<td style="text-align:center;border-left:1px solid;">
+(5,1)
+</td>
+<td style="text-align:center;">
+(5,2)
+</td>
+<td style="text-align:center;">
+(5,3)
+</td>
+<td style="text-align:center;">
+(5,4)
+</td>
+<td style="text-align:center;">
+(5,5)
+</td>
+<td style="text-align:center;">
+(5,6)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;color: red !important;">
+6
+</td>
+<td style="text-align:center;border-left:1px solid;">
+(6,1)
+</td>
+<td style="text-align:center;">
+(6,2)
+</td>
+<td style="text-align:center;">
+(6,3)
+</td>
+<td style="text-align:center;">
+(6,4)
+</td>
+<td style="text-align:center;">
+(6,5)
+</td>
+<td style="text-align:center;">
+(6,6)
+</td>
+</tr>
+</tbody>
+</table>
+<p>We may be interested in <span class="math inline">\(X\)</span>, the sum of the two dice. The <span class="math inline">\(6 \times 6\)</span> grid is handy for representing this random variable:</p>
+<table class="table lightable-classic-2" style="margin-left: auto; margin-right: auto; font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-4">Table 3.4: </span>X, the sum of two dice
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;color: blue !important;">
+</th>
+<th style="text-align:center;color: blue !important;">
+1
+</th>
+<th style="text-align:center;color: blue !important;">
+2
+</th>
+<th style="text-align:center;color: blue !important;">
+3
+</th>
+<th style="text-align:center;color: blue !important;">
+4
+</th>
+<th style="text-align:center;color: blue !important;">
+5
+</th>
+<th style="text-align:center;color: blue !important;">
+6
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;color: red !important;">
+1
+</td>
+<td style="text-align:center;border-left:1px solid;">
+2
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+6
+</td>
+<td style="text-align:center;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;color: red !important;">
+2
+</td>
+<td style="text-align:center;border-left:1px solid;">
+3
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+6
+</td>
+<td style="text-align:center;">
+7
+</td>
+<td style="text-align:center;">
+8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;color: red !important;">
+3
+</td>
+<td style="text-align:center;border-left:1px solid;">
+4
+</td>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+6
+</td>
+<td style="text-align:center;">
+7
+</td>
+<td style="text-align:center;">
+8
+</td>
+<td style="text-align:center;">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;color: red !important;">
+4
+</td>
+<td style="text-align:center;border-left:1px solid;">
+5
+</td>
+<td style="text-align:center;">
+6
+</td>
+<td style="text-align:center;">
+7
+</td>
+<td style="text-align:center;">
+8
+</td>
+<td style="text-align:center;">
+9
+</td>
+<td style="text-align:center;">
+10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;color: red !important;">
+5
+</td>
+<td style="text-align:center;border-left:1px solid;">
+6
+</td>
+<td style="text-align:center;">
+7
+</td>
+<td style="text-align:center;">
+8
+</td>
+<td style="text-align:center;">
+9
+</td>
+<td style="text-align:center;">
+10
+</td>
+<td style="text-align:center;">
+11
+</td>
+</tr>
+<tr>
+<td style="text-align:left;color: red !important;">
+6
+</td>
+<td style="text-align:center;border-left:1px solid;">
+7
+</td>
+<td style="text-align:center;">
+8
+</td>
+<td style="text-align:center;">
+9
+</td>
+<td style="text-align:center;">
+10
+</td>
+<td style="text-align:center;">
+11
+</td>
+<td style="text-align:center;">
+12
+</td>
+</tr>
+</tbody>
+</table>
+<p>Assuming the probability of each element in <span class="math inline">\(S\)</span> is 1/36, the probability distribution for <span class="math inline">\(X\)</span> is</p>
+<p><span class="math display">\[
+\begin{array}{c|c|c|c|c|c|c|c|c|c|c|c}
+x &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp; 6 &amp; 7 &amp; 8 &amp; 9 &amp; 10 &amp; 11 &amp; 12 \\ \hline
+p(x) &amp; 1/36 &amp; 2/36 &amp; 3/36 &amp; 4/36 &amp; 5/36 &amp; 6/36 &amp; 5/36 &amp; 4/36 &amp; 3/36 &amp; 2/36 &amp; 1/36
+\end{array}
+\]</span>
+More succinctly, we have <span class="math display">\[p(x) = \frac{6-|x-7|}{36} ~~~\text {for } x= 2, 3, \ldots, 12.\]</span></p>
+<p>Maybe we’re interested in how far apart the two values are, so we consider the random variable <span class="math inline">\(Y\)</span> equal to the absolute value of the difference of the two dice:</p>
+<table class="table lightable-classic-2" style="margin-left: auto; margin-right: auto; font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-5">Table 3.5: </span>Y, the absolute value of the difference of two dice
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;color: blue !important;">
+</th>
+<th style="text-align:center;color: blue !important;">
+1
+</th>
+<th style="text-align:center;color: blue !important;">
+2
+</th>
+<th style="text-align:center;color: blue !important;">
+3
+</th>
+<th style="text-align:center;color: blue !important;">
+4
+</th>
+<th style="text-align:center;color: blue !important;">
+5
+</th>
+<th style="text-align:center;color: blue !important;">
+6
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;color: red !important;">
+1
+</td>
+<td style="text-align:center;border-left:1px solid;">
+0
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;color: red !important;">
+2
+</td>
+<td style="text-align:center;border-left:1px solid;">
+1
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;color: red !important;">
+3
+</td>
+<td style="text-align:center;border-left:1px solid;">
+2
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;color: red !important;">
+4
+</td>
+<td style="text-align:center;border-left:1px solid;">
+3
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;color: red !important;">
+5
+</td>
+<td style="text-align:center;border-left:1px solid;">
+4
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;color: red !important;">
+6
+</td>
+<td style="text-align:center;border-left:1px solid;">
+5
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+0
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>So, the probability distribution for <span class="math inline">\(Y\)</span> is</p>
+<p><span class="math display">\[
+\begin{array}{c|c|c|c|c|c|c}
+y &amp; 0 &amp; 1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 \\ \hline
+p(x) &amp; 6/36 &amp; 10/36 &amp; 8/36 &amp; 6/36 &amp; 4/36 &amp; 2/36
+\end{array}
+\]</span></p>
+</div>
+<div id="calculating-probabilities" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Calculating Probabilities<a href="discrete-probability-distributions.html#calculating-probabilities" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Recall the scene:</p>
+<ol style="list-style-type: decimal">
+<li>We conduct a chance experiment, to which we associate the sample space <span class="math inline">\(S\)</span> of possible outcomes.</li>
+<li>To each sample point <span class="math inline">\(s\)</span> in <span class="math inline">\(S\)</span> we assign a reasonable probability, <span class="math inline">\(m(s)\)</span>, that <span class="math inline">\(s\)</span> occurs (being sure that all <span class="math inline">\(m(s)\)</span> are non-negative and that they sum to 1).</li>
+<li>For any event <span class="math inline">\(A\)</span> associated to this experiment (i.e., <span class="math inline">\(A\)</span> is a subset of <span class="math inline">\(S\)</span>), we define <span class="math inline">\(\displaystyle P(A) = \sum_{s \in A} m(s).\)</span></li>
+<li>For a random variable <span class="math inline">\(X\)</span> associated to <span class="math inline">\(S\)</span>, <span class="math inline">\(P(X = x)\)</span> equals the sum of the <span class="math inline">\(m(s)\)</span> for which <span class="math inline">\(s\)</span> is assigned value <span class="math inline">\(x\)</span>.</li>
+</ol>
+<div id="sample-point-method" class="section level3 hasAnchor" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Sample Point Method<a href="discrete-probability-distributions.html#sample-point-method" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>So far we have been finding probability distributions by following what is called the <strong>sample-point method</strong> (list all the sample points, assign probabilities to each, and go!).</p>
+<p>Here’s one more example of finding probabilities via the sample-point method.</p>
+<div class="example">
+<p><span id="exm:random-phones" class="example"><strong>Example 3.4  (Random Phones) </strong></span></p>
+<blockquote>
+<p>Four phones are found in a classroom after class. The professor returns them at random to the four students the next class. Let <span class="math inline">\(X\)</span> denote the number of students who receive the correct phone. Let’s determine the probability distribution for <span class="math inline">\(X\)</span> by the sample-point method.</p>
+</blockquote>
+<p>The chance experiment here is straight-forward: randomly return 4 phones to the 4 students who own them.</p>
+<ul>
+<li>Name the students “a”, “b”, “c”, and “d”, and assume we return the phones randomly one at a time, in alphabetical order (“a” is the first to receive a phone, “b” next, and so on.)<br />
+</li>
+<li>Refer to the phones by their owner’s name.</li>
+<li>To record the results of the experiment, we simply write down the phones in the order in which they were returned.<br />
+</li>
+<li>For instance, recording “c b a d” would mean student <span class="math inline">\(a\)</span> received phone <span class="math inline">\(c\)</span>, student <span class="math inline">\(b\)</span> received phone <span class="math inline">\(b\)</span> (their own phone!), student <span class="math inline">\(c\)</span> received phone <span class="math inline">\(a\)</span>, and student <span class="math inline">\(d\)</span> received their own phone, <span class="math inline">\(d\)</span>.</li>
+<li>In this way, the 24 different permutations of the letters “a b c d” listed below correspond to the 24 basic outcomes possible in this experiment.</li>
+<li>For each sample point in the table below, we also record <span class="math inline">\(X\)</span>, the number of students to receive their phone back for that sample point.</li>
+</ul>
+<table class=" lightable-classic-2" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-6">Table 3.6: </span><span id="tab:unnamed-chunk-6">Table 3.7: </span>Returning 4 phones at random, X counts how many students receive their own phone.
+</caption>
+<thead>
+<tr>
+<th style="text-align:center;font-weight: bold;">
+a
+</th>
+<th style="text-align:center;font-weight: bold;">
+b
+</th>
+<th style="text-align:center;font-weight: bold;">
+c
+</th>
+<th style="text-align:center;font-weight: bold;">
+d
+</th>
+<th style="text-align:center;font-weight: bold;">
+X
+</th>
+<th style="text-align:center;font-weight: bold;">
+</th>
+<th style="text-align:center;font-weight: bold;">
+a
+</th>
+<th style="text-align:center;font-weight: bold;">
+b
+</th>
+<th style="text-align:center;font-weight: bold;">
+c
+</th>
+<th style="text-align:center;font-weight: bold;">
+d
+</th>
+<th style="text-align:center;font-weight: bold;">
+X
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;border-left:1px solid;">
+a
+</td>
+<td style="text-align:center;">
+b
+</td>
+<td style="text-align:center;">
+c
+</td>
+<td style="text-align:center;border-right:1px solid;">
+d
+</td>
+<td style="text-align:center;border-right:1px solid;">
+4
+</td>
+<td style="text-align:center;border-right:1px solid;">
+</td>
+<td style="text-align:center;">
+b
+</td>
+<td style="text-align:center;">
+a
+</td>
+<td style="text-align:center;">
+c
+</td>
+<td style="text-align:center;border-right:1px solid;">
+d
+</td>
+<td style="text-align:center;border-right:1px solid;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:center;border-left:1px solid;">
+a
+</td>
+<td style="text-align:center;">
+b
+</td>
+<td style="text-align:center;">
+d
+</td>
+<td style="text-align:center;border-right:1px solid;">
+c
+</td>
+<td style="text-align:center;border-right:1px solid;">
+2
+</td>
+<td style="text-align:center;border-right:1px solid;">
+</td>
+<td style="text-align:center;">
+b
+</td>
+<td style="text-align:center;">
+a
+</td>
+<td style="text-align:center;">
+d
+</td>
+<td style="text-align:center;border-right:1px solid;">
+c
+</td>
+<td style="text-align:center;border-right:1px solid;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:center;border-left:1px solid;">
+a
+</td>
+<td style="text-align:center;">
+c
+</td>
+<td style="text-align:center;">
+b
+</td>
+<td style="text-align:center;border-right:1px solid;">
+d
+</td>
+<td style="text-align:center;border-right:1px solid;">
+2
+</td>
+<td style="text-align:center;border-right:1px solid;">
+</td>
+<td style="text-align:center;">
+b
+</td>
+<td style="text-align:center;">
+c
+</td>
+<td style="text-align:center;">
+a
+</td>
+<td style="text-align:center;border-right:1px solid;">
+d
+</td>
+<td style="text-align:center;border-right:1px solid;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:center;border-left:1px solid;">
+a
+</td>
+<td style="text-align:center;">
+c
+</td>
+<td style="text-align:center;">
+d
+</td>
+<td style="text-align:center;border-right:1px solid;">
+b
+</td>
+<td style="text-align:center;border-right:1px solid;">
+1
+</td>
+<td style="text-align:center;border-right:1px solid;">
+</td>
+<td style="text-align:center;">
+b
+</td>
+<td style="text-align:center;">
+c
+</td>
+<td style="text-align:center;">
+d
+</td>
+<td style="text-align:center;border-right:1px solid;">
+a
+</td>
+<td style="text-align:center;border-right:1px solid;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:center;border-left:1px solid;">
+a
+</td>
+<td style="text-align:center;">
+d
+</td>
+<td style="text-align:center;">
+b
+</td>
+<td style="text-align:center;border-right:1px solid;">
+c
+</td>
+<td style="text-align:center;border-right:1px solid;">
+1
+</td>
+<td style="text-align:center;border-right:1px solid;">
+</td>
+<td style="text-align:center;">
+b
+</td>
+<td style="text-align:center;">
+d
+</td>
+<td style="text-align:center;">
+a
+</td>
+<td style="text-align:center;border-right:1px solid;">
+c
+</td>
+<td style="text-align:center;border-right:1px solid;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:center;border-left:1px solid;">
+a
+</td>
+<td style="text-align:center;">
+d
+</td>
+<td style="text-align:center;">
+c
+</td>
+<td style="text-align:center;border-right:1px solid;">
+b
+</td>
+<td style="text-align:center;border-right:1px solid;">
+2
+</td>
+<td style="text-align:center;border-right:1px solid;">
+</td>
+<td style="text-align:center;">
+b
+</td>
+<td style="text-align:center;">
+d
+</td>
+<td style="text-align:center;">
+c
+</td>
+<td style="text-align:center;border-right:1px solid;">
+a
+</td>
+<td style="text-align:center;border-right:1px solid;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:center;border-left:1px solid;">
+c
+</td>
+<td style="text-align:center;">
+a
+</td>
+<td style="text-align:center;">
+b
+</td>
+<td style="text-align:center;border-right:1px solid;">
+d
+</td>
+<td style="text-align:center;border-right:1px solid;">
+1
+</td>
+<td style="text-align:center;border-right:1px solid;">
+</td>
+<td style="text-align:center;">
+c
+</td>
+<td style="text-align:center;">
+b
+</td>
+<td style="text-align:center;">
+a
+</td>
+<td style="text-align:center;border-right:1px solid;">
+d
+</td>
+<td style="text-align:center;border-right:1px solid;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:center;border-left:1px solid;">
+c
+</td>
+<td style="text-align:center;">
+a
+</td>
+<td style="text-align:center;">
+d
+</td>
+<td style="text-align:center;border-right:1px solid;">
+b
+</td>
+<td style="text-align:center;border-right:1px solid;">
+0
+</td>
+<td style="text-align:center;border-right:1px solid;">
+</td>
+<td style="text-align:center;">
+c
+</td>
+<td style="text-align:center;">
+b
+</td>
+<td style="text-align:center;">
+d
+</td>
+<td style="text-align:center;border-right:1px solid;">
+a
+</td>
+<td style="text-align:center;border-right:1px solid;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:center;border-left:1px solid;">
+c
+</td>
+<td style="text-align:center;">
+d
+</td>
+<td style="text-align:center;">
+a
+</td>
+<td style="text-align:center;border-right:1px solid;">
+b
+</td>
+<td style="text-align:center;border-right:1px solid;">
+0
+</td>
+<td style="text-align:center;border-right:1px solid;">
+</td>
+<td style="text-align:center;">
+c
+</td>
+<td style="text-align:center;">
+d
+</td>
+<td style="text-align:center;">
+b
+</td>
+<td style="text-align:center;border-right:1px solid;">
+a
+</td>
+<td style="text-align:center;border-right:1px solid;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:center;border-left:1px solid;">
+d
+</td>
+<td style="text-align:center;">
+a
+</td>
+<td style="text-align:center;">
+b
+</td>
+<td style="text-align:center;border-right:1px solid;">
+c
+</td>
+<td style="text-align:center;border-right:1px solid;">
+0
+</td>
+<td style="text-align:center;border-right:1px solid;">
+</td>
+<td style="text-align:center;">
+d
+</td>
+<td style="text-align:center;">
+b
+</td>
+<td style="text-align:center;">
+a
+</td>
+<td style="text-align:center;border-right:1px solid;">
+c
+</td>
+<td style="text-align:center;border-right:1px solid;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:center;border-left:1px solid;">
+d
+</td>
+<td style="text-align:center;">
+a
+</td>
+<td style="text-align:center;">
+c
+</td>
+<td style="text-align:center;border-right:1px solid;">
+b
+</td>
+<td style="text-align:center;border-right:1px solid;">
+1
+</td>
+<td style="text-align:center;border-right:1px solid;">
+</td>
+<td style="text-align:center;">
+d
+</td>
+<td style="text-align:center;">
+b
+</td>
+<td style="text-align:center;">
+c
+</td>
+<td style="text-align:center;border-right:1px solid;">
+a
+</td>
+<td style="text-align:center;border-right:1px solid;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:center;border-left:1px solid;">
+d
+</td>
+<td style="text-align:center;">
+c
+</td>
+<td style="text-align:center;">
+a
+</td>
+<td style="text-align:center;border-right:1px solid;">
+b
+</td>
+<td style="text-align:center;border-right:1px solid;">
+0
+</td>
+<td style="text-align:center;border-right:1px solid;">
+</td>
+<td style="text-align:center;">
+d
+</td>
+<td style="text-align:center;">
+c
+</td>
+<td style="text-align:center;">
+b
+</td>
+<td style="text-align:center;border-right:1px solid;">
+a
+</td>
+<td style="text-align:center;border-right:1px solid;">
+0
+</td>
+</tr>
+</tbody>
+</table>
+<p>If the professor truly returns the phones at random, each of the 24 possible outcomes is equally likely. In other words, for each element <span class="math inline">\(s\)</span> in the sample space <span class="math inline">\(S\)</span>, <span class="math inline">\(m(s) = 1/24\)</span>. It follows that the probability distribution for <span class="math inline">\(X\)</span> is</p>
+<p><span class="math display">\[
+\begin{array}{c|c|c|c|c|c}
+x &amp; 0 &amp; 1 &amp; 2 &amp; 3 &amp; 4\\ \hline
+p(x) &amp; 9/24 &amp; 8/24 &amp; 6/24 &amp; ~~0~~ &amp; 1/24  
+\end{array}
+\]</span></p>
+<p>It looks like the most likely scenario upon returning the phones at random is that no one gets their phone back, and there is about a 4 percent chance that everyone gets their phone back.</p>
+</div>
+<p>This sample-point method for determining probabilities will not be much help if we have a huge sample space, and huge sample spaces arise easily, such as in a friendly game of cards. We examine 5-card poker hands later, beginning with Example <a href="counting.html#exm:poker">4.7</a>, but mention here that a player can be dealt about 2.6 million possible 5-card hands from a regular 52 card deck. So, in an effort to determine the probability of obtaining a particular type of hand, say a 3 of a kind, I will not be using the sample-point method!</p>
+<p>We have two alternatives to the sample-point method:</p>
+<ul>
+<li>simulation (draw 5 cards at random many, many times, and see how often you get a 3 of a kind).</li>
+<li>learn counting techniques in Chapter <a href="counting.html#counting">4</a>!!</li>
+</ul>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="sets.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="counting.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/mphitchman/math340/edit/main/source/03-discrete-prob.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["math340-notes.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

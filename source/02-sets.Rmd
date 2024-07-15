@@ -1,0 +1,157 @@
+# Sets {#sets}
+
+We use sets to build probability models for chance experiments and to communicate features about these models. To help us manage all this effectively, we begin this course with set theory.
+
+Think of a set as a collection of elements. 
+
+
+::: {.example #common-sets}
+We regularly encounter the following sets:
+
+  - $\mathbb{N} = \{1, 2, 3, \ldots \}$, the set of **natural numbers**\index{$\mathbb{N}$}
+  - $\mathbb{Z} = \{\ldots,-2, -1, 0, 1, 2, \ldots \}$, the set of **integers**\index{$\mathbb{Z}$}, 
+  - $\mathbb{R}$, the set of **real numbers**\index{$\mathbb{R}$}, 
+  - $I = [0,1] = \{x \in \mathbb{R}~|~0 \leq x \leq 1\}$, the **unit interval**\index{unit interval}, 
+  - $\emptyset$, the **empty set**\index{sets!empty set}, the set with no elements. 
+:::
+
+To indicate whether item $x$ is an element of set $A$, we write
+
+  - $x \in A$ if $x$ is an element of $A$, and
+  - $x \notin A$ if $x$ is not an element of $A$.
+
+::: {.definition #subset}
+Let $A$ and $B$ be sets.
+We say $A$ is a **subset**\index{sets!subset} of $B$, denoted $A \subseteq B$, if $x \in A$ implies $x \in B$; and $A$ is a **proper subset**\index{sets!subset!proper} of $B$, denoted $A \subset B$, if $A \subseteq B$ and there is some element $x \in B$ such that $x \notin A$. We say $A$ and $B$ are **equal**\index{sets!equal}, denoted $A = B$, if $A \subseteq B$ and $B \subseteq A$.
+:::
+
+
+::: {.example #first-sets}
+Here are a few sets (we usually name our sets with capital letters).
+
+  - $A = \{2, 4, 6, 8, \ldots\}$, the set of even natural numbers.
+  - $B = \{8,4\}$ is a set with my two favorite natural numbers.
+  - $C = \{ x \in \mathbb{R} ~|~ |x-3| > 2 \}.$ This set consists of all real numbers $x$ whose distance from 3 is greater than 2.
+  - $S = \{\text{all spiders on Earth alive today}\}$.
+  
+Observe:
+
+  - $18 \in A$ and $19 \notin A$.
+  - $A,B \subset \mathbb{N}$, and $C \subset \mathbb{R}$, and $B \subset A$.
+  - $6.7 \in C$, and  $4.1 \notin C$.
+  - $\emptyset \subset A$. In fact $\emptyset \subseteq X$ for *any* set $X$.
+  - $S$ is a set I'd rather not encounter all at once.
+  
+:::
+
+  
+  
+## Algebra of Sets {#algebra-of-sets}
+
+::: {.definition #set-algebra}
+
+Given sets $A$ and $B$, the **union**\index{sets!union} of $A$ and $B$ is the set $$A \cup B = \{x ~|~ x \in A \text{ or } x \in B\}.$$
+The **intersection**\index{sets!intersection} of $A$ and $B$ is the set $$A \cap B = \{x ~|~ x \in A \text{ and } x \in B \}.$$
+The **difference**\index{sets!difference} of $A$ and $B$ is the set
+$$A − B = \{x ~|~ x \in A \text{ and } x \notin B\}.$$
+:::
+
+
+::: {.example #set-arithmetic}
+Let $A = \{2,4,6,8\}$ and $B = \{ 0,1,2,3,5,8\}.$
+
+Then $A \cup B$ gives the set of all elements in $A$ or $B$ (or both):  $$A \cup B = \{0,1,2,3,4,5,6,8 \}.$$ The set $A\cap B$ gives those elements that are in both $A$ and $B$: $$A \cap B = \{2,8 \},$$
+and $A - B$ gives the set of elements in $A$ that aren't in $B$:
+$$A - B = \{4,6\}.$$ 
+Note that $(A \cap B) \cup (A - B) = A$, something that will be true for any two sets.
+:::
+
+::: {.definition #complement}
+If $A \subseteq U$ where $U$ is viewed as a universal set, the **complement of A**\index{sets!complement} in $U$, denoted $\overline{A}$, consists of those elements in $U$ that are not in $A$: $$\overline{A}=\{x \in U ~|~ x \notin A\}.$$
+:::
+
+::: {.example #complement}
+Two examples of complements:
+
+**a)** If $E = \{2, 4, 6, \ldots \}$ is the set of even natural numbers, then, viewed in the universe of all natural numbers $\mathbb{N}$, $$\overline{E} = \{1, 3, 5, \ldots \},$$ the set of odd natural numbers.
+
+**b)** Suppose our universe is the unit inveral $[0,1]$. The complement of the open interval $A = (0.3,0.7)$  in this universe is the union of two closed intervals: $$\overline{A} = [0,0.3] \cup [0.7,1].$$
+
+:::
+
+:::{.definition #disjoint-sets}
+If $A \cap B = \emptyset$, then $A$ and $B$ are called **disjoint**\index{sets!disjoint} sets. Disjoint sets have no common elements. For $k \geq 2$, the sets $A_1, A_2, \ldots, A_k$ are called **pairwise disjoint**\index{sets!pairwise disjoin} if all pairs of sets in this collection are disjoint. 
+:::
+
+
+::: {.theorem #basic-set-props}
+Let $A$, $B$, and $C$ be sets, viewed in a universal set $U$. Then
+
+1. $A \cap \overline{A} = \emptyset$ and $A \cup \overline{A} = U.$
+
+2. **Distributive Laws**\index{sets!distributive laws}
+  a) $A \cap (B \cup C) = (A \cup B) \cap (A \cup C).$
+  b) $A \cup (B \cap C) = (A \cap B) \cup (A \cap C).$
+
+3. **De Morgan's Laws**\index{sets!De Morgan's Laws}
+  a) $\overline{A \cup B} = \overline{A} \cap \overline{B}.$
+  b) $\overline{A \cap B} = \overline{A} \cup \overline{B}.$
+:::
+
+
+::: {.proof}
+We prove 3a), the first De Morgan's Law, by showing that an arbitrary element of either set belongs to the other set (so each set is a subset of the other).
+
+\begin{align*}
+x \in \overline{A \cup B} &\iff x \notin A \cup B & \text{ by def'n of complement}\\
+    &\iff x \notin A \text{ and } x \notin B & \text{ by def'n of union}\\
+    &\iff x \in \overline{A} \text{ and } x \in \overline{B} & \text{ by def'n of complement} \\
+    &\iff x \in \overline{A} \cap \overline{B} & \text{ by def'n of intersection}
+\end{align*}
+
+
+It follows that $\overline{A \cup B} \subseteq \overline{A} \cap \overline{B}$ and $\overline{A} \cap \overline{B} \subseteq \overline{A \cup B},$ so the two sets are equal.
+:::
+
+
+## Set sizes {#size-of-sets}
+
+For a finite set $A$, we let $|A|$ denote the number of elements in $A$.
+Note that in Example \@ref(exm:set-arithmetic), $|A| = 8, |B| = 9, |A \cup B| = 15,$ and $|A \cap B| = 2$.
+
+::: {.theorem #AuB-size}
+Let $A$ and $B$ be finite sets. Then $$|A \cup B| = |A| + |B| - |A \cap B|.$$
+:::
+
+We omit the proof here.
+
+An infinite set is called **countably infinite**\index{sets!countably infinite} if its elements can be counted, i.e., can be put in one-to-one correspondence with the positive integers $$\mathbb{N} = \{1, 2, 3, 4, \ldots\}.$$ An infinite set is called **uncountable**\index{sets!uncountable} if it is not countably infinite.
+
+The set of positive even integers $\{2, 4, 6, \ldots \}$ is countably infinite, and the unit interval $I$ is uncountable. 
+
+We distinguish between these two types of infinite sets in this class because when an infinite set represents the possible outcomes of some random process, the type of probability model we apply to the situation depends on whether this set is countably infinite or uncountable.
+
+We will study two types of probability distributions in this class: discrete distributions, and continuous distributions.  We use discrete distributions to model a random process in which the set of outcomes is either finite or countably infinite.  We use continuous distributions when the random process of interest has an uncountable set of possible outcomes (which is generally an interval of real numbers in this class).
+
+For instance, if we flip a coin and are interested in how many flips it takes to get our 100th heads, the set of possible outcomes for this experiment is countably infinite (it might take $n$ flips, for any integer $n \geq 100$), and we will use a discrete distribution to model probability in this setting.  On the other hand, if we are interested in how far we can throw the coin in frustration after 1000 flips, the set of possible outcomes is better described as an interval in the real line (maybe the interval $(0,\infty)$, units in feet). Since intervals are uncountable sets, we would model probability in this setting with a continuous distribution.
+
+In this class we first study discrete distributions before turning to continuous distributions.
+
+## Sets in R
+
+We generally define a finite set in R as a structure called a data vector.  Appendix \@ref(vectors-R) dives into data vectors in R, with an eye toward sampling, but we can also use R to perform set operations.  We define a data vector via the `c()` command in R. Here are two sets $A$ and $B$:
+
+```{r}
+A = c(2,4,8)
+B = c(2,4,9,12)
+```
+
+Basic set operations in R:
+
+  - `length(A)` = `r length(A)` returns $|A|$, the size of $A$.
+  - `union(A,B)` = `r union(A,B)` gives $A \cup B$
+  - `intersect(A,B)` = `r intersect(A,B)` gives $A \cap B$
+  - `setdiff(A,B)` = `r setdiff(A,B)` gives $A - B$
+  - `setequal(A,B)` = `r setequal(A,B)` asks whether $A = B$ (returns TRUE or FALSE)
+  - `is.element(3,A)` = `r is.element(3,A)` asks whether $3 \in A$ (returns TRUE OR FALSE)
+

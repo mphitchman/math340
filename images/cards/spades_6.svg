@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 197.28 269.28">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke-width: 0px;
+      }
+
+      .cls-1, .cls-2 {
+        fill: #000;
+      }
+
+      .cls-3 {
+        fill: none;
+        stroke: #000;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-2 {
+        font-family: ArialMT, Arial;
+        font-size: 28px;
+      }
+    </style>
+    <symbol id="Black_6" data-name="Black 6" viewBox="0 0 15.57 33.12">
+      <text class="cls-2" transform="translate(0 24.03)"><tspan x="0" y="0">6</tspan></text>
+    </symbol>
+    <symbol id="Spade" viewBox="0 0 26.08 32.54">
+      <path id="path153-6-3-1-6-92-7-2-9-8" class="cls-1" d="M13.04,0C6.79,8.92.11,14.05,0,21.01c-.04,2.25,1.18,6.08,4.99,6.82,2.47.47,5.88-1.53,5.95-5.6-.01-.81.86-.79.85.32-.12,3.21-1.13,6.95-2.84,9.99h8.18c-1.71-3.04-2.72-6.78-2.84-9.99,0-1.11.86-1.13.85-.32.07,4.07,3.47,6.07,5.95,5.6,3.81-.73,5.03-4.56,4.99-6.82-.11-6.96-6.79-12.09-13.04-21.01Z"/>
+    </symbol>
+    <symbol id="boundary" viewBox="0 0 181 253">
+      <rect class="cls-3" x=".5" y=".5" width="180" height="252" rx="15" ry="15"/>
+    </symbol>
+  </defs>
+  <g id="Spades">
+    <g id="Spade_Symbols" data-name="Spade Symbols">
+      <g id="Center_Symbols_6" data-name="Center Symbols 6">
+        <use width="26.08" height="32.54" transform="translate(49.37 40.39)" xlink:href="#Spade"/>
+        <use width="26.08" height="32.54" transform="translate(49.37 118.37)" xlink:href="#Spade"/>
+        <use width="26.08" height="32.54" transform="translate(121.83 40.39)" xlink:href="#Spade"/>
+        <use width="26.08" height="32.54" transform="translate(121.83 118.37)" xlink:href="#Spade"/>
+        <use width="26.08" height="32.54" transform="translate(75.45 228.89) rotate(-180)" xlink:href="#Spade"/>
+        <use width="26.08" height="32.54" transform="translate(147.91 228.89) rotate(-180)" xlink:href="#Spade"/>
+      </g>
+      <g id="Corner_Symbols_6" data-name="Corner Symbols 6">
+        <use width="26.08" height="32.54" transform="translate(20.67 46.74) scale(.5)" xlink:href="#Spade"/>
+        <use width="26.08" height="32.54" transform="translate(176.61 222.54) rotate(-180) scale(.5)" xlink:href="#Spade"/>
+      </g>
+    </g>
+    <g id="Spade_Corner_Characters" data-name="Spade Corner Characters">
+      <g>
+        <use width="15.57" height="33.12" transform="translate(177.87 254.75) rotate(-180)" xlink:href="#Black_6"/>
+        <use width="15.57" height="33.12" transform="translate(19.41 14.53)" xlink:href="#Black_6"/>
+      </g>
+    </g>
+  </g>
+  <g id="Clubs">
+    <g id="Club_Corner_Characters" data-name="Club Corner Characters">
+      <use width="181" height="253" transform="translate(8.14 8.14)" xlink:href="#boundary"/>
+    </g>
+  </g>
+</svg>

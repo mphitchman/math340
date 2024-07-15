@@ -1,0 +1,20 @@
+s = 0
+for (x in 6:10){
+  p = choose(30,x)*(choose(90,10-x))/choose(120,10)
+  s = s+p
+}
+s
+1-phyper(5,30,90,10)-s
+s
+
+
+#parking meter
+p = .05
+n = 100
+b = 5 # fine for second infraction
+c = 10 # fine for subsequent infractions
+meter = .25
+#Scenario 1: paying each time:
+(cost_1 = n*meter)
+#Scenario 2: never paying
+(cost_2 = (b-2*c)+c*n*p-(b-2*c)*(1-p)^n-(b-c)*100*p*(1-p)^(n-1))

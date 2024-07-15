@@ -1,0 +1,70 @@
+p.caption {
+  color: #777;
+  margin-top: 10px;
+}
+p code {
+  white-space: inherit;
+}
+pre {
+  word-break: normal;
+  word-wrap: normal;
+}
+pre code {
+  white-space: inherit;
+}
+
+h1.title {
+  color: Seagreen;
+}
+h1 { /* Header 1 */
+  color: Seagreen;
+}
+h2 { /* Header 2 */
+    color: Seagreen;
+}
+h3 { /* Header 3 */
+  color: Seagreen;
+}
+
+blockquote {
+    background: #fce4a8;
+    padding: 10px 20px;
+    margin: 0 0 20px;
+    font-size: 16px;
+    border-left: 1px solid #aaa;
+}
+
+.theorem {
+  background: #eef8f8;
+    padding: 5px 10px;
+    margin: 0 0 10px;
+    border-left: 1px solid #aaa;
+}
+
+.corollary {
+  background: #eef8f8;
+    padding: 5px 10px;
+    margin: 0 0 10px;
+    border-left: 1px solid #aaa;
+}
+
+.proposition {
+  background: #eef8f8;
+    padding: 5px 10px;
+    margin: 0 0 10px;
+    border-left: 1px solid #aaa;
+}
+
+.definition {
+  background: #f8f8f8;
+  padding: 5px;
+  margin: 0 0 10px;
+    border-left: 1px solid #aaa;
+}
+
+.example {
+    padding: 5px 10px;
+    margin: 0 0 10px;
+    border-left: 1px solid #aaa;
+    border-color: blue;
+}

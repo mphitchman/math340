@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>C Discrete Random Variables in R | MATH 340 Notes</title>
+  <meta name="description" content="C Discrete Random Variables in R | MATH 340 Notes" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="C Discrete Random Variables in R | MATH 340 Notes" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="C Discrete Random Variables in R | MATH 340 Notes" />
+  
+  
+  
+
+<meta name="author" content="Mike Hitchman" />
+
+
+<meta name="date" content="2024-07-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="R-sim-probability.html"/>
+<link rel="next" href="R-continuousRV.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Math 340 Notes</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="sets.html"><a href="sets.html"><i class="fa fa-check"></i><b>2</b> Sets</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="sets.html"><a href="sets.html#algebra-of-sets"><i class="fa fa-check"></i><b>2.1</b> Algebra of Sets</a></li>
+<li class="chapter" data-level="2.2" data-path="sets.html"><a href="sets.html#size-of-sets"><i class="fa fa-check"></i><b>2.2</b> Set sizes</a></li>
+<li class="chapter" data-level="2.3" data-path="sets.html"><a href="sets.html#sets-in-r"><i class="fa fa-check"></i><b>2.3</b> Sets in R</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="discrete-probability-distributions.html"><a href="discrete-probability-distributions.html"><i class="fa fa-check"></i><b>3</b> Discrete Probability Distributions</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="discrete-probability-distributions.html"><a href="discrete-probability-distributions.html#sample-space"><i class="fa fa-check"></i><b>3.1</b> Sample Space</a></li>
+<li class="chapter" data-level="3.2" data-path="discrete-probability-distributions.html"><a href="discrete-probability-distributions.html#discrete-random-variables"><i class="fa fa-check"></i><b>3.2</b> Discrete Random Variables</a></li>
+<li class="chapter" data-level="3.3" data-path="discrete-probability-distributions.html"><a href="discrete-probability-distributions.html#calculating-probabilities"><i class="fa fa-check"></i><b>3.3</b> Calculating Probabilities</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="discrete-probability-distributions.html"><a href="discrete-probability-distributions.html#sample-point-method"><i class="fa fa-check"></i><b>3.3.1</b> Sample Point Method</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="counting.html"><a href="counting.html"><i class="fa fa-check"></i><b>4</b> Counting Techniques</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="counting.html"><a href="counting.html#multipiclation-principle"><i class="fa fa-check"></i><b>4.1</b> Multipiclation Principle</a></li>
+<li class="chapter" data-level="4.2" data-path="counting.html"><a href="counting.html#permutations"><i class="fa fa-check"></i><b>4.2</b> Permutations</a></li>
+<li class="chapter" data-level="4.3" data-path="counting.html"><a href="counting.html#combinations"><i class="fa fa-check"></i><b>4.3</b> Combinations</a></li>
+<li class="chapter" data-level="4.4" data-path="counting.html"><a href="counting.html#multinomial-coefficients"><i class="fa fa-check"></i><b>4.4</b> Multinomial Coefficients</a></li>
+<li class="chapter" data-level="4.5" data-path="counting.html"><a href="counting.html#balls-and-bins"><i class="fa fa-check"></i><b>4.5</b> Balls and Bins</a></li>
+<li class="chapter" data-level="4.6" data-path="counting.html"><a href="counting.html#prob-with-counting-tools"><i class="fa fa-check"></i><b>4.6</b> Calculating More Probabilities</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="probability-theory.html"><a href="probability-theory.html"><i class="fa fa-check"></i><b>5</b> Probability Theory</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="probability-theory.html"><a href="probability-theory.html#conditional-probability-and-independence"><i class="fa fa-check"></i><b>5.1</b> Conditional Probability and Independence</a></li>
+<li class="chapter" data-level="5.2" data-path="probability-theory.html"><a href="probability-theory.html#two-laws-of-probability"><i class="fa fa-check"></i><b>5.2</b> Two Laws of Probability</a></li>
+<li class="chapter" data-level="5.3" data-path="probability-theory.html"><a href="probability-theory.html#event-composition-method"><i class="fa fa-check"></i><b>5.3</b> Event-Composition Method</a></li>
+<li class="chapter" data-level="5.4" data-path="probability-theory.html"><a href="probability-theory.html#bayes-rule"><i class="fa fa-check"></i><b>5.4</b> Bayes’ Rule</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="discrete-random-variables-1.html"><a href="discrete-random-variables-1.html"><i class="fa fa-check"></i><b>6</b> Discrete Random Variables</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="discrete-random-variables-1.html"><a href="discrete-random-variables-1.html#expected-value"><i class="fa fa-check"></i><b>6.1</b> Expected Value</a></li>
+<li class="chapter" data-level="6.2" data-path="discrete-random-variables-1.html"><a href="discrete-random-variables-1.html#variance"><i class="fa fa-check"></i><b>6.2</b> Variance</a></li>
+<li class="chapter" data-level="6.3" data-path="discrete-random-variables-1.html"><a href="discrete-random-variables-1.html#properties-of-expected-value"><i class="fa fa-check"></i><b>6.3</b> Properties of Expected Value</a></li>
+<li class="chapter" data-level="6.4" data-path="discrete-random-variables-1.html"><a href="discrete-random-variables-1.html#tchebysheffs-theorem"><i class="fa fa-check"></i><b>6.4</b> Tchebysheff’s Theorem</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html"><i class="fa fa-check"></i><b>7</b> Important Discrete Random Variables</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html#binomial"><i class="fa fa-check"></i><b>7.1</b> Binomial Distributions</a></li>
+<li class="chapter" data-level="7.2" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html#geometric"><i class="fa fa-check"></i><b>7.2</b> Geometric Distributions</a></li>
+<li class="chapter" data-level="7.3" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html#negative-binomial"><i class="fa fa-check"></i><b>7.3</b> Negative Binomial Distribution</a></li>
+<li class="chapter" data-level="7.4" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html#hypergometric"><i class="fa fa-check"></i><b>7.4</b> Hypergeometric Distribution</a></li>
+<li class="chapter" data-level="7.5" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html#poisson"><i class="fa fa-check"></i><b>7.5</b> Poisson Distribution</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html#poisson-process"><i class="fa fa-check"></i><b>7.5.1</b> Poisson Process</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="moments-and-moment-generating-functions.html"><a href="moments-and-moment-generating-functions.html"><i class="fa fa-check"></i><b>8</b> Moments and Moment-Generating Functions</a></li>
+<li class="chapter" data-level="9" data-path="continuous-rv.html"><a href="continuous-rv.html"><i class="fa fa-check"></i><b>9</b> Continuous Random Variables</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="continuous-rv.html"><a href="continuous-rv.html#distribution-functions"><i class="fa fa-check"></i><b>9.1</b> Distribution Functions</a></li>
+<li class="chapter" data-level="9.2" data-path="continuous-rv.html"><a href="continuous-rv.html#expected-value-for-continuous-random-variables"><i class="fa fa-check"></i><b>9.2</b> Expected Value for Continuous Random Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html"><i class="fa fa-check"></i><b>10</b> Important Continuous Random Variables</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#uniform-continuous"><i class="fa fa-check"></i><b>10.1</b> Uniform Distribution</a></li>
+<li class="chapter" data-level="10.2" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#exponential-distribution"><i class="fa fa-check"></i><b>10.2</b> Exponential Distribution</a></li>
+<li class="chapter" data-level="10.3" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#normal"><i class="fa fa-check"></i><b>10.3</b> Normal Distribution</a></li>
+<li class="chapter" data-level="10.4" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#gamma-distribution"><i class="fa fa-check"></i><b>10.4</b> Gamma Distribution</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#exponential-distribution-1"><i class="fa fa-check"></i><b>10.4.1</b> Exponential Distribution</a></li>
+<li class="chapter" data-level="10.4.2" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#chi-square-distribution"><i class="fa fa-check"></i><b>10.4.2</b> Chi-square distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#beta-distribution"><i class="fa fa-check"></i><b>10.5</b> Beta Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="mgf.html"><a href="mgf.html"><i class="fa fa-check"></i><b>11</b> Moment Generating Functions</a></li>
+<li class="chapter" data-level="12" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html"><i class="fa fa-check"></i><b>12</b> Central Limit Theorem</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#sums-of-random-variables"><i class="fa fa-check"></i><b>12.1</b> Sums of Random Variables</a></li>
+<li class="chapter" data-level="12.2" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#t-distribution"><i class="fa fa-check"></i><b>12.2</b> T distribution</a></li>
+<li class="chapter" data-level="12.3" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#the-central-limit-theorem"><i class="fa fa-check"></i><b>12.3</b> The Central Limit Theorem</a></li>
+<li class="chapter" data-level="12.4" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#normal-approximation-to-a-binomial-distribution"><i class="fa fa-check"></i><b>12.4</b> Normal Approximation to a binomial distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="estimation.html"><a href="estimation.html"><i class="fa fa-check"></i><b>13</b> Estimation</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="estimation.html"><a href="estimation.html#unbiased-estimators"><i class="fa fa-check"></i><b>13.1</b> Unbiased Estimators</a></li>
+<li class="chapter" data-level="13.2" data-path="estimation.html"><a href="estimation.html#order-statistics"><i class="fa fa-check"></i><b>13.2</b> Order Statistics</a></li>
+<li class="chapter" data-level="13.3" data-path="estimation.html"><a href="estimation.html#common-unbiased-estimators"><i class="fa fa-check"></i><b>13.3</b> Common Unbiased Estimators</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="estimation.html"><a href="estimation.html#estimating-mu-a-population-mean"><i class="fa fa-check"></i><b>13.3.1</b> Estimating <span class="math inline">\(\mu\)</span>, a population mean</a></li>
+<li class="chapter" data-level="13.3.2" data-path="estimation.html"><a href="estimation.html#estimating-p-a-population-proportion"><i class="fa fa-check"></i><b>13.3.2</b> Estimating <span class="math inline">\(p\)</span>, a population proportion</a></li>
+<li class="chapter" data-level="13.3.3" data-path="estimation.html"><a href="estimation.html#estimating-mu_1---mu_2-the-difference-of-two-population-means"><i class="fa fa-check"></i><b>13.3.3</b> Estimating <span class="math inline">\(\mu_1 - \mu_2\)</span>, the difference of two population means</a></li>
+<li class="chapter" data-level="13.3.4" data-path="estimation.html"><a href="estimation.html#estimating-p_1---p_2-the-difference-of-two-population-proportions"><i class="fa fa-check"></i><b>13.3.4</b> Estimating <span class="math inline">\(p_1 - p_2\)</span>, the difference of two population proportions</a></li>
+</ul></li>
+</ul></li>
+<li class="appendix"><span><b>Using R</b></span></li>
+<li class="chapter" data-level="A" data-path="sampling-in-r.html"><a href="sampling-in-r.html"><i class="fa fa-check"></i><b>A</b> Sampling in R</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="sampling-in-r.html"><a href="sampling-in-r.html#vectors-R"><i class="fa fa-check"></i><b>A.1</b> Data vectors</a>
+<ul>
+<li class="chapter" data-level="A.1.1" data-path="sampling-in-r.html"><a href="sampling-in-r.html#vector-types"><i class="fa fa-check"></i><b>A.1.1</b> vector types</a></li>
+<li class="chapter" data-level="A.1.2" data-path="sampling-in-r.html"><a href="sampling-in-r.html#matrices"><i class="fa fa-check"></i><b>A.1.2</b> Matrices</a></li>
+<li class="chapter" data-level="A.1.3" data-path="sampling-in-r.html"><a href="sampling-in-r.html#data-frames"><i class="fa fa-check"></i><b>A.1.3</b> data frames</a></li>
+<li class="chapter" data-level="A.1.4" data-path="sampling-in-r.html"><a href="sampling-in-r.html#common-vector-commands"><i class="fa fa-check"></i><b>A.1.4</b> common vector commands</a></li>
+<li class="chapter" data-level="A.1.5" data-path="sampling-in-r.html"><a href="sampling-in-r.html#comparison-operators"><i class="fa fa-check"></i><b>A.1.5</b> Comparison Operators</a></li>
+<li class="chapter" data-level="A.1.6" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sum-and-which"><i class="fa fa-check"></i><b>A.1.6</b> <code>sum()</code> and <code>which()</code></a></li>
+<li class="chapter" data-level="A.1.7" data-path="sampling-in-r.html"><a href="sampling-in-r.html#extracting-elements"><i class="fa fa-check"></i><b>A.1.7</b> extracting elements</a></li>
+<li class="chapter" data-level="A.1.8" data-path="sampling-in-r.html"><a href="sampling-in-r.html#comparing-vectors"><i class="fa fa-check"></i><b>A.1.8</b> comparing vectors</a></li>
+<li class="chapter" data-level="A.1.9" data-path="sampling-in-r.html"><a href="sampling-in-r.html#vector-arithmetic"><i class="fa fa-check"></i><b>A.1.9</b> vector arithmetic</a></li>
+<li class="chapter" data-level="A.1.10" data-path="sampling-in-r.html"><a href="sampling-in-r.html#concatenate-vectors"><i class="fa fa-check"></i><b>A.1.10</b> concatenate vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="A.2" data-path="sampling-in-r.html"><a href="sampling-in-r.html#special-vectors"><i class="fa fa-check"></i><b>A.2</b> Special vectors</a>
+<ul>
+<li class="chapter" data-level="A.2.1" data-path="sampling-in-r.html"><a href="sampling-in-r.html#consecutive-integers"><i class="fa fa-check"></i><b>A.2.1</b> consecutive integers</a></li>
+<li class="chapter" data-level="A.2.2" data-path="sampling-in-r.html"><a href="sampling-in-r.html#letters"><i class="fa fa-check"></i><b>A.2.2</b> letters</a></li>
+<li class="chapter" data-level="A.2.3" data-path="sampling-in-r.html"><a href="sampling-in-r.html#rep"><i class="fa fa-check"></i><b>A.2.3</b> <code>rep()</code></a></li>
+<li class="chapter" data-level="A.2.4" data-path="sampling-in-r.html"><a href="sampling-in-r.html#table"><i class="fa fa-check"></i><b>A.2.4</b> <code>table()</code></a></li>
+<li class="chapter" data-level="A.2.5" data-path="sampling-in-r.html"><a href="sampling-in-r.html#seq"><i class="fa fa-check"></i><b>A.2.5</b> <code>seq()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="A.3" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sampling-in-R"><i class="fa fa-check"></i><b>A.3</b> Sampling</a>
+<ul>
+<li class="chapter" data-level="A.3.1" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sample-options"><i class="fa fa-check"></i><b>A.3.1</b> <code>sample()</code> options</a></li>
+<li class="chapter" data-level="A.3.2" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sample-without-replacement"><i class="fa fa-check"></i><b>A.3.2</b> Sample without replacement</a></li>
+<li class="chapter" data-level="A.3.3" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sample-with-replacement"><i class="fa fa-check"></i><b>A.3.3</b> Sample with replacement</a></li>
+<li class="chapter" data-level="A.3.4" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sample-with-custom-probabilities"><i class="fa fa-check"></i><b>A.3.4</b> Sample with custom probabilities</a></li>
+<li class="chapter" data-level="A.3.5" data-path="sampling-in-r.html"><a href="sampling-in-r.html#example-lefties"><i class="fa fa-check"></i><b>A.3.5</b> Example: Lefties</a></li>
+</ul></li>
+<li class="chapter" data-level="A.4" data-path="sampling-in-r.html"><a href="sampling-in-r.html#repeated-sampling"><i class="fa fa-check"></i><b>A.4</b> Repeated Sampling</a>
+<ul>
+<li class="chapter" data-level="A.4.1" data-path="sampling-in-r.html"><a href="sampling-in-r.html#using-a-for-loop"><i class="fa fa-check"></i><b>A.4.1</b> using a <code>for</code> loop</a></li>
+<li class="chapter" data-level="A.4.2" data-path="sampling-in-r.html"><a href="sampling-in-r.html#using-replicate"><i class="fa fa-check"></i><b>A.4.2</b> using <code>replicate()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="A.5" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sampling-commands"><i class="fa fa-check"></i><b>A.5</b> Summary of R commands</a>
+<ul>
+<li class="chapter" data-level="A.5.1" data-path="sampling-in-r.html"><a href="sampling-in-r.html#defining-vectors"><i class="fa fa-check"></i><b>A.5.1</b> defining vectors</a></li>
+<li class="chapter" data-level="A.5.2" data-path="sampling-in-r.html"><a href="sampling-in-r.html#summarizing-vectors"><i class="fa fa-check"></i><b>A.5.2</b> summarizing vectors</a></li>
+<li class="chapter" data-level="A.5.3" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sampling-from-vectors"><i class="fa fa-check"></i><b>A.5.3</b> sampling from vectors</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="R-sim-probability.html"><a href="R-sim-probability.html"><i class="fa fa-check"></i><b>B</b> Simulating Probability in R</a>
+<ul>
+<li class="chapter" data-level="B.1" data-path="R-sim-probability.html"><a href="R-sim-probability.html#id_10sided-die-R"><i class="fa fa-check"></i><b>B.1</b> Rolling a 10-sided die</a>
+<ul>
+<li class="chapter" data-level="B.1.1" data-path="R-sim-probability.html"><a href="R-sim-probability.html#final-code"><i class="fa fa-check"></i><b>B.1.1</b> Final Code</a></li>
+</ul></li>
+<li class="chapter" data-level="B.2" data-path="R-sim-probability.html"><a href="R-sim-probability.html#diff-2dice-R"><i class="fa fa-check"></i><b>B.2</b> Difference of two dice</a></li>
+<li class="chapter" data-level="B.3" data-path="R-sim-probability.html"><a href="R-sim-probability.html#flip-coin-R"><i class="fa fa-check"></i><b>B.3</b> Flipping a coin</a></li>
+<li class="chapter" data-level="B.4" data-path="R-sim-probability.html"><a href="R-sim-probability.html#marbles-urn-R"><i class="fa fa-check"></i><b>B.4</b> Marbles from an urn</a></li>
+<li class="chapter" data-level="B.5" data-path="R-sim-probability.html"><a href="R-sim-probability.html#partition-set-R"><i class="fa fa-check"></i><b>B.5</b> Splitting a set into multiple subsets</a>
+<ul>
+<li class="chapter" data-level="B.5.1" data-path="R-sim-probability.html"><a href="R-sim-probability.html#final-code-1"><i class="fa fa-check"></i><b>B.5.1</b> Final Code</a></li>
+</ul></li>
+<li class="chapter" data-level="B.6" data-path="R-sim-probability.html"><a href="R-sim-probability.html#license-plates-R"><i class="fa fa-check"></i><b>B.6</b> Oregon License Plates</a>
+<ul>
+<li class="chapter" data-level="B.6.1" data-path="R-sim-probability.html"><a href="R-sim-probability.html#final-code-2"><i class="fa fa-check"></i><b>B.6.1</b> Final Code</a></li>
+</ul></li>
+<li class="chapter" data-level="B.7" data-path="R-sim-probability.html"><a href="R-sim-probability.html#pollsters-R"><i class="fa fa-check"></i><b>B.7</b> Pollsters</a></li>
+<li class="chapter" data-level="B.8" data-path="R-sim-probability.html"><a href="R-sim-probability.html#same-birthday-R"><i class="fa fa-check"></i><b>B.8</b> Matching Birthdays</a></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="R-discreteRV.html"><a href="R-discreteRV.html"><i class="fa fa-check"></i><b>C</b> Discrete Random Variables in R</a>
+<ul>
+<li class="chapter" data-level="C.1" data-path="R-discreteRV.html"><a href="R-discreteRV.html#expected-value-of-x"><i class="fa fa-check"></i><b>C.1</b> Expected Value of <span class="math inline">\(X\)</span></a></li>
+<li class="chapter" data-level="C.2" data-path="R-discreteRV.html"><a href="R-discreteRV.html#variance-of-x"><i class="fa fa-check"></i><b>C.2</b> Variance of <span class="math inline">\(X\)</span></a></li>
+<li class="chapter" data-level="C.3" data-path="R-discreteRV.html"><a href="R-discreteRV.html#distribution-plots"><i class="fa fa-check"></i><b>C.3</b> Distribution Plots</a></li>
+<li class="chapter" data-level="C.4" data-path="R-discreteRV.html"><a href="R-discreteRV.html#sampling"><i class="fa fa-check"></i><b>C.4</b> Sampling</a></li>
+<li class="chapter" data-level="C.5" data-path="R-discreteRV.html"><a href="R-discreteRV.html#estimating-distributions-via-simulation"><i class="fa fa-check"></i><b>C.5</b> Estimating Distributions via Simulation</a></li>
+<li class="chapter" data-level="C.6" data-path="R-discreteRV.html"><a href="R-discreteRV.html#discrete-uniform-distribution"><i class="fa fa-check"></i><b>C.6</b> Discrete Uniform Distribution</a></li>
+<li class="chapter" data-level="C.7" data-path="R-discreteRV.html"><a href="R-discreteRV.html#r-4distn-functions"><i class="fa fa-check"></i><b>C.7</b> Important discrete random variables</a>
+<ul>
+<li class="chapter" data-level="C.7.1" data-path="R-discreteRV.html"><a href="R-discreteRV.html#binomial-distribution-binom"><i class="fa fa-check"></i><b>C.7.1</b> Binomial Distribution <code>binom</code></a></li>
+<li class="chapter" data-level="C.7.2" data-path="R-discreteRV.html"><a href="R-discreteRV.html#geometric-distribution-geom"><i class="fa fa-check"></i><b>C.7.2</b> Geometric Distribution <code>geom</code></a></li>
+<li class="chapter" data-level="C.7.3" data-path="R-discreteRV.html"><a href="R-discreteRV.html#negative-binomial-distribution-nbinom"><i class="fa fa-check"></i><b>C.7.3</b> Negative Binomial Distribution <code>nbinom</code></a></li>
+<li class="chapter" data-level="C.7.4" data-path="R-discreteRV.html"><a href="R-discreteRV.html#hypergeometric-distribution-hyper"><i class="fa fa-check"></i><b>C.7.4</b> Hypergeometric Distribution <code>hyper</code></a></li>
+<li class="chapter" data-level="C.7.5" data-path="R-discreteRV.html"><a href="R-discreteRV.html#poisson-distribution-pois"><i class="fa fa-check"></i><b>C.7.5</b> Poisson Distribution <code>pois</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="D" data-path="R-continuousRV.html"><a href="R-continuousRV.html"><i class="fa fa-check"></i><b>D</b> Continuous Random Variables in R</a>
+<ul>
+<li class="chapter" data-level="D.1" data-path="R-continuousRV.html"><a href="R-continuousRV.html#unifR"><i class="fa fa-check"></i><b>D.1</b> Uniform Distribution</a>
+<ul>
+<li class="chapter" data-level="D.1.1" data-path="R-continuousRV.html"><a href="R-continuousRV.html#picking-random-numbers"><i class="fa fa-check"></i><b>D.1.1</b> Picking random numbers!</a></li>
+<li class="chapter" data-level="D.1.2" data-path="R-continuousRV.html"><a href="R-continuousRV.html#picking-random-points-in-the-unit-square"><i class="fa fa-check"></i><b>D.1.2</b> Picking random points in the unit square!</a></li>
+<li class="chapter" data-level="D.1.3" data-path="R-continuousRV.html"><a href="R-continuousRV.html#estimate-the-value-of-pi"><i class="fa fa-check"></i><b>D.1.3</b> Estimate the value of <span class="math inline">\(\pi\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="D.2" data-path="R-continuousRV.html"><a href="R-continuousRV.html#normalR"><i class="fa fa-check"></i><b>D.2</b> Normal Distribution <code>norm</code></a>
+<ul>
+<li class="chapter" data-level="D.2.1" data-path="R-continuousRV.html"><a href="R-continuousRV.html#sampling-distribution-of-a-sample-mean"><i class="fa fa-check"></i><b>D.2.1</b> Sampling Distribution of a sample mean</a></li>
+</ul></li>
+<li class="chapter" data-level="D.3" data-path="R-continuousRV.html"><a href="R-continuousRV.html#expR"><i class="fa fa-check"></i><b>D.3</b> Exponential Distribution <code>exp</code></a></li>
+<li class="chapter" data-level="D.4" data-path="R-continuousRV.html"><a href="R-continuousRV.html#gammaR"><i class="fa fa-check"></i><b>D.4</b> Gamma Distribution <code>gamma</code></a></li>
+<li class="chapter" data-level="D.5" data-path="R-continuousRV.html"><a href="R-continuousRV.html#chiR"><i class="fa fa-check"></i><b>D.5</b> Chi-square Distribution <code>chisq</code></a></li>
+<li class="chapter" data-level="D.6" data-path="R-continuousRV.html"><a href="R-continuousRV.html#betaR"><i class="fa fa-check"></i><b>D.6</b> Beta distribution <code>beta</code></a></li>
+<li class="chapter" data-level="D.7" data-path="R-continuousRV.html"><a href="R-continuousRV.html#customR"><i class="fa fa-check"></i><b>D.7</b> Homemade Continuous Random Variables</a>
+<ul>
+<li class="chapter" data-level="D.7.1" data-path="R-continuousRV.html"><a href="R-continuousRV.html#input-the-density-function"><i class="fa fa-check"></i><b>D.7.1</b> Input the density function</a></li>
+<li class="chapter" data-level="D.7.2" data-path="R-continuousRV.html"><a href="R-continuousRV.html#visualize-the-density-function"><i class="fa fa-check"></i><b>D.7.2</b> Visualize the density function</a></li>
+<li class="chapter" data-level="D.7.3" data-path="R-continuousRV.html"><a href="R-continuousRV.html#estimating-integrals-with-riemann-sums"><i class="fa fa-check"></i><b>D.7.3</b> Estimating Integrals with Riemann Sums</a></li>
+<li class="chapter" data-level="D.7.4" data-path="R-continuousRV.html"><a href="R-continuousRV.html#estimating-probabilities"><i class="fa fa-check"></i><b>D.7.4</b> Estimating Probabilities</a></li>
+<li class="chapter" data-level="D.7.5" data-path="R-continuousRV.html"><a href="R-continuousRV.html#the-distribution-function-fx"><i class="fa fa-check"></i><b>D.7.5</b> The distribution function <span class="math inline">\(F(X)\)</span></a></li>
+<li class="chapter" data-level="D.7.6" data-path="R-continuousRV.html"><a href="R-continuousRV.html#estimating-moments"><i class="fa fa-check"></i><b>D.7.6</b> Estimating Moments</a></li>
+<li class="chapter" data-level="D.7.7" data-path="R-continuousRV.html"><a href="R-continuousRV.html#expected-value-1"><i class="fa fa-check"></i><b>D.7.7</b> Expected Value</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MATH 340 Notes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="R-discreteRV" class="section level1 hasAnchor" number="16">
+<h1><span class="header-section-number">C</span> Discrete Random Variables in R<a href="R-discreteRV.html#R-discreteRV" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In this chapter we use R to investigate discrete random variables. We can create discrete distributions from scratch, or access common distributions named in R, including uniform, binomial, negative binomial, Poisson, geometric, and hypergeometric distributions.</p>
+<p>Let’s say a discrete random variable <span class="math inline">\(X\)</span> has finite sample space and known probability function <span class="math inline">\(p(x)\)</span>. We often display this type of probability model via a table:</p>
+<p><span class="math display">\[
+\begin{array}{c|c|c|c|c|c}
+x &amp; 5 &amp; 6 &amp; 7 &amp; 8 &amp; 9 \\ \hline
+p(x) &amp; 0.1 &amp; 0.1 &amp; 0.3 &amp; 0.4 &amp; 0.1
+\end{array}
+\]</span>
+We can input this model into an R session by defining two vectors:</p>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="R-discreteRV.html#cb184-1" tabindex="-1"></a>X <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>)</span>
+<span id="cb184-2"><a href="R-discreteRV.html#cb184-2" tabindex="-1"></a>Px <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">0.1</span>,<span class="fl">0.1</span>,<span class="fl">0.3</span>,<span class="fl">0.4</span>,<span class="fl">0.1</span>)</span></code></pre></div>
+<p>We can check in R that the two conditions for a <em>valid</em> probability have been met by this assignment:</p>
+<ul>
+<li>Each probability is non-negative: <code>Px &gt;= 0</code> = TRUE, TRUE, TRUE, TRUE, TRUE</li>
+<li>The probabilities add to 1: <code>sum(Px)</code>= 1</li>
+</ul>
+<div id="expected-value-of-x" class="section level2 hasAnchor" number="16.1">
+<h2><span class="header-section-number">C.1</span> Expected Value of <span class="math inline">\(X\)</span><a href="R-discreteRV.html#expected-value-of-x" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Recall if <span class="math inline">\(X\)</span> is a discrete random variable with probability function <span class="math inline">\(p(x)\)</span>, then the expected value of <span class="math inline">\(X\)</span> is <span class="math display">\[E(X)=\sum_{\text{all }x}x\cdot p(x)\]</span></p>
+<p>Having defined vectors <span class="math inline">\(X\)</span> and <span class="math inline">\(Px\)</span> in R, we calculate <span class="math inline">\(E(X)\)</span> by running</p>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="R-discreteRV.html#cb185-1" tabindex="-1"></a><span class="fu">sum</span>(X<span class="sc">*</span>Px) </span></code></pre></div>
+<pre><code>## [1] 7.3</code></pre>
+<p>Note: For those who have taken vector calculus <code>sum(v*w)</code> returns the dot product of <code>v</code> and <code>w</code>, aka the inner product. R has an alternative command for this dot product, which is <code>v %*% w</code>. So, <code>sum(v*w)</code> and <code>v %*% w</code> do the same thing, but I prefer the first option to remind me that the expected value is obtained as a sum over all <span class="math inline">\(x\)</span> of some things.</p>
+</div>
+<div id="variance-of-x" class="section level2 hasAnchor" number="16.2">
+<h2><span class="header-section-number">C.2</span> Variance of <span class="math inline">\(X\)</span><a href="R-discreteRV.html#variance-of-x" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Recall the variance of <span class="math inline">\(X\)</span> is <span class="math display">\[V(X) = E[(X-\mu)^2],\]</span> where <span class="math inline">\(\mu = E(X)\)</span>.
+Alternatively, the variance can be computed via
+<span class="math display">\[V(X) = E(X^2)-\mu^2.\]</span></p>
+<p>So we can compute the variance of <span class="math inline">\(X\)</span> in R as follows:</p>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="R-discreteRV.html#cb187-1" tabindex="-1"></a>mu<span class="ot">=</span><span class="fu">sum</span>(X<span class="sc">*</span>Px) </span>
+<span id="cb187-2"><a href="R-discreteRV.html#cb187-2" tabindex="-1"></a>Vx<span class="ot">=</span><span class="fu">sum</span>((X<span class="sc">-</span>mu)<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span>Px)</span>
+<span id="cb187-3"><a href="R-discreteRV.html#cb187-3" tabindex="-1"></a><span class="fu">print</span>(Vx)</span></code></pre></div>
+<pre><code>## [1] 1.21</code></pre>
+<p>Or, alternatively, as follows:</p>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="R-discreteRV.html#cb189-1" tabindex="-1"></a>mu<span class="ot">=</span><span class="fu">sum</span>(X<span class="sc">*</span>Px)</span>
+<span id="cb189-2"><a href="R-discreteRV.html#cb189-2" tabindex="-1"></a>Vx<span class="ot">=</span><span class="fu">sum</span>(X<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span>Px)<span class="sc">-</span>mu<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb189-3"><a href="R-discreteRV.html#cb189-3" tabindex="-1"></a><span class="fu">print</span>(Vx)</span></code></pre></div>
+<pre><code>## [1] 1.21</code></pre>
+</div>
+<div id="distribution-plots" class="section level2 hasAnchor" number="16.3">
+<h2><span class="header-section-number">C.3</span> Distribution Plots<a href="R-discreteRV.html#distribution-plots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>R can offer some quick visualizations of probability distributions.</p>
+<p>The following code will give the shape of the probability distribution (with a splash of color and plot title:)</p>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="R-discreteRV.html#cb191-1" tabindex="-1"></a><span class="fu">barplot</span>(Px,<span class="at">names.arg=</span>X, <span class="at">col=</span><span class="st">&quot;steelblue&quot;</span>, <span class="at">main=</span><span class="st">&quot;Probability Model&quot;</span>)</span></code></pre></div>
+<p><img src="math340-notes_files/figure-html/unnamed-chunk-133-1.png" width="384" /></p>
+</div>
+<div id="sampling" class="section level2 hasAnchor" number="16.4">
+<h2><span class="header-section-number">C.4</span> Sampling<a href="R-discreteRV.html#sampling" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The following code draws a random sample of size 10 from our distribution.</p>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="R-discreteRV.html#cb192-1" tabindex="-1"></a><span class="fu">sample</span>(X,<span class="dv">10</span>,<span class="at">replace=</span><span class="cn">TRUE</span>,<span class="at">prob=</span>Px)</span></code></pre></div>
+<pre><code>##  [1] 7 7 8 6 8 5 8 9 6 7</code></pre>
+<p>If we take a large sample, and make a frequency plot of the results, it should be close to the shape of the Px plot above.</p>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="R-discreteRV.html#cb194-1" tabindex="-1"></a>trials<span class="ot">=</span><span class="dv">1000</span></span>
+<span id="cb194-2"><a href="R-discreteRV.html#cb194-2" tabindex="-1"></a>results<span class="ot">=</span><span class="fu">table</span>(<span class="fu">sample</span>(X,trials,<span class="at">replace=</span><span class="cn">TRUE</span>,Px))</span>
+<span id="cb194-3"><a href="R-discreteRV.html#cb194-3" tabindex="-1"></a><span class="fu">barplot</span>(results)</span></code></pre></div>
+<p><img src="math340-notes_files/figure-html/unnamed-chunk-135-1.png" width="384" /></p>
+<p>And we can also make a relative frequency plot for our sample, which should match the plot of the probability model itself, when our sample size is large.</p>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="R-discreteRV.html#cb195-1" tabindex="-1"></a><span class="fu">barplot</span>(results<span class="sc">/</span>trials)</span></code></pre></div>
+<p><img src="math340-notes_files/figure-html/unnamed-chunk-136-1.png" width="384" /></p>
+</div>
+<div id="estimating-distributions-via-simulation" class="section level2 hasAnchor" number="16.5">
+<h2><span class="header-section-number">C.5</span> Estimating Distributions via Simulation<a href="R-discreteRV.html#estimating-distributions-via-simulation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="example">
+<p><span id="exm:flip-with-fib-R" class="example"><strong>Example C.1  (Flipping Coins with Fibonacci) </strong></span>Let <span class="math inline">\(X\)</span> equal the number of flips required to observe heads on consecutive flips. For instance, <span class="math inline">\(X = 6\)</span> in the flip sequence “T H T T H H”. The random variable <span class="math inline">\(X\)</span> is discrete, taking on countably infinite values 2, 3, 4, <span class="math inline">\(\ldots\)</span> .</p>
+<p>The probability function for <span class="math inline">\(X\)</span> is <span class="math display">\[p(x) = \frac{F_{x+1}}{2^x} \text{     for } x = 2, 3, 4, \ldots,\]</span> where <span class="math inline">\(F_n\)</span> is the <span class="math inline">\(n\)</span>th Fibonacci number. (<span class="math inline">\(F_n\)</span> is defined recursively: <span class="math inline">\(F_1 = F_2 = 1\)</span>, and for <span class="math inline">\(n \geq 3\)</span>, <span class="math inline">\(F_n = F_{n-1}+F_{n-2}\)</span>.)</p>
+<p>This requires some satisfying work, and we present that effort below.</p>
+<p>We can also approximate the density function by simulation.</p>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="R-discreteRV.html#cb196-1" tabindex="-1"></a>trials <span class="ot">=</span> <span class="dv">10000</span></span>
+<span id="cb196-2"><a href="R-discreteRV.html#cb196-2" tabindex="-1"></a>results <span class="ot">=</span> <span class="fu">c</span>() <span class="co">#stores result</span></span>
+<span id="cb196-3"><a href="R-discreteRV.html#cb196-3" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>trials){</span>
+<span id="cb196-4"><a href="R-discreteRV.html#cb196-4" tabindex="-1"></a>  flips <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb196-5"><a href="R-discreteRV.html#cb196-5" tabindex="-1"></a>  consecutive_H <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb196-6"><a href="R-discreteRV.html#cb196-6" tabindex="-1"></a>  <span class="cf">while</span> (consecutive_H<span class="sc">&lt;</span><span class="dv">2</span>){</span>
+<span id="cb196-7"><a href="R-discreteRV.html#cb196-7" tabindex="-1"></a>    flips <span class="ot">=</span> flips <span class="sc">+</span> <span class="dv">1</span> <span class="co">#recording flips made in this trial</span></span>
+<span id="cb196-8"><a href="R-discreteRV.html#cb196-8" tabindex="-1"></a>    consecutive_H <span class="ot">=</span> <span class="fu">ifelse</span>(<span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;H&quot;</span>,<span class="st">&quot;T&quot;</span>),<span class="dv">1</span>)<span class="sc">==</span><span class="st">&quot;H&quot;</span>,consecutive_H<span class="sc">+</span><span class="dv">1</span>,<span class="dv">0</span>)</span>
+<span id="cb196-9"><a href="R-discreteRV.html#cb196-9" tabindex="-1"></a>  }</span>
+<span id="cb196-10"><a href="R-discreteRV.html#cb196-10" tabindex="-1"></a>  results[i]<span class="ot">=</span>flips <span class="co">#updates results to include flips required for consec heads in this trial</span></span>
+<span id="cb196-11"><a href="R-discreteRV.html#cb196-11" tabindex="-1"></a>}</span></code></pre></div>
+<p>We note that the maximum number of flips it took to get consecutive Heads in these trials was <code>max(results)</code> = 50! So we don’t list the full table of results here, just the first 10:</p>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="R-discreteRV.html#cb197-1" tabindex="-1"></a><span class="fu">table</span>(results)[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code></pre></div>
+<pre><code>## results
+##    2    3    4    5    6    7    8    9   10   11 
+## 2509 1235 1291  932  801  571  502  417  323  269</code></pre>
+<p>The <strong>relative frequencies</strong> of these results provide our estimate for the probability density function:</p>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="R-discreteRV.html#cb199-1" tabindex="-1"></a><span class="fu">table</span>(results)[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]<span class="sc">/</span>trials</span></code></pre></div>
+<pre><code>## results
+##      2      3      4      5      6      7      8      9     10     11 
+## 0.2509 0.1235 0.1291 0.0932 0.0801 0.0571 0.0502 0.0417 0.0323 0.0269</code></pre>
+<p>These values compare closely to the actual probability values <span class="math inline">\(F_{x+1}/2^x\)</span>:</p>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+x
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+7
+</td>
+<td style="text-align:left;">
+8
+</td>
+<td style="text-align:left;">
+9
+</td>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:left;">
+11
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Rel_freq
+</td>
+<td style="text-align:left;">
+0.2509
+</td>
+<td style="text-align:left;">
+0.1235
+</td>
+<td style="text-align:left;">
+0.1291
+</td>
+<td style="text-align:left;">
+0.0932
+</td>
+<td style="text-align:left;">
+0.0801
+</td>
+<td style="text-align:left;">
+0.0571
+</td>
+<td style="text-align:left;">
+0.0502
+</td>
+<td style="text-align:left;">
+0.0417
+</td>
+<td style="text-align:left;">
+0.0323
+</td>
+<td style="text-align:left;">
+0.0269
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+p(x)
+</td>
+<td style="text-align:left;">
+0.2500
+</td>
+<td style="text-align:left;">
+0.1250
+</td>
+<td style="text-align:left;">
+0.1250
+</td>
+<td style="text-align:left;">
+0.0938
+</td>
+<td style="text-align:left;">
+0.0781
+</td>
+<td style="text-align:left;">
+0.0625
+</td>
+<td style="text-align:left;">
+0.0508
+</td>
+<td style="text-align:left;">
+0.0410
+</td>
+<td style="text-align:left;">
+0.0332
+</td>
+<td style="text-align:left;">
+0.0269
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="discrete-uniform-distribution" class="section level2 hasAnchor" number="16.6">
+<h2><span class="header-section-number">C.6</span> Discrete Uniform Distribution<a href="R-discreteRV.html#discrete-uniform-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="definition">
+<p><span id="def:discrete-uniform" class="definition"><strong>Definition C.1  </strong></span>If <span class="math inline">\(X\)</span> is a finite set with size <span class="math inline">\(|X| = n\)</span>. The probability distribution defined by <span class="math display">\[p(x) = \frac{1}{n}\]</span> for all <span class="math inline">\(x \in X\)</span> is called <strong>uniform</strong>.</p>
+</div>
+<p>In a uniform distribution, we will find over a large number of trials that each name comes up with about the same frequency.</p>
+<div class="example">
+<p><span id="exm:seals-uniform-R" class="example"><strong>Example C.2  </strong></span></p>
+<blockquote>
+<p>Pick a random seal from the famous Eddington family: Otto, Ruth, Pluotika, Slarftel, Edgar and Bob.</p>
+</blockquote>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="R-discreteRV.html#cb201-1" tabindex="-1"></a>family<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;Bob&quot;</span>, <span class="st">&quot;Edgar&quot;</span>, <span class="st">&quot;Pluotika&quot;</span>, <span class="st">&quot;Otto&quot;</span>, <span class="st">&quot;Ruth&quot;</span>, <span class="st">&quot;Slarftel&quot;</span>)</span></code></pre></div>
+<p>To simulate the process of picking one seal at random from the family, a large number of times, we sample 1 element with replacement, a large number of times. The resulting frequency plot should look uniform:</p>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="R-discreteRV.html#cb202-1" tabindex="-1"></a>results<span class="ot">=</span><span class="fu">sample</span>(family,<span class="dv">10000</span>,<span class="at">replace=</span><span class="cn">TRUE</span>)</span>
+<span id="cb202-2"><a href="R-discreteRV.html#cb202-2" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(results),<span class="at">col=</span><span class="st">&quot;seagreen&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;seal&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;freq&quot;</span>,<span class="at">main=</span><span class="st">&quot;Pick a seal, any seal!&quot;</span>)</span></code></pre></div>
+<p><img src="math340-notes_files/figure-html/unnamed-chunk-142-1.png" width="672" /></p>
+<p>Way to go Ruth, you over achiever!</p>
+</div>
+</div>
+<div id="r-4distn-functions" class="section level2 hasAnchor" number="16.7">
+<h2><span class="header-section-number">C.7</span> Important discrete random variables<a href="R-discreteRV.html#r-4distn-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The important, named discrete distributions we encounter in this class are built-in distributions in R:</p>
+<ul>
+<li>the <strong>binomial distribution</strong> is named <code>binom</code></li>
+<li>the <strong>geometric distribution</strong> is named <code>geom</code></li>
+<li>the <strong>negative binomial distribution</strong> is named <code>nbinom</code></li>
+<li>the <strong>hypergeometric distribution</strong> is named <code>hyper</code></li>
+<li>the <strong>Poisson distribution</strong> is named <code>pois</code></li>
+</ul>
+<p>We use four commands to work with the named distributions. For a distribution named <code>___</code>:</p>
+<ul>
+<li><code>d___(x,...)</code> | Density function, <span class="math inline">\(p(x)\)</span></li>
+<li><code>p___(q,...)</code> | Cumulative probability, <span class="math inline">\(P(X \leq q)\)</span></li>
+<li><code>q___(p,...)</code> | Quantiles, finds <span class="math inline">\(x\)</span> such that <span class="math inline">\(P(X \leq x) = p\)</span></li>
+<li><code>r___(n,...)</code> | Random sample of size <span class="math inline">\(n\)</span> from the distribution</li>
+</ul>
+<div id="binomial-distribution-binom" class="section level3 hasAnchor" number="16.7.1">
+<h3><span class="header-section-number">C.7.1</span> Binomial Distribution <code>binom</code><a href="R-discreteRV.html#binomial-distribution-binom" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>The Scene</strong></p>
+<p>We have a sequence of <strong>Bernoulli trials</strong>: A chance experiment with two possible outcomes: <em>success</em> and <em>failure</em>, and the probability of success is <span class="math inline">\(p\)</span>, and the probability of failure is <span class="math inline">\(1-p\)</span>.</p>
+<p>Let the random variable <span class="math inline">\(X\)</span> denote the number of successes in <span class="math inline">\(n\)</span> independent trials of this chance experiment. Then <span class="math inline">\(X\)</span> is called a binomial random variable with parameters <span class="math inline">\(n\)</span> and <span class="math inline">\(p\)</span>.</p>
+<p><strong>Notation</strong><br />
+<span class="math inline">\(X \text{ is binom}(n,p)\)</span> means <span class="math inline">\(X\)</span> counts number of successes in <span class="math inline">\(n\)</span> Bernoulli trials, when probability of success on any given trial is <span class="math inline">\(p\)</span>.</p>
+<p><strong>The space of <span class="math inline">\(X\)</span></strong> is <span class="math inline">\(x = 0, 1, \ldots, n\)</span>.</p>
+<p><strong>Probability function</strong><br />
+For <span class="math inline">\(x = 0, 1, \ldots, n\)</span>, <span class="math display">\[p(x)=\binom{n}{x}p^x(1-p)^{n-x}.\]</span></p>
+<p>Sometimes it is convenient to let <span class="math inline">\(q = 1-p\)</span> so <span class="math inline">\(q\)</span> represents the probability of failure in a Bernoulli trial, in which case <span class="math inline">\(p(x) = \binom{n}{x}p^xq^{n-x}\)</span></p>
+<p><strong>The binomial distribution in R</strong></p>
+<div id="dbinom---density-function" class="section level4 hasAnchor" number="16.7.1.1">
+<h4><span class="header-section-number">C.7.1.1</span> <code>dbinom()</code> - density function<a href="R-discreteRV.html#dbinom---density-function" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<blockquote>
+<p><code>dbinom(2,5,.3)</code> returns the probability of <span class="math inline">\(X=2\)</span> successes in <span class="math inline">\(n=5\)</span> trials in a binomail distribution where <span class="math inline">\(p = .3\)</span> is the probability of success on each trial. That is, <code>dbinom(2,5,.3)</code> returns <span class="math display">\[\binom{5}{2}(.3)^2(.7)^3.\]</span></p>
+</blockquote>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="R-discreteRV.html#cb203-1" tabindex="-1"></a><span class="fu">dbinom</span>(<span class="dv">2</span>,<span class="dv">5</span>,.<span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] 0.3087</code></pre>
+<p>As a check:</p>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="R-discreteRV.html#cb205-1" tabindex="-1"></a><span class="fu">choose</span>(<span class="dv">5</span>,<span class="dv">2</span>)<span class="sc">*</span>(.<span class="dv">3</span>)<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span>(.<span class="dv">7</span>)<span class="sc">^</span><span class="dv">3</span></span></code></pre></div>
+<pre><code>## [1] 0.3087</code></pre>
+</div>
+<div id="pbinom---cumulative-probability" class="section level4 hasAnchor" number="16.7.1.2">
+<h4><span class="header-section-number">C.7.1.2</span> <code>pbinom()</code> - cumulative probability<a href="R-discreteRV.html#pbinom---cumulative-probability" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<blockquote>
+<p><code>pbinom(q,n,p)</code>returns the cumulative probability <span class="math inline">\(P(X \leq q)\)</span> for <span class="math inline">\(X \sim b(n,p)\)</span>: <span class="math display">\[\sum_{x=0}^q p(x)=\sum_{x=0}^q\binom{n}{x}p^x(1-p)^{n-x}.\]</span></p>
+</blockquote>
+<p>So <code>pbinom(2,5,.3)</code> should return <span class="math inline">\(P(X \leq 2)\)</span> when <span class="math inline">\(X\)</span> is <span class="math inline">\(b(5,.3)\)</span>:</p>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="R-discreteRV.html#cb207-1" tabindex="-1"></a><span class="fu">pbinom</span>(<span class="dv">2</span>,<span class="dv">5</span>,.<span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] 0.83692</code></pre>
+<p>As a check:</p>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="R-discreteRV.html#cb209-1" tabindex="-1"></a><span class="fu">dbinom</span>(<span class="dv">0</span>,<span class="dv">5</span>,.<span class="dv">3</span>)<span class="sc">+</span><span class="fu">dbinom</span>(<span class="dv">1</span>,<span class="dv">5</span>,.<span class="dv">3</span>)<span class="sc">+</span><span class="fu">dbinom</span>(<span class="dv">2</span>,<span class="dv">5</span>,.<span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] 0.83692</code></pre>
+</div>
+<div id="qbinom---quantiles" class="section level4 hasAnchor" number="16.7.1.3">
+<h4><span class="header-section-number">C.7.1.3</span> <code>qbinom()</code> - quantiles<a href="R-discreteRV.html#qbinom---quantiles" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<blockquote>
+<p><code>qbinom(.95,100,.5)</code> returns the value in the <span class="math inline">\(b(100,.5)\)</span> distribution that marks the 95th percentile: the value below which one finds 95% of the distribution:</p>
+</blockquote>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="R-discreteRV.html#cb211-1" tabindex="-1"></a><span class="fu">qbinom</span>(.<span class="dv">95</span>,<span class="dv">100</span>,.<span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## [1] 58</code></pre>
+<p>In other words, if <span class="math inline">\(X\)</span> is <span class="math inline">\(b(100,.5)\)</span> (e.g., flip a fair coin 100 times and count how many heads you get), about 95% of the time you would find <span class="math inline">\(X \leq 58\)</span>.</p>
+<p>We can check this:</p>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="R-discreteRV.html#cb213-1" tabindex="-1"></a><span class="fu">pbinom</span>(<span class="dv">58</span>,<span class="dv">100</span>,.<span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## [1] 0.955687</code></pre>
+</div>
+<div id="rbinom---sampling" class="section level4 hasAnchor" number="16.7.1.4">
+<h4><span class="header-section-number">C.7.1.4</span> <code>rbinom()</code> - sampling<a href="R-discreteRV.html#rbinom---sampling" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<blockquote>
+<p><code>rbinom(10,20,.4)</code> will generate a random sample of size 10 drawn from a <span class="math inline">\(b(20,.4)\)</span> distribution. This sample is stored as a vector</p>
+</blockquote>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="R-discreteRV.html#cb215-1" tabindex="-1"></a><span class="fu">rbinom</span>(<span class="dv">10</span>,<span class="dv">20</span>,.<span class="dv">4</span>)</span></code></pre></div>
+<pre><code>##  [1] 7 7 3 6 8 9 8 7 8 7</code></pre>
+<p>We can use <code>r___</code> to run simulations, and to visualize the shape of a distribution.</p>
+<p>For a <strong>discrete distribution</strong> we can use <code>barplot()</code> and <code>table()</code> to tabulate the results. The <code>table()</code> command gives the total counts for each possible outcome, and the <code>barplot()</code> command applied to a table visualizes those counts.</p>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="R-discreteRV.html#cb217-1" tabindex="-1"></a>sim_data <span class="ot">=</span> <span class="fu">rbinom</span>(<span class="dv">1000</span>,<span class="dv">20</span>,.<span class="dv">4</span>) <span class="co"># draw a random sample of size 1000 from the binomial distribution b(20,.4).</span></span>
+<span id="cb217-2"><a href="R-discreteRV.html#cb217-2" tabindex="-1"></a><span class="fu">table</span>(sim_data)</span></code></pre></div>
+<pre><code>## sim_data
+##   2   3   4   5   6   7   8   9  10  11  12  13  14  15 
+##   1  10  42  69 136 172 181 145 109  75  27  21  10   2</code></pre>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="R-discreteRV.html#cb219-1" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(sim_data))</span></code></pre></div>
+<p><img src="math340-notes_files/figure-html/unnamed-chunk-151-1.png" width="480" /></p>
+</div>
+</div>
+<div id="geometric-distribution-geom" class="section level3 hasAnchor" number="16.7.2">
+<h3><span class="header-section-number">C.7.2</span> Geometric Distribution <code>geom</code><a href="R-discreteRV.html#geometric-distribution-geom" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>The Scene</strong><br />
+As with the binomial distribution, we consider a sequence of Bernoulli trials (probability of success is <span class="math inline">\(p\)</span>, probability of failure is <span class="math inline">\(q = 1-p\)</span>). Instead of counting how many successes in <span class="math inline">\(n\)</span> trials, we are interested in counting the number ot trials until our first success.</p>
+<p>Assume we repeat the experiment until we observe a success. Let the random variable <span class="math inline">\(X\)</span> denote the number of trials up to and including this first success. Then <span class="math inline">\(X\)</span> is called a <em>geometric random variable</em> with parameter <span class="math inline">\(p\)</span>.</p>
+<p><strong>Notation</strong><br />
+<span class="math inline">\(X\)</span> is geom<span class="math inline">\((p)\)</span>.</p>
+<p><strong>The space of <span class="math inline">\(X\)</span></strong> is <span class="math inline">\(x = 1, 2, \ldots\)</span></p>
+<p><strong>Probability density function</strong><br />
+For <span class="math inline">\(x = 1, 2, 3, \ldots\)</span>, <span class="math display">\[p(x)= q^{x-1}p.\]</span></p>
+<blockquote>
+<p>The geometric distribution in R counts failures, not total trials.</p>
+</blockquote>
+<p>In R <code>geom</code> counts the number of failures until the first success, not the total number of trials up to and including the first success.</p>
+<p>As with the <code>binom</code> distribution, we can use the <code>d___</code>, <code>p___</code>, <code>q___</code>, and <code>r___</code> commands to determine probabilities for particular values of x, cumulative probabilities, quantiles, and random samples, respectively.</p>
+<blockquote>
+<p><code>dgeom(4,.3)</code> gives the probability of seeing 4 failures before the first success in a Bernoulli trial in which <span class="math inline">\(p = .3\)</span></p>
+</blockquote>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="R-discreteRV.html#cb220-1" tabindex="-1"></a><span class="fu">dgeom</span>(<span class="dv">4</span>,.<span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] 0.07203</code></pre>
+<blockquote>
+<p><code>pgeom(4,.3)</code> gives the probability of seeing 4 or fewer failures before the first success in a sequence of Bernoulli trials in which <span class="math inline">\(p = .3\)</span></p>
+</blockquote>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="R-discreteRV.html#cb222-1" tabindex="-1"></a><span class="fu">pgeom</span>(<span class="dv">4</span>,.<span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] 0.83193</code></pre>
+<p>and the following line gives the probability of seeing more than 4 failures prior to the first success:</p>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="R-discreteRV.html#cb224-1" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span><span class="fu">pgeom</span>(<span class="dv">4</span>,.<span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] 0.16807</code></pre>
+<div class="example">
+<p><span id="exm:roll-until-4-R" class="example"><strong>Example C.3  </strong></span></p>
+<blockquote>
+<p>Roll a fair 6-sided die until a four comes up, and let <span class="math inline">\(X\)</span> denote the rolls up needed to see that first four. Repeat this game 10,000 times, and plot the frequency distribution for <span class="math inline">\(X\)</span>.</p>
+</blockquote>
+<p>Strategy:</p>
+<ol style="list-style-type: decimal">
+<li>Note that this game is a Bernoulli trial, where “success” means rolling a 4 and “failure” means not rolling a four. So <span class="math inline">\(p = 1/6\)</span>, and <span class="math inline">\(q = 5/6\)</span>.<br />
+</li>
+<li>Take a random sample of size 10000 from the <code>geom</code> distribution in R with the <code>rgeom()</code> method (which records the number of failures, not the number of trials).</li>
+<li>Add one to each value in the sample to get the number of trials.</li>
+<li>barplot the table!</li>
+</ol>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="R-discreteRV.html#cb226-1" tabindex="-1"></a>results<span class="ot">=</span><span class="fu">rgeom</span>(<span class="dv">10000</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">6</span>)<span class="sc">+</span><span class="dv">1</span></span>
+<span id="cb226-2"><a href="R-discreteRV.html#cb226-2" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(results))</span></code></pre></div>
+<p><img src="math340-notes_files/figure-html/unnamed-chunk-155-1.png" width="672" /></p>
+<p>OMG notice from the barplot that one depressing game required 64 rolls to see my first 4.</p>
+</div>
+</div>
+<div id="negative-binomial-distribution-nbinom" class="section level3 hasAnchor" number="16.7.3">
+<h3><span class="header-section-number">C.7.3</span> Negative Binomial Distribution <code>nbinom</code><a href="R-discreteRV.html#negative-binomial-distribution-nbinom" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>The Scene</strong><br />
+Again, we consider a sequence of Bernoulli trials (probability of success is <span class="math inline">\(p\)</span>, probability of failure is <span class="math inline">\(q = 1-p\)</span>).</p>
+<p>We let <span class="math inline">\(X\)</span> denote the number of trials in the sequence up to and including the <span class="math inline">\(r\)</span>th success, where <span class="math inline">\(r \geq 1\)</span> is a positive integer. Then <span class="math inline">\(X\)</span> is called a <em>geometric random variable</em> with parameters <span class="math inline">\(p\)</span> and <span class="math inline">\(r\)</span>.</p>
+<p>For instance, if we set <span class="math inline">\(r = 3\)</span>, then <span class="math inline">\(X = 7\)</span> for the following sequence of Bernuoulli trials (<span class="math inline">\(S\)</span> stands for success, <span class="math inline">\(F\)</span> for failure)
+<span class="math display">\[F F F S F S S F S F F S \ldots \]</span>
+since the third <span class="math inline">\(S\)</span> occurs on the 7th trial.</p>
+<p>In the case <span class="math inline">\(r = 1\)</span> the negative binomial distribution is the geometric distribution.</p>
+<p><strong>Notation</strong>: <span class="math inline">\(X\)</span> is Nb<span class="math inline">\((r,p)\)</span></p>
+<p><strong>The space of <span class="math inline">\(X\)</span></strong> is <span class="math inline">\(x = r, r+1, r+2, \ldots\)</span></p>
+<p><strong>Probability density function</strong><br />
+For $x = r, r+1, r+2, $, <span class="math display">\[p(x)= \binom{x-1}{r-1}p^{r}q^{x-r}.\]</span></p>
+<div class="example">
+<p><span id="exm:drill-oil-negbinom-R" class="example"><strong>Example C.4  </strong></span>A study indicates that an exploratory oil well drilled in a particular region should strike oil with probability 0.2. Find the probability that the third oil strike comes on the 10th well drilled.</p>
+<p>Here, if <span class="math inline">\(X\)</span> equals the number of wells drilled until the company gets its third strike, then <span class="math inline">\(X\)</span> is Nb(3,.2), and the answer to this question is <span class="math inline">\(P(X=10)\)</span> which is <span class="math display">\[P(X=10)=\binom{9}{2}0.2^{3}.8^{7}.\]</span></p>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="R-discreteRV.html#cb227-1" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">choose</span>(<span class="dv">9</span>,<span class="dv">2</span>)<span class="sc">*</span>.<span class="dv">2</span><span class="sc">^</span><span class="dv">3</span><span class="sc">*</span>.<span class="dv">8</span><span class="sc">^</span><span class="dv">7</span>,<span class="dv">4</span>)</span></code></pre></div>
+<pre><code>## [1] 0.0604</code></pre>
+</div>
+<p><strong>In R</strong> this distribution is accessed using <code>nbinom</code>, but this distribution, like <code>geom</code>, focuses on the number of failures, not total trials. If we want to know the probability that our third success occurs on the 10th trial, this is equivalent to the probability of having 10-3 = 7 failures before getting our third success, which can be computed in R as</p>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="R-discreteRV.html#cb229-1" tabindex="-1"></a><span class="fu">dnbinom</span>(<span class="dv">7</span>,<span class="dv">3</span>,.<span class="dv">2</span>) <span class="co"># 7 failures to get 3rd success, p = .2</span></span></code></pre></div>
+<pre><code>## [1] 0.06039798</code></pre>
+<p>Visualizing <span class="math inline">\(X \sim Nb(3,.2)\)</span></p>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="R-discreteRV.html#cb231-1" tabindex="-1"></a>r <span class="ot">=</span> <span class="dv">3</span> <span class="co">#going until we get 3rd success</span></span>
+<span id="cb231-2"><a href="R-discreteRV.html#cb231-2" tabindex="-1"></a>trials <span class="ot">=</span> <span class="dv">10000</span> <span class="co">#draw a random sample of this size</span></span>
+<span id="cb231-3"><a href="R-discreteRV.html#cb231-3" tabindex="-1"></a>p <span class="ot">=</span> .<span class="dv">2</span> <span class="co">#probability of success on any given Bernoulli trial</span></span>
+<span id="cb231-4"><a href="R-discreteRV.html#cb231-4" tabindex="-1"></a>failure_count <span class="ot">=</span> <span class="fu">rnbinom</span>(trials,r,p)</span>
+<span id="cb231-5"><a href="R-discreteRV.html#cb231-5" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(failure_count),<span class="at">main=</span><span class="st">&quot;failures before 3rd success&quot;</span>)</span></code></pre></div>
+<p><img src="math340-notes_files/figure-html/unnamed-chunk-158-1.png" width="672" /></p>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="R-discreteRV.html#cb232-1" tabindex="-1"></a>trial_count<span class="ot">=</span>failure_count<span class="sc">+</span>r</span>
+<span id="cb232-2"><a href="R-discreteRV.html#cb232-2" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(trial_count),<span class="at">main=</span><span class="st">&quot;X=trials until third success&quot;</span>)</span></code></pre></div>
+<p><img src="math340-notes_files/figure-html/unnamed-chunk-159-1.png" width="672" /></p>
+</div>
+<div id="hypergeometric-distribution-hyper" class="section level3 hasAnchor" number="16.7.4">
+<h3><span class="header-section-number">C.7.4</span> Hypergeometric Distribution <code>hyper</code><a href="R-discreteRV.html#hypergeometric-distribution-hyper" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>The Scene</strong><br />
+A finite population has <span class="math inline">\(N\)</span> elements that possess one of two characteristics. Say we have a jar of <span class="math inline">\(N\)</span> marbles, <span class="math inline">\(m\)</span> of them are red and <span class="math inline">\(n\)</span> of them are black (so <span class="math inline">\(m + n = N\)</span>). We draw a sample of size <span class="math inline">\(k\)</span>, and let <span class="math inline">\(X\)</span> denote the number of red marbles in the jar.</p>
+<p>Then <span class="math inline">\(X\)</span> is called a <em>hypergeometric random variable</em> with parameters <span class="math inline">\(m\)</span>, <span class="math inline">\(n\)</span>, and <span class="math inline">\(k\)</span>.</p>
+<p><strong>Notation</strong>: <span class="math inline">\(X\)</span> is hyperg<span class="math inline">\((m,n,k)\)</span></p>
+<p><strong>The space of <span class="math inline">\(X\)</span></strong> is <span class="math inline">\(x = 0,1,2,\ldots,k\)</span> subject to the restriction that <span class="math inline">\(x \leq m\)</span> and <span class="math inline">\(k - x \leq n\)</span>.</p>
+<p><strong>Probability density function</strong><br />
+The probability function is <span class="math display">\[p(x)= \frac{\binom{m}{x}\binom{n}{k-x}}{\binom{m+n}{k}}.\]</span></p>
+<p><strong>In R</strong> Use <code>hyper</code>.</p>
+<div class="example">
+<p><span id="exm:seals-hyper-R" class="example"><strong>Example C.5  </strong></span></p>
+<blockquote>
+<p>A group of 6 seals and 4 pelicans hang at the beach, and they select a random subset of size 5 to play beach volleyball. Let <span class="math inline">\(X\)</span> = the number of pelicans chosen.<br />
+Here, <span class="math inline">\(X\)</span> is hypergeometric with parameters <span class="math inline">\(m = 4\)</span> (4 pelicans), <span class="math inline">\(n = 6\)</span> (6 seals) and <span class="math inline">\(k = 5\)</span> (sample size).<br />
+The probability that <span class="math inline">\(X = 2\)</span> is</p>
+</blockquote>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="R-discreteRV.html#cb233-1" tabindex="-1"></a><span class="fu">choose</span>(<span class="dv">4</span>,<span class="dv">2</span>)<span class="sc">*</span><span class="fu">choose</span>(<span class="dv">6</span>,<span class="dv">3</span>)<span class="sc">/</span><span class="fu">choose</span>(<span class="dv">10</span>,<span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## [1] 0.4761905</code></pre>
+<p>We can also use the built in command <code>dhyper(x,m,n,k)</code></p>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="R-discreteRV.html#cb235-1" tabindex="-1"></a><span class="fu">dhyper</span>(<span class="at">x=</span><span class="dv">2</span>,<span class="at">m=</span><span class="dv">4</span>,<span class="at">n=</span><span class="dv">6</span>,<span class="at">k=</span><span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## [1] 0.4761905</code></pre>
+</div>
+<div class="example">
+<p><span id="exm:potatoes-R" class="example"><strong>Example C.6  (Good Potatoes Bad Potatoes in R) </strong></span></p>
+<blockquote>
+<p>A truck has 500 potatoes, 50 of which are bad, the rest are good. We sample 10. What is the probability that more than 3 are bad?</p>
+</blockquote>
+<p>If <span class="math inline">\(X\)</span> equals the number of bad potatoes in the sample, then <span class="math inline">\(X\)</span> is hypergeometric with parameters <span class="math inline">\(m = 50\)</span>, <span class="math inline">\(n=450\)</span>, and <span class="math inline">\(k = 10\)</span>.
+So <span class="math display">\[P(X &gt; 3) = 1 - P(X \leq 3)\]</span>
+which can be calculated with the cumulative probability command <code>phyper</code>:</p>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="R-discreteRV.html#cb237-1" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span><span class="fu">phyper</span>(<span class="dv">3</span>,<span class="dv">50</span>,<span class="dv">450</span>,<span class="dv">10</span>)</span></code></pre></div>
+<pre><code>## [1] 0.01186118</code></pre>
+</div>
+</div>
+<div id="poisson-distribution-pois" class="section level3 hasAnchor" number="16.7.5">
+<h3><span class="header-section-number">C.7.5</span> Poisson Distribution <code>pois</code><a href="R-discreteRV.html#poisson-distribution-pois" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>The Scene</strong><br />
+The Poisson probability distribution can provide a good model for the number of occurrences <span class="math inline">\(X\)</span> of a rare event in time, space, or some other unit of measure. A Poisson random variable <span class="math inline">\(X\)</span> has one parameter, <span class="math inline">\(\lambda\)</span>, which is the average number of occurrences of the rare event in the indicated time (or space, etc.)</p>
+<p><strong>Notation</strong>: <span class="math inline">\(X\)</span> is Poisson<span class="math inline">\((\lambda)\)</span>.</p>
+<p><strong>The space of <span class="math inline">\(X\)</span></strong> is <span class="math inline">\(x = 0,1,2,\ldots,\)</span> (countably infinite!)</p>
+<p><strong>Probability density function</strong><br />
+The probability function is <span class="math display">\[p(x)=\frac{\lambda^x}{x!}e^{-\lambda}\]</span></p>
+<p><strong>In R</strong> use <code>pois</code>.</p>
+<div class="example">
+<p><span id="exm:poisson-R" class="example"><strong>Example C.7  </strong></span></p>
+<blockquote>
+<p>Suppose <span class="math inline">\(X\)</span> is Poisson(5). Determine <span class="math inline">\(P(X \geq 10)\)</span>.</p>
+</blockquote>
+<p>Note: <span class="math inline">\(P(X \geq 10) = 1-P(X &lt; 10)= 1-P(X \leq 9)\)</span>. So, using <code>ppois()</code> we have</p>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="R-discreteRV.html#cb239-1" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span><span class="fu">ppois</span>(<span class="dv">9</span>,<span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## [1] 0.03182806</code></pre>
+</div>
+<div class="example">
+<p><span id="exm:pois-typos-R" class="example"><strong>Example C.8  </strong></span></p>
+<blockquote>
+<p>The number <span class="math inline">\(X\)</span> of typos on a page in a textbook follows a Poisson distribution with an average number of 2 typos per page. (a) If you pick a page at random, what is the probability it contains 0 typos? (b) According to this model, 99% of the pages have no more than how many typos?</p>
+</blockquote>
+<ol style="list-style-type: lower-alpha">
+<li></li>
+</ol>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="R-discreteRV.html#cb241-1" tabindex="-1"></a><span class="fu">dpois</span>(<span class="dv">0</span>,<span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 0.1353353</code></pre>
+<ol start="2" style="list-style-type: lower-alpha">
+<li></li>
+</ol>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="R-discreteRV.html#cb243-1" tabindex="-1"></a><span class="fu">qpois</span>(.<span class="dv">99</span>,<span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+</div>
+<div id="poisson-process-1" class="section level4 hasAnchor" number="16.7.5.1">
+<h4><span class="header-section-number">C.7.5.1</span> Poisson Process<a href="R-discreteRV.html#poisson-process-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Again, suppose <span class="math inline">\(X\)</span> denotes the number of occurrences of a rare event in time, space, or some other unit of measure.</p>
+<div class="definition">
+<p><span id="def:def-pois-process-R" class="definition"><strong>Definition C.2  </strong></span>The process by which an event happens is called a <strong>Poisson process</strong> if the following holds:</p>
+<ol style="list-style-type: decimal">
+<li>The dimension over which <span class="math inline">\(X\)</span> is measured can be subdivided into <span class="math inline">\(n\)</span> small pieces, within which the event can occur <em>at most once</em>.</li>
+<li>In each small piece, the probability of seeing one occurrence is the same, say <span class="math inline">\(p\)</span>, and <span class="math inline">\(p\)</span> is proportional to the length of the sub-interval (as <span class="math inline">\(n\)</span> grows, <span class="math inline">\(p\)</span> shrinks, but <span class="math inline">\(np\)</span> remains constant).</li>
+<li>Occurrences in all the small pieces are independent from one another.</li>
+</ol>
+</div>
+<p>In a Poisson process recording the number of occurrences of the event in each small piece is a Bernoulli trial (1 occurrence with probability <span class="math inline">\(p\)</span>, and 0 occurrences with probability <span class="math inline">\(1-p\)</span>), and if there are <span class="math inline">\(n\)</span> small pieces, then <span class="math inline">\(X\)</span> is approximately <span class="math inline">\(b(n,p)\)</span>.</p>
+<blockquote>
+<p>For large <span class="math inline">\(n\)</span>, if we let <span class="math inline">\(\lambda = np\)</span>, Poisson<span class="math inline">\((\lambda)\sim b(n,p)\)</span>.</p>
+</blockquote>
+<p>Compare the table of probabilities for <span class="math inline">\(b(10,.4)\)</span>, <span class="math inline">\(b(40,.1)\)</span>, and <span class="math inline">\(b(400,.01)\)</span> with those of a Poisson(4) distribution. For all 3 binomial distributions <span class="math inline">\(np = 4\)</span>, so as <span class="math inline">\(n\)</span> gets larger, <span class="math inline">\(b(n,p)\)</span> should be a better approximation to Poisson(4):</p>
+<table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-166">Table C.1: </span>Approximating a Poisson distn with Binomial distns
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;">
+x
+</th>
+<th style="text-align:right;">
+binom(10,4)
+</th>
+<th style="text-align:right;">
+binom(40,.1)
+</th>
+<th style="text-align:right;">
+binom(400,.01)
+</th>
+<th style="text-align:right;">
+pois(4)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.0060
+</td>
+<td style="text-align:right;">
+0.0148
+</td>
+<td style="text-align:right;">
+0.0180
+</td>
+<td style="text-align:right;">
+0.0183
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.0403
+</td>
+<td style="text-align:right;">
+0.0657
+</td>
+<td style="text-align:right;">
+0.0725
+</td>
+<td style="text-align:right;">
+0.0733
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0.1209
+</td>
+<td style="text-align:right;">
+0.1423
+</td>
+<td style="text-align:right;">
+0.1462
+</td>
+<td style="text-align:right;">
+0.1465
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0.2150
+</td>
+<td style="text-align:right;">
+0.2003
+</td>
+<td style="text-align:right;">
+0.1959
+</td>
+<td style="text-align:right;">
+0.1954
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0.2508
+</td>
+<td style="text-align:right;">
+0.2059
+</td>
+<td style="text-align:right;">
+0.1964
+</td>
+<td style="text-align:right;">
+0.1954
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+0.2007
+</td>
+<td style="text-align:right;">
+0.1647
+</td>
+<td style="text-align:right;">
+0.1571
+</td>
+<td style="text-align:right;">
+0.1563
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+0.1115
+</td>
+<td style="text-align:right;">
+0.1068
+</td>
+<td style="text-align:right;">
+0.1045
+</td>
+<td style="text-align:right;">
+0.1042
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+0.0425
+</td>
+<td style="text-align:right;">
+0.0576
+</td>
+<td style="text-align:right;">
+0.0594
+</td>
+<td style="text-align:right;">
+0.0595
+</td>
+</tr>
+</tbody>
+</table>
+<div class="example">
+<p><span id="exm:pois-rutherford-geiger-R" class="example"><strong>Example C.9  (Rutherford/Geiger Data) </strong></span></p>
+<blockquote>
+<p>In a paper published in 1910 entitled “The Probability Variations in the Distribution of <span class="math inline">\(\alpha\)</span>-particles”, Rutherford and Geiger reported data that counted the number of “scintillations” in 72 second intervals caused by radioactive decay of a quantity of the element polonium.</p>
+</blockquote>
+<p>Here are the data:</p>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="R-discreteRV.html#cb245-1" tabindex="-1"></a>results<span class="ot">=</span><span class="fu">rep</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">14</span>,<span class="fu">c</span>(<span class="dv">57</span>,<span class="dv">203</span>,<span class="dv">383</span>,<span class="dv">525</span>,<span class="dv">532</span>,<span class="dv">408</span>,<span class="dv">273</span>,<span class="dv">139</span>,<span class="dv">45</span>,<span class="dv">27</span>,<span class="dv">10</span>,<span class="dv">4</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb245-2"><a href="R-discreteRV.html#cb245-2" tabindex="-1"></a>trials<span class="ot">=</span><span class="fu">length</span>(results)</span>
+<span id="cb245-3"><a href="R-discreteRV.html#cb245-3" tabindex="-1"></a><span class="fu">table</span>(results)</span></code></pre></div>
+<pre><code>## results
+##   0   1   2   3   4   5   6   7   8   9  10  11  13  14 
+##  57 203 383 525 532 408 273 139  45  27  10   4   1   1</code></pre>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="R-discreteRV.html#cb247-1" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(results)<span class="sc">/</span>trials,</span>
+<span id="cb247-2"><a href="R-discreteRV.html#cb247-2" tabindex="-1"></a>        <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">0</span>,.<span class="dv">25</span>),</span>
+<span id="cb247-3"><a href="R-discreteRV.html#cb247-3" tabindex="-1"></a>        <span class="at">ylab=</span><span class="st">&quot;rel. freq&quot;</span>,</span>
+<span id="cb247-4"><a href="R-discreteRV.html#cb247-4" tabindex="-1"></a>        <span class="at">xlab=</span><span class="st">&quot;scintillations&quot;</span>,</span>
+<span id="cb247-5"><a href="R-discreteRV.html#cb247-5" tabindex="-1"></a>        <span class="at">main=</span><span class="st">&quot;Rutherford/Geiger Data&quot;</span>)</span></code></pre></div>
+<p><img src="math340-notes_files/figure-html/unnamed-chunk-167-1.png" width="672" /></p>
+<p>Here’s the mean of the data (which gives average # of scintillations in 72 seconds):</p>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="R-discreteRV.html#cb248-1" tabindex="-1"></a><span class="fu">mean</span>(results)</span></code></pre></div>
+<pre><code>## [1] 3.871549</code></pre>
+<p>Let’s compare the observed relative frequencies to the theoretical probabilities associated with a Pois(3.87) distribution:</p>
+<table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-169">Table C.2: </span>Fitting data with a Poisson distribution
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;">
+x
+</th>
+<th style="text-align:right;">
+rel_freq
+</th>
+<th style="text-align:right;">
+pois_prob
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.0219
+</td>
+<td style="text-align:right;">
+0.0209
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.0778
+</td>
+<td style="text-align:right;">
+0.0807
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0.1469
+</td>
+<td style="text-align:right;">
+0.1562
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0.2013
+</td>
+<td style="text-align:right;">
+0.2015
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0.2040
+</td>
+<td style="text-align:right;">
+0.1949
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+0.1564
+</td>
+<td style="text-align:right;">
+0.1509
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+0.1047
+</td>
+<td style="text-align:right;">
+0.0973
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+0.0533
+</td>
+<td style="text-align:right;">
+0.0538
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+0.0173
+</td>
+<td style="text-align:right;">
+0.0260
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+0.0104
+</td>
+<td style="text-align:right;">
+0.0112
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+0.0038
+</td>
+<td style="text-align:right;">
+0.0043
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+0.0015
+</td>
+<td style="text-align:right;">
+0.0015
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+<td style="text-align:right;">
+0.0005
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+0.0004
+</td>
+<td style="text-align:right;">
+0.0001
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+0.0004
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="R-discreteRV.html#cb250-1" tabindex="-1"></a><span class="fu">ggplot</span>(df)<span class="sc">+</span></span>
+<span id="cb250-2"><a href="R-discreteRV.html#cb250-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(x,pois_prob),<span class="at">col=</span><span class="st">&quot;brown3&quot;</span>,<span class="at">size=</span><span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb250-3"><a href="R-discreteRV.html#cb250-3" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(x,rel_freq),<span class="at">fill=</span><span class="st">&quot;steelblue&quot;</span>,<span class="at">alpha=</span>.<span class="dv">6</span>, <span class="at">width=</span>.<span class="dv">5</span>)<span class="sc">+</span></span>
+<span id="cb250-4"><a href="R-discreteRV.html#cb250-4" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Rel freq&quot;</span>)<span class="sc">+</span></span>
+<span id="cb250-5"><a href="R-discreteRV.html#cb250-5" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;scintillations&quot;</span>)<span class="sc">+</span></span>
+<span id="cb250-6"><a href="R-discreteRV.html#cb250-6" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Comparing relative frequency of the data (bars) to Poisson probabilities (dots)&quot;</span>)<span class="sc">+</span></span>
+<span id="cb250-7"><a href="R-discreteRV.html#cb250-7" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<p><img src="math340-notes_files/figure-html/unnamed-chunk-170-1.png" width="672" /></p>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="R-sim-probability.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="R-continuousRV.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/mphitchman/math340/edit/main/source/R03-discrete-RV.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["math340-notes.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

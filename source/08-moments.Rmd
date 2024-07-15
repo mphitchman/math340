@@ -1,0 +1,114 @@
+
+# Moments and Moment-Generating Functions
+
+For random variable $X$ we have seen that $E(X)$ and $E(X^2)$ provide useful information: 
+
+  - $\mu = E(X)$ gives the mean of the distribution
+  - $\sigma^2 = E(X^2) - E(X)^2$ gives the variance of the distribution.
+  
+:::{.definition #kth-moment-about-origin}
+Let $X$ be a random variable, and $k \geq 1$. The **$k$th moment of $X$ about the origin**\index{moment!about the origin} is $E(X^k)$. More generally, for any constant $c \in \mathbb{R}$, $E((X-c)^k)$ is called the **$k$th moment of $X$ about $x = c$**\index{moment!about $x=c$}.
+:::
+
+Often times we can encode all the moments of a random variable in an object called a moment-generating function.
+
+:::{.definition #moment-generating-function}
+Let $X$ be a discrete random variable with density function $p(x)$. If there is a positive real number $h$ such that for all $t \in (-h,h)$, $$E(e^{tx})$$ exists and is finite, then the function of $t$ defined by $$m(t) = E(e^{tx})$$ is called the moment-generating function of $X$.
+:::
+
+:::{.example}
+Suppose $X$ has the density function 
+$$
+\begin{array}{c|c|c|c|c}
+x & 0 & 1 & 2 & 3  \\ \hline
+p(x) & .1 & .2 & .3 & .4
+\end{array}
+$$
+
+Then, for any real number $t$,
+
+\begin{align*}
+m(t) &= E(e^{tx}) \\
+  &= \sum_{x=0}^3 e^{tx}\cdot p(x)\\
+  &= e^0\cdot (.1) +e^t\cdot (.2)+e^{2t}\cdot (.3) +e^{3t}\cdot (.4)\\
+  &= .1 + .2e^t + .3e^{2t} + .4e^{3t},
+\end{align*}
+
+and this sum exists as a finite number for any $-\infty < t < \infty$, so the mgf for $X$ exists.
+:::
+
+How does $m(t)$ **encode the moments** $E(X), E(X^2), E(X^3), \ldots$?
+
+:::{.theorem #mgf name="Extracting Moments from the Moment-generating Function"}
+Suppose $X$ is a random variable with moment-generating function $m(t)$ which exists for $t$ in some open interval containing 0. Then the $k$th moment of $X$ equals the $k$th derivative of $m(t)$ evaluated at $t = 0$:
+$$E(X^k) = m^{(k)}(0).$$
+:::
+
+:::{.proof}
+Let's say $X$ is discrete and $$m(t) = \sum_{\text{all }x} e^{tx}\cdot p(x).$$
+Then the derivative of $m(t)$ with respect to the variable $t$ is
+Then $$m^\prime(t) = \sum_{\text{all }x} x\cdot e^{tx}\cdot p(x),$$
+and letting $t = 0$ we have
+$$m^\prime(0) = \sum_{\text{all }x} x\cdot e^{0}\cdot p(x),$$ which equals $E(X)$ since $e^0 = 1$.
+
+The second derivative of $m(t)$ is 
+\begin{align*}
+m^{\prime\prime}(t) &= \frac{d}{dt}\left[m^\prime(t)\right]\\
+  &=\sum_{\text{all }x} x^2\cdot e^{tx}\cdot p(x)
+\end{align*}
+
+Evaluating this at $t = 0$ gives $$m^{\prime\prime}(t)=\sum_{\text{all }x} x^2\cdot 1 \cdot p(x) = E(X^2).$$
+
+Continuing in this manner, for any $k \geq 1$, the $k$th derivative of $m(t)$ is $$m^{(k)}(t)=\sum_{\text{all }x} x^k\cdot e^{tx}\cdot p(x),$$ which evaluates to the defintion of $E(X^k)$ when $t = 0$.
+:::
+
+:::{.example #mgf-geometric name="The mgf for a geometric distribution"}
+If $X$ is geometric with parameter $p$, then $$p(x) = (1-p)^{x-1}\cdot p,$$ for $x = 1, 2, 3, \ldots$, and 
+
+\begin{align*}
+m(t) &= E(e^{tx})\\
+  &= \sum_{x = 1}^\infty e^{tx}(1-p)^{x-1}\cdot p\\
+  &= pe^t \sum_{x=1}^\infty e^{t(x-1)}(1-p)^{x-1} &\text{since }e^t\cdot e^{t(x-1)} = e^{tx}\\
+  &= pe^t \sum_{x=1}^\infty[e^t(1-p)]^{x-1}
+  &= pe^t \sum_{k=0}^\infty[e^t(1-p)]^{k} &\text{where }k=x-1 \text{ is a change of index}\\
+  &= pe^t\frac{1}{1-e^t(1-p)} 
+\end{align*}
+
+
+The last step is true by the geometric series formula, provided $|e^t(1-p)|<1$.
+Since $0\leq |e^t(1-p)| = e^t(1-p)$, the series converges by the geometric series formula if and only if $e^t(1-p) < 1$.  Well, 
+
+\begin{align*}
+e^t(1-p) < 1 &\iff e^t < \frac{1}{1-p} \\
+ &\iff t < \ln\left(\frac{1}{1-p}\right).
+\end{align*}
+
+In other words, yes, there exists an interval containing 0 for which $m(t)$ exists for all $t$ in the interval.
+:::
+
+:::{.example #mgf-poisson name="The mgf for a Poisson distribution"}
+Find the mgf of a Poisson random variable $X$ with parameter $\lambda$. Since we're considering a Poisson distribution, our strategy for finding the mgf will be to work our expectation to look like a power series for $e^{\text{junk}}$. 
+
+Strategy: Work our series to include $$\sum_{x=0}^\infty\frac{(\text{junk})^x}{x!}$$ since this converges to $e^{\text{junk}}$.
+
+\begin{align*}
+m(t) &= E(e^{tx})\\
+  &= \sum_{x = 0}^\infty e^{tx}\frac{\lambda^x e^{-\lambda}}{x!}\\
+  &= e^{-\lambda} \sum_{x=0}^\infty \frac{(\lambda e^t)^x}{x!} &\text{here it is!}\\
+  &= e^{-\lambda}e^{[\lambda e^t]} &\text{for all } -\infty < t < \infty\\
+  &= e^{\lambda(e^t-1)}.
+\end{align*}
+
+Let's derive our $\mu$ and $\sigma$ formulas for a Poisson random variable using the mgf.
+
+The first derivative is 
+$$m^\prime(t) = e^{\lambda(e^t-1)} \cdot \lambda e^t,$$
+and $m^\prime(0) = e^{\lambda(1-1)}\cdot \lambda e^0 = \lambda.$ 
+
+The second derivative is 
+$$m^{\prime\prime}(t) = (e^{\lambda(e^t-1)} \cdot \lambda e^t) \cdot \lambda e^t + e^{\lambda(e^t-1)} \cdot \lambda e^t,$$
+so $$m^{\prime\prime}(0) = \lambda^2 + \lambda.$$
+
+Now $$\mu = m^\prime(0) = \lambda,$$ check!  And, $$\sigma^2 = m^{\prime\prime}(0) - [m^\prime(0)]^2 = (\lambda^2 + \lambda) - \lambda^2 = \lambda,$$
+check again!
+:::

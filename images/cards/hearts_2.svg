@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 197.28 269.28">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke-width: 0px;
+      }
+
+      .cls-1, .cls-2 {
+        fill: #d2232a;
+      }
+
+      .cls-3 {
+        fill: none;
+        stroke: #000;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-2 {
+        font-family: ArialMT, Arial;
+        font-size: 28px;
+      }
+    </style>
+    <symbol id="Heart" viewBox="0 0 25.56 32.54">
+      <path id="path9714-6-6" class="cls-1" d="M12.78,32.54s-3.16-5.19-7.42-11.29C2.51,17.16.23,12.74.02,8.93-.23,4.58,2.07.22,6.24,0c4.16-.21,5.85,3.35,6.54,6.29C13.47,3.36,15.16-.2,19.32,0c4.16.21,6.47,4.58,6.22,8.93-.21,3.81-2.49,8.23-5.34,12.31-4.26,6.1-7.42,11.29-7.42,11.29Z"/>
+    </symbol>
+    <symbol id="Red_2" data-name="Red 2" viewBox="0 0 15.57 33.12">
+      <text class="cls-2" transform="translate(0 24.03)"><tspan x="0" y="0">2</tspan></text>
+    </symbol>
+    <symbol id="boundary" viewBox="0 0 181 253">
+      <rect class="cls-3" x=".5" y=".5" width="180" height="252" rx="15" ry="15"/>
+    </symbol>
+  </defs>
+  <g id="Hearts">
+    <g id="Heart_Symbols" data-name="Heart Symbols">
+      <g id="Center_Symbols_2" data-name="Center Symbols 2">
+        <use width="25.56" height="32.54" transform="translate(85.86 40.39)" xlink:href="#Heart"/>
+        <use width="25.56" height="32.54" transform="translate(111.42 228.89) rotate(-180)" xlink:href="#Heart"/>
+      </g>
+      <g id="Corner_Symbols_2" data-name="Corner Symbols 2">
+        <use width="25.56" height="32.54" transform="translate(20.81 46.74) scale(.5)" xlink:href="#Heart"/>
+        <use width="25.56" height="32.54" transform="translate(176.47 222.54) rotate(-180) scale(.5)" xlink:href="#Heart"/>
+      </g>
+    </g>
+    <g id="Heart_Corner_Characters" data-name="Heart Corner Characters">
+      <g>
+        <use width="15.57" height="33.12" transform="translate(177.87 254.75) rotate(-180)" xlink:href="#Red_2"/>
+        <use width="15.57" height="33.12" transform="translate(19.41 14.53)" xlink:href="#Red_2"/>
+      </g>
+    </g>
+  </g>
+  <g id="Clubs">
+    <g id="Club_Corner_Characters" data-name="Club Corner Characters">
+      <use width="181" height="253" transform="translate(8.14 8.14)" xlink:href="#boundary"/>
+    </g>
+  </g>
+</svg>

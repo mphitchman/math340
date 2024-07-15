@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Jokers" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 197.28 269.28">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #000;
+        font-family: ArialMT, Arial;
+        font-size: 28px;
+      }
+    </style>
+  </defs>
+  <g id="Joker_1" data-name="Joker 1">
+    <text class="cls-1" transform="translate(178.43 229.78) rotate(-180)"><tspan x="0" y="0">Joker</tspan></text>
+    <text class="cls-1" transform="translate(18.85 39.06)"><tspan x="0" y="0">Joker</tspan></text>
+  </g>
+</svg>

@@ -1,0 +1,526 @@
+
+# Continuous Random Variables in R {#R-continuousRV}
+
+Here we investigate in R the common, named continuous random variables we encounter in MATH 340:
+
+- [Uniform probability distribution](#unifR) | `unif`
+- [Normal probability distribution](#normalR) |  `norm`
+- [Gamma probability distribution](#gammaR) | `gamma`
+- [Exponential probability distribution](#expR) | `exp`
+- [Chi-square probability distribution](#chiR) | `chisq`
+- [Beta probability distribution](#betaR) | `beta`
+
+
+For each of these distributions we may use the 4 associated commands:
+
+- `d___()` gives the density function
+- `p___()` gives cumulative probability
+- `q___()` gives quantiles
+- `r___()` gives random samples
+
+We also discuss below how to build and analyze [homemade continuous random variables in R](#customR).
+
+
+## Uniform Distribution {#unifR}
+
+The uniform distribution is so very useful, it deserves top-billing here. With it we can generate random numbers, and from it we can build other interesting distributions.
+
+A uniform random variable $X$ over the interval $[a,b]$ has density function $$f(x) = \frac{1}{b-a}, ~~\text{ for all }~~ a \leq x \leq b.$$
+
+### Picking random numbers!
+
+```{r}
+runif(10,0,1) #pick 10 random numbers between 0 and 1.
+```
+
+### Picking random points in the unit square!
+
+```{r, fig.dim=c(3,3)}
+ggplot(data.frame(x=runif(100,0,1),
+                 y=runif(100,0,1)))+
+  geom_point(aes(x,y),col="steelblue")+
+  theme_bw()
+```
+
+### Estimate the value of $\pi$
+
+```{r, fig.dim=c(4,3)}
+points=5000
+df <- data.frame(x=runif(points,-1,1),
+                 y=runif(points,-1,1))
+df$circle <- ifelse(sqrt(df$x^2+df$y^2)<1,"yes","no")
+ggplot(df)+
+  geom_point(aes(x,y,col=circle),size=.3)+
+  xlim(c(-1.1,1.1))+ylim(c(-1.1,1.1))+
+  theme_classic()
+```
+
+The area of the square is 2*2 = 4.
+The area of the circle is $\pi (1)^2 = \pi.$ So the ratio  
+$$\text{(area of circle)/(area of square)}=\pi/4,$$
+and we can estimate $\pi$ as follows: 
+$$\pi \approx 4\cdot \frac{\text{points in circle}}{\text{total points}}$$
+```{r}
+
+4*sum(df$circle=="yes")/points # our estimate of pi
+```
+
+
+## Normal Distribution `norm` {#normalR}
+
+Thanks to the Central Limit Theorem this distribution has a central role in statistics.
+
+```{r}
+mu=10; sigma=3
+x=seq(mu-4*sigma,mu+4*sigma,by=.01)
+plot(x,dnorm(x,mu,sigma),type="l",ylab="f(x)")
+```
+
+> **Example**: Suppose newborn birthweights are normally distributed with mean 7.8 pounds and standard deviation 0.95 pounds.  
+a) What proportion of newborns weight more than 10 pounds?  
+b) Find the birth weight that marks the bottom 1% of all birthweights.
+
+```{r}
+# part (a)
+1-pnorm(10,mean=7.8,sd=0.95)
+# part (b)
+qnorm(.01,mean=7.8, sd=0.95)
+```
+
+### Sampling Distribution of a sample mean 
+
+Suppose we have a population of 5000 random numbers between 10 and 20, which should have a uniform looking frequency distribution:
+```{r}
+pop=runif(5000,10,20)
+hist(pop,breaks=15, main="Population Distribution")
+```
+Now suppose we draw a sample of size 50 from this population, and compute the sample mean of these 50 values:
+
+```{r}
+mean(sample(pop,50))
+```
+
+Now let's do that game for 10000 trials, and look at the distribution of 10000 sample means:
+
+```{r}
+trials=10000
+results=c()
+for (i in 1:trials){
+  results=c(results,mean(sample(pop,50)))
+}
+hist(results, main="Histogram of sample means")
+```
+
+
+Look Normal?  
+
+```{r}
+x=seq(12,18,by=.05)
+hist(results, main="Histogram of sample means",freq=FALSE,breaks=30)
+curve(dnorm(x,15,10/sqrt(12)/sqrt(50)),add=TRUE)
+```
+
+
+## Exponential Distribution `exp` {#expR}
+
+An exponential random variable $X$ with parameter $\beta$ has pdf $$f(x) = \frac{1}{\beta}e^{-x/\beta} ~~\text{ for }~~ x > 0$$
+
+The **mean** of this distribution is $E(X) = \beta$ and the **rate** associated to this distribution is $1/\beta$.  **In R**, we specify the exponential parameter by entering the rate $1/\beta$, not $\beta$ itself. 
+
+> Suppose $X$ is exp($b$).  
+**In R**, $P(X \leq q)$ is given by `pexp(q,1/b)`  
+
+
+
+> **Example**: The life of a lightbulb is exponentially distributed with mean 120 hours.  What is the probability that it lasts more than 200 hours?  
+
+Here $X$ is exponential with parameter $\beta = 120$. The rate associated with this distribution is 1/120, so $P(X > 200)$ can be computed with
+
+```{r}
+1-pexp(200,rate=1/120)
+```
+
+As a reminder, this probability corresponds to the integral
+$$\int_{200}^\infty \frac{1}{120}e^{-x/120}~dx$$ which corresponds to the shaded area below
+
+
+```{r, echo=FALSE,fig.dim=c(6.16,3.4),fig.align='center'}
+beta=120;
+lb=200; ub=1000
+x <- seq(0,1000,.05)
+hx <- dexp(x,1/beta)
+plot(x, hx, type="n", xlab="", ylab="",ylim=c(0,.01),
+     main="", axes=FALSE)
+i <- x >= lb & x <= ub
+lines(x, hx)
+polygon(c(lb,x[i],ub), c(0,hx[i],0), col="seagreen")
+abline(h=0, col='#AAAAAA')
+#text(x=c(300,lb),y=c(.001,0),c(".189","200"))
+axis(1, at=seq(0,800, 200))
+axis(2, at=c())
+
+```
+
+> **Example**: What proportion of lightbulbs last fewer than 5 hours?
+
+```{r}
+pexp(5,1/120)
+```
+
+> **Example**: Find the 5th percentile for this distribution.
+
+```{r}
+qexp(.05,1/120)
+```
+
+So, 5% of lightbulbs last less than 6.16 hours.
+
+> **Example**: Suppose $X$ is an exponential random variable with parameter $\beta = 2$.  Sketch the density function $f(x)$ as well as the distribution function $F(x)$.
+
+The density function is $f(x) = \frac{1}{2}e^{-x/2}$ for $x > 0$, and we can sketch it by plotting an $x$ vector of many inputs between, say, 0 and 10, and the corresponding values of `dexp()`:
+
+```{r, echo=FALSE,fig.dim=c(6.16,3.4),fig.align='center'}
+beta=2
+df = data.frame(x=seq(0,10,by=.01),f=dexp(seq(0,10,by=.01),1/beta))
+ggplot(df)+geom_line(aes(x,f),col="red")+
+  ggtitle(paste0("density function f(x) of an exp(2) random variable"))+
+  ylab("f(x)")+xlab("x")+
+  theme_classic()
+```
+
+The distribution function, which gives cumulative probability is found by plotting `pexp()`:
+
+```{r, echo=FALSE,fig.dim=c(6.16,3.4),fig.align='center'}
+beta=2
+df = data.frame(x=seq(0,10,by=.01),f=pexp(seq(0,10,by=.01),1/beta))
+ggplot(df)+geom_line(aes(x,f),col="blue")+
+  ggtitle(paste0("distribution function F(x) of an exp(2) random variable"))+
+  ylab("F(x)")+xlab("x")+
+  theme_classic()
+```
+
+
+<!--
+## A Memoryless distribution
+
+Along with the geometric distribution, the exponential distribution is *memoryless*, in this sense: For any $t,s>0$, $$P(X > t + s~|~X > s) = P(X > t).$$
+
+For the geometric distribution we can interpret the above as follows: the probability of waiting more than $t$ trials to see the first success is the same as waiting more than $t$ additional trials after not seeing a success in the first $s$ trials.  
+
+For the "lifetime of a light-bulb interpretation" of the exponential distribution:  However long the light bulb has already lasted, the probability that the light-bulb lasts at least $t$ more hours is the same. The probability that the light-bulb lasts an additional $t$ hours after already lasting $s$ hours is the same as the probability that the light-bulb lasts more than $t$ hours right out of the box.
+
+We can estimate both $P(X>t)$ and $P(X>t+s ~|~ X>s)$ by checking a large random sample from an exponential distribution.
+
+```{r}
+trials=10000
+x=rexp(trials,rate=1/5)
+s=2; t=3
+p1=sum(x > t)/trials #P(X > t)
+p2=sum(x[which(x > s)]>s+t)/sum(x>s) #P(X>t+s | X > s)
+print(paste("Estimate for P(X>t):",round(p1,3)))
+print(paste("Estimate for P(X>t+s | X>s):",round(p2,3)))
+```
+-->
+
+## Gamma Distribution `gamma` {#gammaR}
+
+Some random variables are always nonnegative, and yield distributions of data that are skewed right, as pictured below.
+```{r, fig.dim=c(4,3),echo=FALSE}
+ggplot(data.frame(x=seq(0,10,by=.02),y=dgamma(seq(0,10,by=.02),2,1)))+
+  geom_line(aes(x,y),col="orange")+
+  ggtitle("A skewed right density curve")+
+  ylab("")
+
+```
+
+
+Some typically skewed right distributions include household incomes in a city, the length of time between malfunctions of some machine, and major league baseball salaries.  The gamma probability distribution, which has two parameters $\alpha$ and $\beta$, can model such skewed right distributions. The parameter $\alpha$ is sometimes called the **shape** parameter, $\beta$ is called the **scale** parameter, and its reciprocal $1/\beta$ is called the **rate**.  
+
+
+Here are plots of three different gamma distributions.
+
+```{r,echo=FALSE, fig.dim=c(6.16,3.4),fig.align='center'}
+t=seq(0,30,by=.05)
+x1=dgamma(t,3,1/2)
+x2=dgamma(t,5,1/2)
+x3=dgamma(t,5,1/4)
+ggplot(data.frame(t,x1,x2,x3))+
+  geom_line(aes(t,x1),col="blue")+
+  geom_line(aes(t,x2),col="orange")+
+  geom_line(aes(t,x3),col="brown")+
+  ylim(c(0,.15))+
+  ylab("")+xlab("x")+
+  annotate("text", x = c(5,12,25), y = c(.14,.1,.05), label = c("gamma(3,2)","gamma(5,2)","gamma(5,4)"),col=c("blue","orange","brown"))
+```
+
+> Suppose $X$ is gamma($a,b$).  
+**In R**, $P(X \leq q)$ is given by `pgamma(q,a,1/b)`  
+
+
+> **Example** Suppose $X$ has a gamma distribution with parameters $\alpha=3$ and $\beta = 4$.  Find $P(4\leq X < 12)$, which corresponds to the area pictured below.
+
+```{r, echo=FALSE,fig.dim=c(6.16,3.4),fig.align='center'}
+alpha=3; beta=4
+lb=4; ub=12
+x <- seq(0,20,.05)
+hx <- dgamma(x,alpha,1/beta)
+plot(x, hx, type="n", xlab="", ylab="",
+     main="", axes=FALSE)
+i <- x >= lb & x <= ub
+lines(x, hx)
+polygon(c(lb,x[i],ub), c(0,hx[i],0), col="seagreen")
+abline(h=0, col='#AAAAAA')
+#text(x=c(300,lb),y=c(.001,0),c(".189","200"))
+axis(1, at=seq(0,20,4))
+axis(2, at=c())
+
+```
+
+No need for Riemann Sum estimates of this area, we have the built in gamma function.
+
+```{r}
+alpha=3; beta=4
+pgamma(12,alpha,1/beta)-pgamma(4,alpha,1/beta)
+```
+
+Just about a 50% chance that a random value from a gamma(3,4) distribution is between 4 and 12.  Ok, so if we gather a random sample of say 1000 values from this distribution, we'd expect somehwere around 500 of them between 4 and 12:
+
+```{r}
+x=rgamma(1000,3,1/4) # random sample of size 1000
+sum(abs(x-8)<4) # values in the sample between 4 and 12
+```
+
+Well, `r sum(abs(x-8)<4)` is mighty close to half of the 1000 values!
+
+**Exponential distributions are special gamma distributions.**  In particular, if we set $\alpha=1$, the gamma distribution gamma(1,$\beta$) is exactly equal to the exponential distribution exp($\beta$).
+
+
+
+## Chi-square Distribution `chisq` {#chiR}
+
+Like the exponential distribution, the chi-square distribution is a special gamma distribution. For a positive integer $\nu$, the **Chi-square probability distribution with degrees of freedom $\nu$**, denoted $\chi^2(\nu)$, is the gamma distribution with $\alpha = \nu/2$ and $\beta=2$.
+
+Here are plots of three different chi-square distributions.
+
+```{r, echo=FALSE, fig.dim=c(6.16,3.4),fig.align='center'}
+t=seq(0,30,by=.05)
+x1=dchisq(t,2)
+x2=dchisq(t,5)
+x3=dchisq(t,8)
+ggplot(data.frame(t,x1,x2,x3))+
+  geom_line(aes(t,x1),col="blue")+
+  geom_line(aes(t,x2),col="orange")+
+  geom_line(aes(t,x3),col="brown")+
+  ylim(c(0,.5))+
+  ylab("")+xlab("x")+
+  annotate("text", x = c(3,6,13), y = c(.4,.15,.07), label = c("chisq(2)","chisq(5)","chisq(8)"),col=c("blue","orange","brown"))
+```
+
+## Beta distribution `beta` {#betaR}
+
+The beta$(\alpha,\beta)$ probability distribution provides a way to model random variables whose possible outcomes are all real numbers betweeen 0 and 1.  Such distributions are useful for modeling proportions.  As with the gamma and normal distributions, this is a 2-parameter family of distributions.  Altering the shape parameters $\alpha$ and $\beta$ gives us, well, different shapes for the density curves.
+
+We note that **beta(1,1) corresponds to the uniform distribution on the interval (0,1)**. Here are plots of density functions for four other beta distributions.
+
+```{r, fig.dim=c(6.16,3.4),fig.align='center'}
+t=seq(0,1,by=.01)
+x1=dbeta(t,4,1)
+x2=dbeta(t,1,3.5)
+x3=dbeta(t,2,2)
+x4=dbeta(t,4,2)
+ggplot(data.frame(t,x1,x2,x3))+
+  geom_line(aes(t,x1),col="blue")+
+  geom_line(aes(t,x2),col="orange")+
+  geom_line(aes(t,x3),col="brown")+
+  geom_line(aes(t,x4),col="black")+
+  ylim(c(0,4))+
+  ylab("")+xlab("x")+
+  annotate("text", x = c(.82,.2,.4,.6), y = c(3,2.5,1.7,2.2), label = c("beta(4,1)","beta(1,3.5)","beta(2,2)","beta(4,2)"),col=c("blue","orange","brown","black"))
+```
+
+> **Example** Let $X$ denotes the proportion of sales on a particular website that comes from new customers any given day, and suppose from past experience, $X$ is well-modeled with a beta distribution with shape parameters $\alpha = 1$, and $\beta=3.5$.  Determine the probability that on any given day, over 1/2 the sales come from new customers.
+
+```{r}
+1-pbeta(0.5,1,3.5)
+```
+
+
+## Homemade Continuous Random Variables {#customR}
+
+We may wish to study a continuous random variable $X$ from a given probability density function such as $f(x) = \frac{3}{8}(2-x)^2$ for $0 \leq x \leq 2$.
+
+In this case, probabilities such as $P(X > 1.2)$ correspond to areas under the density curve, which are calculated by integration, e.g., $$P(X > 1.2) = \int_{1.2}^2 \frac{3}{8}(2-x)^2~dx.$$
+
+If we can find an antiderivative of $f(x)$, we can find this probability using the fundamental theorem of calculus.  If not, we can always estimate the value of the integral with Riemann sums.  We do this below.
+
+### Input the density function
+
+First build the probability density function (pdf) as a function in R.
+
+```{r,label="define pdf"}
+f_pdf <- function(x){
+  return(3*(2-x)^2/8)
+}
+```
+
+### Visualize the density function
+
+We create a vector of inputs `x` going from 0 to 2 in small increments (the increment is .01 below), to give us many points over the interval of interest [0,2].  Then we **plot the density curve** by plotting these x values against the function values f(x).  (`type="l"` gives us a **l**ine plot instead of a point plot).
+
+
+```{r,label="plot pdf"}
+x=seq(0,2,by=.01)
+plot(x,f_pdf(x),type="l",
+     main="the density function")
+```
+
+### Estimating Integrals with Riemann Sums
+
+We know $P(X \geq 1.2)$ corresponds to the area under the density curve between 1.2 and 2.  We can estimate areas by computing a Riemann Sum (a sum of many thin rectangle areas approximating the area under the density curve).
+
+Here's a function for estimating $\int_a^b f(x)~dx$ with a sum of $n$ rectangle areas, generated using the midpoint rule.
+
+```{r,label="define midpoint sum"}
+mid.sum=function(f,a,b,n){
+  #inputs:
+      #f - function
+      #a, b - lower and upper bounds of interval
+      #n - number of subdivisions
+  #output: The sum of the n rectangle areas whose heights are
+  # determined by the midpoint rule
+  dx=(b-a)/n
+  ticks=seq(a+dx/2,b,dx)
+  return(sum(f(ticks)*dx))
+}
+```
+
+For instance, `mid.sum(f_pdf,a=0.4,b=1.2,n=4)` computes the area of the 4 rectangles pictured below.  We divide the interval [0.4,1.2] into n=4 equal-width subintervals, and build rectangles having height equal to the function height at the midpoint of each of these subintervals.
+
+```{r,echo=FALSE,label="plot sum",fig.dim=c(4,3)}
+x1=c(seq(0,.399,.001),seq(.4,.599,.001),seq(.6,.799,.001),
+     seq(.8,.999,.001),seq(1,1.2,.001),seq(1.201,2,.001))
+y1=c(rep(0,400),rep(f_pdf(.5),200),rep(f_pdf(.7),200),rep(f_pdf(.9),200),
+     rep(f_pdf(1.1),201),rep(0,800))
+
+ggplot(data.frame(x=x1,y=y1,f=f_pdf(x1)))+
+  geom_line(aes(x,f))+
+  geom_area(aes(x,y),col="white",fill="steelblue",alpha=.6)+
+  geom_segment(aes(x=0.59,y=0,xend=0.59,yend=f_pdf(0.5)),col="white")+
+  geom_segment(aes(x=0.79,y=0,xend=0.79,yend=f_pdf(0.7)),col="white")+
+  geom_segment(aes(x=0.99,y=0,xend=0.99,yend=f_pdf(0.9)),col="white")+
+  geom_segment(aes(x=1.2,y=0,xend=1.2,yend=f_pdf(1.1)),col="white")+
+    geom_segment(aes(x=0.5,y=0,xend=0.5,yend=f_pdf(0.5)),col="red",linetype="dashed")+
+  geom_segment(aes(x=0.7,y=0,xend=0.7,yend=f_pdf(0.7)),col="red",linetype="dashed")+
+  geom_segment(aes(x=0.9,y=0,xend=0.9,yend=f_pdf(0.9)),col="red",linetype="dashed")+
+  geom_segment(aes(x=1.1,y=0,xend=1.1,yend=f_pdf(1.1)),col="red",linetype="dashed")+
+  scale_x_continuous(breaks=c(0.4,0.6,0.8,1.0,1.2))+
+  geom_hline(yintercept=0,size=.5)+
+  theme(panel.grid.major=element_blank(),panel.grid.minor=element_blank())
+  
+```
+
+The area of the four rectangles is
+```{r,label="mid sum example"}
+mid.sum(f_pdf,a=.4,b=1.2,n=4)
+```
+
+
+### Estimating Probabilities
+
+So, getting back to our example, if we want to estimate $P(X > 1.2)$ we can compute a midpoint sum - the more rectangles the better.  Let's start with $n = 100$:
+
+```{r,label="mid sum example 2a"}
+mid.sum(f_pdf,1.2,2,100)
+```
+
+What if we use $n = 1000$ rectangles?
+
+
+```{r,,label="mid sum example 2b"}
+mid.sum(f_pdf,1.2,2,1000)
+```
+
+It seems as if our estimate hasn't changed much by going from 100 to 1000 subintervals, for this density function.
+
+To estimate $P(0.5 < X < 1.1)$ we can evaluate
+
+```{r,,label="mid sum example 3"}
+mid.sum(f_pdf,0.5,1.1,100)
+```
+
+### The distribution function $F(X)$
+
+Recall, $F(x)$ gives cumulative probability.  In particular, $F(x) = P(X \leq x)$.
+
+Consider again the random variable $X$ with pdf $f(x) = (3/8)(2-x)^2$ for $0 < x < 2$.  
+
+For any value of $b$ between 0 and 2, $$F(b) = \int_0^b f(x)~dx,$$
+which we can numerically approximate with
+
+```{r,label="distribution function"}
+F_example <- function(b){
+  return(mid.sum(f_pdf,0,b,100))
+}
+```
+
+Then we can sketch the graph of the distribution function, for inputs between 0 and 2
+
+
+```{r,label="plot distn fcn"}
+x=seq(0,2,by=.01)
+y=c()
+for (i in 1:length(x)){
+  y=c(y,F_example(x[i]))
+}
+plot(x,y,type="l",
+     main="the distribution function")
+```
+
+
+### Estimating Moments
+
+Recall, $E(X^n)$ is called the *$n$th moment about 0* of the distribution.  The first moment is the expected value $E(X)$, and the 2nd and 1st together determine the variance: $V(X) = E(X^2)-E(X)^2.$
+
+For a continuous random variable $X$ with pdf $f(x)$, $$E(X^n) = \int_{-\infty}^\infty x^n \cdot f(x).$$
+
+In R we can numerically estimate these integrals with the `mid.sum()` function defined above, applied to the integrand $x^n\cdot f(X)$.  
+
+```{r,label="moment function"}
+moment.integrand<-function(f,n){
+  #inputs:
+      # f - a previously defined pdf
+      # n - an integer
+  #output: the integrand function for evaluating E(X^n)
+  return(function(x){return(x^n*f(x))})
+}
+```
+
+
+### Expected Value
+
+For a continuous random variable $X$, $$E(X)=\int_{-\infty}^{\infty} x \cdot f(x)~dx.$$
+
+To estimate this integral, we plug the first moment integrand $x \cdot f(x)$ into our Riemann sum function.
+```{r,label="expected value example"}
+mu=mid.sum(moment.integrand(f_pdf,1),0,2,100)
+mu
+```
+
+Note: The actual expected value is
+
+$$\int_0^2 x \cdot (3/8)(2-x)^2~dx = 0.5.$$
+
+We estimate the **variance** knowing that $V(X) = E(X^2)-E(X)^2.$ 
+
+```{r,label="2nd moment example"}
+EX2=mid.sum(moment.integrand(f_pdf,2),0,2,100)
+EX2
+```
+
+So the variance of $X$ is
+```{r,label="variance example"}
+EX2-mu^2
+```
+
+Note: The actual value of $E(X^2)$ is $$\int_0^2 x^2 \cdot (3/8)(2-x)^2~dx = 0.4,$$
+so $V(X) = 0.4 - (0.5)^2 = 0.15.$

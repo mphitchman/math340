@@ -1,0 +1,35 @@
+h1:appendix-using-r (APPENDIX) Using R
+h1:sampling-in-r Sampling in R
+h2:vectors-R Data vectors
+h3:vector-types vector types
+h3:matrices Matrices
+h3:data-frames data frames
+h3:common-vector-commands common vector commands
+h3:comparison-operators Comparison Operators
+h3:sum-and-which  and 
+h3:extracting-elements extracting elements
+h3:comparing-vectors comparing vectors
+h3:vector-arithmetic vector arithmetic
+h3:concatenate-vectors concatenate vectors
+h2:special-vectors Special vectors
+h3:consecutive-integers consecutive integers
+h3:letters letters
+h3:rep 
+h3:table 
+h3:seq 
+h2:sampling-in-R Sampling
+h3:sample-options  options
+h4:permutations Permutations
+h4:repeated-sampling-of-1-element Repeated sampling of 1 element
+h3:sample-without-replacement Sample without replacement
+h3:sample-with-replacement Sample with replacement
+h3:sample-with-custom-probabilities Sample with custom probabilities
+h3:example-lefties Example: Lefties
+h2:repeated-sampling Repeated Sampling
+h3:using-a-for-loop using a  loop
+h3:using-replicate using 
+h2:sampling-commands Summary of R commands
+h3:defining-vectors defining vectors
+h3:summarizing-vectors summarizing vectors
+h3:sampling-from-vectors sampling from vectors
+

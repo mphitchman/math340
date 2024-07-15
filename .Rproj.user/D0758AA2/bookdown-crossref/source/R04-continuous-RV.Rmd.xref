@@ -1,0 +1,20 @@
+h1:R-continuousRV Continuous Random Variables in R
+h2:unifR Uniform Distribution
+h3:picking-random-numbers Picking random numbers!
+h3:picking-random-points-in-the-unit-square Picking random points in the unit square!
+h3:estimate-the-value-of-pi Estimate the value of 
+h2:normalR Normal Distribution 
+h3:sampling-distribution-of-a-sample-mean Sampling Distribution of a sample mean
+h2:expR Exponential Distribution 
+h2:gammaR Gamma Distribution 
+h2:chiR Chi-square Distribution 
+h2:betaR Beta distribution 
+h2:customR Homemade Continuous Random Variables
+h3:input-the-density-function Input the density function
+h3:visualize-the-density-function Visualize the density function
+h3:estimating-integrals-with-riemann-sums Estimating Integrals with Riemann Sums
+h3:estimating-probabilities Estimating Probabilities
+h3:the-distribution-function-fx The distribution function 
+h3:estimating-moments Estimating Moments
+h3:expected-value Expected Value
+

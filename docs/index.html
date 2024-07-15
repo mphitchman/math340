@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>MATH 340 Notes</title>
+  <meta name="description" content="MATH 340 Notes" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="MATH 340 Notes" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="MATH 340 Notes" />
+  
+  
+  
+
+<meta name="author" content="Mike Hitchman" />
+
+
+<meta name="date" content="2024-07-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="sets.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Math 340 Notes</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="sets.html"><a href="sets.html"><i class="fa fa-check"></i><b>2</b> Sets</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="sets.html"><a href="sets.html#algebra-of-sets"><i class="fa fa-check"></i><b>2.1</b> Algebra of Sets</a></li>
+<li class="chapter" data-level="2.2" data-path="sets.html"><a href="sets.html#size-of-sets"><i class="fa fa-check"></i><b>2.2</b> Set sizes</a></li>
+<li class="chapter" data-level="2.3" data-path="sets.html"><a href="sets.html#sets-in-r"><i class="fa fa-check"></i><b>2.3</b> Sets in R</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="discrete-probability-distributions.html"><a href="discrete-probability-distributions.html"><i class="fa fa-check"></i><b>3</b> Discrete Probability Distributions</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="discrete-probability-distributions.html"><a href="discrete-probability-distributions.html#sample-space"><i class="fa fa-check"></i><b>3.1</b> Sample Space</a></li>
+<li class="chapter" data-level="3.2" data-path="discrete-probability-distributions.html"><a href="discrete-probability-distributions.html#discrete-random-variables"><i class="fa fa-check"></i><b>3.2</b> Discrete Random Variables</a></li>
+<li class="chapter" data-level="3.3" data-path="discrete-probability-distributions.html"><a href="discrete-probability-distributions.html#calculating-probabilities"><i class="fa fa-check"></i><b>3.3</b> Calculating Probabilities</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="discrete-probability-distributions.html"><a href="discrete-probability-distributions.html#sample-point-method"><i class="fa fa-check"></i><b>3.3.1</b> Sample Point Method</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="counting.html"><a href="counting.html"><i class="fa fa-check"></i><b>4</b> Counting Techniques</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="counting.html"><a href="counting.html#multipiclation-principle"><i class="fa fa-check"></i><b>4.1</b> Multipiclation Principle</a></li>
+<li class="chapter" data-level="4.2" data-path="counting.html"><a href="counting.html#permutations"><i class="fa fa-check"></i><b>4.2</b> Permutations</a></li>
+<li class="chapter" data-level="4.3" data-path="counting.html"><a href="counting.html#combinations"><i class="fa fa-check"></i><b>4.3</b> Combinations</a></li>
+<li class="chapter" data-level="4.4" data-path="counting.html"><a href="counting.html#multinomial-coefficients"><i class="fa fa-check"></i><b>4.4</b> Multinomial Coefficients</a></li>
+<li class="chapter" data-level="4.5" data-path="counting.html"><a href="counting.html#balls-and-bins"><i class="fa fa-check"></i><b>4.5</b> Balls and Bins</a></li>
+<li class="chapter" data-level="4.6" data-path="counting.html"><a href="counting.html#prob-with-counting-tools"><i class="fa fa-check"></i><b>4.6</b> Calculating More Probabilities</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="probability-theory.html"><a href="probability-theory.html"><i class="fa fa-check"></i><b>5</b> Probability Theory</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="probability-theory.html"><a href="probability-theory.html#conditional-probability-and-independence"><i class="fa fa-check"></i><b>5.1</b> Conditional Probability and Independence</a></li>
+<li class="chapter" data-level="5.2" data-path="probability-theory.html"><a href="probability-theory.html#two-laws-of-probability"><i class="fa fa-check"></i><b>5.2</b> Two Laws of Probability</a></li>
+<li class="chapter" data-level="5.3" data-path="probability-theory.html"><a href="probability-theory.html#event-composition-method"><i class="fa fa-check"></i><b>5.3</b> Event-Composition Method</a></li>
+<li class="chapter" data-level="5.4" data-path="probability-theory.html"><a href="probability-theory.html#bayes-rule"><i class="fa fa-check"></i><b>5.4</b> Bayes’ Rule</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="discrete-random-variables-1.html"><a href="discrete-random-variables-1.html"><i class="fa fa-check"></i><b>6</b> Discrete Random Variables</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="discrete-random-variables-1.html"><a href="discrete-random-variables-1.html#expected-value"><i class="fa fa-check"></i><b>6.1</b> Expected Value</a></li>
+<li class="chapter" data-level="6.2" data-path="discrete-random-variables-1.html"><a href="discrete-random-variables-1.html#variance"><i class="fa fa-check"></i><b>6.2</b> Variance</a></li>
+<li class="chapter" data-level="6.3" data-path="discrete-random-variables-1.html"><a href="discrete-random-variables-1.html#properties-of-expected-value"><i class="fa fa-check"></i><b>6.3</b> Properties of Expected Value</a></li>
+<li class="chapter" data-level="6.4" data-path="discrete-random-variables-1.html"><a href="discrete-random-variables-1.html#tchebysheffs-theorem"><i class="fa fa-check"></i><b>6.4</b> Tchebysheff’s Theorem</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html"><i class="fa fa-check"></i><b>7</b> Important Discrete Random Variables</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html#binomial"><i class="fa fa-check"></i><b>7.1</b> Binomial Distributions</a></li>
+<li class="chapter" data-level="7.2" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html#geometric"><i class="fa fa-check"></i><b>7.2</b> Geometric Distributions</a></li>
+<li class="chapter" data-level="7.3" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html#negative-binomial"><i class="fa fa-check"></i><b>7.3</b> Negative Binomial Distribution</a></li>
+<li class="chapter" data-level="7.4" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html#hypergometric"><i class="fa fa-check"></i><b>7.4</b> Hypergeometric Distribution</a></li>
+<li class="chapter" data-level="7.5" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html#poisson"><i class="fa fa-check"></i><b>7.5</b> Poisson Distribution</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html#poisson-process"><i class="fa fa-check"></i><b>7.5.1</b> Poisson Process</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="moments-and-moment-generating-functions.html"><a href="moments-and-moment-generating-functions.html"><i class="fa fa-check"></i><b>8</b> Moments and Moment-Generating Functions</a></li>
+<li class="chapter" data-level="9" data-path="continuous-rv.html"><a href="continuous-rv.html"><i class="fa fa-check"></i><b>9</b> Continuous Random Variables</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="continuous-rv.html"><a href="continuous-rv.html#distribution-functions"><i class="fa fa-check"></i><b>9.1</b> Distribution Functions</a></li>
+<li class="chapter" data-level="9.2" data-path="continuous-rv.html"><a href="continuous-rv.html#expected-value-for-continuous-random-variables"><i class="fa fa-check"></i><b>9.2</b> Expected Value for Continuous Random Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html"><i class="fa fa-check"></i><b>10</b> Important Continuous Random Variables</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#uniform-continuous"><i class="fa fa-check"></i><b>10.1</b> Uniform Distribution</a></li>
+<li class="chapter" data-level="10.2" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#exponential-distribution"><i class="fa fa-check"></i><b>10.2</b> Exponential Distribution</a></li>
+<li class="chapter" data-level="10.3" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#normal"><i class="fa fa-check"></i><b>10.3</b> Normal Distribution</a></li>
+<li class="chapter" data-level="10.4" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#gamma-distribution"><i class="fa fa-check"></i><b>10.4</b> Gamma Distribution</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#exponential-distribution-1"><i class="fa fa-check"></i><b>10.4.1</b> Exponential Distribution</a></li>
+<li class="chapter" data-level="10.4.2" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#chi-square-distribution"><i class="fa fa-check"></i><b>10.4.2</b> Chi-square distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#beta-distribution"><i class="fa fa-check"></i><b>10.5</b> Beta Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="mgf.html"><a href="mgf.html"><i class="fa fa-check"></i><b>11</b> Moment Generating Functions</a></li>
+<li class="chapter" data-level="12" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html"><i class="fa fa-check"></i><b>12</b> Central Limit Theorem</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#sums-of-random-variables"><i class="fa fa-check"></i><b>12.1</b> Sums of Random Variables</a></li>
+<li class="chapter" data-level="12.2" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#t-distribution"><i class="fa fa-check"></i><b>12.2</b> T distribution</a></li>
+<li class="chapter" data-level="12.3" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#the-central-limit-theorem"><i class="fa fa-check"></i><b>12.3</b> The Central Limit Theorem</a></li>
+<li class="chapter" data-level="12.4" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#normal-approximation-to-a-binomial-distribution"><i class="fa fa-check"></i><b>12.4</b> Normal Approximation to a binomial distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="estimation.html"><a href="estimation.html"><i class="fa fa-check"></i><b>13</b> Estimation</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="estimation.html"><a href="estimation.html#unbiased-estimators"><i class="fa fa-check"></i><b>13.1</b> Unbiased Estimators</a></li>
+<li class="chapter" data-level="13.2" data-path="estimation.html"><a href="estimation.html#order-statistics"><i class="fa fa-check"></i><b>13.2</b> Order Statistics</a></li>
+<li class="chapter" data-level="13.3" data-path="estimation.html"><a href="estimation.html#common-unbiased-estimators"><i class="fa fa-check"></i><b>13.3</b> Common Unbiased Estimators</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="estimation.html"><a href="estimation.html#estimating-mu-a-population-mean"><i class="fa fa-check"></i><b>13.3.1</b> Estimating <span class="math inline">\(\mu\)</span>, a population mean</a></li>
+<li class="chapter" data-level="13.3.2" data-path="estimation.html"><a href="estimation.html#estimating-p-a-population-proportion"><i class="fa fa-check"></i><b>13.3.2</b> Estimating <span class="math inline">\(p\)</span>, a population proportion</a></li>
+<li class="chapter" data-level="13.3.3" data-path="estimation.html"><a href="estimation.html#estimating-mu_1---mu_2-the-difference-of-two-population-means"><i class="fa fa-check"></i><b>13.3.3</b> Estimating <span class="math inline">\(\mu_1 - \mu_2\)</span>, the difference of two population means</a></li>
+<li class="chapter" data-level="13.3.4" data-path="estimation.html"><a href="estimation.html#estimating-p_1---p_2-the-difference-of-two-population-proportions"><i class="fa fa-check"></i><b>13.3.4</b> Estimating <span class="math inline">\(p_1 - p_2\)</span>, the difference of two population proportions</a></li>
+</ul></li>
+</ul></li>
+<li class="appendix"><span><b>Using R</b></span></li>
+<li class="chapter" data-level="A" data-path="sampling-in-r.html"><a href="sampling-in-r.html"><i class="fa fa-check"></i><b>A</b> Sampling in R</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="sampling-in-r.html"><a href="sampling-in-r.html#vectors-R"><i class="fa fa-check"></i><b>A.1</b> Data vectors</a>
+<ul>
+<li class="chapter" data-level="A.1.1" data-path="sampling-in-r.html"><a href="sampling-in-r.html#vector-types"><i class="fa fa-check"></i><b>A.1.1</b> vector types</a></li>
+<li class="chapter" data-level="A.1.2" data-path="sampling-in-r.html"><a href="sampling-in-r.html#matrices"><i class="fa fa-check"></i><b>A.1.2</b> Matrices</a></li>
+<li class="chapter" data-level="A.1.3" data-path="sampling-in-r.html"><a href="sampling-in-r.html#data-frames"><i class="fa fa-check"></i><b>A.1.3</b> data frames</a></li>
+<li class="chapter" data-level="A.1.4" data-path="sampling-in-r.html"><a href="sampling-in-r.html#common-vector-commands"><i class="fa fa-check"></i><b>A.1.4</b> common vector commands</a></li>
+<li class="chapter" data-level="A.1.5" data-path="sampling-in-r.html"><a href="sampling-in-r.html#comparison-operators"><i class="fa fa-check"></i><b>A.1.5</b> Comparison Operators</a></li>
+<li class="chapter" data-level="A.1.6" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sum-and-which"><i class="fa fa-check"></i><b>A.1.6</b> <code>sum()</code> and <code>which()</code></a></li>
+<li class="chapter" data-level="A.1.7" data-path="sampling-in-r.html"><a href="sampling-in-r.html#extracting-elements"><i class="fa fa-check"></i><b>A.1.7</b> extracting elements</a></li>
+<li class="chapter" data-level="A.1.8" data-path="sampling-in-r.html"><a href="sampling-in-r.html#comparing-vectors"><i class="fa fa-check"></i><b>A.1.8</b> comparing vectors</a></li>
+<li class="chapter" data-level="A.1.9" data-path="sampling-in-r.html"><a href="sampling-in-r.html#vector-arithmetic"><i class="fa fa-check"></i><b>A.1.9</b> vector arithmetic</a></li>
+<li class="chapter" data-level="A.1.10" data-path="sampling-in-r.html"><a href="sampling-in-r.html#concatenate-vectors"><i class="fa fa-check"></i><b>A.1.10</b> concatenate vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="A.2" data-path="sampling-in-r.html"><a href="sampling-in-r.html#special-vectors"><i class="fa fa-check"></i><b>A.2</b> Special vectors</a>
+<ul>
+<li class="chapter" data-level="A.2.1" data-path="sampling-in-r.html"><a href="sampling-in-r.html#consecutive-integers"><i class="fa fa-check"></i><b>A.2.1</b> consecutive integers</a></li>
+<li class="chapter" data-level="A.2.2" data-path="sampling-in-r.html"><a href="sampling-in-r.html#letters"><i class="fa fa-check"></i><b>A.2.2</b> letters</a></li>
+<li class="chapter" data-level="A.2.3" data-path="sampling-in-r.html"><a href="sampling-in-r.html#rep"><i class="fa fa-check"></i><b>A.2.3</b> <code>rep()</code></a></li>
+<li class="chapter" data-level="A.2.4" data-path="sampling-in-r.html"><a href="sampling-in-r.html#table"><i class="fa fa-check"></i><b>A.2.4</b> <code>table()</code></a></li>
+<li class="chapter" data-level="A.2.5" data-path="sampling-in-r.html"><a href="sampling-in-r.html#seq"><i class="fa fa-check"></i><b>A.2.5</b> <code>seq()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="A.3" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sampling-in-R"><i class="fa fa-check"></i><b>A.3</b> Sampling</a>
+<ul>
+<li class="chapter" data-level="A.3.1" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sample-options"><i class="fa fa-check"></i><b>A.3.1</b> <code>sample()</code> options</a></li>
+<li class="chapter" data-level="A.3.2" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sample-without-replacement"><i class="fa fa-check"></i><b>A.3.2</b> Sample without replacement</a></li>
+<li class="chapter" data-level="A.3.3" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sample-with-replacement"><i class="fa fa-check"></i><b>A.3.3</b> Sample with replacement</a></li>
+<li class="chapter" data-level="A.3.4" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sample-with-custom-probabilities"><i class="fa fa-check"></i><b>A.3.4</b> Sample with custom probabilities</a></li>
+<li class="chapter" data-level="A.3.5" data-path="sampling-in-r.html"><a href="sampling-in-r.html#example-lefties"><i class="fa fa-check"></i><b>A.3.5</b> Example: Lefties</a></li>
+</ul></li>
+<li class="chapter" data-level="A.4" data-path="sampling-in-r.html"><a href="sampling-in-r.html#repeated-sampling"><i class="fa fa-check"></i><b>A.4</b> Repeated Sampling</a>
+<ul>
+<li class="chapter" data-level="A.4.1" data-path="sampling-in-r.html"><a href="sampling-in-r.html#using-a-for-loop"><i class="fa fa-check"></i><b>A.4.1</b> using a <code>for</code> loop</a></li>
+<li class="chapter" data-level="A.4.2" data-path="sampling-in-r.html"><a href="sampling-in-r.html#using-replicate"><i class="fa fa-check"></i><b>A.4.2</b> using <code>replicate()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="A.5" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sampling-commands"><i class="fa fa-check"></i><b>A.5</b> Summary of R commands</a>
+<ul>
+<li class="chapter" data-level="A.5.1" data-path="sampling-in-r.html"><a href="sampling-in-r.html#defining-vectors"><i class="fa fa-check"></i><b>A.5.1</b> defining vectors</a></li>
+<li class="chapter" data-level="A.5.2" data-path="sampling-in-r.html"><a href="sampling-in-r.html#summarizing-vectors"><i class="fa fa-check"></i><b>A.5.2</b> summarizing vectors</a></li>
+<li class="chapter" data-level="A.5.3" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sampling-from-vectors"><i class="fa fa-check"></i><b>A.5.3</b> sampling from vectors</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="R-sim-probability.html"><a href="R-sim-probability.html"><i class="fa fa-check"></i><b>B</b> Simulating Probability in R</a>
+<ul>
+<li class="chapter" data-level="B.1" data-path="R-sim-probability.html"><a href="R-sim-probability.html#id_10sided-die-R"><i class="fa fa-check"></i><b>B.1</b> Rolling a 10-sided die</a>
+<ul>
+<li class="chapter" data-level="B.1.1" data-path="R-sim-probability.html"><a href="R-sim-probability.html#final-code"><i class="fa fa-check"></i><b>B.1.1</b> Final Code</a></li>
+</ul></li>
+<li class="chapter" data-level="B.2" data-path="R-sim-probability.html"><a href="R-sim-probability.html#diff-2dice-R"><i class="fa fa-check"></i><b>B.2</b> Difference of two dice</a></li>
+<li class="chapter" data-level="B.3" data-path="R-sim-probability.html"><a href="R-sim-probability.html#flip-coin-R"><i class="fa fa-check"></i><b>B.3</b> Flipping a coin</a></li>
+<li class="chapter" data-level="B.4" data-path="R-sim-probability.html"><a href="R-sim-probability.html#marbles-urn-R"><i class="fa fa-check"></i><b>B.4</b> Marbles from an urn</a></li>
+<li class="chapter" data-level="B.5" data-path="R-sim-probability.html"><a href="R-sim-probability.html#partition-set-R"><i class="fa fa-check"></i><b>B.5</b> Splitting a set into multiple subsets</a>
+<ul>
+<li class="chapter" data-level="B.5.1" data-path="R-sim-probability.html"><a href="R-sim-probability.html#final-code-1"><i class="fa fa-check"></i><b>B.5.1</b> Final Code</a></li>
+</ul></li>
+<li class="chapter" data-level="B.6" data-path="R-sim-probability.html"><a href="R-sim-probability.html#license-plates-R"><i class="fa fa-check"></i><b>B.6</b> Oregon License Plates</a>
+<ul>
+<li class="chapter" data-level="B.6.1" data-path="R-sim-probability.html"><a href="R-sim-probability.html#final-code-2"><i class="fa fa-check"></i><b>B.6.1</b> Final Code</a></li>
+</ul></li>
+<li class="chapter" data-level="B.7" data-path="R-sim-probability.html"><a href="R-sim-probability.html#pollsters-R"><i class="fa fa-check"></i><b>B.7</b> Pollsters</a></li>
+<li class="chapter" data-level="B.8" data-path="R-sim-probability.html"><a href="R-sim-probability.html#same-birthday-R"><i class="fa fa-check"></i><b>B.8</b> Matching Birthdays</a></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="R-discreteRV.html"><a href="R-discreteRV.html"><i class="fa fa-check"></i><b>C</b> Discrete Random Variables in R</a>
+<ul>
+<li class="chapter" data-level="C.1" data-path="R-discreteRV.html"><a href="R-discreteRV.html#expected-value-of-x"><i class="fa fa-check"></i><b>C.1</b> Expected Value of <span class="math inline">\(X\)</span></a></li>
+<li class="chapter" data-level="C.2" data-path="R-discreteRV.html"><a href="R-discreteRV.html#variance-of-x"><i class="fa fa-check"></i><b>C.2</b> Variance of <span class="math inline">\(X\)</span></a></li>
+<li class="chapter" data-level="C.3" data-path="R-discreteRV.html"><a href="R-discreteRV.html#distribution-plots"><i class="fa fa-check"></i><b>C.3</b> Distribution Plots</a></li>
+<li class="chapter" data-level="C.4" data-path="R-discreteRV.html"><a href="R-discreteRV.html#sampling"><i class="fa fa-check"></i><b>C.4</b> Sampling</a></li>
+<li class="chapter" data-level="C.5" data-path="R-discreteRV.html"><a href="R-discreteRV.html#estimating-distributions-via-simulation"><i class="fa fa-check"></i><b>C.5</b> Estimating Distributions via Simulation</a></li>
+<li class="chapter" data-level="C.6" data-path="R-discreteRV.html"><a href="R-discreteRV.html#discrete-uniform-distribution"><i class="fa fa-check"></i><b>C.6</b> Discrete Uniform Distribution</a></li>
+<li class="chapter" data-level="C.7" data-path="R-discreteRV.html"><a href="R-discreteRV.html#r-4distn-functions"><i class="fa fa-check"></i><b>C.7</b> Important discrete random variables</a>
+<ul>
+<li class="chapter" data-level="C.7.1" data-path="R-discreteRV.html"><a href="R-discreteRV.html#binomial-distribution-binom"><i class="fa fa-check"></i><b>C.7.1</b> Binomial Distribution <code>binom</code></a></li>
+<li class="chapter" data-level="C.7.2" data-path="R-discreteRV.html"><a href="R-discreteRV.html#geometric-distribution-geom"><i class="fa fa-check"></i><b>C.7.2</b> Geometric Distribution <code>geom</code></a></li>
+<li class="chapter" data-level="C.7.3" data-path="R-discreteRV.html"><a href="R-discreteRV.html#negative-binomial-distribution-nbinom"><i class="fa fa-check"></i><b>C.7.3</b> Negative Binomial Distribution <code>nbinom</code></a></li>
+<li class="chapter" data-level="C.7.4" data-path="R-discreteRV.html"><a href="R-discreteRV.html#hypergeometric-distribution-hyper"><i class="fa fa-check"></i><b>C.7.4</b> Hypergeometric Distribution <code>hyper</code></a></li>
+<li class="chapter" data-level="C.7.5" data-path="R-discreteRV.html"><a href="R-discreteRV.html#poisson-distribution-pois"><i class="fa fa-check"></i><b>C.7.5</b> Poisson Distribution <code>pois</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="D" data-path="R-continuousRV.html"><a href="R-continuousRV.html"><i class="fa fa-check"></i><b>D</b> Continuous Random Variables in R</a>
+<ul>
+<li class="chapter" data-level="D.1" data-path="R-continuousRV.html"><a href="R-continuousRV.html#unifR"><i class="fa fa-check"></i><b>D.1</b> Uniform Distribution</a>
+<ul>
+<li class="chapter" data-level="D.1.1" data-path="R-continuousRV.html"><a href="R-continuousRV.html#picking-random-numbers"><i class="fa fa-check"></i><b>D.1.1</b> Picking random numbers!</a></li>
+<li class="chapter" data-level="D.1.2" data-path="R-continuousRV.html"><a href="R-continuousRV.html#picking-random-points-in-the-unit-square"><i class="fa fa-check"></i><b>D.1.2</b> Picking random points in the unit square!</a></li>
+<li class="chapter" data-level="D.1.3" data-path="R-continuousRV.html"><a href="R-continuousRV.html#estimate-the-value-of-pi"><i class="fa fa-check"></i><b>D.1.3</b> Estimate the value of <span class="math inline">\(\pi\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="D.2" data-path="R-continuousRV.html"><a href="R-continuousRV.html#normalR"><i class="fa fa-check"></i><b>D.2</b> Normal Distribution <code>norm</code></a>
+<ul>
+<li class="chapter" data-level="D.2.1" data-path="R-continuousRV.html"><a href="R-continuousRV.html#sampling-distribution-of-a-sample-mean"><i class="fa fa-check"></i><b>D.2.1</b> Sampling Distribution of a sample mean</a></li>
+</ul></li>
+<li class="chapter" data-level="D.3" data-path="R-continuousRV.html"><a href="R-continuousRV.html#expR"><i class="fa fa-check"></i><b>D.3</b> Exponential Distribution <code>exp</code></a></li>
+<li class="chapter" data-level="D.4" data-path="R-continuousRV.html"><a href="R-continuousRV.html#gammaR"><i class="fa fa-check"></i><b>D.4</b> Gamma Distribution <code>gamma</code></a></li>
+<li class="chapter" data-level="D.5" data-path="R-continuousRV.html"><a href="R-continuousRV.html#chiR"><i class="fa fa-check"></i><b>D.5</b> Chi-square Distribution <code>chisq</code></a></li>
+<li class="chapter" data-level="D.6" data-path="R-continuousRV.html"><a href="R-continuousRV.html#betaR"><i class="fa fa-check"></i><b>D.6</b> Beta distribution <code>beta</code></a></li>
+<li class="chapter" data-level="D.7" data-path="R-continuousRV.html"><a href="R-continuousRV.html#customR"><i class="fa fa-check"></i><b>D.7</b> Homemade Continuous Random Variables</a>
+<ul>
+<li class="chapter" data-level="D.7.1" data-path="R-continuousRV.html"><a href="R-continuousRV.html#input-the-density-function"><i class="fa fa-check"></i><b>D.7.1</b> Input the density function</a></li>
+<li class="chapter" data-level="D.7.2" data-path="R-continuousRV.html"><a href="R-continuousRV.html#visualize-the-density-function"><i class="fa fa-check"></i><b>D.7.2</b> Visualize the density function</a></li>
+<li class="chapter" data-level="D.7.3" data-path="R-continuousRV.html"><a href="R-continuousRV.html#estimating-integrals-with-riemann-sums"><i class="fa fa-check"></i><b>D.7.3</b> Estimating Integrals with Riemann Sums</a></li>
+<li class="chapter" data-level="D.7.4" data-path="R-continuousRV.html"><a href="R-continuousRV.html#estimating-probabilities"><i class="fa fa-check"></i><b>D.7.4</b> Estimating Probabilities</a></li>
+<li class="chapter" data-level="D.7.5" data-path="R-continuousRV.html"><a href="R-continuousRV.html#the-distribution-function-fx"><i class="fa fa-check"></i><b>D.7.5</b> The distribution function <span class="math inline">\(F(X)\)</span></a></li>
+<li class="chapter" data-level="D.7.6" data-path="R-continuousRV.html"><a href="R-continuousRV.html#estimating-moments"><i class="fa fa-check"></i><b>D.7.6</b> Estimating Moments</a></li>
+<li class="chapter" data-level="D.7.7" data-path="R-continuousRV.html"><a href="R-continuousRV.html#expected-value-1"><i class="fa fa-check"></i><b>D.7.7</b> Expected Value</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MATH 340 Notes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">MATH 340 Notes</h1>
+<p class="author"><em>Mike Hitchman</em></p>
+<p class="date"><em>2024-07-15</em></p>
+</div>
+<div id="introduction" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">1</span> Introduction<a href="index.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>MATH 340 introduces us to probability and statistics. The prerequisite for the course is MATH 175: Calculus II, a course that gets us through integration techniques and series. We will integrate, and we will evaluate series in this course. Multivariable calculus is not required in MATH 340, though it is required for the second course in this sequence, MATH 440.</p>
+<p>Content in these notes is tied to two classic texts, <em>Introduction to Probability</em>, by Grinstead and Snell; and <em>Mathematical Statistics with Applications, 7th ed.</em>, by Wackerly, Mendenhall, and Scheaffer. This content also happens to coincide with content one finds in the first actuarial exam (<a href="https://www.beanactuary.com">https://www.beanactuary.com</a>).</p>
+<p>Probability theory is of fundamental importance in the field of statistics. Suppose we roll a die five times and a 4 comes up all 5 times!!!</p>
+<ul>
+<li>A <strong>probability question</strong>: What is the likelihood of rolling five 4s in a row if the die is fair?</li>
+<li>A <strong>statistics question</strong>: Is this die fair?</li>
+</ul>
+<p>We have two approaches to answering likelihood questions:</p>
+<ol style="list-style-type: decimal">
+<li>simulation (repeat the experiment many, many times and see how often the desired result is obtained)</li>
+<li>probability theory</li>
+</ol>
+<p>We study probability theory in this course to answer likelihood questions without simulation. This study develops intuition and a rigorous foundation for the subject. We also learn simulation techniques - using R - because simulation can produce approximate solutions quite easily when exact solutions are beyond our grasp.</p>
+<p>After studying probability up through the Central Limit Theorem, we will practice statistics. We will investigate estimation, hypothesis testing, and linear models. The second term of this sequence, MATH 440, continues the study of mathematical statistics.</p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="sets.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/mphitchman/math340/edit/main/index.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["math340-notes.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Card_Back" data-name="Card Back" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 197.28 269.28">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #d2232a;
+      }
+
+      .cls-1, .cls-2 {
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: #000;
+      }
+    </style>
+  </defs>
+  <rect id="Full_Bleed_Fill" data-name="Full Bleed Fill" class="cls-1" x=".72" y="1.44" width="195.84" height="266.4"/>
+  <path id="Bordered_Fill" data-name="Bordered Fill" class="cls-2" d="M179.43,242.94c0,4.36-3.46,7.92-7.69,7.92H25.55c-4.23,0-7.69-3.57-7.69-7.92V26.34c0-4.36,3.46-7.92,7.69-7.92h146.19c4.23,0,7.69,3.57,7.69,7.92v216.59Z"/>
+</svg>

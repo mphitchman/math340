@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>7 Important Discrete Random Variables | MATH 340 Notes</title>
+  <meta name="description" content="7 Important Discrete Random Variables | MATH 340 Notes" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="7 Important Discrete Random Variables | MATH 340 Notes" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="7 Important Discrete Random Variables | MATH 340 Notes" />
+  
+  
+  
+
+<meta name="author" content="Mike Hitchman" />
+
+
+<meta name="date" content="2024-07-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="discrete-random-variables-1.html"/>
+<link rel="next" href="moments-and-moment-generating-functions.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Math 340 Notes</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="sets.html"><a href="sets.html"><i class="fa fa-check"></i><b>2</b> Sets</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="sets.html"><a href="sets.html#algebra-of-sets"><i class="fa fa-check"></i><b>2.1</b> Algebra of Sets</a></li>
+<li class="chapter" data-level="2.2" data-path="sets.html"><a href="sets.html#size-of-sets"><i class="fa fa-check"></i><b>2.2</b> Set sizes</a></li>
+<li class="chapter" data-level="2.3" data-path="sets.html"><a href="sets.html#sets-in-r"><i class="fa fa-check"></i><b>2.3</b> Sets in R</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="discrete-probability-distributions.html"><a href="discrete-probability-distributions.html"><i class="fa fa-check"></i><b>3</b> Discrete Probability Distributions</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="discrete-probability-distributions.html"><a href="discrete-probability-distributions.html#sample-space"><i class="fa fa-check"></i><b>3.1</b> Sample Space</a></li>
+<li class="chapter" data-level="3.2" data-path="discrete-probability-distributions.html"><a href="discrete-probability-distributions.html#discrete-random-variables"><i class="fa fa-check"></i><b>3.2</b> Discrete Random Variables</a></li>
+<li class="chapter" data-level="3.3" data-path="discrete-probability-distributions.html"><a href="discrete-probability-distributions.html#calculating-probabilities"><i class="fa fa-check"></i><b>3.3</b> Calculating Probabilities</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="discrete-probability-distributions.html"><a href="discrete-probability-distributions.html#sample-point-method"><i class="fa fa-check"></i><b>3.3.1</b> Sample Point Method</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="counting.html"><a href="counting.html"><i class="fa fa-check"></i><b>4</b> Counting Techniques</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="counting.html"><a href="counting.html#multipiclation-principle"><i class="fa fa-check"></i><b>4.1</b> Multipiclation Principle</a></li>
+<li class="chapter" data-level="4.2" data-path="counting.html"><a href="counting.html#permutations"><i class="fa fa-check"></i><b>4.2</b> Permutations</a></li>
+<li class="chapter" data-level="4.3" data-path="counting.html"><a href="counting.html#combinations"><i class="fa fa-check"></i><b>4.3</b> Combinations</a></li>
+<li class="chapter" data-level="4.4" data-path="counting.html"><a href="counting.html#multinomial-coefficients"><i class="fa fa-check"></i><b>4.4</b> Multinomial Coefficients</a></li>
+<li class="chapter" data-level="4.5" data-path="counting.html"><a href="counting.html#balls-and-bins"><i class="fa fa-check"></i><b>4.5</b> Balls and Bins</a></li>
+<li class="chapter" data-level="4.6" data-path="counting.html"><a href="counting.html#prob-with-counting-tools"><i class="fa fa-check"></i><b>4.6</b> Calculating More Probabilities</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="probability-theory.html"><a href="probability-theory.html"><i class="fa fa-check"></i><b>5</b> Probability Theory</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="probability-theory.html"><a href="probability-theory.html#conditional-probability-and-independence"><i class="fa fa-check"></i><b>5.1</b> Conditional Probability and Independence</a></li>
+<li class="chapter" data-level="5.2" data-path="probability-theory.html"><a href="probability-theory.html#two-laws-of-probability"><i class="fa fa-check"></i><b>5.2</b> Two Laws of Probability</a></li>
+<li class="chapter" data-level="5.3" data-path="probability-theory.html"><a href="probability-theory.html#event-composition-method"><i class="fa fa-check"></i><b>5.3</b> Event-Composition Method</a></li>
+<li class="chapter" data-level="5.4" data-path="probability-theory.html"><a href="probability-theory.html#bayes-rule"><i class="fa fa-check"></i><b>5.4</b> Bayes’ Rule</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="discrete-random-variables-1.html"><a href="discrete-random-variables-1.html"><i class="fa fa-check"></i><b>6</b> Discrete Random Variables</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="discrete-random-variables-1.html"><a href="discrete-random-variables-1.html#expected-value"><i class="fa fa-check"></i><b>6.1</b> Expected Value</a></li>
+<li class="chapter" data-level="6.2" data-path="discrete-random-variables-1.html"><a href="discrete-random-variables-1.html#variance"><i class="fa fa-check"></i><b>6.2</b> Variance</a></li>
+<li class="chapter" data-level="6.3" data-path="discrete-random-variables-1.html"><a href="discrete-random-variables-1.html#properties-of-expected-value"><i class="fa fa-check"></i><b>6.3</b> Properties of Expected Value</a></li>
+<li class="chapter" data-level="6.4" data-path="discrete-random-variables-1.html"><a href="discrete-random-variables-1.html#tchebysheffs-theorem"><i class="fa fa-check"></i><b>6.4</b> Tchebysheff’s Theorem</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html"><i class="fa fa-check"></i><b>7</b> Important Discrete Random Variables</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html#binomial"><i class="fa fa-check"></i><b>7.1</b> Binomial Distributions</a></li>
+<li class="chapter" data-level="7.2" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html#geometric"><i class="fa fa-check"></i><b>7.2</b> Geometric Distributions</a></li>
+<li class="chapter" data-level="7.3" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html#negative-binomial"><i class="fa fa-check"></i><b>7.3</b> Negative Binomial Distribution</a></li>
+<li class="chapter" data-level="7.4" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html#hypergometric"><i class="fa fa-check"></i><b>7.4</b> Hypergeometric Distribution</a></li>
+<li class="chapter" data-level="7.5" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html#poisson"><i class="fa fa-check"></i><b>7.5</b> Poisson Distribution</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html#poisson-process"><i class="fa fa-check"></i><b>7.5.1</b> Poisson Process</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="moments-and-moment-generating-functions.html"><a href="moments-and-moment-generating-functions.html"><i class="fa fa-check"></i><b>8</b> Moments and Moment-Generating Functions</a></li>
+<li class="chapter" data-level="9" data-path="continuous-rv.html"><a href="continuous-rv.html"><i class="fa fa-check"></i><b>9</b> Continuous Random Variables</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="continuous-rv.html"><a href="continuous-rv.html#distribution-functions"><i class="fa fa-check"></i><b>9.1</b> Distribution Functions</a></li>
+<li class="chapter" data-level="9.2" data-path="continuous-rv.html"><a href="continuous-rv.html#expected-value-for-continuous-random-variables"><i class="fa fa-check"></i><b>9.2</b> Expected Value for Continuous Random Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html"><i class="fa fa-check"></i><b>10</b> Important Continuous Random Variables</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#uniform-continuous"><i class="fa fa-check"></i><b>10.1</b> Uniform Distribution</a></li>
+<li class="chapter" data-level="10.2" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#exponential-distribution"><i class="fa fa-check"></i><b>10.2</b> Exponential Distribution</a></li>
+<li class="chapter" data-level="10.3" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#normal"><i class="fa fa-check"></i><b>10.3</b> Normal Distribution</a></li>
+<li class="chapter" data-level="10.4" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#gamma-distribution"><i class="fa fa-check"></i><b>10.4</b> Gamma Distribution</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#exponential-distribution-1"><i class="fa fa-check"></i><b>10.4.1</b> Exponential Distribution</a></li>
+<li class="chapter" data-level="10.4.2" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#chi-square-distribution"><i class="fa fa-check"></i><b>10.4.2</b> Chi-square distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#beta-distribution"><i class="fa fa-check"></i><b>10.5</b> Beta Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="mgf.html"><a href="mgf.html"><i class="fa fa-check"></i><b>11</b> Moment Generating Functions</a></li>
+<li class="chapter" data-level="12" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html"><i class="fa fa-check"></i><b>12</b> Central Limit Theorem</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#sums-of-random-variables"><i class="fa fa-check"></i><b>12.1</b> Sums of Random Variables</a></li>
+<li class="chapter" data-level="12.2" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#t-distribution"><i class="fa fa-check"></i><b>12.2</b> T distribution</a></li>
+<li class="chapter" data-level="12.3" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#the-central-limit-theorem"><i class="fa fa-check"></i><b>12.3</b> The Central Limit Theorem</a></li>
+<li class="chapter" data-level="12.4" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#normal-approximation-to-a-binomial-distribution"><i class="fa fa-check"></i><b>12.4</b> Normal Approximation to a binomial distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="estimation.html"><a href="estimation.html"><i class="fa fa-check"></i><b>13</b> Estimation</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="estimation.html"><a href="estimation.html#unbiased-estimators"><i class="fa fa-check"></i><b>13.1</b> Unbiased Estimators</a></li>
+<li class="chapter" data-level="13.2" data-path="estimation.html"><a href="estimation.html#order-statistics"><i class="fa fa-check"></i><b>13.2</b> Order Statistics</a></li>
+<li class="chapter" data-level="13.3" data-path="estimation.html"><a href="estimation.html#common-unbiased-estimators"><i class="fa fa-check"></i><b>13.3</b> Common Unbiased Estimators</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="estimation.html"><a href="estimation.html#estimating-mu-a-population-mean"><i class="fa fa-check"></i><b>13.3.1</b> Estimating <span class="math inline">\(\mu\)</span>, a population mean</a></li>
+<li class="chapter" data-level="13.3.2" data-path="estimation.html"><a href="estimation.html#estimating-p-a-population-proportion"><i class="fa fa-check"></i><b>13.3.2</b> Estimating <span class="math inline">\(p\)</span>, a population proportion</a></li>
+<li class="chapter" data-level="13.3.3" data-path="estimation.html"><a href="estimation.html#estimating-mu_1---mu_2-the-difference-of-two-population-means"><i class="fa fa-check"></i><b>13.3.3</b> Estimating <span class="math inline">\(\mu_1 - \mu_2\)</span>, the difference of two population means</a></li>
+<li class="chapter" data-level="13.3.4" data-path="estimation.html"><a href="estimation.html#estimating-p_1---p_2-the-difference-of-two-population-proportions"><i class="fa fa-check"></i><b>13.3.4</b> Estimating <span class="math inline">\(p_1 - p_2\)</span>, the difference of two population proportions</a></li>
+</ul></li>
+</ul></li>
+<li class="appendix"><span><b>Using R</b></span></li>
+<li class="chapter" data-level="A" data-path="sampling-in-r.html"><a href="sampling-in-r.html"><i class="fa fa-check"></i><b>A</b> Sampling in R</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="sampling-in-r.html"><a href="sampling-in-r.html#vectors-R"><i class="fa fa-check"></i><b>A.1</b> Data vectors</a>
+<ul>
+<li class="chapter" data-level="A.1.1" data-path="sampling-in-r.html"><a href="sampling-in-r.html#vector-types"><i class="fa fa-check"></i><b>A.1.1</b> vector types</a></li>
+<li class="chapter" data-level="A.1.2" data-path="sampling-in-r.html"><a href="sampling-in-r.html#matrices"><i class="fa fa-check"></i><b>A.1.2</b> Matrices</a></li>
+<li class="chapter" data-level="A.1.3" data-path="sampling-in-r.html"><a href="sampling-in-r.html#data-frames"><i class="fa fa-check"></i><b>A.1.3</b> data frames</a></li>
+<li class="chapter" data-level="A.1.4" data-path="sampling-in-r.html"><a href="sampling-in-r.html#common-vector-commands"><i class="fa fa-check"></i><b>A.1.4</b> common vector commands</a></li>
+<li class="chapter" data-level="A.1.5" data-path="sampling-in-r.html"><a href="sampling-in-r.html#comparison-operators"><i class="fa fa-check"></i><b>A.1.5</b> Comparison Operators</a></li>
+<li class="chapter" data-level="A.1.6" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sum-and-which"><i class="fa fa-check"></i><b>A.1.6</b> <code>sum()</code> and <code>which()</code></a></li>
+<li class="chapter" data-level="A.1.7" data-path="sampling-in-r.html"><a href="sampling-in-r.html#extracting-elements"><i class="fa fa-check"></i><b>A.1.7</b> extracting elements</a></li>
+<li class="chapter" data-level="A.1.8" data-path="sampling-in-r.html"><a href="sampling-in-r.html#comparing-vectors"><i class="fa fa-check"></i><b>A.1.8</b> comparing vectors</a></li>
+<li class="chapter" data-level="A.1.9" data-path="sampling-in-r.html"><a href="sampling-in-r.html#vector-arithmetic"><i class="fa fa-check"></i><b>A.1.9</b> vector arithmetic</a></li>
+<li class="chapter" data-level="A.1.10" data-path="sampling-in-r.html"><a href="sampling-in-r.html#concatenate-vectors"><i class="fa fa-check"></i><b>A.1.10</b> concatenate vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="A.2" data-path="sampling-in-r.html"><a href="sampling-in-r.html#special-vectors"><i class="fa fa-check"></i><b>A.2</b> Special vectors</a>
+<ul>
+<li class="chapter" data-level="A.2.1" data-path="sampling-in-r.html"><a href="sampling-in-r.html#consecutive-integers"><i class="fa fa-check"></i><b>A.2.1</b> consecutive integers</a></li>
+<li class="chapter" data-level="A.2.2" data-path="sampling-in-r.html"><a href="sampling-in-r.html#letters"><i class="fa fa-check"></i><b>A.2.2</b> letters</a></li>
+<li class="chapter" data-level="A.2.3" data-path="sampling-in-r.html"><a href="sampling-in-r.html#rep"><i class="fa fa-check"></i><b>A.2.3</b> <code>rep()</code></a></li>
+<li class="chapter" data-level="A.2.4" data-path="sampling-in-r.html"><a href="sampling-in-r.html#table"><i class="fa fa-check"></i><b>A.2.4</b> <code>table()</code></a></li>
+<li class="chapter" data-level="A.2.5" data-path="sampling-in-r.html"><a href="sampling-in-r.html#seq"><i class="fa fa-check"></i><b>A.2.5</b> <code>seq()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="A.3" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sampling-in-R"><i class="fa fa-check"></i><b>A.3</b> Sampling</a>
+<ul>
+<li class="chapter" data-level="A.3.1" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sample-options"><i class="fa fa-check"></i><b>A.3.1</b> <code>sample()</code> options</a></li>
+<li class="chapter" data-level="A.3.2" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sample-without-replacement"><i class="fa fa-check"></i><b>A.3.2</b> Sample without replacement</a></li>
+<li class="chapter" data-level="A.3.3" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sample-with-replacement"><i class="fa fa-check"></i><b>A.3.3</b> Sample with replacement</a></li>
+<li class="chapter" data-level="A.3.4" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sample-with-custom-probabilities"><i class="fa fa-check"></i><b>A.3.4</b> Sample with custom probabilities</a></li>
+<li class="chapter" data-level="A.3.5" data-path="sampling-in-r.html"><a href="sampling-in-r.html#example-lefties"><i class="fa fa-check"></i><b>A.3.5</b> Example: Lefties</a></li>
+</ul></li>
+<li class="chapter" data-level="A.4" data-path="sampling-in-r.html"><a href="sampling-in-r.html#repeated-sampling"><i class="fa fa-check"></i><b>A.4</b> Repeated Sampling</a>
+<ul>
+<li class="chapter" data-level="A.4.1" data-path="sampling-in-r.html"><a href="sampling-in-r.html#using-a-for-loop"><i class="fa fa-check"></i><b>A.4.1</b> using a <code>for</code> loop</a></li>
+<li class="chapter" data-level="A.4.2" data-path="sampling-in-r.html"><a href="sampling-in-r.html#using-replicate"><i class="fa fa-check"></i><b>A.4.2</b> using <code>replicate()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="A.5" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sampling-commands"><i class="fa fa-check"></i><b>A.5</b> Summary of R commands</a>
+<ul>
+<li class="chapter" data-level="A.5.1" data-path="sampling-in-r.html"><a href="sampling-in-r.html#defining-vectors"><i class="fa fa-check"></i><b>A.5.1</b> defining vectors</a></li>
+<li class="chapter" data-level="A.5.2" data-path="sampling-in-r.html"><a href="sampling-in-r.html#summarizing-vectors"><i class="fa fa-check"></i><b>A.5.2</b> summarizing vectors</a></li>
+<li class="chapter" data-level="A.5.3" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sampling-from-vectors"><i class="fa fa-check"></i><b>A.5.3</b> sampling from vectors</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="R-sim-probability.html"><a href="R-sim-probability.html"><i class="fa fa-check"></i><b>B</b> Simulating Probability in R</a>
+<ul>
+<li class="chapter" data-level="B.1" data-path="R-sim-probability.html"><a href="R-sim-probability.html#id_10sided-die-R"><i class="fa fa-check"></i><b>B.1</b> Rolling a 10-sided die</a>
+<ul>
+<li class="chapter" data-level="B.1.1" data-path="R-sim-probability.html"><a href="R-sim-probability.html#final-code"><i class="fa fa-check"></i><b>B.1.1</b> Final Code</a></li>
+</ul></li>
+<li class="chapter" data-level="B.2" data-path="R-sim-probability.html"><a href="R-sim-probability.html#diff-2dice-R"><i class="fa fa-check"></i><b>B.2</b> Difference of two dice</a></li>
+<li class="chapter" data-level="B.3" data-path="R-sim-probability.html"><a href="R-sim-probability.html#flip-coin-R"><i class="fa fa-check"></i><b>B.3</b> Flipping a coin</a></li>
+<li class="chapter" data-level="B.4" data-path="R-sim-probability.html"><a href="R-sim-probability.html#marbles-urn-R"><i class="fa fa-check"></i><b>B.4</b> Marbles from an urn</a></li>
+<li class="chapter" data-level="B.5" data-path="R-sim-probability.html"><a href="R-sim-probability.html#partition-set-R"><i class="fa fa-check"></i><b>B.5</b> Splitting a set into multiple subsets</a>
+<ul>
+<li class="chapter" data-level="B.5.1" data-path="R-sim-probability.html"><a href="R-sim-probability.html#final-code-1"><i class="fa fa-check"></i><b>B.5.1</b> Final Code</a></li>
+</ul></li>
+<li class="chapter" data-level="B.6" data-path="R-sim-probability.html"><a href="R-sim-probability.html#license-plates-R"><i class="fa fa-check"></i><b>B.6</b> Oregon License Plates</a>
+<ul>
+<li class="chapter" data-level="B.6.1" data-path="R-sim-probability.html"><a href="R-sim-probability.html#final-code-2"><i class="fa fa-check"></i><b>B.6.1</b> Final Code</a></li>
+</ul></li>
+<li class="chapter" data-level="B.7" data-path="R-sim-probability.html"><a href="R-sim-probability.html#pollsters-R"><i class="fa fa-check"></i><b>B.7</b> Pollsters</a></li>
+<li class="chapter" data-level="B.8" data-path="R-sim-probability.html"><a href="R-sim-probability.html#same-birthday-R"><i class="fa fa-check"></i><b>B.8</b> Matching Birthdays</a></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="R-discreteRV.html"><a href="R-discreteRV.html"><i class="fa fa-check"></i><b>C</b> Discrete Random Variables in R</a>
+<ul>
+<li class="chapter" data-level="C.1" data-path="R-discreteRV.html"><a href="R-discreteRV.html#expected-value-of-x"><i class="fa fa-check"></i><b>C.1</b> Expected Value of <span class="math inline">\(X\)</span></a></li>
+<li class="chapter" data-level="C.2" data-path="R-discreteRV.html"><a href="R-discreteRV.html#variance-of-x"><i class="fa fa-check"></i><b>C.2</b> Variance of <span class="math inline">\(X\)</span></a></li>
+<li class="chapter" data-level="C.3" data-path="R-discreteRV.html"><a href="R-discreteRV.html#distribution-plots"><i class="fa fa-check"></i><b>C.3</b> Distribution Plots</a></li>
+<li class="chapter" data-level="C.4" data-path="R-discreteRV.html"><a href="R-discreteRV.html#sampling"><i class="fa fa-check"></i><b>C.4</b> Sampling</a></li>
+<li class="chapter" data-level="C.5" data-path="R-discreteRV.html"><a href="R-discreteRV.html#estimating-distributions-via-simulation"><i class="fa fa-check"></i><b>C.5</b> Estimating Distributions via Simulation</a></li>
+<li class="chapter" data-level="C.6" data-path="R-discreteRV.html"><a href="R-discreteRV.html#discrete-uniform-distribution"><i class="fa fa-check"></i><b>C.6</b> Discrete Uniform Distribution</a></li>
+<li class="chapter" data-level="C.7" data-path="R-discreteRV.html"><a href="R-discreteRV.html#r-4distn-functions"><i class="fa fa-check"></i><b>C.7</b> Important discrete random variables</a>
+<ul>
+<li class="chapter" data-level="C.7.1" data-path="R-discreteRV.html"><a href="R-discreteRV.html#binomial-distribution-binom"><i class="fa fa-check"></i><b>C.7.1</b> Binomial Distribution <code>binom</code></a></li>
+<li class="chapter" data-level="C.7.2" data-path="R-discreteRV.html"><a href="R-discreteRV.html#geometric-distribution-geom"><i class="fa fa-check"></i><b>C.7.2</b> Geometric Distribution <code>geom</code></a></li>
+<li class="chapter" data-level="C.7.3" data-path="R-discreteRV.html"><a href="R-discreteRV.html#negative-binomial-distribution-nbinom"><i class="fa fa-check"></i><b>C.7.3</b> Negative Binomial Distribution <code>nbinom</code></a></li>
+<li class="chapter" data-level="C.7.4" data-path="R-discreteRV.html"><a href="R-discreteRV.html#hypergeometric-distribution-hyper"><i class="fa fa-check"></i><b>C.7.4</b> Hypergeometric Distribution <code>hyper</code></a></li>
+<li class="chapter" data-level="C.7.5" data-path="R-discreteRV.html"><a href="R-discreteRV.html#poisson-distribution-pois"><i class="fa fa-check"></i><b>C.7.5</b> Poisson Distribution <code>pois</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="D" data-path="R-continuousRV.html"><a href="R-continuousRV.html"><i class="fa fa-check"></i><b>D</b> Continuous Random Variables in R</a>
+<ul>
+<li class="chapter" data-level="D.1" data-path="R-continuousRV.html"><a href="R-continuousRV.html#unifR"><i class="fa fa-check"></i><b>D.1</b> Uniform Distribution</a>
+<ul>
+<li class="chapter" data-level="D.1.1" data-path="R-continuousRV.html"><a href="R-continuousRV.html#picking-random-numbers"><i class="fa fa-check"></i><b>D.1.1</b> Picking random numbers!</a></li>
+<li class="chapter" data-level="D.1.2" data-path="R-continuousRV.html"><a href="R-continuousRV.html#picking-random-points-in-the-unit-square"><i class="fa fa-check"></i><b>D.1.2</b> Picking random points in the unit square!</a></li>
+<li class="chapter" data-level="D.1.3" data-path="R-continuousRV.html"><a href="R-continuousRV.html#estimate-the-value-of-pi"><i class="fa fa-check"></i><b>D.1.3</b> Estimate the value of <span class="math inline">\(\pi\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="D.2" data-path="R-continuousRV.html"><a href="R-continuousRV.html#normalR"><i class="fa fa-check"></i><b>D.2</b> Normal Distribution <code>norm</code></a>
+<ul>
+<li class="chapter" data-level="D.2.1" data-path="R-continuousRV.html"><a href="R-continuousRV.html#sampling-distribution-of-a-sample-mean"><i class="fa fa-check"></i><b>D.2.1</b> Sampling Distribution of a sample mean</a></li>
+</ul></li>
+<li class="chapter" data-level="D.3" data-path="R-continuousRV.html"><a href="R-continuousRV.html#expR"><i class="fa fa-check"></i><b>D.3</b> Exponential Distribution <code>exp</code></a></li>
+<li class="chapter" data-level="D.4" data-path="R-continuousRV.html"><a href="R-continuousRV.html#gammaR"><i class="fa fa-check"></i><b>D.4</b> Gamma Distribution <code>gamma</code></a></li>
+<li class="chapter" data-level="D.5" data-path="R-continuousRV.html"><a href="R-continuousRV.html#chiR"><i class="fa fa-check"></i><b>D.5</b> Chi-square Distribution <code>chisq</code></a></li>
+<li class="chapter" data-level="D.6" data-path="R-continuousRV.html"><a href="R-continuousRV.html#betaR"><i class="fa fa-check"></i><b>D.6</b> Beta distribution <code>beta</code></a></li>
+<li class="chapter" data-level="D.7" data-path="R-continuousRV.html"><a href="R-continuousRV.html#customR"><i class="fa fa-check"></i><b>D.7</b> Homemade Continuous Random Variables</a>
+<ul>
+<li class="chapter" data-level="D.7.1" data-path="R-continuousRV.html"><a href="R-continuousRV.html#input-the-density-function"><i class="fa fa-check"></i><b>D.7.1</b> Input the density function</a></li>
+<li class="chapter" data-level="D.7.2" data-path="R-continuousRV.html"><a href="R-continuousRV.html#visualize-the-density-function"><i class="fa fa-check"></i><b>D.7.2</b> Visualize the density function</a></li>
+<li class="chapter" data-level="D.7.3" data-path="R-continuousRV.html"><a href="R-continuousRV.html#estimating-integrals-with-riemann-sums"><i class="fa fa-check"></i><b>D.7.3</b> Estimating Integrals with Riemann Sums</a></li>
+<li class="chapter" data-level="D.7.4" data-path="R-continuousRV.html"><a href="R-continuousRV.html#estimating-probabilities"><i class="fa fa-check"></i><b>D.7.4</b> Estimating Probabilities</a></li>
+<li class="chapter" data-level="D.7.5" data-path="R-continuousRV.html"><a href="R-continuousRV.html#the-distribution-function-fx"><i class="fa fa-check"></i><b>D.7.5</b> The distribution function <span class="math inline">\(F(X)\)</span></a></li>
+<li class="chapter" data-level="D.7.6" data-path="R-continuousRV.html"><a href="R-continuousRV.html#estimating-moments"><i class="fa fa-check"></i><b>D.7.6</b> Estimating Moments</a></li>
+<li class="chapter" data-level="D.7.7" data-path="R-continuousRV.html"><a href="R-continuousRV.html#expected-value-1"><i class="fa fa-check"></i><b>D.7.7</b> Expected Value</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MATH 340 Notes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="important-discrete-rv" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">7</span> Important Discrete Random Variables<a href="important-discrete-rv.html#important-discrete-rv" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In this chapter we introduce the following well-known discrete random variables:
+binomial, geometric, Poisson, negative binomial, and hypergeometric.</p>
+<div id="binomial" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Binomial Distributions<a href="important-discrete-rv.html#binomial" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>It all begins with a Bernoulli trial.</p>
+<div class="definition">
+<p><span id="def:bernoulli-trial" class="definition"><strong>Definition 7.1  </strong></span>A <strong>Bernoulli trial</strong> is a chance experiment with two distinct possible outcomes, “success” and “failure”. Typically, we let <span class="math inline">\(p\)</span> denote the probability of success, and <span class="math inline">\(q\)</span> denote the probability of failure (where <span class="math inline">\(q = 1 - p\)</span>).</p>
+</div>
+<p>Some examples:</p>
+<ol style="list-style-type: decimal">
+<li>Roll a 6-sided die and define success to be “roll a 4”, and failure to be “don’t roll a 4”. Here <span class="math inline">\(p = 1/6\)</span> and <span class="math inline">\(q = 5/6\)</span>.</li>
+<li>Pick a name out of a hat with <span class="math inline">\(n\)</span> names. Success: pick Oriana’s name; Failure: do not pick Oriana’s name. Here <span class="math inline">\(p = 1/n\)</span> and <span class="math inline">\(q = (n-1)/n\)</span>.</li>
+<li>Test a person for a particular disease. In medical tests such as these, “success” is often used to describe a positive test (meaning the person tests positive for the disease), and “failure” means the person tests negative for the disease.</li>
+</ol>
+<div class="definition">
+<p><span id="def:binomial-distribution" class="definition"><strong>Definition 7.2  (Binomial Distribution) </strong></span>Define the random variable <span class="math inline">\(X\)</span> to equal the number of successes in <span class="math inline">\(n\)</span> independent, identical Bernoulli trials with probability of success on any given trial equal to <span class="math inline">\(p\)</span>. Then <span class="math inline">\(X\)</span> is called a <strong>binomial distribution with parameters <span class="math inline">\(n\)</span> and <span class="math inline">\(p\)</span></strong>, and <span class="math inline">\(X\)</span> is denoted <span class="math inline">\(\text{binom}(n,p)\)</span>.</p>
+<p>The space of <span class="math inline">\(X\)</span> equals <span class="math inline">\(\{0,1,\ldots,n\}\)</span>, and for each <span class="math inline">\(x \in X\)</span>,
+<span class="math display">\[p(x) = \binom{n}{x}p^x(1-p)^{n-x}.\]</span></p>
+</div>
+<p>Does this probability distribution make sense? To find the probability of exactly <span class="math inline">\(x\)</span> successes in <span class="math inline">\(n\)</span> independent Bernoulli trials, we first choose which <span class="math inline">\(x\)</span> of the <span class="math inline">\(n\)</span> trials will be successes (and we have <span class="math inline">\(\binom{n}{x}\)</span> choices here). Then, we know the probability of success on each of these <span class="math inline">\(x\)</span> trials is <span class="math inline">\(p\)</span>, and the probability of failure on each of the other <span class="math inline">\(n-x\)</span> trials is <span class="math inline">\(q = 1-p\)</span>. Since the trials are independent, the probability of getting exactly <span class="math inline">\(x\)</span> successes and <span class="math inline">\(n-x\)</span> failures is the product <span class="math inline">\(\binom{n}{x}p^x(1-p)^{n-x}.\)</span></p>
+<div class="theorem">
+<p><span id="thm:binomial-distribution-EandV" class="theorem"><strong>Theorem 7.1  </strong></span>If <span class="math inline">\(X\)</span> is <span class="math inline">\(\text{binom}(n,p)\)</span>, <span class="math display">\[E(X) = np~~~\text{ and }~~~ V(X) = np(1-p).\]</span></p>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-23" class="proof"><em>Proof</em>. </span>We begin with the definition of expected value.</p>
+<p><span class="math display">\[\begin{align*}
+E(X) &amp;= \sum_{x=0}^n x \cdot p(x) \\
+     &amp;= \sum_{x=1}^n x \cdot p(x) &amp; \text{since the } x = 0 \text{ term is  } 0 \\
+     &amp;= \sum_{x=1}^n x \binom{n}{x} p^x (1-p)^{n-x} \\
+     &amp;= \sum_{x=1}^n x \frac{n!}{(n-x)!x!} p^x (1-p)^{n-x} \\
+     &amp;= \sum_{x=1}^n \frac{n!}{(n-x)!(x-1)!} p^x (1-p)^{n-x} &amp;\text{cancelling an } x\\
+     &amp;= np \sum_{x=1}^n \frac{(n-1)!}{(n-x)!(x-1)!}p^{x-1}(1-p)^{n-x} &amp;\text{ pull out }n\text{ from }n!\text{ and one }p\\
+     &amp;= np \sum_{x=1}^n \binom{n-1}{x-1}p^{x-1}(1-p)^{(n-1)-(x-1)}
+\end{align*}\]</span></p>
+<p>Hey! The summation term equals 1 since it is the sum of all the probabilities in a binom<span class="math inline">\((n-1,p)\)</span> distrtibution!</p>
+<p>Thus <span class="math inline">\(E(X) = np\)</span>.</p>
+<p>To prove the <span class="math inline">\(V(X)\)</span> formula, it is helpful to first observe the following</p>
+<p><span class="math display">\[E(X(X-1)) = E(X^2-X) = E(X^2)-E(X),\]</span> so
+<span class="math display">\[E(X^2) = E(X(X-1))+E(X).\]</span>
+We computed <span class="math inline">\(E(X)\)</span> above, and <span class="math inline">\(E(X(X-1))\)</span> can be determined similarly:</p>
+<p><span class="math display">\[\begin{align*}
+E(X(X-1)) &amp;= \sum_{x=0}^n x(x-1)\binom{n}{x}p^x(1-p)^{n-x} \\
+          &amp;= \sum_{x=2}^n x(x-1)\binom{n}{x}p^x(1-p)^{n-x} \\
+          &amp;= \sum_{x=2}^n x(x-1)\frac{n!}{(n-x)!x!}p^x(1-p)^{n-x} \\
+          &amp;= \sum_{x=2}^n \frac{n!}{(n-x)!(x-2)!}p^x(1-p)^{n-x} \\
+          &amp;= n(n-1)p^2 \sum_{x=2}^n \frac{(n-2)!}{(n-x)!(x-2)!}p^{x-2}(1-p)^{n-x} \\
+          &amp;= n(n-1)p^2 \sum_{x=2}^n\binom{n-2}{x-2}p^{x-2}(1-p)^{(n-2)-(x-2)}
+\end{align*}\]</span></p>
+<p>This summation also equals one, since it is the sum of all the probabilities in a binom<span class="math inline">\((n-2,p)\)</span> distribution, so <span class="math inline">\(E(X(X-1)) = n(n-1)p^2\)</span>, and it follows that
+<span class="math display">\[E(X^2) = E(X(X-1))+E(X) = n(n-1)p^2 + np.\]</span></p>
+<p>Finally,
+<span class="math display">\[\begin{align*}
+V(X) &amp;= E(X^2) - E(X)^2 \\
+     &amp;= n(n-1)p^2 + np - (np)^2 \\
+     &amp;= n^2p^2 - np^2 + np - n^2p^2 \\
+     &amp;= np(1-p)
+\end{align*}\]</span></p>
+</div>
+<div class="example">
+<p><span id="exm:binom-mult-choice-test" class="example"><strong>Example 7.1  (Guessing on a multiple choice test) </strong></span>A multiple choice exam has 15 questions. Each question has 4 possible answers. If a student answers each question with a random guess, what is the probability they will score 10 or higher?</p>
+<p>Let <span class="math inline">\(X\)</span> = the score on the test. Then, <span class="math inline">\(X\)</span> is binom<span class="math inline">\((n=15,p=1/4)\)</span>.</p>
+<p>Now, <span class="math display">\[P(X \geq 10) = \sum_{x = 10}^{15} \binom{15}{x}\left(\frac{1}{4}\right)^x\left(\frac{3}{4}\right)^{15-x} \approx .0008.\]</span></p>
+<p><strong>Calculating this sum in R</strong></p>
+<p>R has a nice command for calculating cumulative probabilities of the form <span class="math inline">\(P(X \leq x)\)</span>.If <span class="math inline">\(X\)</span> is binom<span class="math inline">\((n,p)\)</span>, then <span class="math inline">\(P(X \leq x)\)</span> is calculated in R by <code>pbinom(x,n,p)</code>. So, in the case of the multiple choice test, <span class="math inline">\(P(X \geq 10) = 1 - P(X \leq 9) =\)</span> <code>1-pbinom(9,15,1/4)</code>. See Appendix <a href="R-discreteRV.html#r-4distn-functions">C.7</a>) for more information on using R to calculate probabilities for the important distributions we encounter in this class.</p>
+<p>Back to the test, they have less than a 1 in a thousand chance of scoring a 10 or better if they are truly guessing. Note also that the mean for <span class="math inline">\(X\)</span> is <span class="math inline">\(E(X) = 15 \cdot \frac{1}{4} = 3.75\)</span>.</p>
+<p>What if they can eliminate one of the choices on each problem, and randomly guess between the remaining three choices on each problem? Are they likely to do better? If we let <span class="math inline">\(Y\)</span> denote the score on the test following this approach, then <span class="math inline">\(Y\)</span> is binom<span class="math inline">\((n=15,p=1/3)\)</span>, and the probability of scoring 10 or greater ends up about 10 times better than it was before, but still miniscule:</p>
+<p><span class="math display">\[P(Y \geq 10) = \sum_{y = 10}^{15} \binom{15}{y}\left(\frac{1}{3}\right)^y\left(\frac{2}{3}\right)^{15-y} \approx .0085,\]</span>
+The mean score is now <span class="math inline">\(E(Y) = 15\cdot\frac{1}{3} = 5.\)</span> Ok, not great, but it is better, I guess.</p>
+</div>
+<div class="example">
+<p><span id="exm:parking-meter" class="example"><strong>Example 7.2  (Pay the meter?) </strong></span>This example is adapted from an exercise in the Grinstead-Snell text. Flint never puts money in a 25-cent parking meter downtown. He assumes that there is a probability of .03 that he will be caught. The first offense costs nothing, the second costs 10 dollars, and subsequent offenses cost 25 dollars each.</p>
+<blockquote>
+<p>How does the expected cost of parking 100 times without paying the meter compare with the cost of paying the meter each time?</p>
+</blockquote>
+<p>Assume parking events are independent, identical Bernoulli trials with probability <span class="math inline">\(p = .03\)</span> of getting a ticket. Then the random variable <span class="math inline">\(X\)</span> counting the number of tickets in 100 trials is <span class="math inline">\(\text{binom}(100,.03)\)</span>, and we note that <span class="math inline">\(E(X) = 100\cdot(.03) = 3\)</span>.</p>
+<p>In deciding whether to pay the meter, one idea is to consider the cost associated to the expected number of tickets, which would be $35. This amount is higher than the $25 Flint would pay by chucking in a quarter each time. But this approach doesn’t give the full picture.</p>
+<p>Instead, let’s determine the expected cost associated to parking 100 times without paying the meter. If Flint never pays the meter, the parking cost <span class="math inline">\(C\)</span> of these 100 trials is the following function of <span class="math inline">\(X\)</span>:</p>
+<p><span class="math display">\[
+C(x)=
+\begin{cases}
+0 &amp;\text{ if }x = 0,1 \\
+10  &amp;\text{ if } x = 2 \\
+10+25(x-2) &amp;\text{ if } x \geq 3
+\end{cases}
+\]</span></p>
+<p>Then the expected cost associated with these 100 trials, <span class="math inline">\(E(C)\)</span>, is
+<span class="math display">\[\begin{align*}
+E(C) &amp;= \sum_{x=0}^{100} C(x)\cdot p(x)\\
+    &amp;= C(2)\cdot p(2) + \sum_{x=3}^{100} (10 + 25\cdot(x-2))\cdot p(x) \\
+    &amp;= 10\cdot p(2) + \sum_{x=3}^{100} (25x - 40)\cdot p(x) \\
+    &amp;= 10\cdot p(2)  + \left(E(25X-40) - \sum_{x=0}^{2} (25x - 40)\cdot p(x)\right)\\
+    &amp;= 10\cdot p(2) + [25\cdot E(X) - 40] - \left(-40\cdot p(0) -15 \cdot p(1)+ 10*p(2)\right)\\
+    &amp;= [25 E(X) - 40] + 40 \cdot p(0) + 15 \cdot p(1) \\
+    &amp;= [(25 \cdot 3) - 40] + 40\cdot(.97)^{100} + 15\cdot 100(.03)(.97)^{99} \\
+    &amp;\approx 39.10.
+\end{align*}\]</span></p>
+<p>Yes, Flint is better off putting a quarter in the meter each time for a cost of $25 in parking. But never tell Flint the odds.</p>
+</div>
+<div class="example">
+<p><span id="exm:binomial-oil" class="example"><strong>Example 7.3  (Drilling for Oil) </strong></span>An oil exploration firm in the 1970s wants to finance 10 drilling explorations. They figure each exploration has a probability of success (finding oil) equal to 0.1, and that the 10 operations are independent (success in one is independent of success in any other). The company has $50,000 in fixed costs prior to doing its first exploration, and anticipates a cost of $150,000 for each unsuccessful exploration, and a cost of $300,000 for each successful exploration. Find the expected total cost to the firm for its 10 explorations.</p>
+<p>Let <span class="math inline">\(X\)</span> = number of successful explorations. Then <span class="math inline">\(X\)</span> is binom<span class="math inline">\((10,.1)\)</span>, and <span class="math inline">\(E(X) = 10 \cdot .1 = 1.\)</span>
+The cost <span class="math inline">\(C\)</span> (in thousands of dollars) can be expressed as a linear function of <span class="math inline">\(X\)</span>:</p>
+<p><span class="math display">\[\begin{align*}
+C &amp;= 50 + 150(10-X)+300X\\
+  &amp;= 1550 + 150X.
+\end{align*}\]</span></p>
+<p>It follows from properties of expected value that
+<span class="math display">\[\begin{align*}
+E(C) &amp;= E(1550 + 150X)\\
+     &amp;= E(1550) + 150E(X)\\
+     &amp;= 1550 + 150 \cdot 1 \\
+     &amp;= 1700.
+\end{align*}\]</span>
+So the expected cost is $1.7 million dollars.</p>
+</div>
+<div class="example">
+<p><span id="exm:binomial-AI-generated" class="example"><strong>Example 7.4  (AI Generated Example) </strong></span>In a galaxy not so far away, there is a soccer ball factory run by enthusiastic, if somewhat clumsy, aliens. The factory manager, Zorg, claims that only 5% of the soccer balls they produce end up being “special” (read: defective). The company’s quality control inspector, an alien named Blurp, is highly skeptical and decides to randomly select 20 soccer balls from a day’s production to test this claim.</p>
+<p><strong>Questions</strong>:</p>
+<ol style="list-style-type: decimal">
+<li>If Zorg’s claim is correct, what is the probability that exactly 2 of the 20 selected soccer balls are “special”?</li>
+<li>If Zorg’s claim is correct, what is the probability that at most 1 of the 20 selected soccer balls is “special”?</li>
+<li>If Zorg’s claim is correct, what is the probability that more than 3 of the 20 selected soccer balls are “special”?</li>
+</ol>
+<p><strong>Solution</strong>:</p>
+<p>Let <span class="math inline">\(X\)</span> denote the number of “special” soccer balls in the randomly selected set of 20 balls. Then, <span class="math inline">\(X\)</span> is <span class="math inline">\(\text{binom}(n=20,p=.05)\)</span></p>
+<p>The first question asks for <span class="math inline">\(P(X = 2)\)</span> which is <span class="math display">\[P(X = 2) = \binom{20}{2} p^2 \cdot (1-p)^{18} \approx .189.\]</span></p>
+<p>The second question asks for <span class="math display">\[P(X \leq 1) = \sum_{x = 0}^1 \binom{20}{x}p^x(1-p)^{20-x},\]</span>
+and using R, we see that <span class="math inline">\(P(X \leq 1)\)</span> = <code>pbinom(1,20,.05)</code> <span class="math inline">\(\approx\)</span> 0.736.</p>
+<p>The third question asks for <span class="math display">\[P(X &gt; 3) = 1 - P(X \leq 3),\]</span>
+which we can evaluate in R with
+<code>1-pbinom(3,20,.05)</code> <span class="math inline">\(\approx\)</span> 0.016.</p>
+</div>
+<div class="example">
+<p><span id="exm:binomial-tchebby" class="example"><strong>Example 7.5  </strong></span>Suppose <span class="math inline">\(X\)</span> is <span class="math inline">\(\text{binom}(60,1/4)\)</span>. Then <span class="math inline">\(\mu = 60\cdot\frac{1}{4} = 15\)</span> and <span class="math inline">\(\sigma^2 = 60\cdot \frac{1}{4} \cdot \frac{3}{4} = 11.25.\)</span>
+Tchebbysheff says at least 75% of the distribution is within 2 standard deviations of the mean, so in this case, at least 75% of the distribution is between <span class="math inline">\(15 - 2\cdot \sqrt{11.25}\)</span> and <span class="math inline">\(15 + 2\cdot \sqrt{11.25}\)</span>, or between 8.3 and 21.7. The actual percentage is closer to 95%, and it can be found by summing all <span class="math inline">\(p(x)\)</span> for <span class="math inline">\(x\)</span> between 8.29 and 21.7. This sum is calculated in R by</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="important-discrete-rv.html#cb8-1" tabindex="-1"></a><span class="fu">pbinom</span>(<span class="fl">21.7</span>,<span class="dv">60</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">4</span>)<span class="sc">-</span><span class="fu">pbinom</span>(<span class="fl">8.29</span>,<span class="dv">60</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">4</span>)</span></code></pre></div>
+<pre><code>## [1] 0.9489842</code></pre>
+</div>
+</div>
+<div id="geometric" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Geometric Distributions<a href="important-discrete-rv.html#geometric" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Suppose we have a sequence of Bernoulli trials, independent, with probability of success <span class="math inline">\(p\)</span> on each trial. Let <span class="math inline">\(X\)</span> equal the number of trials up to and including the trial of the first success. Then <span class="math inline">\(X\)</span> is called a <strong>geometric distribution with parameter <span class="math inline">\(p\)</span></strong>, denoted <span class="math inline">\(\text{geom}(p)\)</span>.</p>
+<p>The probability function for <span class="math inline">\(X\)</span> is given by <span class="math display">\[p(x) = q^{x-1}\cdot p,\]</span> for <span class="math inline">\(x = 1, 2, 3, \ldots,\)</span> where, again, <span class="math inline">\(q = 1-p\)</span>.</p>
+<p>Note that <span class="math display">\[\sum_{x=0}^\infty p(x) = p + pq + pq^2 + \cdots\]</span> is a geometric series with <span class="math inline">\(|q| &lt; 1\)</span> so it converges. Moreover, by the geometric series formula, <span class="math display">\[\sum_{n=0}^\infty pq^n = \frac{p}{1-q}.\]</span>
+Thus, all the <span class="math inline">\(p(x)\)</span> sum to 1, and we have a valid probability function.</p>
+<p>More generally, for any non-negative integer <span class="math inline">\(k\)</span>,
+<span class="math display">\[\begin{align*}
+P(X &gt; k) &amp;= p(X=k+1)+p(X=k+2)+p(X=k+3)+\cdots \\
+        &amp;= pq^k + pq^{k+1}+pq^{k+2}+\cdots \\
+        &amp;= pq^k(1 + q + q^2 + \cdots)\\
+        &amp;= pq^k\cdot\frac{1}{1-q}\\
+        &amp;= q^k.
+\end{align*}\]</span></p>
+<p>The geometric distribution can be useful when modeling the behavior of lines. For instance, suppose a line of cars waits to pay their parking fee as they exit the airport. It can be reasonable to assume that over a short interval of time (say 10 seconds), the probability that a car arrives is <span class="math inline">\(p\)</span>, and the probability that a car does not arrive is <span class="math inline">\(q = 1-p.\)</span> Then the time <span class="math inline">\(T\)</span> until the next arrival has a geometric distribution, and by the remark above, the probability that no car arrives in the next <span class="math inline">\(k\)</span> time units is <span class="math inline">\(P(T &gt; k) = q^k\)</span>.</p>
+<div class="theorem">
+<p><span id="thm:geometric-EandV" class="theorem"><strong>Theorem 7.2  </strong></span>If <span class="math inline">\(X\)</span> is <span class="math inline">\(\text{geom}(p)\)</span> for <span class="math inline">\(0 &lt; p \leq 1\)</span>, then <span class="math display">\[E(X) = \frac{1}{p}~~~\text{ and }~~~  V(X) = \frac{1-p}{p^2}.\]</span></p>
+</div>
+<p>Before proving this theorem we consider the geometric series one more time.</p>
+<p><em>Geometric Series Intermission</em></p>
+<p>From Calc II we know that the geometric series <span class="math inline">\(\sum q^x\)</span> converges if and only if <span class="math inline">\(-1 &lt; q &lt; 1\)</span>, and that <span class="math display">\[\sum_{x = 0}^\infty q^x=\frac{1}{1-q} \tag{provided |q|&lt;1}\]</span> Thinking of <span class="math inline">\(q\)</span> as a variable, we can differentiate each side with respect to <span class="math inline">\(q\)</span>, and the resulting infinite series will still converge for <span class="math inline">\(-1 &lt; q &lt; 1\)</span>.</p>
+<p><span class="math display">\[\begin{align*}
+\frac{d}{dq}\left[\sum_{x = 0}^\infty q^x\right] &amp;= \frac{d}{dq}\left[\frac{1}{1-q}\right] \\
+\frac{d}{dq}\left[1+q+q^2 + q^3 + \cdots \right] &amp;= \frac{d}{dq}\left[\frac{1}{1-q}\right] \\
+\left[0 + 1 + 2q + 3q^2 + \cdots\right] &amp;= \frac{1}{(1-q)^2}\\
+\sum_{x = 1}^\infty x q^{x-1} &amp;= \frac{1}{(1-q)^2}.
+\end{align*}\]</span></p>
+<p><em>This ends the geometric series intermission.</em></p>
+<div class="proof">
+<p><span id="unlabeled-div-24" class="proof"><em>Proof</em>. </span>By definition of expected value,
+<span class="math display">\[\begin{align*}
+E(X) &amp;= \sum_{x=1}^\infty x \cdot q^{x-1}\cdot p \\
+&amp;= p \sum_{x=1}^\infty x \cdot q^{x-1}.
+\end{align*}\]</span>
+But this series is exactly the one for which we found a formula in the intermission above, so <span class="math display">\[E(X) = p \cdot \frac{1}{(1-q)^2} = \frac{1}{p}.\]</span></p>
+<p>We leave the proof that <span class="math inline">\(V(X) = \frac{1-p}{p^2}\)</span> as an exercise.</p>
+</div>
+<div class="example" label="geom-messages">
+<p><span id="exm:unlabeled-div-25" class="example"><strong>Example 7.6  (Message Received) </strong></span></p>
+<blockquote>
+<p>Assume that, during each second, my junk box receives one email with probability .01 and no email with probability .99. Determine the probability that I will not receive a junk email in the next minute.</p>
+</blockquote>
+<p>We let <span class="math inline">\(X\)</span> count how many seconds (from now) it takes to be sent an email to my junk box, and we assume <span class="math inline">\(X\)</span> is geom<span class="math inline">\((p = .01)\)</span>.</p>
+<p>Then the probability of not receiving a junk email in the next ten minutes is <span class="math display">\[P(X &gt; 600) = q^{600} \approx .0024.\]</span>
+So you’re saying there’s a chance!</p>
+<p>We also note that <span class="math inline">\(E(X) = 1/p = 100\)</span>, the average time to get our next junk mail is 100 seconds.</p>
+</div>
+</div>
+<div id="negative-binomial" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> Negative Binomial Distribution<a href="important-discrete-rv.html#negative-binomial" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Suppose we have a sequence of independent Bernoulli trials, each having probability of success <span class="math inline">\(p\)</span>, and we want to know how many trials it takes to get our <span class="math inline">\(r\)</span>th success, where <span class="math inline">\(r \geq 1\)</span>. (As an aside, we generally say <span class="math inline">\(r\)</span> in this context as if we’re a pirate.)</p>
+<p>Let <span class="math inline">\(X\)</span> equal the number of trials up to and including the trial of the <span class="math inline">\(r\)</span>th success. Then <span class="math inline">\(X\)</span> is called a <strong>negative binomial distribution with parameters <span class="math inline">\(r\)</span> and <span class="math inline">\(p\)</span></strong>, denoted <span class="math inline">\(\text{nbinom}(r,p)\)</span>.</p>
+<p>The space of <span class="math inline">\(X\)</span> is <span class="math inline">\(\{r, r+1, r+2, \ldots\}\)</span> and for <span class="math inline">\(x\)</span> in the space of <span class="math inline">\(X\)</span> the probability function for <span class="math inline">\(X\)</span> is given by <span class="math display">\[p(x) = \binom{r-1}{x-1}p^r(1-p)^{x-r}.\]</span></p>
+<p>Note, that if <span class="math inline">\(r=1\)</span> we just have the friendly geoemtric distribution.</p>
+<div class="theorem">
+<p><span id="thm:negative-binomial-EandV" class="theorem"><strong>Theorem 7.3  </strong></span>If <span class="math inline">\(X\)</span> is <span class="math inline">\(\text{nbinom}(r,p)\)</span> where <span class="math inline">\(0&lt;p\leq 1\)</span> then
+<span class="math display">\[E(X) = \frac{r}{p} ~~~ \text{ and } ~~~ V(X) = \frac{r(1-p)}{p^2}.\]</span></p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-26" class="example"><strong>Example 7.7  </strong></span></p>
+<blockquote>
+<p>If we roll 2 dice and record the sum, how many rolls, on average, will it take to get our 4th 8?</p>
+</blockquote>
+<p>Well, the probability of rolling a sum of 8 is <span class="math inline">\(p = 5/36\)</span> by our 6x6 dice grid in Example <a href="discrete-probability-distributions.html#exm:roll2dice">3.3</a>, and the random variable <span class="math inline">\(X\)</span> counting the number of rolls until we get our 4th 8 is <span class="math inline">\(\text{nbinom}(r=4,p=5/36)\)</span>, so <span class="math display">\[E(X) = \frac{4}{5/36} = 28.8.\]</span> Would you want to make a bet that it will take me more than 25 rolls to get my 4th 8?</p>
+<p>We note that <span class="math display">\[V(X) = \frac{4\cdot (31/36)}{(5/36)^2} \approx 178.6,\]</span> so the standard deviation is <span class="math inline">\(\sigma = \sqrt{V(X)} \approx 13.36\)</span>.</p>
+</div>
+</div>
+<div id="hypergometric" class="section level2 hasAnchor" number="7.4">
+<h2><span class="header-section-number">7.4</span> Hypergeometric Distribution<a href="important-discrete-rv.html#hypergometric" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Here’s the scene: We have a finite population with <span class="math inline">\(N\)</span> total elements, and this population can be partitioned into two distinct groups, where</p>
+<ul>
+<li>group 1 has <span class="math inline">\(m\)</span> elements, and</li>
+<li>group 2 has <span class="math inline">\(n\)</span> elements, (so <span class="math inline">\(m + n = N\)</span>).</li>
+</ul>
+<p>Think: a box of <span class="math inline">\(N\)</span> marbles, <span class="math inline">\(m\)</span> of them are orange and <span class="math inline">\(n\)</span> of them are green.</p>
+<p>Suppose we draw a random sample without replacement of size <span class="math inline">\(k\)</span> from the population.</p>
+<p>Let <span class="math inline">\(X\)</span> equal the number of elements in the sample of size <span class="math inline">\(k\)</span> that belong to group 1.</p>
+<p>Then <span class="math inline">\(X\)</span> is called a <strong>hypergeometric distribution with parameters <span class="math inline">\(m, n,\)</span> and <span class="math inline">\(k\)</span></strong>, denoted <span class="math inline">\(\text{hyper}(m,n,k)\)</span>. The space of <span class="math inline">\(X\)</span> is either
+<span class="math inline">\(x = 0, 1, \ldots, k\)</span> if <span class="math inline">\(m \geq k\)</span>, or <span class="math inline">\(0, 1, \ldots, m\)</span> if <span class="math inline">\(m &lt; k\)</span>.</p>
+<p>For each <span class="math inline">\(x\)</span> in the space of <span class="math inline">\(X\)</span>,
+<span class="math display">\[p(x) = \frac{\binom{m}{x}\binom{n}{k-x}}{\binom{N}{k}},\]</span> where <span class="math inline">\(N = m + n\)</span>.</p>
+<p>The classic “good potatoes/bad potatoes” Example <a href="counting.html#exm:potatoes">4.12</a> has a hypergeometric distribution.</p>
+<div class="theorem">
+<p><span id="thm:hypergeometric-EandV" class="theorem"><strong>Theorem 7.4  </strong></span>If <span class="math inline">\(X\)</span> is <span class="math inline">\(\text{hyper(m,n,k)}\)</span> then <span class="math display">\[E(X) = k\cdot\frac{m}{N}~~~\text{ and }~~~ V(X) = k \left(\frac{m}{N}\right)\left(\frac{n}{N}\right)\left(\frac{N-k}{N-1}\right),\]</span> where <span class="math inline">\(N = m + n\)</span>.</p>
+</div>
+<div class="example">
+<p><span id="exm:hyper-skittles" class="example"><strong>Example 7.8  </strong></span></p>
+<blockquote>
+<p>Let’s say a bag of 120 skittles has 30 orange ones. If we pick 10 at random, what is the probability that we get more than 5 orange ones?</p>
+</blockquote>
+<p>Let <span class="math inline">\(X\)</span> denote the number of orange skittles in our sample. Then <span class="math inline">\(X\)</span> is hyper(30,90,10), and
+<span class="math display">\[P(X&gt;5) = \sum_{x=6}^{10} \frac{\binom{30}{x}\binom{90}{10-x}}{\binom{120}{10}} \approx .0153.\]</span>
+We note that in this example <span class="math inline">\(E(X) = 10 \cdot \frac{30}{120} = 2.5.\)</span></p>
+</div>
+</div>
+<div id="poisson" class="section level2 hasAnchor" number="7.5">
+<h2><span class="header-section-number">7.5</span> Poisson Distribution<a href="important-discrete-rv.html#poisson" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>The Scene</strong><br />
+The Poisson probability distribution can provide a good model for the number of occurrences <span class="math inline">\(X\)</span> of a rare event in time, space, or some other unit of measure. A Poisson random variable <span class="math inline">\(X\)</span> has one parameter, <span class="math inline">\(\lambda\)</span>, which is the average number of occurrences of the rare event in the indicated time (or space, etc.)</p>
+<p>Some examples that might be well-modeled by a Poisson distribution:</p>
+<ul>
+<li>the number of customers going through a check-out lane in a grocery store per hour;</li>
+<li>the number of typos per page in a book;</li>
+<li>the number of goals scored in a World Cup soccer game;</li>
+<li>the number of chocolate chips per cookie in a big batch;</li>
+<li>the number of pitches per baseball in a baseball game;</li>
+</ul>
+<div class="definition">
+<p><span id="def:poisson-distribution" class="definition"><strong>Definition 7.3  (Poisson Distribution) </strong></span>A random variable <span class="math inline">\(X\)</span> has a <strong>Poisson probability distribution</strong> with parameter <span class="math inline">\(\lambda &gt; 0\)</span>, denoted <span class="math inline">\(\text{pois}(\lambda)\)</span>, if and only if <span class="math display">\[p(x) = \frac{\lambda^x e^{-\lambda}}{x!} ~~~\text{ for } x = 0,1,2, \ldots.\]</span></p>
+</div>
+<p>We take the time to explain how this probability density function does actually model such things, but first let’s check that it is a valid probability density function, and then find <span class="math inline">\(E(X)\)</span> and <span class="math inline">\(V(X)\)</span>.</p>
+<p>First, since <span class="math inline">\(\lambda &gt; 0\)</span>, each <span class="math inline">\(p(x)\)</span> is non-negative. Also, recall the Calc II power series formula for <span class="math inline">\(e^\lambda\)</span> for any real number <span class="math inline">\(\lambda\)</span> is <span class="math display">\[e^\lambda = \sum_{k=0}^\infty \frac{\lambda^k}{k!},\]</span> so we can see that all the probabilities in this distribution sum to 1:
+<span class="math display">\[\begin{align*}
+\sum_{x=0}^\infty \frac{\lambda^x e^{-\lambda}}{x!} &amp;= e^{-\lambda} \sum_{x=0}^\infty \frac{\lambda^x}{x!} \\
+&amp;= e^{-\lambda}\cdot e^{\lambda} \\
+&amp;= 1.
+\end{align*}\]</span></p>
+<div class="theorem">
+<p><span id="thm:poisson-EandV" class="theorem"><strong>Theorem 7.5  </strong></span>If <span class="math inline">\(X\)</span> is pois<span class="math inline">\((\lambda)\)</span>, <span class="math inline">\(E(X) = \lambda\)</span> and <span class="math inline">\(V(X) = \lambda\)</span>.</p>
+</div>
+<div class="proof">
+<p><span id="unlabeled-div-27" class="proof"><em>Proof</em>. </span>We tackle the mean first.</p>
+<p><span class="math display">\[\begin{align*}
+E(X) &amp;= \sum_{x=0}^\infty x \cdot p(x) \\
+     &amp;= \sum_{x=1}^\infty x \cdot \frac{\lambda^x e^{-\lambda}}{x!} &amp; \text{since }x=1 \text{ term is } 0\\
+     &amp;= e^{-\lambda} \sum_{x=1}^\infty \frac{\lambda^x}{(x-1)!} &amp; \text{since } \frac{x}{x!}=\frac{1}{(x-1)!}\\
+     &amp;= \lambda e^{-\lambda} \sum_{x=1}^\infty \frac{\lambda^{x-1}}{(x-1)!} &amp; \text{pulling out one }\lambda \\
+     &amp;= \lambda e^{-\lambda} \sum_{k=0}^\infty \frac{\lambda^{k}}{(k)!} &amp; \text{letting }  k = x-1\\
+     &amp;= \lambda e^{-\lambda}\cdot e^{\lambda} &amp;\text{power series for }e^\lambda\\
+     &amp;= \lambda.
+\end{align*}\]</span></p>
+<p>Thus, <span class="math inline">\(\mu = \lambda\)</span>.</p>
+<p>For <span class="math inline">\(V(X)\)</span>, we first find <span class="math inline">\(E(X(X-1))\)</span> in much the same way as we found <span class="math inline">\(E(X)\)</span>:</p>
+<p><span class="math display">\[\begin{align*}
+E(X(X-1)) &amp;= \sum_{x=0}^\infty x(x-1)\cdot \frac{\lambda^x e^{-\lambda}}{x!} \\
+    &amp;= e^{-\lambda} \sum_{x=2}^\infty \frac{x(x-1)}{x!} \cdot \lambda^x &amp; \text{since }x=0,1 \text{ terms are }0. \\
+    &amp;= e^{-\lambda} \sum_{x=2}^\infty \frac{1}{(x-2)!} \cdot \lambda^x\\
+    &amp;= \lambda^2 e^{-\lambda} \sum_{x=2}^\infty \frac{1}{(x-2)!} \cdot \lambda^{x-2}  &amp; \text{pulling out }\lambda^2 \\
+    &amp;= \lambda^2 e^{-\lambda} \sum_{k=0}^\infty \frac{1}{(k)!} \cdot \lambda^{k} &amp;\text{letting }k=x-2\\
+    &amp;= \lambda^2 e^{-\lambda} \cdot e^{\lambda}  &amp; \text{power series for }e^\lambda\\
+    &amp;= \lambda^2.
+\end{align*}\]</span></p>
+<p>Finally, we find <span class="math inline">\(V(X)\)</span> using our expectation shortcuts:</p>
+<p><span class="math display">\[\begin{align*}
+V(X) &amp;= E(X^2) - \mu^2 \\
+  &amp;= [E(X(X-1))+E(X)] - \mu^2 \\
+  &amp;= [\lambda^2 + \lambda] - \lambda^2 \\
+  &amp;= \lambda.
+\end{align*}\]</span></p>
+</div>
+<div class="example">
+<p><span id="exm:poisson-typos" class="example"><strong>Example 7.9  </strong></span>Suppose <span class="math inline">\(X\)</span> gives the number of typos per page in a large printed manuscript, and <span class="math inline">\(X\)</span> is Poisson with <span class="math inline">\(\lambda = 2\)</span>. Find the probability that a randomly chosen page has (a) fewer than 2 typos, and (b) more than 5 typos.</p>
+<p>Part (a) asks for</p>
+<p><span class="math display">\[\begin{align*}
+P(X\leq 1) &amp;= P(X = 0)+P(X=1) \\
+&amp;= \frac{2^0e^{-2}}{0!}+\frac{2^1e^{-2}}{1!}\\
+&amp;= e^{-2} + 2e^{-2} \\
+&amp;=3 e^{-2} \\
+&amp;\approx 0.406.
+\end{align*}\]</span></p>
+<p>Part (b) asks for</p>
+<p><span class="math display">\[\begin{align*}
+P(X &gt;  5) &amp;= 1 - P(X \leq 5) \\
+&amp;= 1 - \left[ \frac{2^0e^{-2}}{0!}+\frac{2^1e^{-2}}{1!} +  \cdots + \frac{2^5e^{-2}}{5!}\right]
+\end{align*}\]</span></p>
+<p>Rather than calculate this by hand, we turn to R, and the command <code>ppois(k,lambda)</code>, which returns <span class="math inline">\(P(X \leq k)\)</span> when <span class="math inline">\(X\)</span> is pois(<span class="math inline">\(\lambda\)</span>).</p>
+<p>So <span class="math inline">\(P(X &gt; 5) = 1 - P(X \leq 5)\)</span> = 1 - <code>ppois(5,2)</code> <span class="math inline">\(\approx\)</span> 0.017.</p>
+</div>
+<div class="example">
+<p><span id="exm:pois-website" class="example"><strong>Example 7.10  </strong></span>The number of website views at a seldom visited website is Poisson with an average number of 8 visits per day.</p>
+<blockquote>
+<p>What is the probability that the site gets 20 or more visits in a day?</p>
+</blockquote>
+<p>We want <span class="math inline">\(P(X \geq 20)\)</span>, an infinite sum, so we use the strategy of finding the complement, with the help of R for the calculation:</p>
+<p><span class="math display">\[\begin{align*}
+P(X \geq 20) &amp;= 1 - P(X \leq 19) \\
+&amp;= 1 - \texttt{ppois}(19,8)\\
+&amp;\approx .00025.
+\end{align*}\]</span></p>
+</div>
+<div id="poisson-process" class="section level3 hasAnchor" number="7.5.1">
+<h3><span class="header-section-number">7.5.1</span> Poisson Process<a href="important-discrete-rv.html#poisson-process" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If we’re interested in modelling the number of instances of some rare event over a time interval, we can imagine subdividing the interval into <span class="math inline">\(n\)</span> small pieces, small enough that at most 1 instance can occur in each subinterval. In fact, we can imagine each subinterval constitutes a Bernoulli trial of sorts:</p>
+<ul>
+<li>the probability of 1 instance in a subinterval (“success”) equals <span class="math inline">\(p\)</span>;</li>
+<li>the probability of 0 instances (“failure”) equals <span class="math inline">\(1-p\)</span>.</li>
+</ul>
+<p>Then, if <span class="math inline">\(X\)</span> equals the number of instances in the original interval, then <span class="math inline">\(X\)</span> is binomial on <span class="math inline">\(n\)</span> trials with probability of success <span class="math inline">\(p\)</span> on each trial, assuming identical, independent Bernouilli trials. As we increase <span class="math inline">\(n\)</span>, breaking the original time period into smaller and smaller subintervals, the corresponding probability <span class="math inline">\(p\)</span> of seeing 1 instance of the event in a subinterval will decrease, but what if <span class="math inline">\(n \cdot p\)</span> remains constant? In this case, let <span class="math inline">\(\lambda = np\)</span> and consider what happens to the probability density function for the <span class="math inline">\(\text{binom}(n,p)\)</span> distribution:</p>
+<p><span class="math display">\[\begin{align*}
+\lim_{n \to \infty} \binom{n}{x}p^x(1-p)^{n-x} &amp;= \lim_{n \to \infty} \frac{n\cdot(n-1)\cdot \cdots \cdot (n - x + 1)}{x!} \left(\frac{\lambda}{n}\right)^x\left(1-\frac{\lambda}{n}\right)^{n-x} \\
+  &amp;=\lim_{n \to \infty} \frac{\lambda^x}{x!}\cdot\frac{n\cdot(n-1)\cdot \cdots \cdot (n - x + 1)}{n^x}\cdot\left(1-\frac{\lambda}{n}\right)^{n}\left(1-\frac{\lambda}{n}\right)^{-x}\\
+  &amp;=\frac{\lambda^x}{x!}\lim_{n \to \infty}\left(1-\frac{\lambda}{n}\right)^{n}\left(1-\frac{\lambda}{n}\right)^{-x} \cdot \frac{n}{n} \cdot \frac{n-1}{n} \cdot \frac{n-2}{n} \cdot \cdots \cdot \frac{n-x+1}{n}.
+\end{align*}\]</span></p>
+<p>Now, we have a limit of a product of many terms. If the limit of each term exists, then the overall limit will be the product of each of the individual limits.</p>
+<p>First, observe that <span class="math inline">\((1-\lambda/n)^n \to e^{-\lambda}\)</span> as <span class="math inline">\(n \to \infty\)</span> by one of the greatest limits in mathematics: <span class="math display">\[\lim_{n \to \infty}\left(1+\frac{x}{n}\right)^n = e^x\]</span> for any real number <span class="math inline">\(x\)</span>.</p>
+<p>Second, observe that <span class="math inline">\((1-\lambda/n)^{-x} \to 1^{-x} = 1\)</span> since <span class="math inline">\(\lambda/n \to 0\)</span> as <span class="math inline">\(n \to \infty\)</span>.</p>
+<p>Finally, for any <span class="math inline">\(k \geq 0\)</span>, <span class="math inline">\(\lim_{n \to \infty} \frac{n-k}{n} = 1\)</span> so each of the ratios from the third term on converges to 1.</p>
+<p>So, if <span class="math inline">\(np\)</span> remains constant as <span class="math inline">\(n \to \infty\)</span>, then as <span class="math inline">\(n \to \infty\)</span> the binomial distribution <span class="math inline">\(\text{binom}(n,p)\)</span> approaches the Poisson<span class="math inline">\((\lambda)\)</span> distribution, where <span class="math inline">\(\lambda = np\)</span>. So, the Poisson distribution can be a good model for counting instances of some rare event.</p>
+<p>The process described above, where subdivision of the interval leads to Bernoulli trials in such a way that <span class="math inline">\(np\)</span> remains constant, is called a Poisson process.</p>
+<div class="definition">
+<p><span id="def:def-pois-process" class="definition"><strong>Definition 7.4  </strong></span>The process by which an event happens is called a <strong>Poisson process</strong> if the following holds:</p>
+<ol style="list-style-type: decimal">
+<li>The dimension over which <span class="math inline">\(X\)</span> is measured can be subdivided into <span class="math inline">\(n\)</span> small pieces, within which the event can occur <em>at most once</em>.</li>
+<li>In each small piece, the probability of seeing one occurrence is the same, say <span class="math inline">\(p\)</span>, and <span class="math inline">\(p\)</span> is proportional to the length of the sub-interval (as <span class="math inline">\(n\)</span> grows, <span class="math inline">\(p\)</span> shrinks, but <span class="math inline">\(np\)</span> remains constant).</li>
+<li>Occurrences in all the small pieces are independent from one another.</li>
+</ol>
+</div>
+<p>In the limit derivation above we demonstrated the following:</p>
+<blockquote>
+<p>For large <span class="math inline">\(n\)</span>, if we let <span class="math inline">\(\lambda = np\)</span>, pois<span class="math inline">\((\lambda)\sim b(n,p)\)</span>.</p>
+</blockquote>
+<p>For instance, in the table below we compare the probabilities for binom(10,.4), binom(40,.1), and binom(400,.01) with those of a pois(4) distribution. For all 3 binomial distributions <span class="math inline">\(np = 4\)</span>, so as <span class="math inline">\(n\)</span> gets larger, binom<span class="math inline">\((n,p)\)</span> should be a better approximation to pois(4):</p>
+<table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:plot-pois-binom">Table 7.1: </span>Approximating a Poisson distn with Binomial distns
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;">
+x
+</th>
+<th style="text-align:right;">
+b(10,4)
+</th>
+<th style="text-align:right;">
+b(40,.1)
+</th>
+<th style="text-align:right;">
+b(400,.01)
+</th>
+<th style="text-align:right;">
+pois(4)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.0060
+</td>
+<td style="text-align:right;">
+0.0148
+</td>
+<td style="text-align:right;">
+0.0180
+</td>
+<td style="text-align:right;">
+0.0183
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.0403
+</td>
+<td style="text-align:right;">
+0.0657
+</td>
+<td style="text-align:right;">
+0.0725
+</td>
+<td style="text-align:right;">
+0.0733
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0.1209
+</td>
+<td style="text-align:right;">
+0.1423
+</td>
+<td style="text-align:right;">
+0.1462
+</td>
+<td style="text-align:right;">
+0.1465
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0.2150
+</td>
+<td style="text-align:right;">
+0.2003
+</td>
+<td style="text-align:right;">
+0.1959
+</td>
+<td style="text-align:right;">
+0.1954
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0.2508
+</td>
+<td style="text-align:right;">
+0.2059
+</td>
+<td style="text-align:right;">
+0.1964
+</td>
+<td style="text-align:right;">
+0.1954
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+0.2007
+</td>
+<td style="text-align:right;">
+0.1647
+</td>
+<td style="text-align:right;">
+0.1571
+</td>
+<td style="text-align:right;">
+0.1563
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+0.1115
+</td>
+<td style="text-align:right;">
+0.1068
+</td>
+<td style="text-align:right;">
+0.1045
+</td>
+<td style="text-align:right;">
+0.1042
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+0.0425
+</td>
+<td style="text-align:right;">
+0.0576
+</td>
+<td style="text-align:right;">
+0.0594
+</td>
+<td style="text-align:right;">
+0.0595
+</td>
+</tr>
+</tbody>
+</table>
+<div class="example">
+<p><span id="exm:pois-process" class="example"><strong>Example 7.11  </strong></span>Industrial accidents occur according to a Poisson process with an average of 3 accidents per month. During the last 2 months 10 accidents occurred. Does this number seem highly improbable if the mean number of accidents per month is still equal to 3? Does it indicate a genuine increase in the mean number of accidents per month?</p>
+<p>If <span class="math inline">\(X\)</span> equals the number of accidents in <em>two</em> months, then <span class="math inline">\(X\)</span> is Poisson with mean <span class="math inline">\(\lambda = 6\)</span>.</p>
+<p>Then <span class="math inline">\(P(X \geq 10) = 1 - P(X \leq 9) =\)</span> <code>1-ppois(9,6)</code> = 0.084.</p>
+<p>Let’s consider this result. If the mean number of accidents per month is still 3, we would expect to observe 10 or more accidents over a two month period about 8 times out of 100, which is unlikely, but not extremely unlikely. Better safe than sorry, I would send out a safety memo and closely monitor what unfolds over the next month!</p>
+<p>Now, if we had 5 more accidents the next month, giving us 15 over a 3 month window, chances of 15 or more over 3 months is <span class="math inline">\(P(X \geq 15)\)</span>, where <span class="math inline">\(X\)</span> is pois(9). Using R, this probability is <code>1-ppois(14,9)</code> = 0.041.</p>
+<p>So we have about a 4% chance of seeing 15 or more over a 3 month window if the mean number of accidents per month is 3. I would investigate whether some practice has changed to make accidents more likely than they used to be.</p>
+</div>
+<div class="example">
+<p><span id="exm:pois-tchebby" class="example"><strong>Example 7.12  </strong></span>For a certain type of soil the number of wireworms per cubic foot has a Poisson distribution with mean of 100.</p>
+<blockquote>
+<p>Give an interval that captures at least 5/9ths of the distribution.</p>
+</blockquote>
+<p>OK, this feels like a job for Tchebbysheff.</p>
+<p>Here <span class="math inline">\(X\)</span> is Poisson with parameter <span class="math inline">\(\lambda = 100\)</span>, so <span class="math inline">\(\mu = 100\)</span> and <span class="math inline">\(\sigma = \sqrt{100} = 10.\)</span></p>
+<p>Thinking of Tchebbysheff’s inequality, let’s find <span class="math inline">\(k\)</span> so that <span class="math inline">\(1 - 1/k^2 = 5/9\)</span>. Then <span class="math display">\[P(|X-\mu|&lt;k\sigma)\geq 5/9,\]</span> meaning at least 5/9ths of the distribution is in the interval <span class="math inline">\((\mu - k\sigma,\mu+k\sigma)\)</span>.</p>
+<p>Solving
+<span class="math inline">\(1 - \frac{1}{k^2} = \frac{5}{9}\)</span> for <span class="math inline">\(k&gt;0\)</span> yields <span class="math inline">\(k = \frac{3}{2}\)</span>, so the interval is 85 to 115 wireworms.</p>
+</div>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="discrete-random-variables-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="moments-and-moment-generating-functions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/mphitchman/math340/edit/main/source/07-important-discrete-rv.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["math340-notes.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

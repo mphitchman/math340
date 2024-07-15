@@ -1,0 +1,53 @@
+--- 
+title: "MATH 340 Notes"
+author: "Mike Hitchman"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+# url: your book url like https://bookdown.org/yihui/bookdown
+# cover-image: path to the social sharing image like images/cover.jpg
+description: | 
+Hitchman's course notes for MATH 340: Probability and Statistics I at Linfield University, a 4 credit class.
+biblio-style: apalike
+csl: chicago-fullnote-bibliography.csl
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(kableExtra)
+library(combinat)
+library(gridExtra)
+```
+
+
+
+
+# Introduction
+
+MATH 340 introduces us to probability and statistics. The prerequisite for the course is MATH 175: Calculus II, a course that gets us through integration techniques and series. We will integrate, and we will evaluate series in this course. Multivariable calculus is not required in MATH 340, though it is required for the second course in this sequence, MATH 440.
+
+Content in these notes is tied to two classic texts, *Introduction to Probability*, by Grinstead and Snell; and *Mathematical Statistics with Applications, 7th ed.*, by Wackerly, Mendenhall, and Scheaffer.  This content also happens to coincide with content one finds in the first actuarial exam ([https://www.beanactuary.com](https://www.beanactuary.com)).
+
+Probability theory is of fundamental importance in the field of statistics. Suppose we roll a die five times and a 4 comes up all 5 times!!!
+  
+  - A **probability question**: What is the likelihood of rolling five 4s in a row if the die is fair?
+  - A **statistics question**: Is this die fair?
+  
+We have two approaches to answering likelihood questions:
+  
+  1. simulation (repeat the experiment many, many times and see how often the desired result is obtained)
+  2. probability theory
+
+We study probability theory in this course to answer likelihood questions without simulation. This study develops intuition and a rigorous foundation for the subject. We also learn simulation techniques - using R - because simulation can produce approximate solutions quite easily when exact solutions are beyond our grasp.  
+
+After studying probability up through the Central Limit Theorem, we will practice statistics. We will investigate estimation, hypothesis testing, and linear models.  The second term of this sequence, MATH 440, continues the study of mathematical statistics.
+
+
+  
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown','tidyverse','kableExtra','gridExtra','combinat'
+), 'packages.bib')
+```

@@ -1,0 +1,371 @@
+
+# Central Limit Theorem
+
+
+## Sums of Random Variables
+
+Suppose $X_1, X_2, \ldots, X_n$ are random variables defined via a random sample of size $n$ taken from a distribution that is $N(\mu,\sigma)$. 
+
+After the sample is chosen, each $X_i = x_i$ takes on a value (lower case corresponds to data, upper case corresponds to random variable).
+We may then compute the sample mean $$\overline{x} = \frac{1}{n}\sum_{i=1}^n x_i.$$
+Prior to picking our actual sample we can consider the function of the random variables $$\overline{X} = \frac{1}{n} \sum_{i=1}^n X_i.$$
+
+:::{.theorem #normal-random-sample}
+If $X_1, X_2, \ldots, X_n$ represents a random sample taken from a $N(\mu,\sigma)$ distribution, then $$\overline{X} = \frac{1}{n} \sum_{i=1}^n X_i ~\text{ is }~ N\left(\mu,\frac{\sigma}{\sqrt{n}}\right).$$
+:::
+
+:::{.proof}
+This theorem is an immediate consequence of Theorem \@ref(thm:sum-of-normal-rvs) where each $a_i = 1/n$.
+:::
+
+:::{.example #house-finch}
+Let $X$ equal the duration of a randomly selected song (in seconds) for a house finch.  Suppose $X$ is normal with unknown mean $\mu$ (we're trying to get a handle on this) and standard deviation $\sigma = 30$ seconds (somehow we know this). A random sample of 25 song durations is observed. Find the probability that the sample mean will be within 5 seconds of the population mean $\mu$.
+
+If $X_1, X_2, \ldots, X_{25}$ denote the 25 song lengths to be observed, each $X_i \sim N(\mu,30)$, so $$\overline{X} \sim N\left(\mu,\frac{30}{\sqrt{25}}\right) = N(\mu,6).$$
+We want to know $$P(|\overline{X}-\mu| < 5).$$
+\begin{align*}
+P(|\overline{X}-\mu| < 5) &= P(-5 < \overline{X}-\mu < 5)\\
+                          &= P\left(\frac{-5}{6} < \frac{\overline{X}-\mu}{6} < \frac{5}{6}\right)\\
+                          &= P(-5/6 < Z < 5/6).
+\end{align*}
+Using R, $P(-5/6 < Z < 5/6)$ = `pnorm(5/6)-pnorm(-5/6)` = `r round(pnorm(5/6)-pnorm(-5/6),3)`.
+
+A secondary question: How big a sample we we need so that the likelihood of the sample mean being within 5 seconds of $\mu$ is up to .95?
+
+In this case, we want $n$ so that 
+$$P\left(\frac{-5}{30/\sqrt{n}} < Z < \frac{5}{30/\sqrt{n}}\right) = .95.$$
+Equivalently, we want to find $n$ so that $$P\left(Z < \frac{-5}{30/\sqrt{n}}\right) = .025.$$
+In $N(0,1)$, `qnorm(.025)` = `r round(qnorm(.025),2)`, which means $P(Z < -1.96) = .025$.
+So we want $$\frac{-5}{30/\sqrt{n}} = -1.96,$$ and solving for $n$ and rounding up yields $n = 139$.
+:::
+
+:::{.theorem #sample-variance-chisq}
+Let $X_1, X_2, \ldots, X_n$ represent a random sample from a $N(\mu,\sigma)$ distribution, and $$\overline{X} = \frac{1}{n} \sum_{i=1}^n X_i ~~~ \text { and } ~~~ S^2 = \frac{1}{n-1}\sum_{i=1}^n (X_i - \overline{X})^2.$$ Then $$\frac{n-1}{\sigma^2}S^2 \sim \chi^2(n-1),$$ and $\overline{X}$ and $S^2$ are independent random variables.
+:::
+
+We refer to $\overline{X}$ and $S^2$ as the sample mean and sample variance associated with the random sample.
+
+Suppose we draw a sample of size $n = 25$ from a $N(10,2)$ distribution.  In this case the preceding two theorems tell us that
+
+  - $\overline{X} \sim N(10,2/\sqrt{25}) = N(10,0.4)$
+  - $6 S^2 \sim \chi^2(24)$ (since $\frac{n-1}{\sigma^2} = 6$ in this case)
+  - $\overline{X}$ and $S^2$ are independent random variables.
+  
+Let's look at a simulation in R to investigate these statements. The simulation works like this:
+
+  1. Draw a random sample of size $25$ from $N(10,2)$
+  2. Calculate $\overline{x}$ and $s^2$ from this sample.
+  3. Repeat steps 1 and 2 for many trials, and then consider 
+    - a frequency plot for $\overline{x}$ (does it look $N(10,0.4)$) 
+    - a frequency plot for $\frac{n-1}{\sigma^2}s^2$ (does it look $\chi^2(24)$?)
+    - a scatter plot of $\overline{x}$ against $s^2$ (do they look independent?)
+    
+```{r}
+trials = 10000
+n = 25; mu = 10; sigma = 2 #define sample size and parameters
+sample_means = c() #stores mean of each sample
+sample_var = c() #stores variance of each sample
+for (i in 1:trials){
+  x = rnorm(n,mu,sigma) #draw sample
+  sample_means[i] = mean(x) #record sample mean
+  sample_var[i] = var(x) #record sample variance
+}
+```
+
+Plots:
+```{r,echo=FALSE,fig.dim=c(4,2)}
+df = data.frame(trial = 1:trials,xbar=sample_means,`var` = sample_var)
+ggplot()+
+  geom_histogram(data = df, aes(x=xbar,y = after_stat(density)),bins=30,col='white')+
+  geom_line(data = data.frame(
+    x = seq(mu-3*sigma/sqrt(n),mu+3*sigma/sqrt(n),.1),
+    y = dnorm(seq(mu-3*sigma/sqrt(n),mu+3*sigma/sqrt(n),.1),mean=mu,sd = sigma/sqrt(n))),aes(x=x,y=y),col='red',linetype='dashed')+
+  ggtitle("sample mean dist'n ~  N(10..4)")+
+  xlab("")+ylab("")+scale_y_continuous(breaks=NULL)+
+  theme_get()
+```
+
+```{r,echo=FALSE,fig.dim=c(4,2)}
+ggplot()+
+  geom_histogram(data = df, aes(x=6*`var`,y = after_stat(density)),bins=30,col='white')+
+  geom_line(data = data.frame(
+    x = seq(0,50,.1),
+    y = dchisq(seq(0,50,.1),24)),aes(x=x,y=y),col='red',linetype='dashed')+
+  ggtitle("6s^2 dist'n ~ chisq(24)")+
+  xlab("")+ylab("")+scale_y_continuous(breaks=NULL)+
+  theme_get()
+```
+
+The scatter plot below suggests no real association between $\overline{x}$ and $s^2$.
+
+```{r,echo=FALSE,fig.dim=c(4,2)}
+ggplot()+
+  geom_point(data = df, aes(x=xbar,y = `var`),size=.4,alpha=.2,col='steelblue')+
+  ggtitle("sample mean vs sample variance")+
+  xlab("sample mean")+ylab("sample variance")+
+  theme_bw()
+```
+
+## T distribution
+
+:::{.definition #t-distribution}
+Let $Z \sim N(0,1)$ and $W \sim \chi^2(\nu)$. If $Z$ and $W$ are independent then $$\frac{Z}{\sqrt{W/\nu}}$$ is said to have a **t distribution with $\nu$ degrees of freedom.**\index{t distirbution}
+:::
+
+Here's our motivation for looking at such a thing.  Look again at the house finch example (Example \@ref(exm:house-finch)). We took a sample of 25 song lengths to estimate $\mu$, or rather the likelihood that $\overline{x}$ is within 5 seconds of $\mu$, the population mean. In our solution we assumed we know $\sigma$. It is perhaps not reasonable to assume we know $\sigma$ when we're trying to estimate $\mu$!
+
+So, if we don't know $\sigma$, can we estimate it from the sample? Sure! How about estimating $\sigma$ with $s$, the sample standard deviation?
+
+Now, recall in our solution there came a point when we considered a $Z$-score:
+$$z = \frac{\overline{x}-\mu}{\sigma/\sqrt{n}}.$$
+If we don't know $\sigma$ can we replace it with the estimate $s$?
+Good question! Check this out:
+
+From Theorem \@ref(thm:standardizing-normal-distributions) $\displaystyle Z =\frac{ \overline{X}-\mu}{\sigma/\sqrt{n}}$ is $N(0,1)$
+
+From Theorem \@ref(thm:sample-variance-chisq), $\displaystyle\frac{(n-1)S^2}{\sigma^2}$ is $\chi^2(n-1)$,
+
+So the ratio $\displaystyle\frac{Z}{\sqrt{\frac{(n-1)S^2}{\sigma^2}\big/(n-1)}}$ has a t distribution with $(n-1)$ degrees of freedom!
+
+Finally, observe 
+  \begin{align*}
+  \frac{Z}{\sqrt{\frac{(n-1)S^2}{\sigma^2}\big/(n-1)}} &= \frac{\frac{\overline{X}-\mu}{\sigma/\sqrt{n}}}{s/\sigma} \\
+  &= \frac{\overline{X}-\mu}{\sigma/\sqrt{n}} \cdot (\sigma/s) \\
+  &= \frac{\overline{X}-\mu}{s/\sqrt{n}}.
+\end{align*}
+
+The point of this story is this:
+
+If $X_1,X_2,\ldots, X_n$ represents a random sample drawn from $N(\mu,\sigma)$ then
+
+  - $\displaystyle \overline{X} \sim N(\mu,\sigma/\sqrt{n})$
+  - so $\displaystyle Z = \frac{\overline{X}-\mu}{\sigma/\sqrt{n}}$ is $N(0,1)$
+  - while $\displaystyle T = \frac{\overline{X}-\mu}{s/\sqrt{n}}$ is a t distribution with $n-1$ degrees of freedom.
+
+We denote a $t$ distributioin with $k$ degrees of freedom by $t(k)$. The density function for a $t(k)$ distribution, defined for all $-\infty < t < \infty$, is
+$$f(t) = \frac{\Gamma(\frac{k+1}{2})}{\sqrt{k\pi}\Gamma(k/2)}\left(1+\frac{t^2}{2}\right)^{-\left(\frac{k+1}{2}\right)}$$
+
+Suppose $T \sim t(k)$.
+
+**Facts about T**:
+
+  1. $E(T) = 0$
+  2. The distribution has mode at 0
+  3. The distribution is symmetric about the $y$-axis
+  4. it has fatter tails than $N(0,1)$, i.e.,for $a > 0$, $P(t > a) > P(Z > a)$.
+  5. As $k \to \infty$, $t(k) \to N(0,1)$.
+  
+
+```{r, echo=FALSE,fig.dim=c(4,2),label="t-vs-st-norm",fig.cap="A t distribution and N(0,1)"}
+par(mar = c(1, 1, 1, 1))
+plot(c(-5, 5),
+     c(0, dnorm(0)),
+     type = 'n',
+     axes = FALSE,
+     xlab="",
+     ylab="")
+axis(1, seq(-6, 6, 2))
+abline(h = 0)
+
+xleg <- 2
+yleg <- 0.35
+yleg.line.offset <- -0.07
+line.leg.width <- 0.55
+lines(
+    c(xleg, xleg + line.leg.width),
+    rep(yleg, 2),
+    col = "black", lty = 3, lwd = 2.5)
+lines(
+    c(xleg, xleg + line.leg.width),
+    rep(yleg + yleg.line.offset, 2),
+    col = "red", lty = 1, lwd = 1.8)
+text(xleg + line.leg.width, yleg,
+    "N(0,1)",
+    col = "black", pos = 4)
+text(xleg + line.leg.width, yleg + yleg.line.offset,
+    "t(2)",
+    col = "red", pos = 4)
+
+X <- seq(-6, 6, 0.01)
+Y <- dnorm(X)
+lines(X, Y, lty = 3, lwd = 2.5, col = "black")
+
+Y <- dt(X, 2)
+lines(X, Y, lwd = 1.8, col = "red")
+```
+
+
+:::{.example #t-distribution-practice}
+A forester studying the effects of fertilization on certain pine forests is interested in estimating the average basal area (in ft$^2$) of pine trees.
+Let $X_1, X_2, \ldots, X_9$ denote a random sample of size 9, and suppose $X_i \sim N(\mu,\sigma)$ with $\mu$, $\sigma$ unknown.
+
+Find two statistics (i.e., functions of the data) $g_1$ and $g_2$ such that $$P(g_1 \leq \overline{X}-\mu \leq g_2) = .9.$$
+(The statistics $g_1$ and $g_2$ thus give us a range of values we believe with probability .9 captures $\mu$.)
+
+Well, the statistic $$T = \frac{\sqrt{n}(\overline{X}-\mu)}{S}$$ lives in a $t(8)$ distribution.
+
+Now $t(8)$ is plotted in figure \@ref(fig:t8), and we can find constants $c$ and $-c$ such that the shaded area between them is 0.9.
+
+
+```{r, echo=FALSE,fig.dim=c(4,2),label="t8",fig.cap="Finding the middle 90% of a t(8) distribution"}
+par(mar = c(2, 1, 1, 1))
+c_neg <- -qt(.95,8); c_pos <- qt(.95,8); y_top <- dt(c_neg,8)
+
+plot(c(-3, 3),
+     c(0, dnorm(0)),
+     type = 'n',
+     axes = FALSE,
+     xlab="",
+     ylab="")
+axis(1, at = c(-3,c_neg,0,c_pos,3), labels = c("-3","-c","0","c","3"))
+abline(h = 0)
+
+X <- seq(-4, 4, 0.01)
+Y <- dt(X, 8)
+lines(X, Y, lwd = 1.8, col = "black")
+i <- X >= c_neg & X <= c_pos
+polygon(c(c_neg,X[i],c_pos), c(0,Y[i],0), col="lightblue")
+lines(
+    c(c_neg, c_neg),
+    c(0, y_top),
+    col = "steelblue",  lwd = 2.5)
+lines(
+    c(c_pos, c_pos),
+    c(0, y_top),
+    col = "steelblue", lwd = 2.5)
+text(0, .06,
+    "90%",
+    col = "black")
+```
+
+
+Using R, in which the t distribution is aptly named as `t`, $c$ and $-c$ are readily found with `qt()`:
+
+```{r}
+qt(.95,8) #gives c
+```
+
+So $$P(-1.86 < T < 1.86) = .9,$$
+where $T = 3(\overline{X}-\mu)/S$, and this allows us to solve the problem:
+
+\begin{align*}
+.9 &= P(-1.86 < T < 1.86)\\
+    &= P(-1.86 < 3(\overline{X}-\mu)/S < 1.86) < 1.86) \\
+    &= P(\frac{-1.86}{3}S < \overline{X}-\mu < \frac{1.86}{3}S )\\
+    &= P(-.62 S < \overline{X}-\mu < .62 S)
+\end{align*}
+
+So $g_1 = -.62S$ and $g_2 = .62S$ work!
+
+In practice, this means that, once we have gathered our data of size $n = 9$, it is "likely" that $\mu$ is captured by the interval $$(\overline{X} - .62S, \overline{X} + .62S).$$
+
+For instance, suppose our data is (units are ft$^2$)
+
+```{r}
+data = c(85.5,71.4,60.4,70.9,78.3,67.9,65.3,63.1,68.4)
+xbar = mean(data)
+s = sd(data)
+```
+It is "likely" that $\mu$ falls between `xbar-.62*s` = `r round(xbar-.62*s,1)` ft$^2$ and `xbar-.62*s` = `r round(xbar+.62*s,1)` ft$^2$.
+:::
+  
+The Central Limit Theorem says, roughly, that even if the underlying population is not normally distributed, it is still reasonable to follow this procedure to estimate $\mu$.
+  
+## The Central Limit Theorem
+
+:::{.theorem #clt name="Central Limit Theorem"}
+Let $X_1, X_2, \ldots, X_n$ be independent and identically distributed random variables with $E(X_i) = \mu$ and $V(X_i) = \sigma^2$ for $i = 1,2,\ldots,n$. Let $$\overline{X} = \frac{1}{n}\sum_{i=1}^n X_i ~~~ \text{ and } ~~~ U_n = \frac{\overline{X}-\mu}{\sigma/\sqrt{n}}.$$
+Then the distribution function of $U_n$ converges to a standard normal distribution function as $n \to \infty$.
+:::
+
+The Central Limit Theorem (CLT) is the mathematical basis for the statistical analysis coming in the next chapter.
+
+*Sketch of Proof*
+
+TODO
+
+:::{.example #clt-use name="Practical Use of the CLT"}
+For large $n$, $$\frac{\overline{X}-\mu}{\sigma/\sqrt{n}} \sim N(0,1)$$ for a random sample taken from any distribution.
+That is, for any distribution (Poisson, binomial, gamma, uniform, ...) with mean $\mu$ and standard deviation $\sigma$, if we take a simple random sample (SRS) of decent size, compute the sample mean, then this mean lives in a distribution that is approximately $N(\mu,\sigma/\sqrt{n})$. Consequently, $$\frac{\overline{X}-\mu}{S/\sqrt{n}}$$ will be approximately $t(n-1)$.
+:::
+
+:::{.example #walk-straight name="Can we really walk straight?"}
+Data on cadence (strides/sec) from a 1992 [article](https://onlinelibrary.wiley.com/doi/10.1002/ajpa.1330890104) in the American Journal of Physical Anthropology, for a sample of size $n = 20$ "randomly selected healthy men."
+
+```{r}
+data = c(0.95, 0.85, 0.92, 0.95, 0.93, 0.86, 1.00, 0.92, 0.85, 0.81,
+0.78, 0.93, 0.93, 1.05, 0.93, 1.06, 1.06, 0.96, 0.81, 0.96)
+```
+
+The sample mean and standard deviation for these data are
+
+  - $\overline{x}$ = `r round(mean(data),3)`
+  - $s$ = `r round(sd(data),3)`.
+  
+We know that $T = \frac{\overline{X}-\mu}{S/\sqrt{n}}$ has a t(19) distribution (assuming the underlying population is normal), and we can find $c$ such that $$P(|(\overline{x}-\mu)/(s/\sqrt{n})| < c) = .95.$$
+:::
+
+## Normal Approximation to a binomial distribution
+
+If $X$ is binom$(n,p)$, we can view $X$ as a sum of Bernoulli random variables:
+$X = \sum_{i=1^n}Y_i$ where each $Y_i$ is binom$(1,p)$ [so $P(Y_i = 1) = p$ and $P(Y_i = 0) = 1-p$,  and $$\mu_{Y_i} = p ~~~\text{ and } ~~~ \sigma_{Y_i} = \sqrt{p(1-p)}.$$
+
+And $$\frac{1}{n}X = \frac{1}{n}\sum_{i=1}^n Y_i.$$ By the Central Limit Theorem, for large $n$, it follows that $\frac{1}{n}X$ is approximately $N(p,\sqrt{p(1-p)/n})$. 
+
+> If $X$ is $\text{binom}(n,p)$ then $X$ is approximately $N(np, \sqrt{np(1-p)})$ for large $n$.
+
+Let's look at a few examples and then fine tune this approximation with a continuity correction.
+
+:::{.example}
+Suppose 44\% of a voting population actually plan to vote for candidate A (though we don't know this :)). If we draw a random sample of $n = 100$ voters, what is the approximate probability that 51 or more of the 100 sampled plan to vote for candidate A?
+
+If we know the size of the population we can answer this question precisely with the hypergeometric distribution:
+
+For instance, suppose the population consists of 10000 voters, and $X$ equals the number of voters in a sample of size 100 that plan to vote for candidate $A. Then for any $x = 0, 1, \ldots, 100$, 
+$$p(x) = \frac{\binom{4400}{x}\binom{5600}{100-x}}{\binom{10000}{100}},$$
+and $$P(X \geq 51) = \sum_{x = 51}^100 p(x),$$
+and this sum can be calculated in R by:
+```{r}
+1-phyper(50,4400,5600,100)
+```
+about a 9.4\% chance.
+
+Notice, if the populatioin is just 1000, the answer to this question would be
+
+```{r}
+1-phyper(50,440,560,100)
+```
+
+
+If we don't know the size of the population, but assume it's big, then the sampling process is close to that of 100 identical Bernoulli trials, where in each case, $p = .44$. In this case, $X$ is binom$(n=100,p=.44), and $P(X \geq 51) is found in R via
+```{r}
+1-pbinom(50,100,.44)
+```
+
+Notice that the binomial approximation here is closer to the actual probability calculated with the hypergeometric distribution for $n = 10000$ than for $n = 1000$.
+
+Finally, let's approximate the likelihood with a normal approximation.
+According to the Central Limit Theorem, $X$ is approximately $N(44,\sqrt{100(.44)(.56)})$, or $N(44,4.964)$.
+So $P(X \geq 51) = 1 - P(X < 51)$ = `1 - pnorm(51,44,4.964)` = `r round(1 - pnorm(51,44,4.964),3)`.
+
+This normal estimate is a little low, and we can improve the estimate by making what is called a *continuity correction*\index{continuity correction}:
+
+$P(X \geq 51)$ as a binomial probability can be viewed as an area of rectangles, and this area is better approximated with the area under the normal bell-curve by $$\int_{50.5}^{100.5} f(x)~dx$$ as pictured, and this area is 
+
+(TODO: Add figure)
+
+```{r}
+pnorm(100.5,44,4.964)-pnorm(50.5,44,4.964)
+```
+:::
+
+:::{.example}
+Use continuity correction to estimate $P(51 \leq X \leq 53)$ if $X$ is binom$(100,.5)$. Then 
+$$P(51 \leq X \leq 53) \approx P(50.5 \leq Y \leq 53.5),$$ where $Y \sim N(50,\sqrt{100(.5)(.5)})$.
+
+(TODO: add figure)
+
+Actual probability: `pbinom(53,100,.5)-pbinom(50,100,.5)` = `r round(pbinom(53,100,.5)-pbinom(50,100,.5),4)`.
+
+Estimated probability: `pnorm(53.5,50,5)-pnorm(50.5,50,5)` = `r round(pnorm(53.5,50,5)-pnorm(50.5,50,5),4)`.
+:::

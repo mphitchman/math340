@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>B Simulating Probability in R | MATH 340 Notes</title>
+  <meta name="description" content="B Simulating Probability in R | MATH 340 Notes" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="B Simulating Probability in R | MATH 340 Notes" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="B Simulating Probability in R | MATH 340 Notes" />
+  
+  
+  
+
+<meta name="author" content="Mike Hitchman" />
+
+
+<meta name="date" content="2024-07-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="sampling-in-r.html"/>
+<link rel="next" href="R-discreteRV.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Math 340 Notes</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="sets.html"><a href="sets.html"><i class="fa fa-check"></i><b>2</b> Sets</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="sets.html"><a href="sets.html#algebra-of-sets"><i class="fa fa-check"></i><b>2.1</b> Algebra of Sets</a></li>
+<li class="chapter" data-level="2.2" data-path="sets.html"><a href="sets.html#size-of-sets"><i class="fa fa-check"></i><b>2.2</b> Set sizes</a></li>
+<li class="chapter" data-level="2.3" data-path="sets.html"><a href="sets.html#sets-in-r"><i class="fa fa-check"></i><b>2.3</b> Sets in R</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="discrete-probability-distributions.html"><a href="discrete-probability-distributions.html"><i class="fa fa-check"></i><b>3</b> Discrete Probability Distributions</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="discrete-probability-distributions.html"><a href="discrete-probability-distributions.html#sample-space"><i class="fa fa-check"></i><b>3.1</b> Sample Space</a></li>
+<li class="chapter" data-level="3.2" data-path="discrete-probability-distributions.html"><a href="discrete-probability-distributions.html#discrete-random-variables"><i class="fa fa-check"></i><b>3.2</b> Discrete Random Variables</a></li>
+<li class="chapter" data-level="3.3" data-path="discrete-probability-distributions.html"><a href="discrete-probability-distributions.html#calculating-probabilities"><i class="fa fa-check"></i><b>3.3</b> Calculating Probabilities</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="discrete-probability-distributions.html"><a href="discrete-probability-distributions.html#sample-point-method"><i class="fa fa-check"></i><b>3.3.1</b> Sample Point Method</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="counting.html"><a href="counting.html"><i class="fa fa-check"></i><b>4</b> Counting Techniques</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="counting.html"><a href="counting.html#multipiclation-principle"><i class="fa fa-check"></i><b>4.1</b> Multipiclation Principle</a></li>
+<li class="chapter" data-level="4.2" data-path="counting.html"><a href="counting.html#permutations"><i class="fa fa-check"></i><b>4.2</b> Permutations</a></li>
+<li class="chapter" data-level="4.3" data-path="counting.html"><a href="counting.html#combinations"><i class="fa fa-check"></i><b>4.3</b> Combinations</a></li>
+<li class="chapter" data-level="4.4" data-path="counting.html"><a href="counting.html#multinomial-coefficients"><i class="fa fa-check"></i><b>4.4</b> Multinomial Coefficients</a></li>
+<li class="chapter" data-level="4.5" data-path="counting.html"><a href="counting.html#balls-and-bins"><i class="fa fa-check"></i><b>4.5</b> Balls and Bins</a></li>
+<li class="chapter" data-level="4.6" data-path="counting.html"><a href="counting.html#prob-with-counting-tools"><i class="fa fa-check"></i><b>4.6</b> Calculating More Probabilities</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="probability-theory.html"><a href="probability-theory.html"><i class="fa fa-check"></i><b>5</b> Probability Theory</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="probability-theory.html"><a href="probability-theory.html#conditional-probability-and-independence"><i class="fa fa-check"></i><b>5.1</b> Conditional Probability and Independence</a></li>
+<li class="chapter" data-level="5.2" data-path="probability-theory.html"><a href="probability-theory.html#two-laws-of-probability"><i class="fa fa-check"></i><b>5.2</b> Two Laws of Probability</a></li>
+<li class="chapter" data-level="5.3" data-path="probability-theory.html"><a href="probability-theory.html#event-composition-method"><i class="fa fa-check"></i><b>5.3</b> Event-Composition Method</a></li>
+<li class="chapter" data-level="5.4" data-path="probability-theory.html"><a href="probability-theory.html#bayes-rule"><i class="fa fa-check"></i><b>5.4</b> Bayes’ Rule</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="discrete-random-variables-1.html"><a href="discrete-random-variables-1.html"><i class="fa fa-check"></i><b>6</b> Discrete Random Variables</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="discrete-random-variables-1.html"><a href="discrete-random-variables-1.html#expected-value"><i class="fa fa-check"></i><b>6.1</b> Expected Value</a></li>
+<li class="chapter" data-level="6.2" data-path="discrete-random-variables-1.html"><a href="discrete-random-variables-1.html#variance"><i class="fa fa-check"></i><b>6.2</b> Variance</a></li>
+<li class="chapter" data-level="6.3" data-path="discrete-random-variables-1.html"><a href="discrete-random-variables-1.html#properties-of-expected-value"><i class="fa fa-check"></i><b>6.3</b> Properties of Expected Value</a></li>
+<li class="chapter" data-level="6.4" data-path="discrete-random-variables-1.html"><a href="discrete-random-variables-1.html#tchebysheffs-theorem"><i class="fa fa-check"></i><b>6.4</b> Tchebysheff’s Theorem</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html"><i class="fa fa-check"></i><b>7</b> Important Discrete Random Variables</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html#binomial"><i class="fa fa-check"></i><b>7.1</b> Binomial Distributions</a></li>
+<li class="chapter" data-level="7.2" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html#geometric"><i class="fa fa-check"></i><b>7.2</b> Geometric Distributions</a></li>
+<li class="chapter" data-level="7.3" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html#negative-binomial"><i class="fa fa-check"></i><b>7.3</b> Negative Binomial Distribution</a></li>
+<li class="chapter" data-level="7.4" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html#hypergometric"><i class="fa fa-check"></i><b>7.4</b> Hypergeometric Distribution</a></li>
+<li class="chapter" data-level="7.5" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html#poisson"><i class="fa fa-check"></i><b>7.5</b> Poisson Distribution</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html#poisson-process"><i class="fa fa-check"></i><b>7.5.1</b> Poisson Process</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="moments-and-moment-generating-functions.html"><a href="moments-and-moment-generating-functions.html"><i class="fa fa-check"></i><b>8</b> Moments and Moment-Generating Functions</a></li>
+<li class="chapter" data-level="9" data-path="continuous-rv.html"><a href="continuous-rv.html"><i class="fa fa-check"></i><b>9</b> Continuous Random Variables</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="continuous-rv.html"><a href="continuous-rv.html#distribution-functions"><i class="fa fa-check"></i><b>9.1</b> Distribution Functions</a></li>
+<li class="chapter" data-level="9.2" data-path="continuous-rv.html"><a href="continuous-rv.html#expected-value-for-continuous-random-variables"><i class="fa fa-check"></i><b>9.2</b> Expected Value for Continuous Random Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html"><i class="fa fa-check"></i><b>10</b> Important Continuous Random Variables</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#uniform-continuous"><i class="fa fa-check"></i><b>10.1</b> Uniform Distribution</a></li>
+<li class="chapter" data-level="10.2" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#exponential-distribution"><i class="fa fa-check"></i><b>10.2</b> Exponential Distribution</a></li>
+<li class="chapter" data-level="10.3" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#normal"><i class="fa fa-check"></i><b>10.3</b> Normal Distribution</a></li>
+<li class="chapter" data-level="10.4" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#gamma-distribution"><i class="fa fa-check"></i><b>10.4</b> Gamma Distribution</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#exponential-distribution-1"><i class="fa fa-check"></i><b>10.4.1</b> Exponential Distribution</a></li>
+<li class="chapter" data-level="10.4.2" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#chi-square-distribution"><i class="fa fa-check"></i><b>10.4.2</b> Chi-square distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#beta-distribution"><i class="fa fa-check"></i><b>10.5</b> Beta Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="mgf.html"><a href="mgf.html"><i class="fa fa-check"></i><b>11</b> Moment Generating Functions</a></li>
+<li class="chapter" data-level="12" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html"><i class="fa fa-check"></i><b>12</b> Central Limit Theorem</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#sums-of-random-variables"><i class="fa fa-check"></i><b>12.1</b> Sums of Random Variables</a></li>
+<li class="chapter" data-level="12.2" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#t-distribution"><i class="fa fa-check"></i><b>12.2</b> T distribution</a></li>
+<li class="chapter" data-level="12.3" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#the-central-limit-theorem"><i class="fa fa-check"></i><b>12.3</b> The Central Limit Theorem</a></li>
+<li class="chapter" data-level="12.4" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#normal-approximation-to-a-binomial-distribution"><i class="fa fa-check"></i><b>12.4</b> Normal Approximation to a binomial distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="estimation.html"><a href="estimation.html"><i class="fa fa-check"></i><b>13</b> Estimation</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="estimation.html"><a href="estimation.html#unbiased-estimators"><i class="fa fa-check"></i><b>13.1</b> Unbiased Estimators</a></li>
+<li class="chapter" data-level="13.2" data-path="estimation.html"><a href="estimation.html#order-statistics"><i class="fa fa-check"></i><b>13.2</b> Order Statistics</a></li>
+<li class="chapter" data-level="13.3" data-path="estimation.html"><a href="estimation.html#common-unbiased-estimators"><i class="fa fa-check"></i><b>13.3</b> Common Unbiased Estimators</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="estimation.html"><a href="estimation.html#estimating-mu-a-population-mean"><i class="fa fa-check"></i><b>13.3.1</b> Estimating <span class="math inline">\(\mu\)</span>, a population mean</a></li>
+<li class="chapter" data-level="13.3.2" data-path="estimation.html"><a href="estimation.html#estimating-p-a-population-proportion"><i class="fa fa-check"></i><b>13.3.2</b> Estimating <span class="math inline">\(p\)</span>, a population proportion</a></li>
+<li class="chapter" data-level="13.3.3" data-path="estimation.html"><a href="estimation.html#estimating-mu_1---mu_2-the-difference-of-two-population-means"><i class="fa fa-check"></i><b>13.3.3</b> Estimating <span class="math inline">\(\mu_1 - \mu_2\)</span>, the difference of two population means</a></li>
+<li class="chapter" data-level="13.3.4" data-path="estimation.html"><a href="estimation.html#estimating-p_1---p_2-the-difference-of-two-population-proportions"><i class="fa fa-check"></i><b>13.3.4</b> Estimating <span class="math inline">\(p_1 - p_2\)</span>, the difference of two population proportions</a></li>
+</ul></li>
+</ul></li>
+<li class="appendix"><span><b>Using R</b></span></li>
+<li class="chapter" data-level="A" data-path="sampling-in-r.html"><a href="sampling-in-r.html"><i class="fa fa-check"></i><b>A</b> Sampling in R</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="sampling-in-r.html"><a href="sampling-in-r.html#vectors-R"><i class="fa fa-check"></i><b>A.1</b> Data vectors</a>
+<ul>
+<li class="chapter" data-level="A.1.1" data-path="sampling-in-r.html"><a href="sampling-in-r.html#vector-types"><i class="fa fa-check"></i><b>A.1.1</b> vector types</a></li>
+<li class="chapter" data-level="A.1.2" data-path="sampling-in-r.html"><a href="sampling-in-r.html#matrices"><i class="fa fa-check"></i><b>A.1.2</b> Matrices</a></li>
+<li class="chapter" data-level="A.1.3" data-path="sampling-in-r.html"><a href="sampling-in-r.html#data-frames"><i class="fa fa-check"></i><b>A.1.3</b> data frames</a></li>
+<li class="chapter" data-level="A.1.4" data-path="sampling-in-r.html"><a href="sampling-in-r.html#common-vector-commands"><i class="fa fa-check"></i><b>A.1.4</b> common vector commands</a></li>
+<li class="chapter" data-level="A.1.5" data-path="sampling-in-r.html"><a href="sampling-in-r.html#comparison-operators"><i class="fa fa-check"></i><b>A.1.5</b> Comparison Operators</a></li>
+<li class="chapter" data-level="A.1.6" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sum-and-which"><i class="fa fa-check"></i><b>A.1.6</b> <code>sum()</code> and <code>which()</code></a></li>
+<li class="chapter" data-level="A.1.7" data-path="sampling-in-r.html"><a href="sampling-in-r.html#extracting-elements"><i class="fa fa-check"></i><b>A.1.7</b> extracting elements</a></li>
+<li class="chapter" data-level="A.1.8" data-path="sampling-in-r.html"><a href="sampling-in-r.html#comparing-vectors"><i class="fa fa-check"></i><b>A.1.8</b> comparing vectors</a></li>
+<li class="chapter" data-level="A.1.9" data-path="sampling-in-r.html"><a href="sampling-in-r.html#vector-arithmetic"><i class="fa fa-check"></i><b>A.1.9</b> vector arithmetic</a></li>
+<li class="chapter" data-level="A.1.10" data-path="sampling-in-r.html"><a href="sampling-in-r.html#concatenate-vectors"><i class="fa fa-check"></i><b>A.1.10</b> concatenate vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="A.2" data-path="sampling-in-r.html"><a href="sampling-in-r.html#special-vectors"><i class="fa fa-check"></i><b>A.2</b> Special vectors</a>
+<ul>
+<li class="chapter" data-level="A.2.1" data-path="sampling-in-r.html"><a href="sampling-in-r.html#consecutive-integers"><i class="fa fa-check"></i><b>A.2.1</b> consecutive integers</a></li>
+<li class="chapter" data-level="A.2.2" data-path="sampling-in-r.html"><a href="sampling-in-r.html#letters"><i class="fa fa-check"></i><b>A.2.2</b> letters</a></li>
+<li class="chapter" data-level="A.2.3" data-path="sampling-in-r.html"><a href="sampling-in-r.html#rep"><i class="fa fa-check"></i><b>A.2.3</b> <code>rep()</code></a></li>
+<li class="chapter" data-level="A.2.4" data-path="sampling-in-r.html"><a href="sampling-in-r.html#table"><i class="fa fa-check"></i><b>A.2.4</b> <code>table()</code></a></li>
+<li class="chapter" data-level="A.2.5" data-path="sampling-in-r.html"><a href="sampling-in-r.html#seq"><i class="fa fa-check"></i><b>A.2.5</b> <code>seq()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="A.3" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sampling-in-R"><i class="fa fa-check"></i><b>A.3</b> Sampling</a>
+<ul>
+<li class="chapter" data-level="A.3.1" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sample-options"><i class="fa fa-check"></i><b>A.3.1</b> <code>sample()</code> options</a></li>
+<li class="chapter" data-level="A.3.2" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sample-without-replacement"><i class="fa fa-check"></i><b>A.3.2</b> Sample without replacement</a></li>
+<li class="chapter" data-level="A.3.3" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sample-with-replacement"><i class="fa fa-check"></i><b>A.3.3</b> Sample with replacement</a></li>
+<li class="chapter" data-level="A.3.4" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sample-with-custom-probabilities"><i class="fa fa-check"></i><b>A.3.4</b> Sample with custom probabilities</a></li>
+<li class="chapter" data-level="A.3.5" data-path="sampling-in-r.html"><a href="sampling-in-r.html#example-lefties"><i class="fa fa-check"></i><b>A.3.5</b> Example: Lefties</a></li>
+</ul></li>
+<li class="chapter" data-level="A.4" data-path="sampling-in-r.html"><a href="sampling-in-r.html#repeated-sampling"><i class="fa fa-check"></i><b>A.4</b> Repeated Sampling</a>
+<ul>
+<li class="chapter" data-level="A.4.1" data-path="sampling-in-r.html"><a href="sampling-in-r.html#using-a-for-loop"><i class="fa fa-check"></i><b>A.4.1</b> using a <code>for</code> loop</a></li>
+<li class="chapter" data-level="A.4.2" data-path="sampling-in-r.html"><a href="sampling-in-r.html#using-replicate"><i class="fa fa-check"></i><b>A.4.2</b> using <code>replicate()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="A.5" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sampling-commands"><i class="fa fa-check"></i><b>A.5</b> Summary of R commands</a>
+<ul>
+<li class="chapter" data-level="A.5.1" data-path="sampling-in-r.html"><a href="sampling-in-r.html#defining-vectors"><i class="fa fa-check"></i><b>A.5.1</b> defining vectors</a></li>
+<li class="chapter" data-level="A.5.2" data-path="sampling-in-r.html"><a href="sampling-in-r.html#summarizing-vectors"><i class="fa fa-check"></i><b>A.5.2</b> summarizing vectors</a></li>
+<li class="chapter" data-level="A.5.3" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sampling-from-vectors"><i class="fa fa-check"></i><b>A.5.3</b> sampling from vectors</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="R-sim-probability.html"><a href="R-sim-probability.html"><i class="fa fa-check"></i><b>B</b> Simulating Probability in R</a>
+<ul>
+<li class="chapter" data-level="B.1" data-path="R-sim-probability.html"><a href="R-sim-probability.html#id_10sided-die-R"><i class="fa fa-check"></i><b>B.1</b> Rolling a 10-sided die</a>
+<ul>
+<li class="chapter" data-level="B.1.1" data-path="R-sim-probability.html"><a href="R-sim-probability.html#final-code"><i class="fa fa-check"></i><b>B.1.1</b> Final Code</a></li>
+</ul></li>
+<li class="chapter" data-level="B.2" data-path="R-sim-probability.html"><a href="R-sim-probability.html#diff-2dice-R"><i class="fa fa-check"></i><b>B.2</b> Difference of two dice</a></li>
+<li class="chapter" data-level="B.3" data-path="R-sim-probability.html"><a href="R-sim-probability.html#flip-coin-R"><i class="fa fa-check"></i><b>B.3</b> Flipping a coin</a></li>
+<li class="chapter" data-level="B.4" data-path="R-sim-probability.html"><a href="R-sim-probability.html#marbles-urn-R"><i class="fa fa-check"></i><b>B.4</b> Marbles from an urn</a></li>
+<li class="chapter" data-level="B.5" data-path="R-sim-probability.html"><a href="R-sim-probability.html#partition-set-R"><i class="fa fa-check"></i><b>B.5</b> Splitting a set into multiple subsets</a>
+<ul>
+<li class="chapter" data-level="B.5.1" data-path="R-sim-probability.html"><a href="R-sim-probability.html#final-code-1"><i class="fa fa-check"></i><b>B.5.1</b> Final Code</a></li>
+</ul></li>
+<li class="chapter" data-level="B.6" data-path="R-sim-probability.html"><a href="R-sim-probability.html#license-plates-R"><i class="fa fa-check"></i><b>B.6</b> Oregon License Plates</a>
+<ul>
+<li class="chapter" data-level="B.6.1" data-path="R-sim-probability.html"><a href="R-sim-probability.html#final-code-2"><i class="fa fa-check"></i><b>B.6.1</b> Final Code</a></li>
+</ul></li>
+<li class="chapter" data-level="B.7" data-path="R-sim-probability.html"><a href="R-sim-probability.html#pollsters-R"><i class="fa fa-check"></i><b>B.7</b> Pollsters</a></li>
+<li class="chapter" data-level="B.8" data-path="R-sim-probability.html"><a href="R-sim-probability.html#same-birthday-R"><i class="fa fa-check"></i><b>B.8</b> Matching Birthdays</a></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="R-discreteRV.html"><a href="R-discreteRV.html"><i class="fa fa-check"></i><b>C</b> Discrete Random Variables in R</a>
+<ul>
+<li class="chapter" data-level="C.1" data-path="R-discreteRV.html"><a href="R-discreteRV.html#expected-value-of-x"><i class="fa fa-check"></i><b>C.1</b> Expected Value of <span class="math inline">\(X\)</span></a></li>
+<li class="chapter" data-level="C.2" data-path="R-discreteRV.html"><a href="R-discreteRV.html#variance-of-x"><i class="fa fa-check"></i><b>C.2</b> Variance of <span class="math inline">\(X\)</span></a></li>
+<li class="chapter" data-level="C.3" data-path="R-discreteRV.html"><a href="R-discreteRV.html#distribution-plots"><i class="fa fa-check"></i><b>C.3</b> Distribution Plots</a></li>
+<li class="chapter" data-level="C.4" data-path="R-discreteRV.html"><a href="R-discreteRV.html#sampling"><i class="fa fa-check"></i><b>C.4</b> Sampling</a></li>
+<li class="chapter" data-level="C.5" data-path="R-discreteRV.html"><a href="R-discreteRV.html#estimating-distributions-via-simulation"><i class="fa fa-check"></i><b>C.5</b> Estimating Distributions via Simulation</a></li>
+<li class="chapter" data-level="C.6" data-path="R-discreteRV.html"><a href="R-discreteRV.html#discrete-uniform-distribution"><i class="fa fa-check"></i><b>C.6</b> Discrete Uniform Distribution</a></li>
+<li class="chapter" data-level="C.7" data-path="R-discreteRV.html"><a href="R-discreteRV.html#r-4distn-functions"><i class="fa fa-check"></i><b>C.7</b> Important discrete random variables</a>
+<ul>
+<li class="chapter" data-level="C.7.1" data-path="R-discreteRV.html"><a href="R-discreteRV.html#binomial-distribution-binom"><i class="fa fa-check"></i><b>C.7.1</b> Binomial Distribution <code>binom</code></a></li>
+<li class="chapter" data-level="C.7.2" data-path="R-discreteRV.html"><a href="R-discreteRV.html#geometric-distribution-geom"><i class="fa fa-check"></i><b>C.7.2</b> Geometric Distribution <code>geom</code></a></li>
+<li class="chapter" data-level="C.7.3" data-path="R-discreteRV.html"><a href="R-discreteRV.html#negative-binomial-distribution-nbinom"><i class="fa fa-check"></i><b>C.7.3</b> Negative Binomial Distribution <code>nbinom</code></a></li>
+<li class="chapter" data-level="C.7.4" data-path="R-discreteRV.html"><a href="R-discreteRV.html#hypergeometric-distribution-hyper"><i class="fa fa-check"></i><b>C.7.4</b> Hypergeometric Distribution <code>hyper</code></a></li>
+<li class="chapter" data-level="C.7.5" data-path="R-discreteRV.html"><a href="R-discreteRV.html#poisson-distribution-pois"><i class="fa fa-check"></i><b>C.7.5</b> Poisson Distribution <code>pois</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="D" data-path="R-continuousRV.html"><a href="R-continuousRV.html"><i class="fa fa-check"></i><b>D</b> Continuous Random Variables in R</a>
+<ul>
+<li class="chapter" data-level="D.1" data-path="R-continuousRV.html"><a href="R-continuousRV.html#unifR"><i class="fa fa-check"></i><b>D.1</b> Uniform Distribution</a>
+<ul>
+<li class="chapter" data-level="D.1.1" data-path="R-continuousRV.html"><a href="R-continuousRV.html#picking-random-numbers"><i class="fa fa-check"></i><b>D.1.1</b> Picking random numbers!</a></li>
+<li class="chapter" data-level="D.1.2" data-path="R-continuousRV.html"><a href="R-continuousRV.html#picking-random-points-in-the-unit-square"><i class="fa fa-check"></i><b>D.1.2</b> Picking random points in the unit square!</a></li>
+<li class="chapter" data-level="D.1.3" data-path="R-continuousRV.html"><a href="R-continuousRV.html#estimate-the-value-of-pi"><i class="fa fa-check"></i><b>D.1.3</b> Estimate the value of <span class="math inline">\(\pi\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="D.2" data-path="R-continuousRV.html"><a href="R-continuousRV.html#normalR"><i class="fa fa-check"></i><b>D.2</b> Normal Distribution <code>norm</code></a>
+<ul>
+<li class="chapter" data-level="D.2.1" data-path="R-continuousRV.html"><a href="R-continuousRV.html#sampling-distribution-of-a-sample-mean"><i class="fa fa-check"></i><b>D.2.1</b> Sampling Distribution of a sample mean</a></li>
+</ul></li>
+<li class="chapter" data-level="D.3" data-path="R-continuousRV.html"><a href="R-continuousRV.html#expR"><i class="fa fa-check"></i><b>D.3</b> Exponential Distribution <code>exp</code></a></li>
+<li class="chapter" data-level="D.4" data-path="R-continuousRV.html"><a href="R-continuousRV.html#gammaR"><i class="fa fa-check"></i><b>D.4</b> Gamma Distribution <code>gamma</code></a></li>
+<li class="chapter" data-level="D.5" data-path="R-continuousRV.html"><a href="R-continuousRV.html#chiR"><i class="fa fa-check"></i><b>D.5</b> Chi-square Distribution <code>chisq</code></a></li>
+<li class="chapter" data-level="D.6" data-path="R-continuousRV.html"><a href="R-continuousRV.html#betaR"><i class="fa fa-check"></i><b>D.6</b> Beta distribution <code>beta</code></a></li>
+<li class="chapter" data-level="D.7" data-path="R-continuousRV.html"><a href="R-continuousRV.html#customR"><i class="fa fa-check"></i><b>D.7</b> Homemade Continuous Random Variables</a>
+<ul>
+<li class="chapter" data-level="D.7.1" data-path="R-continuousRV.html"><a href="R-continuousRV.html#input-the-density-function"><i class="fa fa-check"></i><b>D.7.1</b> Input the density function</a></li>
+<li class="chapter" data-level="D.7.2" data-path="R-continuousRV.html"><a href="R-continuousRV.html#visualize-the-density-function"><i class="fa fa-check"></i><b>D.7.2</b> Visualize the density function</a></li>
+<li class="chapter" data-level="D.7.3" data-path="R-continuousRV.html"><a href="R-continuousRV.html#estimating-integrals-with-riemann-sums"><i class="fa fa-check"></i><b>D.7.3</b> Estimating Integrals with Riemann Sums</a></li>
+<li class="chapter" data-level="D.7.4" data-path="R-continuousRV.html"><a href="R-continuousRV.html#estimating-probabilities"><i class="fa fa-check"></i><b>D.7.4</b> Estimating Probabilities</a></li>
+<li class="chapter" data-level="D.7.5" data-path="R-continuousRV.html"><a href="R-continuousRV.html#the-distribution-function-fx"><i class="fa fa-check"></i><b>D.7.5</b> The distribution function <span class="math inline">\(F(X)\)</span></a></li>
+<li class="chapter" data-level="D.7.6" data-path="R-continuousRV.html"><a href="R-continuousRV.html#estimating-moments"><i class="fa fa-check"></i><b>D.7.6</b> Estimating Moments</a></li>
+<li class="chapter" data-level="D.7.7" data-path="R-continuousRV.html"><a href="R-continuousRV.html#expected-value-1"><i class="fa fa-check"></i><b>D.7.7</b> Expected Value</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MATH 340 Notes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="R-sim-probability" class="section level1 hasAnchor" number="15">
+<h1><span class="header-section-number">B</span> Simulating Probability in R<a href="R-sim-probability.html#R-sim-probability" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>We can use repeated sampling of a chance experiment to estimate the probability of some event. See Section <a href="sampling-in-r.html#sampling-commands">A.5</a> for a review of sampling commands.</p>
+<div id="id_10sided-die-R" class="section level2 hasAnchor" number="15.1">
+<h2><span class="header-section-number">B.1</span> Rolling a 10-sided die<a href="R-sim-probability.html#id_10sided-die-R" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<blockquote>
+<p>We roll a 10 sided die. Find the probability that the first time we roll an 8 or higher is on the 5th roll.</p>
+</blockquote>
+<p><strong>Scratch Work</strong></p>
+<ol style="list-style-type: decimal">
+<li>Simulate rolling a 10-sided die 5 times. (Sample 5 times with replacement from the vector 1:10.)</li>
+</ol>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="R-sim-probability.html#cb126-1" tabindex="-1"></a>die <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb126-2"><a href="R-sim-probability.html#cb126-2" tabindex="-1"></a>rolls <span class="ot">=</span> <span class="fu">sample</span>(die,<span class="dv">5</span>,<span class="at">replace=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<p>For the purposes of this discussion, let’s say a sequence of 5 rolls is <em>good</em> if the first 4 rolls are all less than 8, and the last roll is 8 or greater.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>We want code to check whether a random sequence of 5 rolls is <em>good</em>.</li>
+</ol>
+<p>Let’s look at the actual rolls first:</p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="R-sim-probability.html#cb127-1" tabindex="-1"></a>rolls</span></code></pre></div>
+<pre><code>## [1] 5 5 5 6 1</code></pre>
+<p>We need to check 5 things: Are rolls 1-4 all less than 8, and is roll 5 greater than 8? We can ask these five questions and store the answers in a vector:</p>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="R-sim-probability.html#cb129-1" tabindex="-1"></a><span class="fu">c</span>(rolls[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]<span class="sc">&lt;</span><span class="dv">8</span>,rolls[<span class="dv">5</span>]<span class="sc">&gt;=</span><span class="dv">8</span>)</span></code></pre></div>
+<pre><code>## [1]  TRUE  TRUE  TRUE  TRUE FALSE</code></pre>
+<p>Recal, the <code>sum()</code> of a logical vector counts the number of TRUE values. We need the sum to be 5 to have a <em>good</em> sequence of 5 rolls.</p>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="R-sim-probability.html#cb131-1" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">c</span>(rolls[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]<span class="sc">&lt;</span><span class="dv">8</span>,rolls[<span class="dv">5</span>]<span class="sc">&gt;=</span><span class="dv">8</span>))</span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<p>I think we’re ready!!</p>
+<div id="final-code" class="section level3 hasAnchor" number="15.1.1">
+<h3><span class="header-section-number">B.1.1</span> Final Code<a href="R-sim-probability.html#final-code" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="R-sim-probability.html#cb133-1" tabindex="-1"></a>trials <span class="ot">=</span> <span class="dv">10000</span></span>
+<span id="cb133-2"><a href="R-sim-probability.html#cb133-2" tabindex="-1"></a>results <span class="ot">=</span> <span class="fu">c</span>() <span class="co"># vector to store results of the trials</span></span>
+<span id="cb133-3"><a href="R-sim-probability.html#cb133-3" tabindex="-1"></a></span>
+<span id="cb133-4"><a href="R-sim-probability.html#cb133-4" tabindex="-1"></a>die <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb133-5"><a href="R-sim-probability.html#cb133-5" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>trials){</span>
+<span id="cb133-6"><a href="R-sim-probability.html#cb133-6" tabindex="-1"></a>  rolls <span class="ot">=</span> <span class="fu">sample</span>(die,<span class="dv">5</span>,<span class="at">replace=</span><span class="cn">TRUE</span>) <span class="co"># roll the 10-sided die 5 times</span></span>
+<span id="cb133-7"><a href="R-sim-probability.html#cb133-7" tabindex="-1"></a>  good_count<span class="ot">=</span><span class="fu">sum</span>(<span class="fu">c</span>(rolls[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]<span class="sc">&lt;</span><span class="dv">8</span>,rolls[<span class="dv">5</span>]<span class="sc">&gt;=</span><span class="dv">8</span>)) <span class="co">#how many of the 5 rolls &quot;do the right thing&quot;</span></span>
+<span id="cb133-8"><a href="R-sim-probability.html#cb133-8" tabindex="-1"></a>  results<span class="ot">=</span><span class="fu">c</span>(results,good_count) <span class="co"># update the results vector</span></span>
+<span id="cb133-9"><a href="R-sim-probability.html#cb133-9" tabindex="-1"></a>}</span></code></pre></div>
+<p>The results of the simulation:</p>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="R-sim-probability.html#cb134-1" tabindex="-1"></a><span class="fu">table</span>(results)</span></code></pre></div>
+<pre><code>## results
+##    0    1    2    3    4    5 
+##   45  533 2073 3742 2915  692</code></pre>
+<p>Based on our simulation, we estimate the probability of a <em>good</em> sequence of 5 rolls by the proportion of time the <code>results</code> vector took a value of 5.</p>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="R-sim-probability.html#cb136-1" tabindex="-1"></a><span class="fu">sum</span>(results<span class="sc">==</span><span class="st">&quot;5&quot;</span>)<span class="sc">/</span>trials</span></code></pre></div>
+<pre><code>## [1] 0.0692</code></pre>
+<p>This estimate is likely very close to what we calculate by our counting tools <span class="math display">\[\frac{7^4\cdot 3}{10^5} \approx .07203.\]</span></p>
+</div>
+</div>
+<div id="diff-2dice-R" class="section level2 hasAnchor" number="15.2">
+<h2><span class="header-section-number">B.2</span> Difference of two dice<a href="R-sim-probability.html#diff-2dice-R" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<blockquote>
+<p>If you roll 2 6-sided dice, what’s the likelihood that their values are 1 apart.</p>
+</blockquote>
+<p>Strategy: roll the two dice, record the absolute value of their difference, repeat!</p>
+<p>Code:</p>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="R-sim-probability.html#cb138-1" tabindex="-1"></a>trials <span class="ot">=</span> <span class="dv">10000</span></span>
+<span id="cb138-2"><a href="R-sim-probability.html#cb138-2" tabindex="-1"></a>die_1 <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span></span>
+<span id="cb138-3"><a href="R-sim-probability.html#cb138-3" tabindex="-1"></a>die_2 <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span></span>
+<span id="cb138-4"><a href="R-sim-probability.html#cb138-4" tabindex="-1"></a>results <span class="ot">=</span> <span class="fu">c</span>()</span>
+<span id="cb138-5"><a href="R-sim-probability.html#cb138-5" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>trials){</span>
+<span id="cb138-6"><a href="R-sim-probability.html#cb138-6" tabindex="-1"></a>  roll_1 <span class="ot">=</span> <span class="fu">sample</span>(die_1,<span class="dv">1</span>)</span>
+<span id="cb138-7"><a href="R-sim-probability.html#cb138-7" tabindex="-1"></a>  roll_2 <span class="ot">=</span> <span class="fu">sample</span>(die_2,<span class="dv">1</span>)</span>
+<span id="cb138-8"><a href="R-sim-probability.html#cb138-8" tabindex="-1"></a>  difference <span class="ot">=</span> <span class="fu">abs</span>(roll_1<span class="sc">-</span>roll_2)</span>
+<span id="cb138-9"><a href="R-sim-probability.html#cb138-9" tabindex="-1"></a>  results[i] <span class="ot">=</span> difference</span>
+<span id="cb138-10"><a href="R-sim-probability.html#cb138-10" tabindex="-1"></a>}</span></code></pre></div>
+<p>Results:</p>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="R-sim-probability.html#cb139-1" tabindex="-1"></a><span class="fu">table</span>(results)</span></code></pre></div>
+<pre><code>## results
+##    0    1    2    3    4    5 
+## 1711 2754 2220 1664 1094  557</code></pre>
+<p>Conclusion: It appears we should expect the difference in the two dice to be 1 about 27.5% of the time.</p>
+<p>Note: In this example we added to the <code>results</code> vector by specifying <code>results[i]</code> in each trial, as opposed to the concatenation method we followed in the 10-sided die example.</p>
+<p>By constructing a 6x6 grid recording the difference for each of the 36 possible outcomes, we would find the actual probability equal to 10/36 <span class="math inline">\(\approx\)</span> 0.278.</p>
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-104">Table B.1: </span><span id="tab:unnamed-chunk-104">Table B.2: </span>Difference of two dice
+</caption>
+<thead>
+<tr>
+<th style="text-align:center;">
+Die1&amp;#124;Die2
+</th>
+<th style="text-align:center;">
+1
+</th>
+<th style="text-align:center;">
+2
+</th>
+<th style="text-align:center;">
+3
+</th>
+<th style="text-align:center;">
+4
+</th>
+<th style="text-align:center;">
+5
+</th>
+<th style="text-align:center;">
+6
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;font-weight: bold;">
+1
+</td>
+<td style="text-align:center;border-left:1px solid;">
+0
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:center;font-weight: bold;">
+2
+</td>
+<td style="text-align:center;border-left:1px solid;">
+1
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:center;font-weight: bold;">
+3
+</td>
+<td style="text-align:center;border-left:1px solid;">
+2
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:center;font-weight: bold;">
+4
+</td>
+<td style="text-align:center;border-left:1px solid;">
+3
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:center;font-weight: bold;">
+5
+</td>
+<td style="text-align:center;border-left:1px solid;">
+4
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:center;font-weight: bold;">
+6
+</td>
+<td style="text-align:center;border-left:1px solid;">
+5
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+0
+</td>
+</tr>
+</tbody>
+</table>
+<!-- exact answer: 10/36 (from 6x6 grid) -->
+</div>
+<div id="flip-coin-R" class="section level2 hasAnchor" number="15.3">
+<h2><span class="header-section-number">B.3</span> Flipping a coin<a href="R-sim-probability.html#flip-coin-R" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<blockquote>
+<p>If you flip a coin 5 times, how likely is it to get exactly 1 heads?</p>
+</blockquote>
+<p>One approach:</p>
+<ul>
+<li>Build a coin vector: <code>coin = c("H","T")</code></li>
+<li>Build a vector for recording outcome of five flips: <code>flips = sample(coin,size=5,replace=TRUE)</code></li>
+<li>Find how many of these five flips are heads with <code>sum(flips=="H")</code></li>
+<li>Repeat!</li>
+</ul>
+<p>The following code plays this ‘flip a coin 5 times’ game for 10000 trials, records for each trial how many heads we flipped, and then outputs the frequency table.</p>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="R-sim-probability.html#cb141-1" tabindex="-1"></a>coin <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;H&quot;</span>,<span class="st">&quot;T&quot;</span>)</span>
+<span id="cb141-2"><a href="R-sim-probability.html#cb141-2" tabindex="-1"></a>trials <span class="ot">=</span> <span class="dv">10000</span> </span>
+<span id="cb141-3"><a href="R-sim-probability.html#cb141-3" tabindex="-1"></a>heads <span class="ot">=</span> <span class="fu">c</span>() <span class="co"># vector for storing heads flipped each trial</span></span>
+<span id="cb141-4"><a href="R-sim-probability.html#cb141-4" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>trials){</span>
+<span id="cb141-5"><a href="R-sim-probability.html#cb141-5" tabindex="-1"></a>  flips <span class="ot">=</span> <span class="fu">sample</span>(coin,<span class="at">size=</span><span class="dv">5</span>,<span class="at">replace=</span><span class="cn">TRUE</span>)</span>
+<span id="cb141-6"><a href="R-sim-probability.html#cb141-6" tabindex="-1"></a>  heads[i] <span class="ot">=</span> <span class="fu">sum</span>(flips <span class="sc">==</span> <span class="st">&quot;H&quot;</span>)</span>
+<span id="cb141-7"><a href="R-sim-probability.html#cb141-7" tabindex="-1"></a>}</span>
+<span id="cb141-8"><a href="R-sim-probability.html#cb141-8" tabindex="-1"></a><span class="fu">table</span>(heads)</span></code></pre></div>
+<pre><code>## heads
+##    0    1    2    3    4    5 
+##  306 1595 3148 3069 1578  304</code></pre>
+<p>Conclusion: It appears we should expect to flip exactly 1 heads in 5 tries about 15.9% of the time.</p>
+<p>By our counting tools, we can calculate the actual probability of getting exactly one heads in 5 flips as follows:</p>
+<p><span class="math display">\[5\cdot \left(\frac{1}{2}\right)^5 = 0.15625.\]</span>
+<!-- exact answer:  dbinom(1,5,1/2) --></p>
+</div>
+<div id="marbles-urn-R" class="section level2 hasAnchor" number="15.4">
+<h2><span class="header-section-number">B.4</span> Marbles from an urn<a href="R-sim-probability.html#marbles-urn-R" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<blockquote>
+<p>An urn contains 100 orange and 200 green marbles. If you draw 8 marbles from the urn at random (without replacement), how likely is it that more than 5 of them are orange?</p>
+</blockquote>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="R-sim-probability.html#cb143-1" tabindex="-1"></a>urn <span class="ot">=</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;O&quot;</span>,<span class="st">&quot;G&quot;</span>),<span class="fu">c</span>(<span class="dv">100</span>,<span class="dv">200</span>))</span>
+<span id="cb143-2"><a href="R-sim-probability.html#cb143-2" tabindex="-1"></a>trials <span class="ot">=</span> <span class="dv">10000</span></span>
+<span id="cb143-3"><a href="R-sim-probability.html#cb143-3" tabindex="-1"></a>results <span class="ot">=</span> <span class="fu">c</span>()</span>
+<span id="cb143-4"><a href="R-sim-probability.html#cb143-4" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>trials){</span>
+<span id="cb143-5"><a href="R-sim-probability.html#cb143-5" tabindex="-1"></a>  grab <span class="ot">=</span> <span class="fu">sample</span>(urn,<span class="dv">8</span>,<span class="at">replace=</span><span class="cn">FALSE</span>)</span>
+<span id="cb143-6"><a href="R-sim-probability.html#cb143-6" tabindex="-1"></a>  oranges <span class="ot">=</span> <span class="fu">sum</span>(grab<span class="sc">==</span><span class="st">&quot;O&quot;</span>)</span>
+<span id="cb143-7"><a href="R-sim-probability.html#cb143-7" tabindex="-1"></a>  results[i] <span class="ot">=</span> oranges</span>
+<span id="cb143-8"><a href="R-sim-probability.html#cb143-8" tabindex="-1"></a>}</span>
+<span id="cb143-9"><a href="R-sim-probability.html#cb143-9" tabindex="-1"></a><span class="fu">table</span>(results)</span></code></pre></div>
+<pre><code>## results
+##    0    1    2    3    4    5    6    7    8 
+##  384 1510 2733 2705 1765  704  174   22    3</code></pre>
+<p>We can enter <code>sum(results &gt; 5)</code> to see how often we grabbed more than 5 orange marbles in our sample of size 8, and <code>sum(results &gt; 5)/trials</code> is a good estimate of the likelihood of this happening.</p>
+<p>Conclusion: It appears we should expect the more than 5 orange marbles in our sample of 8 about 2% of the time:</p>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="R-sim-probability.html#cb145-1" tabindex="-1"></a><span class="fu">sum</span>(results <span class="sc">&gt;</span> <span class="dv">5</span>)<span class="sc">/</span>trials</span></code></pre></div>
+<pre><code>## [1] 0.0199</code></pre>
+<p>This question is a classic “good potatoes/bad potatoes” problem, and by our counting techniques, we know the probability is <span class="math display">\[\frac{\binom{100}{6}\cdot\binom{200}{2}}{\binom{300}{8}}+
+\frac{\binom{100}{7}\cdot\binom{200}{1}}{\binom{300}{8}}+
+\frac{\binom{100}{8}\cdot\binom{200}{0}}{\binom{300}{8}},\]</span>
+which we can evaluate in R as a check:</p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="R-sim-probability.html#cb147-1" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">choose</span>(<span class="dv">100</span>,<span class="dv">6</span><span class="sc">:</span><span class="dv">8</span>)<span class="sc">*</span><span class="fu">choose</span>(<span class="dv">200</span>,<span class="dv">8-6</span><span class="sc">:</span><span class="dv">8</span>)<span class="sc">/</span><span class="fu">choose</span>(<span class="dv">300</span>,<span class="dv">8</span>))</span></code></pre></div>
+<pre><code>## [1] 0.01830405</code></pre>
+<p><em>Note</em>: After studying common named discrete probability distributions, we will see that R has a nice built-in command for doing these sorts of computations.</p>
+</div>
+<div id="partition-set-R" class="section level2 hasAnchor" number="15.5">
+<h2><span class="header-section-number">B.5</span> Splitting a set into multiple subsets<a href="R-sim-probability.html#partition-set-R" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<blockquote>
+<p>A class has 12 people: 6 juniors, 4 sophomores, and 2 first-years. The class is randomly divided into 3 subgroups of size 5, 4, and 3. What is the probability that the 2 first-years are in the same subgroup?</p>
+</blockquote>
+<p><strong>One approach</strong>:</p>
+<ol style="list-style-type: decimal">
+<li><p>Build the class: <code>class = rep(c("J","S","F"),c(6,4,2))</code></p></li>
+<li><p>Partition the members into three subgroups of size 5, 4, and 3. Our approach: shuffle the <code>class</code> vector (find a random permutation), take the first five in this permutation for subgroup 1, the next 4 for subgroup 2, and the last 3 for subgroup 3.</p></li>
+</ol>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="R-sim-probability.html#cb149-1" tabindex="-1"></a>shuffle <span class="ot">=</span> <span class="fu">sample</span>(class)</span>
+<span id="cb149-2"><a href="R-sim-probability.html#cb149-2" tabindex="-1"></a>sub1 <span class="ot">=</span> shuffle[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span>
+<span id="cb149-3"><a href="R-sim-probability.html#cb149-3" tabindex="-1"></a>sub2 <span class="ot">=</span> shuffle[<span class="dv">6</span><span class="sc">:</span><span class="dv">9</span>]</span>
+<span id="cb149-4"><a href="R-sim-probability.html#cb149-4" tabindex="-1"></a>sub3 <span class="ot">=</span> shuffle[<span class="dv">10</span><span class="sc">:</span><span class="dv">12</span>]</span>
+<span id="cb149-5"><a href="R-sim-probability.html#cb149-5" tabindex="-1"></a><span class="co"># the code below displays the subgroups as a check</span></span>
+<span id="cb149-6"><a href="R-sim-probability.html#cb149-6" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Subgroup 1: &quot;</span>, sub1, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>,</span>
+<span id="cb149-7"><a href="R-sim-probability.html#cb149-7" tabindex="-1"></a>    <span class="st">&quot;Subgroup 2: &quot;</span>, sub2, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>,</span>
+<span id="cb149-8"><a href="R-sim-probability.html#cb149-8" tabindex="-1"></a>    <span class="st">&quot;Subgroup 3: &quot;</span>, sub3, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<pre><code>## Subgroup 1: JFJJJ
+## Subgroup 2: FJSS
+## Subgroup 3: SSJ</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Count the number of first-years in each subgroup, and record these numbers as a vector of length 3:</li>
+</ol>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="R-sim-probability.html#cb151-1" tabindex="-1"></a>count <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">sum</span>(sub1<span class="sc">==</span><span class="st">&quot;F&quot;</span>),</span>
+<span id="cb151-2"><a href="R-sim-probability.html#cb151-2" tabindex="-1"></a>            <span class="fu">sum</span>(sub2<span class="sc">==</span><span class="st">&quot;F&quot;</span>),</span>
+<span id="cb151-3"><a href="R-sim-probability.html#cb151-3" tabindex="-1"></a>            <span class="fu">sum</span>(sub3<span class="sc">==</span><span class="st">&quot;F&quot;</span>))</span>
+<span id="cb151-4"><a href="R-sim-probability.html#cb151-4" tabindex="-1"></a><span class="fu">print</span>(count)</span></code></pre></div>
+<pre><code>## [1] 1 1 0</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>The two first-years are in the same subgroup if and only if <code>count</code> contains a 2. The following code uses an <code>ifelse()</code> command to record 1 if both first-years are in the same group, and 0 if not.</li>
+</ol>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="R-sim-probability.html#cb153-1" tabindex="-1"></a><span class="fu">ifelse</span>(<span class="dv">2</span> <span class="sc">%in%</span> count,<span class="dv">1</span>,<span class="dv">0</span>)</span></code></pre></div>
+<pre><code>## [1] 0</code></pre>
+<div id="final-code-1" class="section level3 hasAnchor" number="15.5.1">
+<h3><span class="header-section-number">B.5.1</span> Final Code<a href="R-sim-probability.html#final-code-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We put it all together now. In particular, we repeat the following process for 10000 trials: Partition the class into the three subgroups, count the “F”s in each subgroup, record 1 if both “F”s find themselves in the same group, and 0 otherwise. We store these 1s and 0s in the vector <code>results</code>.</p>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="R-sim-probability.html#cb155-1" tabindex="-1"></a>class <span class="ot">=</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;J&quot;</span>,<span class="st">&quot;S&quot;</span>,<span class="st">&quot;F&quot;</span>),<span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">4</span>,<span class="dv">2</span>))</span>
+<span id="cb155-2"><a href="R-sim-probability.html#cb155-2" tabindex="-1"></a></span>
+<span id="cb155-3"><a href="R-sim-probability.html#cb155-3" tabindex="-1"></a>trials <span class="ot">=</span> <span class="dv">10000</span></span>
+<span id="cb155-4"><a href="R-sim-probability.html#cb155-4" tabindex="-1"></a>results <span class="ot">=</span> <span class="fu">c</span>()</span>
+<span id="cb155-5"><a href="R-sim-probability.html#cb155-5" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>trials){</span>
+<span id="cb155-6"><a href="R-sim-probability.html#cb155-6" tabindex="-1"></a>  shuffle <span class="ot">=</span> <span class="fu">sample</span>(class) <span class="co">#randomly shuffles the 12 people.</span></span>
+<span id="cb155-7"><a href="R-sim-probability.html#cb155-7" tabindex="-1"></a>  sub1 <span class="ot">=</span> shuffle[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]  <span class="co"># first 5 in the random shuffling go to subgroup 1</span></span>
+<span id="cb155-8"><a href="R-sim-probability.html#cb155-8" tabindex="-1"></a>  sub2 <span class="ot">=</span> shuffle[<span class="dv">6</span><span class="sc">:</span><span class="dv">9</span>] <span class="co"># next 4 to subgroup 2</span></span>
+<span id="cb155-9"><a href="R-sim-probability.html#cb155-9" tabindex="-1"></a>  sub3 <span class="ot">=</span> shuffle[<span class="dv">10</span><span class="sc">:</span><span class="dv">12</span>] <span class="co"># last 3 to subgroup 3</span></span>
+<span id="cb155-10"><a href="R-sim-probability.html#cb155-10" tabindex="-1"></a>  count <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">sum</span>(sub1<span class="sc">==</span><span class="st">&quot;F&quot;</span>),<span class="fu">sum</span>(sub2<span class="sc">==</span><span class="st">&quot;F&quot;</span>),<span class="fu">sum</span>(sub3<span class="sc">==</span><span class="st">&quot;F&quot;</span>))</span>
+<span id="cb155-11"><a href="R-sim-probability.html#cb155-11" tabindex="-1"></a>  <span class="co">#are both &quot;I&quot;s in the same subgroup? We record 1 if &quot;yes&quot;, and 0 if &quot;no&quot;</span></span>
+<span id="cb155-12"><a href="R-sim-probability.html#cb155-12" tabindex="-1"></a>  results[i] <span class="ot">=</span> <span class="fu">ifelse</span>(<span class="dv">2</span> <span class="sc">%in%</span> count,<span class="dv">1</span>,<span class="dv">0</span>)</span>
+<span id="cb155-13"><a href="R-sim-probability.html#cb155-13" tabindex="-1"></a>}</span>
+<span id="cb155-14"><a href="R-sim-probability.html#cb155-14" tabindex="-1"></a><span class="fu">table</span>(results)</span></code></pre></div>
+<pre><code>## results
+##    0    1 
+## 7100 2900</code></pre>
+<p>Based on this simulation, we estimate the probability that both first-years end up in the same subgroup as</p>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="R-sim-probability.html#cb157-1" tabindex="-1"></a><span class="fu">sum</span>(results<span class="sc">==</span><span class="dv">1</span>)<span class="sc">/</span>trials</span></code></pre></div>
+<pre><code>## [1] 0.29</code></pre>
+<p>Using our counting tools to calculate the probability:</p>
+<p><span class="math display">\[\frac{\binom{10}{3~4~3}+\binom{10}{5~2~3}+\binom{10}{5~4~1}}{\binom{12}{5~4~3}}\]</span>
+which evaluates to 7980/27720 <span class="math inline">\(\approx 0.288\)</span>:</p>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="R-sim-probability.html#cb159-1" tabindex="-1"></a>(<span class="fu">factorial</span>(<span class="dv">10</span>)<span class="sc">/</span>(<span class="dv">6</span><span class="sc">*</span><span class="dv">24</span><span class="sc">*</span><span class="dv">6</span>)<span class="sc">+</span><span class="fu">factorial</span>(<span class="dv">10</span>)<span class="sc">/</span>(<span class="dv">120</span><span class="sc">*</span><span class="dv">2</span><span class="sc">*</span><span class="dv">6</span>)<span class="sc">+</span><span class="fu">factorial</span>(<span class="dv">10</span>)<span class="sc">/</span>(<span class="dv">120</span><span class="sc">*</span><span class="dv">24</span><span class="sc">*</span><span class="dv">1</span>))<span class="sc">/</span>(<span class="fu">factorial</span>(<span class="dv">12</span>)<span class="sc">/</span>(<span class="dv">120</span><span class="sc">*</span><span class="dv">24</span><span class="sc">*</span><span class="dv">6</span>))</span></code></pre></div>
+<pre><code>## [1] 0.2878788</code></pre>
+</div>
+</div>
+<div id="license-plates-R" class="section level2 hasAnchor" number="15.6">
+<h2><span class="header-section-number">B.6</span> Oregon License Plates<a href="R-sim-probability.html#license-plates-R" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<blockquote>
+<p>Classic Oregon license plates consist of 3 letters (A-Z) followed by 3 numbers (0-9). Find the probability that a randomly selected plate has two 8s.</p>
+</blockquote>
+<p><strong>Scratch Work</strong></p>
+<ol style="list-style-type: decimal">
+<li>Build a random plate. We want three random numbers (repeats ok), followed by three random letters (repeats ok). This means we sample from 0-9 with replacement 3 times, then sample from A-Z with replacement 3 times. R comes with some built-in data sets and vectors, and one of them is <code>LETTERS</code>!</li>
+</ol>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="R-sim-probability.html#cb161-1" tabindex="-1"></a>LETTERS</span></code></pre></div>
+<pre><code>##  [1] &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot; &quot;E&quot; &quot;F&quot; &quot;G&quot; &quot;H&quot; &quot;I&quot; &quot;J&quot; &quot;K&quot; &quot;L&quot; &quot;M&quot; &quot;N&quot; &quot;O&quot; &quot;P&quot; &quot;Q&quot; &quot;R&quot; &quot;S&quot;
+## [20] &quot;T&quot; &quot;U&quot; &quot;V&quot; &quot;W&quot; &quot;X&quot; &quot;Y&quot; &quot;Z&quot;</code></pre>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="R-sim-probability.html#cb163-1" tabindex="-1"></a>plate <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">sample</span>(LETTERS,<span class="dv">3</span>,<span class="at">replace=</span><span class="cn">TRUE</span>),</span>
+<span id="cb163-2"><a href="R-sim-probability.html#cb163-2" tabindex="-1"></a>          <span class="fu">sample</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">9</span>,<span class="dv">3</span>,<span class="at">replace=</span><span class="cn">TRUE</span>))</span>
+<span id="cb163-3"><a href="R-sim-probability.html#cb163-3" tabindex="-1"></a>plate</span></code></pre></div>
+<pre><code>## [1] &quot;I&quot; &quot;W&quot; &quot;D&quot; &quot;5&quot; &quot;1&quot; &quot;3&quot;</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>We can record the number of “8”s in the plate</li>
+</ol>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="R-sim-probability.html#cb165-1" tabindex="-1"></a><span class="fu">sum</span>(plate<span class="sc">==</span><span class="st">&quot;8&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] 0</code></pre>
+<div id="final-code-2" class="section level3 hasAnchor" number="15.6.1">
+<h3><span class="header-section-number">B.6.1</span> Final Code<a href="R-sim-probability.html#final-code-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="R-sim-probability.html#cb167-1" tabindex="-1"></a>trials <span class="ot">=</span> <span class="dv">10000</span></span>
+<span id="cb167-2"><a href="R-sim-probability.html#cb167-2" tabindex="-1"></a>results <span class="ot">=</span> <span class="fu">c</span>()</span>
+<span id="cb167-3"><a href="R-sim-probability.html#cb167-3" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>trials){</span>
+<span id="cb167-4"><a href="R-sim-probability.html#cb167-4" tabindex="-1"></a>  plate <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">sample</span>(LETTERS,<span class="dv">3</span>,<span class="at">replace=</span><span class="cn">TRUE</span>),</span>
+<span id="cb167-5"><a href="R-sim-probability.html#cb167-5" tabindex="-1"></a>            <span class="fu">sample</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">9</span>,<span class="dv">3</span>,<span class="at">replace=</span><span class="cn">TRUE</span>)) <span class="co">#build a plate</span></span>
+<span id="cb167-6"><a href="R-sim-probability.html#cb167-6" tabindex="-1"></a>  eights <span class="ot">=</span> <span class="fu">sum</span>(plate<span class="sc">==</span><span class="st">&quot;8&quot;</span>) <span class="co"># count the 8s</span></span>
+<span id="cb167-7"><a href="R-sim-probability.html#cb167-7" tabindex="-1"></a>  results <span class="ot">=</span> <span class="fu">c</span>(results,eights) <span class="co"># update the results vector</span></span>
+<span id="cb167-8"><a href="R-sim-probability.html#cb167-8" tabindex="-1"></a>}</span>
+<span id="cb167-9"><a href="R-sim-probability.html#cb167-9" tabindex="-1"></a><span class="fu">table</span>(results)</span></code></pre></div>
+<pre><code>## results
+##    0    1    2    3 
+## 7205 2523  264    8</code></pre>
+<p>Based on this simulation, we estimate the probability of having a plate with exactly 2 “8”s</p>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="R-sim-probability.html#cb169-1" tabindex="-1"></a><span class="fu">sum</span>(results<span class="sc">==</span><span class="st">&quot;2&quot;</span>)<span class="sc">/</span>trials</span></code></pre></div>
+<pre><code>## [1] 0.0264</code></pre>
+<p>Using our counting tools to calculate the probability:</p>
+<p><span class="math display">\[\frac{26\cdot 26\cdot 26 \cdot \binom{3}{2} \cdot 1 \cdot 1 \cdot 9}{26^3\cdot 10^3}= \frac{27}{1000} = 0.027.\]</span></p>
+</div>
+</div>
+<div id="pollsters-R" class="section level2 hasAnchor" number="15.7">
+<h2><span class="header-section-number">B.7</span> Pollsters<a href="R-sim-probability.html#pollsters-R" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<blockquote>
+<p>In an upcoming election for mayor of a large city, a pollster plans to predict the winner of the popular vote by taking a random sample of 1000 voters and declaring that the winner will be the one obtaining the most votes in his sample. Suppose that 48 percent of the voters plan to vote for the Republican candidate and 52 percent plan to vote for the Democratic candidate. To get some idea of how reasonable the pollster’s plan is, write a program to make this prediction by simulation. Repeat the simulation 1000 times and see how many times the pollster’s prediction would come true.</p>
+</blockquote>
+<p>First, let’s create and summarize a single poll of 1000 people from a population in which 52 percent are “D”, and 48 percent are “R”.</p>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="R-sim-probability.html#cb171-1" tabindex="-1"></a>one_poll <span class="ot">=</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;D&quot;</span>,<span class="st">&quot;R&quot;</span>),<span class="dv">1000</span>,<span class="at">replace=</span><span class="cn">TRUE</span>,<span class="at">prob=</span><span class="fu">c</span>(.<span class="dv">52</span>,.<span class="dv">48</span>))</span>
+<span id="cb171-2"><a href="R-sim-probability.html#cb171-2" tabindex="-1"></a><span class="fu">table</span>(one_poll)</span></code></pre></div>
+<pre><code>## one_poll
+##   D   R 
+## 509 491</code></pre>
+<p>Of course, the goal is to use the poll to predict the winner of the election.
+We use the <code>sum()</code> command to count how many elements in <code>one_poll</code> equal “D” (use those double equal signs), and the <code>ifelse()</code> command to record the predicted winner.</p>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="R-sim-probability.html#cb173-1" tabindex="-1"></a><span class="fu">ifelse</span>(<span class="fu">sum</span>(one_poll<span class="sc">==</span><span class="st">&quot;D&quot;</span>) <span class="sc">&gt;</span> <span class="dv">500</span>,<span class="st">&quot;Dem wins&quot;</span>,<span class="st">&quot;Tie or Rep wins&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;Dem wins&quot;</code></pre>
+<p>Now, our goal is to repeat this sampling and prediction procedure 10000 times, and keep track of the predicted winner in each trial.</p>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="R-sim-probability.html#cb175-1" tabindex="-1"></a>dem <span class="ot">=</span> .<span class="dv">52</span> <span class="co">#proportion voting &quot;D&quot;</span></span>
+<span id="cb175-2"><a href="R-sim-probability.html#cb175-2" tabindex="-1"></a>rep <span class="ot">=</span> <span class="dv">1</span> <span class="sc">-</span> dem <span class="co"># proportion voting &quot;R&quot;</span></span>
+<span id="cb175-3"><a href="R-sim-probability.html#cb175-3" tabindex="-1"></a>poll_size <span class="ot">=</span> <span class="dv">1000</span> <span class="co"># poll sample size</span></span>
+<span id="cb175-4"><a href="R-sim-probability.html#cb175-4" tabindex="-1"></a>trials <span class="ot">=</span> <span class="dv">10000</span></span>
+<span id="cb175-5"><a href="R-sim-probability.html#cb175-5" tabindex="-1"></a>results <span class="ot">=</span> <span class="fu">c</span>()</span>
+<span id="cb175-6"><a href="R-sim-probability.html#cb175-6" tabindex="-1"></a></span>
+<span id="cb175-7"><a href="R-sim-probability.html#cb175-7" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>trials){</span>
+<span id="cb175-8"><a href="R-sim-probability.html#cb175-8" tabindex="-1"></a>  poll <span class="ot">=</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;D&quot;</span>,<span class="st">&quot;R&quot;</span>),</span>
+<span id="cb175-9"><a href="R-sim-probability.html#cb175-9" tabindex="-1"></a>                <span class="at">size =</span> poll_size,</span>
+<span id="cb175-10"><a href="R-sim-probability.html#cb175-10" tabindex="-1"></a>                <span class="at">replace =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb175-11"><a href="R-sim-probability.html#cb175-11" tabindex="-1"></a>                <span class="at">prob =</span> <span class="fu">c</span>(dem,rep))</span>
+<span id="cb175-12"><a href="R-sim-probability.html#cb175-12" tabindex="-1"></a>  results<span class="ot">=</span><span class="fu">c</span>(results,</span>
+<span id="cb175-13"><a href="R-sim-probability.html#cb175-13" tabindex="-1"></a>            <span class="fu">ifelse</span>(<span class="fu">sum</span>(poll <span class="sc">==</span> <span class="st">&quot;D&quot;</span>) <span class="sc">&gt;</span> poll_size<span class="sc">/</span><span class="dv">2</span>,<span class="st">&quot;D&quot;</span>,<span class="st">&quot;Tie or R&quot;</span>))</span>
+<span id="cb175-14"><a href="R-sim-probability.html#cb175-14" tabindex="-1"></a>}</span>
+<span id="cb175-15"><a href="R-sim-probability.html#cb175-15" tabindex="-1"></a><span class="fu">table</span>(results)</span></code></pre></div>
+<pre><code>## results
+##        D Tie or R 
+##     8864     1136</code></pre>
+<p>This table gives us a sense of the likelihood that the pollsters plan will result in an accurate prediction of which candidate will win the election. Based on our simulation, that likelihood is about 0.886.</p>
+</div>
+<div id="same-birthday-R" class="section level2 hasAnchor" number="15.8">
+<h2><span class="header-section-number">B.8</span> Matching Birthdays<a href="R-sim-probability.html#same-birthday-R" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<blockquote>
+<p>Suppose you ask <span class="math inline">\(n\)</span> random people their birthday (month and day, disregarding year). What is the probability that at least one of them share your birthday? What is the probability that at least two of them share the same birthday? (Assume 365 days in a year - ignore leap days.)</p>
+</blockquote>
+<p>We tackle the first question by first computing the probability that none of the <span class="math inline">\(n\)</span> people share my birthday. The probability that a random person does not have my birthday is <span class="math inline">\(\frac{364}{365}\)</span>, and the probability that <span class="math inline">\(n\)</span> random people all do not have my birthday is <span class="math inline">\(\left(\frac{364}{365}\right)^n\)</span>.</p>
+<p>The <em>complement</em> of this event is that at least one of the <span class="math inline">\(n\)</span> people has my birthday, and so the probability of this will be <span class="math inline">\(1- \left(\frac{364}{365}\right)^n\)</span>.</p>
+<p>We can write a function in R to compute this probability for various values of <span class="math inline">\(n\)</span>.</p>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="R-sim-probability.html#cb177-1" tabindex="-1"></a>prob_my_bday <span class="ot">&lt;-</span> <span class="cf">function</span>(n){</span>
+<span id="cb177-2"><a href="R-sim-probability.html#cb177-2" tabindex="-1"></a>  <span class="fu">return</span>(<span class="dv">1</span><span class="sc">-</span>(<span class="dv">364</span><span class="sc">/</span><span class="dv">365</span>)<span class="sc">^</span>n)</span>
+<span id="cb177-3"><a href="R-sim-probability.html#cb177-3" tabindex="-1"></a>}</span></code></pre></div>
+<p>For instance, in a group of 15 people here’s the probability that someone shares my birthday:</p>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="R-sim-probability.html#cb178-1" tabindex="-1"></a><span class="fu">prob_my_bday</span>(<span class="dv">15</span>)</span></code></pre></div>
+<pre><code>## [1] 0.04031703</code></pre>
+<p>Not too likely!</p>
+<p>For the second question, we begin by calculating the probability that no one in a group of <span class="math inline">\(n\)</span> people shares the same birthday as anyone else.</p>
+<p>So, we need all <span class="math inline">\(n\)</span> people to have a different birthday. This probability is found in essentially the same way that you answered #6 in Homework 2, and it equals
+<span class="math display">\[\frac{P^n_r}{365^n}=\frac{365\cdot 364 \cdot \cdots \cdot (365-n+1)}{365^n}.\]</span>
+So, the probability that at least two people share the same birthday, which is the complement of “no one shares the same birthday” is <span class="math display">\[1 - \frac{365\cdot 364 \cdot \cdots \cdot (365-n+1)}{365^n}.\]</span></p>
+<p>For instance, in a group of 6 people, the probability that at least two people share a birthday is <span class="math display">\[1-1 \cdot \frac{364}{365}\cdot\frac{363}{365}\cdot \frac{362}{365}\cdot\frac{361}{365}\cdot\frac{360}{365}\approx0.04.\]</span></p>
+<p>Here’s a function that will compute this probability for any group size <span class="math inline">\(n\)</span>.</p>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="R-sim-probability.html#cb180-1" tabindex="-1"></a>prob_shared_bday <span class="ot">&lt;-</span> <span class="cf">function</span>(n){</span>
+<span id="cb180-2"><a href="R-sim-probability.html#cb180-2" tabindex="-1"></a>  p<span class="ot">=</span><span class="dv">1</span></span>
+<span id="cb180-3"><a href="R-sim-probability.html#cb180-3" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n){</span>
+<span id="cb180-4"><a href="R-sim-probability.html#cb180-4" tabindex="-1"></a>    p<span class="ot">=</span>p<span class="sc">*</span>(<span class="dv">365</span><span class="sc">-</span>i<span class="sc">+</span><span class="dv">1</span>)<span class="sc">/</span><span class="dv">365</span></span>
+<span id="cb180-5"><a href="R-sim-probability.html#cb180-5" tabindex="-1"></a>    }</span>
+<span id="cb180-6"><a href="R-sim-probability.html#cb180-6" tabindex="-1"></a>  <span class="fu">return</span>(<span class="dv">1</span><span class="sc">-</span>p)</span>
+<span id="cb180-7"><a href="R-sim-probability.html#cb180-7" tabindex="-1"></a>}</span></code></pre></div>
+<p>For instance, in a group of 15 people here’s the probability that at least two people share a birthday</p>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="R-sim-probability.html#cb181-1" tabindex="-1"></a><span class="fu">prob_shared_bday</span>(<span class="dv">15</span>)</span></code></pre></div>
+<pre><code>## [1] 0.2529013</code></pre>
+<p>Whoa! A 25 percent chance! In fact, it turns out we only need 23 people gathered in a room to have a 50 percent chance that two of them share a birthday! Also, with a group of 59 people we have a 99 percent chance of a birthday match: <code>prob_shared_bday(59)</code>=0.993.</p>
+<p>Here’s a graph of these two probabilities for values of <span class="math inline">\(1 \leq n \leq 100\)</span>.</p>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="R-sim-probability.html#cb183-1" tabindex="-1"></a>sh<span class="ot">=</span><span class="fu">c</span>()</span>
+<span id="cb183-2"><a href="R-sim-probability.html#cb183-2" tabindex="-1"></a>my<span class="ot">=</span><span class="fu">c</span>()</span>
+<span id="cb183-3"><a href="R-sim-probability.html#cb183-3" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>){</span>
+<span id="cb183-4"><a href="R-sim-probability.html#cb183-4" tabindex="-1"></a>  sh<span class="ot">=</span><span class="fu">c</span>(sh,<span class="fu">prob_shared_bday</span>(i))</span>
+<span id="cb183-5"><a href="R-sim-probability.html#cb183-5" tabindex="-1"></a>  my<span class="ot">=</span><span class="fu">c</span>(my,<span class="fu">prob_my_bday</span>(i))</span>
+<span id="cb183-6"><a href="R-sim-probability.html#cb183-6" tabindex="-1"></a>}</span>
+<span id="cb183-7"><a href="R-sim-probability.html#cb183-7" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">group_size=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>,<span class="at">my_bday=</span>my,<span class="at">shared_bday=</span>sh)</span>
+<span id="cb183-8"><a href="R-sim-probability.html#cb183-8" tabindex="-1"></a>df_long <span class="ot">&lt;-</span> df<span class="sc">%&gt;%</span> <span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="fu">c</span>(my_bday,shared_bday), <span class="at">names_to =</span> <span class="st">&quot;question&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;probability&quot;</span>)</span>
+<span id="cb183-9"><a href="R-sim-probability.html#cb183-9" tabindex="-1"></a></span>
+<span id="cb183-10"><a href="R-sim-probability.html#cb183-10" tabindex="-1"></a><span class="fu">ggplot</span>(df_long)<span class="sc">+</span></span>
+<span id="cb183-11"><a href="R-sim-probability.html#cb183-11" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>group_size,<span class="at">y=</span>probability,<span class="at">col=</span>question))</span></code></pre></div>
+<p><img src="math340-notes_files/figure-html/unnamed-chunk-128-1.png" width="672" /></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="sampling-in-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="R-discreteRV.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/mphitchman/math340/edit/main/source/R02-sim-probability.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["math340-notes.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

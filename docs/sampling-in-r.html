@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>A Sampling in R | MATH 340 Notes</title>
+  <meta name="description" content="A Sampling in R | MATH 340 Notes" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="A Sampling in R | MATH 340 Notes" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="A Sampling in R | MATH 340 Notes" />
+  
+  
+  
+
+<meta name="author" content="Mike Hitchman" />
+
+
+<meta name="date" content="2024-07-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="estimation.html"/>
+<link rel="next" href="R-sim-probability.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Math 340 Notes</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="sets.html"><a href="sets.html"><i class="fa fa-check"></i><b>2</b> Sets</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="sets.html"><a href="sets.html#algebra-of-sets"><i class="fa fa-check"></i><b>2.1</b> Algebra of Sets</a></li>
+<li class="chapter" data-level="2.2" data-path="sets.html"><a href="sets.html#size-of-sets"><i class="fa fa-check"></i><b>2.2</b> Set sizes</a></li>
+<li class="chapter" data-level="2.3" data-path="sets.html"><a href="sets.html#sets-in-r"><i class="fa fa-check"></i><b>2.3</b> Sets in R</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="discrete-probability-distributions.html"><a href="discrete-probability-distributions.html"><i class="fa fa-check"></i><b>3</b> Discrete Probability Distributions</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="discrete-probability-distributions.html"><a href="discrete-probability-distributions.html#sample-space"><i class="fa fa-check"></i><b>3.1</b> Sample Space</a></li>
+<li class="chapter" data-level="3.2" data-path="discrete-probability-distributions.html"><a href="discrete-probability-distributions.html#discrete-random-variables"><i class="fa fa-check"></i><b>3.2</b> Discrete Random Variables</a></li>
+<li class="chapter" data-level="3.3" data-path="discrete-probability-distributions.html"><a href="discrete-probability-distributions.html#calculating-probabilities"><i class="fa fa-check"></i><b>3.3</b> Calculating Probabilities</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="discrete-probability-distributions.html"><a href="discrete-probability-distributions.html#sample-point-method"><i class="fa fa-check"></i><b>3.3.1</b> Sample Point Method</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="counting.html"><a href="counting.html"><i class="fa fa-check"></i><b>4</b> Counting Techniques</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="counting.html"><a href="counting.html#multipiclation-principle"><i class="fa fa-check"></i><b>4.1</b> Multipiclation Principle</a></li>
+<li class="chapter" data-level="4.2" data-path="counting.html"><a href="counting.html#permutations"><i class="fa fa-check"></i><b>4.2</b> Permutations</a></li>
+<li class="chapter" data-level="4.3" data-path="counting.html"><a href="counting.html#combinations"><i class="fa fa-check"></i><b>4.3</b> Combinations</a></li>
+<li class="chapter" data-level="4.4" data-path="counting.html"><a href="counting.html#multinomial-coefficients"><i class="fa fa-check"></i><b>4.4</b> Multinomial Coefficients</a></li>
+<li class="chapter" data-level="4.5" data-path="counting.html"><a href="counting.html#balls-and-bins"><i class="fa fa-check"></i><b>4.5</b> Balls and Bins</a></li>
+<li class="chapter" data-level="4.6" data-path="counting.html"><a href="counting.html#prob-with-counting-tools"><i class="fa fa-check"></i><b>4.6</b> Calculating More Probabilities</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="probability-theory.html"><a href="probability-theory.html"><i class="fa fa-check"></i><b>5</b> Probability Theory</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="probability-theory.html"><a href="probability-theory.html#conditional-probability-and-independence"><i class="fa fa-check"></i><b>5.1</b> Conditional Probability and Independence</a></li>
+<li class="chapter" data-level="5.2" data-path="probability-theory.html"><a href="probability-theory.html#two-laws-of-probability"><i class="fa fa-check"></i><b>5.2</b> Two Laws of Probability</a></li>
+<li class="chapter" data-level="5.3" data-path="probability-theory.html"><a href="probability-theory.html#event-composition-method"><i class="fa fa-check"></i><b>5.3</b> Event-Composition Method</a></li>
+<li class="chapter" data-level="5.4" data-path="probability-theory.html"><a href="probability-theory.html#bayes-rule"><i class="fa fa-check"></i><b>5.4</b> Bayes’ Rule</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="discrete-random-variables-1.html"><a href="discrete-random-variables-1.html"><i class="fa fa-check"></i><b>6</b> Discrete Random Variables</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="discrete-random-variables-1.html"><a href="discrete-random-variables-1.html#expected-value"><i class="fa fa-check"></i><b>6.1</b> Expected Value</a></li>
+<li class="chapter" data-level="6.2" data-path="discrete-random-variables-1.html"><a href="discrete-random-variables-1.html#variance"><i class="fa fa-check"></i><b>6.2</b> Variance</a></li>
+<li class="chapter" data-level="6.3" data-path="discrete-random-variables-1.html"><a href="discrete-random-variables-1.html#properties-of-expected-value"><i class="fa fa-check"></i><b>6.3</b> Properties of Expected Value</a></li>
+<li class="chapter" data-level="6.4" data-path="discrete-random-variables-1.html"><a href="discrete-random-variables-1.html#tchebysheffs-theorem"><i class="fa fa-check"></i><b>6.4</b> Tchebysheff’s Theorem</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html"><i class="fa fa-check"></i><b>7</b> Important Discrete Random Variables</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html#binomial"><i class="fa fa-check"></i><b>7.1</b> Binomial Distributions</a></li>
+<li class="chapter" data-level="7.2" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html#geometric"><i class="fa fa-check"></i><b>7.2</b> Geometric Distributions</a></li>
+<li class="chapter" data-level="7.3" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html#negative-binomial"><i class="fa fa-check"></i><b>7.3</b> Negative Binomial Distribution</a></li>
+<li class="chapter" data-level="7.4" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html#hypergometric"><i class="fa fa-check"></i><b>7.4</b> Hypergeometric Distribution</a></li>
+<li class="chapter" data-level="7.5" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html#poisson"><i class="fa fa-check"></i><b>7.5</b> Poisson Distribution</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html#poisson-process"><i class="fa fa-check"></i><b>7.5.1</b> Poisson Process</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="moments-and-moment-generating-functions.html"><a href="moments-and-moment-generating-functions.html"><i class="fa fa-check"></i><b>8</b> Moments and Moment-Generating Functions</a></li>
+<li class="chapter" data-level="9" data-path="continuous-rv.html"><a href="continuous-rv.html"><i class="fa fa-check"></i><b>9</b> Continuous Random Variables</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="continuous-rv.html"><a href="continuous-rv.html#distribution-functions"><i class="fa fa-check"></i><b>9.1</b> Distribution Functions</a></li>
+<li class="chapter" data-level="9.2" data-path="continuous-rv.html"><a href="continuous-rv.html#expected-value-for-continuous-random-variables"><i class="fa fa-check"></i><b>9.2</b> Expected Value for Continuous Random Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html"><i class="fa fa-check"></i><b>10</b> Important Continuous Random Variables</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#uniform-continuous"><i class="fa fa-check"></i><b>10.1</b> Uniform Distribution</a></li>
+<li class="chapter" data-level="10.2" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#exponential-distribution"><i class="fa fa-check"></i><b>10.2</b> Exponential Distribution</a></li>
+<li class="chapter" data-level="10.3" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#normal"><i class="fa fa-check"></i><b>10.3</b> Normal Distribution</a></li>
+<li class="chapter" data-level="10.4" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#gamma-distribution"><i class="fa fa-check"></i><b>10.4</b> Gamma Distribution</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#exponential-distribution-1"><i class="fa fa-check"></i><b>10.4.1</b> Exponential Distribution</a></li>
+<li class="chapter" data-level="10.4.2" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#chi-square-distribution"><i class="fa fa-check"></i><b>10.4.2</b> Chi-square distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="important-continuous-rv.html"><a href="important-continuous-rv.html#beta-distribution"><i class="fa fa-check"></i><b>10.5</b> Beta Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="mgf.html"><a href="mgf.html"><i class="fa fa-check"></i><b>11</b> Moment Generating Functions</a></li>
+<li class="chapter" data-level="12" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html"><i class="fa fa-check"></i><b>12</b> Central Limit Theorem</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#sums-of-random-variables"><i class="fa fa-check"></i><b>12.1</b> Sums of Random Variables</a></li>
+<li class="chapter" data-level="12.2" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#t-distribution"><i class="fa fa-check"></i><b>12.2</b> T distribution</a></li>
+<li class="chapter" data-level="12.3" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#the-central-limit-theorem"><i class="fa fa-check"></i><b>12.3</b> The Central Limit Theorem</a></li>
+<li class="chapter" data-level="12.4" data-path="central-limit-theorem.html"><a href="central-limit-theorem.html#normal-approximation-to-a-binomial-distribution"><i class="fa fa-check"></i><b>12.4</b> Normal Approximation to a binomial distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="estimation.html"><a href="estimation.html"><i class="fa fa-check"></i><b>13</b> Estimation</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="estimation.html"><a href="estimation.html#unbiased-estimators"><i class="fa fa-check"></i><b>13.1</b> Unbiased Estimators</a></li>
+<li class="chapter" data-level="13.2" data-path="estimation.html"><a href="estimation.html#order-statistics"><i class="fa fa-check"></i><b>13.2</b> Order Statistics</a></li>
+<li class="chapter" data-level="13.3" data-path="estimation.html"><a href="estimation.html#common-unbiased-estimators"><i class="fa fa-check"></i><b>13.3</b> Common Unbiased Estimators</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="estimation.html"><a href="estimation.html#estimating-mu-a-population-mean"><i class="fa fa-check"></i><b>13.3.1</b> Estimating <span class="math inline">\(\mu\)</span>, a population mean</a></li>
+<li class="chapter" data-level="13.3.2" data-path="estimation.html"><a href="estimation.html#estimating-p-a-population-proportion"><i class="fa fa-check"></i><b>13.3.2</b> Estimating <span class="math inline">\(p\)</span>, a population proportion</a></li>
+<li class="chapter" data-level="13.3.3" data-path="estimation.html"><a href="estimation.html#estimating-mu_1---mu_2-the-difference-of-two-population-means"><i class="fa fa-check"></i><b>13.3.3</b> Estimating <span class="math inline">\(\mu_1 - \mu_2\)</span>, the difference of two population means</a></li>
+<li class="chapter" data-level="13.3.4" data-path="estimation.html"><a href="estimation.html#estimating-p_1---p_2-the-difference-of-two-population-proportions"><i class="fa fa-check"></i><b>13.3.4</b> Estimating <span class="math inline">\(p_1 - p_2\)</span>, the difference of two population proportions</a></li>
+</ul></li>
+</ul></li>
+<li class="appendix"><span><b>Using R</b></span></li>
+<li class="chapter" data-level="A" data-path="sampling-in-r.html"><a href="sampling-in-r.html"><i class="fa fa-check"></i><b>A</b> Sampling in R</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="sampling-in-r.html"><a href="sampling-in-r.html#vectors-R"><i class="fa fa-check"></i><b>A.1</b> Data vectors</a>
+<ul>
+<li class="chapter" data-level="A.1.1" data-path="sampling-in-r.html"><a href="sampling-in-r.html#vector-types"><i class="fa fa-check"></i><b>A.1.1</b> vector types</a></li>
+<li class="chapter" data-level="A.1.2" data-path="sampling-in-r.html"><a href="sampling-in-r.html#matrices"><i class="fa fa-check"></i><b>A.1.2</b> Matrices</a></li>
+<li class="chapter" data-level="A.1.3" data-path="sampling-in-r.html"><a href="sampling-in-r.html#data-frames"><i class="fa fa-check"></i><b>A.1.3</b> data frames</a></li>
+<li class="chapter" data-level="A.1.4" data-path="sampling-in-r.html"><a href="sampling-in-r.html#common-vector-commands"><i class="fa fa-check"></i><b>A.1.4</b> common vector commands</a></li>
+<li class="chapter" data-level="A.1.5" data-path="sampling-in-r.html"><a href="sampling-in-r.html#comparison-operators"><i class="fa fa-check"></i><b>A.1.5</b> Comparison Operators</a></li>
+<li class="chapter" data-level="A.1.6" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sum-and-which"><i class="fa fa-check"></i><b>A.1.6</b> <code>sum()</code> and <code>which()</code></a></li>
+<li class="chapter" data-level="A.1.7" data-path="sampling-in-r.html"><a href="sampling-in-r.html#extracting-elements"><i class="fa fa-check"></i><b>A.1.7</b> extracting elements</a></li>
+<li class="chapter" data-level="A.1.8" data-path="sampling-in-r.html"><a href="sampling-in-r.html#comparing-vectors"><i class="fa fa-check"></i><b>A.1.8</b> comparing vectors</a></li>
+<li class="chapter" data-level="A.1.9" data-path="sampling-in-r.html"><a href="sampling-in-r.html#vector-arithmetic"><i class="fa fa-check"></i><b>A.1.9</b> vector arithmetic</a></li>
+<li class="chapter" data-level="A.1.10" data-path="sampling-in-r.html"><a href="sampling-in-r.html#concatenate-vectors"><i class="fa fa-check"></i><b>A.1.10</b> concatenate vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="A.2" data-path="sampling-in-r.html"><a href="sampling-in-r.html#special-vectors"><i class="fa fa-check"></i><b>A.2</b> Special vectors</a>
+<ul>
+<li class="chapter" data-level="A.2.1" data-path="sampling-in-r.html"><a href="sampling-in-r.html#consecutive-integers"><i class="fa fa-check"></i><b>A.2.1</b> consecutive integers</a></li>
+<li class="chapter" data-level="A.2.2" data-path="sampling-in-r.html"><a href="sampling-in-r.html#letters"><i class="fa fa-check"></i><b>A.2.2</b> letters</a></li>
+<li class="chapter" data-level="A.2.3" data-path="sampling-in-r.html"><a href="sampling-in-r.html#rep"><i class="fa fa-check"></i><b>A.2.3</b> <code>rep()</code></a></li>
+<li class="chapter" data-level="A.2.4" data-path="sampling-in-r.html"><a href="sampling-in-r.html#table"><i class="fa fa-check"></i><b>A.2.4</b> <code>table()</code></a></li>
+<li class="chapter" data-level="A.2.5" data-path="sampling-in-r.html"><a href="sampling-in-r.html#seq"><i class="fa fa-check"></i><b>A.2.5</b> <code>seq()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="A.3" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sampling-in-R"><i class="fa fa-check"></i><b>A.3</b> Sampling</a>
+<ul>
+<li class="chapter" data-level="A.3.1" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sample-options"><i class="fa fa-check"></i><b>A.3.1</b> <code>sample()</code> options</a></li>
+<li class="chapter" data-level="A.3.2" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sample-without-replacement"><i class="fa fa-check"></i><b>A.3.2</b> Sample without replacement</a></li>
+<li class="chapter" data-level="A.3.3" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sample-with-replacement"><i class="fa fa-check"></i><b>A.3.3</b> Sample with replacement</a></li>
+<li class="chapter" data-level="A.3.4" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sample-with-custom-probabilities"><i class="fa fa-check"></i><b>A.3.4</b> Sample with custom probabilities</a></li>
+<li class="chapter" data-level="A.3.5" data-path="sampling-in-r.html"><a href="sampling-in-r.html#example-lefties"><i class="fa fa-check"></i><b>A.3.5</b> Example: Lefties</a></li>
+</ul></li>
+<li class="chapter" data-level="A.4" data-path="sampling-in-r.html"><a href="sampling-in-r.html#repeated-sampling"><i class="fa fa-check"></i><b>A.4</b> Repeated Sampling</a>
+<ul>
+<li class="chapter" data-level="A.4.1" data-path="sampling-in-r.html"><a href="sampling-in-r.html#using-a-for-loop"><i class="fa fa-check"></i><b>A.4.1</b> using a <code>for</code> loop</a></li>
+<li class="chapter" data-level="A.4.2" data-path="sampling-in-r.html"><a href="sampling-in-r.html#using-replicate"><i class="fa fa-check"></i><b>A.4.2</b> using <code>replicate()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="A.5" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sampling-commands"><i class="fa fa-check"></i><b>A.5</b> Summary of R commands</a>
+<ul>
+<li class="chapter" data-level="A.5.1" data-path="sampling-in-r.html"><a href="sampling-in-r.html#defining-vectors"><i class="fa fa-check"></i><b>A.5.1</b> defining vectors</a></li>
+<li class="chapter" data-level="A.5.2" data-path="sampling-in-r.html"><a href="sampling-in-r.html#summarizing-vectors"><i class="fa fa-check"></i><b>A.5.2</b> summarizing vectors</a></li>
+<li class="chapter" data-level="A.5.3" data-path="sampling-in-r.html"><a href="sampling-in-r.html#sampling-from-vectors"><i class="fa fa-check"></i><b>A.5.3</b> sampling from vectors</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="R-sim-probability.html"><a href="R-sim-probability.html"><i class="fa fa-check"></i><b>B</b> Simulating Probability in R</a>
+<ul>
+<li class="chapter" data-level="B.1" data-path="R-sim-probability.html"><a href="R-sim-probability.html#id_10sided-die-R"><i class="fa fa-check"></i><b>B.1</b> Rolling a 10-sided die</a>
+<ul>
+<li class="chapter" data-level="B.1.1" data-path="R-sim-probability.html"><a href="R-sim-probability.html#final-code"><i class="fa fa-check"></i><b>B.1.1</b> Final Code</a></li>
+</ul></li>
+<li class="chapter" data-level="B.2" data-path="R-sim-probability.html"><a href="R-sim-probability.html#diff-2dice-R"><i class="fa fa-check"></i><b>B.2</b> Difference of two dice</a></li>
+<li class="chapter" data-level="B.3" data-path="R-sim-probability.html"><a href="R-sim-probability.html#flip-coin-R"><i class="fa fa-check"></i><b>B.3</b> Flipping a coin</a></li>
+<li class="chapter" data-level="B.4" data-path="R-sim-probability.html"><a href="R-sim-probability.html#marbles-urn-R"><i class="fa fa-check"></i><b>B.4</b> Marbles from an urn</a></li>
+<li class="chapter" data-level="B.5" data-path="R-sim-probability.html"><a href="R-sim-probability.html#partition-set-R"><i class="fa fa-check"></i><b>B.5</b> Splitting a set into multiple subsets</a>
+<ul>
+<li class="chapter" data-level="B.5.1" data-path="R-sim-probability.html"><a href="R-sim-probability.html#final-code-1"><i class="fa fa-check"></i><b>B.5.1</b> Final Code</a></li>
+</ul></li>
+<li class="chapter" data-level="B.6" data-path="R-sim-probability.html"><a href="R-sim-probability.html#license-plates-R"><i class="fa fa-check"></i><b>B.6</b> Oregon License Plates</a>
+<ul>
+<li class="chapter" data-level="B.6.1" data-path="R-sim-probability.html"><a href="R-sim-probability.html#final-code-2"><i class="fa fa-check"></i><b>B.6.1</b> Final Code</a></li>
+</ul></li>
+<li class="chapter" data-level="B.7" data-path="R-sim-probability.html"><a href="R-sim-probability.html#pollsters-R"><i class="fa fa-check"></i><b>B.7</b> Pollsters</a></li>
+<li class="chapter" data-level="B.8" data-path="R-sim-probability.html"><a href="R-sim-probability.html#same-birthday-R"><i class="fa fa-check"></i><b>B.8</b> Matching Birthdays</a></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="R-discreteRV.html"><a href="R-discreteRV.html"><i class="fa fa-check"></i><b>C</b> Discrete Random Variables in R</a>
+<ul>
+<li class="chapter" data-level="C.1" data-path="R-discreteRV.html"><a href="R-discreteRV.html#expected-value-of-x"><i class="fa fa-check"></i><b>C.1</b> Expected Value of <span class="math inline">\(X\)</span></a></li>
+<li class="chapter" data-level="C.2" data-path="R-discreteRV.html"><a href="R-discreteRV.html#variance-of-x"><i class="fa fa-check"></i><b>C.2</b> Variance of <span class="math inline">\(X\)</span></a></li>
+<li class="chapter" data-level="C.3" data-path="R-discreteRV.html"><a href="R-discreteRV.html#distribution-plots"><i class="fa fa-check"></i><b>C.3</b> Distribution Plots</a></li>
+<li class="chapter" data-level="C.4" data-path="R-discreteRV.html"><a href="R-discreteRV.html#sampling"><i class="fa fa-check"></i><b>C.4</b> Sampling</a></li>
+<li class="chapter" data-level="C.5" data-path="R-discreteRV.html"><a href="R-discreteRV.html#estimating-distributions-via-simulation"><i class="fa fa-check"></i><b>C.5</b> Estimating Distributions via Simulation</a></li>
+<li class="chapter" data-level="C.6" data-path="R-discreteRV.html"><a href="R-discreteRV.html#discrete-uniform-distribution"><i class="fa fa-check"></i><b>C.6</b> Discrete Uniform Distribution</a></li>
+<li class="chapter" data-level="C.7" data-path="R-discreteRV.html"><a href="R-discreteRV.html#r-4distn-functions"><i class="fa fa-check"></i><b>C.7</b> Important discrete random variables</a>
+<ul>
+<li class="chapter" data-level="C.7.1" data-path="R-discreteRV.html"><a href="R-discreteRV.html#binomial-distribution-binom"><i class="fa fa-check"></i><b>C.7.1</b> Binomial Distribution <code>binom</code></a></li>
+<li class="chapter" data-level="C.7.2" data-path="R-discreteRV.html"><a href="R-discreteRV.html#geometric-distribution-geom"><i class="fa fa-check"></i><b>C.7.2</b> Geometric Distribution <code>geom</code></a></li>
+<li class="chapter" data-level="C.7.3" data-path="R-discreteRV.html"><a href="R-discreteRV.html#negative-binomial-distribution-nbinom"><i class="fa fa-check"></i><b>C.7.3</b> Negative Binomial Distribution <code>nbinom</code></a></li>
+<li class="chapter" data-level="C.7.4" data-path="R-discreteRV.html"><a href="R-discreteRV.html#hypergeometric-distribution-hyper"><i class="fa fa-check"></i><b>C.7.4</b> Hypergeometric Distribution <code>hyper</code></a></li>
+<li class="chapter" data-level="C.7.5" data-path="R-discreteRV.html"><a href="R-discreteRV.html#poisson-distribution-pois"><i class="fa fa-check"></i><b>C.7.5</b> Poisson Distribution <code>pois</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="D" data-path="R-continuousRV.html"><a href="R-continuousRV.html"><i class="fa fa-check"></i><b>D</b> Continuous Random Variables in R</a>
+<ul>
+<li class="chapter" data-level="D.1" data-path="R-continuousRV.html"><a href="R-continuousRV.html#unifR"><i class="fa fa-check"></i><b>D.1</b> Uniform Distribution</a>
+<ul>
+<li class="chapter" data-level="D.1.1" data-path="R-continuousRV.html"><a href="R-continuousRV.html#picking-random-numbers"><i class="fa fa-check"></i><b>D.1.1</b> Picking random numbers!</a></li>
+<li class="chapter" data-level="D.1.2" data-path="R-continuousRV.html"><a href="R-continuousRV.html#picking-random-points-in-the-unit-square"><i class="fa fa-check"></i><b>D.1.2</b> Picking random points in the unit square!</a></li>
+<li class="chapter" data-level="D.1.3" data-path="R-continuousRV.html"><a href="R-continuousRV.html#estimate-the-value-of-pi"><i class="fa fa-check"></i><b>D.1.3</b> Estimate the value of <span class="math inline">\(\pi\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="D.2" data-path="R-continuousRV.html"><a href="R-continuousRV.html#normalR"><i class="fa fa-check"></i><b>D.2</b> Normal Distribution <code>norm</code></a>
+<ul>
+<li class="chapter" data-level="D.2.1" data-path="R-continuousRV.html"><a href="R-continuousRV.html#sampling-distribution-of-a-sample-mean"><i class="fa fa-check"></i><b>D.2.1</b> Sampling Distribution of a sample mean</a></li>
+</ul></li>
+<li class="chapter" data-level="D.3" data-path="R-continuousRV.html"><a href="R-continuousRV.html#expR"><i class="fa fa-check"></i><b>D.3</b> Exponential Distribution <code>exp</code></a></li>
+<li class="chapter" data-level="D.4" data-path="R-continuousRV.html"><a href="R-continuousRV.html#gammaR"><i class="fa fa-check"></i><b>D.4</b> Gamma Distribution <code>gamma</code></a></li>
+<li class="chapter" data-level="D.5" data-path="R-continuousRV.html"><a href="R-continuousRV.html#chiR"><i class="fa fa-check"></i><b>D.5</b> Chi-square Distribution <code>chisq</code></a></li>
+<li class="chapter" data-level="D.6" data-path="R-continuousRV.html"><a href="R-continuousRV.html#betaR"><i class="fa fa-check"></i><b>D.6</b> Beta distribution <code>beta</code></a></li>
+<li class="chapter" data-level="D.7" data-path="R-continuousRV.html"><a href="R-continuousRV.html#customR"><i class="fa fa-check"></i><b>D.7</b> Homemade Continuous Random Variables</a>
+<ul>
+<li class="chapter" data-level="D.7.1" data-path="R-continuousRV.html"><a href="R-continuousRV.html#input-the-density-function"><i class="fa fa-check"></i><b>D.7.1</b> Input the density function</a></li>
+<li class="chapter" data-level="D.7.2" data-path="R-continuousRV.html"><a href="R-continuousRV.html#visualize-the-density-function"><i class="fa fa-check"></i><b>D.7.2</b> Visualize the density function</a></li>
+<li class="chapter" data-level="D.7.3" data-path="R-continuousRV.html"><a href="R-continuousRV.html#estimating-integrals-with-riemann-sums"><i class="fa fa-check"></i><b>D.7.3</b> Estimating Integrals with Riemann Sums</a></li>
+<li class="chapter" data-level="D.7.4" data-path="R-continuousRV.html"><a href="R-continuousRV.html#estimating-probabilities"><i class="fa fa-check"></i><b>D.7.4</b> Estimating Probabilities</a></li>
+<li class="chapter" data-level="D.7.5" data-path="R-continuousRV.html"><a href="R-continuousRV.html#the-distribution-function-fx"><i class="fa fa-check"></i><b>D.7.5</b> The distribution function <span class="math inline">\(F(X)\)</span></a></li>
+<li class="chapter" data-level="D.7.6" data-path="R-continuousRV.html"><a href="R-continuousRV.html#estimating-moments"><i class="fa fa-check"></i><b>D.7.6</b> Estimating Moments</a></li>
+<li class="chapter" data-level="D.7.7" data-path="R-continuousRV.html"><a href="R-continuousRV.html#expected-value-1"><i class="fa fa-check"></i><b>D.7.7</b> Expected Value</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">MATH 340 Notes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="sampling-in-r" class="section level1 hasAnchor" number="14">
+<h1><span class="header-section-number">A</span> Sampling in R<a href="sampling-in-r.html#sampling-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="vectors-R" class="section level2 hasAnchor" number="14.1">
+<h2><span class="header-section-number">A.1</span> Data vectors<a href="sampling-in-r.html#vectors-R" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Use the <code>c()</code> command to enter an ordered list of elements. Separate entries with commas. The resulting object in R is called a <strong>data vector</strong>, or <strong>vector</strong>.</p>
+<div id="vector-types" class="section level3 hasAnchor" number="14.1.1">
+<h3><span class="header-section-number">A.1.1</span> vector types<a href="sampling-in-r.html#vector-types" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We see vectors of three types: <strong>numeric</strong>, <strong>character</strong>, and <strong>logical</strong>.</p>
+<p>A character vector consists of a list of strings. Strings are entered with quotes.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="sampling-in-r.html#cb32-1" tabindex="-1"></a>animals <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;cat&quot;</span>,<span class="st">&quot;rabbit&quot;</span>,<span class="st">&quot;horse&quot;</span>,<span class="st">&quot;boar&quot;</span>,<span class="st">&quot;lynx&quot;</span>)</span></code></pre></div>
+<p>The vector <code>x</code> below is numeric. No quotes, just numbers.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="sampling-in-r.html#cb33-1" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">79.3</span>,<span class="fl">51.1</span>,<span class="fl">93.6</span>,<span class="fl">62.3</span>,<span class="fl">61.8</span>)</span></code></pre></div>
+<p>A <strong>logical</strong> vector consists of a list of <code>TRUE</code>or <code>FALSE</code> elements (all caps!):</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="sampling-in-r.html#cb34-1" tabindex="-1"></a>L <span class="ot">=</span> <span class="fu">c</span>(<span class="cn">TRUE</span>,<span class="cn">FALSE</span>,<span class="cn">FALSE</span>,<span class="cn">FALSE</span>,<span class="cn">FALSE</span>)</span></code></pre></div>
+<p>We can check the vector type with the <code>typeof()</code> command:</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="sampling-in-r.html#cb35-1" tabindex="-1"></a><span class="fu">typeof</span>(animals)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<p>If you mix numbers and strings in a vector, R treats it as a character vector:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="sampling-in-r.html#cb37-1" tabindex="-1"></a><span class="fu">typeof</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="st">&quot;potato&quot;</span>))</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<p>We may wish to place data vectors into a two-dimensional structure such as a matrix or a data frame.</p>
+</div>
+<div id="matrices" class="section level3 hasAnchor" number="14.1.2">
+<h3><span class="header-section-number">A.1.2</span> Matrices<a href="sampling-in-r.html#matrices" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Create a matrix from a vector with the <code>matrix()</code> command, specifying how many rows, and whether we enter the data in the matrix by row, or by column.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="sampling-in-r.html#cb39-1" tabindex="-1"></a><span class="fu">matrix</span>(<span class="fu">c</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;a&quot;</span>,<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;c&quot;</span>,<span class="st">&quot;c&quot;</span>,<span class="st">&quot;c&quot;</span>,<span class="st">&quot;d&quot;</span>,<span class="st">&quot;d&quot;</span>,<span class="st">&quot;d&quot;</span>),<span class="at">nrow =</span> <span class="dv">4</span>,<span class="at">byrow=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,] &quot;a&quot;  &quot;a&quot;  &quot;a&quot; 
+## [2,] &quot;b&quot;  &quot;b&quot;  &quot;b&quot; 
+## [3,] &quot;c&quot;  &quot;c&quot;  &quot;c&quot; 
+## [4,] &quot;d&quot;  &quot;d&quot;  &quot;d&quot;</code></pre>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="sampling-in-r.html#cb41-1" tabindex="-1"></a><span class="fu">matrix</span>(<span class="fu">c</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;a&quot;</span>,<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;c&quot;</span>,<span class="st">&quot;c&quot;</span>,<span class="st">&quot;c&quot;</span>,<span class="st">&quot;d&quot;</span>,<span class="st">&quot;d&quot;</span>,<span class="st">&quot;d&quot;</span>),<span class="at">nrow =</span> <span class="dv">3</span>,<span class="at">byrow=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,] &quot;a&quot;  &quot;b&quot;  &quot;c&quot;  &quot;d&quot; 
+## [2,] &quot;a&quot;  &quot;b&quot;  &quot;c&quot;  &quot;d&quot; 
+## [3,] &quot;a&quot;  &quot;b&quot;  &quot;c&quot;  &quot;d&quot;</code></pre>
+</div>
+<div id="data-frames" class="section level3 hasAnchor" number="14.1.3">
+<h3><span class="header-section-number">A.1.3</span> data frames<a href="sampling-in-r.html#data-frames" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A data frame links related vectors as columns in an array via the <code>data.frame()</code> command.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="sampling-in-r.html#cb43-1" tabindex="-1"></a>a <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;McMinnville&quot;</span>,<span class="st">&quot;Denver&quot;</span>,<span class="st">&quot;Minneapolis&quot;</span>,<span class="st">&quot;Charleston&quot;</span>)</span>
+<span id="cb43-2"><a href="sampling-in-r.html#cb43-2" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">45.21</span>,<span class="fl">39.74</span>,<span class="fl">44.98</span>,<span class="fl">32.78</span>)</span>
+<span id="cb43-3"><a href="sampling-in-r.html#cb43-3" tabindex="-1"></a>y <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">123.19</span>,<span class="fl">104.99</span>,<span class="fl">93.26</span>,<span class="fl">79.93</span>)</span>
+<span id="cb43-4"><a href="sampling-in-r.html#cb43-4" tabindex="-1"></a>df <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">city =</span> a, <span class="at">lat =</span> x, <span class="at">long =</span> y)</span>
+<span id="cb43-5"><a href="sampling-in-r.html#cb43-5" tabindex="-1"></a>df</span></code></pre></div>
+<pre><code>##          city   lat   long
+## 1 McMinnville 45.21 123.19
+## 2      Denver 39.74 104.99
+## 3 Minneapolis 44.98  93.26
+## 4  Charleston 32.78  79.93</code></pre>
+<p>Data frames are the most common way to manage related data vectors in R.</p>
+</div>
+<div id="common-vector-commands" class="section level3 hasAnchor" number="14.1.4">
+<h3><span class="header-section-number">A.1.4</span> common vector commands<a href="sampling-in-r.html#common-vector-commands" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Here’s a vector of Hank Aaron’s home run totals in each of his MLB seasons:</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="sampling-in-r.html#cb45-1" tabindex="-1"></a>hr <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">13</span>,<span class="dv">27</span>,<span class="dv">26</span>,<span class="dv">44</span>,<span class="dv">30</span>,<span class="dv">39</span>,<span class="dv">40</span>,<span class="dv">34</span>,<span class="dv">45</span>,<span class="dv">44</span>,<span class="dv">24</span>,<span class="dv">32</span>,<span class="dv">44</span>,<span class="dv">39</span>,<span class="dv">29</span>,<span class="dv">44</span>,<span class="dv">38</span>,<span class="dv">47</span>,<span class="dv">34</span>,<span class="dv">40</span>,<span class="dv">20</span>,<span class="dv">12</span>,<span class="dv">10</span>)</span></code></pre></div>
+<p>With <code>hr</code> loaded into your session, you can refer to it by name when you want to extract features of it. Here are some commonly used commands on numeric vectors:</p>
+<ul>
+<li><code>length(hr)</code>, number of elements in the vector (number of seasons Hank played)</li>
+<li><code>sum(hr)</code>, the sum of the vector (total career home runs)</li>
+<li><code>mean(hr)</code>, the mean of the vector (average HR per season)</li>
+<li><code>max(hr)</code>, the max (best HR total in a season)</li>
+<li><code>sd(hr)</code>, standard deviation</li>
+<li><code>diff(hr)</code> returns a vector whose elements are the differences between consecutive elements in the vector <code>hr</code></li>
+<li><code>cumsum(hr)</code> returns a vector whose elements are the cumulative sum of the vector <code>hr</code></li>
+<li><code>rev(hr)</code> returns the vector in the reverse order</li>
+</ul>
+<p>Behold:</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="sampling-in-r.html#cb46-1" tabindex="-1"></a><span class="fu">diff</span>(hr)</span></code></pre></div>
+<pre><code>##  [1]  14  -1  18 -14   9   1  -6  11  -1 -20   8  12  -5 -10  15  -6   9 -13   6
+## [20] -20  -8  -2</code></pre>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="sampling-in-r.html#cb48-1" tabindex="-1"></a><span class="fu">cumsum</span>(hr)</span></code></pre></div>
+<pre><code>##  [1]  13  40  66 110 140 179 219 253 298 342 366 398 442 481 510 554 592 639 673
+## [20] 713 733 745 755</code></pre>
+</div>
+<div id="comparison-operators" class="section level3 hasAnchor" number="14.1.5">
+<h3><span class="header-section-number">A.1.5</span> Comparison Operators<a href="sampling-in-r.html#comparison-operators" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We compare things in R with various comparison operators, each one returning TRUE or FALSE:</p>
+<ul>
+<li>equal to <code>==</code></li>
+<li>not equal to <code>!=</code></li>
+<li>less than <code>&lt;</code></li>
+<li>less than or equal to <code>&lt;=</code></li>
+<li>greater than <code>&gt;</code></li>
+<li>greater than or equal to <code>&gt;=</code></li>
+</ul>
+<p>A few examples:</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="sampling-in-r.html#cb50-1" tabindex="-1"></a><span class="dv">12</span> <span class="sc">&gt;=</span> <span class="dv">5</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<p>Use <strong>double equal signs</strong> <code>==</code> to see whether two things are equal:</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="sampling-in-r.html#cb52-1" tabindex="-1"></a><span class="dv">16</span> <span class="sc">==</span> <span class="dv">2</span><span class="sc">*</span><span class="dv">8</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="sampling-in-r.html#cb54-1" tabindex="-1"></a><span class="st">&quot;ab&quot;</span><span class="sc">==</span><span class="st">&quot;ba&quot;</span></span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="sampling-in-r.html#cb56-1" tabindex="-1"></a>x <span class="ot">=</span> <span class="dv">3</span> <span class="co"># this defines the variable</span></span>
+<span id="cb56-2"><a href="sampling-in-r.html#cb56-2" tabindex="-1"></a>x<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span><span class="dv">3</span><span class="sc">*</span>x <span class="sc">==</span> <span class="dv">12</span> <span class="co">#this asks whether x^2 + 3*x equals 12 for the currently stored value of x (x=3 in this case)</span></span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<p>Logical vectors arise when we give R a proposition involving a vector:</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="sampling-in-r.html#cb58-1" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">8</span>,<span class="dv">4</span>,<span class="dv">6</span>) <span class="sc">&gt;</span> <span class="dv">5</span></span></code></pre></div>
+<pre><code>## [1] FALSE  TRUE FALSE  TRUE</code></pre>
+</div>
+<div id="sum-and-which" class="section level3 hasAnchor" number="14.1.6">
+<h3><span class="header-section-number">A.1.6</span> <code>sum()</code> and <code>which()</code><a href="sampling-in-r.html#sum-and-which" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>sum()</code> command on a numeric vector adds the elements of the vector, as we saw above with <code>sum(hr)</code>.</p>
+<p>The <code>sum()</code> command on a logical vector returns the number of TRUE elements in the vector.</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="sampling-in-r.html#cb60-1" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>,<span class="cn">FALSE</span>,<span class="cn">TRUE</span>,<span class="cn">FALSE</span>,<span class="cn">TRUE</span>,<span class="cn">TRUE</span>))</span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<p>We can thus easily count the number of elements in a vector meeting some condition:</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="sampling-in-r.html#cb62-1" tabindex="-1"></a><span class="fu">sum</span>(hr <span class="sc">&gt;=</span> <span class="dv">40</span>)</span></code></pre></div>
+<pre><code>## [1] 8</code></pre>
+<p>8 seasons with at least 40 HR?!! Of course! 8! Ok, which seasons?</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="sampling-in-r.html#cb64-1" tabindex="-1"></a><span class="fu">which</span>(hr <span class="sc">&gt;=</span> <span class="dv">40</span>)</span></code></pre></div>
+<pre><code>## [1]  4  7  9 10 13 16 18 20</code></pre>
+<p>The <code>which()</code> command returns the indices of the vector at which the condition being tested has been met. So Hank hit 40 or more HR in seasons 4, 7, 9, 10, 13, 16, 18, and 20.</p>
+</div>
+<div id="extracting-elements" class="section level3 hasAnchor" number="14.1.7">
+<h3><span class="header-section-number">A.1.7</span> extracting elements<a href="sampling-in-r.html#extracting-elements" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Recall Hank Aaron’s home runs by season:</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="sampling-in-r.html#cb66-1" tabindex="-1"></a>hr</span></code></pre></div>
+<pre><code>##  [1] 13 27 26 44 30 39 40 34 45 44 24 32 44 39 29 44 38 47 34 40 20 12 10</code></pre>
+<p>We can <strong>extract an element</strong> of a vector by indicating its [position]:</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="sampling-in-r.html#cb68-1" tabindex="-1"></a>hr[<span class="dv">3</span>]</span></code></pre></div>
+<pre><code>## [1] 26</code></pre>
+<p>Or we can specify several elements:</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="sampling-in-r.html#cb70-1" tabindex="-1"></a>hr[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>)]</span></code></pre></div>
+<pre><code>## [1] 13 26 30</code></pre>
+</div>
+<div id="comparing-vectors" class="section level3 hasAnchor" number="14.1.8">
+<h3><span class="header-section-number">A.1.8</span> comparing vectors<a href="sampling-in-r.html#comparing-vectors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We can count the number of positions in which two vectors of the same length agree</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="sampling-in-r.html#cb72-1" tabindex="-1"></a>v <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">6</span>,<span class="dv">8</span>); w <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">8</span>)</span>
+<span id="cb72-2"><a href="sampling-in-r.html#cb72-2" tabindex="-1"></a><span class="fu">sum</span>(v<span class="sc">==</span>w) <span class="co"># how often they match</span></span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<p>We can find the position(s) at which they agree</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="sampling-in-r.html#cb74-1" tabindex="-1"></a><span class="fu">which</span>(v<span class="sc">==</span>w) <span class="co">#where they match</span></span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<p>and list the matching value(s):</p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="sampling-in-r.html#cb76-1" tabindex="-1"></a>v[<span class="fu">which</span>(v<span class="sc">==</span>w)] </span></code></pre></div>
+<pre><code>## [1] 8</code></pre>
+</div>
+<div id="vector-arithmetic" class="section level3 hasAnchor" number="14.1.9">
+<h3><span class="header-section-number">A.1.9</span> vector arithmetic<a href="sampling-in-r.html#vector-arithmetic" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We can do element-wise arithmetic on two vectors of equal length, such as addition, subtraction, multiplication, divsiion, and exponentiation</p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="sampling-in-r.html#cb78-1" tabindex="-1"></a>v <span class="ot">=</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">3</span>)</span>
+<span id="cb78-2"><a href="sampling-in-r.html#cb78-2" tabindex="-1"></a>w <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">5</span>)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th>Operation</th>
+<th align="left">Result</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>v + w</code></td>
+<td align="left">0, 5, 8</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>v - w</code></td>
+<td align="left">-2, -3, -2</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>v * w</code></td>
+<td align="left">-1, 4, 15</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>v / w</code></td>
+<td align="left">-1, 0.25, 0.6</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>v^w</code></td>
+<td align="left">-1, 1, 243</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>We also have scalar multiplication,</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="sampling-in-r.html#cb79-1" tabindex="-1"></a><span class="dv">8</span><span class="sc">*</span>v</span></code></pre></div>
+<pre><code>## [1] -8  8 24</code></pre>
+<p>and, don’t tell your vector calc prof, but you can add a scalar to each element in a vector:</p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="sampling-in-r.html#cb81-1" tabindex="-1"></a><span class="dv">8</span> <span class="sc">+</span> v</span></code></pre></div>
+<pre><code>## [1]  7  9 11</code></pre>
+</div>
+<div id="concatenate-vectors" class="section level3 hasAnchor" number="14.1.10">
+<h3><span class="header-section-number">A.1.10</span> concatenate vectors<a href="sampling-in-r.html#concatenate-vectors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>c()</code> command allows you to concatenate vectors:</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="sampling-in-r.html#cb83-1" tabindex="-1"></a>u <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
+<span id="cb83-2"><a href="sampling-in-r.html#cb83-2" tabindex="-1"></a>v <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>)</span>
+<span id="cb83-3"><a href="sampling-in-r.html#cb83-3" tabindex="-1"></a><span class="fu">c</span>(u,v)</span></code></pre></div>
+<pre><code>## [1] 1 2 3 4 5 6</code></pre>
+<p>We can add an element to a vector <code>A</code> via concatenation:</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="sampling-in-r.html#cb85-1" tabindex="-1"></a>A <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;Will&quot;</span>,<span class="st">&quot;Lucas&quot;</span>,<span class="st">&quot;Mike&quot;</span>,<span class="st">&quot;Dustin&quot;</span>)</span>
+<span id="cb85-2"><a href="sampling-in-r.html#cb85-2" tabindex="-1"></a>A <span class="ot">=</span> <span class="fu">c</span>(A,<span class="st">&quot;Eleven&quot;</span>)</span>
+<span id="cb85-3"><a href="sampling-in-r.html#cb85-3" tabindex="-1"></a>A</span></code></pre></div>
+<pre><code>## [1] &quot;Will&quot;   &quot;Lucas&quot;  &quot;Mike&quot;   &quot;Dustin&quot; &quot;Eleven&quot;</code></pre>
+<p>Notice, the vector <code>A</code> currently has 5 elements. We can add a 6th element can also to <code>A</code> directly:</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="sampling-in-r.html#cb87-1" tabindex="-1"></a>A[<span class="dv">6</span>]<span class="ot">=</span><span class="st">&quot;Max&quot;</span> <span class="co"># creates new position after the last previous position</span></span>
+<span id="cb87-2"><a href="sampling-in-r.html#cb87-2" tabindex="-1"></a>A</span></code></pre></div>
+<pre><code>## [1] &quot;Will&quot;   &quot;Lucas&quot;  &quot;Mike&quot;   &quot;Dustin&quot; &quot;Eleven&quot; &quot;Max&quot;</code></pre>
+</div>
+</div>
+<div id="special-vectors" class="section level2 hasAnchor" number="14.2">
+<h2><span class="header-section-number">A.2</span> Special vectors<a href="sampling-in-r.html#special-vectors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="consecutive-integers" class="section level3 hasAnchor" number="14.2.1">
+<h3><span class="header-section-number">A.2.1</span> consecutive integers<a href="sampling-in-r.html#consecutive-integers" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>The integers 1 to n</strong> can be entered by typing <code>1:n</code>. For instance, we could define a 20 sided die by entering</p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="sampling-in-r.html#cb89-1" tabindex="-1"></a>die <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span></span></code></pre></div>
+<p>More generally, entering <code>a:b</code> creates a vector of consecutive integers starting with <code>a</code> and ending with <code>b</code> (even if <code>a</code> is greater than or equal to <code>b</code>).</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="sampling-in-r.html#cb90-1" tabindex="-1"></a><span class="dv">8</span><span class="sc">:</span><span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1] 8 7 6 5 4 3 2</code></pre>
+</div>
+<div id="letters" class="section level3 hasAnchor" number="14.2.2">
+<h3><span class="header-section-number">A.2.2</span> letters<a href="sampling-in-r.html#letters" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="sampling-in-r.html#cb92-1" tabindex="-1"></a>letters</span></code></pre></div>
+<pre><code>##  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot; &quot;r&quot; &quot;s&quot;
+## [20] &quot;t&quot; &quot;u&quot; &quot;v&quot; &quot;w&quot; &quot;x&quot; &quot;y&quot; &quot;z&quot;</code></pre>
+<p><code>LETTERS</code> is the capitalized version of the <code>letters</code> vector.</p>
+</div>
+<div id="rep" class="section level3 hasAnchor" number="14.2.3">
+<h3><span class="header-section-number">A.2.3</span> <code>rep()</code><a href="sampling-in-r.html#rep" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>rep()</code> command lets us build a vector with lots of repeated elements.</p>
+<div class="example">
+<p><span id="exm:skittles" class="example"><strong>Example A.1  </strong></span>Let’s say we want to create a <strong>bag of skittles</strong> with this color distribution: 40 red, 30 orange, 25 yellow, 60 green, and 20 purple.</p>
+<p>The <code>rep()</code> command let’s us do this quickly:
+- first enter the distinct items (as a vector with the <code>c()</code> command!),
+- then enter how many times each occurs (as a vector!):</p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="sampling-in-r.html#cb94-1" tabindex="-1"></a>skittles <span class="ot">=</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;red&quot;</span>,<span class="st">&quot;orange&quot;</span>,<span class="st">&quot;yellow&quot;</span>,<span class="st">&quot;green&quot;</span>,<span class="st">&quot;purple&quot;</span>),</span>
+<span id="cb94-2"><a href="sampling-in-r.html#cb94-2" tabindex="-1"></a>               <span class="fu">c</span>(<span class="dv">40</span>,<span class="dv">30</span>,<span class="dv">25</span>,<span class="dv">60</span>,<span class="dv">20</span>)</span>
+<span id="cb94-3"><a href="sampling-in-r.html#cb94-3" tabindex="-1"></a>               )</span></code></pre></div>
+</div>
+</div>
+<div id="table" class="section level3 hasAnchor" number="14.2.4">
+<h3><span class="header-section-number">A.2.4</span> <code>table()</code><a href="sampling-in-r.html#table" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>table()</code> command is a handy way to see which unique values are contained in a vector and how often each unique value occurs:</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="sampling-in-r.html#cb95-1" tabindex="-1"></a><span class="fu">table</span>(skittles)</span></code></pre></div>
+<pre><code>## skittles
+##  green orange purple    red yellow 
+##     60     30     20     40     25</code></pre>
+</div>
+<div id="seq" class="section level3 hasAnchor" number="14.2.5">
+<h3><span class="header-section-number">A.2.5</span> <code>seq()</code><a href="sampling-in-r.html#seq" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>seq()</code> command lets us enter an arithmetic progression by entering (first, last, increment).</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="sampling-in-r.html#cb97-1" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="at">by=</span>.<span class="dv">1</span>)</span></code></pre></div>
+<pre><code>##  [1] 0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0</code></pre>
+<p>Ok, now let’s get to <strong>sampling</strong>!</p>
+</div>
+</div>
+<div id="sampling-in-R" class="section level2 hasAnchor" number="14.3">
+<h2><span class="header-section-number">A.3</span> Sampling<a href="sampling-in-r.html#sampling-in-R" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We use the <code>sample(x,...)</code> command to sample from vector <code>x</code>.</p>
+<p>For instance, we can draw a random sample of size 2 from <code>hr</code>:</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="sampling-in-r.html#cb99-1" tabindex="-1"></a><span class="fu">sample</span>(hr,<span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 29 40</code></pre>
+<p>Here’s another example. Let’s grab 20 skittles at random from the bag <code>skittles</code> we created in example <a href="sampling-in-r.html#exm:skittles">A.1</a> and count how many orange ones we get:</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="sampling-in-r.html#cb101-1" tabindex="-1"></a>grab<span class="ot">=</span><span class="fu">sample</span>(skittles,<span class="dv">20</span>)</span>
+<span id="cb101-2"><a href="sampling-in-r.html#cb101-2" tabindex="-1"></a><span class="fu">table</span>(grab)</span></code></pre></div>
+<pre><code>## grab
+##  green orange purple    red yellow 
+##      6      4      1      3      6</code></pre>
+<p>The <code>table()</code> command counts how many of each color :).</p>
+<p>We could have found the orange count directly with</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="sampling-in-r.html#cb103-1" tabindex="-1"></a><span class="fu">sum</span>(grab<span class="sc">==</span><span class="st">&quot;orange&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<div id="sample-options" class="section level3 hasAnchor" number="14.3.1">
+<h3><span class="header-section-number">A.3.1</span> <code>sample()</code> options<a href="sampling-in-r.html#sample-options" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Typically, we provide the <code>sample()</code> command with 3 or 4 arguments, in this order:</p>
+<ul>
+<li><code>x</code>, the vector we sample from</li>
+<li><code>size</code>, the size of the sample</li>
+<li><code>replace</code>, whether you sample with or without replacement (default = FALSE)</li>
+<li><code>prob</code>, custom probabilities for the sampling of elements (default = equal probability for all elements in <code>x</code>)</li>
+</ul>
+<p>If you enter your arguments in the order <code>x=, size=, replace=, prob=</code> then you do not need to specify the variable names.</p>
+<p>If you do not specify their value, the <code>sample()</code> command assumes the following <strong>default values</strong>:</p>
+<ul>
+<li><code>size</code> = the length of the vector</li>
+<li><code>replace</code> = FALSE</li>
+<li><code>prob</code> is set so all elements in the vector have equal probability of being chosen.</li>
+</ul>
+<p>Here are handy special cases, illustrated with this vector:</p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="sampling-in-r.html#cb105-1" tabindex="-1"></a>animals <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;cat&quot;</span>,<span class="st">&quot;dog&quot;</span>,<span class="st">&quot;hedgehog&quot;</span>,<span class="st">&quot;rabbit&quot;</span>)</span></code></pre></div>
+<div id="permutations-1" class="section level4 hasAnchor" number="14.3.1.1">
+<h4><span class="header-section-number">A.3.1.1</span> Permutations<a href="sampling-in-r.html#permutations-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Use <code>sample(x)</code> to generate a <em>random permutation</em> of <code>x</code>:</p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="sampling-in-r.html#cb106-1" tabindex="-1"></a><span class="fu">sample</span>(animals) <span class="co">#default size is the length of the vector</span></span></code></pre></div>
+<pre><code>## [1] &quot;rabbit&quot;   &quot;cat&quot;      &quot;dog&quot;      &quot;hedgehog&quot;</code></pre>
+</div>
+<div id="repeated-sampling-of-1-element" class="section level4 hasAnchor" number="14.3.1.2">
+<h4><span class="header-section-number">A.3.1.2</span> Repeated sampling of 1 element<a href="sampling-in-r.html#repeated-sampling-of-1-element" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Use <code>sample()</code> to simulate picking one elemnt of <code>animals</code> <span class="math inline">\(n\)</span> times by setting<code>size = n</code> and <code>replace = TRUE</code>.</p>
+<p>Example; Draw one animal from the set 1000 different times and summarize the picks with a table.</p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="sampling-in-r.html#cb108-1" tabindex="-1"></a>picks<span class="ot">=</span><span class="fu">sample</span>(animals,<span class="dv">1000</span>,<span class="at">replace=</span><span class="cn">TRUE</span>) </span>
+<span id="cb108-2"><a href="sampling-in-r.html#cb108-2" tabindex="-1"></a><span class="fu">table</span>(picks) </span></code></pre></div>
+<pre><code>## picks
+##      cat      dog hedgehog   rabbit 
+##      252      258      256      234</code></pre>
+<p>And the winner is… dog!</p>
+<p>Or, since we fear rabbits and love dogs, we can do repeated sampling of a single element with <strong>custom probabilities</strong>:</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="sampling-in-r.html#cb110-1" tabindex="-1"></a>picks2 <span class="ot">=</span> <span class="fu">sample</span>(animals,</span>
+<span id="cb110-2"><a href="sampling-in-r.html#cb110-2" tabindex="-1"></a>                <span class="at">size=</span><span class="dv">1000</span>,</span>
+<span id="cb110-3"><a href="sampling-in-r.html#cb110-3" tabindex="-1"></a>                <span class="at">replace=</span><span class="cn">TRUE</span>,</span>
+<span id="cb110-4"><a href="sampling-in-r.html#cb110-4" tabindex="-1"></a>                <span class="at">prob=</span><span class="fu">c</span>(.<span class="dv">2</span>,.<span class="dv">4</span>,.<span class="dv">3</span>,.<span class="dv">1</span>))</span>
+<span id="cb110-5"><a href="sampling-in-r.html#cb110-5" tabindex="-1"></a><span class="fu">table</span>(picks2)</span></code></pre></div>
+<pre><code>## picks2
+##      cat      dog hedgehog   rabbit 
+##      194      396      300      110</code></pre>
+<p>Nice!</p>
+<p>Remember, the default option for <code>sample()</code> is to sample without replacement, and with equal probabilities.</p>
+</div>
+</div>
+<div id="sample-without-replacement" class="section level3 hasAnchor" number="14.3.2">
+<h3><span class="header-section-number">A.3.2</span> Sample without replacement<a href="sampling-in-r.html#sample-without-replacement" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<blockquote>
+<p><strong>Task</strong>
+Pick 4 students at random from a class of 9 to race around Taylor Hall. (Assumes we have numbered the students 1-9).</p>
+</blockquote>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="sampling-in-r.html#cb112-1" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>,<span class="dv">4</span>)</span></code></pre></div>
+<pre><code>## [1] 2 4 6 5</code></pre>
+</div>
+<div id="sample-with-replacement" class="section level3 hasAnchor" number="14.3.3">
+<h3><span class="header-section-number">A.3.3</span> Sample with replacement<a href="sampling-in-r.html#sample-with-replacement" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<blockquote>
+<p><strong>Task</strong><br />
+On twelve consecutive days, ask one student at random, in a class of size 9, to write a solution on the board.</p>
+</blockquote>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="sampling-in-r.html#cb114-1" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>,<span class="dv">12</span>,<span class="at">replace=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>##  [1] 5 8 4 4 7 4 6 7 8 7 6 9</code></pre>
+</div>
+<div id="sample-with-custom-probabilities" class="section level3 hasAnchor" number="14.3.4">
+<h3><span class="header-section-number">A.3.4</span> Sample with custom probabilities<a href="sampling-in-r.html#sample-with-custom-probabilities" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<blockquote>
+<p><strong>Task</strong><br />
+Roll a weighted 6 sided die with the following probability distribution 100 times and summarize the results.</p>
+</blockquote>
+<table>
+<thead>
+<tr class="header">
+<th align="left"><span class="math inline">\(x\)</span></th>
+<th align="left">1</th>
+<th align="left">2</th>
+<th align="left">3</th>
+<th align="left">4</th>
+<th align="left">5</th>
+<th align="left">6</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(p(x)\)</span></td>
+<td align="left">.2</td>
+<td align="left">.1</td>
+<td align="left">.05</td>
+<td align="left">.4</td>
+<td align="left">.1</td>
+<td align="left">.15</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="sampling-in-r.html#cb116-1" tabindex="-1"></a>rolls <span class="ot">=</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,</span>
+<span id="cb116-2"><a href="sampling-in-r.html#cb116-2" tabindex="-1"></a>               <span class="at">size=</span><span class="dv">100</span>,</span>
+<span id="cb116-3"><a href="sampling-in-r.html#cb116-3" tabindex="-1"></a>               <span class="at">replace=</span><span class="cn">TRUE</span>,</span>
+<span id="cb116-4"><a href="sampling-in-r.html#cb116-4" tabindex="-1"></a>               <span class="at">prob=</span><span class="fu">c</span>(.<span class="dv">2</span>,.<span class="dv">1</span>,.<span class="dv">05</span>,.<span class="dv">4</span>,.<span class="dv">1</span>,.<span class="dv">15</span>))</span>
+<span id="cb116-5"><a href="sampling-in-r.html#cb116-5" tabindex="-1"></a><span class="fu">table</span>(rolls)</span></code></pre></div>
+<pre><code>## rolls
+##  1  2  3  4  5  6 
+## 17 17  4 40  9 13</code></pre>
+</div>
+<div id="example-lefties" class="section level3 hasAnchor" number="14.3.5">
+<h3><span class="header-section-number">A.3.5</span> Example: Lefties<a href="sampling-in-r.html#example-lefties" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<blockquote>
+<p><strong>Task</strong><br />
+8% of a population is left-handed. Draw a random sample of 45 people from the population and record the number of lefties.</p>
+</blockquote>
+<p>One approach: build a large population with these features and then draw 45 people from it without replacement.</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="sampling-in-r.html#cb118-1" tabindex="-1"></a>pop<span class="ot">=</span><span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;L&quot;</span>,<span class="st">&quot;R&quot;</span>),<span class="fu">c</span>(<span class="dv">800</span>,<span class="dv">9200</span>)) <span class="co"># a population of 10,000 people, 800 of them lefties</span></span>
+<span id="cb118-2"><a href="sampling-in-r.html#cb118-2" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">sample</span>(pop,<span class="at">size=</span><span class="dv">45</span>)) </span></code></pre></div>
+<pre><code>## 
+##  L  R 
+##  2 43</code></pre>
+<p>A second approach: sample with replacement 45 times from a “two-sided” die with customized probabilities</p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="sampling-in-r.html#cb120-1" tabindex="-1"></a>die<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;L&quot;</span>,<span class="st">&quot;R&quot;</span>)</span>
+<span id="cb120-2"><a href="sampling-in-r.html#cb120-2" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">sample</span>(die,<span class="at">size=</span><span class="dv">45</span>,<span class="at">replace=</span><span class="cn">TRUE</span>,<span class="at">prob=</span><span class="fu">c</span>(.<span class="dv">08</span>,.<span class="dv">92</span>)))</span></code></pre></div>
+<pre><code>## 
+##  L  R 
+##  5 40</code></pre>
+<p>A third approach: Use a binomial distribution (later)</p>
+</div>
+</div>
+<div id="repeated-sampling" class="section level2 hasAnchor" number="14.4">
+<h2><span class="header-section-number">A.4</span> Repeated Sampling<a href="sampling-in-r.html#repeated-sampling" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s say we have a huge urn full of orange and blue marbles, and 42% of them are orange. We can use repeated sampling to approximate the <strong>sampling distribution</strong> for the number of orange marbles we would draw in a sample of, say, 50 marbles.
+The sampling distribution provides information about what sorts of orange marble counts should we expect, and how often should we expect these counts?</p>
+<p><em>Repeated sampling</em> can estimate this sampling distribution. Here are two methods for achieving repeated sampling in R.</p>
+<div id="using-a-for-loop" class="section level3 hasAnchor" number="14.4.1">
+<h3><span class="header-section-number">A.4.1</span> using a <code>for</code> loop<a href="sampling-in-r.html#using-a-for-loop" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The code below creates a vector called <em>orange_counts</em> that, eventually, after the for loop has completed, has 10000 entries. Each entry in this vector gives the number of orange marbles drawn from the urn from a random sample of 50 marbles.</p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="sampling-in-r.html#cb122-1" tabindex="-1"></a>colors<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;orange&quot;</span>,<span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb122-2"><a href="sampling-in-r.html#cb122-2" tabindex="-1"></a>orange_counts<span class="ot">=</span><span class="fu">c</span>() <span class="co">#a vector for storing the results of each trial</span></span>
+<span id="cb122-3"><a href="sampling-in-r.html#cb122-3" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10000</span>){</span>
+<span id="cb122-4"><a href="sampling-in-r.html#cb122-4" tabindex="-1"></a>  orange_counts[i]<span class="ot">=</span><span class="fu">sum</span>(<span class="fu">sample</span>(colors,<span class="dv">50</span>,<span class="at">replace=</span><span class="cn">TRUE</span>,<span class="at">prob=</span><span class="fu">c</span>(.<span class="dv">42</span>,.<span class="dv">58</span>))<span class="sc">==</span><span class="st">&quot;orange&quot;</span>)</span>
+<span id="cb122-5"><a href="sampling-in-r.html#cb122-5" tabindex="-1"></a>}</span></code></pre></div>
+<p>We know that <code>table(orange_counts)</code> would display the counts of each of the unique values occuring in <code>orange_counts</code>. We can visualize these counts with a <code>barplot()</code>:</p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="sampling-in-r.html#cb123-1" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(orange_counts))</span></code></pre></div>
+<p><img src="math340-notes_files/figure-html/unnamed-chunk-90-1.png" width="672" /></p>
+</div>
+<div id="using-replicate" class="section level3 hasAnchor" number="14.4.2">
+<h3><span class="header-section-number">A.4.2</span> using <code>replicate()</code><a href="sampling-in-r.html#using-replicate" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <code>replicate()</code> command essentially does the above for loop for us :) The command <code>replicate(n,expr)</code>will evaluate <code>expr</code> <code>n</code> times, and store the results.</p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="sampling-in-r.html#cb124-1" tabindex="-1"></a>colors<span class="ot">=</span><span class="fu">c</span>(<span class="st">&quot;orange&quot;</span>,<span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb124-2"><a href="sampling-in-r.html#cb124-2" tabindex="-1"></a>orange_counts <span class="ot">=</span> </span>
+<span id="cb124-3"><a href="sampling-in-r.html#cb124-3" tabindex="-1"></a>  <span class="fu">replicate</span>(<span class="dv">10000</span>,</span>
+<span id="cb124-4"><a href="sampling-in-r.html#cb124-4" tabindex="-1"></a>            <span class="fu">sum</span>(<span class="fu">sample</span>(colors,<span class="dv">50</span>,<span class="at">replace=</span><span class="cn">TRUE</span>,<span class="at">prob=</span><span class="fu">c</span>(.<span class="dv">42</span>,.<span class="dv">58</span>)) <span class="sc">==</span> <span class="st">&quot;orange&quot;</span>)</span>
+<span id="cb124-5"><a href="sampling-in-r.html#cb124-5" tabindex="-1"></a>            )</span></code></pre></div>
+<p>Again, we can summarize the <em>frequency</em> with which each value of orange_counts occurs with <code>table()</code>, and visualize this frequency table with a <code>barplot</code>:</p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="sampling-in-r.html#cb125-1" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(orange_counts))</span></code></pre></div>
+<p><img src="math340-notes_files/figure-html/unnamed-chunk-92-1.png" width="672" /></p>
+<p>In addition, we can calculate summary statistics to put numbers to qualitative descriptions of the distribution of values in <code>orange_counts</code> such as center and spread. These statistics help us answer the question of what sorts of orange counts to expect.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">statistic</th>
+<th align="left">command</th>
+<th align="left">result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">mean</td>
+<td align="left"><code>mean(orange_counts)</code></td>
+<td align="left">20.9871</td>
+</tr>
+<tr class="even">
+<td align="left">standard deviation</td>
+<td align="left"><code>sd(orange_counts)</code></td>
+<td align="left">3.4834964</td>
+</tr>
+<tr class="odd">
+<td align="left">five number summary</td>
+<td align="left"><code>fivenum(orange_counts)</code></td>
+<td align="left">8, 19, 21, 23, 35</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="sampling-commands" class="section level2 hasAnchor" number="14.5">
+<h2><span class="header-section-number">A.5</span> Summary of R commands<a href="sampling-in-r.html#sampling-commands" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="defining-vectors" class="section level3 hasAnchor" number="14.5.1">
+<h3><span class="header-section-number">A.5.1</span> defining vectors<a href="sampling-in-r.html#defining-vectors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<table>
+<colgroup>
+<col width="8%" />
+<col width="39%" />
+<col width="51%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Command</th>
+<th align="left">Description</th>
+<th align="left">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>c()</code></td>
+<td align="left">List the elements</td>
+<td align="left"><code>x = c("a","c","c","z","z","z")</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>a:b</code></td>
+<td align="left">Consecutive integers from <code>a</code> to <code>b</code></td>
+<td align="left"><code>8:4</code> returns the vector 8, 7, 6, 5, 4</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>rep()</code></td>
+<td align="left">Build a vector from a frequency table</td>
+<td align="left"><code>rep(c("y","n"),c(3,2))</code> returns y, y, y, n, n</td>
+</tr>
+<tr class="even">
+<td align="left"><code>seq()</code></td>
+<td align="left">Arithmetic progression (first,last,step)</td>
+<td align="left"><code>seq(0,1,.2)</code> returns 0, 0.2, 0.4, 0.6, 0.8, 1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="summarizing-vectors" class="section level3 hasAnchor" number="14.5.2">
+<h3><span class="header-section-number">A.5.2</span> summarizing vectors<a href="sampling-in-r.html#summarizing-vectors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<table>
+<colgroup>
+<col width="12%" />
+<col width="87%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Command</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>typeof(x)</code></td>
+<td align="left">the vector type of <code>x</code> (usually <em>character</em>, <em>numeric</em>, or <em>logical</em>)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>length(x)</code></td>
+<td align="left">the length of <code>x</code> (how many elements it has)</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>table(x)</code></td>
+<td align="left">the frequency table (which values occur in <code>x</code> along with how often each value occurs)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="sampling-from-vectors" class="section level3 hasAnchor" number="14.5.3">
+<h3><span class="header-section-number">A.5.3</span> sampling from vectors<a href="sampling-in-r.html#sampling-from-vectors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<table>
+<colgroup>
+<col width="44%" />
+<col width="55%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Sampling Options</th>
+<th align="left">Example with <code>x = 1:6</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">permutation of <code>x</code></td>
+<td align="left"><code>sample(x) =</code> 3, 1, 5, 4, 6, 2</td>
+</tr>
+<tr class="even">
+<td align="left">sample <span class="math inline">\(n\)</span> elements without replacement</td>
+<td align="left"><code>sample(x,3) =</code> 2, 3, 5</td>
+</tr>
+<tr class="odd">
+<td align="left">sample <span class="math inline">\(n\)</span> elements with replacement</td>
+<td align="left"><code>sample(x,5,replace=T) =</code> 2, 4, 1, 3, 2</td>
+</tr>
+<tr class="even">
+<td align="left">sample with custom probabilities</td>
+<td align="left"><code>sample(x,10,replace=T,prob= c(0,.2,0,.5,.1,.2)) =</code> 2, 6, 5, 4, 6, 6, 4, 4, 4, 4</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="estimation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="R-sim-probability.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/mphitchman/math340/edit/main/source/R01-sampling.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["math340-notes.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

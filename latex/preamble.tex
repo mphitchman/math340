@@ -1,0 +1,39 @@
+\usepackage{booktabs}
+\usepackage{amsfonts,amsmath}
+\usepackage{amssymb,amscd}
+\usepackage{graphicx,xcolor}
+\usepackage{geometry}
+\usepackage{multirow}
+\usepackage{tikz}
+\usepackage{array}
+%\usepackage{fdsymbol}
+\usepackage{imakeidx}
+\makeindex[intoc=true,columns=2,columnseprule=true,
+           options=-s latex/indexstyles.ist]
+
+\newcommand\hearts[1]{
+{#1}$\color{red}{\varheartsuit}$
+}
+
+\newcommand\clubs[1]{
+{#1}${\clubsuit}$
+}
+\newcommand\spades[1]{
+{#1}${\spadesuit}$
+}
+\newcommand\diamonds[1]{
+{#1}$\color{red}{\vardiamondsuit}$
+}
+
+%% Text height identically 9 inches, text width varies on point size
+%% See Bringhurst 2.1.1 on measure for recommendations
+%% 75 characters per line (count spaces, punctuation) is target
+%% which is the upper limit of Bringhurst's recommendations
+\geometry{letterpaper,total={340pt,9.0in}}
+%% Custom Page Layout Adjustments (use latex.geometry)
+\geometry{papersize={7in,10in}, width=4.85in, inner=1in, height=8.5in, top=0.75in, twoside, ignoreheadfoot}
+%\usepackage{lmodern}
+%\usepackage[T1]{fontenc}
+
+
+
