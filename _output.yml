@@ -8,7 +8,7 @@ bookdown::gitbook:
     toc:
       collapse: section
       before: |
-        <li><a href="https://github.com/mphitchman/math340" target="blank">Math 340 Notes</a></li>
+        <li><a href="https://github.com/mphitchman/math340.git" target="blank">Math 340 Notes</a></li>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
     download: ["pdf"]
