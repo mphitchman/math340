@@ -1,160 +1,45 @@
 
 # Discrete Random Variables in R {#R-discreteRV}
 
-In this appendix we practice using R to investigate discrete random variables. We can create discrete distributions from scratch, or access common distributions named in R, including uniform, binomial, negative binomial, Poisson, geometric, and hypergeometric distributions.
 
+Here we investigate in R the common, named discrete random variables we encounter in MATH 340:
 
-Let's say a discrete random variable $X$ has finite sample space and known probability function $p(x)$. We often display this type of probability model via a table:
+- [binomial](#binomialR) |  `binom`
+- [geometric](#geometricR) | `geom`
+- [negative binomial](#negbinomR) | `nbinom`
+- [hypergeometric](#hyperR) | `hyper`
+- [Poisson](#poissonR) | `pois`
 
-$$
-\begin{array}{c|c|c|c|c|c}
-x & 5 & 6 & 7 & 8 & 9 \\ \hline
-p(x) & 0.1 & 0.1 & 0.3 & 0.4 & 0.1 
-\end{array}
-$$
-We can input this model into an R session by defining two vectors:
-
-```{r}
-X = c(5,6,7,8,9)
-Px = c(0.1,0.1,0.3,0.4,0.1)
-```
-
-We can check in R that the two conditions for a *valid* probability have been met by this assignment:
-
-  - Each probability is non-negative: `Px >= 0` = `r Px >- 0`
-  - The probabilities add to 1: `sum(Px)`=  `r sum(Px)`
-
-
-## Expected Value of $X$
-
-Recall if $X$ is a discrete random variable with probability function $p(x)$, then the expected value of $X$ is $$E(X)=\sum_{\text{all }x}x\cdot p(x)$$
-
-Having defined vectors $X$ and $Px$ in R, we calculate $E(X)$ by running
-
-```{r}
-sum(X*Px) 
-```
-
-
-Note: For those who have taken vector calculus `sum(v*w)` returns the dot product of `v` and `w`, aka the inner product.  R has an alternative command for this dot product, which is `v %*% w`.  So, `sum(v*w)` and `v %*% w` do the same thing, but I prefer the first option to remind me that the expected value is obtained as a sum over all $x$ of some things.
-
-## Variance of $X$
-
-Recall the variance of $X$ is $$V(X) = E[(X-\mu)^2],$$ where $\mu = E(X)$.
-Alternatively, the variance can be computed via
-$$V(X) = E(X^2)-\mu^2.$$
-
-So we can compute the variance of $X$ in R as follows:
-
-
-```{r}
-mu=sum(X*Px) 
-Vx=sum((X-mu)^2*Px)
-print(Vx)
-```
-
-Or, alternatively, as follows:
-
-```{r}
-mu=sum(X*Px)
-Vx=sum(X^2*Px)-mu^2
-print(Vx)
-```
-
-## Distribution Plots
-
-R can offer some quick visualizations of probability distributions.
-
-The following code will give the shape of the probability distribution (with a splash of color and plot title:)
-
-```{r,fig.dim=c(4,3)}
-barplot(Px,names.arg=X, col="steelblue", main="Probability Model")
-```
-
-
-## Sampling
-
-The following code draws a sample of size 10 from our distribution using the weighted probabilities assigned by the probability function:
-
-```{r, fig.dim=c(4,3)}
-sample(X,10,replace=TRUE,prob=Px)
-```
-
-
-If we take a large sample, and make a relative frequency table of the results, it should be close to the probability table:
-
-```{r,fig.dim=c(4,3)}
-round(table(sample(X,10000,replace=TRUE,Px))/trials,3)
-```
-
-
-## Discrete Uniform Distribution
-
-::: {.definition #discrete-uniform}
-If $X$ is a finite set with size $|X| = n$.  The probability distribution defined by $$p(x) = \frac{1}{n}$$ for all  $x \in X$ is called **uniform**.
-:::
-
-In a uniform distribution, we will find over a large number of trials that each name comes up with about the same frequency.  
-
-::: {.example #seals-uniform-R}
-> Pick a random seal from the famous Eddington family: Otto, Ruth, Pluotika, Slarftel, Edgar and Bob.
-
-```{r}
-family=c("Bob", "Edgar", "Pluotika", "Otto", "Ruth", "Slarftel")
-```
-
-To simulate the process of picking one seal at random from the family, a large number of times, we sample 1 element with replacement, a large number of times. The resulting frequency plot should look uniform:
-
-```{r}
-results=sample(family,10000,replace=TRUE)
-barplot(table(results),col="seagreen",xlab="seal",ylab="freq",main="Pick a seal, any seal!")
-```
-
-Way to go `r family[which(table(results)==max(table(results)))]`, you over achiever!
-:::
-
-
-## Important discrete random variables {#r-4distn-functions}
-
-The important, named discrete distributions we encounter in this class are built-in distributions in R:
-
-- the **binomial distribution** is named `binom`
-- the **geometric distribution** is named `geom`
-- the **negative binomial distribution** is named `nbinom`
-- the **hypergeometric distribution** is named `hyper`
-- the **Poisson distribution** is named `pois`
 
 We use four commands to work with the named distributions.  For a distribution named `___`:
 
-- `d___(x,...)` | Density function, $p(x)$
+- `d___(x,...)` | probability function, $p(x)$
 - `p___(q,...)` | Cumulative probability, $P(X \leq q)$ 
 - `q___(p,...)` | Quantiles, finds $x$ such that $P(X \leq x) = p$
 - `r___(n,...)` | Random sample of size $n$ from the distribution
 
+We also discuss below how to build and analyze [homemade discrete random variables in R](#custom-discrete-R).
 
-## Binomial Distribution `binom`
+
+## Binomial `binom` {#binomialR}
 
 **The Scene**
 
-We have a sequence of **Bernoulli trials**: A chance experiment with two possible outcomes: *success* and *failure*, and the probability of success is $p$, and the probability of failure is $1-p$. 
-
-Let the random variable $X$ denote the number of successes in $n$ independent trials of this chance experiment.  Then $X$ is called a binomial random variable with parameters $n$ and $p$.
-
-**Notation**  
-$X \text{ is binom}(n,p)$ means $X$ counts number of successes in $n$ Bernoulli trials, when probability of success on any given trial is $p$.
+Recall, $X \sim \texttt{binom}(n,p)$ means $X$ counts the number of successes in $n$ independent, identical Bernoulli trials, when probability of success on any given trial is $p$.
 
 **The space of $X$** is $x = 0, 1, \ldots, n$.
 
 **Probability function**  
 For $x = 0, 1, \ldots, n$, $$p(x)=\binom{n}{x}p^x(1-p)^{n-x}.$$
 
-Sometimes it is convenient to let $q = 1-p$ so $q$ represents the probability of failure in a Bernoulli trial, in which case $p(x) = \binom{n}{x}p^xq^{n-x}$
 
 **The binomial distribution in R**  
 
-### `dbinom()` - density function {-}
+### `dbinom()` - probability function {-}
 
-> `dbinom(2,5,.3)` returns the probability of $X=2$ successes in $n=5$ trials in a binomail distribution where $p = .3$ is the probability of success on each trial. That is, `dbinom(2,5,.3)` returns $$\binom{5}{2}(.3)^2(.7)^3.$$ 
+> `dbinom(x,n,p)` returns the probability $P(X = x)$ for $X \sim \texttt{binom}(n,p)$.
+
+For instance, `dbinom(2,5,.3)` returns $$\binom{5}{2}(.3)^2(.7)^3.$$ 
 ```{r}
 dbinom(2,5,.3)
 ```
@@ -164,12 +49,11 @@ As a check:
 choose(5,2)*(.3)^2*(.7)^3
 ```
 
-
 ### `pbinom()` - cumulative probability {-}
 
-> `pbinom(q,n,p)`returns the cumulative probability $P(X \leq q)$ for $X \sim b(n,p)$: $$\sum_{x=0}^q p(x)=\sum_{x=0}^q\binom{n}{x}p^x(1-p)^{n-x}.$$
+> `pbinom(q,n,p)`returns the cumulative probability $P(X \leq q)$ for $X \sim \text{binom}(n,p)$: $$\sum_{x=0}^q p(x)=\sum_{x=0}^q\binom{n}{x}p^x(1-p)^{n-x}.$$
 
-So `pbinom(2,5,.3)` should return $P(X \leq 2)$ when $X$ is $b(5,.3)$:
+So `pbinom(2,5,.3)` returns $P(X \leq 2)$ when $X$ is $\texttt{binom}(5,.3)$:
 
 ```{r}
 pbinom(2,5,.3)
@@ -183,13 +67,18 @@ dbinom(0,5,.3)+dbinom(1,5,.3)+dbinom(2,5,.3)
 
 ### `qbinom()` - quantiles {-}
 
-> `qbinom(.95,100,.5)` returns the value in the $b(100,.5)$ distribution that marks the 95th percentile: the value below which one finds 95\% of the distribution:
+Recall the definition of quantile (\@ref(quantile)): If $0 < p < 1$, the $p$th quantile of $X$, denoted $\phi_p$, is the smallest value such that $P(X \leq \phi_p) \geq p$. In other words, the value $\phi_p$ marks the smallest value below which one finds 100*p percent of the distribution of $X$.
+
+
+> `qbinom(q,n,p)` returns the quantile $\phi_q$ for $X \sim \texttt{binom}(n,p)$
+
+For instance, what value marks the 95th percentile of the $\texttt{binom}(100,.5)$ distribution?
 
 ```{r}
 qbinom(.95,100,.5)
 ```
 
-In other words, if $X$ is $b(100,.5)$ (e.g., flip a fair coin 100 times and count how many heads you get), about 95% of the time you would find $X \leq 58$.
+So, if you flip a fair coin 100 times and count how many heads you get, about 95% of the time you would flip less than or equal to 58 heads.
 
 We can check this:
 
@@ -199,7 +88,7 @@ pbinom(58,100,.5)
 
 ### `rbinom()` - sampling {-}
 
-> `rbinom(10,20,.4)` will generate a random sample of size 10 drawn from a $b(20,.4)$ distribution.  This sample is stored as a vector
+> `rbinom(10,20,.4)` will generate a vector that stores a random sample of size 10 drawn from a $\texttt{binom}(20,.4)$ distribution.
 
 ```{r}
 rbinom(10,20,.4)
@@ -207,10 +96,10 @@ rbinom(10,20,.4)
 
 We can use `r___` to run simulations, and to visualize the shape of a distribution.
 
-For a **discrete distribution** we can use `barplot()` and `table()` to tabulate the results.  The `table()` command gives the total counts for each possible outcome, and the `barplot()` command applied to a table visualizes those counts.
+Two useful commands for summarizing data: `table()` presents the frequency table for the sample, and  `barplot(table())` is a quick way to visualize this frequency table. 
 
 ```{r}
-sim_data = rbinom(1000,20,.4) # draw a random sample of size 1000 from the binomial distribution b(20,.4).
+sim_data = rbinom(1000,20,.4) # sample of size 1000 from binom(20,.4).
 table(sim_data)
 ```
 
@@ -218,26 +107,25 @@ table(sim_data)
 barplot(table(sim_data))
 ```
 
-## Geometric Distribution `geom`
+## Geometric `geom` {#geometricR}
 
 **The Scene**  
-As with the binomial distribution, we consider a sequence of Bernoulli trials (probability of success is $p$, probability of failure is $q = 1-p$).  Instead of counting how many successes in $n$ trials, we are interested in counting the number ot trials until our first success.  
-
-Assume we repeat the experiment until we observe a success.  Let the random variable $X$ denote the number of trials up to and including this first success.  Then $X$ is called a *geometric random variable* with parameter $p$.
+Let the random variable $X$ denote the number of identical, independent Bernoulli trials (with probability of success $p$, probability of failure $q = 1-p$) up to and including the first success.
+Then $X$ is called a *geometric random variable* with parameter $p$.
 
 **Notation**  
-$X$  is geom$(p)$.
+$X$  is \texttt{geom}$(p)$.
 
 **The space of $X$** is $x = 1, 2, \ldots$
 
-**Probability density function**  
+**Probability function**  
 For $x = 1, 2, 3, \ldots$, $$p(x)= q^{x-1}p.$$
 
->The geometric distribution in R counts failures, not total trials.
+**NOTE**: The geometric distribution in R counts failures, not total trials.
 
 In R `geom` counts the number of failures until the first success, not the total number of trials up to and including the first success.  
 
-As with the `binom` distribution, we can use the `d___`, `p___`, `q___`, and `r___` commands to determine probabilities for particular values of x, cumulative probabilities, quantiles, and random samples, respectively.
+As with the `binom` distribution, we can use the `d___`, `p___`, `q___`, and `r___` commands to determine probability for particular values of $x$, cumulative probabilities, quantiles, and random samples, respectively.
 
 > `dgeom(4,.3)` gives the probability of seeing 4 failures before the first success in a Bernoulli trial in which $p = .3$
 
@@ -272,30 +160,22 @@ results=rgeom(10000,1/6)+1
 barplot(table(results))
 ```
 
-OMG notice from the barplot that one depressing game required `r max(results)` rolls to see my first 4.
+OMG notice from the bar plot that one depressing game required `r max(results)` rolls to see my first 4.
 :::
 
-## Negative Binomial Distribution `nbinom`
+## Negative Binomial `nbinom` {#negbinomR}
 
 **The Scene**  
 Again, we consider a sequence of Bernoulli trials (probability of success is $p$, probability of failure is $q = 1-p$).  
 
-We let $X$ denote the number of trials in the sequence up to and including the $r$th success, where $r \geq 1$ is a positive integer. Then $X$ is called a *geometric random variable* with parameters $p$ and $r$.  
+We let $X$ denote the number of trials in the sequence up to and including the $r$th success, where $r \geq 1$ is a positive integer. Then $X$ is called a *negative binomial random variable* with parameters $p$ and $r$.  
 
 
-
-For instance, if we set $r = 3$, then $X = 7$ for the following sequence of Bernuoulli trials ($S$ stands for success, $F$ for failure)
-$$F F F S F S S F S F F S \ldots $$
-since the third $S$ occurs on the 7th trial.
-
-In the case $r = 1$ the negative binomial distribution is the geometric distribution.
-
-
-**Notation**: $X$ is Nb$(r,p)$
+**Notation**: $X$ is $\texttt{nbinom}(r,p)$
 
 **The space of $X$** is $x = r, r+1, r+2, \ldots$
 
-**Probability density function**  
+**Probability function**  
 For $x = r, r+1, r+2, \ldots $, $$p(x)= \binom{x-1}{r-1}p^{r}q^{x-r}.$$
 
 :::{.example #drill-oil-negbinom-R}  
@@ -313,12 +193,12 @@ round(choose(9,2)*.2^3*.8^7,4)
 dnbinom(7,3,.2) # 7 failures to get 3rd success, p = .2
 ```
 
-Visualizing $X \sim Nb(3,.2)$
+Visualizing $X \sim \texttt{nbinom}(3,.2)$
 
 ```{r}
 r = 3 #going until we get 3rd success
-trials = 10000 #draw a random sample of this size
 p = .2 #probability of success on any given Bernoulli trial
+trials = 10000 #trials in this simulation
 failure_count = rnbinom(trials,r,p)
 barplot(table(failure_count),main="failures before 3rd success")
 ```
@@ -329,19 +209,19 @@ barplot(table(trial_count),main="X=trials until third success")
 ```
 
 
-## Hypergeometric Distribution `hyper`
+## Hypergeometric `hyper` {#hyperR}
 
 **The Scene**  
-A finite population has $N$ elements that possess one of two characteristics. Say we have a jar of $N$ marbles, $m$ of them are red and $n$ of them are black (so $m + n = N$). We draw a sample of size $k$, and let $X$ denote the number of red marbles in the jar.  
+A finite population has $N$ elements, each of which possesses one of two possible characteristics. Say we have a jar of $N$ marbles, each is either red or black.  Let's say $m$ of them are red and $n$ of them are black (so $m + n = N$). We draw a sample of size $k$, and let $X$ denote the number of red marbles in the jar.  
 
 Then $X$ is called a *hypergeometric random variable* with parameters $m$, $n$, and $k$.  
 
 
-**Notation**: $X$ is hyperg$(m,n,k)$
+**Notation**: $X$ is $\texttt{hyper}(m,n,k)$
 
 **The space of $X$** is $x = 0,1,2,\ldots,k$ subject to the restriction that $x \leq m$ and $k - x \leq n$.
 
-**Probability density function**  
+**Probability function**  
 The probability function is $$p(x)= \frac{\binom{m}{x}\binom{n}{k-x}}{\binom{m+n}{k}}.$$
 
 **In R** Use `hyper`. 
@@ -363,6 +243,8 @@ dhyper(x=2,m=4,n=6,k=5)
 ```
 :::
 
+
+
 ::: {.example #potatoes-R name="Good Potatoes Bad Potatoes in R"}
 
 > A truck has 500 potatoes, 50 of which are bad, the rest are good.  We sample 10.  What is the probability that more than 3 are bad?
@@ -378,18 +260,18 @@ which can be calculated with the cumulative probability command `phyper`:
 :::
 
 
-## Poisson Distribution `pois`
+## Poisson `pois` {#poissonR}
 
 **The Scene**  
 The Poisson probability distribution can provide a good model for the number of occurrences $X$ of a rare event in time, space, or some other unit of measure. A Poisson random variable $X$ has one parameter, $\lambda$, which is the average number of occurrences of the rare event in the indicated time (or space, etc.)
 
  
 
-**Notation**: $X$ is Poisson$(\lambda)$.
+**Notation**: $X$ is $\texttt{Poisson}(\lambda)$.
 
 **The space of $X$** is $x = 0,1,2,\ldots,$ (countably infinite!)
 
-**Probability density function**  
+**Probability function**  
 The probability function is $$p(x)=\frac{\lambda^x}{x!}e^{-\lambda}$$ 
 
 **In R** use `pois`. 
@@ -419,32 +301,6 @@ qpois(.99,2)
 ```
 :::
 
-### Poisson Process {-}
-
-Again, suppose $X$ denotes the number of occurrences of a rare event in time, space, or some other unit of measure.
-
-:::{.definition #def-pois-process-R}
-The process by which an event happens is called a **Poisson process**\index{Poisson process} if the following holds:
-
-  1. The dimension over which $X$ is measured can be subdivided into $n$ small pieces, within which the event can occur *at most once*.
-  2. In each small piece, the probability of seeing one occurrence is the same, say $p$, and $p$ is proportional to the length of the sub-interval (as $n$ grows, $p$ shrinks, but $np$ remains constant). 
-  3. Occurrences in all the small pieces are independent from one another.
-:::
-
-In a Poisson process recording the number of occurrences of the event in each small piece is a Bernoulli trial (1 occurrence with probability $p$, and 0 occurrences with probability $1-p$), and if there are $n$ small pieces, then $X$ is approximately $b(n,p)$.
-
-> For large $n$, if we let $\lambda = np$, Poisson$(\lambda)\sim b(n,p)$.
-
-Compare the table of probabilities for $b(10,.4)$, $b(40,.1)$, and $b(400,.01)$ with those of a Poisson(4) distribution.  For all 3 binomial distributions $np = 4$, so as $n$ gets larger, $b(n,p)$ should be a better approximation to Poisson(4):
-
-```{r,echo=FALSE}
-x=0:7
-df=data.frame(x,"b*10_.4"=round(dbinom(x,10,.4),4),"b*40_.1"=round(dbinom(x,40,.1),4),"b*400_.01"=round(dbinom(x,400,.01),4),"Pois*4"=round(dpois(x,4),4))
-df %>%
-  kbl(caption = "Approximating a Poisson distn with Binomial distns",
-      col.names = c("x","binom(10,4)","binom(40,.1)","binom(400,.01)","pois(4)")) %>%
-  kable_classic(full_width = F, html_font = "Cambria")
-```
 
 ::: {.example #pois-rutherford-geiger-R name="Rutherford/Geiger Data"}
 
@@ -469,7 +325,7 @@ Here's the mean of the data (which gives average # of scintillations in 72 secon
 mean(results)
 ```
 
-Let's compare the observed relative frequencies to the theoretical probabilities associated with a Pois(3.87) distribution:
+Let's compare the observed relative frequencies to the theoretical probabilities associated with a $\texttt{Poisson}(3.87)$ distribution:
 
 ```{r, echo=FALSE}
 counts=c(57,203,383,525,532,408,273,139,45,27,10,4,0,1,1)
@@ -490,5 +346,120 @@ ggplot(df)+
   ggtitle("Comparing relative frequency of the data (bars) to Poisson probabilities (dots)")+
   theme_classic()
 ```
+:::
+
+## Homemade Discrete Random Variables {#custom-discrete-R}
+
+Let's say a discrete random variable $X$ has finite sample space and known probability function $p(x)$. We often display this type of probability model via a table:
+
+$$
+\begin{array}{c|c|c|c|c|c}
+x & 5 & 6 & 7 & 8 & 9 \\ \hline
+p(x) & 0.1 & 0.1 & 0.3 & 0.4 & 0.1 
+\end{array}
+$$
+We can input this model into an R session by defining two vectors:
+
+```{r}
+X = c(5,6,7,8,9)
+Px = c(0.1,0.1,0.3,0.4,0.1)
+```
+
+We can check in R that the two conditions for a *valid* probability have been met by this assignment:
+
+  - Each probability is non-negative: `Px >= 0` = `r Px >- 0`
+  - The probabilities add to 1: `sum(Px)`=  `r sum(Px)`
+
+
+### Expected Value of $X$ {-}
+
+Recall if $X$ is a discrete random variable with probability function $p(x)$, then the expected value of $X$ is $$E(X)=\sum_{\text{all }x}x\cdot p(x)$$
+
+Having defined vectors $X$ and $Px$ in R, we calculate $E(X)$ by running
+
+```{r}
+sum(X*Px) 
+```
+
+
+Note: For those who have taken vector calculus `sum(v*w)` returns the dot product of `v` and `w`, aka the inner product.  R has an alternative command for this dot product, which is `v %*% w`.  So, `sum(v*w)` and `v %*% w` do the same thing, but I prefer the first option to remind me that the expected value is obtained as a sum over all $x$ of some things.
+
+### Variance of $X$ {-}
+
+Recall the variance of $X$ is $$V(X) = E[(X-\mu)^2],$$ where $\mu = E(X)$.
+Alternatively, the variance can be computed via
+$$V(X) = E(X^2)-\mu^2.$$
+
+So we can compute the variance of $X$ in R as follows:
+
+
+```{r}
+mu=sum(X*Px) 
+Vx=sum((X-mu)^2*Px)
+print(Vx)
+```
+
+Or, alternatively, as follows:
+
+```{r}
+mu=sum(X*Px)
+Vx=sum(X^2*Px)-mu^2
+print(Vx)
+```
+
+### Distribution Plots {-}
+
+R can offer some quick visualizations of probability distributions.
+
+The following code will give the shape of the probability distribution (with a splash of color and plot title:)
+
+```{r,fig.dim=c(4,3)}
+barplot(Px,names.arg=X, col="steelblue", main="Probability Model")
+```
+
+
+### Sampling {-}
+
+The following code draws a sample of size 10 from our distribution using the weighted probabilities assigned by the probability function:
+
+```{r, fig.dim=c(4,3)}
+sample(X,10,replace=TRUE,prob=Px)
+```
+
+
+If we take a large sample, and make a relative frequency table of the results, it should be close to the probability table:
+
+```{r,fig.dim=c(4,3)}
+round(table(sample(X,10000,replace=TRUE,Px))/trials,3)
+```
+
+### Discrete Uniform Distribution {}
+
+::: {.definition #discrete-uniform}
+If $X$ is a finite set with size $|X| = n$.  The probability distribution defined by $$p(x) = \frac{1}{n}$$ for all  $x \in X$ is called **uniform**.
+:::
+
+In a uniform distribution, we will find over a large number of trials that each name comes up with about the same frequency.  
+
+::: {.example #seals-uniform-R}
+> Pick a random seal from the famous Eddington family: Otto, Ruth, Pluotika, Slarftel, Edgar and Bob.
+
+
+To simulate the process of picking one seal at random from the family, a large number of times, we sample 1 element with replacement, a large number of times. 
+
+```{r}
+family=c("Bob", "Edgar", "Pluotika", "Otto", "Ruth", "Slarftel")
+results=sample(family,10000,replace=TRUE)
+```
+
+
+The resulting frequency plot should look uniform:
+
+```{r,fig.dim=c(4,3)}
+ggplot(data.frame(results))+
+  geom_bar(aes(x=results,fill=results))+xlab("Name")+ggtitle("Pick a seal, any seal!")+theme(legend.position = "none")
+```
+
+Way to go `r family[which(table(results)==max(table(results)))]`, you over achiever!
 :::
 

@@ -1,18 +1,17 @@
 h1:R-discreteRV Discrete Random Variables in R
-h2:expected-value-of-x Expected Value of 
-h2:variance-of-x Variance of 
-h2:distribution-plots Distribution Plots
-h2:sampling Sampling
-h2:discrete-uniform-distribution Discrete Uniform Distribution
-h2:r-4distn-functions Important discrete random variables
-h2:binomial-distribution-binom Binomial Distribution 
-h3:dbinom---density-function  - density function
+h2:binomialR Binomial 
+h3:dbinom---probability-function  - probability function
 h3:pbinom---cumulative-probability  - cumulative probability
 h3:qbinom---quantiles  - quantiles
 h3:rbinom---sampling  - sampling
-h2:geometric-distribution-geom Geometric Distribution 
-h2:negative-binomial-distribution-nbinom Negative Binomial Distribution 
-h2:hypergeometric-distribution-hyper Hypergeometric Distribution 
-h2:poisson-distribution-pois Poisson Distribution 
-h3:poisson-process Poisson Process
+h2:geometricR Geometric 
+h2:negbinomR Negative Binomial 
+h2:hyperR Hypergeometric 
+h2:poissonR Poisson 
+h2:custom-discrete-R Homemade Discrete Random Variables
+h3:expected-value-of-x Expected Value of 
+h3:variance-of-x Variance of 
+h3:distribution-plots Distribution Plots
+h3:sampling Sampling
+h3:discrete-uniform-distribution Discrete Uniform Distribution
 

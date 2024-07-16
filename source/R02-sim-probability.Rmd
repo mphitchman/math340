@@ -431,13 +431,7 @@ for (i in 1:trials){
 
 
 
-We note that the maximum number of flips it took to get consecutive Heads in these trials was `max(results)` = `r max(results)`! (that's not a factorial symbol, just me exclaiming). So we don't list the full table of results here, just the first 10:
-
-```{r}
-table(results)[1:10]
-```
-
-The **relative frequencies** of these results provide our estimate for the probability density function:
+We note that the maximum number of flips it took to get consecutive Heads in these trials was `max(results)` = `r max(results)`! (that's not a factorial symbol, just me exclaiming). So we don't list the full table of results here, just the first 10 relative frequencies, which provide estimates for the probability function:
 
 ```{r}
 table(results)[1:10]/trials

@@ -172,7 +172,7 @@
 
 \title{MATH 340 Notes}
 \author{Mike Hitchman}
-\date{2024-07-15}
+\date{2024-07-16}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -2439,7 +2439,7 @@ As an aside, here's code to simulate Chuck-a-luck in R a bunch of times (betting
 \begin{verbatim}
 ## results
 ##   -1    1    2    5 
-## 1260  719  174    7
+## 1246  750  152   12
 \end{verbatim}
 
 \begin{Shaded}
@@ -2449,7 +2449,7 @@ As an aside, here's code to simulate Chuck-a-luck in R a bunch of times (betting
 \end{Shaded}
 
 \begin{verbatim}
-## [1] -0.07314815
+## [1] -0.06111111
 \end{verbatim}
 
 \begin{example}
@@ -2739,6 +2739,7 @@ will satisfy \(P(|X-\mu|<2\sigma)=1-\frac{1}{k^2}\), demonstrating that the boun
 
 In this chapter we introduce the following well-known discrete random variables:
 binomial, geometric, Poisson, negative binomial, and hypergeometric.
+In examples we work through, it will from time to time be convenient to compute probabilities in R. Appendix \ref{R-discreteRV} contains details about the commands in R useful for doing so.
 
 \section{Binomial Distributions}\label{binomial}
 
@@ -2762,7 +2763,7 @@ Some examples:
 \end{enumerate}
 
 \begin{definition}[Binomial Distribution]
-\protect\hypertarget{def:binomial-distribution}{}\label{def:binomial-distribution}Define the random variable \(X\) to equal the number of successes in \(n\) independent, identical Bernoulli trials with probability of success on any given trial equal to \(p\). Then \(X\) is called a \textbf{binomial distribution with parameters \(n\) and \(p\)}\index{discrete random variable!binomial}, and \(X\) is denoted \(\text{binom}(n,p)\)\index{binom$(n,p)$}.
+\protect\hypertarget{def:binomial-distribution}{}\label{def:binomial-distribution}Define the random variable \(X\) to equal the number of successes in \(n\) independent, identical Bernoulli trials with probability of success on any given trial equal to \(p\). Then \(X\) is called a \textbf{binomial distribution with parameters \(n\) and \(p\)}\index{discrete random variable!binomial}, and \(X\) is denoted \(\texttt{binom}(n,p)\)\index{\texttt{binom}$(n,p)$}.
 
 The space of \(X\) equals \(\{0,1,\ldots,n\}\), and for \(x = 0,1, \ldots, n\),
 \[p(x) = \binom{n}{x}p^x(1-p)^{n-x}.\]
@@ -2773,7 +2774,7 @@ Does this probability distribution make sense? To find the probability of exactl
 Furthermore, by the Binomial Theorem (\ref{thm:Cnrfacts}), \[\sum_{x = 0}^n p(x) = (p+(1-p))^n = 1.\]
 
 \begin{theorem}
-\protect\hypertarget{thm:binomial-distribution-EandV}{}\label{thm:binomial-distribution-EandV}If \(X\) is \(\text{binom}(n,p)\), \[E(X) = np~~~\text{ and }~~~ V(X) = np(1-p).\]
+\protect\hypertarget{thm:binomial-distribution-EandV}{}\label{thm:binomial-distribution-EandV}If \(X\) is \(\texttt{binom}(n,p)\), \[E(X) = np~~~\text{ and }~~~ V(X) = np(1-p).\]
 \end{theorem}
 
 \begin{proof}
@@ -2789,7 +2790,7 @@ E(X) &= \sum_{x=0}^n x \cdot p(x) \\
      &= np \sum_{x=1}^n \binom{n-1}{x-1}p^{x-1}(1-p)^{(n-1)-(x-1)}
 \end{align*}
 
-Hey! The summation term equals 1 since it is the sum of all the probabilities in a binom\((n-1,p)\) distrtibution!
+Hey! The summation term equals 1 since it is the sum of all the probabilities in a \(\texttt{binom}(n-1,p)\) distrtibution!
 
 Thus \(E(X) = np\).
 
@@ -2808,7 +2809,7 @@ E(X(X-1)) &= \sum_{x=0}^n x(x-1)\binom{n}{x}p^x(1-p)^{n-x} \\
           &= n(n-1)p^2 \sum_{x=2}^n\binom{n-2}{x-2}p^{x-2}(1-p)^{(n-2)-(x-2)}
 \end{align*}
 
-This summation also equals one, since it is the sum of all the probabilities in a binom\((n-2,p)\) distribution, so \(E(X(X-1)) = n(n-1)p^2\), and it follows that
+This summation also equals one, since it is the sum of all the probabilities in a \(\texttt{binom}(n-2,p)\) distribution, so \(E(X(X-1)) = n(n-1)p^2\), and it follows that
 \[E(X^2) = E(X(X-1))+E(X) = n(n-1)p^2 + np.\]
 
 Finally,
@@ -2823,17 +2824,17 @@ V(X) &= E(X^2) - E(X)^2 \\
 \begin{example}[Guessing on a multiple choice test]
 \protect\hypertarget{exm:binom-mult-choice-test}{}\label{exm:binom-mult-choice-test}A multiple choice exam has 15 questions. Each question has 4 possible answers. If a student answers each question with a random guess, what is the probability they will score 10 or higher?
 
-Let \(X\) = the score on the test. Then, \(X\) is binom\((n=15,p=1/4)\).
+Let \(X\) = the score on the test. Then, \(X\) is \(\texttt{binom}(n=15,p=1/4)\).
 
 Now, \[P(X \geq 10) = \sum_{x = 10}^{15} \binom{15}{x}\left(\frac{1}{4}\right)^x\left(\frac{3}{4}\right)^{15-x} \approx .0008.\]
 
 \textbf{Calculating this sum in R}
 
-R has a nice command for calculating cumulative probabilities of the form \(P(X \leq x)\).If \(X\) is binom\((n,p)\), then \(P(X \leq x)\) is calculated in R by \texttt{pbinom(x,n,p)}. So, in the case of the multiple choice test, \(P(X \geq 10) = 1 - P(X \leq 9) =\) \texttt{1-pbinom(9,15,1/4)}. See Appendix \ref{r-4distn-functions}) for more information on using R to calculate probabilities for the important distributions we encounter in this class.
+R has a nice command for calculating cumulative probabilities of the form \(P(X \leq x)\).If \(X\) is \(\texttt{binom}(n,p)\), then \(P(X \leq x)\) is calculated in R by \texttt{pbinom(x,n,p)}. So, in the case of the multiple choice test, \(P(X \geq 10) = 1 - P(X \leq 9) =\) \texttt{1-pbinom(9,15,1/4)}. See Appendix \ref{R-discreteRV}) for more information on using R to calculate probabilities for the important discrete distributions we encounter in this class.
 
 Back to the test, they have less than a 1 in a thousand chance of scoring a 10 or better if they are truly guessing. Note also that the mean for \(X\) is \(E(X) = 15 \cdot \frac{1}{4} = 3.75\).
 
-What if they can eliminate one of the choices on each problem, and randomly guess between the remaining three choices on each problem? Are they likely to do better? If we let \(Y\) denote the score on the test following this approach, then \(Y\) is binom\((n=15,p=1/3)\), and the probability of scoring 10 or greater ends up about 10 times better than it was before, but still miniscule:
+What if they can eliminate one of the choices on each problem, and randomly guess between the remaining three choices on each problem? Are they likely to do better? If we let \(Y\) denote the score on the test following this approach, then \(Y\) is \(\texttt{binom}(n=15,p=1/3)\), and the probability of scoring 10 or greater ends up about 10 times better than it was before, but still miniscule:
 
 \[P(Y \geq 10) = \sum_{y = 10}^{15} \binom{15}{y}\left(\frac{1}{3}\right)^y\left(\frac{2}{3}\right)^{15-y} \approx .0085,\]
 The mean score is now \(E(Y) = 15\cdot\frac{1}{3} = 5.\) Ok, not great, but it is better, I guess.
@@ -2846,7 +2847,7 @@ The mean score is now \(E(Y) = 15\cdot\frac{1}{3} = 5.\) Ok, not great, but it i
 How does the expected cost of parking 100 times without paying the meter compare with the cost of paying the meter each time?
 \end{quote}
 
-Assume parking events are independent, identical Bernoulli trials with probability \(p = .03\) of getting a ticket. Then the random variable \(X\) counting the number of tickets in 100 trials is \(\text{binom}(100,.03)\), and we note that \(E(X) = 100\cdot(.03) = 3\).
+Assume parking events are independent, identical Bernoulli trials with probability \(p = .03\) of getting a ticket. Then the random variable \(X\) counting the number of tickets in 100 trials is \(\texttt{binom}(100,.03)\), and we note that \(E(X) = 100\cdot(.03) = 3\).
 
 In deciding whether to pay the meter, one idea is to consider the cost associated to the expected number of tickets, which would be \$35. This amount is higher than the \$25 Flint would pay by chucking in a quarter each time. But this approach doesn't give the full picture.
 
@@ -2879,7 +2880,7 @@ Yes, Flint is better off putting a quarter in the meter each time for a cost of 
 \begin{example}[Drilling for Oil]
 \protect\hypertarget{exm:binomial-oil}{}\label{exm:binomial-oil}An oil exploration firm in the 1970s wants to finance 10 drilling explorations. They figure each exploration has a probability of success (finding oil) equal to 0.1, and that the 10 operations are independent (success in one is independent of success in any other). The company has \$50,000 in fixed costs prior to doing its first exploration, and anticipates a cost of \$150,000 for each unsuccessful exploration, and a cost of \$300,000 for each successful exploration. Find the expected total cost to the firm for its 10 explorations.
 
-Let \(X\) = number of successful explorations. Then \(X\) is binom\((10,.1)\), and \(E(X) = 10 \cdot .1 = 1.\)
+Let \(X\) = number of successful explorations. Then \(X\) is \(\texttt{binom}(10,.1)\), and \(E(X) = 10 \cdot .1 = 1.\)
 The cost \(C\) (in thousands of dollars) can be expressed as a linear function of \(X\):
 
 \begin{align*}
@@ -2915,7 +2916,7 @@ So the expected cost is \$1.7 million dollars.
 
 \textbf{Solution}:
 
-Let \(X\) denote the number of ``special'' soccer balls in the randomly selected set of 20 balls. Then, \(X\) is \(\text{binom}(n=20,p=.05)\)
+Let \(X\) denote the number of ``special'' soccer balls in the randomly selected set of 20 balls. Then, \(X\) is \(\texttt{binom}(n=20,p=.05)\)
 
 The first question asks for \(P(X = 2)\) which is \[P(X = 2) = \binom{20}{2} p^2 \cdot (1-p)^{18} \approx .189.\]
 
@@ -2930,7 +2931,7 @@ which we can evaluate in R with
 \begin{example}
 \protect\hypertarget{exm:binomial-tchebby}{}\label{exm:binomial-tchebby}
 
-Suppose \(X\) is \(\text{binom}(60,1/4)\). Then \(\mu = 60\cdot\frac{1}{4} = 15\) and \(\sigma^2 = 60\cdot \frac{1}{4} \cdot \frac{3}{4} = 11.25.\)
+Suppose \(X\) is \(\texttt{binom}(60,1/4)\). Then \(\mu = 60\cdot\frac{1}{4} = 15\) and \(\sigma^2 = 60\cdot \frac{1}{4} \cdot \frac{3}{4} = 11.25.\)
 Tchebbysheff says at least 75\% of the distribution is within 2 standard deviations of the mean, so in this case, at least 75\% of the distribution is between \(15 - 2\cdot \sqrt{11.25}\) and \(15 + 2\cdot \sqrt{11.25}\), or between 8.3 and 21.7. The actual percentage is closer to 95\%, and it can be found by summing all \(p(x)\) for \(x\) between 8.29 and 21.7. This sum is calculated in R by
 
 \begin{Shaded}
@@ -2947,7 +2948,7 @@ Tchebbysheff says at least 75\% of the distribution is within 2 standard deviati
 
 \section{Geometric Distributions}\label{geometric}
 
-Suppose we have a sequence of Bernoulli trials, independent, with probability of success \(p\) on each trial. Let \(X\) equal the number of trials up to and including the trial of the first success. Then \(X\) is called a \textbf{geometric distribution with parameter \(p\)}\index{discrete random variable!geometric}, denoted \(\text{geom}(p)\)\index{geom$(p)$}.
+Suppose we have a sequence of Bernoulli trials, independent, with probability of success \(p\) on each trial. Let \(X\) equal the number of trials up to and including the trial of the first success. Then \(X\) is called a \textbf{geometric distribution with parameter \(p\)}\index{discrete random variable!geometric}, denoted \(\texttt{geom}(p)\)\index{\texttt{geom}$(p)$}.
 
 The probability function for \(X\) is given by \[p(x) = q^{x-1}\cdot p,\] for \(x = 1, 2, 3, \ldots,\) where, again, \(q = 1-p\).
 
@@ -2966,7 +2967,7 @@ P(X > k) &= p(X=k+1)+p(X=k+2)+p(X=k+3)+\cdots \\
 The geometric distribution can be useful when modeling the behavior of lines. For instance, suppose a line of cars waits to pay their parking fee as they exit the airport. It can be reasonable to assume that over a short interval of time (say 10 seconds), the probability that a car arrives is \(p\), and the probability that a car does not arrive is \(q = 1-p.\) Then the time \(T\) until the next arrival has a geometric distribution, and by the remark above, the probability that no car arrives in the next \(k\) time units is \(P(T > k) = q^k\).
 
 \begin{theorem}
-\protect\hypertarget{thm:geometric-EandV}{}\label{thm:geometric-EandV}If \(X\) is \(\text{geom}(p)\) for \(0 < p \leq 1\), then \[E(X) = \frac{1}{p}~~~\text{ and }~~~  V(X) = \frac{1-p}{p^2}.\]
+\protect\hypertarget{thm:geometric-EandV}{}\label{thm:geometric-EandV}If \(X\) is \(\texttt{geom}(p)\) for \(0 < p \leq 1\), then \[E(X) = \frac{1}{p}~~~\text{ and }~~~  V(X) = \frac{1-p}{p^2}.\]
 \end{theorem}
 
 Before proving this theorem we consider the geometric series one more time.
@@ -3002,7 +3003,7 @@ We leave the proof that \(V(X) = \frac{1-p}{p^2}\) as an exercise.
 Assume that, during each second, my junk box receives one email with probability .01 and no email with probability .99. Determine the probability that I will not receive a junk email in the next minute.
 \end{quote}
 
-We let \(X\) count how many seconds (from now) it takes to be sent an email to my junk box, and we assume \(X\) is geom\((p = .01)\).
+We let \(X\) count how many seconds (from now) it takes to be sent an email to my junk box, and we assume \(X\) is \(\texttt{geom}(p = .01)\).
 
 Then the probability of not receiving a junk email in the next ten minutes is \[P(X > 600) = q^{600} \approx .0024.\]
 So you're saying there's a chance!
@@ -3013,16 +3014,20 @@ We also note that \(E(X) = 1/p = 100\), the average time to get our next junk ma
 
 \section{Negative Binomial Distribution}\label{negative-binomial}
 
-Suppose we have a sequence of independent Bernoulli trials, each having probability of success \(p\), and we want to know how many trials it takes to get our \(r\)th success, where \(r \geq 1\). (As an aside, we generally say \(r\) in this context as if we're a pirate.)
+Suppose we have a sequence of independent Bernoulli trials, each having probability of success \(p\), and we want to know how many trials it takes to get our \(r\)th success, where \(r \geq 1\).
 
-Let \(X\) equal the number of trials up to and including the trial of the \(r\)th success. Then \(X\) is called a \textbf{negative binomial distribution with parameters \(r\) and \(p\)}\index{discrete random variable!negative binomial}, denoted \(\text{nbinom}(r,p)\)\index{nbinom$(r,p)$}.
+For instance, if we set \(r = 3\), then \(X = 7\) for the following sequence of Bernoulli trials (\(S\) stands for success, \(F\) for failure)
+\[F F F S F S S F S F F S \ldots \]
+since the third \(S\) occurs on the 7th trial.
+
+Let \(X\) equal the number of trials up to and including the trial of the \(r\)th success. Then \(X\) is called a \textbf{negative binomial distribution with parameters \(r\) and \(p\)}\index{discrete random variable!negative binomial}, denoted \(\texttt{nbinom}(r,p)\)\index{\texttt{nbinom}$(r,p)$}.
 
 The space of \(X\) is \(\{r, r+1, r+2, \ldots\}\) and for \(x\) in the space of \(X\) the probability function for \(X\) is given by \[p(x) = \binom{r-1}{x-1}p^r(1-p)^{x-r}.\]
 
-Note, that if \(r=1\) we just have the friendly geoemtric distribution.
+Note, that if \(r=1\) we just have the friendly geometric distribution.
 
 \begin{theorem}
-\protect\hypertarget{thm:negative-binomial-EandV}{}\label{thm:negative-binomial-EandV}If \(X\) is \(\text{nbinom}(r,p)\) where \(0<p\leq 1\) then
+\protect\hypertarget{thm:negative-binomial-EandV}{}\label{thm:negative-binomial-EandV}If \(X\) is \(\texttt{nbinom}(r,p)\) where \(0 < p \leq 1\) then
 \[E(X) = \frac{r}{p} ~~~ \text{ and } ~~~ V(X) = \frac{r(1-p)}{p^2}.\]
 \end{theorem}
 
@@ -3033,7 +3038,7 @@ Note, that if \(r=1\) we just have the friendly geoemtric distribution.
 If we roll 2 dice and record the sum, how many rolls, on average, will it take to get our 4th 8?
 \end{quote}
 
-Well, the probability of rolling a sum of 8 is \(p = 5/36\) by our 6x6 dice grid in Example \ref{exm:roll2dice}, and the random variable \(X\) counting the number of rolls until we get our 4th 8 is \(\text{nbinom}(r=4,p=5/36)\), so \[E(X) = \frac{4}{5/36} = 28.8.\] Would you want to make a bet that it will take me more than 25 rolls to get my 4th 8?
+Well, the probability of rolling a sum of 8 is \(p = 5/36\) by our 6x6 dice grid in Example \ref{exm:roll2dice}, and the random variable \(X\) counting the number of rolls until we get our 4th 8 is \(\texttt{nbinom}(r=4,p=5/36)\), so \[E(X) = \frac{4}{5/36} = 28.8.\] Would you want to make a bet that it will take me more than 25 rolls to get my 4th 8?
 
 We note that \[V(X) = \frac{4\cdot (31/36)}{(5/36)^2} \approx 178.6,\] so the standard deviation is \(\sigma = \sqrt{V(X)} \approx 13.36\).
 
@@ -3057,7 +3062,7 @@ Suppose we draw a random sample without replacement of size \(k\) from the popul
 
 Let \(X\) equal the number of elements in the sample of size \(k\) that belong to group 1.
 
-Then \(X\) is called a \textbf{hypergeometric distribution with parameters \(m, n,\) and \(k\)}\index{discrete random variable!hypergometric}, denoted \(\text{hyper}(m,n,k)\)\index{hyper$(m,n,k)$}. The space of \(X\) is either
+Then \(X\) is called a \textbf{hypergeometric distribution with parameters \(m, n,\) and \(k\)}\index{discrete random variable!hypergometric}, denoted \(\texttt{hyper}(m,n,k)\)\index{\texttt{hyper}$(m,n,k)$}. The space of \(X\) is either
 \(x = 0, 1, \ldots, k\) if \(m \geq k\), or \(0, 1, \ldots, m\) if \(m < k\).
 
 For each \(x\) in the space of \(X\),
@@ -3066,7 +3071,7 @@ For each \(x\) in the space of \(X\),
 The classic ``good potatoes/bad potatoes'' Example \ref{exm:potatoes} has a hypergeometric distribution.
 
 \begin{theorem}
-\protect\hypertarget{thm:hypergeometric-EandV}{}\label{thm:hypergeometric-EandV}If \(X\) is \(\text{hyper(m,n,k)}\) then \[E(X) = k\cdot\frac{m}{N}~~~\text{ and }~~~ V(X) = k \left(\frac{m}{N}\right)\left(\frac{n}{N}\right)\left(\frac{N-k}{N-1}\right),\] where \(N = m + n\).
+\protect\hypertarget{thm:hypergeometric-EandV}{}\label{thm:hypergeometric-EandV}If \(X\) is \(\texttt{hyper}(m,n,k)\) then \[E(X) = k\cdot\frac{m}{N}~~~\text{ and }~~~ V(X) = k \left(\frac{m}{N}\right)\left(\frac{n}{N}\right)\left(\frac{N-k}{N-1}\right),\] where \(N = m + n\).
 \end{theorem}
 
 \begin{example}
@@ -3076,7 +3081,7 @@ The classic ``good potatoes/bad potatoes'' Example \ref{exm:potatoes} has a hype
 Let's say a bag of 120 skittles has 30 orange ones. If we pick 10 at random, what is the probability that we get more than 5 orange ones?
 \end{quote}
 
-Let \(X\) denote the number of orange skittles in our sample. Then \(X\) is hyper(30,90,10), and
+Let \(X\) denote the number of orange skittles in our sample. Then \(X\) is \(\texttt{hyper}(30,90,10)\), and
 \[P(X>5) = \sum_{x=6}^{10} \frac{\binom{30}{x}\binom{90}{10-x}}{\binom{120}{10}} \approx .0153.\]
 We note that in this example \(E(X) = 10 \cdot \frac{30}{120} = 2.5.\)
 
@@ -3104,7 +3109,7 @@ Some examples that might be well-modeled by a Poisson distribution:
 \end{itemize}
 
 \begin{definition}[Poisson Distribution]
-\protect\hypertarget{def:poisson-distribution}{}\label{def:poisson-distribution}A random variable \(X\) has a \textbf{Poisson probability distribution}\index{discrete random variable!Poisson} with parameter \(\lambda > 0\), denoted \(\text{pois}(\lambda)\)\index{pois$(\lambda)$}, if and only if \[p(x) = \frac{\lambda^x e^{-\lambda}}{x!} ~~~\text{ for } x = 0,1,2, \ldots.\]
+\protect\hypertarget{def:poisson-distribution}{}\label{def:poisson-distribution}A random variable \(X\) has a \textbf{Poisson probability distribution}\index{discrete random variable!Poisson} with parameter \(\lambda > 0\), denoted \(\texttt{Poisson}(\lambda)\)\index{\texttt{Poisson}$(\lambda)$}, if and only if \[p(x) = \frac{\lambda^x e^{-\lambda}}{x!} ~~~\text{ for } x = 0,1,2, \ldots.\]
 \end{definition}
 
 We take the time to explain how this probability density function does actually model such things, but first let's check that it is a valid probability density function, and then find \(E(X)\) and \(V(X)\).
@@ -3117,7 +3122,7 @@ First, since \(\lambda > 0\), each \(p(x)\) is non-negative. Also, recall the Ca
 \end{align*}
 
 \begin{theorem}
-\protect\hypertarget{thm:poisson-EandV}{}\label{thm:poisson-EandV}If \(X\) is pois\((\lambda)\), \(E(X) = \lambda\) and \(V(X) = \lambda\).
+\protect\hypertarget{thm:poisson-EandV}{}\label{thm:poisson-EandV}If \(X\) is \(\texttt{Poisson}(\lambda)\), \(E(X) = \lambda\) and \(V(X) = \lambda\).
 \end{theorem}
 
 \begin{proof}
@@ -3177,7 +3182,7 @@ P(X >  5) &= 1 - P(X \leq 5) \\
 &= 1 - \left[ \frac{2^0e^{-2}}{0!}+\frac{2^1e^{-2}}{1!} +  \cdots + \frac{2^5e^{-2}}{5!}\right]
 \end{align*}
 
-Rather than calculate this by hand, we turn to R, and the command \texttt{ppois(k,lambda)}, which returns \(P(X \leq k)\) when \(X\) is pois(\(\lambda\)).
+Rather than calculate this by hand, we turn to R, and the command \texttt{ppois(k,lambda)}, which returns \(P(X \leq k)\) when \(X\) is \(\texttt{Poisson}(\lambda)\).
 
 So \(P(X > 5) = 1 - P(X \leq 5)\) = 1 - \texttt{ppois(5,2)} \(\approx\) 0.017.
 \end{example}
@@ -3189,7 +3194,7 @@ So \(P(X > 5) = 1 - P(X \leq 5)\) = 1 - \texttt{ppois(5,2)} \(\approx\) 0.017.
 What is the probability that the site gets 20 or more visits in a day?
 \end{quote}
 
-We want \(P(X \geq 20)\), an infinite sum, so we use the strategy of finding the complement, with the help of R for the calculation:
+We want \(P(X \geq 20)\), an infinite sum, so we use the strategy of finding the complement, with the help of the function \texttt{ppois()} (Appendix \ref{R-discreteRV}) in R for the calculation:
 
 \begin{align*}
 P(X \geq 20) &= 1 - P(X \leq 19) \\
@@ -3210,7 +3215,7 @@ If we're interested in modelling the number of instances of some rare event over
   the probability of 0 instances (``failure'') equals \(1-p\).
 \end{itemize}
 
-Then, if \(X\) equals the number of instances in the original interval, then \(X\) is binomial on \(n\) trials with probability of success \(p\) on each trial, assuming identical, independent Bernouilli trials. As we increase \(n\), breaking the original time period into smaller and smaller subintervals, the corresponding probability \(p\) of seeing 1 instance of the event in a subinterval will decrease, but what if \(n \cdot p\) remains constant? In this case, let \(\lambda = np\) and consider what happens to the probability density function for the \(\text{binom}(n,p)\) distribution:
+Then, if \(X\) equals the number of instances in the original interval, then \(X\) is binomial on \(n\) trials with probability of success \(p\) on each trial, assuming identical, independent Bernouilli trials. As we increase \(n\), breaking the original time period into smaller and smaller subintervals, the corresponding probability \(p\) of seeing 1 instance of the event in a subinterval will decrease, but what if \(n \cdot p\) remains constant? In this case, let \(\lambda = np\) and consider what happens to the probability density function for the \(texttt{binom}(n,p)\) distribution:
 
 \begin{align*}
 \lim_{n \to \infty} \binom{n}{x}p^x(1-p)^{n-x} &= \lim_{n \to \infty} \frac{n\cdot(n-1)\cdot \cdots \cdot (n - x + 1)}{x!} \left(\frac{\lambda}{n}\right)^x\left(1-\frac{\lambda}{n}\right)^{n-x} \\
@@ -3226,7 +3231,7 @@ Second, observe that \((1-\lambda/n)^{-x} \to 1^{-x} = 1\) since \(\lambda/n \to
 
 Finally, for any \(k \geq 0\), \(\lim_{n \to \infty} \frac{n-k}{n} = 1\) so each of the ratios from the third term on converges to 1.
 
-So, if \(np\) remains constant as \(n \to \infty\), then as \(n \to \infty\) the binomial distribution \(\text{binom}(n,p)\) approaches the Poisson\((\lambda)\) distribution, where \(\lambda = np\). So, the Poisson distribution can be a good model for counting instances of some rare event.
+So, if \(np\) remains constant as \(n \to \infty\), then as \(n \to \infty\) the binomial distribution \(texttt{binom}(n,p)\) approaches the \(\texttt{Poisson}(\lambda)\) distribution, where \(\lambda = np\). So, the Poisson distribution can be a good model for counting instances of some rare event.
 
 The process described above, where subdivision of the interval leads to Bernoulli trials in such a way that \(np\) remains constant, is called a Poisson process.
 
@@ -3251,10 +3256,10 @@ The process by which an event happens is called a \textbf{Poisson process}\index
 In the limit derivation above we demonstrated the following:
 
 \begin{quote}
-For large \(n\), if we let \(\lambda = np\), pois\((\lambda)\sim b(n,p)\).
+For large \(n\), if we let \(\lambda = np\), \(\texttt{Poisson}(\lambda) \sim  \texttt{binom}(n,p)\).
 \end{quote}
 
-For instance, in the table below we compare the probabilities for binom(10,.4), binom(40,.1), and binom(400,.01) with those of a pois(4) distribution. For all 3 binomial distributions \(np = 4\), so as \(n\) gets larger, binom\((n,p)\) should be a better approximation to pois(4):
+For instance, in the table below we compare the probabilities for \(\texttt{binom}(10,.4)\), \(\texttt{binom}(40,.1)\), and \(\texttt{binom}(400,.01)\) with those of a \(\texttt{Poisson}(4)\) distribution:
 
 \begin{table}
 \centering
@@ -3262,7 +3267,7 @@ For instance, in the table below we compare the probabilities for binom(10,.4), 
 \centering
 \begin{tabular}[t]{r|r|r|r|r}
 \hline
-x & b(10,4) & b(40,.1) & b(400,.01) & pois(4)\\
+x & binom(10,4) & binom(40,.1) & binom(400,.01) & Poisson(4)\\
 \hline
 0 & 0.0060 & 0.0148 & 0.0180 & 0.0183\\
 \hline
@@ -3292,7 +3297,7 @@ Then \(P(X \geq 10) = 1 - P(X \leq 9) =\) \texttt{1-ppois(9,6)} = 0.084.
 
 Let's consider this result. If the mean number of accidents per month is still 3, we would expect to observe 10 or more accidents over a two month period about 8 times out of 100, which is unlikely, but not extremely unlikely. Better safe than sorry, I would send out a safety memo and closely monitor what unfolds over the next month!
 
-Now, if we had 5 more accidents the next month, giving us 15 over a 3 month window, chances of 15 or more over 3 months is \(P(X \geq 15)\), where \(X\) is pois(9). Using R, this probability is \texttt{1-ppois(14,9)} = 0.041.
+Now, if we had 5 more accidents the next month, giving us 15 over a 3 month window, chances of 15 or more over 3 months is \(P(X \geq 15)\), where \(X\) is \(\texttt{Poisson}(9)\). Using R, this probability is \texttt{1-ppois(14,9)} = 0.041.
 
 So we have about a 4\% chance of seeing 15 or more over a 3 month window if the mean number of accidents per month is 3. I would investigate whether some practice has changed to make accidents more likely than they used to be.
 \end{example}
@@ -3877,7 +3882,7 @@ so that the standard deviation is \(\sigma = \sqrt{V(W)} ~\approx 0.11\) (about 
 \chapter{Important Continuous Random Variables}\label{important-continuous-rv}
 
 In this chapter we introduce the following well-known continuous random variables:
-uniform, normal, exponential, gamma, chi-square, and beta.
+uniform, normal, exponential, gamma, chi-square, and beta. In examples we work through, it will from time to time be convenient to compute probabilities in R. Appendix \ref{R-continuousRV} contains details about the commands in R useful for doing so.
 
 \section{Uniform Distribution}\label{uniform-continuous}
 
@@ -3905,7 +3910,7 @@ In R we access the uniform distribution with \texttt{unif}. For instance, we can
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 3.074443 6.787201 7.188365 7.892528 3.994299 3.902418
+## [1] 3.500756 8.345203 1.045757 6.782844 6.572482 6.976151
 \end{verbatim}
 
 \begin{example}[Average value of a function]
@@ -3925,7 +3930,7 @@ Our strategy: Select a large random sample of points in the interval {[}0,2{]} a
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1.303439
+## [1] 1.373688
 \end{verbatim}
 
 \textbf{Note}: From Calc I, we know the average value of a function \(f\) over the interval \([a,b]\) is \[\frac{1}{b-a} \int_a^b f(x)~dx,\]
@@ -3965,7 +3970,7 @@ so that \[V(X) = E(X^2) - E(X)^2 = \frac{(\theta_2-\theta_1)^2}{12}.\] The fun a
 The exponential distribution is often used to model experiments that aim to investigate: How long until something happens?
 
 \begin{definition}
-\protect\hypertarget{def:exp-distribution}{}\label{def:exp-distribution}A random variable \(X\) has an \textbf{exponential probability distribution with parameter \(\beta\)}\index{exponential distribution}, denoted \(\text{Exp}(\beta)\)\index{Exp$(\beta)$}, if it has probability density function
+\protect\hypertarget{def:exp-distribution}{}\label{def:exp-distribution}A random variable \(X\) has an \textbf{exponential probability distribution with parameter \(\beta\)}\index{exponential distribution}, denoted \(\texttt{Exp}(\beta)\)\index{\texttt{Exp}$(\beta)$}, if it has probability density function
 \[
 f(x)=
 \frac{1}{\beta}e^{-(x/\beta)} ~~~ \text{ for }x \geq 0~~~ \text{ (and }f(x) = 0\text{ else.)}
@@ -3990,7 +3995,7 @@ F(x) &= \int_0^x \frac{1}{\beta}e^{-t/beta}~dt\\
 \end{align*}
 
 \begin{example}
-Suppose \(X\) is Exp(4). Find \(P(X < 8)\).
+Suppose \(X\) is \texttt{Exp}(4). Find \(P(X < 8)\).
 
 Well,
 \begin{align*}
@@ -4002,7 +4007,7 @@ P(X < 8) &= F(8)\\
 \end{example}
 
 \begin{theorem}
-\protect\hypertarget{thm:exponential-EandV}{}\label{thm:exponential-EandV}If \(X\) is \(\text{Exp}(\beta))\), then \[E(X) = \beta, ~~~ \text{ and } ~~~ V(X) = \beta^2.\]
+\protect\hypertarget{thm:exponential-EandV}{}\label{thm:exponential-EandV}If \(X\) is \(\texttt{Exp}(\beta))\), then \[E(X) = \beta, ~~~ \text{ and } ~~~ V(X) = \beta^2.\]
 \end{theorem}
 
 \begin{proof}
@@ -4149,7 +4154,7 @@ Clearly, \(f(x) \geq 0\) for all \(x\), and after \(u\)-substitution of \(u = (x
 
 \section{Gamma Distribution}\label{gamma-distribution}
 
-Some random variables are always nonnegative, and yield distributions of data that are skewed right, as pictured below.
+Some random variables are always nonnegative and yield distributions of data that are skewed right, as pictured below.
 
 \includegraphics{math340-notes_files/figure-latex/unnamed-chunk-21-1.pdf}
 
@@ -4164,12 +4169,12 @@ f(x)=
 \frac{1}{\beta^\alpha \Gamma(\alpha)}x^{\alpha-1}e^{-(x/\beta)}~~~ \text{ for }x \geq 0~~~ \text{ (and }f(x) = 0\text{ else)}
 \]
 where \(\displaystyle\Gamma(\alpha) = \int_0^\infty t^{\alpha-1}e^{-t}~dt\).
-If \(X\) has such a pdf we might say \(X\) is \(\text{gamma}(\alpha,\beta)\)\index{gamma$(\alpha,\beta)$}.
+If \(X\) has such a pdf we might say \(X\) is \(\texttt{gamma}(\alpha,\beta)\)\index{\texttt{gamma}$(\alpha,\beta)$}.
 \end{definition}
 
 Here are plots of three different gamma distributions.
 
-\begin{center}\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-22-1} \end{center}
+\begin{center}\includegraphics{math340-notes_files/figure-latex/3-gamma-plots-1} \end{center}
 
 The quantity \(\Gamma(\alpha)\) is called the \textbf{gamma function}\index{gamma function}, which has some nice features.
 
@@ -4228,14 +4233,14 @@ It follows that \(\Gamma(n) = (n-1)!\) for all positive integers \(n\).
 The family of gamma distributions contain two special sub-families, one of which we've already seen!
 
 \begin{theorem}
-\protect\hypertarget{thm:gamma-EandV}{}\label{thm:gamma-EandV}If \(X\) is \(\text{gamma}(\alpha,\beta))\), then \[E(X) = \alpha\beta, ~~~ \text{ and } ~~~ V(X) = \alpha\beta^2.\]
+\protect\hypertarget{thm:gamma-EandV}{}\label{thm:gamma-EandV}If \(X\) is \(\texttt{gamma}(\alpha,\beta))\), then \[E(X) = \alpha\beta, ~~~ \text{ and } ~~~ V(X) = \alpha\beta^2.\]
 \end{theorem}
 
 We prove this later in Chapter \ref{mgf}.
 
 \begin{example}
 
-Where does the peak of the gamma\((\alpha,\beta)\) pdf occur?
+Where does the peak of the \(\texttt{gamma}(\alpha,\beta)\) pdf occur?
 
 This looks like a question for calculus. We can find \(f^\prime\), set it to 0, and consider critical points.
 
@@ -4246,25 +4251,25 @@ We leave the details to the reader for now, but find the following results:
 \item
   if \(\alpha \leq 1\), \(f^\prime(x) < 0\) for all \(x > 0\), so \(f\) is always decreasing and the peak occurs when \(x = 0\).
 \item
-  If \(\alpha > 1\), the pdf for \(X \sim \text{gamma}(\alpha, \beta)\) has its peak at \(x = (\alpha-1)\beta.\)
+  If \(\alpha > 1\), the pdf for \(X \sim \texttt{gamma}(\alpha, \beta)\) has its peak at \(x = (\alpha-1)\beta.\)
 \end{itemize}
 
 \end{example}
 
 \subsection{Exponential Distribution}\label{exponential-distribution-1}
 
-Set \(\alpha = 1\) and you will find \(\text{gamma}(1,\beta) = \text{ Exp}(\beta),\)
+Set \(\alpha = 1\) and you will find \(\texttt{gamma}(1,\beta) = \texttt{Exp}(\beta),\)
 because their density functions are identical. So exponential distributions are special gamma distributions.
 
 \subsection{Chi-square distribution}\label{chi-square-distribution}
 
 \begin{definition}
-\protect\hypertarget{def:chi-square}{}\label{def:chi-square}Let \(\nu\) be a positive integer. \(X\) has a \textbf{chi-square distribution with \(\nu\) degrees of freedom}\index{chi-square distribution}, denoted \(X\) is \(\chi^2(\nu)\)\index{$\chi^2(\nu)$}, if \(X\) is \(\text{gamma}(\alpha = \nu/2, \beta = 2).\)
+\protect\hypertarget{def:chi-square}{}\label{def:chi-square}Let \(\nu\) be a positive integer. \(X\) has a \textbf{chi-square distribution with \(\nu\) degrees of freedom}\index{chi-square distribution}, denoted \(X\) is \(\chi^2(\nu)\)\index{$\chi^2(\nu)$}, if \(X\) is \(\texttt{gamma}(\alpha = \nu/2, \beta = 2).\)
 \end{definition}
 
 Here are plots of three different chi-square distributions.
 
-\begin{center}\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-23-1} \end{center}
+\begin{center}\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-22-1} \end{center}
 
 \section{Beta Distribution}\label{beta-distribution}
 
@@ -4277,7 +4282,7 @@ f(x)=
 \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha)\cdot \Gamma(\beta)}x^{\alpha-1}(1-x)^{\beta-1}~~~ \text{ for }0 \leq x \leq 1~~~ \text{ (and }f(x) = 0\text{ else)}
 \]
 
-If \(X\) has such a pdf we say that \(X\) is \(\text{beta}(\alpha,\beta)\)\index{beta$(\alpha,\beta)$}.
+If \(X\) has such a pdf we say that \(X\) is \(\texttt{beta}(\alpha,\beta)\)\index{\texttt{beta}$(\alpha,\beta)$}.
 \end{definition}
 
 The gamma function (\ref{def:gamma-distribution}) appears in this pdf three times. Recall that for positive integers \(n\), \(\Gamma(n) = (n-1)!\) so for integer values of \(\alpha\) and \(\beta\), the beta density function is fairly nice.
@@ -4286,24 +4291,24 @@ Indeed,
 \begin{itemize}
 \tightlist
 \item
-  \(\displaystyle X \sim \text{beta}(1,1) \Rightarrow f(x) = \frac{\Gamma(2)}{\Gamma(1)\Gamma(1)}x^0(1-x)^0 = 1\). Whoa! \(\text{beta}(1,1)\) is the uniform distribution \(U(0,1).\)
+  \(\displaystyle X \sim \texttt{beta}(1,1) \Rightarrow f(x) = \frac{\Gamma(2)}{\Gamma(1)\Gamma(1)}x^0(1-x)^0 = 1\). Whoa! \(\text{beta}(1,1)\) is the uniform distribution \(U(0,1).\)
 \item
-  \(\displaystyle X \sim \text{beta}(1,2) \Rightarrow f(x) = 2(1-x)\).
+  \(\displaystyle X \sim \texttt{beta}(1,2) \Rightarrow f(x) = 2(1-x)\).
 \item
-  \(\displaystyle X \sim \text{beta}(2,1) \Rightarrow f(x) = 2x\).
+  \(\displaystyle X \sim \texttt{beta}(2,1) \Rightarrow f(x) = 2x\).
 \item
-  \(\displaystyle X \sim \text{beta}(2,2) \Rightarrow f(x) = 6x(1-x)\).
+  \(\displaystyle X \sim \texttt{beta}(2,2) \Rightarrow f(x) = 6x(1-x)\).
 \item
-  \(\displaystyle X \sim \text{beta}(n,1) \Rightarrow f(x) = nx^{n-1}\).
+  \(\displaystyle X \sim \texttt{beta}(n,1) \Rightarrow f(x) = nx^{n-1}\).
 \item
-  \(\displaystyle X \sim \text{beta}(1,n) \Rightarrow f(x) = n(1-x)^{n-1}\).
+  \(\displaystyle X \sim \texttt{beta}(1,n) \Rightarrow f(x) = n(1-x)^{n-1}\).
 \end{itemize}
 
 Here are a few beta distributions:
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-24-1.pdf}
+\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-23-1.pdf}
 
 \begin{theorem}
-\protect\hypertarget{thm:beta-EandV}{}\label{thm:beta-EandV}If \(X\) is \(\text{beta}(\alpha,\beta))\), then \[E(X) = \frac{\alpha}{\alpha+\beta}, ~~~ \text{ and } ~~~ V(X) = \frac{\alpha\beta}{(\alpha+\beta)^2(\alpha+\beta+1)}.\]
+\protect\hypertarget{thm:beta-EandV}{}\label{thm:beta-EandV}If \(X\) is \(\texttt{beta}(\alpha,\beta))\), then \[E(X) = \frac{\alpha}{\alpha+\beta}, ~~~ \text{ and } ~~~ V(X) = \frac{\alpha\beta}{(\alpha+\beta)^2(\alpha+\beta+1)}.\]
 \end{theorem}
 
 \chapter{Moment Generating Functions}\label{mgf}
@@ -4499,8 +4504,8 @@ We note that this nail gun has the following (alarming?) velocity distribution:
 
 \begin{figure}
 \centering
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-26-1.pdf}
-\caption{\label{fig:unnamed-chunk-26}Nail gun velocity distribution}
+\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-25-1.pdf}
+\caption{\label{fig:unnamed-chunk-25}Nail gun velocity distribution}
 \end{figure}
 
 The kinetic energy \(K\) associated with a nail having mass \(m\) moving at velocity \(V\) is \(K = \frac{1}{2}mV^2\). What is \(E(K)\)?
@@ -4602,13 +4607,13 @@ Let's look at a simulation in R to investigate these statements. The simulation 
 \end{Shaded}
 
 Plots:
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-28-1.pdf}
+\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-27-1.pdf}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-29-1.pdf}
+\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-28-1.pdf}
 
 The scatter plot below suggests no real association between \(\overline{x}\) and \(s^2\).
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-30-1.pdf}
+\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-29-1.pdf}
 
 \section{T distribution}\label{t-distribution}
 
@@ -4937,7 +4942,7 @@ Let's see how these different estimators do for a particular random sample gener
 \end{Shaded}
 
 \begin{verbatim}
-##  [1]  6.03  5.39  9.45  8.37  7.37  7.69 15.78  6.99  8.01 12.16
+##  [1] 19.23 16.46  1.06  5.24 15.79 19.71  7.33 18.66 16.31  2.78
 \end{verbatim}
 
 For this single sample the estimators takes on these values:
@@ -4945,9 +4950,9 @@ For this single sample the estimators takes on these values:
 \begin{itemize}
 \tightlist
 \item
-  Estimator 1: \(\hat{\theta}_1\) = 17.4
+  Estimator 1: \(\hat{\theta}_1\) = 24.5
 \item
-  Estimator 2: \(\hat{\theta}_2\) = 17.4.
+  Estimator 2: \(\hat{\theta}_2\) = 21.7.
 \end{itemize}
 
 The fact that both estimators are unbiased means that in the long run, the average of all the \(\hat{\theta}_1\) estimates would approach \(\theta\), and the same is true for the average of the \(\hat{\theta}_2\) estimates.
@@ -4978,7 +4983,7 @@ Let's simulate drawing 1000 different samples of size \(n = 10\), recording the 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-39-1.pdf}
+\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-38-1.pdf}
 Both estimators have average value near 20. In fact,
 
 \begin{itemize}
@@ -4986,7 +4991,7 @@ Both estimators have average value near 20. In fact,
 \item
   \texttt{mean(dist\_1)}- = 20
 \item
-  \texttt{mean(dist\_2)} = 19.93.
+  \texttt{mean(dist\_2)} = 19.98.
 \end{itemize}
 
 But the estimator 2 distribution has visibly smaller variance. Indeed,
@@ -4994,9 +4999,9 @@ But the estimator 2 distribution has visibly smaller variance. Indeed,
 \begin{itemize}
 \tightlist
 \item
-  \texttt{sd(dist\_1)} = 3.74
+  \texttt{sd(dist\_1)} = 3.71
 \item
-  \texttt{sd(dist\_2)} = 1.82.
+  \texttt{sd(dist\_2)} = 1.86.
 \end{itemize}
 
 It appears that the better estimator here is the one derived from the maximum value of the data as opposed to the mean of the data.
@@ -5663,7 +5668,7 @@ For instance, we can draw a random sample of size 2 from \texttt{hr}:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 10 26
+## [1] 30 44
 \end{verbatim}
 
 Here's another example. Let's grab 20 skittles at random from the bag \texttt{skittles} we created in example \ref{exm:skittles} and count how many orange ones we get:
@@ -5678,7 +5683,7 @@ Here's another example. Let's grab 20 skittles at random from the bag \texttt{sk
 \begin{verbatim}
 ## grab
 ##  green orange purple    red yellow 
-##      4      5      2      5      4
+##      6      3      1      6      4
 \end{verbatim}
 
 The \texttt{table()} command counts how many of each color :).
@@ -5692,7 +5697,7 @@ We could have found the orange count directly with
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 5
+## [1] 3
 \end{verbatim}
 
 \subsection*{\texorpdfstring{\texttt{sample()} options}{sample() options}}\label{sample-options}
@@ -5746,7 +5751,7 @@ Use \texttt{sample(x)} to generate a \emph{random permutation} of \texttt{x}:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "cat"      "hedgehog" "dog"      "rabbit"
+## [1] "rabbit"   "hedgehog" "dog"      "cat"
 \end{verbatim}
 
 \subsubsection*{Repeated sampling of 1 element}\label{repeated-sampling-of-1-element}
@@ -5766,10 +5771,10 @@ Example; Draw one animal from the set 1000 different times and summarize the pic
 \begin{verbatim}
 ## picks
 ##      cat      dog hedgehog   rabbit 
-##      251      253      253      243
+##      249      238      251      262
 \end{verbatim}
 
-And the winner is\ldots{} dog, hedgehog!
+And the winner is\ldots{} rabbit!
 
 Or, since we fear rabbits and love dogs, we can do repeated sampling of a single element with \textbf{custom probabilities}:
 
@@ -5786,7 +5791,7 @@ Or, since we fear rabbits and love dogs, we can do repeated sampling of a single
 \begin{verbatim}
 ## picks2
 ##      cat      dog hedgehog   rabbit 
-##      216      412      276       96
+##      199      411      297       93
 \end{verbatim}
 
 Nice!
@@ -5808,7 +5813,7 @@ Pick 4 students at random from a class of 9 to race around Taylor Hall. (Assumes
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 3 7 1 4
+## [1] 9 6 7 2
 \end{verbatim}
 
 \subsection*{Sample with replacement}\label{sample-with-replacement}
@@ -5826,7 +5831,7 @@ On twelve consecutive days, ask one student at random, in a class of size 9, to 
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 7 6 9 6 1 9 4 6 3 9 2 1
+##  [1] 1 8 5 8 7 5 1 6 8 9 2 1
 \end{verbatim}
 
 \subsection*{Sample with custom probabilities}\label{sample-with-custom-probabilities}
@@ -5860,7 +5865,7 @@ Roll a weighted 6 sided die with the following probability distribution 100 time
 \begin{verbatim}
 ## rolls
 ##  1  2  3  4  5  6 
-## 29  6  2 35  7 21
+## 26  8  4 44  8 10
 \end{verbatim}
 
 \subsection*{Example: Lefties}\label{example-lefties}
@@ -5883,7 +5888,7 @@ One approach: build a large population with these features and then draw 45 peop
 \begin{verbatim}
 ## 
 ##  L  R 
-##  2 43
+##  3 42
 \end{verbatim}
 
 A second approach: sample with replacement 45 times from a ``two-sided'' die with customized probabilities
@@ -5898,7 +5903,7 @@ A second approach: sample with replacement 45 times from a ``two-sided'' die wit
 \begin{verbatim}
 ## 
 ##  L  R 
-##  3 42
+##  4 41
 \end{verbatim}
 
 A third approach: Use a binomial distribution (later)
@@ -5933,7 +5938,7 @@ We know that \texttt{table(orange\_counts)} would display the counts of each of 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-89-1.pdf}
+\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-88-1.pdf}
 
 \subsection*{\texorpdfstring{using \texttt{replicate()}}{using replicate()}}\label{using-replicate}
 \addcontentsline{toc}{subsection}{using \texttt{replicate()}}
@@ -5958,7 +5963,7 @@ Again, we can summarize the \emph{frequency} with which each value of orange\_co
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-91-1.pdf}
+\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-90-1.pdf}
 
 In addition, we can calculate summary statistics to put numbers to qualitative descriptions of the distribution of values in \texttt{orange\_counts} such as center and spread. These statistics help us answer the question of what sorts of orange counts to expect.
 
@@ -5969,9 +5974,9 @@ statistic & command & result \\
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-mean & \texttt{mean(orange\_counts)} & 21.0266 \\
-standard deviation & \texttt{sd(orange\_counts)} & 3.4922646 \\
-five number summary & \texttt{fivenum(orange\_counts)} & 7, 19, 21, 23, 35 \\
+mean & \texttt{mean(orange\_counts)} & 20.9805 \\
+standard deviation & \texttt{sd(orange\_counts)} & 3.4538837 \\
+five number summary & \texttt{fivenum(orange\_counts)} & 8, 19, 21, 23, 36 \\
 \end{longtable}
 
 \section{Summary of R commands}\label{sampling-commands}
@@ -6038,10 +6043,10 @@ Example with \texttt{x\ =\ 1:6}
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-permutation of \texttt{x} & \texttt{sample(x)\ =} 1, 3, 4, 5, 6, 2 \\
-sample \(n\) elements without replacement & \texttt{sample(x,3)\ =} 1, 2, 6 \\
-sample \(n\) elements with replacement & \texttt{sample(x,5,replace=T)\ =} 5, 5, 6, 6, 4 \\
-sample with custom probabilities & \texttt{sample(x,10,replace=T,prob=\ c(0,.2,0,.5,.1,.2))\ =} 5, 5, 4, 4, 2, 6, 6, 2, 6, 4 \\
+permutation of \texttt{x} & \texttt{sample(x)\ =} 1, 3, 4, 6, 2, 5 \\
+sample \(n\) elements without replacement & \texttt{sample(x,3)\ =} 4, 2, 6 \\
+sample \(n\) elements with replacement & \texttt{sample(x,5,replace=T)\ =} 4, 5, 3, 1, 3 \\
+sample with custom probabilities & \texttt{sample(x,10,replace=T,prob=\ c(0,.2,0,.5,.1,.2))\ =} 4, 6, 5, 4, 4, 5, 2, 2, 6, 6 \\
 \end{longtable}
 
 \chapter{Simulating Probability in R}\label{R-sim-probability}
@@ -6089,7 +6094,7 @@ Let's look at the actual rolls first:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1 1 8 7 2
+## [1] 5 4 4 1 5
 \end{verbatim}
 
 We need to check 5 things: Are rolls 1-4 all less than 8, and is roll 5 greater than 8? We can ask these five questions and store the answers in a vector:
@@ -6101,7 +6106,7 @@ We need to check 5 things: Are rolls 1-4 all less than 8, and is roll 5 greater 
 \end{Shaded}
 
 \begin{verbatim}
-## [1]  TRUE  TRUE FALSE  TRUE FALSE
+## [1]  TRUE  TRUE  TRUE  TRUE FALSE
 \end{verbatim}
 
 Recal, the \texttt{sum()} of a logical vector counts the number of TRUE values. We need the sum to be 5 to have a \emph{good} sequence of 5 rolls.
@@ -6113,7 +6118,7 @@ Recal, the \texttt{sum()} of a logical vector counts the number of TRUE values. 
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 3
+## [1] 4
 \end{verbatim}
 
 I think we're ready!!
@@ -6145,7 +6150,7 @@ The results of the simulation:
 \begin{verbatim}
 ## results
 ##    0    1    2    3    4    5 
-##   64  552 2076 3645 2931  732
+##   52  522 2096 3705 2907  718
 \end{verbatim}
 
 Based on our simulation, we estimate the probability of a \emph{good} sequence of 5 rolls by the proportion of time the \texttt{results} vector took a value of 5.
@@ -6157,7 +6162,7 @@ Based on our simulation, we estimate the probability of a \emph{good} sequence o
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.0732
+## [1] 0.0718
 \end{verbatim}
 
 This estimate is likely very close to what we calculate by our counting tools \[\frac{7^4\cdot 3}{10^5} \approx .07203.\]
@@ -6198,10 +6203,10 @@ Results:
 \begin{verbatim}
 ## results
 ##    0    1    2    3    4    5 
-## 1654 2836 2147 1650 1116  597
+## 1742 2754 2222 1636 1116  530
 \end{verbatim}
 
-Conclusion: It appears we should expect the difference in the two dice to be 1 about 28.4\% of the time.
+Conclusion: It appears we should expect the difference in the two dice to be 1 about 27.5\% of the time.
 
 Note: In this example we added to the \texttt{results} vector by specifying \texttt{results{[}i{]}} in each trial, as opposed to the concatenation method we followed in the 10-sided die example.
 
@@ -6245,10 +6250,10 @@ The following code plays this `flip a coin 5 times' game for 10000 trials, recor
 \begin{verbatim}
 ## heads
 ##    0    1    2    3    4    5 
-##  306 1590 3122 3089 1582  311
+##  321 1605 3090 3065 1592  327
 \end{verbatim}
 
-Conclusion: It appears we should expect to flip exactly 1 heads in 5 tries about 15.9\% of the time.
+Conclusion: It appears we should expect to flip exactly 1 heads in 5 tries about 16\% of the time.
 
 By our counting tools, we can calculate the actual probability of getting exactly one heads in 5 flips as follows:
 
@@ -6276,8 +6281,8 @@ An urn contains 100 orange and 200 green marbles. If you draw 8 marbles from the
 
 \begin{verbatim}
 ## results
-##    0    1    2    3    4    5    6    7    8 
-##  347 1522 2831 2786 1703  638  151   21    1
+##    0    1    2    3    4    5    6    7 
+##  350 1548 2790 2760 1676  702  158   16
 \end{verbatim}
 
 We can enter \texttt{sum(results\ \textgreater{}\ 5)} to see how often we grabbed more than 5 orange marbles in our sample of size 8, and \texttt{sum(results\ \textgreater{}\ 5)/trials} is a good estimate of the likelihood of this happening.
@@ -6291,7 +6296,7 @@ Conclusion: It appears we should expect the more than 5 orange marbles in our sa
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.0173
+## [1] 0.0174
 \end{verbatim}
 
 This question is a classic ``good potatoes/bad potatoes'' problem, and by our counting techniques, we know the probability is \[\frac{\binom{100}{6}\cdot\binom{200}{2}}{\binom{300}{8}}+
@@ -6341,9 +6346,9 @@ A class has 12 people: 6 juniors, 4 sophomores, and 2 first-years. The class is 
 \end{Shaded}
 
 \begin{verbatim}
-## Subgroup 1: FSJJS
-## Subgroup 2: SFJJ
-## Subgroup 3: JSJ
+## Subgroup 1: SJJJJ
+## Subgroup 2: JFFS
+## Subgroup 3: SJS
 \end{verbatim}
 
 \begin{enumerate}
@@ -6364,7 +6369,7 @@ A class has 12 people: 6 juniors, 4 sophomores, and 2 first-years. The class is 
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1 1 0
+## [1] 0 2 0
 \end{verbatim}
 
 \begin{enumerate}
@@ -6382,7 +6387,7 @@ A class has 12 people: 6 juniors, 4 sophomores, and 2 first-years. The class is 
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0
+## [1] 1
 \end{verbatim}
 
 \textbf{Final Code}
@@ -6411,7 +6416,7 @@ We put it all together now. In particular, we repeat the following process for 1
 \begin{verbatim}
 ## results
 ##    0    1 
-## 7174 2826
+## 7140 2860
 \end{verbatim}
 
 Based on this simulation, we estimate the probability that both first-years end up in the same subgroup as
@@ -6423,7 +6428,7 @@ Based on this simulation, we estimate the probability that both first-years end 
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.2826
+## [1] 0.286
 \end{verbatim}
 
 Using our counting tools to calculate the probability:
@@ -6465,7 +6470,7 @@ Classic Oregon license plates consist of 3 letters (A-Z) followed by 3 numbers (
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "R" "W" "R" "3" "7" "1"
+## [1] "P" "O" "S" "8" "2" "7"
 \end{verbatim}
 
 \begin{enumerate}
@@ -6483,7 +6488,7 @@ Classic Oregon license plates consist of 3 letters (A-Z) followed by 3 numbers (
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0
+## [1] 1
 \end{verbatim}
 
 \textbf{Final Code}
@@ -6505,7 +6510,7 @@ Classic Oregon license plates consist of 3 letters (A-Z) followed by 3 numbers (
 \begin{verbatim}
 ## results
 ##    0    1    2    3 
-## 7251 2471  271    7
+## 7253 2462  278    7
 \end{verbatim}
 
 Based on this simulation, we estimate the probability of having a plate with exactly 2 ``8''s
@@ -6517,7 +6522,7 @@ Based on this simulation, we estimate the probability of having a plate with exa
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.0271
+## [1] 0.0278
 \end{verbatim}
 
 Using our counting tools to calculate the probability:
@@ -6542,7 +6547,7 @@ First, let's create and summarize a single poll of 1000 people from a population
 \begin{verbatim}
 ## one_poll
 ##   D   R 
-## 523 477
+## 492 508
 \end{verbatim}
 
 Of course, the goal is to use the poll to predict the winner of the election.
@@ -6555,7 +6560,7 @@ We use the \texttt{sum()} command to count how many elements in \texttt{one\_pol
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Dem wins"
+## [1] "Tie or Rep wins"
 \end{verbatim}
 
 Now, our goal is to repeat this sampling and prediction procedure 10000 times, and keep track of the predicted winner in each trial.
@@ -6583,10 +6588,10 @@ Now, our goal is to repeat this sampling and prediction procedure 10000 times, a
 \begin{verbatim}
 ## results
 ##        D Tie or R 
-##     8975     1025
+##     8955     1045
 \end{verbatim}
 
-This table gives us a sense of the likelihood that the pollsters plan will result in an accurate prediction of which candidate will win the election. Based on our simulation, that likelihood is about 0.897.
+This table gives us a sense of the likelihood that the pollsters plan will result in an accurate prediction of which candidate will win the election. Based on our simulation, that likelihood is about 0.895.
 
 \section{Matching Birthdays}\label{same-birthday-R}
 
@@ -6676,7 +6681,7 @@ Here's a graph of these two probabilities for values of \(1 \leq n \leq 100\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-125-1.pdf}
+\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-124-1.pdf}
 
 \section{Flipping Coins with Fibonacci}\label{flipping-coins-with-fibonacci}
 
@@ -6704,7 +6709,7 @@ We can also approximate the probability function by simulation.
 \end{Highlighting}
 \end{Shaded}
 
-We note that the maximum number of flips it took to get consecutive Heads in these trials was \texttt{max(results)} = 56! (that's not a factorial symbol, just me exclaiming). So we don't list the full table of results here, just the first 10:
+We note that the maximum number of flips it took to get consecutive Heads in these trials was \texttt{max(results)} = 51! (that's not a factorial symbol, just me exclaiming). So we don't list the full table of results here, just the first 10:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6715,7 +6720,7 @@ We note that the maximum number of flips it took to get consecutive Heads in the
 \begin{verbatim}
 ## results
 ##    2    3    4    5    6    7    8    9   10   11 
-## 2454 1274 1232  963  833  646  518  384  281  250
+## 2521 1278 1228  940  811  582  478  419  309  260
 \end{verbatim}
 
 The \textbf{relative frequencies} of these results provide our estimate for the probability density function:
@@ -6729,7 +6734,7 @@ The \textbf{relative frequencies} of these results provide our estimate for the 
 \begin{verbatim}
 ## results
 ##      2      3      4      5      6      7      8      9     10     11 
-## 0.2454 0.1274 0.1232 0.0963 0.0833 0.0646 0.0518 0.0384 0.0281 0.0250
+## 0.2521 0.1278 0.1228 0.0940 0.0811 0.0582 0.0478 0.0419 0.0309 0.0260
 \end{verbatim}
 
 These values compare closely to the actual probability values \(F_{x+1}/2^x\):
@@ -6740,7 +6745,7 @@ These values compare closely to the actual probability values \(F_{x+1}/2^x\):
 \hline
 x & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11\\
 \hline
-Rel\_freq & 0.2454 & 0.1274 & 0.1232 & 0.0963 & 0.0833 & 0.0646 & 0.0518 & 0.0384 & 0.0281 & 0.0250\\
+Rel\_freq & 0.2521 & 0.1278 & 0.1228 & 0.0940 & 0.0811 & 0.0582 & 0.0478 & 0.0419 & 0.0309 & 0.0260\\
 \hline
 p(x) & 0.2500 & 0.1250 & 0.1250 & 0.0938 & 0.0781 & 0.0625 & 0.0508 & 0.0410 & 0.0332 & 0.0269\\
 \hline
@@ -6749,181 +6754,20 @@ p(x) & 0.2500 & 0.1250 & 0.1250 & 0.0938 & 0.0781 & 0.0625 & 0.0508 & 0.0410 & 0
 
 \chapter{Discrete Random Variables in R}\label{R-discreteRV}
 
-In this appendix we practice using R to investigate discrete random variables. We can create discrete distributions from scratch, or access common distributions named in R, including uniform, binomial, negative binomial, Poisson, geometric, and hypergeometric distributions.
-
-Let's say a discrete random variable \(X\) has finite sample space and known probability function \(p(x)\). We often display this type of probability model via a table:
-
-\[
-\begin{array}{c|c|c|c|c|c}
-x & 5 & 6 & 7 & 8 & 9 \\ \hline
-p(x) & 0.1 & 0.1 & 0.3 & 0.4 & 0.1 
-\end{array}
-\]
-We can input this model into an R session by defining two vectors:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{X }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{8}\NormalTok{,}\DecValTok{9}\NormalTok{)}
-\NormalTok{Px }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\FloatTok{0.1}\NormalTok{,}\FloatTok{0.1}\NormalTok{,}\FloatTok{0.3}\NormalTok{,}\FloatTok{0.4}\NormalTok{,}\FloatTok{0.1}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-We can check in R that the two conditions for a \emph{valid} probability have been met by this assignment:
+Here we investigate in R the common, named discrete random variables we encounter in MATH 340:
 
 \begin{itemize}
 \tightlist
 \item
-  Each probability is non-negative: \texttt{Px\ \textgreater{}=\ 0} = TRUE, TRUE, TRUE, TRUE, TRUE
+  \hyperref[binomialR]{binomial} \textbar{} \texttt{binom}
 \item
-  The probabilities add to 1: \texttt{sum(Px)}= 1
-\end{itemize}
-
-\section{\texorpdfstring{Expected Value of \(X\)}{Expected Value of X}}\label{expected-value-of-x}
-
-Recall if \(X\) is a discrete random variable with probability function \(p(x)\), then the expected value of \(X\) is \[E(X)=\sum_{\text{all }x}x\cdot p(x)\]
-
-Having defined vectors \(X\) and \(Px\) in R, we calculate \(E(X)\) by running
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{sum}\NormalTok{(X}\SpecialCharTok{*}\NormalTok{Px) }
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 7.3
-\end{verbatim}
-
-Note: For those who have taken vector calculus \texttt{sum(v*w)} returns the dot product of \texttt{v} and \texttt{w}, aka the inner product. R has an alternative command for this dot product, which is \texttt{v\ \%*\%\ w}. So, \texttt{sum(v*w)} and \texttt{v\ \%*\%\ w} do the same thing, but I prefer the first option to remind me that the expected value is obtained as a sum over all \(x\) of some things.
-
-\section{\texorpdfstring{Variance of \(X\)}{Variance of X}}\label{variance-of-x}
-
-Recall the variance of \(X\) is \[V(X) = E[(X-\mu)^2],\] where \(\mu = E(X)\).
-Alternatively, the variance can be computed via
-\[V(X) = E(X^2)-\mu^2.\]
-
-So we can compute the variance of \(X\) in R as follows:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{mu}\OtherTok{=}\FunctionTok{sum}\NormalTok{(X}\SpecialCharTok{*}\NormalTok{Px) }
-\NormalTok{Vx}\OtherTok{=}\FunctionTok{sum}\NormalTok{((X}\SpecialCharTok{{-}}\NormalTok{mu)}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{Px)}
-\FunctionTok{print}\NormalTok{(Vx)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 1.21
-\end{verbatim}
-
-Or, alternatively, as follows:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{mu}\OtherTok{=}\FunctionTok{sum}\NormalTok{(X}\SpecialCharTok{*}\NormalTok{Px)}
-\NormalTok{Vx}\OtherTok{=}\FunctionTok{sum}\NormalTok{(X}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{Px)}\SpecialCharTok{{-}}\NormalTok{mu}\SpecialCharTok{\^{}}\DecValTok{2}
-\FunctionTok{print}\NormalTok{(Vx)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] 1.21
-\end{verbatim}
-
-\section{Distribution Plots}\label{distribution-plots}
-
-R can offer some quick visualizations of probability distributions.
-
-The following code will give the shape of the probability distribution (with a splash of color and plot title:)
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{barplot}\NormalTok{(Px,}\AttributeTok{names.arg=}\NormalTok{X, }\AttributeTok{col=}\StringTok{"steelblue"}\NormalTok{, }\AttributeTok{main=}\StringTok{"Probability Model"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-134-1.pdf}
-
-\section{Sampling}\label{sampling}
-
-The following code draws a sample of size 10 from our distribution using the weighted probabilities assigned by the probability function:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{sample}\NormalTok{(X,}\DecValTok{10}\NormalTok{,}\AttributeTok{replace=}\ConstantTok{TRUE}\NormalTok{,}\AttributeTok{prob=}\NormalTok{Px)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##  [1] 8 9 6 7 7 9 7 5 6 6
-\end{verbatim}
-
-If we take a large sample, and make a relative frequency table of the results, it should be close to the probability table:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{round}\NormalTok{(}\FunctionTok{table}\NormalTok{(}\FunctionTok{sample}\NormalTok{(X,}\DecValTok{10000}\NormalTok{,}\AttributeTok{replace=}\ConstantTok{TRUE}\NormalTok{,Px))}\SpecialCharTok{/}\NormalTok{trials,}\DecValTok{3}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-##     5     6     7     8     9 
-## 0.099 0.098 0.302 0.405 0.096
-\end{verbatim}
-
-\section{Discrete Uniform Distribution}\label{discrete-uniform-distribution}
-
-\begin{definition}
-\protect\hypertarget{def:discrete-uniform}{}\label{def:discrete-uniform}If \(X\) is a finite set with size \(|X| = n\). The probability distribution defined by \[p(x) = \frac{1}{n}\] for all \(x \in X\) is called \textbf{uniform}.
-\end{definition}
-
-In a uniform distribution, we will find over a large number of trials that each name comes up with about the same frequency.
-
-\begin{example}
-\protect\hypertarget{exm:seals-uniform-R}{}\label{exm:seals-uniform-R}\leavevmode
-
-\begin{quote}
-Pick a random seal from the famous Eddington family: Otto, Ruth, Pluotika, Slarftel, Edgar and Bob.
-\end{quote}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{family}\OtherTok{=}\FunctionTok{c}\NormalTok{(}\StringTok{"Bob"}\NormalTok{, }\StringTok{"Edgar"}\NormalTok{, }\StringTok{"Pluotika"}\NormalTok{, }\StringTok{"Otto"}\NormalTok{, }\StringTok{"Ruth"}\NormalTok{, }\StringTok{"Slarftel"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-To simulate the process of picking one seal at random from the family, a large number of times, we sample 1 element with replacement, a large number of times. The resulting frequency plot should look uniform:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{results}\OtherTok{=}\FunctionTok{sample}\NormalTok{(family,}\DecValTok{10000}\NormalTok{,}\AttributeTok{replace=}\ConstantTok{TRUE}\NormalTok{)}
-\FunctionTok{barplot}\NormalTok{(}\FunctionTok{table}\NormalTok{(results),}\AttributeTok{col=}\StringTok{"seagreen"}\NormalTok{,}\AttributeTok{xlab=}\StringTok{"seal"}\NormalTok{,}\AttributeTok{ylab=}\StringTok{"freq"}\NormalTok{,}\AttributeTok{main=}\StringTok{"Pick a seal, any seal!"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-138-1.pdf}
-
-Way to go Pluotika, you over achiever!
-
-\end{example}
-
-\section{Important discrete random variables}\label{r-4distn-functions}
-
-The important, named discrete distributions we encounter in this class are built-in distributions in R:
-
-\begin{itemize}
-\tightlist
+  \hyperref[geometricR]{geometric} \textbar{} \texttt{geom}
 \item
-  the \textbf{binomial distribution} is named \texttt{binom}
+  \hyperref[negbinomR]{negative binomial} \textbar{} \texttt{nbinom}
 \item
-  the \textbf{geometric distribution} is named \texttt{geom}
+  \hyperref[hyperR]{hypergeometric} \textbar{} \texttt{hyper}
 \item
-  the \textbf{negative binomial distribution} is named \texttt{nbinom}
-\item
-  the \textbf{hypergeometric distribution} is named \texttt{hyper}
-\item
-  the \textbf{Poisson distribution} is named \texttt{pois}
+  \hyperref[poissonR]{Poisson} \textbar{} \texttt{pois}
 \end{itemize}
 
 We use four commands to work with the named distributions. For a distribution named \texttt{\_\_\_}:
@@ -6931,7 +6775,7 @@ We use four commands to work with the named distributions. For a distribution na
 \begin{itemize}
 \tightlist
 \item
-  \texttt{d\_\_\_(x,...)} \textbar{} Density function, \(p(x)\)
+  \texttt{d\_\_\_(x,...)} \textbar{} probability function, \(p(x)\)
 \item
   \texttt{p\_\_\_(q,...)} \textbar{} Cumulative probability, \(P(X \leq q)\)
 \item
@@ -6940,32 +6784,29 @@ We use four commands to work with the named distributions. For a distribution na
   \texttt{r\_\_\_(n,...)} \textbar{} Random sample of size \(n\) from the distribution
 \end{itemize}
 
-\section{\texorpdfstring{Binomial Distribution \texttt{binom}}{Binomial Distribution binom}}\label{binomial-distribution-binom}
+We also discuss below how to build and analyze \hyperref[custom-discrete-R]{homemade discrete random variables in R}.
+
+\section{\texorpdfstring{Binomial \texttt{binom}}{Binomial binom}}\label{binomialR}
 
 \textbf{The Scene}
 
-We have a sequence of \textbf{Bernoulli trials}: A chance experiment with two possible outcomes: \emph{success} and \emph{failure}, and the probability of success is \(p\), and the probability of failure is \(1-p\).
-
-Let the random variable \(X\) denote the number of successes in \(n\) independent trials of this chance experiment. Then \(X\) is called a binomial random variable with parameters \(n\) and \(p\).
-
-\textbf{Notation}\\
-\(X \text{ is binom}(n,p)\) means \(X\) counts number of successes in \(n\) Bernoulli trials, when probability of success on any given trial is \(p\).
+Recall, \(X \sim \texttt{binom}(n,p)\) means \(X\) counts the number of successes in \(n\) independent, identical Bernoulli trials, when probability of success on any given trial is \(p\).
 
 \textbf{The space of \(X\)} is \(x = 0, 1, \ldots, n\).
 
 \textbf{Probability function}\\
 For \(x = 0, 1, \ldots, n\), \[p(x)=\binom{n}{x}p^x(1-p)^{n-x}.\]
 
-Sometimes it is convenient to let \(q = 1-p\) so \(q\) represents the probability of failure in a Bernoulli trial, in which case \(p(x) = \binom{n}{x}p^xq^{n-x}\)
-
 \textbf{The binomial distribution in R}
 
-\subsection*{\texorpdfstring{\texttt{dbinom()} - density function}{dbinom() - density function}}\label{dbinom---density-function}
-\addcontentsline{toc}{subsection}{\texttt{dbinom()} - density function}
+\subsection*{\texorpdfstring{\texttt{dbinom()} - probability function}{dbinom() - probability function}}\label{dbinom---probability-function}
+\addcontentsline{toc}{subsection}{\texttt{dbinom()} - probability function}
 
 \begin{quote}
-\texttt{dbinom(2,5,.3)} returns the probability of \(X=2\) successes in \(n=5\) trials in a binomail distribution where \(p = .3\) is the probability of success on each trial. That is, \texttt{dbinom(2,5,.3)} returns \[\binom{5}{2}(.3)^2(.7)^3.\]
+\texttt{dbinom(x,n,p)} returns the probability \(P(X = x)\) for \(X \sim \texttt{binom}(n,p)\).
 \end{quote}
+
+For instance, \texttt{dbinom(2,5,.3)} returns \[\binom{5}{2}(.3)^2(.7)^3.\]
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6993,10 +6834,10 @@ As a check:
 \addcontentsline{toc}{subsection}{\texttt{pbinom()} - cumulative probability}
 
 \begin{quote}
-\texttt{pbinom(q,n,p)}returns the cumulative probability \(P(X \leq q)\) for \(X \sim b(n,p)\): \[\sum_{x=0}^q p(x)=\sum_{x=0}^q\binom{n}{x}p^x(1-p)^{n-x}.\]
+\texttt{pbinom(q,n,p)}returns the cumulative probability \(P(X \leq q)\) for \(X \sim \text{binom}(n,p)\): \[\sum_{x=0}^q p(x)=\sum_{x=0}^q\binom{n}{x}p^x(1-p)^{n-x}.\]
 \end{quote}
 
-So \texttt{pbinom(2,5,.3)} should return \(P(X \leq 2)\) when \(X\) is \(b(5,.3)\):
+So \texttt{pbinom(2,5,.3)} returns \(P(X \leq 2)\) when \(X\) is \(\texttt{binom}(5,.3)\):
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7023,9 +6864,13 @@ As a check:
 \subsection*{\texorpdfstring{\texttt{qbinom()} - quantiles}{qbinom() - quantiles}}\label{qbinom---quantiles}
 \addcontentsline{toc}{subsection}{\texttt{qbinom()} - quantiles}
 
+Recall the definition of quantile (\ref{quantile}): If \(0 < p < 1\), the \(p\)th quantile of \(X\), denoted \(\phi_p\), is the smallest value such that \(P(X \leq \phi_p) \geq p\). In other words, the value \(\phi_p\) marks the smallest value below which one finds 100*p percent of the distribution of \(X\).
+
 \begin{quote}
-\texttt{qbinom(.95,100,.5)} returns the value in the \(b(100,.5)\) distribution that marks the 95th percentile: the value below which one finds 95\% of the distribution:
+\texttt{qbinom(q,n,p)} returns the quantile \(\phi_q\) for \(X \sim \texttt{binom}(n,p)\)
 \end{quote}
+
+For instance, what value marks the 95th percentile of the \(\texttt{binom}(100,.5)\) distribution?
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7037,7 +6882,7 @@ As a check:
 ## [1] 58
 \end{verbatim}
 
-In other words, if \(X\) is \(b(100,.5)\) (e.g., flip a fair coin 100 times and count how many heads you get), about 95\% of the time you would find \(X \leq 58\).
+So, if you flip a fair coin 100 times and count how many heads you get, about 95\% of the time you would flip less than or equal to 58 heads.
 
 We can check this:
 
@@ -7055,7 +6900,7 @@ We can check this:
 \addcontentsline{toc}{subsection}{\texttt{rbinom()} - sampling}
 
 \begin{quote}
-\texttt{rbinom(10,20,.4)} will generate a random sample of size 10 drawn from a \(b(20,.4)\) distribution. This sample is stored as a vector
+\texttt{rbinom(10,20,.4)} will generate a vector that stores a random sample of size 10 drawn from a \(\texttt{binom}(20,.4)\) distribution.
 \end{quote}
 
 \begin{Shaded}
@@ -7065,24 +6910,24 @@ We can check this:
 \end{Shaded}
 
 \begin{verbatim}
-##  [1]  8  7  6  8 10  6  9  8  7  5
+##  [1] 8 7 3 3 6 8 5 6 8 8
 \end{verbatim}
 
 We can use \texttt{r\_\_\_} to run simulations, and to visualize the shape of a distribution.
 
-For a \textbf{discrete distribution} we can use \texttt{barplot()} and \texttt{table()} to tabulate the results. The \texttt{table()} command gives the total counts for each possible outcome, and the \texttt{barplot()} command applied to a table visualizes those counts.
+Two useful commands for summarizing data: \texttt{table()} presents the frequency table for the sample, and \texttt{barplot(table())} is a quick way to visualize this frequency table.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{sim\_data }\OtherTok{=} \FunctionTok{rbinom}\NormalTok{(}\DecValTok{1000}\NormalTok{,}\DecValTok{20}\NormalTok{,.}\DecValTok{4}\NormalTok{) }\CommentTok{\# draw a random sample of size 1000 from the binomial distribution b(20,.4).}
+\NormalTok{sim\_data }\OtherTok{=} \FunctionTok{rbinom}\NormalTok{(}\DecValTok{1000}\NormalTok{,}\DecValTok{20}\NormalTok{,.}\DecValTok{4}\NormalTok{) }\CommentTok{\# sample of size 1000 from binom(20,.4).}
 \FunctionTok{table}\NormalTok{(sim\_data)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
 ## sim_data
-##   3   4   5   6   7   8   9  10  11  12  13  14  15 
-##  15  33  75 124 201 169 160 100  57  46  14   4   2
+##   2   3   4   5   6   7   8   9  10  11  12  13  14  15 
+##   1  14  34  74 104 177 185 168 113  79  33  12   3   3
 \end{verbatim}
 
 \begin{Shaded}
@@ -7091,30 +6936,27 @@ For a \textbf{discrete distribution} we can use \texttt{barplot()} and \texttt{t
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-147-1.pdf}
+\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-137-1.pdf}
 
-\section{\texorpdfstring{Geometric Distribution \texttt{geom}}{Geometric Distribution geom}}\label{geometric-distribution-geom}
+\section{\texorpdfstring{Geometric \texttt{geom}}{Geometric geom}}\label{geometricR}
 
 \textbf{The Scene}\\
-As with the binomial distribution, we consider a sequence of Bernoulli trials (probability of success is \(p\), probability of failure is \(q = 1-p\)). Instead of counting how many successes in \(n\) trials, we are interested in counting the number ot trials until our first success.
-
-Assume we repeat the experiment until we observe a success. Let the random variable \(X\) denote the number of trials up to and including this first success. Then \(X\) is called a \emph{geometric random variable} with parameter \(p\).
+Let the random variable \(X\) denote the number of identical, independent Bernoulli trials (with probability of success \(p\), probability of failure \(q = 1-p\)) up to and including the first success.
+Then \(X\) is called a \emph{geometric random variable} with parameter \(p\).
 
 \textbf{Notation}\\
-\(X\) is geom\((p)\).
+\(X\) is \texttt{geom}\((p)\).
 
 \textbf{The space of \(X\)} is \(x = 1, 2, \ldots\)
 
-\textbf{Probability density function}\\
+\textbf{Probability function}\\
 For \(x = 1, 2, 3, \ldots\), \[p(x)= q^{x-1}p.\]
 
-\begin{quote}
-The geometric distribution in R counts failures, not total trials.
-\end{quote}
+\textbf{NOTE}: The geometric distribution in R counts failures, not total trials.
 
 In R \texttt{geom} counts the number of failures until the first success, not the total number of trials up to and including the first success.
 
-As with the \texttt{binom} distribution, we can use the \texttt{d\_\_\_}, \texttt{p\_\_\_}, \texttt{q\_\_\_}, and \texttt{r\_\_\_} commands to determine probabilities for particular values of x, cumulative probabilities, quantiles, and random samples, respectively.
+As with the \texttt{binom} distribution, we can use the \texttt{d\_\_\_}, \texttt{p\_\_\_}, \texttt{q\_\_\_}, and \texttt{r\_\_\_} commands to determine probability for particular values of \(x\), cumulative probabilities, quantiles, and random samples, respectively.
 
 \begin{quote}
 \texttt{dgeom(4,.3)} gives the probability of seeing 4 failures before the first success in a Bernoulli trial in which \(p = .3\)
@@ -7185,30 +7027,24 @@ Strategy:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-151-1.pdf}
+\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-141-1.pdf}
 
-OMG notice from the barplot that one depressing game required 55 rolls to see my first 4.
+OMG notice from the bar plot that one depressing game required 47 rolls to see my first 4.
 
 \end{example}
 
-\section{\texorpdfstring{Negative Binomial Distribution \texttt{nbinom}}{Negative Binomial Distribution nbinom}}\label{negative-binomial-distribution-nbinom}
+\section{\texorpdfstring{Negative Binomial \texttt{nbinom}}{Negative Binomial nbinom}}\label{negbinomR}
 
 \textbf{The Scene}\\
 Again, we consider a sequence of Bernoulli trials (probability of success is \(p\), probability of failure is \(q = 1-p\)).
 
-We let \(X\) denote the number of trials in the sequence up to and including the \(r\)th success, where \(r \geq 1\) is a positive integer. Then \(X\) is called a \emph{geometric random variable} with parameters \(p\) and \(r\).
+We let \(X\) denote the number of trials in the sequence up to and including the \(r\)th success, where \(r \geq 1\) is a positive integer. Then \(X\) is called a \emph{negative binomial random variable} with parameters \(p\) and \(r\).
 
-For instance, if we set \(r = 3\), then \(X = 7\) for the following sequence of Bernuoulli trials (\(S\) stands for success, \(F\) for failure)
-\[F F F S F S S F S F F S \ldots \]
-since the third \(S\) occurs on the 7th trial.
-
-In the case \(r = 1\) the negative binomial distribution is the geometric distribution.
-
-\textbf{Notation}: \(X\) is Nb\((r,p)\)
+\textbf{Notation}: \(X\) is \(\texttt{nbinom}(r,p)\)
 
 \textbf{The space of \(X\)} is \(x = r, r+1, r+2, \ldots\)
 
-\textbf{Probability density function}\\
+\textbf{Probability function}\\
 For \$x = r, r+1, r+2, \ldots \$, \[p(x)= \binom{x-1}{r-1}p^{r}q^{x-r}.\]
 
 \begin{example}
@@ -7242,19 +7078,19 @@ Here, if \(X\) equals the number of wells drilled until the company gets its thi
 ## [1] 0.06039798
 \end{verbatim}
 
-Visualizing \(X \sim Nb(3,.2)\)
+Visualizing \(X \sim \texttt{nbinom}(3,.2)\)
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{r }\OtherTok{=} \DecValTok{3} \CommentTok{\#going until we get 3rd success}
-\NormalTok{trials }\OtherTok{=} \DecValTok{10000} \CommentTok{\#draw a random sample of this size}
 \NormalTok{p }\OtherTok{=}\NormalTok{ .}\DecValTok{2} \CommentTok{\#probability of success on any given Bernoulli trial}
+\NormalTok{trials }\OtherTok{=} \DecValTok{10000} \CommentTok{\#trials in this simulation}
 \NormalTok{failure\_count }\OtherTok{=} \FunctionTok{rnbinom}\NormalTok{(trials,r,p)}
 \FunctionTok{barplot}\NormalTok{(}\FunctionTok{table}\NormalTok{(failure\_count),}\AttributeTok{main=}\StringTok{"failures before 3rd success"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-154-1.pdf}
+\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-144-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7263,20 +7099,20 @@ Visualizing \(X \sim Nb(3,.2)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-155-1.pdf}
+\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-145-1.pdf}
 
-\section{\texorpdfstring{Hypergeometric Distribution \texttt{hyper}}{Hypergeometric Distribution hyper}}\label{hypergeometric-distribution-hyper}
+\section{\texorpdfstring{Hypergeometric \texttt{hyper}}{Hypergeometric hyper}}\label{hyperR}
 
 \textbf{The Scene}\\
-A finite population has \(N\) elements that possess one of two characteristics. Say we have a jar of \(N\) marbles, \(m\) of them are red and \(n\) of them are black (so \(m + n = N\)). We draw a sample of size \(k\), and let \(X\) denote the number of red marbles in the jar.
+A finite population has \(N\) elements, each of which possesses one of two possible characteristics. Say we have a jar of \(N\) marbles, each is either red or black. Let's say \(m\) of them are red and \(n\) of them are black (so \(m + n = N\)). We draw a sample of size \(k\), and let \(X\) denote the number of red marbles in the jar.
 
 Then \(X\) is called a \emph{hypergeometric random variable} with parameters \(m\), \(n\), and \(k\).
 
-\textbf{Notation}: \(X\) is hyperg\((m,n,k)\)
+\textbf{Notation}: \(X\) is \(\texttt{hyper}(m,n,k)\)
 
 \textbf{The space of \(X\)} is \(x = 0,1,2,\ldots,k\) subject to the restriction that \(x \leq m\) and \(k - x \leq n\).
 
-\textbf{Probability density function}\\
+\textbf{Probability function}\\
 The probability function is \[p(x)= \frac{\binom{m}{x}\binom{n}{k-x}}{\binom{m+n}{k}}.\]
 
 \textbf{In R} Use \texttt{hyper}.
@@ -7337,16 +7173,16 @@ which can be calculated with the cumulative probability command \texttt{phyper}:
 
 \end{example}
 
-\section{\texorpdfstring{Poisson Distribution \texttt{pois}}{Poisson Distribution pois}}\label{poisson-distribution-pois}
+\section{\texorpdfstring{Poisson \texttt{pois}}{Poisson pois}}\label{poissonR}
 
 \textbf{The Scene}\\
 The Poisson probability distribution can provide a good model for the number of occurrences \(X\) of a rare event in time, space, or some other unit of measure. A Poisson random variable \(X\) has one parameter, \(\lambda\), which is the average number of occurrences of the rare event in the indicated time (or space, etc.)
 
-\textbf{Notation}: \(X\) is Poisson\((\lambda)\).
+\textbf{Notation}: \(X\) is \(\texttt{Poisson}(\lambda)\).
 
 \textbf{The space of \(X\)} is \(x = 0,1,2,\ldots,\) (countably infinite!)
 
-\textbf{Probability density function}\\
+\textbf{Probability function}\\
 The probability function is \[p(x)=\frac{\lambda^x}{x!}e^{-\lambda}\]
 
 \textbf{In R} use \texttt{pois}.
@@ -7414,64 +7250,6 @@ The number \(X\) of typos on a page in a textbook follows a Poisson distribution
 
 \end{example}
 
-\subsection*{Poisson Process}\label{poisson-process-1}
-\addcontentsline{toc}{subsection}{Poisson Process}
-
-Again, suppose \(X\) denotes the number of occurrences of a rare event in time, space, or some other unit of measure.
-
-\begin{definition}
-\protect\hypertarget{def:def-pois-process-R}{}\label{def:def-pois-process-R}
-
-The process by which an event happens is called a \textbf{Poisson process}\index{Poisson process} if the following holds:
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  The dimension over which \(X\) is measured can be subdivided into \(n\) small pieces, within which the event can occur \emph{at most once}.
-\item
-  In each small piece, the probability of seeing one occurrence is the same, say \(p\), and \(p\) is proportional to the length of the sub-interval (as \(n\) grows, \(p\) shrinks, but \(np\) remains constant).
-\item
-  Occurrences in all the small pieces are independent from one another.
-\end{enumerate}
-
-\end{definition}
-
-In a Poisson process recording the number of occurrences of the event in each small piece is a Bernoulli trial (1 occurrence with probability \(p\), and 0 occurrences with probability \(1-p\)), and if there are \(n\) small pieces, then \(X\) is approximately \(b(n,p)\).
-
-\begin{quote}
-For large \(n\), if we let \(\lambda = np\), Poisson\((\lambda)\sim b(n,p)\).
-\end{quote}
-
-Compare the table of probabilities for \(b(10,.4)\), \(b(40,.1)\), and \(b(400,.01)\) with those of a Poisson(4) distribution. For all 3 binomial distributions \(np = 4\), so as \(n\) gets larger, \(b(n,p)\) should be a better approximation to Poisson(4):
-
-\begin{table}
-\centering
-\caption{\label{tab:unnamed-chunk-162}Approximating a Poisson distn with Binomial distns}
-\centering
-\begin{tabular}[t]{r|r|r|r|r}
-\hline
-x & binom(10,4) & binom(40,.1) & binom(400,.01) & pois(4)\\
-\hline
-0 & 0.0060 & 0.0148 & 0.0180 & 0.0183\\
-\hline
-1 & 0.0403 & 0.0657 & 0.0725 & 0.0733\\
-\hline
-2 & 0.1209 & 0.1423 & 0.1462 & 0.1465\\
-\hline
-3 & 0.2150 & 0.2003 & 0.1959 & 0.1954\\
-\hline
-4 & 0.2508 & 0.2059 & 0.1964 & 0.1954\\
-\hline
-5 & 0.2007 & 0.1647 & 0.1571 & 0.1563\\
-\hline
-6 & 0.1115 & 0.1068 & 0.1045 & 0.1042\\
-\hline
-7 & 0.0425 & 0.0576 & 0.0594 & 0.0595\\
-\hline
-\end{tabular}
-\end{table}
-
 \begin{example}[Rutherford/Geiger Data]
 \protect\hypertarget{exm:pois-rutherford-geiger-R}{}\label{exm:pois-rutherford-geiger-R}\leavevmode
 
@@ -7505,7 +7283,7 @@ Here are the data:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-163-1.pdf}
+\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-152-1.pdf}
 
 Here's the mean of the data (which gives average \# of scintillations in 72 seconds):
 
@@ -7519,11 +7297,11 @@ Here's the mean of the data (which gives average \# of scintillations in 72 seco
 ## [1] 3.871549
 \end{verbatim}
 
-Let's compare the observed relative frequencies to the theoretical probabilities associated with a Pois(3.87) distribution:
+Let's compare the observed relative frequencies to the theoretical probabilities associated with a \(\texttt{Poisson}(3.87)\) distribution:
 
 \begin{table}
 \centering
-\caption{\label{tab:unnamed-chunk-165}Fitting data with a Poisson distribution}
+\caption{\label{tab:unnamed-chunk-154}Fitting data with a Poisson distribution}
 \centering
 \begin{tabular}[t]{r|r|r}
 \hline
@@ -7574,7 +7352,173 @@ x & rel\_freq & pois\_prob\\
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-166-1.pdf}
+\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-155-1.pdf}
+
+\end{example}
+
+\section{Homemade Discrete Random Variables}\label{custom-discrete-R}
+
+Let's say a discrete random variable \(X\) has finite sample space and known probability function \(p(x)\). We often display this type of probability model via a table:
+
+\[
+\begin{array}{c|c|c|c|c|c}
+x & 5 & 6 & 7 & 8 & 9 \\ \hline
+p(x) & 0.1 & 0.1 & 0.3 & 0.4 & 0.1 
+\end{array}
+\]
+We can input this model into an R session by defining two vectors:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{X }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{8}\NormalTok{,}\DecValTok{9}\NormalTok{)}
+\NormalTok{Px }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\FloatTok{0.1}\NormalTok{,}\FloatTok{0.1}\NormalTok{,}\FloatTok{0.3}\NormalTok{,}\FloatTok{0.4}\NormalTok{,}\FloatTok{0.1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+We can check in R that the two conditions for a \emph{valid} probability have been met by this assignment:
+
+\begin{itemize}
+\tightlist
+\item
+  Each probability is non-negative: \texttt{Px\ \textgreater{}=\ 0} = TRUE, TRUE, TRUE, TRUE, TRUE
+\item
+  The probabilities add to 1: \texttt{sum(Px)}= 1
+\end{itemize}
+
+\subsection*{\texorpdfstring{Expected Value of \(X\)}{Expected Value of X}}\label{expected-value-of-x}
+\addcontentsline{toc}{subsection}{Expected Value of \(X\)}
+
+Recall if \(X\) is a discrete random variable with probability function \(p(x)\), then the expected value of \(X\) is \[E(X)=\sum_{\text{all }x}x\cdot p(x)\]
+
+Having defined vectors \(X\) and \(Px\) in R, we calculate \(E(X)\) by running
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sum}\NormalTok{(X}\SpecialCharTok{*}\NormalTok{Px) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 7.3
+\end{verbatim}
+
+Note: For those who have taken vector calculus \texttt{sum(v*w)} returns the dot product of \texttt{v} and \texttt{w}, aka the inner product. R has an alternative command for this dot product, which is \texttt{v\ \%*\%\ w}. So, \texttt{sum(v*w)} and \texttt{v\ \%*\%\ w} do the same thing, but I prefer the first option to remind me that the expected value is obtained as a sum over all \(x\) of some things.
+
+\subsection*{\texorpdfstring{Variance of \(X\)}{Variance of X}}\label{variance-of-x}
+\addcontentsline{toc}{subsection}{Variance of \(X\)}
+
+Recall the variance of \(X\) is \[V(X) = E[(X-\mu)^2],\] where \(\mu = E(X)\).
+Alternatively, the variance can be computed via
+\[V(X) = E(X^2)-\mu^2.\]
+
+So we can compute the variance of \(X\) in R as follows:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mu}\OtherTok{=}\FunctionTok{sum}\NormalTok{(X}\SpecialCharTok{*}\NormalTok{Px) }
+\NormalTok{Vx}\OtherTok{=}\FunctionTok{sum}\NormalTok{((X}\SpecialCharTok{{-}}\NormalTok{mu)}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{Px)}
+\FunctionTok{print}\NormalTok{(Vx)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.21
+\end{verbatim}
+
+Or, alternatively, as follows:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mu}\OtherTok{=}\FunctionTok{sum}\NormalTok{(X}\SpecialCharTok{*}\NormalTok{Px)}
+\NormalTok{Vx}\OtherTok{=}\FunctionTok{sum}\NormalTok{(X}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{*}\NormalTok{Px)}\SpecialCharTok{{-}}\NormalTok{mu}\SpecialCharTok{\^{}}\DecValTok{2}
+\FunctionTok{print}\NormalTok{(Vx)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.21
+\end{verbatim}
+
+\subsection*{Distribution Plots}\label{distribution-plots}
+\addcontentsline{toc}{subsection}{Distribution Plots}
+
+R can offer some quick visualizations of probability distributions.
+
+The following code will give the shape of the probability distribution (with a splash of color and plot title:)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{barplot}\NormalTok{(Px,}\AttributeTok{names.arg=}\NormalTok{X, }\AttributeTok{col=}\StringTok{"steelblue"}\NormalTok{, }\AttributeTok{main=}\StringTok{"Probability Model"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-160-1.pdf}
+
+\subsection*{Sampling}\label{sampling}
+\addcontentsline{toc}{subsection}{Sampling}
+
+The following code draws a sample of size 10 from our distribution using the weighted probabilities assigned by the probability function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sample}\NormalTok{(X,}\DecValTok{10}\NormalTok{,}\AttributeTok{replace=}\ConstantTok{TRUE}\NormalTok{,}\AttributeTok{prob=}\NormalTok{Px)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] 8 7 8 8 8 8 8 8 7 7
+\end{verbatim}
+
+If we take a large sample, and make a relative frequency table of the results, it should be close to the probability table:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{round}\NormalTok{(}\FunctionTok{table}\NormalTok{(}\FunctionTok{sample}\NormalTok{(X,}\DecValTok{10000}\NormalTok{,}\AttributeTok{replace=}\ConstantTok{TRUE}\NormalTok{,Px))}\SpecialCharTok{/}\NormalTok{trials,}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##     5     6     7     8     9 
+## 0.387 0.381 1.126 1.555 0.386
+\end{verbatim}
+
+\subsection{Discrete Uniform Distribution}\label{discrete-uniform-distribution}
+
+\begin{definition}
+\protect\hypertarget{def:discrete-uniform}{}\label{def:discrete-uniform}If \(X\) is a finite set with size \(|X| = n\). The probability distribution defined by \[p(x) = \frac{1}{n}\] for all \(x \in X\) is called \textbf{uniform}.
+\end{definition}
+
+In a uniform distribution, we will find over a large number of trials that each name comes up with about the same frequency.
+
+\begin{example}
+\protect\hypertarget{exm:seals-uniform-R}{}\label{exm:seals-uniform-R}\leavevmode
+
+\begin{quote}
+Pick a random seal from the famous Eddington family: Otto, Ruth, Pluotika, Slarftel, Edgar and Bob.
+\end{quote}
+
+To simulate the process of picking one seal at random from the family, a large number of times, we sample 1 element with replacement, a large number of times.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{family}\OtherTok{=}\FunctionTok{c}\NormalTok{(}\StringTok{"Bob"}\NormalTok{, }\StringTok{"Edgar"}\NormalTok{, }\StringTok{"Pluotika"}\NormalTok{, }\StringTok{"Otto"}\NormalTok{, }\StringTok{"Ruth"}\NormalTok{, }\StringTok{"Slarftel"}\NormalTok{)}
+\NormalTok{results}\OtherTok{=}\FunctionTok{sample}\NormalTok{(family,}\DecValTok{10000}\NormalTok{,}\AttributeTok{replace=}\ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+The resulting frequency plot should look uniform:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\FunctionTok{data.frame}\NormalTok{(results))}\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{results,}\AttributeTok{fill=}\NormalTok{results))}\SpecialCharTok{+}\FunctionTok{xlab}\NormalTok{(}\StringTok{"Name"}\NormalTok{)}\SpecialCharTok{+}\FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Pick a seal, any seal!"}\NormalTok{)}\SpecialCharTok{+}\FunctionTok{theme}\NormalTok{(}\AttributeTok{legend.position =} \StringTok{"none"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-164-1.pdf}
+
+Way to go Otto, you over achiever!
 
 \end{example}
 
@@ -7598,7 +7542,7 @@ Here we investigate in R the common, named continuous random variables we encoun
   \hyperref[betaR]{Beta probability distribution} \textbar{} \texttt{beta}
 \end{itemize}
 
-For each of these distributions we may use the 4 associated commands:
+For each of these distributions we may use the 4 associated commands we used in the discrete case:
 
 \begin{itemize}
 \tightlist
@@ -7612,7 +7556,7 @@ For each of these distributions we may use the 4 associated commands:
   \texttt{r\_\_\_()} gives random samples
 \end{itemize}
 
-We also discuss below how to build and analyze \hyperref[customR]{homemade continuous random variables in R}.
+We also discuss below how to build and analyze \hyperref[custom-continuous-R]{homemade continuous random variables in R}.
 
 \section{Uniform Distribution}\label{unifR}
 
@@ -7620,8 +7564,8 @@ The uniform distribution is so very useful, it deserves top-billing here. With i
 
 A uniform random variable \(X\) over the interval \([a,b]\) has density function \[f(x) = \frac{1}{b-a}, ~~\text{ for all }~~ a \leq x \leq b.\]
 
-\subsection*{Picking random numbers!}\label{picking-random-numbers}
-\addcontentsline{toc}{subsection}{Picking random numbers!}
+\subsection*{Picking random numbers}\label{picking-random-numbers}
+\addcontentsline{toc}{subsection}{Picking random numbers}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7630,12 +7574,12 @@ A uniform random variable \(X\) over the interval \([a,b]\) has density function
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 0.002854162 0.564927867 0.645834822 0.587048251 0.368558448 0.717851328
-##  [7] 0.159033064 0.108901542 0.822286243 0.065410425
+##  [1] 0.05235901 0.05770704 0.70672303 0.98684644 0.27190070 0.57571122
+##  [7] 0.08879170 0.77589013 0.71726497 0.27648621
 \end{verbatim}
 
-\subsection*{Picking random points in the unit square!}\label{picking-random-points-in-the-unit-square}
-\addcontentsline{toc}{subsection}{Picking random points in the unit square!}
+\subsection*{Picking random points in the unit square}\label{picking-random-points-in-the-unit-square}
+\addcontentsline{toc}{subsection}{Picking random points in the unit square}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7646,7 +7590,7 @@ A uniform random variable \(X\) over the interval \([a,b]\) has density function
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-168-1.pdf}
+\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-166-1.pdf}
 
 \subsection*{\texorpdfstring{Estimate the value of \(\pi\)}{Estimate the value of \textbackslash pi}}\label{estimate-the-value-of-pi}
 \addcontentsline{toc}{subsection}{Estimate the value of \(\pi\)}
@@ -7664,7 +7608,7 @@ A uniform random variable \(X\) over the interval \([a,b]\) has density function
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-169-1.pdf}
+\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-167-1.pdf}
 
 The area of the square is 2*2 = 4.
 The area of the circle is \(\pi (1)^2 = \pi.\) So the ratio\\
@@ -7679,7 +7623,7 @@ and we can estimate \(\pi\) as follows:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 3.1408
+## [1] 3.128
 \end{verbatim}
 
 \section{\texorpdfstring{Normal Distribution \texttt{norm}}{Normal Distribution norm}}\label{normalR}
@@ -7694,10 +7638,13 @@ Thanks to the Central Limit Theorem this distribution has a central role in stat
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-171-1.pdf}
+\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-169-1.pdf}
+
+\begin{example}
+\protect\hypertarget{exm:normal-weights-R}{}\label{exm:normal-weights-R}\leavevmode
 
 \begin{quote}
-\textbf{Example}: Suppose newborn birthweights are normally distributed with mean 7.8 pounds and standard deviation 0.95 pounds.\\
+Suppose newborn birthweights are normally distributed with mean 7.8 pounds and standard deviation 0.95 pounds.\\
 a) What proportion of newborns weight more than 10 pounds?\\
 b) Find the birth weight that marks the bottom 1\% of all birthweights.
 \end{quote}
@@ -7724,6 +7671,8 @@ b) Find the birth weight that marks the bottom 1\% of all birthweights.
 ## [1] 5.58997
 \end{verbatim}
 
+\end{example}
+
 \subsection*{Sampling Distribution of a sample mean}\label{sampling-distribution-of-a-sample-mean}
 \addcontentsline{toc}{subsection}{Sampling Distribution of a sample mean}
 
@@ -7736,7 +7685,7 @@ Suppose we have a population of 5000 random numbers between 10 and 20, which sho
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-173-1.pdf}
+\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-171-1.pdf}
 Now suppose we draw a sample of size 50 from this population, and compute the sample mean of these 50 values:
 
 \begin{Shaded}
@@ -7746,7 +7695,7 @@ Now suppose we draw a sample of size 50 from this population, and compute the sa
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 14.7807
+## [1] 15.2213
 \end{verbatim}
 
 Now let's do that game for 10000 trials, and look at the distribution of 10000 sample means:
@@ -7762,7 +7711,7 @@ Now let's do that game for 10000 trials, and look at the distribution of 10000 s
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-175-1.pdf}
+\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-173-1.pdf}
 
 Look Normal?
 
@@ -7774,7 +7723,7 @@ Look Normal?
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-176-1.pdf}
+\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-174-1.pdf}
 
 \section{\texorpdfstring{Exponential Distribution \texttt{exp}}{Exponential Distribution exp}}\label{expR}
 
@@ -7783,15 +7732,22 @@ An exponential random variable \(X\) with parameter \(\beta\) has pdf \[f(x) = \
 The \textbf{mean} of this distribution is \(E(X) = \beta\) and the \textbf{rate} associated to this distribution is \(1/\beta\). \textbf{In R}, we specify the exponential parameter by entering the rate \(1/\beta\), not \(\beta\) itself.
 
 \begin{quote}
-Suppose \(X\) is exp(\(b\)).\\
-\textbf{In R}, \(P(X \leq q)\) is given by \texttt{pexp(q,1/b)}
+Suppose \(X\) is \(\texttt{Exp}(b)\). \textbf{In R}, \(P(X \leq q)\) is given by \texttt{pexp(q,1/b)}
 \end{quote}
+
+\begin{example}
+\protect\hypertarget{exm:exp-lightbulb-R}{}\label{exm:exp-lightbulb-R}The life of a lightbulb is exponentially distributed with mean 120 hours.
 
 \begin{quote}
-\textbf{Example}: The life of a lightbulb is exponentially distributed with mean 120 hours. What is the probability that it lasts more than 200 hours?
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\tightlist
+\item
+  What is the probability that the lightbulb lasts more than 200 hours?
+\end{enumerate}
 \end{quote}
 
-Here \(X\) is exponential with parameter \(\beta = 120\). The rate associated with this distribution is 1/120, so \(P(X > 200)\) can be computed with
+Here \(X\) is exponential with parameter \(\beta = 120\). The rate associated with this distribution is \(1/120\), so \(P(X > 200)\) can be computed with
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7806,10 +7762,16 @@ Here \(X\) is exponential with parameter \(\beta = 120\). The rate associated wi
 As a reminder, this probability corresponds to the integral
 \[\int_{200}^\infty \frac{1}{120}e^{-x/120}~dx\] which corresponds to the shaded area below
 
-\begin{center}\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-178-1} \end{center}
+\begin{center}\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-176-1} \end{center}
 
 \begin{quote}
-\textbf{Example}: What proportion of lightbulbs last fewer than 5 hours?
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  What proportion of lightbulbs last fewer than 5 hours?
+\end{enumerate}
 \end{quote}
 
 \begin{Shaded}
@@ -7823,7 +7785,13 @@ As a reminder, this probability corresponds to the integral
 \end{verbatim}
 
 \begin{quote}
-\textbf{Example}: Find the 5th percentile for this distribution.
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Find the 5th percentile for this distribution.
+\end{enumerate}
 \end{quote}
 
 \begin{Shaded}
@@ -7837,47 +7805,86 @@ As a reminder, this probability corresponds to the integral
 \end{verbatim}
 
 So, 5\% of lightbulbs last less than 6.16 hours.
+\end{example}
+
+\begin{example}
+\protect\hypertarget{exm:sketch-exp-f-and-F}{}\label{exm:sketch-exp-f-and-F}\leavevmode
 
 \begin{quote}
-\textbf{Example}: Suppose \(X\) is an exponential random variable with parameter \(\beta = 2\). Sketch the density function \(f(x)\) as well as the distribution function \(F(x)\).
+Suppose \(X\) is an exponential random variable with parameter \(\beta = 2\). Sketch the density function \(f(x)\) as well as the distribution function \(F(x)\).
 \end{quote}
 
 The density function is \(f(x) = \frac{1}{2}e^{-x/2}\) for \(x > 0\), and we can sketch it by plotting an \(x\) vector of many inputs between, say, 0 and 10, and the corresponding values of \texttt{dexp()}:
 
-\begin{center}\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-181-1} \end{center}
+\begin{center}\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-179-1} \end{center}
 
 The distribution function, which gives cumulative probability is found by plotting \texttt{pexp()}:
 
-\begin{center}\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-182-1} \end{center}
+\begin{center}\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-180-1} \end{center}
 
-\section{\texorpdfstring{Gamma Distribution \texttt{gamma}}{Gamma Distribution gamma}}\label{gammaR}
+\end{example}
 
-Some random variables are always nonnegative, and yield distributions of data that are skewed right, as pictured below.
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-184-1.pdf}
+\subsection*{A Memoryless distribution}\label{a-memoryless-distribution}
+\addcontentsline{toc}{subsection}{A Memoryless distribution}
 
-Some typically skewed right distributions include household incomes in a city, the length of time between malfunctions of some machine, and major league baseball salaries. The gamma probability distribution, which has two parameters \(\alpha\) and \(\beta\), can model such skewed right distributions. The parameter \(\alpha\) is sometimes called the \textbf{shape} parameter, \(\beta\) is called the \textbf{scale} parameter, and its reciprocal \(1/\beta\) is called the \textbf{rate}.
+Along with the geometric distribution, the exponential distribution is \emph{memoryless} in this sense: For any \(t,s>0\), \[P(X > t + s~|~X > s) = P(X > t).\]
 
-Here are plots of three different gamma distributions.
+For the geometric distribution we can interpret the above as follows: the probability of waiting more than \(t\) trials to see the first success is the same as waiting more than \(t\) additional trials after not seeing a success in the first \(s\) trials.
 
-\begin{center}\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-185-1} \end{center}
+For the ``lifetime of a light-bulb interpretation'' of the exponential distribution: However long the light bulb has already lasted, the probability that the light-bulb lasts at least \(t\) more hours is the same.
 
-\begin{quote}
-Suppose \(X\) is gamma(\(a,b\)).\\
-\textbf{In R}, \(P(X \leq q)\) is given by \texttt{pgamma(q,a,1/b)}
-\end{quote}
-
-\begin{quote}
-\textbf{Example} Suppose \(X\) has a gamma distribution with parameters \(\alpha=3\) and \(\beta = 4\). Find \(P(4\leq X < 12)\), which corresponds to the area pictured below.
-\end{quote}
-
-\begin{center}\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-186-1} \end{center}
-
-No need for Riemann Sum estimates of this area, we have the built in gamma function.
+We can estimate both \(P(X>t)\) and \(P(X>t+s ~|~ X>s)\) by checking a large random sample from an exponential distribution.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{alpha}\OtherTok{=}\DecValTok{3}\NormalTok{; beta}\OtherTok{=}\DecValTok{4}
-\FunctionTok{pgamma}\NormalTok{(}\DecValTok{12}\NormalTok{,alpha,}\DecValTok{1}\SpecialCharTok{/}\NormalTok{beta)}\SpecialCharTok{{-}}\FunctionTok{pgamma}\NormalTok{(}\DecValTok{4}\NormalTok{,alpha,}\DecValTok{1}\SpecialCharTok{/}\NormalTok{beta)}
+\NormalTok{trials}\OtherTok{=}\DecValTok{10000}
+\NormalTok{x}\OtherTok{=}\FunctionTok{rexp}\NormalTok{(trials,}\AttributeTok{rate=}\DecValTok{1}\SpecialCharTok{/}\DecValTok{5}\NormalTok{)}
+\NormalTok{s}\OtherTok{=}\DecValTok{2}\NormalTok{; t}\OtherTok{=}\DecValTok{3}
+\NormalTok{p1}\OtherTok{=}\FunctionTok{sum}\NormalTok{(x }\SpecialCharTok{\textgreater{}}\NormalTok{ t)}\SpecialCharTok{/}\NormalTok{trials }\CommentTok{\#P(X \textgreater{} t)}
+\NormalTok{p2}\OtherTok{=}\FunctionTok{sum}\NormalTok{(x[}\FunctionTok{which}\NormalTok{(x }\SpecialCharTok{\textgreater{}}\NormalTok{ s)]}\SpecialCharTok{\textgreater{}}\NormalTok{s}\SpecialCharTok{+}\NormalTok{t)}\SpecialCharTok{/}\FunctionTok{sum}\NormalTok{(x}\SpecialCharTok{\textgreater{}}\NormalTok{s) }\CommentTok{\#P(X\textgreater{}t+s | X \textgreater{} s)}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Estimate for P(X\textgreater{}t):"}\NormalTok{,}\FunctionTok{round}\NormalTok{(p1,}\DecValTok{3}\NormalTok{)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Estimate for P(X>t): 0.55"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Estimate for P(X\textgreater{}t+s | X\textgreater{}s):"}\NormalTok{,}\FunctionTok{round}\NormalTok{(p2,}\DecValTok{3}\NormalTok{)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Estimate for P(X>t+s | X>s): 0.548"
+\end{verbatim}
+
+\section{\texorpdfstring{Gamma Distribution \texttt{gamma}}{Gamma Distribution gamma}}\label{gammaR}
+
+Recall, the gamma probability distribution, \(\texttt{gamma}(\alpha,\beta)\) is a family of skeyed right distributions. The parameter \(\alpha\) is sometimes called the \textbf{shape} parameter, \(\beta\) is called the \textbf{scale} parameter, and its reciprocal \(1/\beta\) is called the \textbf{rate}. Figure \ref{fig:3-gamma-plots} plots 3 different gamma density functions. In R we refer to a gamma distribution in our \texttt{p\_},\texttt{q\_},\texttt{d\_}, and \texttt{r\_} functions via the shape parameter \(\alpha\) and either the rate \(1/\beta\) or the scale \(\beta\) parameter. It's good practice to label the inputs.
+
+\begin{quote}
+Suppose \(X\) is \(\texttt{gamma}(a,b)\). In R \(P(X \leq q)\) is given by \texttt{pgamma(q,shape=a,rate=1/b)} or \texttt{pgamma(q,shape=a,scale=b)} or \texttt{pgamma(q,a,1/b)} (if you don't label the two parameters, R assumes (shape,rate)).
+\end{quote}
+
+\begin{example}
+\protect\hypertarget{exm:gamma-R}{}\label{exm:gamma-R}Suppose \(X\) has a gamma distribution with parameters \(\alpha=3\) and \(\beta = 4\).
+
+\begin{quote}
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\tightlist
+\item
+  Find \(P(4 < X < 12)\).
+\end{enumerate}
+\end{quote}
+
+This probability corresponds to the area pictured in Figure \ref{fig:gamma-area}, and can be computed in R, remembering to input the shape parameter \(\alpha\) and the rate parameter \(1/\beta\):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{pgamma}\NormalTok{(}\DecValTok{12}\NormalTok{,}\AttributeTok{shape=}\DecValTok{3}\NormalTok{,}\AttributeTok{scale=}\DecValTok{4}\NormalTok{)}\SpecialCharTok{{-}}\FunctionTok{pgamma}\NormalTok{(}\DecValTok{4}\NormalTok{,}\AttributeTok{shape=}\DecValTok{3}\NormalTok{,}\AttributeTok{scale=}\DecValTok{4}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -7885,59 +7892,52 @@ No need for Riemann Sum estimates of this area, we have the built in gamma funct
 ## [1] 0.4965085
 \end{verbatim}
 
-Just about a 50\% chance that a random value from a gamma(3,4) distribution is between 4 and 12. Ok, so if we gather a random sample of say 1000 values from this distribution, we'd expect somehwere around 500 of them between 4 and 12:
+Just about a 50\% chance that a random value from a \(\texttt{gamma}(3,4)\) distribution is between 4 and 12.
+
+\begin{figure}
+
+{\centering \includegraphics{math340-notes_files/figure-latex/gamma-area-1} 
+
+}
+
+\caption{Finding P(4<X<12) for a gamma(3,4) distribution}\label{fig:gamma-area}
+\end{figure}
+
+\begin{quote}
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Gather a random sample of 1000 values from this distribution, and determine what proportion of them live between 4 and 12.
+\end{enumerate}
+\end{quote}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{x}\OtherTok{=}\FunctionTok{rgamma}\NormalTok{(}\DecValTok{1000}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{1}\SpecialCharTok{/}\DecValTok{4}\NormalTok{) }\CommentTok{\# random sample of size 1000}
+\NormalTok{x}\OtherTok{=}\FunctionTok{rgamma}\NormalTok{(}\DecValTok{1000}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{1}\SpecialCharTok{/}\DecValTok{4}\NormalTok{) }\CommentTok{\# random sample of size 1000 (no parameter names \textless{}{-}\textgreater{} shape,rate)}
 \FunctionTok{sum}\NormalTok{(}\FunctionTok{abs}\NormalTok{(x}\DecValTok{{-}8}\NormalTok{)}\SpecialCharTok{\textless{}}\DecValTok{4}\NormalTok{) }\CommentTok{\# values in the sample between 4 and 12}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 502
+## [1] 505
 \end{verbatim}
 
-Well, 502 is mighty close to half of the 1000 values!
-
-\textbf{Exponential distributions are special gamma distributions.} In particular, if we set \(\alpha=1\), the gamma distribution gamma(1,\(\beta\)) is exactly equal to the exponential distribution exp(\(\beta\)).
-
-\section{\texorpdfstring{Chi-square Distribution \texttt{chisq}}{Chi-square Distribution chisq}}\label{chiR}
-
-Like the exponential distribution, the chi-square distribution is a special gamma distribution. For a positive integer \(\nu\), the \textbf{Chi-square probability distribution with degrees of freedom \(\nu\)}, denoted \(\chi^2(\nu)\), is the gamma distribution with \(\alpha = \nu/2\) and \(\beta=2\).
-
-Here are plots of three different chi-square distributions.
-
-\begin{center}\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-189-1} \end{center}
+Well, 505 is mighty close to half of the 1000 values!
+\end{example}
 
 \section{\texorpdfstring{Beta distribution \texttt{beta}}{Beta distribution beta}}\label{betaR}
 
-The beta\((\alpha,\beta)\) probability distribution provides a way to model random variables whose possible outcomes are all real numbers betweeen 0 and 1. Such distributions are useful for modeling proportions. As with the gamma and normal distributions, this is a 2-parameter family of distributions. Altering the shape parameters \(\alpha\) and \(\beta\) gives us, well, different shapes for the density curves.
+The beta\((\alpha,\beta)\) probability distribution provides a way to model random variables whose possible outcomes are all real numbers between 0 and 1. Such distributions are useful for modeling proportions. As with the gamma and normal distributions, this is a 2-parameter family of distributions.
 
-We note that \textbf{beta(1,1) corresponds to the uniform distribution on the interval (0,1)}. Here are plots of density functions for four other beta distributions.
+\begin{example}
+\protect\hypertarget{exm:beta-sales-R}{}\label{exm:beta-sales-R}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{t}\OtherTok{=}\FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\AttributeTok{by=}\NormalTok{.}\DecValTok{01}\NormalTok{)}
-\NormalTok{x1}\OtherTok{=}\FunctionTok{dbeta}\NormalTok{(t,}\DecValTok{4}\NormalTok{,}\DecValTok{1}\NormalTok{)}
-\NormalTok{x2}\OtherTok{=}\FunctionTok{dbeta}\NormalTok{(t,}\DecValTok{1}\NormalTok{,}\FloatTok{3.5}\NormalTok{)}
-\NormalTok{x3}\OtherTok{=}\FunctionTok{dbeta}\NormalTok{(t,}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{)}
-\NormalTok{x4}\OtherTok{=}\FunctionTok{dbeta}\NormalTok{(t,}\DecValTok{4}\NormalTok{,}\DecValTok{2}\NormalTok{)}
-\FunctionTok{ggplot}\NormalTok{(}\FunctionTok{data.frame}\NormalTok{(t,x1,x2,x3))}\SpecialCharTok{+}
-  \FunctionTok{geom\_line}\NormalTok{(}\FunctionTok{aes}\NormalTok{(t,x1),}\AttributeTok{col=}\StringTok{"blue"}\NormalTok{)}\SpecialCharTok{+}
-  \FunctionTok{geom\_line}\NormalTok{(}\FunctionTok{aes}\NormalTok{(t,x2),}\AttributeTok{col=}\StringTok{"orange"}\NormalTok{)}\SpecialCharTok{+}
-  \FunctionTok{geom\_line}\NormalTok{(}\FunctionTok{aes}\NormalTok{(t,x3),}\AttributeTok{col=}\StringTok{"brown"}\NormalTok{)}\SpecialCharTok{+}
-  \FunctionTok{geom\_line}\NormalTok{(}\FunctionTok{aes}\NormalTok{(t,x4),}\AttributeTok{col=}\StringTok{"black"}\NormalTok{)}\SpecialCharTok{+}
-  \FunctionTok{ylim}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{4}\NormalTok{))}\SpecialCharTok{+}
-  \FunctionTok{ylab}\NormalTok{(}\StringTok{""}\NormalTok{)}\SpecialCharTok{+}\FunctionTok{xlab}\NormalTok{(}\StringTok{"x"}\NormalTok{)}\SpecialCharTok{+}
-  \FunctionTok{annotate}\NormalTok{(}\StringTok{"text"}\NormalTok{, }\AttributeTok{x =} \FunctionTok{c}\NormalTok{(.}\DecValTok{82}\NormalTok{,.}\DecValTok{2}\NormalTok{,.}\DecValTok{4}\NormalTok{,.}\DecValTok{6}\NormalTok{), }\AttributeTok{y =} \FunctionTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\FloatTok{2.5}\NormalTok{,}\FloatTok{1.7}\NormalTok{,}\FloatTok{2.2}\NormalTok{), }\AttributeTok{label =} \FunctionTok{c}\NormalTok{(}\StringTok{"beta(4,1)"}\NormalTok{,}\StringTok{"beta(1,3.5)"}\NormalTok{,}\StringTok{"beta(2,2)"}\NormalTok{,}\StringTok{"beta(4,2)"}\NormalTok{),}\AttributeTok{col=}\FunctionTok{c}\NormalTok{(}\StringTok{"blue"}\NormalTok{,}\StringTok{"orange"}\NormalTok{,}\StringTok{"brown"}\NormalTok{,}\StringTok{"black"}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{center}\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-190-1} \end{center}
+Let \(X\) denotes the proportion of sales on a particular website that comes from new customers any given day, and suppose from past experience, \(X\) is well-modeled with a beta distribution with shape parameters \(\alpha = 1\), and \(\beta=3.5\).
 
 \begin{quote}
-\textbf{Example} Let \(X\) denotes the proportion of sales on a particular website that comes from new customers any given day, and suppose from past experience, \(X\) is well-modeled with a beta distribution with shape parameters \(\alpha = 1\), and \(\beta=3.5\). Determine the probability that on any given day, over 1/2 the sales come from new customers.
+Determine the probability that on any given day, over 1/2 the sales come from new customers.
 \end{quote}
 
 \begin{Shaded}
@@ -7950,7 +7950,9 @@ We note that \textbf{beta(1,1) corresponds to the uniform distribution on the in
 ## [1] 0.08838835
 \end{verbatim}
 
-\section{Homemade Continuous Random Variables}\label{customR}
+\end{example}
+
+\section{Homemade Continuous Random Variables}\label{custom-continuous-R}
 
 We may wish to study a continuous random variable \(X\) from a given probability density function such as \(f(x) = \frac{3}{8}(2-x)^2\) for \(0 \leq x \leq 2\).
 
@@ -7967,7 +7969,7 @@ First build the probability density function (pdf) as a function in R.
 \begin{Highlighting}[]
 \NormalTok{f\_pdf }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x)\{}
   \FunctionTok{return}\NormalTok{(}\DecValTok{3}\SpecialCharTok{*}\NormalTok{(}\DecValTok{2}\SpecialCharTok{{-}}\NormalTok{x)}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{/}\DecValTok{8}\NormalTok{)}
-\NormalTok{\}}
+\NormalTok{  \}}
 \end{Highlighting}
 \end{Shaded}
 
@@ -7995,7 +7997,7 @@ Here's a function for estimating \(\int_a^b f(x)~dx\) with a sum of \(n\) rectan
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{mid.sum}\OtherTok{=}\ControlFlowTok{function}\NormalTok{(f,a,b,n)\{}
+\NormalTok{mid\_sum}\OtherTok{=}\ControlFlowTok{function}\NormalTok{(f,a,b,n)\{}
   \CommentTok{\#inputs:}
       \CommentTok{\#f {-} function}
       \CommentTok{\#a, b {-} lower and upper bounds of interval}
@@ -8009,7 +8011,7 @@ Here's a function for estimating \(\int_a^b f(x)~dx\) with a sum of \(n\) rectan
 \end{Highlighting}
 \end{Shaded}
 
-For instance, \texttt{mid.sum(f\_pdf,a=0.4,b=1.2,n=4)} computes the area of the 4 rectangles pictured below. We divide the interval {[}0.4,1.2{]} into n=4 equal-width subintervals, and build rectangles having height equal to the function height at the midpoint of each of these subintervals.
+For instance, \texttt{mid\_sum(f\_pdf,a=0.4,b=1.2,n=4)} computes the area of the 4 rectangles in Figure \ref{fig:midpoint-sum}. We divide the interval {[}0.4,1.2{]} into n=4 equal-width subintervals, and build rectangles having height equal to the function height at the midpoint of each of these subintervals.
 
 \begin{verbatim}
 ## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
@@ -8019,61 +8021,13 @@ For instance, \texttt{mid.sum(f\_pdf,a=0.4,b=1.2,n=4)} computes the area of the 
 ## generated.
 \end{verbatim}
 
-\begin{verbatim}
-## Warning in geom_segment(aes(x = 0.59, y = 0, xend = 0.59, yend = f_pdf(0.5)), : All aesthetics have length 1, but the data has 2001 rows.
-## i Please consider using `annotate()` or provide this layer with data containing
-##   a single row.
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in geom_segment(aes(x = 0.79, y = 0, xend = 0.79, yend = f_pdf(0.7)), : All aesthetics have length 1, but the data has 2001 rows.
-## i Please consider using `annotate()` or provide this layer with data containing
-##   a single row.
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in geom_segment(aes(x = 0.99, y = 0, xend = 0.99, yend = f_pdf(0.9)), : All aesthetics have length 1, but the data has 2001 rows.
-## i Please consider using `annotate()` or provide this layer with data containing
-##   a single row.
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in geom_segment(aes(x = 1.2, y = 0, xend = 1.2, yend = f_pdf(1.1)), : All aesthetics have length 1, but the data has 2001 rows.
-## i Please consider using `annotate()` or provide this layer with data containing
-##   a single row.
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in geom_segment(aes(x = 0.5, y = 0, xend = 0.5, yend = f_pdf(0.5)), : All aesthetics have length 1, but the data has 2001 rows.
-## i Please consider using `annotate()` or provide this layer with data containing
-##   a single row.
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in geom_segment(aes(x = 0.7, y = 0, xend = 0.7, yend = f_pdf(0.7)), : All aesthetics have length 1, but the data has 2001 rows.
-## i Please consider using `annotate()` or provide this layer with data containing
-##   a single row.
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in geom_segment(aes(x = 0.9, y = 0, xend = 0.9, yend = f_pdf(0.9)), : All aesthetics have length 1, but the data has 2001 rows.
-## i Please consider using `annotate()` or provide this layer with data containing
-##   a single row.
-\end{verbatim}
-
-\begin{verbatim}
-## Warning in geom_segment(aes(x = 1.1, y = 0, xend = 1.1, yend = f_pdf(1.1)), : All aesthetics have length 1, but the data has 2001 rows.
-## i Please consider using `annotate()` or provide this layer with data containing
-##   a single row.
-\end{verbatim}
-
-\includegraphics{math340-notes_files/figure-latex/plot sum-1.pdf}
+\includegraphics{math340-notes_files/figure-latex/midpoint-sum-1.pdf}
 
 The area of the four rectangles is
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{mid.sum}\NormalTok{(f\_pdf,}\AttributeTok{a=}\NormalTok{.}\DecValTok{4}\NormalTok{,}\AttributeTok{b=}\FloatTok{1.2}\NormalTok{,}\AttributeTok{n=}\DecValTok{4}\NormalTok{)}
+\FunctionTok{mid\_sum}\NormalTok{(f\_pdf,}\AttributeTok{a=}\NormalTok{.}\DecValTok{4}\NormalTok{,}\AttributeTok{b=}\FloatTok{1.2}\NormalTok{,}\AttributeTok{n=}\DecValTok{4}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -8088,7 +8042,7 @@ So, getting back to our example, if we want to estimate \(P(X > 1.2)\) we can co
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{mid.sum}\NormalTok{(f\_pdf,}\FloatTok{1.2}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{100}\NormalTok{)}
+\FunctionTok{mid\_sum}\NormalTok{(f\_pdf,}\FloatTok{1.2}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{100}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -8100,7 +8054,7 @@ What if we use \(n = 1000\) rectangles?
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{mid.sum}\NormalTok{(f\_pdf,}\FloatTok{1.2}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
+\FunctionTok{mid\_sum}\NormalTok{(f\_pdf,}\FloatTok{1.2}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{1000}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -8114,7 +8068,7 @@ To estimate \(P(0.5 < X < 1.1)\) we can evaluate
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{mid.sum}\NormalTok{(f\_pdf,}\FloatTok{0.5}\NormalTok{,}\FloatTok{1.1}\NormalTok{,}\DecValTok{100}\NormalTok{)}
+\FunctionTok{mid\_sum}\NormalTok{(f\_pdf,}\FloatTok{0.5}\NormalTok{,}\FloatTok{1.1}\NormalTok{,}\DecValTok{100}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -8135,7 +8089,7 @@ which we can numerically approximate with
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{F\_example }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(b)\{}
-  \FunctionTok{return}\NormalTok{(}\FunctionTok{mid.sum}\NormalTok{(f\_pdf,}\DecValTok{0}\NormalTok{,b,}\DecValTok{100}\NormalTok{))}
+  \FunctionTok{return}\NormalTok{(}\FunctionTok{mid\_sum}\NormalTok{(f\_pdf,}\DecValTok{0}\NormalTok{,b,}\DecValTok{100}\NormalTok{))}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
@@ -8163,7 +8117,7 @@ Recall, \(E(X^n)\) is called the \emph{\(n\)th moment about 0} of the distributi
 
 For a continuous random variable \(X\) with pdf \(f(x)\), \[E(X^n) = \int_{-\infty}^\infty x^n \cdot f(x).\]
 
-In R we can numerically estimate these integrals with the \texttt{mid.sum()} function defined above, applied to the integrand \(x^n\cdot f(X)\).
+In R we can numerically estimate these integrals with the \texttt{mid\_sum()} function defined above, applied to the integrand \(x^n\cdot f(X)\).
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8186,7 +8140,7 @@ To estimate this integral, we plug the first moment integrand \(x \cdot f(x)\) i
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{mu}\OtherTok{=}\FunctionTok{mid.sum}\NormalTok{(}\FunctionTok{moment.integrand}\NormalTok{(f\_pdf,}\DecValTok{1}\NormalTok{),}\DecValTok{0}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{100}\NormalTok{)}
+\NormalTok{mu}\OtherTok{=}\FunctionTok{mid\_sum}\NormalTok{(}\FunctionTok{moment.integrand}\NormalTok{(f\_pdf,}\DecValTok{1}\NormalTok{),}\DecValTok{0}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{100}\NormalTok{)}
 \NormalTok{mu}
 \end{Highlighting}
 \end{Shaded}
@@ -8203,7 +8157,7 @@ We estimate the \textbf{variance} knowing that \(V(X) = E(X^2)-E(X)^2.\)
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{EX2}\OtherTok{=}\FunctionTok{mid.sum}\NormalTok{(}\FunctionTok{moment.integrand}\NormalTok{(f\_pdf,}\DecValTok{2}\NormalTok{),}\DecValTok{0}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{100}\NormalTok{)}
+\NormalTok{EX2}\OtherTok{=}\FunctionTok{mid\_sum}\NormalTok{(}\FunctionTok{moment.integrand}\NormalTok{(f\_pdf,}\DecValTok{2}\NormalTok{),}\DecValTok{0}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{100}\NormalTok{)}
 \NormalTok{EX2}
 \end{Highlighting}
 \end{Shaded}

@@ -2,7 +2,7 @@
 # Important Continuous Random Variables {#important-continuous-rv}
 
 In this chapter we introduce the following well-known continuous random variables:
-uniform, normal, exponential, gamma, chi-square, and beta.
+uniform, normal, exponential, gamma, chi-square, and beta. In examples we work through, it will from time to time be convenient to compute probabilities in R. Appendix \@ref(R-continuousRV) contains details about the commands in R useful for doing so.
 
 ## Uniform Distribution {#uniform-continuous}
 
@@ -72,7 +72,7 @@ so that $$V(X) = E(X^2) - E(X)^2 = \frac{(\theta_2-\theta_1)^2}{12}.$$ The fun a
 The exponential distribution is often used to model experiments that aim to investigate: How long until something happens?
 
 :::{.definition #exp-distribution}
-A random variable $X$ has an **exponential probability distribution with parameter $\beta$**\index{exponential distribution}, denoted $\text{Exp}(\beta)$\index{Exp$(\beta)$}, if it has probability density function 
+A random variable $X$ has an **exponential probability distribution with parameter $\beta$**\index{exponential distribution}, denoted $\texttt{Exp}(\beta)$\index{\texttt{Exp}$(\beta)$}, if it has probability density function 
 $$
 f(x)=
 \frac{1}{\beta}e^{-(x/\beta)} ~~~ \text{ for }x \geq 0~~~ \text{ (and }f(x) = 0\text{ else.)}
@@ -99,7 +99,7 @@ F(x) &= \int_0^x \frac{1}{\beta}e^{-t/beta}~dt\\
 
 
 :::{.example}
-Suppose $X$ is Exp(4). Find $P(X < 8)$.
+Suppose $X$ is \texttt{Exp}(4). Find $P(X < 8)$.
 
 Well, 
 \begin{align*}
@@ -112,7 +112,7 @@ P(X < 8) &= F(8)\\
 
 
 :::{.theorem #exponential-EandV}
-If $X$ is $\text{Exp}(\beta))$, then $$E(X) = \beta, ~~~ \text{ and } ~~~ V(X) = \beta^2.$$
+If $X$ is $\texttt{Exp}(\beta))$, then $$E(X) = \beta, ~~~ \text{ and } ~~~ V(X) = \beta^2.$$
 :::
 
 :::{.proof}
@@ -321,7 +321,7 @@ Clearly, $f(x) \geq 0$ for all $x$, and after $u$-substitution of $u = (x-\mu)/\
 
 
 ## Gamma Distribution
-Some random variables are always nonnegative, and yield distributions of data that are skewed right, as pictured below.
+Some random variables are always nonnegative and yield distributions of data that are skewed right, as pictured below.
 
 ```{r, fig.dim=c(4,3),echo=FALSE}
 ggplot(data.frame(x=seq(0,10,by=.02),y=dgamma(seq(0,10,by=.02),2,1)))+
@@ -343,13 +343,13 @@ f(x)=
 \frac{1}{\beta^\alpha \Gamma(\alpha)}x^{\alpha-1}e^{-(x/\beta)}~~~ \text{ for }x \geq 0~~~ \text{ (and }f(x) = 0\text{ else)}
 $$
 where $\displaystyle\Gamma(\alpha) = \int_0^\infty t^{\alpha-1}e^{-t}~dt$.
-If $X$ has such a pdf we might say $X$ is $\text{gamma}(\alpha,\beta)$\index{gamma$(\alpha,\beta)$}.
+If $X$ has such a pdf we might say $X$ is $\texttt{gamma}(\alpha,\beta)$\index{\texttt{gamma}$(\alpha,\beta)$}.
 :::
 
 
 Here are plots of three different gamma distributions.
 
-```{r,echo=FALSE, fig.dim=c(5,3),fig.align='center'}
+```{r,echo=FALSE, label="3-gamma-plots",fig.dim=c(5,3),fig.align='center'}
 t=seq(0,30,by=.05)
 x1=dgamma(t,3,1/2)
 x2=dgamma(t,5,1/2)
@@ -419,32 +419,32 @@ It follows that $\Gamma(n) = (n-1)!$ for all positive integers $n$.
 The family of gamma distributions contain two special sub-families, one of which we've already seen!
 
 :::{.theorem #gamma-EandV}
-If $X$ is $\text{gamma}(\alpha,\beta))$, then $$E(X) = \alpha\beta, ~~~ \text{ and } ~~~ V(X) = \alpha\beta^2.$$
+If $X$ is $\texttt{gamma}(\alpha,\beta))$, then $$E(X) = \alpha\beta, ~~~ \text{ and } ~~~ V(X) = \alpha\beta^2.$$
 :::
 
 We prove this later in Chapter \@ref(mgf).
 
 :::{.example}
-Where does the peak of the gamma$(\alpha,\beta)$ pdf occur?
+Where does the peak of the $\texttt{gamma}(\alpha,\beta)$ pdf occur?
 
 This looks like a question for calculus. We can find $f^\prime$, set it to 0, and consider critical points.
 
 We leave the details to the reader for now, but find the following results:
 
   - if $\alpha \leq 1$, $f^\prime(x) < 0$ for all $x > 0$, so $f$ is always decreasing and the peak occurs when $x = 0$.
-  - If $\alpha > 1$, the pdf for $X \sim \text{gamma}(\alpha, \beta)$ has its peak at $x = (\alpha-1)\beta.$
+  - If $\alpha > 1$, the pdf for $X \sim \texttt{gamma}(\alpha, \beta)$ has its peak at $x = (\alpha-1)\beta.$
 :::
 
 
 ### Exponential Distribution
 
-Set $\alpha = 1$ and you will find $\text{gamma}(1,\beta) = \text{ Exp}(\beta),$
+Set $\alpha = 1$ and you will find $\texttt{gamma}(1,\beta) = \texttt{Exp}(\beta),$
 because their density functions are identical. So exponential distributions are special gamma distributions.
 
 ### Chi-square distribution
 
 :::{.definition #chi-square}
-Let $\nu$ be a positive integer. $X$ has a **chi-square distribution with $\nu$ degrees of freedom**\index{chi-square distribution}, denoted $X$ is $\chi^2(\nu)$\index{$\chi^2(\nu)$}, if $X$ is $\text{gamma}(\alpha = \nu/2, \beta = 2).$
+Let $\nu$ be a positive integer. $X$ has a **chi-square distribution with $\nu$ degrees of freedom**\index{chi-square distribution}, denoted $X$ is $\chi^2(\nu)$\index{$\chi^2(\nu)$}, if $X$ is $\texttt{gamma}(\alpha = \nu/2, \beta = 2).$
 :::
 
 Here are plots of three different chi-square distributions.
@@ -477,18 +477,18 @@ f(x)=
 \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha)\cdot \Gamma(\beta)}x^{\alpha-1}(1-x)^{\beta-1}~~~ \text{ for }0 \leq x \leq 1~~~ \text{ (and }f(x) = 0\text{ else)}
 $$
 
-If $X$ has such a pdf we say that $X$ is $\text{beta}(\alpha,\beta)$\index{beta$(\alpha,\beta)$}.
+If $X$ has such a pdf we say that $X$ is $\texttt{beta}(\alpha,\beta)$\index{\texttt{beta}$(\alpha,\beta)$}.
 :::
 
 The gamma function (\@ref(def:gamma-distribution)) appears in this pdf three times.  Recall that for positive integers $n$, $\Gamma(n) = (n-1)!$ so for integer values of $\alpha$ and $\beta$, the beta density function is fairly nice.
 Indeed, 
 
-  - $\displaystyle X \sim \text{beta}(1,1) \Rightarrow f(x) = \frac{\Gamma(2)}{\Gamma(1)\Gamma(1)}x^0(1-x)^0 = 1$. Whoa! $\text{beta}(1,1)$ is the uniform distribution $U(0,1).$
-  - $\displaystyle X \sim \text{beta}(1,2) \Rightarrow f(x) = 2(1-x)$.
-  - $\displaystyle X \sim \text{beta}(2,1) \Rightarrow f(x) = 2x$.
-  - $\displaystyle X \sim \text{beta}(2,2) \Rightarrow f(x) = 6x(1-x)$.
-  - $\displaystyle X \sim \text{beta}(n,1) \Rightarrow f(x) = nx^{n-1}$.
-  - $\displaystyle X \sim \text{beta}(1,n) \Rightarrow f(x) = n(1-x)^{n-1}$.
+  - $\displaystyle X \sim \texttt{beta}(1,1) \Rightarrow f(x) = \frac{\Gamma(2)}{\Gamma(1)\Gamma(1)}x^0(1-x)^0 = 1$. Whoa! $\text{beta}(1,1)$ is the uniform distribution $U(0,1).$
+  - $\displaystyle X \sim \texttt{beta}(1,2) \Rightarrow f(x) = 2(1-x)$.
+  - $\displaystyle X \sim \texttt{beta}(2,1) \Rightarrow f(x) = 2x$.
+  - $\displaystyle X \sim \texttt{beta}(2,2) \Rightarrow f(x) = 6x(1-x)$.
+  - $\displaystyle X \sim \texttt{beta}(n,1) \Rightarrow f(x) = nx^{n-1}$.
+  - $\displaystyle X \sim \texttt{beta}(1,n) \Rightarrow f(x) = n(1-x)^{n-1}$.
 
 Here are a few beta distributions:
 ```{r,echo=FALSE,fig.dim=c(5,3)}
@@ -511,5 +511,5 @@ ggplot(data.frame(t,x1,x2,x3))+
 
 
 :::{.theorem #beta-EandV}
-If $X$ is $\text{beta}(\alpha,\beta))$, then $$E(X) = \frac{\alpha}{\alpha+\beta}, ~~~ \text{ and } ~~~ V(X) = \frac{\alpha\beta}{(\alpha+\beta)^2(\alpha+\beta+1)}.$$
+If $X$ is $\texttt{beta}(\alpha,\beta))$, then $$E(X) = \frac{\alpha}{\alpha+\beta}, ~~~ \text{ and } ~~~ V(X) = \frac{\alpha\beta}{(\alpha+\beta)^2(\alpha+\beta+1)}.$$
 :::
