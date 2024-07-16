@@ -1,0 +1,26 @@
+{
+    "id": "F9283F50",
+    "path": "~/projects/probstats_source/source/04-counting.Rmd",
+    "project_path": "source/04-counting.Rmd",
+    "type": "r_markdown",
+    "hash": "2712468792",
+    "contents": "",
+    "dirty": false,
+    "created": 1721095205398.0,
+    "source_on_save": false,
+    "relative_order": 8,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "371,0",
+        "scrollLine": "365"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1720998716,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1720998716,
+    "read_only": false,
+    "read_only_alternatives": []
+}

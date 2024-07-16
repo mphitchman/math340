@@ -1,0 +1,26 @@
+{
+    "id": "173E4C41",
+    "path": "~/projects/probstats_source/source/03-discrete-prob.Rmd",
+    "project_path": "source/03-discrete-prob.Rmd",
+    "type": "r_markdown",
+    "hash": "2712932829",
+    "contents": "",
+    "dirty": true,
+    "created": 1721096242860.0,
+    "source_on_save": false,
+    "relative_order": 7,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "2,27",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1721096468,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1721097303658,
+    "read_only": false,
+    "read_only_alternatives": []
+}
