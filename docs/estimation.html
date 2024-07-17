@@ -23,7 +23,7 @@
 <meta name="author" content="Mike Hitchman" />
 
 
-<meta name="date" content="2024-07-16" />
+<meta name="date" content="2024-07-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="central-limit-theorem.html"/>
-<link rel="next" href="sampling-in-r.html"/>
+<link rel="next" href="confidence-intervals.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -230,6 +230,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.3.4" data-path="estimation.html"><a href="estimation.html#estimating-p_1---p_2-the-difference-of-two-population-proportions"><i class="fa fa-check"></i><b>13.3.4</b> Estimating <span class="math inline">\(p_1 - p_2\)</span>, the difference of two population proportions</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="14" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>14</b> Confidence Intervals</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="confidence-intervals.html"><a href="confidence-intervals.html#pivotal-quantities"><i class="fa fa-check"></i><b>14.1</b> Pivotal Quantities</a></li>
+<li class="chapter" data-level="14.2" data-path="confidence-intervals.html"><a href="confidence-intervals.html#large-sample-confidence-intervals"><i class="fa fa-check"></i><b>14.2</b> Large sample confidence intervals</a>
+<ul>
+<li class="chapter" data-level="" data-path="confidence-intervals.html"><a href="confidence-intervals.html#confidence-intervals-for-mu_1-mu_2"><i class="fa fa-check"></i>Confidence Intervals for <span class="math inline">\(\mu_1-\mu_2\)</span></a></li>
+</ul></li>
+</ul></li>
 <li class="appendix"><span><b>Using R</b></span></li>
 <li class="chapter" data-level="A" data-path="sampling-in-r.html"><a href="sampling-in-r.html"><i class="fa fa-check"></i><b>A</b> Sampling in R</a>
 <ul>
@@ -286,7 +294,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="B.8" data-path="R-sim-probability.html"><a href="R-sim-probability.html#same-birthday-R"><i class="fa fa-check"></i><b>B.8</b> Matching Birthdays</a></li>
 <li class="chapter" data-level="B.9" data-path="R-sim-probability.html"><a href="R-sim-probability.html#flipping-coins-with-fibonacci"><i class="fa fa-check"></i><b>B.9</b> Flipping Coins with Fibonacci</a></li>
 <li class="chapter" data-level="B.10" data-path="R-sim-probability.html"><a href="R-sim-probability.html#seats-on-an-airplane"><i class="fa fa-check"></i><b>B.10</b> Seats on an airplane</a></li>
-<li class="chapter" data-level="B.11" data-path="R-sim-probability.html"><a href="R-sim-probability.html#drawing-names-for-homemades"><i class="fa fa-check"></i><b>B.11</b> Drawing names for Homemades</a></li>
+<li class="chapter" data-level="B.11" data-path="R-sim-probability.html"><a href="R-sim-probability.html#drawing-names-for-homemades"><i class="fa fa-check"></i><b>B.11</b> Drawing names for Homemades</a>
+<ul>
+<li class="chapter" data-level="" data-path="R-sim-probability.html"><a href="R-sim-probability.html#mathematical-addendum-to-the-question-of-drawing-names."><i class="fa fa-check"></i>Mathematical addendum to the question of drawing names.</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="C" data-path="R-discreteRV.html"><a href="R-discreteRV.html"><i class="fa fa-check"></i><b>C</b> Discrete Random Variables in R</a>
 <ul>
@@ -374,7 +385,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>A <em>good</em> estimator for the parameter <span class="math inline">\(\theta\)</span> is a statistic <span class="math inline">\(\hat{\theta}_n\)</span> that is unbiased with variance as small as possible. These features of <span class="math inline">\(\hat{\theta}_n\)</span> would ensure that for any random sample you happen to gather, the value <span class="math inline">\(\hat{\theta}_n\)</span> you compute from the data is likely to be close to <span class="math inline">\(\theta\)</span> (or at least likelier to be close to <span class="math inline">\(\theta\)</span> than some other statistic).</p>
 <div class="example">
-<p><span id="exm:unlabeled-div-60" class="example"><strong>Example 13.1  (Two unbiased estimators for the upper bound of a uniform distribution) </strong></span>Suppose <span class="math inline">\(X_1, X_2, \ldots, X_n\)</span> is an independent random sample drawn from a uniform distribution <span class="math inline">\(U(0,\theta)\)</span>, where <span class="math inline">\(\theta\)</span> is unknown.
+<p><span id="exm:estimating-uniform-parameter" class="example"><strong>Example 13.1  (Two unbiased estimators for the upper bound of a uniform distribution) </strong></span>Suppose <span class="math inline">\(X_1, X_2, \ldots, X_n\)</span> is an independent random sample drawn from a uniform distribution <span class="math inline">\(U(0,\theta)\)</span>, where <span class="math inline">\(\theta\)</span> is unknown.
 So each <span class="math inline">\(X_i\)</span> is a random real number between 0 and <span class="math inline">\(\theta\)</span>.</p>
 <blockquote>
 <p>How can we estimate the unknown parameter <span class="math inline">\(\theta\)</span> from the data?</p>
@@ -400,11 +411,11 @@ Assuming that for now, we can say that <span class="math display">\[\hat{\theta}
 <span id="cb29-4"><a href="estimation.html#cb29-4" tabindex="-1"></a>est_1 <span class="ot">=</span> <span class="dv">2</span><span class="sc">*</span><span class="fu">mean</span>(X)</span>
 <span id="cb29-5"><a href="estimation.html#cb29-5" tabindex="-1"></a>est_2 <span class="ot">=</span> (n<span class="sc">+</span><span class="dv">1</span>)<span class="sc">/</span>n<span class="sc">*</span><span class="fu">max</span>(X)</span>
 <span id="cb29-6"><a href="estimation.html#cb29-6" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">round</span>(X,<span class="dv">2</span>))</span></code></pre></div>
-<pre><code>##  [1] 16.22 12.81 18.44 17.51 15.38 15.89 14.46 16.80 19.36  1.53</code></pre>
+<pre><code>##  [1]  5.43 10.63  8.23 10.78 13.50 15.96 11.38  1.12  3.05 19.02</code></pre>
 <p>For this single sample the estimators takes on these values:</p>
 <ul>
-<li>Estimator 1: <span class="math inline">\(\hat{\theta}_1\)</span> = 29.7</li>
-<li>Estimator 2: <span class="math inline">\(\hat{\theta}_2\)</span> = 21.3.</li>
+<li>Estimator 1: <span class="math inline">\(\hat{\theta}_1\)</span> = 19.8</li>
+<li>Estimator 2: <span class="math inline">\(\hat{\theta}_2\)</span> = 20.9.</li>
 </ul>
 <p>The fact that both estimators are unbiased means that in the long run, the average of all the <span class="math inline">\(\hat{\theta}_1\)</span> estimates would approach <span class="math inline">\(\theta\)</span>, and the same is true for the average of the <span class="math inline">\(\hat{\theta}_2\)</span> estimates.</p>
 <p>So, they’re both good estimaors of <span class="math inline">\(\theta\)</span> in that regard. What makes one estimator better is if the <em>variation</em> of the estimates obtained from repeated sampling is smaller for one than the other.</p>
@@ -434,13 +445,13 @@ Figure 13.1: Checking two unbiased estimators for variance
 </div>
 <p>Both estimators have average value near 20. In fact,</p>
 <ul>
-<li><code>mean(dist_1)</code>- = 20</li>
-<li><code>mean(dist_2)</code> = 19.99.</li>
+<li><code>mean(dist_1)</code>- = 19.9</li>
+<li><code>mean(dist_2)</code> = 20.06.</li>
 </ul>
 <p>But the estimator 2 distribution has visibly smaller variance. Indeed,</p>
 <ul>
-<li><code>sd(dist_1)</code> = 3.69</li>
-<li><code>sd(dist_2)</code> = 1.88.</li>
+<li><code>sd(dist_1)</code> = 3.6</li>
+<li><code>sd(dist_2)</code> = 1.87.</li>
 </ul>
 <p>It appears that the better estimator here is the one derived from the maximum value of the data as opposed to the mean of the data.</p>
 </div>
@@ -485,7 +496,7 @@ giving us the result we assumed when defining estimator 2 in the previous exampl
 <p><span class="math inline">\(\hat{p}\)</span> is an unbiased estimator for <span class="math inline">\(p\)</span>, and its standard deviation is <span class="math inline">\(\displaystyle\sqrt{\frac{p(1-p)}{n}}\)</span>.</p>
 </blockquote>
 <div class="example">
-<p><span id="exm:unlabeled-div-61" class="example"><strong>Example 13.2  </strong></span>In a sample of 65 Linfield students, 24 are first-generation students. Estimate <span class="math inline">\(p\)</span>, the proportion of all Linfield students that are first-generation, and place a 2 standard deviation bound on the error of estimation.</p>
+<p><span id="exm:unlabeled-div-60" class="example"><strong>Example 13.2  </strong></span>In a sample of 65 Linfield students, 24 are first-generation students. Estimate <span class="math inline">\(p\)</span>, the proportion of all Linfield students that are first-generation, and place a 2 standard deviation bound on the error of estimation.</p>
 <p>From our sample, our point estimate for <span class="math inline">\(p\)</span> is <span class="math inline">\(\hat{p} = 24/65 \approx .369.\)</span> We know by the CLT that <span class="math display">\[\hat{p} \sim N(p, \sqrt{p(1-p)/n}),\]</span>
 and in a normal distribution, about 95% of the distribution is within two standard deviations of the mean. In other words,
 <span class="math display">\[P\left(~|\hat{p}-p|&lt;2\cdot\sqrt{p(1-p)/n}~\right) \approx 0.95.\]</span>
@@ -497,23 +508,46 @@ In this problem <span class="math inline">\(\hat{p} \approx .37\)</span>, so <sp
 </div>
 <div id="estimating-mu_1---mu_2-the-difference-of-two-population-means" class="section level3 hasAnchor" number="13.3.3">
 <h3><span class="header-section-number">13.3.3</span> Estimating <span class="math inline">\(\mu_1 - \mu_2\)</span>, the difference of two population means<a href="estimation.html#estimating-mu_1---mu_2-the-difference-of-two-population-means" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Suppose</p>
+<p>Suppose we have two independent random samples drawn from distinct normal distributions.</p>
 <ul>
 <li><span class="math inline">\(X_1, \ldots, X_m \sim N(\mu_1,\sigma_1)\)</span></li>
 <li><span class="math inline">\(Y_1, \ldots, Y_n \sim N(\mu_2, \sigma_2)\)</span></li>
 </ul>
-<p>are independent random samples drawn from distinct normal distribution (note: the sample sizes can be different).</p>
-<p>Let <span class="math inline">\(\overline{X}\)</span> and <span class="math inline">\(\overline{Y}\)</span> denote the respective sample means, and consider the point estimate <span class="math inline">\(\overline{X}-\overline{Y}\)</span>.</p>
+<p>Let <span class="math inline">\(\overline{X}\)</span> and <span class="math inline">\(\overline{Y}\)</span> denote the respective sample means, and consider the point estimate <span class="math inline">\(\overline{X}-\overline{Y}\)</span> of <span class="math inline">\(\mu_1-\mu_2\)</span>.
+Since <span class="math inline">\(\overline{X}-\overline{Y}\)</span> is a linear combination of normal random variables, we can show <span class="math inline">\(\overline{X}-\overline{Y}\)</span> is itself normal, with</p>
+<ul>
+<li>mean = <span class="math inline">\(E(\overline{X}-\overline{Y}) = E(\overline{X})-E(\overline{Y}) = \mu_1 - \mu_2\)</span></li>
+<li>variance = <span class="math inline">\(V(\overline{X}-\overline{Y}) = V(\overline{X})+V(\overline{Y}) = \frac{\sigma_1^2}{m} + \frac{\sigma_2^2}{n}\)</span>.</li>
+</ul>
+<p>So <span class="math inline">\(\overline{X}-\overline{Y}\)</span> is an unbiased estimatro for <span class="math inline">\(\mu_1 - \mu_2\)</span> with standard deviation equal to <span class="math inline">\(\displaystyle\sqrt{\sigma_1^2/m + \sigma_2^2/n}.\)</span></p>
 </div>
 <div id="estimating-p_1---p_2-the-difference-of-two-population-proportions" class="section level3 hasAnchor" number="13.3.4">
 <h3><span class="header-section-number">13.3.4</span> Estimating <span class="math inline">\(p_1 - p_2\)</span>, the difference of two population proportions<a href="estimation.html#estimating-p_1---p_2-the-difference-of-two-population-proportions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Suppose
+An unbiased estimator for <span class="math inline">\(p_1-p_2\)</span> is <span class="math inline">\(\hat{p}_1-\hat{p}_2\)</span>, where <span class="math inline">\(\hat{p}_i\)</span> equals the sample proportion from a sample of size <span class="math inline">\(n_i\)</span> drawn from population <span class="math inline">\(i\)</span> (which has population proportion <span class="math inline">\(p_i\)</span>).</p>
+<p>One can show that the point estimate <span class="math inline">\(\hat{p}_1 - \hat{p}_2\)</span> is approximately normal with mean <span class="math inline">\(p_1-p_2\)</span> and standard deviation <span class="math inline">\(\displaystyle \sqrt{\frac{p_1(1-p_1)}{n_1}+\frac{p_2(1-p_2)}{n_2}}\)</span> for reasonably sized samples (more on this later). For now lets consider an example.</p>
+<div class="example">
+<p><span id="exm:unlabeled-div-61" class="example"><strong>Example 13.3  (Two Large Buckets) </strong></span>Each of two large buckets is full of two types of marbles, orange and green. Let <span class="math inline">\(p_i\)</span> denote the proportion of orange marbles in bucket <span class="math inline">\(i\)</span> (<span class="math inline">\(i = 1,2\)</span>).</p>
+<blockquote>
+<p>Estimate <span class="math inline">\(p_1-p_2\)</span>, and place a 2 standard deviation bound on the error of estimation.</p>
+</blockquote>
+<ul>
+<li>Sample 1: <span class="math inline">\(n_1 = 120\)</span> marbles from bucket 1, of which 45 are orange, so <span class="math inline">\(\hat{p}_1 = .375\)</span></li>
+<li>Sample 2: <span class="math inline">\(n_2 = 80\)</span> marbles from bucket 2, of which 36 are orange, so <span class="math inline">\(\hat{p}_2 = .45\)</span>.</li>
+</ul>
+<p>Point estimate: <span class="math display">\[\hat{p}_1 - \hat{p}_2 = -.075.\]</span>
+Also, it is reasonable to assume that the sampling distribution for <span class="math inline">\(\hat{p}_1-\hat{p}_2\)</span> is
+<span class="math display">\[\sim N\left(p_1-p_2, \sqrt{\frac{\hat{p}_1(1-\hat{p}_1)}{n_1}+\frac{\hat{p}_2(1-\hat{p}_2)}{n_2}}\right)\]</span>
+(again, plugging in <span class="math inline">\(\hat{p}_i\)</span> for <span class="math inline">\(p_i\)</span> in the standard deviation is “ok” for larger sample sizes and values of <span class="math inline">\(\hat{p}_i\)</span> not too close to 0 or 1.).</p>
+<p>For a normal distribution, about 95% of the distribution falls within 2 standard deviations of the mean, so
+<span class="math display">\[P\left(|(\hat{p}_1-\hat{p}_2)-(p_1-p_2)|&lt; c\right)\approx .95,\]</span>
+where <span class="math display">\[c = 2\cdot \sqrt{\frac{\hat{p}_1(1-\hat{p}_1)}{n_1}+\frac{\hat{p}_2(1-\hat{p}_2)}{n_2}}.\]</span></p>
+<p>So, we can say that <span class="math display">\[\hat{p}_1-\hat{p}_2 - c &lt; p_1 - p_2 &lt; \hat{p}_1-\hat{p}_2 + c\]</span> with probability about .95. Plugging in numbers in this example, we obtain the interval <span class="math display">\[-0.217 &lt; p_1 - p_2 &lt; 0&gt;067.\]</span></p>
+<p>Hmm… this interval contains 0. While the sample proportions here are such that we may suspect the second bucket has a higher proportion of orange marbles, when we take into account the error of estimation due to sampling variability, our samples do not provide overwhelming evidence that the buckets have different proportions of orange marbles.</p>
+</div>
 
 </div>
 </div>
-</div>
-
-
-
 </div>
             </section>
 
@@ -521,7 +555,7 @@ In this problem <span class="math inline">\(\hat{p} \approx .37\)</span>, so <sp
         </div>
       </div>
 <a href="central-limit-theorem.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="sampling-in-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="confidence-intervals.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

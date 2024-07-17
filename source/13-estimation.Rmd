@@ -1,5 +1,5 @@
 
-# Estimation
+# Estimation {#estimation}
 
 **The Scene**: We want to estimate some parameter $\theta$ of a population by gathering and analyzing an independent random sample drawn from the population.
 
@@ -18,7 +18,7 @@ The **mean square error of $\hat{\theta}_n$**\index{estimator!mean square error 
 
 A *good* estimator for the parameter $\theta$ is a statistic $\hat{\theta}_n$ that is unbiased with variance as small as possible. These features of $\hat{\theta}_n$ would ensure that for any random sample you happen to gather, the value $\hat{\theta}_n$ you compute from the data is likely to be close to $\theta$ (or at least likelier to be close to $\theta$ than some other statistic).
 
-:::{.example name="Two unbiased estimators for the upper bound of a uniform distribution"}
+:::{.example #estimating-uniform-parameter name="Two unbiased estimators for the upper bound of a uniform distribution"}
 Suppose $X_1, X_2, \ldots, X_n$ is an independent random sample drawn from a uniform distribution $U(0,\theta)$, where $\theta$ is unknown.
 So each $X_i$ is a random real number between 0 and $\theta$. 
 
@@ -165,20 +165,54 @@ ggplot()+
 
 ### Estimating $\mu_1 - \mu_2$, the difference of two population means
 
-Suppose 
+Suppose we have two independent random samples drawn from distinct normal distributions.
 
   - $X_1, \ldots, X_m \sim N(\mu_1,\sigma_1)$
   - $Y_1, \ldots, Y_n \sim N(\mu_2, \sigma_2)$
   
-are independent random samples drawn from distinct normal distribution (note: the sample sizes can be different).
+Let $\overline{X}$ and $\overline{Y}$ denote the respective sample means, and consider the point estimate $\overline{X}-\overline{Y}$ of $\mu_1-\mu_2$.
+Since $\overline{X}-\overline{Y}$ is a linear combination of normal random variables, we can show $\overline{X}-\overline{Y}$ is itself normal, with 
 
-Let $\overline{X}$ and $\overline{Y}$ denote the respective sample means, and consider the point estimate $\overline{X}-\overline{Y}$.
+  - mean = $E(\overline{X}-\overline{Y}) = E(\overline{X})-E(\overline{Y}) = \mu_1 - \mu_2$
+  - variance = $V(\overline{X}-\overline{Y}) = V(\overline{X})+V(\overline{Y}) = \frac{\sigma_1^2}{m} + \frac{\sigma_2^2}{n}$.
+  
+So $\overline{X}-\overline{Y}$ is an unbiased estimatro for $\mu_1 - \mu_2$ with standard deviation equal to $\displaystyle\sqrt{\sigma_1^2/m + \sigma_2^2/n}.$ 
 
 
 
 
 ### Estimating $p_1 - p_2$, the difference of two population proportions
 
+Suppose 
+An unbiased estimator for $p_1-p_2$ is $\hat{p}_1-\hat{p}_2$, where $\hat{p}_i$ equals the sample proportion from a sample of size $n_i$ drawn from population $i$ (which has population proportion $p_i$).
+
+
+
+
+
+One can show that the point estimate $\hat{p}_1 - \hat{p}_2$ is approximately normal with mean $p_1-p_2$ and standard deviation $\displaystyle \sqrt{\frac{p_1(1-p_1)}{n_1}+\frac{p_2(1-p_2)}{n_2}}$ for reasonably sized samples (more on this later). For now lets consider an example.
+
+:::{.example name="Two Large Buckets"}
+Each of two large buckets is full of two types of marbles, orange and green. Let $p_i$ denote the proportion of orange marbles in bucket $i$ ($i = 1,2$).
+
+> Estimate $p_1-p_2$, and place a 2 standard deviation bound on the error of estimation.
+
+- Sample 1: $n_1 = 120$ marbles from bucket 1, of which 45 are orange, so $\hat{p}_1 = .375$
+- Sample 2: $n_2 = 80$ marbles from bucket 2, of which 36 are orange, so $\hat{p}_2 = .45$.
+
+Point estimate: $$\hat{p}_1 - \hat{p}_2 = -.075.$$
+Also, it is reasonable to assume that the sampling distribution for $\hat{p}_1-\hat{p}_2$ is
+$$\sim N\left(p_1-p_2, \sqrt{\frac{\hat{p}_1(1-\hat{p}_1)}{n_1}+\frac{\hat{p}_2(1-\hat{p}_2)}{n_2}}\right)$$
+(again, plugging in $\hat{p}_i$ for $p_i$ in the standard deviation is "ok" for larger sample sizes and values of $\hat{p}_i$ not too close to 0 or 1.).
+
+For a normal distribution, about 95\% of the distribution falls within 2 standard deviations of the mean, so 
+$$P\left(|(\hat{p}_1-\hat{p}_2)-(p_1-p_2)|< c\right)\approx .95,$$
+where $$c = 2\cdot \sqrt{\frac{\hat{p}_1(1-\hat{p}_1)}{n_1}+\frac{\hat{p}_2(1-\hat{p}_2)}{n_2}}.$$
+
+So, we can say that $$\hat{p}_1-\hat{p}_2 - c < p_1 - p_2 < \hat{p}_1-\hat{p}_2 + c$$ with probability about .95. Plugging in numbers in this example, we obtain the interval $$-0.217 < p_1 - p_2 < 0>067.$$
+
+Hmm... this interval contains 0. While the sample proportions here are such that we may suspect the second bucket has a higher proportion of orange marbles, when we take into account the error of estimation due to sampling variability, our samples do not provide overwhelming evidence that the buckets have different proportions of orange marbles.
+:::
 
 
 

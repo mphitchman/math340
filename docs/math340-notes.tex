@@ -172,7 +172,7 @@
 
 \title{MATH 340 Notes}
 \author{Mike Hitchman}
-\date{2024-07-16}
+\date{2024-07-17}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -2439,7 +2439,7 @@ As an aside, here's code to simulate Chuck-a-luck in R a bunch of times (betting
 \begin{verbatim}
 ## results
 ##   -1    1    2    5 
-## 1249  749  153    9
+## 1274  746  133    7
 \end{verbatim}
 
 \begin{Shaded}
@@ -2449,7 +2449,7 @@ As an aside, here's code to simulate Chuck-a-luck in R a bunch of times (betting
 \end{Shaded}
 
 \begin{verbatim}
-## [1] -0.06898148
+## [1] -0.1050926
 \end{verbatim}
 
 \begin{example}
@@ -3910,7 +3910,7 @@ In R we access the uniform distribution with \texttt{unif}. For instance, we can
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.5342295 0.3944878 3.1814028 0.2563603 5.0591547 4.8163989
+## [1] 5.8749531 0.6184713 1.3356631 3.8116622 1.0628332 4.0732062
 \end{verbatim}
 
 \begin{example}[Average value of a function]
@@ -3930,7 +3930,7 @@ Our strategy: Select a large random sample of points in the interval {[}0,2{]} a
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1.296066
+## [1] 1.311495
 \end{verbatim}
 
 \textbf{Note}: From Calc I, we know the average value of a function \(f\) over the interval \([a,b]\) is \[\frac{1}{b-a} \int_a^b f(x)~dx,\]
@@ -4903,7 +4903,7 @@ The \textbf{mean square error of \(\hat{\theta}_n\)}\index{estimator!mean square
 A \emph{good} estimator for the parameter \(\theta\) is a statistic \(\hat{\theta}_n\) that is unbiased with variance as small as possible. These features of \(\hat{\theta}_n\) would ensure that for any random sample you happen to gather, the value \(\hat{\theta}_n\) you compute from the data is likely to be close to \(\theta\) (or at least likelier to be close to \(\theta\) than some other statistic).
 
 \begin{example}[Two unbiased estimators for the upper bound of a uniform distribution]
-Suppose \(X_1, X_2, \ldots, X_n\) is an independent random sample drawn from a uniform distribution \(U(0,\theta)\), where \(\theta\) is unknown.
+\protect\hypertarget{exm:estimating-uniform-parameter}{}\label{exm:estimating-uniform-parameter}Suppose \(X_1, X_2, \ldots, X_n\) is an independent random sample drawn from a uniform distribution \(U(0,\theta)\), where \(\theta\) is unknown.
 So each \(X_i\) is a random real number between 0 and \(\theta\).
 
 \begin{quote}
@@ -4945,7 +4945,7 @@ Let's see how these different estimators do for a particular random sample gener
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 10.80 19.56 18.62  8.85 18.35 19.50 15.37 14.11  6.55 12.78
+##  [1]  6.38  1.40 13.34 15.35 12.71 13.09  1.28 13.93  6.26 13.47
 \end{verbatim}
 
 For this single sample the estimators takes on these values:
@@ -4953,9 +4953,9 @@ For this single sample the estimators takes on these values:
 \begin{itemize}
 \tightlist
 \item
-  Estimator 1: \(\hat{\theta}_1\) = 28.9
+  Estimator 1: \(\hat{\theta}_1\) = 19.4
 \item
-  Estimator 2: \(\hat{\theta}_2\) = 21.5.
+  Estimator 2: \(\hat{\theta}_2\) = 16.9.
 \end{itemize}
 
 The fact that both estimators are unbiased means that in the long run, the average of all the \(\hat{\theta}_1\) estimates would approach \(\theta\), and the same is true for the average of the \(\hat{\theta}_2\) estimates.
@@ -4992,9 +4992,9 @@ Both estimators have average value near 20. In fact,
 \begin{itemize}
 \tightlist
 \item
-  \texttt{mean(dist\_1)}- = 20
+  \texttt{mean(dist\_1)}- = 20.2
 \item
-  \texttt{mean(dist\_2)} = 19.97.
+  \texttt{mean(dist\_2)} = 20.09.
 \end{itemize}
 
 But the estimator 2 distribution has visibly smaller variance. Indeed,
@@ -5002,9 +5002,9 @@ But the estimator 2 distribution has visibly smaller variance. Indeed,
 \begin{itemize}
 \tightlist
 \item
-  \texttt{sd(dist\_1)} = 3.7
+  \texttt{sd(dist\_1)} = 3.64
 \item
-  \texttt{sd(dist\_2)} = 1.9.
+  \texttt{sd(dist\_2)} = 1.77.
 \end{itemize}
 
 It appears that the better estimator here is the one derived from the maximum value of the data as opposed to the mean of the data.
@@ -5069,7 +5069,7 @@ In this problem \(\hat{p} \approx .37\), so \(2 \cdot \sqrt{p(1-p)/n} \approx 0.
 
 \subsection{\texorpdfstring{Estimating \(\mu_1 - \mu_2\), the difference of two population means}{Estimating \textbackslash mu\_1 - \textbackslash mu\_2, the difference of two population means}}\label{estimating-mu_1---mu_2-the-difference-of-two-population-means}
 
-Suppose
+Suppose we have two independent random samples drawn from distinct normal distributions.
 
 \begin{itemize}
 \tightlist
@@ -5079,11 +5079,504 @@ Suppose
   \(Y_1, \ldots, Y_n \sim N(\mu_2, \sigma_2)\)
 \end{itemize}
 
-are independent random samples drawn from distinct normal distribution (note: the sample sizes can be different).
+Let \(\overline{X}\) and \(\overline{Y}\) denote the respective sample means, and consider the point estimate \(\overline{X}-\overline{Y}\) of \(\mu_1-\mu_2\).
+Since \(\overline{X}-\overline{Y}\) is a linear combination of normal random variables, we can show \(\overline{X}-\overline{Y}\) is itself normal, with
 
-Let \(\overline{X}\) and \(\overline{Y}\) denote the respective sample means, and consider the point estimate \(\overline{X}-\overline{Y}\).
+\begin{itemize}
+\tightlist
+\item
+  mean = \(E(\overline{X}-\overline{Y}) = E(\overline{X})-E(\overline{Y}) = \mu_1 - \mu_2\)
+\item
+  variance = \(V(\overline{X}-\overline{Y}) = V(\overline{X})+V(\overline{Y}) = \frac{\sigma_1^2}{m} + \frac{\sigma_2^2}{n}\).
+\end{itemize}
+
+So \(\overline{X}-\overline{Y}\) is an unbiased estimatro for \(\mu_1 - \mu_2\) with standard deviation equal to \(\displaystyle\sqrt{\sigma_1^2/m + \sigma_2^2/n}.\)
 
 \subsection{\texorpdfstring{Estimating \(p_1 - p_2\), the difference of two population proportions}{Estimating p\_1 - p\_2, the difference of two population proportions}}\label{estimating-p_1---p_2-the-difference-of-two-population-proportions}
+
+Suppose
+An unbiased estimator for \(p_1-p_2\) is \(\hat{p}_1-\hat{p}_2\), where \(\hat{p}_i\) equals the sample proportion from a sample of size \(n_i\) drawn from population \(i\) (which has population proportion \(p_i\)).
+
+One can show that the point estimate \(\hat{p}_1 - \hat{p}_2\) is approximately normal with mean \(p_1-p_2\) and standard deviation \(\displaystyle \sqrt{\frac{p_1(1-p_1)}{n_1}+\frac{p_2(1-p_2)}{n_2}}\) for reasonably sized samples (more on this later). For now lets consider an example.
+
+\begin{example}[Two Large Buckets]
+Each of two large buckets is full of two types of marbles, orange and green. Let \(p_i\) denote the proportion of orange marbles in bucket \(i\) (\(i = 1,2\)).
+
+\begin{quote}
+Estimate \(p_1-p_2\), and place a 2 standard deviation bound on the error of estimation.
+\end{quote}
+
+\begin{itemize}
+\tightlist
+\item
+  Sample 1: \(n_1 = 120\) marbles from bucket 1, of which 45 are orange, so \(\hat{p}_1 = .375\)
+\item
+  Sample 2: \(n_2 = 80\) marbles from bucket 2, of which 36 are orange, so \(\hat{p}_2 = .45\).
+\end{itemize}
+
+Point estimate: \[\hat{p}_1 - \hat{p}_2 = -.075.\]
+Also, it is reasonable to assume that the sampling distribution for \(\hat{p}_1-\hat{p}_2\) is
+\[\sim N\left(p_1-p_2, \sqrt{\frac{\hat{p}_1(1-\hat{p}_1)}{n_1}+\frac{\hat{p}_2(1-\hat{p}_2)}{n_2}}\right)\]
+(again, plugging in \(\hat{p}_i\) for \(p_i\) in the standard deviation is ``ok'' for larger sample sizes and values of \(\hat{p}_i\) not too close to 0 or 1.).
+
+For a normal distribution, about 95\% of the distribution falls within 2 standard deviations of the mean, so
+\[P\left(|(\hat{p}_1-\hat{p}_2)-(p_1-p_2)|< c\right)\approx .95,\]
+where \[c = 2\cdot \sqrt{\frac{\hat{p}_1(1-\hat{p}_1)}{n_1}+\frac{\hat{p}_2(1-\hat{p}_2)}{n_2}}.\]
+
+So, we can say that \[\hat{p}_1-\hat{p}_2 - c < p_1 - p_2 < \hat{p}_1-\hat{p}_2 + c\] with probability about .95. Plugging in numbers in this example, we obtain the interval \[-0.217 < p_1 - p_2 < 0>067.\]
+
+Hmm\ldots{} this interval contains 0. While the sample proportions here are such that we may suspect the second bucket has a higher proportion of orange marbles, when we take into account the error of estimation due to sampling variability, our samples do not provide overwhelming evidence that the buckets have different proportions of orange marbles.
+\end{example}
+
+\chapter{Confidence Intervals}\label{confidence-intervals}
+
+In many of the examples in Chapter \ref{estimation} we built confidence intervals, interval estimators that specify the method for using a sample to calculate two numbers that form the endpoints of an interval that likely (with some pre-assigned probability) contains the paramter of interest.
+
+\section{Pivotal Quantities}\label{pivotal-quantities}
+
+Here is the general scene for a \textbf{confidence interval}\index{confidence interval} for a parameter \(\theta\). We use a sample to determine the \textbf{lower}\index{confidence interval!lower limit estimator} and \textbf{upper confidence limit estimators}\index{confidence interval!upper limit estimator}, \(\hat{\theta}_L\) and \(\hat{\theta}_U\). If \[P(\hat{\theta}_L \leq \theta \leq \hat{\theta_U}) = 1 - \alpha\] the probability \(1-\alpha\) is called the \textbf{confidence level}\index{confidence interval!confidence level}.
+
+One method for finding confidence intervals is called the \textbf{pivotal method}\index{confidence interval!pivotal method}, which leverages a \textbf{pivotal quantity}\index{pivotal quantity}, which is a quantity with two features:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  It is a function of the data \(X_1, \ldots, X_n\) and the parameter of interest \(\theta\), and
+\item
+  its probability distribution does not depend on \(\theta\).
+\end{enumerate}
+
+\begin{example}
+If a population mean \(\mu\) is the parameter of interest, and we have sample \(X_1, \ldots, X_n\), then a good pivotal quantity, assuming \(X_i\) is approximately \(N(\mu,\sigma)\), is \[T = \frac{\overline{X}-\mu}{S/\sqrt{n}}.\] It meets both requirements here: it is a function of the data and the parameter \(\mu\), and it lives in a \(t(n-1)\) distribution, which is independent of \(\mu\).
+\end{example}
+
+\begin{example}
+If a population proportion \(p\) is the parameter of interest, and we have sample proportion \(\hat{p}\) (from a sample of size \(n\)), then the pivotal quantity \[Z = \frac{\hat{p}-p}{\sqrt{\hat{p}(1-\hat{p})/n}}\] is approximately \(N(0,1)\), a distribution independent of \(p\).
+\end{example}
+
+\begin{example}
+Consider \(X_1, \ldots, X_n\) drawn from the uniform distribution \(U(0,\theta)\) and \(Y = \text{max}(X_1, \ldots, X_n)\). We proved in Example \ref{exm:estimating-uniform-parameter} that \[F_Y(y) = \left(\frac{y}{\theta}\right)^n ~~~\text{ and }~~~ f_Y(y) = \frac{n}{\theta^n}y^{n-1},\] for \(0 \leq y \leq \theta\).
+Now, let \(U = \frac{1}{\theta}Y\), which is just a function of the data and \(\theta\).
+
+The distribution function for \(U\) is
+\begin{align*}
+F_U(u) &= P(U \leq u)\\
+      &= P(Y/\theta \leq u)\\
+      &= P(Y \leq u\cdot \theta)\\
+      &= F_Y(u\theta) \\
+      &= \left(\frac{u\theta}{\theta}\right)^n &\text{ for } 0 \leq u \leq 1\\
+      &= u^n & \text{ for } 0 \leq u \leq 1,
+\end{align*}
+
+which doesn't depend on \(\theta\). So \(U = Y/\theta\) is a pivotal quantity.
+
+Let's use \(U\) to build a 95\% confidence interval for \(\theta\) based on a sample \(X_1, X_2, \ldots, X_n\) drawn from the uniform distribution \(U(0,\theta)\).
+
+In particular, we find estimators \(\hat{\theta}_L\) and \(\hat{\theta}_U\) so that \(P(\hat{\theta}_L \leq \theta \leq \hat{\theta}_H) = .95\).
+
+Well, we know the distribution of the pivotal quantity \(U = Y/\theta\), where \(Y\) is the max of the data, so one solution here is to find constants \(a\) and \(b\) between 0 and 1 so that
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(U < a) = 0.025\)
+\item
+  \(P(U > b) = 0.025\)
+\end{itemize}
+
+\[.025 = P(U < a) = F_U(a) = a^n \implies a = \sqrt[n]{.025}\]
+and
+\[.025 = P(U > b) = 1-F_U(b) = 1 - b^n \implies b = \sqrt[n]{.975}.\]
+With this we obtain a general form for a 95\% confidence interval for \(\theta\):
+
+\begin{align*}
+.95 &= P\left(\frac{1}{\sqrt[n]{.025}} < U < \frac{1}{\sqrt[n]{.975}}\right)\\
+    &= P\left(\frac{1}{\sqrt[n]{.025}} < \frac{Y}{\theta} < \frac{1}{\sqrt[n]{.975}}\right)\\
+    &= P\left(\frac{1}{\sqrt[n]{.025}} > \frac{\theta}{Y} > \frac{1}{\sqrt[n]{.975}}\right)\\
+    &= P\left(\frac{Y}{\sqrt[n]{.975}} < \theta < \frac{Y}{\sqrt[n]{.025}}\right).
+\end{align*}
+
+We see that \(\hat{\theta}_L = \frac{Y}{\sqrt[n]{.975}}\) and \(\hat{\theta}_U = \frac{Y}{\sqrt[n]{.025}}\).
+
+Let's put this interval formula to use. Here's a random sample of size 25 drawn in R from a \(U(0,64)\) distribution (though let's pretend we don't actually know \(\theta = 64\) here.)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{theta }\OtherTok{=} \DecValTok{64}
+\NormalTok{n }\OtherTok{=} \DecValTok{25}
+\NormalTok{x }\OtherTok{=} \FunctionTok{runif}\NormalTok{(n,}\DecValTok{0}\NormalTok{,theta)}
+\NormalTok{y }\OtherTok{=} \FunctionTok{max}\NormalTok{(x)}
+\NormalTok{L }\OtherTok{=}\NormalTok{ y}\SpecialCharTok{/}\NormalTok{(.}\DecValTok{975}\NormalTok{)}\SpecialCharTok{\^{}}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\NormalTok{n) }\CommentTok{\#lower bound estimator for 95\% CI}
+\NormalTok{U }\OtherTok{=}\NormalTok{ y}\SpecialCharTok{/}\NormalTok{(.}\DecValTok{025}\NormalTok{)}\SpecialCharTok{\^{}}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\NormalTok{n) }\CommentTok{\#upper bound estimator for 95\% CI}
+\FunctionTok{c}\NormalTok{(L,U) }\CommentTok{\#confidence interval}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 61.89573 71.66437
+\end{verbatim}
+
+Did our confidence interval actually capture the value of the parameter (64)?
+The confidence level of 95\% gives us confidence that it does, in this sense: If we were to repeat the sampling procedure a large number of times, each time using our new sample to determine a new confidence interval for \(\theta\), then we should expect about 95\% of the intervals to contain the parameter \(\theta\).
+
+We can check this using R, first writing a little function out of the code above for producing the interval.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{conf\_int\_for\_theta }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(}\AttributeTok{n=}\DecValTok{25}\NormalTok{,}\AttributeTok{theta=}\DecValTok{64}\NormalTok{)\{}
+\NormalTok{  x }\OtherTok{=} \FunctionTok{runif}\NormalTok{(n,}\DecValTok{0}\NormalTok{,theta)}
+\NormalTok{  y }\OtherTok{=} \FunctionTok{max}\NormalTok{(x)}
+\NormalTok{  L }\OtherTok{=}\NormalTok{ y}\SpecialCharTok{/}\NormalTok{(.}\DecValTok{975}\NormalTok{)}\SpecialCharTok{\^{}}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\NormalTok{n) }
+\NormalTok{  U }\OtherTok{=}\NormalTok{ y}\SpecialCharTok{/}\NormalTok{(.}\DecValTok{025}\NormalTok{)}\SpecialCharTok{\^{}}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\NormalTok{n)}
+\NormalTok{  check }\OtherTok{=} \FunctionTok{ifelse}\NormalTok{(((L }\SpecialCharTok{\textless{}=}\NormalTok{ theta)}\SpecialCharTok{\&}\NormalTok{(theta }\SpecialCharTok{\textless{}=}\NormalTok{ U)),}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{)}\CommentTok{\#1 if interval captures theta, 0 else}
+  \FunctionTok{return}\NormalTok{(}\FunctionTok{c}\NormalTok{(L,U,check)) }\CommentTok{\#returns the interval and whether it captured theta}
+\NormalTok{\}}
+
+\NormalTok{results }\OtherTok{=} \FunctionTok{c}\NormalTok{() }\CommentTok{\# a vector storing whether interval generated from data captures theta, for 100 trials}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{100}\NormalTok{)\{}
+\NormalTok{  results[i]}\OtherTok{=}\FunctionTok{conf\_int\_for\_theta}\NormalTok{()[}\DecValTok{3}\NormalTok{]}
+\NormalTok{\}}
+\FunctionTok{table}\NormalTok{(results)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## results
+##  0  1 
+## 10 90
+\end{verbatim}
+
+In this simulation we drew 100 different random samples of size 25, each time generating a confidence interval for \(\theta\) and found that 90 of the 100 intervals captured \(\theta\). We would expect in the long run that 95\% of such confidence intervals would capture \(\theta\).
+\end{example}
+
+We have, generally,
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{2-sided confidence intervals for \(\theta\)}\index{confidence interval!2-sided}: \([\hat{\theta}_L,\hat{\theta}_U]\), where \(P(\hat{\theta}_L \leq \theta \leq \hat{\theta}_U)=1-\alpha\),
+\item
+  \textbf{1-sided confidence intervals for \(\theta\)}\index{confidence interval!1-sided}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \([\hat{\theta}_L,\infty)\), where \(P(\hat{\theta}_L \leq \theta)=1-\alpha\),
+  \item
+    \((-\infty,\hat{\theta}_U]\), where \(P(\theta \leq \hat{\theta}_U)=1-\alpha\).
+  \end{itemize}
+\end{itemize}
+
+The interval \([\hat{\theta}_L,\infty)\) is called a \textbf{lower 1-sided} confidence interval, and in this case \(\hat{\theta}_L\) is called the \textbf{lower confidence limit}, and \((-\infty,\hat{\theta}_U]\) is called an \textbf{upper 1-sided} confidence interval, and in this case \(\hat{\theta}_U\) is called the \textbf{upper confidence limit}
+
+Goals for a good confidence interval:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  It captures \(\theta\) with high probability
+\item
+  It is narrow!
+\end{enumerate}
+
+\section{Large sample confidence intervals}\label{large-sample-confidence-intervals}
+
+Suppose \(\theta\) is a parameter and \(\hat{\theta}\) is an unbiased estimator of \(\theta\) such that \(\hat{\theta}\) is \(N(\theta,\sigma_{\hat{\theta}})\). Then \[Z = \frac{\hat{\theta}-\theta}{\sigma_{\hat{\theta}}}\] is \(N(0,1)\) a nice pivotal quantity we can use to construct confidence intervals.
+
+Suppose the desired confidence level is \(1 - \alpha\) (it is common to let \(\alpha = .05\), which corresponds to 95\% confidence).
+Let \(\pm z_{\alpha/2}\) denote the values in the tails of the \(N(0,1)\) distribution such that \[P\left(-z_{\alpha/2} \leq Z \leq z_{\alpha/2}\right) = 1-\alpha,\] as pictured in Figure \ref{fig:alpha-over-2-tails}, where \(\pm z_{\alpha/2}\) are denoted z\_low and z\_high.
+
+Then
+\begin{align*}
+ P\left(-z_{\alpha/2} \leq Z \leq z_{\alpha/2}\right) &= 1-\alpha \\
+ P\left(-z_{\alpha/2} \leq \frac{\hat{\theta}-\theta}{\sigma_{\hat{\theta}}} \leq z_{\alpha/2}\right) &= 1-\alpha \\
+ P\left(\hat{\theta}-z_{\alpha/2}\sigma_{\hat{\theta}} \leq \theta \leq \hat{\theta}+z_{\alpha/2}\sigma_{\hat{\theta}}\right) &= 1-\alpha
+\end{align*}
+
+\begin{quote}
+In this setting, a level \((1-\alpha)\) confidence interval for \(\theta\) is the interval
+\[(\hat{\theta}-z_{\alpha/2}\sigma_{\hat{\theta}}~,~\hat{\theta}+z_{\alpha/2}\sigma_{\hat{\theta}}).\]
+\end{quote}
+
+Note that in R,
+
+\begin{itemize}
+\tightlist
+\item
+  \(-z_{\alpha/2} =\) \texttt{qnorm}\((\alpha/2)\), and
+\item
+  \(z_{\alpha/2} =\) -\texttt{qnorm}\((\alpha/2)\) = \texttt{qnorm}\((1-\alpha+\alpha/2)\).
+\end{itemize}
+
+\begin{figure}
+\centering
+\includegraphics{math340-notes_files/figure-latex/alpha-over-2-tails-1.pdf}
+\caption{\label{fig:alpha-over-2-tails}Finding z scores used to build a 2-sided confidence interval with desired confidence level}
+\end{figure}
+
+Similarly, a level \((1-\alpha)\) \textbf{lower bound for \(\theta\)} is \[\hat{\theta} - z_{\alpha}\cdot \sigma_{\hat{\theta}}\] (which defines the lower one-sided confidence interval \([\hat{\theta} - z_{\alpha}\cdot \sigma_{\hat{\theta}},\infty)\)) (see Figure \ref{fig:lower-one-sided-CI}).
+
+A level \((1-\alpha)\) \textbf{upper bound for \(\theta\)} is \[\hat{\theta} + z_{\alpha}\cdot \sigma_{\hat{\theta}}\] (which defines the upper one-sided confidence interval \((-\infty,\hat{\theta}+z_{\alpha}\cdot \sigma_{\hat{\theta}}]\)) (see Figure \ref{fig:upper-one-sided-CI}). Note
+
+\begin{itemize}
+\tightlist
+\item
+  \(z_\alpha =\) \texttt{qnorm}\((\alpha)\)
+\end{itemize}
+
+\begin{figure}
+\centering
+\includegraphics{math340-notes_files/figure-latex/lower-one-sided-CI-1.pdf}
+\caption{\label{fig:lower-one-sided-CI}z scores corrsponding to lower 1-sided confidence interval}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{math340-notes_files/figure-latex/upper-one-sided-CI-1.pdf}
+\caption{\label{fig:upper-one-sided-CI}z scores corrsponding to upper 1-sided confidence interval}
+\end{figure}
+
+The scene outlined above applies to many situations, thanks to the Central Limit Theorem, including the four common scenarios mention in Chapter \ref@(estimation):
+
+\begin{itemize}
+\tightlist
+\item
+  1 mean \(\mu\), estimated with sample mean \(\overline{X}\),
+\item
+  1 proportion \(p\), estimate with sample proportion \(\hat{p}\),
+\item
+  difference of two means \(\mu_1-\mu_2\), estimated with \(\overline{X_1}-\overline{X_2}\),
+\item
+  difference of two proportions \(p_1-p_2\), estimated with \(\hat{p_1}-\hat{p_2}\).
+\end{itemize}
+
+We summarize these confidence intervals here:
+
+\textbf{Common level \((1-\alpha)\) confidence intervals}
+
+\begin{quote}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  For \(\mu\): \[\overline{X} \pm z_{\alpha/2} \cdot  \frac{\sigma}{\sqrt{n}}\]
+\item
+  For \(p\): \[\hat{p} \pm z_{\alpha/2} \sqrt{\frac{p(1-p)}{n}}\]
+\item
+  For \(\mu_1-\mu_2\): \[\left(\overline{X_1}-\overline{X_2}\right)\pm z_{\alpha/2} \frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}\]
+\item
+  For \(p_1-p_2\): \[\left(\hat{p}_1-\hat{p}_2\right)\pm z_{\alpha/2} \sqrt{\frac{p_1(1-p_1)}{n_1}+\frac{p_2(1-p_2)}{n_2}}\]
+\end{enumerate}
+\end{quote}
+
+For large sample sizes (\(n\geq 30\) is often sufficient), \(S\) can be used for unknown \(\sigma\) in confidence intervals for means, and sample proportions \(\hat{p}\) can be used for unknown \(p\).
+For small sample sizes, when \(\sigma\) is unknown, we shall use \(T = \frac{\overline{X}-\mu}{S/\sqrt{n}}\) when estimating means, and we have the following confidence interval for \(\mu\):
+
+\begin{quote}
+For small sample sizes, when \(\sigma\) is unknown, we estimate \(\mu\) with \[\displaystyle \overline{X} \pm t_{\alpha/2} \cdot  \frac{S}{\sqrt{n}}\]
+\end{quote}
+
+Let's work through several examples.
+
+\begin{example}
+Suppose we gather a sample of size \(n = 20\) from a \(N(\mu,2)\) population, and find \(\overline{x} = 16.3\). Find a 98\% confidence interval for \(\mu\).
+
+Here 98\% confidence \(\leftrightarrow \alpha = 0.02\), and \(z_{\alpha/2} = z_{.01}\) = \texttt{qnorm(.99)} = 2.326.
+
+So our 98\% confidence interval for the population mean \(\mu\) is \[\overline{x} \pm 2.326 \cdot \frac{2}{\sqrt{20}},\]
+or \[16.3 \pm 1.04\], or \[15.26 \text{ to } 17.34.\]
+\end{example}
+
+\begin{example}
+Suppose in this example we don't know \(\sigma = 2\), but in our sample of size 20 from \(N(\mu,\sigma)\), \(\overline{x} = 16.3\) and \(s = 2.13\). Find a 98\% confidence interval for \(\mu\).
+
+Using a sample standard deviation \(s\) in place of \(\sigma\) requires us to use \(t\) instead of \(z\). In particular, instead of using \(z_{.01} = 2.326\), we must use \(t_{.01}(19)\), the value in the t(19) distribution that has 1\% of the distribution greater than it.
+
+So \(t_{.01}(19)\) = \texttt{qt(.99,19)} = 2.539. (This t-score will always be larger than the corresponding z-score, making the confidence interval wider than it would have been if we knew \(\sigma\).
+
+Our confidence interval looks like:
+\[\overline{x} \pm 2.539 \cdot \frac{2.13}{\sqrt{20}},\]
+which simplifies to \[16.3 \pm 1.21,\] or, equivalently \[15.09 \text{ to } 17.51.\]
+\end{example}
+
+\begin{example}
+In a poll of 500 likely voters, 260 say they support a particular local measure. Based on this sample, find a 90\% confidence interval for \(p\), the proportion of all likely voters in favor of this measure.
+
+We use the large sample confidence interval for \(p\). From the data, \(n = 500\), \(\hat{p} = 260/500 = .52\), and for 90\% confidence \(\alpha = 0.1\), so \[z_{\alpha/2} = z_{.05} = 1.645,\]
+(computed in R with \texttt{qnorm(.95)}). Now evaluate:
+
+\begin{align*}
+\hat{p} \pm z_{\alpha/2} \sqrt{\frac{\hat{p}(1-\hat{p})}{n}} &= .52 \pm 1.645 \sqrt{\frac{(.52)(.48)}{500}}\\
+&= .52 \pm .037\\
+&= .483 \text{ to } .557.
+\end{align*}
+
+It looks like it will be a close vote! We do not have convincing evidence, really, that \(p > .5\) since .5 lands inside the interval.
+\end{example}
+
+\begin{example}[Angles of spider webs]
+The \href{https://www.google.com/books/edition/A_Handbook_of_Small_Data_Sets/vWu-MJM_obsC?hl=en}{Handbook of Small Data Sets} published in 1994 has lots of interesting, small data sets. Here's one small data set:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{X }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\DecValTok{25}\NormalTok{,}\DecValTok{12}\NormalTok{,}\DecValTok{31}\NormalTok{,}\DecValTok{26}\NormalTok{,}\DecValTok{17}\NormalTok{,}\DecValTok{15}\NormalTok{,}\DecValTok{24}\NormalTok{,}\DecValTok{10}\NormalTok{,}\DecValTok{16}\NormalTok{,}\DecValTok{12}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Spider webs' angles made with the vertical to the earth's surface have a \href{https://en.wikipedia.org/wiki/Von_Mises_distribution}{von Mises circular distribution} with known mean direction, \(\mu\), and \(\mu\) varies from species to species. For instance,
+
+\begin{itemize}
+\tightlist
+\item
+  \emph{Isoxya cicatricosa} has \(\mu = 28.12^\circ\), while
+\item
+  \emph{Araneus rufipalpus} has \(\mu = 15.66^\circ\), obviously.
+\end{itemize}
+
+The question arose (in the article ``Sequential analysis for angular data'', by Gadsden and Kanji, (1981), \emph{The Statistician}, \textbf{30}, 119-129) of which species had constructed the 10 webs whose angles were listed above in the vector \texttt{X}.
+
+Treating the data as a simple random sample we can construct a 95\% confidence interval for \(\mu\). Since the sample size is small, we use \(t_{\alpha/2}\), rather than \(z_{\alpha/2}\), where, here \(\alpha = .05\). Let's crunch out the interval in R.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#summary statistics}
+\NormalTok{n }\OtherTok{=} \FunctionTok{length}\NormalTok{(X)}
+\NormalTok{xbar }\OtherTok{=} \FunctionTok{mean}\NormalTok{(X)}
+\NormalTok{s }\OtherTok{=} \FunctionTok{sd}\NormalTok{(X)}
+\NormalTok{tstar }\OtherTok{=} \FunctionTok{qt}\NormalTok{(.}\DecValTok{975}\NormalTok{,}\DecValTok{9}\NormalTok{) }\CommentTok{\#we let tstar denote t\_\{alpha/2\}}
+\NormalTok{xbar }\SpecialCharTok{+} \FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{)}\SpecialCharTok{*}\NormalTok{tstar}\SpecialCharTok{*}\NormalTok{s}\SpecialCharTok{/}\FunctionTok{sqrt}\NormalTok{(n)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 13.67688 23.92312
+\end{verbatim}
+
+Based on the interval, which contains the known mean for \emph{Araneus rufipalpus}, but not the known mean \emph{Isoxya cicatricosa}, we have good evidence that these webs were made by the former type of spider.
+\end{example}
+
+\begin{example}[Annual Snowfall in Buffalo, NY]
+
+Here's another data set from the Handbook of Small Data Sets: The annual snowfall in Buffalo, NY (in inches) for the 63 years from 1910 to 1972.
+
+\begin{verbatim}
+##   year  snow
+## 1 1910 126.4
+## 2 1911  82.4
+## 3 1912  78.1
+## 4 1913  51.1
+## 5 1914  90.9
+\end{verbatim}
+
+Let's find a 95\% confidence interval for the mean annual snowfall in Buffalo, taking the above snowfall column as a simple random sample of annual snowfall. Here are the summary statistics:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{X }\OtherTok{=}\NormalTok{ snowfall}\SpecialCharTok{$}\NormalTok{snow }\CommentTok{\#snow fall column as vector X}
+\NormalTok{n }\OtherTok{=} \FunctionTok{length}\NormalTok{(X)}
+\NormalTok{xbar }\OtherTok{=} \FunctionTok{mean}\NormalTok{(X)}
+\NormalTok{s }\OtherTok{=} \FunctionTok{sd}\NormalTok{(X)}
+\end{Highlighting}
+\end{Shaded}
+
+For 95\% confidence, \(\alpha = .05\), and \(z_{\alpha/2} = z_{.025} \approx 1.96.\)
+
+Since \(n\) is large, we use the confidence interval formula below with \(s\) plugged in for \(\sigma\):
+
+\[\overline{x} \pm z_{\alpha/2} \cdot  \frac{\sigma}{\sqrt{n}}\]
+and we arrive at the interval
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{xbar }\SpecialCharTok{+} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}\SpecialCharTok{*}\FunctionTok{qnorm}\NormalTok{(.}\DecValTok{025}\NormalTok{)}\SpecialCharTok{*}\NormalTok{s}\SpecialCharTok{/}\FunctionTok{sqrt}\NormalTok{(n)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 74.43965 86.15400
+\end{verbatim}
+
+\end{example}
+
+\subsection*{\texorpdfstring{Confidence Intervals for \(\mu_1-\mu_2\)}{Confidence Intervals for \textbackslash mu\_1-\textbackslash mu\_2}}\label{confidence-intervals-for-mu_1-mu_2}
+\addcontentsline{toc}{subsection}{Confidence Intervals for \(\mu_1-\mu_2\)}
+
+Suppose we have two samples from two populations:
+-an independent sample from population 1 which yields \(n_1\), \(\overline{x}_1\), \(s_1\), and
+-an independent sample from population 1 which yields \(n_2\), \(\overline{x}_2\), \(s_2\).
+Moreover, the two samples are independent.
+
+Recall, if Population 1 is \(N(\mu_1,\sigma_1)\) and Population 2 is \(N(\mu_2,\sigma_2\)), then a 95\% confidence interval for \(\mu_1-\mu_2\) is
+\[\left(\overline{X_1}-\overline{X_2}\right)\pm z_{\alpha/2} \frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}.\]
+If \(\sigma_1\) and \(\sigma_2\) are unknown, but \(n_1\) and \(n_2\) are fairly large, it is reasonable to replace \(\sigma_1\) and \(\sigma_2\) with \(s_1\) and \(s_2\), respectively.
+
+If \(n_1, n_2\) are small (\(\leq 30\)) it's better to use a t-distribution.
+
+Let's consider the special case that \(\sigma_1\) and \(\sigma_2\) are unknown but equal. Letting \(\sigma^2\) denote this common value. In this case we consider the pooled sample variance:
+\[s_p^2 = \frac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1+n_2-2}\] as our (best) estimate of \(\sigma^2\). Then our level \((1-\alpha)\) confidence interval for \(\mu_1-\mu_2\) is \[\left(\overline{X_1}-\overline{X_2}\right)\pm t_{\alpha/2}S_p \sqrt{frac{1}{n_1} + \frac{1}{n_2}},\]
+where t\_\{\alpha/2\}\$ live in a t-distribution with \(n_1+n_2-2\) degrees of freedom.
+
+\begin{example}
+COIN EXAMPLE
+\end{example}
+
+\begin{example}[Recent Buffalo Snowfall]
+With climate change, it may be unreasonable to assume the average annual snowfall now is the same as it was 100 years ago.
+
+Let \(\mu_1\) denote the ``old'' mean average annual snowfall (and we assume the data from 1910 to 1972 is a random sample from the ``old'' population''), and \(\mu_2\) denots the ``new'' mean average annual snowfall in Buffalo (from which the annual snowfall from 2000 to 2021, found at \href{https://www.buffalo.org/snow}{buffalo.or/snow}, is a random sample.) Do these data provide evidence that \(\mu_1 \neq \mu_2\)?
+
+Here are the 2001-2022 data:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Y }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\FloatTok{158.7}\NormalTok{,}\FloatTok{132.4}\NormalTok{,}\FloatTok{111.3}\NormalTok{,}\FloatTok{100.9}\NormalTok{,}\FloatTok{109.1}\NormalTok{,}\FloatTok{78.2}\NormalTok{,}\FloatTok{88.9}\NormalTok{,}\FloatTok{103.8}\NormalTok{,}\FloatTok{100.2}\NormalTok{,}\FloatTok{74.1}\NormalTok{,}\FloatTok{111.8}\NormalTok{,}
+      \FloatTok{36.7}\NormalTok{,}\FloatTok{58.8}\NormalTok{,}\FloatTok{129.9}\NormalTok{,}\FloatTok{112.9}\NormalTok{,}\FloatTok{55.1}\NormalTok{,}\FloatTok{76.1}\NormalTok{,}\FloatTok{112.3}\NormalTok{,}\FloatTok{118.8}\NormalTok{,}\FloatTok{69.2}\NormalTok{,}\FloatTok{77.2}\NormalTok{,}\FloatTok{97.4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+A 95\% confidence interval for the difference \(\mu_X-\mu_Y\):
+\end{example}
+
+\begin{example}[A one-sided confidence interval]
+The measures of the outside diameter \(x_i\) (in inches) for 9 grains of the same type:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{diam }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\FloatTok{2.021}\NormalTok{,}\FloatTok{2.002}\NormalTok{,}\FloatTok{2.001}\NormalTok{,}\FloatTok{2.005}\NormalTok{,}\FloatTok{1.990}\NormalTok{,}\FloatTok{1.990}\NormalTok{,}\FloatTok{2.009}\NormalTok{,}\FloatTok{1.983}\NormalTok{,}\FloatTok{1.987}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Assume the distribution is normal. Is \(\mu \geq 2\)?
+
+Let's find a 1-sided lower bound 95\% confidence interval for \(\mu\), and see what that gets us.
+
+Since \(n = 9\) is small and \(\sigma\) is unknown, we use the t-distribution.
+
+Summary statistics:
+
+\begin{itemize}
+\tightlist
+\item
+  \(n = 9\),
+\item
+  \(\overline{x}\) = \texttt{mean(diam)} = 1.9987.
+\item
+  \(s\) = \texttt{sd(diam)} = 0.0122
+\end{itemize}
+
+For a lower bound 95\% confidence interval, \(\alpha=.05\) and we use \[t_{\alpha} = t_{.05}(8) = qt(.95,8) = 1.86,\]
+and the lower 1-sided interval is
+
+\begin{align*}
+(\overline{x}-t_{.05}(8)\cdot \frac{s}{\sqrt{n}},\infty) &= (1.9987 - 1.86\cdot\frac{0.0122}{\sqrt{9}},\infty) \\
+&= (1.991,\infty)
+\end{align*}
+
+This confidence interval does not convince me that \(\mu \geq 2\).
+(If the interval had been something like \([2.01,\infty)\), then I would be more convinced since we're confident that \(\mu\) is within the confidence interval, but with the interval \([1.991,\infty)\), best we can say is we're confident \(\mu \geq 1.99\).
+\end{example}
 
 \appendix
 
@@ -5686,7 +6179,7 @@ Here's another example. Let's grab 20 skittles at random from the bag \texttt{sk
 \begin{verbatim}
 ## grab
 ##  green orange purple    red yellow 
-##      8      5      2      2      3
+##      6      3      3      6      2
 \end{verbatim}
 
 The \texttt{table()} command counts how many of each color :).
@@ -5700,7 +6193,7 @@ We could have found the orange count directly with
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 5
+## [1] 3
 \end{verbatim}
 
 \subsection*{\texorpdfstring{\texttt{sample()} options}{sample() options}}\label{sample-options}
@@ -5754,7 +6247,7 @@ Use \texttt{sample(x)} to generate a \emph{random permutation} of \texttt{x}:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "rabbit"   "dog"      "hedgehog" "cat"
+## [1] "dog"      "hedgehog" "rabbit"   "cat"
 \end{verbatim}
 
 \subsubsection*{Repeated sampling of 1 element}\label{repeated-sampling-of-1-element}
@@ -5774,10 +6267,10 @@ Example; Draw one animal from the set 1000 different times and summarize the pic
 \begin{verbatim}
 ## picks
 ##      cat      dog hedgehog   rabbit 
-##      243      251      251      255
+##      267      241      255      237
 \end{verbatim}
 
-And the winner is\ldots{} rabbit!
+And the winner is\ldots{} cat!
 
 Or, since we fear rabbits and love dogs, we can do repeated sampling of a single element with \textbf{custom probabilities}:
 
@@ -5794,7 +6287,7 @@ Or, since we fear rabbits and love dogs, we can do repeated sampling of a single
 \begin{verbatim}
 ## picks2
 ##      cat      dog hedgehog   rabbit 
-##      212      402      292       94
+##      197      394      307      102
 \end{verbatim}
 
 Nice!
@@ -5816,7 +6309,7 @@ Pick 4 students at random from a class of 9 to race around Taylor Hall. (Assumes
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 8 7 1 4
+## [1] 9 7 6 8
 \end{verbatim}
 
 \subsection*{Sample with replacement}\label{sample-with-replacement}
@@ -5834,7 +6327,7 @@ On twelve consecutive days, ask one student at random, in a class of size 9, to 
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 8 4 5 8 4 8 2 8 8 5 7 7
+##  [1] 3 4 7 2 1 5 4 6 6 9 4 2
 \end{verbatim}
 
 \subsection*{Sample with custom probabilities}\label{sample-with-custom-probabilities}
@@ -5868,7 +6361,7 @@ Roll a weighted 6 sided die with the following probability distribution 100 time
 \begin{verbatim}
 ## rolls
 ##  1  2  3  4  5  6 
-## 18  8  5 47  7 15
+## 21 14  5 32 11 17
 \end{verbatim}
 
 \subsection*{Example: Lefties}\label{example-lefties}
@@ -5891,7 +6384,7 @@ One approach: build a large population with these features and then draw 45 peop
 \begin{verbatim}
 ## 
 ##  L  R 
-##  4 41
+##  3 42
 \end{verbatim}
 
 A second approach: sample with replacement 45 times from a ``two-sided'' die with customized probabilities
@@ -5906,7 +6399,7 @@ A second approach: sample with replacement 45 times from a ``two-sided'' die wit
 \begin{verbatim}
 ## 
 ##  L  R 
-##  3 42
+##  2 43
 \end{verbatim}
 
 A third approach: Use a binomial distribution (later)
@@ -5941,7 +6434,7 @@ We know that \texttt{table(orange\_counts)} would display the counts of each of 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-88-1.pdf}
+\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-96-1.pdf}
 
 \subsection*{\texorpdfstring{using \texttt{replicate()}}{using replicate()}}\label{using-replicate}
 \addcontentsline{toc}{subsection}{using \texttt{replicate()}}
@@ -5966,7 +6459,7 @@ Again, we can summarize the \emph{frequency} with which each value of orange\_co
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-90-1.pdf}
+\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-98-1.pdf}
 
 In addition, we can calculate summary statistics to put numbers to qualitative descriptions of the distribution of values in \texttt{orange\_counts} such as center and spread. These statistics help us answer the question of what sorts of orange counts to expect.
 
@@ -5977,9 +6470,9 @@ statistic & command & result \\
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-mean & \texttt{mean(orange\_counts)} & 21.0508 \\
-standard deviation & \texttt{sd(orange\_counts)} & 3.5042899 \\
-five number summary & \texttt{fivenum(orange\_counts)} & 7, 19, 21, 23, 35 \\
+mean & \texttt{mean(orange\_counts)} & 20.9699 \\
+standard deviation & \texttt{sd(orange\_counts)} & 3.4921646 \\
+five number summary & \texttt{fivenum(orange\_counts)} & 8, 19, 21, 23, 34 \\
 \end{longtable}
 
 \section{Summary of R commands}\label{sampling-commands}
@@ -6046,15 +6539,17 @@ Example with \texttt{x\ =\ 1:6}
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-permutation of \texttt{x} & \texttt{sample(x)\ =} 2, 6, 5, 4, 1, 3 \\
-sample \(n\) elements without replacement & \texttt{sample(x,3)\ =} 5, 4, 1 \\
-sample \(n\) elements with replacement & \texttt{sample(x,5,replace=T)\ =} 3, 2, 4, 4, 2 \\
-sample with custom probabilities & \texttt{sample(x,10,replace=T,prob=\ c(0,.2,0,.5,.1,.2))\ =} 4, 4, 4, 4, 4, 4, 2, 2, 4, 6 \\
+permutation of \texttt{x} & \texttt{sample(x)\ =} 1, 3, 4, 5, 2, 6 \\
+sample \(n\) elements without replacement & \texttt{sample(x,3)\ =} 6, 4, 5 \\
+sample \(n\) elements with replacement & \texttt{sample(x,5,replace=T)\ =} 6, 3, 1, 4, 6 \\
+sample with custom probabilities & \texttt{sample(x,10,replace=T,prob=\ c(0,.2,0,.5,.1,.2))\ =} 2, 4, 4, 4, 4, 6, 6, 4, 4, 5 \\
 \end{longtable}
 
 \chapter{Simulating Probability in R}\label{R-sim-probability}
 
-We can use repeated sampling of a chance experiment to estimate the probability of some event. See Section \ref{sampling-commands} for a review of sampling commands.
+We can use repeated sampling of a chance experiment to estimate the probability of some event. See Section \ref{sampling-commands} for a review of sampling commands. The examples here were chosen to provide a good range of sampling scenarios that you may find useful in this class, and have been ordered roughly by my view of the complexity of the coding involved.
+
+We start with a good old-fashioned die.
 
 \section{Rolling a 10-sided die}\label{10sided-die-R}
 
@@ -6097,7 +6592,7 @@ Let's look at the actual rolls first:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 7 7 2 3 4
+## [1] 2 4 4 9 1
 \end{verbatim}
 
 We need to check 5 things: Are rolls 1-4 all less than 8, and is roll 5 greater than 8? We can ask these five questions and store the answers in a vector:
@@ -6109,7 +6604,7 @@ We need to check 5 things: Are rolls 1-4 all less than 8, and is roll 5 greater 
 \end{Shaded}
 
 \begin{verbatim}
-## [1]  TRUE  TRUE  TRUE  TRUE FALSE
+## [1]  TRUE  TRUE  TRUE FALSE FALSE
 \end{verbatim}
 
 Recal, the \texttt{sum()} of a logical vector counts the number of TRUE values. We need the sum to be 5 to have a \emph{good} sequence of 5 rolls.
@@ -6121,7 +6616,7 @@ Recal, the \texttt{sum()} of a logical vector counts the number of TRUE values. 
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 4
+## [1] 3
 \end{verbatim}
 
 I think we're ready!!
@@ -6153,7 +6648,7 @@ The results of the simulation:
 \begin{verbatim}
 ## results
 ##    0    1    2    3    4    5 
-##   46  615 2066 3651 2922  700
+##   59  544 2134 3619 2910  734
 \end{verbatim}
 
 Based on our simulation, we estimate the probability of a \emph{good} sequence of 5 rolls by the proportion of time the \texttt{results} vector took a value of 5.
@@ -6165,7 +6660,7 @@ Based on our simulation, we estimate the probability of a \emph{good} sequence o
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.07
+## [1] 0.0734
 \end{verbatim}
 
 This estimate is likely very close to what we calculate by our counting tools \[\frac{7^4\cdot 3}{10^5} \approx .07203.\]
@@ -6206,10 +6701,10 @@ Results:
 \begin{verbatim}
 ## results
 ##    0    1    2    3    4    5 
-## 1679 2783 2229 1637 1144  528
+## 1642 2744 2210 1651 1144  609
 \end{verbatim}
 
-Conclusion: It appears we should expect the difference in the two dice to be 1 about 27.8\% of the time.
+Conclusion: It appears we should expect the difference in the two dice to be 1 about 27.4\% of the time.
 
 Note: In this example we added to the \texttt{results} vector by specifying \texttt{results{[}i{]}} in each trial, as opposed to the concatenation method we followed in the 10-sided die example.
 
@@ -6253,10 +6748,10 @@ The following code plays this `flip a coin 5 times' game for 10000 trials, recor
 \begin{verbatim}
 ## heads
 ##    0    1    2    3    4    5 
-##  307 1599 3165 3118 1505  306
+##  344 1568 3070 3113 1597  308
 \end{verbatim}
 
-Conclusion: It appears we should expect to flip exactly 1 heads in 5 tries about 16\% of the time.
+Conclusion: It appears we should expect to flip exactly 1 heads in 5 tries about 15.7\% of the time.
 
 By our counting tools, we can calculate the actual probability of getting exactly one heads in 5 flips as follows:
 
@@ -6285,7 +6780,7 @@ An urn contains 100 orange and 200 green marbles. If you draw 8 marbles from the
 \begin{verbatim}
 ## results
 ##    0    1    2    3    4    5    6    7    8 
-##  360 1567 2750 2766 1713  676  146   20    2
+##  353 1590 2767 2700 1732  690  147   20    1
 \end{verbatim}
 
 We can enter \texttt{sum(results\ \textgreater{}\ 5)} to see how often we grabbed more than 5 orange marbles in our sample of size 8, and \texttt{sum(results\ \textgreater{}\ 5)/trials} is a good estimate of the likelihood of this happening.
@@ -6349,9 +6844,9 @@ A class has 12 people: 6 juniors, 4 sophomores, and 2 first-years. The class is 
 \end{Shaded}
 
 \begin{verbatim}
-## Subgroup 1: JSFSJ
-## Subgroup 2: JJJF
-## Subgroup 3: JSS
+## Subgroup 1: JSJJF
+## Subgroup 2: JSSJ
+## Subgroup 3: JSF
 \end{verbatim}
 
 \begin{enumerate}
@@ -6372,7 +6867,7 @@ A class has 12 people: 6 juniors, 4 sophomores, and 2 first-years. The class is 
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1 1 0
+## [1] 1 0 1
 \end{verbatim}
 
 \begin{enumerate}
@@ -6419,7 +6914,7 @@ We put it all together now. In particular, we repeat the following process for 1
 \begin{verbatim}
 ## results
 ##    0    1 
-## 7170 2830
+## 7089 2911
 \end{verbatim}
 
 Based on this simulation, we estimate the probability that both first-years end up in the same subgroup as
@@ -6431,7 +6926,7 @@ Based on this simulation, we estimate the probability that both first-years end 
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.283
+## [1] 0.2911
 \end{verbatim}
 
 Using our counting tools to calculate the probability:
@@ -6473,7 +6968,7 @@ Classic Oregon license plates consist of 3 letters (A-Z) followed by 3 numbers (
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "V" "T" "V" "7" "6" "9"
+## [1] "U" "B" "L" "0" "1" "9"
 \end{verbatim}
 
 \begin{enumerate}
@@ -6513,7 +7008,7 @@ Classic Oregon license plates consist of 3 letters (A-Z) followed by 3 numbers (
 \begin{verbatim}
 ## results
 ##    0    1    2    3 
-## 7335 2385  271    9
+## 7249 2482  256   13
 \end{verbatim}
 
 Based on this simulation, we estimate the probability of having a plate with exactly 2 ``8''s
@@ -6525,7 +7020,7 @@ Based on this simulation, we estimate the probability of having a plate with exa
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.0271
+## [1] 0.0256
 \end{verbatim}
 
 Using our counting tools to calculate the probability:
@@ -6550,7 +7045,7 @@ First, let's create and summarize a single poll of 1000 people from a population
 \begin{verbatim}
 ## one_poll
 ##   D   R 
-## 516 484
+## 526 474
 \end{verbatim}
 
 Of course, the goal is to use the poll to predict the winner of the election.
@@ -6591,10 +7086,10 @@ Now, our goal is to repeat this sampling and prediction procedure 10000 times, a
 \begin{verbatim}
 ## results
 ##        D Tie or R 
-##     8878     1122
+##     8965     1035
 \end{verbatim}
 
-This table gives us a sense of the likelihood that the pollsters plan will result in an accurate prediction of which candidate will win the election. Based on our simulation, that likelihood is about 0.888.
+This table gives us a sense of the likelihood that the pollsters plan will result in an accurate prediction of which candidate will win the election. Based on our simulation, that likelihood is about 0.896.
 
 \section{Matching Birthdays}\label{same-birthday-R}
 
@@ -6684,7 +7179,7 @@ Here's a graph of these two probabilities for values of \(1 \leq n \leq 100\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-124-1.pdf}
+\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-132-1.pdf}
 
 \section{Flipping Coins with Fibonacci}\label{flipping-coins-with-fibonacci}
 
@@ -6712,7 +7207,7 @@ We can also approximate the probability function by simulation.
 \end{Highlighting}
 \end{Shaded}
 
-We note that the maximum number of flips it took to get consecutive Heads in these trials was \texttt{max(results)} = 47! (that's not a factorial symbol, just me exclaiming). So we don't list the full table of results here, just the first 10 relative frequencies, which provide estimates for the probability function:
+We note that the maximum number of flips it took to get consecutive Heads in these trials was \texttt{max(results)} = 49! (that's not a factorial symbol, just me exclaiming). So we don't list the full table of results here, just the first 10 relative frequencies, which provide estimates for the probability function:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6723,7 +7218,7 @@ We note that the maximum number of flips it took to get consecutive Heads in the
 \begin{verbatim}
 ## results
 ##      2      3      4      5      6      7      8      9     10     11 
-## 0.2510 0.1250 0.1273 0.0950 0.0767 0.0588 0.0505 0.0398 0.0341 0.0263
+## 0.2491 0.1224 0.1273 0.0923 0.0781 0.0621 0.0461 0.0424 0.0341 0.0258
 \end{verbatim}
 
 These values compare closely to the actual probability values \(F_{x+1}/2^x\):
@@ -6734,7 +7229,7 @@ These values compare closely to the actual probability values \(F_{x+1}/2^x\):
 \hline
 x & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11\\
 \hline
-Rel\_freq & 0.2510 & 0.1250 & 0.1273 & 0.0950 & 0.0767 & 0.0588 & 0.0505 & 0.0398 & 0.0341 & 0.0263\\
+Rel\_freq & 0.2491 & 0.1224 & 0.1273 & 0.0923 & 0.0781 & 0.0621 & 0.0461 & 0.0424 & 0.0341 & 0.0258\\
 \hline
 p(x) & 0.2500 & 0.1250 & 0.1250 & 0.0938 & 0.0781 & 0.0625 & 0.0508 & 0.0410 & 0.0332 & 0.0269\\
 \hline
@@ -6765,7 +7260,7 @@ First, here's one way to randomly assign 8 1s and 4 0s to 12 seats (we make a ve
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 1 1 0 1 1 1 1 1 1 0 0 0
+##  [1] 1 1 1 1 1 0 0 1 1 0 0 1
 \end{verbatim}
 
 And here's how we can store this vector of length 12 in a \(4\times 3\) matrix:
@@ -6779,10 +7274,10 @@ And here's how we can store this vector of length 12 in a \(4\times 3\) matrix:
 
 \begin{verbatim}
 ##      [,1] [,2] [,3]
-## [1,]    1    1    0
-## [2,]    1    1    1
-## [3,]    1    1    1
-## [4,]    0    0    0
+## [1,]    1    1    1
+## [2,]    1    1    0
+## [3,]    0    1    1
+## [4,]    0    0    1
 \end{verbatim}
 
 As the display above suggests, we can extract a value from matrix \texttt{m} by indicating its {[}row,column{]}:
@@ -6839,7 +7334,7 @@ Ok, we've got a plan! In the code below, we use \texttt{s} to record, in each tr
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.6072
+## [1] 0.6
 \end{verbatim}
 
 This probability seems higher than I first expected it would be, but we can also prove using our counting techniques -we do this in class - that the probability is, in fact, 20/33.
@@ -6850,7 +7345,7 @@ Growing up, I enjoyed a family tradition of exchanging homemade gifts at Christm
 
 I also enjoyed the secrecy of the homemades: the locked doors behind which people worked, the occasional curious scrap of material left behind on a workbench, or a splash of paint in the utility room that wasn't there earlier. Then there was the celebration of the exchange itself, the pride of giving your gift, the excitement of receiving one, and, after months of speculation, the big reveal as to who everyone drew.
 
-We would draw namessome time in late October. If anyone drew their own name, we would immediately stop the process, return all names to the hat, and try again. We kept redrawing, as necessary, until everyone drew a name that wasn't theirs. Then we were off and running, guarding the secret of our givee's identity at all costs.
+We would usually draw names in late October. If anyone drew their own name, we would immediately stop the process, return all names to the hat, and try again. We kept redrawing, as necessary, until everyone drew a name that wasn't theirs. Then we were off and running, guarding the secret of our givee's identity at all costs.
 
 In this example we pursue three questions related to the homemades:
 
@@ -6859,23 +7354,24 @@ In this example we pursue three questions related to the homemades:
 \def\labelenumi{\alph{enumi})}
 \tightlist
 \item
-  In our family of 6, what is the probability we will have to redraw.
+  In our family of 6, what is the probability we will not have to redraw.
 \end{enumerate}
 \end{quote}
 
-Our approach: Create a family vector (called \texttt{family}), and a permutation of \texttt{family} (called \texttt{draw}) and see whether these two vectors agree in any spot - if so, we need to redraw.
+Our approach: Create a family vector (called \texttt{family}), and a permutation of \texttt{family} (called \texttt{draw}). For each \(i\), we say Person \(i\) in the \texttt{family} vector draws person \(i\) in the \texttt{draw} vector. So, we have to redraw if the two vectors agree at the same location.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{family }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"Dad"}\NormalTok{,}\StringTok{"Mom"}\NormalTok{,}\StringTok{"Tom"}\NormalTok{,}\StringTok{"John"}\NormalTok{,}\StringTok{"Dave"}\NormalTok{,}\StringTok{"Mike"}\NormalTok{)}
 \NormalTok{draw }\OtherTok{=} \FunctionTok{sample}\NormalTok{(family)}
-\NormalTok{redraw }\OtherTok{=} \FunctionTok{ifelse}\NormalTok{(}\FunctionTok{sum}\NormalTok{(family }\SpecialCharTok{==}\NormalTok{ draw)}\SpecialCharTok{\textgreater{}}\DecValTok{0}\NormalTok{,}\StringTok{"yes"}\NormalTok{,}\StringTok{"no"}\NormalTok{)}
+\NormalTok{matches }\OtherTok{=} \FunctionTok{sum}\NormalTok{(family}\SpecialCharTok{==}\NormalTok{draw) }\CommentTok{\# number of locations at which the two vectors agree}
+\NormalTok{redraw }\OtherTok{=} \FunctionTok{ifelse}\NormalTok{(matches}\SpecialCharTok{==}\DecValTok{0}\NormalTok{,}\StringTok{"No."}\NormalTok{,}\StringTok{"Yes."}\NormalTok{)}
 \FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Redraw?"}\NormalTok{,redraw))}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Redraw? yes"
+## [1] "Redraw? Yes."
 \end{verbatim}
 
 Let's check who each person drew to be sure (remember, our code is assuming the ith person in the \texttt{family} vector drew the ith person in the \texttt{draw} vector)
@@ -6884,40 +7380,39 @@ Let's check who each person drew to be sure (remember, our code is assuming the 
 \begin{Highlighting}[]
 \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{6}\NormalTok{)\{}
   \FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(family[i],}\StringTok{"drew"}\NormalTok{,draw[i]))}
+  \ControlFlowTok{if}\NormalTok{ (family[i]}\SpecialCharTok{==}\NormalTok{draw[i])\{}
+    \FunctionTok{print}\NormalTok{(}\StringTok{"Dang it! Need to redraw. Names back in the hat."}\NormalTok{) }
+    \ControlFlowTok{break}\NormalTok{\}}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Dad drew Mom"
-## [1] "Mom drew Tom"
-## [1] "Tom drew Dad"
-## [1] "John drew John"
-## [1] "Dave drew Dave"
-## [1] "Mike drew Mike"
+## [1] "Dad drew Dad"
+## [1] "Dang it! Need to redraw. Names back in the hat."
 \end{verbatim}
 
-We now estimate the probability of needing to redraw as follows:
+We now estimate the probability of not needing to redraw as follows:
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{n}\OtherTok{=}\DecValTok{6} \CommentTok{\#size of family}
 \NormalTok{family }\OtherTok{=} \DecValTok{1}\SpecialCharTok{:}\NormalTok{n }\CommentTok{\#we use numbers, to protect the innocent}
 \NormalTok{trials}\OtherTok{=}\DecValTok{10000}
-\NormalTok{results }\OtherTok{=} \FunctionTok{c}\NormalTok{() }\CommentTok{\#record for each trial a 1 for redraw, 0 for no redraw }
+\NormalTok{results }\OtherTok{=} \FunctionTok{c}\NormalTok{() }\CommentTok{\#record for each trial a 0 for redraw, 1 for no redraw }
 \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{trials)\{}
 \NormalTok{  draw }\OtherTok{=} \FunctionTok{sample}\NormalTok{(family)}
-\NormalTok{  results[i] }\OtherTok{=} \FunctionTok{ifelse}\NormalTok{(}\FunctionTok{sum}\NormalTok{(family }\SpecialCharTok{==}\NormalTok{ draw)}\SpecialCharTok{\textgreater{}}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{)}
+\NormalTok{  results[i] }\OtherTok{=} \FunctionTok{ifelse}\NormalTok{(}\FunctionTok{sum}\NormalTok{(family }\SpecialCharTok{==}\NormalTok{ draw)}\SpecialCharTok{==}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{)}
 \NormalTok{\}}
 \FunctionTok{sum}\NormalTok{(results)}\SpecialCharTok{/}\NormalTok{trials}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.6298
+## [1] 0.3599
 \end{verbatim}
 
-About a 63 percent chance we'll need to redraw.
+About a 36 percent chance of not to redraw.
 
 \begin{quote}
 \begin{enumerate}
@@ -6951,9 +7446,9 @@ Now in our simulation we want to redraw until we don't have to, and record how m
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-136-1.pdf}
+\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-144-1.pdf}
 
-Cripes! Can you believe it took 21 draws on one of the trials? Anyway, our estimate for the expected number of draws needed to get the gift-making off the mark is:
+Cripes! Can you believe it took 26 draws on one of the trials? Anyway, our estimate for the expected number of draws needed to get the gift-making off the mark is:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6962,7 +7457,7 @@ Cripes! Can you believe it took 21 draws on one of the trials? Anyway, our estim
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2.6936
+## [1] 2.7432
 \end{verbatim}
 
 Well THAT number looks somewhat familiar \ldots{} .
@@ -6999,18 +7494,18 @@ Let's just repeat \textbf{(b)} with \(n = 16\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-138-1.pdf}
+\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-146-1.pdf}
 
-Based on the trials, we estimate the probability of needing a redraw in the larger family to be
+Based on the trials, we estimate the probability of not needing a redraw in the larger family to be
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{sum}\NormalTok{(results}\SpecialCharTok{\textgreater{}}\DecValTok{1}\NormalTok{)}\SpecialCharTok{/}\NormalTok{trials}
+\FunctionTok{sum}\NormalTok{(results}\SpecialCharTok{==}\DecValTok{1}\NormalTok{)}\SpecialCharTok{/}\NormalTok{trials}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.6274
+## [1] 0.3654
 \end{verbatim}
 
 and our estimate for the expected number of draws to be
@@ -7022,7 +7517,7 @@ and our estimate for the expected number of draws to be
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2.7069
+## [1] 2.7351
 \end{verbatim}
 
 Not much movement in the estimates, it seems.
@@ -7048,7 +7543,7 @@ With a function and a for loop we can streamline the process for estimating both
 \NormalTok{    \}}
 \NormalTok{    results[i] }\OtherTok{=}\NormalTok{ attempts}
 \NormalTok{  \}}
-  \FunctionTok{return}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FunctionTok{sum}\NormalTok{(results}\SpecialCharTok{\textgreater{}}\DecValTok{1}\NormalTok{)}\SpecialCharTok{/}\NormalTok{trials,}\FunctionTok{sum}\NormalTok{(results)}\SpecialCharTok{/}\NormalTok{trials))}
+  \FunctionTok{return}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FunctionTok{sum}\NormalTok{(results}\SpecialCharTok{==}\DecValTok{1}\NormalTok{)}\SpecialCharTok{/}\NormalTok{trials,}\FunctionTok{sum}\NormalTok{(results)}\SpecialCharTok{/}\NormalTok{trials))}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
@@ -7056,7 +7551,7 @@ With a function and a for loop we can streamline the process for estimating both
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# run simulation for various family sizes}
-\NormalTok{family\_size }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\DecValTok{2}\SpecialCharTok{:}\DecValTok{10}\NormalTok{,}\FunctionTok{seq}\NormalTok{(}\DecValTok{15}\NormalTok{,}\DecValTok{50}\NormalTok{,}\DecValTok{5}\NormalTok{))}
+\NormalTok{family\_size }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\DecValTok{2}\SpecialCharTok{:}\DecValTok{10}\NormalTok{,}\FunctionTok{seq}\NormalTok{(}\DecValTok{15}\NormalTok{,}\DecValTok{60}\NormalTok{,}\DecValTok{5}\NormalTok{))}
 \NormalTok{prob\_redraw }\OtherTok{=} \FunctionTok{c}\NormalTok{()}
 \NormalTok{expected\_draws }\OtherTok{=} \FunctionTok{c}\NormalTok{()}
 \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(family\_size))\{}
@@ -7075,48 +7570,59 @@ With a function and a for loop we can streamline the process for estimating both
 \hline
 family\_size & prob\_redraw & expected\_draws\\
 \hline
-2 & 0.5108 & 2.0091\\
+2 & 0.5060 & 1.9845\\
 \hline
-3 & 0.6634 & 2.9955\\
+3 & 0.3395 & 2.9715\\
 \hline
-4 & 0.6197 & 2.6448\\
+4 & 0.3775 & 2.6373\\
 \hline
-5 & 0.6359 & 2.7701\\
+5 & 0.3694 & 2.7080\\
 \hline
-6 & 0.6355 & 2.7315\\
+6 & 0.3592 & 2.7198\\
 \hline
-7 & 0.6308 & 2.7362\\
+7 & 0.3625 & 2.6975\\
 \hline
-8 & 0.6317 & 2.6943\\
+8 & 0.3678 & 2.7098\\
 \hline
-9 & 0.6367 & 2.7483\\
+9 & 0.3699 & 2.6982\\
 \hline
-10 & 0.6371 & 2.7439\\
+10 & 0.3717 & 2.7140\\
 \hline
-15 & 0.6294 & 2.7083\\
+15 & 0.3642 & 2.7244\\
 \hline
-20 & 0.6371 & 2.7372\\
+20 & 0.3605 & 2.7302\\
 \hline
-25 & 0.6255 & 2.7088\\
+25 & 0.3707 & 2.7383\\
 \hline
-30 & 0.6290 & 2.7333\\
+30 & 0.3702 & 2.7296\\
 \hline
-35 & 0.6330 & 2.7207\\
+35 & 0.3773 & 2.6893\\
 \hline
-40 & 0.6293 & 2.7036\\
+40 & 0.3722 & 2.7281\\
 \hline
-45 & 0.6309 & 2.6847\\
+45 & 0.3709 & 2.7223\\
 \hline
-50 & 0.6291 & 2.7206\\
+50 & 0.3735 & 2.7018\\
+\hline
+55 & 0.3649 & 2.7263\\
+\hline
+60 & 0.3667 & 2.7495\\
 \hline
 \end{tabular}
 \end{table}
 
-It seems the probability of a redraw and the expected number of draws needed both converge fairly quickly to about 0.63 and 2.72, respectively.
+It seems the probability of not needing a redraw and the expected number of draws needed both converge fairly quickly to about 0.37ish and 2.7 ish, respectively.
 
-In fact, these values ought to be closely related of one another since ``drawing until our first success'' sounds like a geometric distribution to me. The probability of success on any given draw is about \(p = 1 - .632 = .368\), and the expected value for a geometric distribution is \(1/p\), which would be about \(1/.368 \approx 2.72\).
+In fact, these values ought to be closely related of one another since ``drawing until our first success'' sounds like a geometric distribution to me. The probability of success on any given draw somewher in the neighborhood of \(p = .37\), and the expected value for a geometric distribution is \(1/p\), which would be about \(1/.37\), which puts us in the neighborhood of \(2.7\).
+If these numbers seem frustratingly imprecise, I'm glad, and I invite you to read the following addendum.
 
-True story: the actual expected value, as \(n \to \infty\), is \(1/e\).
+\subsection*{Mathematical addendum to the question of drawing names.}\label{mathematical-addendum-to-the-question-of-drawing-names.}
+\addcontentsline{toc}{subsection}{Mathematical addendum to the question of drawing names.}
+
+The actual expected number of draws, as \(n \to \infty\), is \(e\), and the probability of not needing to redraw approaches \(1/e\) as \(n \to \infty\).
+
+In part (a) of this question, we are counting derangements of a vector.
+.A \textbf{derangement}\index{permutation!derangement} of a vector is a permutation of it in which no element is in its original position. An element of a permutation is called \emph{fixed points}\index{permutation!fixed point} if it appears in its original position, so a derangement of a vector is a permutation of it with no fixed points. In part (a) we are estimating the probability that a permutation of the \texttt{family} vector is a derangement. There is a nice recursive formula for the number of derangements of a vector of size \(n\), and it can be used to prove that the probability of drawing a derangement converges to \(1/e\) as \(n \to \infty\).
 
 \chapter{Discrete Random Variables in R}\label{R-discreteRV}
 
@@ -7276,7 +7782,7 @@ We can check this:
 \end{Shaded}
 
 \begin{verbatim}
-##  [1]  9  7  5  6  9  7  7  8 11  7
+##  [1] 8 8 8 5 7 5 9 9 6 6
 \end{verbatim}
 
 We can use \texttt{r\_\_\_} to run simulations, and to visualize the shape of a distribution.
@@ -7292,8 +7798,8 @@ Two useful commands for summarizing data: \texttt{table()} presents the frequenc
 
 \begin{verbatim}
 ## sim_data
-##   0   1   2   3   4   5   6   7   8   9  10  11  12  13  14 
-##   1   1   1   9  34  79 125 155 189 151 124  67  43  14   7
+##   3   4   5   6   7   8   9  10  11  12  13  14 
+##   9  37  92 112 172 186 148 109  65  50  16   4
 \end{verbatim}
 
 \begin{Shaded}
@@ -7302,7 +7808,7 @@ Two useful commands for summarizing data: \texttt{table()} presents the frequenc
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-151-1.pdf}
+\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-159-1.pdf}
 
 \section{\texorpdfstring{Geometric \texttt{geom}}{Geometric geom}}\label{geometricR}
 
@@ -7393,9 +7899,9 @@ Strategy:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-155-1.pdf}
+\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-163-1.pdf}
 
-OMG notice from the bar plot that one depressing game required 57 rolls to see my first 4.
+OMG notice from the bar plot that one depressing game required 64 rolls to see my first 4.
 
 \end{example}
 
@@ -7456,7 +7962,7 @@ Visualizing \(X \sim \texttt{nbinom}(3,.2)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-158-1.pdf}
+\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-166-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7465,7 +7971,7 @@ Visualizing \(X \sim \texttt{nbinom}(3,.2)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-159-1.pdf}
+\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-167-1.pdf}
 
 \section{\texorpdfstring{Hypergeometric \texttt{hyper}}{Hypergeometric hyper}}\label{hyperR}
 
@@ -7649,7 +8155,7 @@ Here are the data:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-166-1.pdf}
+\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-174-1.pdf}
 
 Here's the mean of the data (which gives average \# of scintillations in 72 seconds):
 
@@ -7667,7 +8173,7 @@ Let's compare the observed relative frequencies to the theoretical probabilities
 
 \begin{table}
 \centering
-\caption{\label{tab:unnamed-chunk-168}Fitting data with a Poisson distribution}
+\caption{\label{tab:unnamed-chunk-176}Fitting data with a Poisson distribution}
 \centering
 \begin{tabular}[t]{r|r|r}
 \hline
@@ -7718,7 +8224,7 @@ x & rel\_freq & pois\_prob\\
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-169-1.pdf}
+\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-177-1.pdf}
 
 \end{example}
 
@@ -7818,7 +8324,7 @@ The following code will give the shape of the probability distribution (with a s
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-174-1.pdf}
+\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-182-1.pdf}
 
 \subsection*{Sampling}\label{sampling}
 \addcontentsline{toc}{subsection}{Sampling}
@@ -7832,7 +8338,7 @@ The following code draws a sample of size 10 from our distribution using the wei
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 8 8 9 7 7 9 6 9 9 8
+##  [1] 9 8 6 8 5 8 8 8 8 9
 \end{verbatim}
 
 If we take a large sample, and make a relative frequency table of the results, it should be close to the probability table:
@@ -7846,7 +8352,7 @@ If we take a large sample, and make a relative frequency table of the results, i
 \begin{verbatim}
 ## 
 ##     5     6     7     8     9 
-## 0.382 0.386 1.151 1.544 0.372
+## 0.375 0.375 1.134 1.558 0.392
 \end{verbatim}
 
 \subsection{Discrete Uniform Distribution}\label{discrete-uniform-distribution}
@@ -7882,9 +8388,9 @@ The resulting frequency plot should look uniform:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-178-1.pdf}
+\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-186-1.pdf}
 
-Way to go Slarftel, you over achiever!
+Way to go Otto, you over achiever!
 
 \end{example}
 
@@ -7940,8 +8446,8 @@ A uniform random variable \(X\) over the interval \([a,b]\) has density function
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 0.75742330 0.88026556 0.33133224 0.96785568 0.79855405 0.54043973
-##  [7] 0.98523869 0.78094297 0.08282178 0.12573470
+##  [1] 0.321920014 0.217201829 0.007510538 0.806902779 0.769657232 0.736086889
+##  [7] 0.414561816 0.488836015 0.924836437 0.165340766
 \end{verbatim}
 
 \subsection*{Picking random points in the unit square}\label{picking-random-points-in-the-unit-square}
@@ -7956,7 +8462,7 @@ A uniform random variable \(X\) over the interval \([a,b]\) has density function
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-180-1.pdf}
+\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-188-1.pdf}
 
 \subsection*{\texorpdfstring{Estimate the value of \(\pi\)}{Estimate the value of \textbackslash pi}}\label{estimate-the-value-of-pi}
 \addcontentsline{toc}{subsection}{Estimate the value of \(\pi\)}
@@ -7974,7 +8480,7 @@ A uniform random variable \(X\) over the interval \([a,b]\) has density function
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-181-1.pdf}
+\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-189-1.pdf}
 
 The area of the square is 2*2 = 4.
 The area of the circle is \(\pi (1)^2 = \pi.\) So the ratio\\
@@ -7989,7 +8495,7 @@ and we can estimate \(\pi\) as follows:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 3.1504
+## [1] 3.1288
 \end{verbatim}
 
 \section{\texorpdfstring{Normal Distribution \texttt{norm}}{Normal Distribution norm}}\label{normalR}
@@ -8004,7 +8510,7 @@ Thanks to the Central Limit Theorem this distribution has a central role in stat
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-183-1.pdf}
+\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-191-1.pdf}
 
 \begin{example}
 \protect\hypertarget{exm:normal-weights-R}{}\label{exm:normal-weights-R}\leavevmode
@@ -8063,7 +8569,7 @@ Suppose we have a population of 5000 random numbers between 10 and 20, which sho
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-185-1.pdf}
+\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-193-1.pdf}
 Now suppose we draw a sample of size 50 from this population, and compute the sample mean of these 50 values:
 
 \begin{Shaded}
@@ -8073,7 +8579,7 @@ Now suppose we draw a sample of size 50 from this population, and compute the sa
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 15.02001
+## [1] 14.44563
 \end{verbatim}
 
 Now let's do that game for 10000 trials, and look at the distribution of 10000 sample means:
@@ -8089,7 +8595,7 @@ Now let's do that game for 10000 trials, and look at the distribution of 10000 s
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-187-1.pdf}
+\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-195-1.pdf}
 
 Look Normal?
 
@@ -8101,7 +8607,7 @@ Look Normal?
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-188-1.pdf}
+\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-196-1.pdf}
 
 \section{\texorpdfstring{Exponential Distribution \texttt{exp}}{Exponential Distribution exp}}\label{expR}
 
@@ -8140,7 +8646,7 @@ Here \(X\) is exponential with parameter \(\beta = 120\). The rate associated wi
 As a reminder, this probability corresponds to the integral
 \[\int_{200}^\infty \frac{1}{120}e^{-x/120}~dx\] which corresponds to the shaded area below
 
-\begin{center}\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-190-1} \end{center}
+\begin{center}\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-198-1} \end{center}
 
 \begin{quote}
 \begin{enumerate}
@@ -8194,11 +8700,11 @@ Suppose \(X\) is an exponential random variable with parameter \(\beta = 2\). Sk
 
 The density function is \(f(x) = \frac{1}{2}e^{-x/2}\) for \(x > 0\), and we can sketch it by plotting an \(x\) vector of many inputs between, say, 0 and 10, and the corresponding values of \texttt{dexp()}:
 
-\begin{center}\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-193-1} \end{center}
+\begin{center}\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-201-1} \end{center}
 
 The distribution function, which gives cumulative probability is found by plotting \texttt{pexp()}:
 
-\begin{center}\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-194-1} \end{center}
+\begin{center}\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-202-1} \end{center}
 
 \end{example}
 
@@ -8225,7 +8731,7 @@ We can estimate both \(P(X>t)\) and \(P(X>t+s ~|~ X>s)\) by checking a large ran
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Estimate for P(X>t): 0.544"
+## [1] "Estimate for P(X>t): 0.547"
 \end{verbatim}
 
 \begin{Shaded}
@@ -8235,7 +8741,7 @@ We can estimate both \(P(X>t)\) and \(P(X>t+s ~|~ X>s)\) by checking a large ran
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Estimate for P(X>t+s | X>s): 0.551"
+## [1] "Estimate for P(X>t+s | X>s): 0.548"
 \end{verbatim}
 
 \section{\texorpdfstring{Gamma Distribution \texttt{gamma}}{Gamma Distribution gamma}}\label{gammaR}
@@ -8299,10 +8805,10 @@ Just about a 50\% chance that a random value from a \(\texttt{gamma}(3,4)\) dist
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 515
+## [1] 500
 \end{verbatim}
 
-Well, 515 is mighty close to half of the 1000 values!
+Well, 500 is mighty close to half of the 1000 values!
 \end{example}
 
 \section{\texorpdfstring{Beta distribution \texttt{beta}}{Beta distribution beta}}\label{betaR}

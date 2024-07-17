@@ -2,7 +2,9 @@
 
 
 
-We can use repeated sampling of a chance experiment to estimate the probability of some event. See Section \@ref(sampling-commands) for a review of sampling commands.
+We can use repeated sampling of a chance experiment to estimate the probability of some event. See Section \@ref(sampling-commands) for a review of sampling commands. The examples here were chosen to provide a good range of sampling scenarios that you may find useful in this class, and have been ordered roughly by my view of the complexity of the coding involved.
+
+We start with a good old-fashioned die.
 
 
 ## Rolling a 10-sided die {#10sided-die-R}
@@ -535,14 +537,15 @@ We would usually draw names in late October.  If anyone drew their own name, we 
 
 In this example we pursue three questions related to the homemades:
 
-> a) In our family of 6, what is the probability we will have to redraw.
+> a) In our family of 6, what is the probability we will not have to redraw.
 
-Our approach: Create a family vector (called `family`), and a permutation of `family` (called `draw`) and see whether these two vectors agree in any spot - if so, we need to redraw.
+Our approach: Create a family vector (called `family`), and a permutation of `family` (called `draw`). For each $i$, we say Person $i$ in the `family` vector draws person $i$ in the `draw` vector. So, we have to redraw if the two vectors agree at the same location. 
 
 ```{r}
 family = c("Dad","Mom","Tom","John","Dave","Mike")
 draw = sample(family)
-redraw = ifelse(sum(family == draw)>0,"yes","no")
+matches = sum(family==draw) # number of locations at which the two vectors agree
+redraw = ifelse(matches==0,"No.","Yes.")
 print(paste("Redraw?",redraw))
 ```
 Let's check who each person drew to be sure (remember, our code is assuming the ith person in the `family` vector drew the ith person in the `draw` vector)
@@ -550,24 +553,28 @@ Let's check who each person drew to be sure (remember, our code is assuming the 
 ```{r}
 for (i in 1:6){
   print(paste(family[i],"drew",draw[i]))
+  if (family[i]==draw[i]){
+    print("Dang it! Need to redraw. Names back in the hat.") 
+    break}
 }
 ```
 
+`r if(redraw=="No."){print("Yep, no one drew themself, so we're good to go.")}`
 
-We now estimate the probability of needing to redraw as follows:
+We now estimate the probability of not needing to redraw as follows:
 
 ```{r}
 n=6 #size of family
 family = 1:n #we use numbers, to protect the innocent
 trials=10000
-results = c() #record for each trial a 1 for redraw, 0 for no redraw 
+results = c() #record for each trial a 0 for redraw, 1 for no redraw 
 for (i in 1:trials){
   draw = sample(family)
-  results[i] = ifelse(sum(family == draw)>0,1,0)
+  results[i] = ifelse(sum(family == draw)==0,1,0)
 }
 sum(results)/trials
 ```
-About a `r round(sum(results)/trials*100,1)` percent chance we'll need to redraw.
+About a `r round(sum(results)/trials*100,1)` percent chance of not to redraw.
 
 > b) What is the expected number of draws needed until we do not need to redraw?
 
@@ -620,10 +627,10 @@ for (i in 1:trials){
 barplot(table(results))
 ```
 
-Based on the trials, we estimate the probability of needing a redraw in the larger family to be 
+Based on the trials, we estimate the probability of not needing a redraw in the larger family to be 
 
 ```{r}
-sum(results>1)/trials
+sum(results==1)/trials
 ```
 
 and our estimate for the expected number of draws to be
@@ -654,14 +661,14 @@ hat_draw_sim <- function(n,trials){
     }
     results[i] = attempts
   }
-  return(c(sum(results>1)/trials,sum(results)/trials))
+  return(c(sum(results==1)/trials,sum(results)/trials))
 }
 ```
 
 
 ```{r}
 # run simulation for various family sizes
-family_size = c(2:10,seq(15,50,5))
+family_size = c(2:10,seq(15,60,5))
 prob_redraw = c()
 expected_draws = c()
 for (i in 1:length(family_size)){
@@ -673,10 +680,16 @@ for (i in 1:length(family_size)){
 kbl(data.frame(family_size,prob_redraw,expected_draws)) %>% kable_styling(full_width=FALSE)
 ```
 
-It seems the probability of a redraw and the expected number of draws needed both converge fairly quickly to about 0.63 and 2.72, respectively.
+It seems the probability of not needing a redraw and the expected number of draws needed both converge fairly quickly to about 0.37ish and 2.7 ish, respectively.
 
-In fact, these values ought to be closely related of one another since "drawing until our first success" sounds like a geometric distribution to me. The probability of success on any given draw is about $p = 1 - .632 = .368$, and the expected value for a geometric distribution is $1/p$, which would be about $1/.368 \approx 2.72$. 
+In fact, these values ought to be closely related of one another since "drawing until our first success" sounds like a geometric distribution to me. The probability of success on any given draw somewher in the neighborhood of $p = .37$, and the expected value for a geometric distribution is $1/p$, which would be about $1/.37$, which puts us in the neighborhood of $2.7$.
+If these numbers seem frustratingly imprecise, I'm glad, and I invite you to read the following addendum.
 
-True story: the actual expected value, as $n \to \infty$, is $1/e$.
+### Mathematical addendum to the question of drawing names. {-}
+
+The actual expected number of draws, as $n \to \infty$, is $e$, and the probability of not needing to redraw approaches $1/e$ as $n \to \infty$. 
+
+In part (a) of this question, we are counting derangements of a vector. 
+.A **derangement**\index{permutation!derangement} of a vector is a permutation of it in which no element is in its original position. An element of a permutation is called *fixed points*\index{permutation!fixed point} if it appears in its original position, so a derangement of a vector is a permutation of it with no fixed points. In part (a) we are estimating the probability that a permutation of the `family` vector is a derangement. There is a nice recursive formula for the number of derangements of a vector of size $n$, and it can be used to prove that the probability of drawing a derangement converges to $1/e$ as $n \to \infty$. 
 
 
