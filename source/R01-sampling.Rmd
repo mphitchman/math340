@@ -2,7 +2,7 @@
 
 In MATH 340 we use R, a programming language designed for statistical analysis. In this tutorial we use R to estimate probability via simulation (repeated sampling from some set). We begin with data vectors, the structures we use to define sets in R.
 
-# Sampling in R
+# Sampling in R 
 
 ## Data vectors {#vectors-R}
 

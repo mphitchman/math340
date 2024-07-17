@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.6.25)  16 JUL 2024 12:03
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.6.25)  16 JUL 2024 22:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1594,13 +1594,13 @@ h
 File: math340-notes_files/figure-latex/unnamed-chunk-21-1.pdf Graphic file (typ
 e pdf)
 <use math340-notes_files/figure-latex/unnamed-chunk-21-1.pdf>
-File: math340-notes_files/figure-latex/3-gamma-plots-1.pdf Graphic file (type p
-df)
-<use math340-notes_files/figure-latex/3-gamma-plots-1.pdf>
-
+File: math340-notes_files/figure-latex/gamma-plots-1.pdf Graphic file (type pdf
+)
+<use math340-notes_files/figure-latex/gamma-plots-1.pdf>
+[104]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[104] [105]
+[105]
 File: math340-notes_files/figure-latex/unnamed-chunk-22-1.pdf Graphic file (typ
 e pdf)
 <use math340-notes_files/figure-latex/unnamed-chunk-22-1.pdf>
@@ -1609,7 +1609,7 @@ File: math340-notes_files/figure-latex/unnamed-chunk-23-1.pdf Graphic file (typ
 e pdf)
 <use math340-notes_files/figure-latex/unnamed-chunk-23-1.pdf>
 
-Overfull \hbox (133.23833pt too wide) in paragraph at lines 4307--4309
+Overfull \hbox (133.23833pt too wide) in paragraph at lines 4310--4312
 []\TU/lmr/m/n/10 Here are a few beta distributions: [] 
  []
 
@@ -1655,9 +1655,9 @@ Chapter 13.
 Underfull \vbox (badness 1292) has occurred while \output is active []
 
 [125]
-Overfull \hbox (1.24007pt too wide) in paragraph at lines 4946--4946
-[]\TU/lmtt/m/n/10 ##  [1] 19.23 16.46  1.06  5.24 15.79 19.71  7.33 18.66 16.31
-  2.78[] 
+Overfull \hbox (1.24007pt too wide) in paragraph at lines 4949--4949
+[]\TU/lmtt/m/n/10 ##  [1] 10.80 19.56 18.62  8.85 18.35 19.50 15.37 14.11  6.55
+ 12.78[] 
  []
 
 [126]
@@ -1669,27 +1669,27 @@ Appendix A.
 [131
 
 ] [132]
-Overfull \hbox (85.24007pt too wide) in paragraph at lines 5252--5252
+Overfull \hbox (85.24007pt too wide) in paragraph at lines 5255--5255
 []\TU/lmtt/m/n/10 ##  [1]  14  -1  18 -14   9   1  -6  11  -1 -20   8  12  -5 -
 10  15  -6   9 -13   6[] 
  []
 
 
-Overfull \hbox (85.24007pt too wide) in paragraph at lines 5263--5263
+Overfull \hbox (85.24007pt too wide) in paragraph at lines 5266--5266
 []\TU/lmtt/m/n/10 ##  [1]  13  40  66 110 140 179 219 253 298 342 366 398 442 4
 81 510 554 592 639 673[] 
  []
 
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <12> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 5343.
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 5346.
 [133]
-Overfull \hbox (48.49007pt too wide) in paragraph at lines 5399--5399
+Overfull \hbox (48.49007pt too wide) in paragraph at lines 5402--5402
 []\TU/lmtt/m/n/10 ##  [1] 13 27 26 44 30 39 40 34 45 44 24 32 44 39 29 44 38 47
  34 40 20 12 10[] 
  []
 
 [134] [135]
-Overfull \hbox (85.24007pt too wide) in paragraph at lines 5596--5596
+Overfull \hbox (85.24007pt too wide) in paragraph at lines 5599--5599
 []\TU/lmtt/m/n/10 ##  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "
 n" "o" "p" "q" "r" "s"[] 
  []
@@ -1698,27 +1698,30 @@ n" "o" "p" "q" "r" "s"[]
 File: math340-notes_files/figure-latex/unnamed-chunk-88-1.pdf Graphic file (typ
 e pdf)
 <use math340-notes_files/figure-latex/unnamed-chunk-88-1.pdf>
+
+Underfull \vbox (badness 1817) has occurred while \output is active []
+
 [140]
 File: math340-notes_files/figure-latex/unnamed-chunk-90-1.pdf Graphic file (typ
 e pdf)
 <use math340-notes_files/figure-latex/unnamed-chunk-90-1.pdf>
 
-Overfull \hbox (16.2032pt too wide) in paragraph at lines 5993--5994
+Overfull \hbox (16.2032pt too wide) in paragraph at lines 5996--5997
 []\TU/lmr/m/n/10 Command  
  []
 
 [141]
-Overfull \hbox (2.68626pt too wide) in paragraph at lines 6017--6018
+Overfull \hbox (2.68626pt too wide) in paragraph at lines 6020--6021
 []\TU/lmr/m/n/10 Command  
  []
 
 
-Overfull \hbox (4.93626pt too wide) in paragraph at lines 6025--6025
+Overfull \hbox (4.93626pt too wide) in paragraph at lines 6028--6028
 []|\TU/lmtt/m/n/10 typeof(x)|  
  []
 
 
-Overfull \hbox (4.93626pt too wide) in paragraph at lines 6026--6026
+Overfull \hbox (4.93626pt too wide) in paragraph at lines 6029--6029
 []|\TU/lmtt/m/n/10 length(x)|  
  []
 
@@ -1727,7 +1730,7 @@ Appendix B.
 [143
 
 ] [144]
-Overfull \hbox (94.52507pt too wide) in paragraph at lines 6228--6230
+Overfull \hbox (94.52507pt too wide) in paragraph at lines 6231--6233
 []\TU/lmr/m/n/10 Build a vector for recording outcome of five flips: \TU/lmtt/m
 /n/10 flips = sample(coin,size=5,replace=TRUE) 
  []
@@ -1737,159 +1740,156 @@ File: math340-notes_files/figure-latex/unnamed-chunk-124-1.pdf Graphic file (ty
 pe pdf)
 <use math340-notes_files/figure-latex/unnamed-chunk-124-1.pdf>
 [151] [152]
-Overfull \hbox (27.49007pt too wide) in paragraph at lines 6738--6738
+Overfull \hbox (27.49007pt too wide) in paragraph at lines 6727--6727
 []\TU/lmtt/m/n/10 ##      2      3      4      5      6      7      8      9   
   10     11[] 
  []
 
 
-Overfull \hbox (27.49007pt too wide) in paragraph at lines 6738--6738
-[]\TU/lmtt/m/n/10 ## 0.2521 0.1278 0.1228 0.0940 0.0811 0.0582 0.0478 0.0419 0.
-0309 0.0260[] 
+Overfull \hbox (27.49007pt too wide) in paragraph at lines 6727--6727
+[]\TU/lmtt/m/n/10 ## 0.2510 0.1250 0.1273 0.0950 0.0767 0.0588 0.0505 0.0398 0.
+0341 0.0263[] 
  []
 
 
-Overfull \hbox (102.06999pt too wide) in paragraph at lines 6744--6753
+Overfull \hbox (102.06999pt too wide) in paragraph at lines 6733--6742
  [][] 
  []
 
-[153] [154
+[153] [154] [155]
+File: math340-notes_files/figure-latex/unnamed-chunk-136-1.pdf Graphic file (ty
+pe pdf)
+<use math340-notes_files/figure-latex/unnamed-chunk-136-1.pdf>
+[156]
+File: math340-notes_files/figure-latex/unnamed-chunk-138-1.pdf Graphic file (ty
+pe pdf)
+<use math340-notes_files/figure-latex/unnamed-chunk-138-1.pdf>
+[157] [158] [159] [160
 
 ]
 Appendix C.
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <14.4> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 6789.
-[155]
-Underfull \hbox (badness 1436) in paragraph at lines 6806--6807
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 7155.
+[161]
+Underfull \hbox (badness 1436) in paragraph at lines 7172--7173
 []\TU/lmtt/m/n/10 dbinom(x,n,p) \TU/lmr/m/n/10 returns the probability $[][][] 
 [] [][]$ for $[] []
  []
 
-
-LaTeX Warning: Reference `quantile' on page 156 undefined on input line 6867.
-
-[156]
-File: math340-notes_files/figure-latex/unnamed-chunk-137-1.pdf Graphic file (ty
+[162]
+File: math340-notes_files/figure-latex/unnamed-chunk-151-1.pdf Graphic file (ty
 pe pdf)
-<use math340-notes_files/figure-latex/unnamed-chunk-137-1.pdf>
-[157]
-Underfull \hbox (badness 10000) in paragraph at lines 7014--7016
+<use math340-notes_files/figure-latex/unnamed-chunk-151-1.pdf>
+[163]
+Underfull \hbox (badness 10000) in paragraph at lines 7380--7382
 
  []
 
-File: math340-notes_files/figure-latex/unnamed-chunk-141-1.pdf Graphic file (ty
-pe pdf)
-<use math340-notes_files/figure-latex/unnamed-chunk-141-1.pdf>
-[158] [159]
-File: math340-notes_files/figure-latex/unnamed-chunk-144-1.pdf Graphic file (ty
-pe pdf)
-<use math340-notes_files/figure-latex/unnamed-chunk-144-1.pdf>
-File: math340-notes_files/figure-latex/unnamed-chunk-145-1.pdf Graphic file (ty
-pe pdf)
-<use math340-notes_files/figure-latex/unnamed-chunk-145-1.pdf>
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[160] [161] [162]
-File: math340-notes_files/figure-latex/unnamed-chunk-152-1.pdf Graphic file (ty
-pe pdf)
-<use math340-notes_files/figure-latex/unnamed-chunk-152-1.pdf>
-[163]
 File: math340-notes_files/figure-latex/unnamed-chunk-155-1.pdf Graphic file (ty
 pe pdf)
 <use math340-notes_files/figure-latex/unnamed-chunk-155-1.pdf>
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
 [164] [165]
-File: math340-notes_files/figure-latex/unnamed-chunk-160-1.pdf Graphic file (ty
+File: math340-notes_files/figure-latex/unnamed-chunk-158-1.pdf Graphic file (ty
 pe pdf)
-<use math340-notes_files/figure-latex/unnamed-chunk-160-1.pdf>
-[166]
-File: math340-notes_files/figure-latex/unnamed-chunk-164-1.pdf Graphic file (ty
+<use math340-notes_files/figure-latex/unnamed-chunk-158-1.pdf>
+File: math340-notes_files/figure-latex/unnamed-chunk-159-1.pdf Graphic file (ty
 pe pdf)
-<use math340-notes_files/figure-latex/unnamed-chunk-164-1.pdf>
+<use math340-notes_files/figure-latex/unnamed-chunk-159-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[167] [168]
-Appendix D.
-
-LaTeX Warning: Hyper reference `chiR' on page 169 undefined on input line 7540.
-
-
-[169
-
-]
-Overfull \hbox (32.74007pt too wide) in paragraph at lines 7579--7579
-[]\TU/lmtt/m/n/10 ##  [1] 0.05235901 0.05770704 0.70672303 0.98684644 0.2719007
-0 0.57571122[] 
- []
-
+[166] [167] [168]
 File: math340-notes_files/figure-latex/unnamed-chunk-166-1.pdf Graphic file (ty
 pe pdf)
 <use math340-notes_files/figure-latex/unnamed-chunk-166-1.pdf>
-File: math340-notes_files/figure-latex/unnamed-chunk-167-1.pdf Graphic file (ty
-pe pdf)
-<use math340-notes_files/figure-latex/unnamed-chunk-167-1.pdf>
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[170]
-Underfull \hbox (badness 10000) in paragraph at lines 7613--7615
-
- []
-
+[169]
 File: math340-notes_files/figure-latex/unnamed-chunk-169-1.pdf Graphic file (ty
 pe pdf)
 <use math340-notes_files/figure-latex/unnamed-chunk-169-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[171]
-File: math340-notes_files/figure-latex/unnamed-chunk-171-1.pdf Graphic file (ty
+[170] [171]
+File: math340-notes_files/figure-latex/unnamed-chunk-174-1.pdf Graphic file (ty
 pe pdf)
-<use math340-notes_files/figure-latex/unnamed-chunk-171-1.pdf>
+<use math340-notes_files/figure-latex/unnamed-chunk-174-1.pdf>
+[172]
+File: math340-notes_files/figure-latex/unnamed-chunk-178-1.pdf Graphic file (ty
+pe pdf)
+<use math340-notes_files/figure-latex/unnamed-chunk-178-1.pdf>
 
-Underfull \hbox (badness 10000) in paragraph at lines 7688--7690
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[173] [174]
+Appendix D.
+
+LaTeX Warning: Hyper reference `chiR' on page 175 undefined on input line 7906.
+
+
+[175
+
+]
+Overfull \hbox (32.74007pt too wide) in paragraph at lines 7945--7945
+[]\TU/lmtt/m/n/10 ##  [1] 0.75742330 0.88026556 0.33133224 0.96785568 0.7985540
+5 0.54043973[] 
+ []
+
+File: math340-notes_files/figure-latex/unnamed-chunk-180-1.pdf Graphic file (ty
+pe pdf)
+<use math340-notes_files/figure-latex/unnamed-chunk-180-1.pdf>
+File: math340-notes_files/figure-latex/unnamed-chunk-181-1.pdf Graphic file (ty
+pe pdf)
+<use math340-notes_files/figure-latex/unnamed-chunk-181-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[176]
+Underfull \hbox (badness 10000) in paragraph at lines 7979--7981
+
+ []
+
+File: math340-notes_files/figure-latex/unnamed-chunk-183-1.pdf Graphic file (ty
+pe pdf)
+<use math340-notes_files/figure-latex/unnamed-chunk-183-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[177]
+File: math340-notes_files/figure-latex/unnamed-chunk-185-1.pdf Graphic file (ty
+pe pdf)
+<use math340-notes_files/figure-latex/unnamed-chunk-185-1.pdf>
+
+Underfull \hbox (badness 10000) in paragraph at lines 8066--8068
 [][]
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[172]
-File: math340-notes_files/figure-latex/unnamed-chunk-173-1.pdf Graphic file (ty
+[178]
+File: math340-notes_files/figure-latex/unnamed-chunk-187-1.pdf Graphic file (ty
 pe pdf)
-<use math340-notes_files/figure-latex/unnamed-chunk-173-1.pdf>
+<use math340-notes_files/figure-latex/unnamed-chunk-187-1.pdf>
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[173]
-File: math340-notes_files/figure-latex/unnamed-chunk-174-1.pdf Graphic file (ty
+[179]
+File: math340-notes_files/figure-latex/unnamed-chunk-188-1.pdf Graphic file (ty
 pe pdf)
-<use math340-notes_files/figure-latex/unnamed-chunk-174-1.pdf>
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[174]
-File: math340-notes_files/figure-latex/unnamed-chunk-176-1.pdf Graphic file (ty
+<use math340-notes_files/figure-latex/unnamed-chunk-188-1.pdf>
+[180]
+File: math340-notes_files/figure-latex/unnamed-chunk-190-1.pdf Graphic file (ty
 pe pdf)
-<use math340-notes_files/figure-latex/unnamed-chunk-176-1.pdf>
-[175]
-File: math340-notes_files/figure-latex/unnamed-chunk-179-1.pdf Graphic file (ty
+<use math340-notes_files/figure-latex/unnamed-chunk-190-1.pdf>
+[181]
+File: math340-notes_files/figure-latex/unnamed-chunk-193-1.pdf Graphic file (ty
 pe pdf)
-<use math340-notes_files/figure-latex/unnamed-chunk-179-1.pdf>
-File: math340-notes_files/figure-latex/unnamed-chunk-180-1.pdf Graphic file (ty
+<use math340-notes_files/figure-latex/unnamed-chunk-193-1.pdf>
+File: math340-notes_files/figure-latex/unnamed-chunk-194-1.pdf Graphic file (ty
 pe pdf)
-<use math340-notes_files/figure-latex/unnamed-chunk-180-1.pdf>
-[176]
-
-LaTeX Warning: Reference `fig:3-gamma-plots' on page 177 undefined on input lin
-e 7865.
-
-
-Overfull \hbox (61.5418pt too wide) in paragraph at lines 7868--7869
+<use math340-notes_files/figure-latex/unnamed-chunk-194-1.pdf>
+[182]
+Overfull \hbox (61.5418pt too wide) in paragraph at lines 8246--8247
 []\TU/lmr/m/n/10 Suppose $[]$ is $[][][][] [][]$. In R $[][][] [] [][]$ is give
 n by \TU/lmtt/m/n/10 pgamma(q,shape=a,rate=1/b)
  []
@@ -1897,22 +1897,17 @@ n by \TU/lmtt/m/n/10 pgamma(q,shape=a,rate=1/b)
 File: math340-notes_files/figure-latex/gamma-area-1.pdf Graphic file (type pdf)
 
 <use math340-notes_files/figure-latex/gamma-area-1.pdf>
-[177] [178]
+[183] [184]
 File: math340-notes_files/figure-latex/plot pdf-1.pdf Graphic file (type pdf)
 <use math340-notes_files/figure-latex/plot pdf-1.pdf>
-[179]
-
-LaTeX Warning: Reference `fig:midpoint-sum' on page 180 undefined on input line
- 8014.
-
-
-Overfull \hbox (53.74007pt too wide) in paragraph at lines 8022--8022
+[185]
+Overfull \hbox (53.74007pt too wide) in paragraph at lines 8400--8400
 []\TU/lmtt/m/n/10 ## Warning: Using []size[] aesthetic for lines was deprecated
  in ggplot2 3.4.0.[] 
  []
 
 
-Overfull \hbox (48.49007pt too wide) in paragraph at lines 8022--8022
+Overfull \hbox (48.49007pt too wide) in paragraph at lines 8400--8400
 []\TU/lmtt/m/n/10 ## Call []lifecycle::last_lifecycle_warnings()[] to see where
  this warning was[] 
  []
@@ -1920,24 +1915,21 @@ Overfull \hbox (48.49007pt too wide) in paragraph at lines 8022--8022
 File: math340-notes_files/figure-latex/midpoint-sum-1.pdf Graphic file (type pd
 f)
 <use math340-notes_files/figure-latex/midpoint-sum-1.pdf>
-[180]
+[186]
 File: math340-notes_files/figure-latex/plot distn fcn-1.pdf Graphic file (type 
 pdf)
 <use math340-notes_files/figure-latex/plot distn fcn-1.pdf>
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[181] [182]
+[187] [188]
 No file math340-notes.bbl.
-[183] [184
+[189] [190
 
 ]
 runsystem(makeindex -s latex/indexstyles.ist math340-notes.idx)...executed safe
 ly (allowed).
 
-(./math340-notes.ind [185
+(./math340-notes.ind [191
 
-]) [186] (./math340-notes.aux)
+]) [192] (./math340-notes.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
@@ -1947,15 +1939,15 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 33036 strings out of 474773
- 654525 string characters out of 5757724
+ 33055 strings out of 474773
+ 655520 string characters out of 5757724
  1957839 words of memory out of 5000000
- 54531 multiletter control sequences out of 15000+600000
+ 54548 multiletter control sequences out of 15000+600000
  564762 words of font info for 107 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  90i,14n,121p,1010b,673s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on math340-notes.pdf (186 pages).
+Output written on math340-notes.pdf (192 pages).
 
 ! Index style file latex/indexstyles.ist not found.
 ! Usage: makeindex [-ilqrcgLT] [-s sty] [-o ind] [-t log] [-p num] [idx0 idx1 ...]

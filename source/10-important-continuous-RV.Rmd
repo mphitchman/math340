@@ -337,19 +337,18 @@ The density function for a gamma distribution looks formidable, so we'll take ti
 
 
 :::{.definition #gamma-distribution}
-A random variable $X$ has a **gamma probability distribution with parameters $\alpha>0$ and $\beta>0$**\index{gamma distribution} if and only if it has probability density function 
+A random variable $X$ has a **gamma probability distribution with parameters $\alpha>0$ and $\beta>0$**\index{gamma distribution}, denoted $\texttt{gamma}(\alpha,\beta)$\index{\texttt{gamma}$(\alpha,\beta)$}, if and only if it has probability density function 
 $$
 f(x)=
 \frac{1}{\beta^\alpha \Gamma(\alpha)}x^{\alpha-1}e^{-(x/\beta)}~~~ \text{ for }x \geq 0~~~ \text{ (and }f(x) = 0\text{ else)}
 $$
-where $\displaystyle\Gamma(\alpha) = \int_0^\infty t^{\alpha-1}e^{-t}~dt$.
-If $X$ has such a pdf we might say $X$ is $\texttt{gamma}(\alpha,\beta)$\index{\texttt{gamma}$(\alpha,\beta)$}.
+where $$\Gamma(\alpha) = \int_0^\infty t^{\alpha-1}e^{-t}~dt$$ is called the **gamma function**\index{gamma function}.
 :::
 
 
 Here are plots of three different gamma distributions.
 
-```{r,echo=FALSE, label="3-gamma-plots",fig.dim=c(5,3),fig.align='center'}
+```{r,echo=FALSE, label="gamma-plots",fig.dim=c(5,3),fig.cap="Some gamma density functions"}
 t=seq(0,30,by=.05)
 x1=dgamma(t,3,1/2)
 x2=dgamma(t,5,1/2)

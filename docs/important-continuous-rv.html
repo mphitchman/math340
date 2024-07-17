@@ -285,6 +285,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="B.7" data-path="R-sim-probability.html"><a href="R-sim-probability.html#pollsters-R"><i class="fa fa-check"></i><b>B.7</b> Pollsters</a></li>
 <li class="chapter" data-level="B.8" data-path="R-sim-probability.html"><a href="R-sim-probability.html#same-birthday-R"><i class="fa fa-check"></i><b>B.8</b> Matching Birthdays</a></li>
 <li class="chapter" data-level="B.9" data-path="R-sim-probability.html"><a href="R-sim-probability.html#flipping-coins-with-fibonacci"><i class="fa fa-check"></i><b>B.9</b> Flipping Coins with Fibonacci</a></li>
+<li class="chapter" data-level="B.10" data-path="R-sim-probability.html"><a href="R-sim-probability.html#seats-on-an-airplane"><i class="fa fa-check"></i><b>B.10</b> Seats on an airplane</a></li>
+<li class="chapter" data-level="B.11" data-path="R-sim-probability.html"><a href="R-sim-probability.html#drawing-names-for-homemades"><i class="fa fa-check"></i><b>B.11</b> Drawing names for Homemades</a></li>
 </ul></li>
 <li class="chapter" data-level="C" data-path="R-discreteRV.html"><a href="R-discreteRV.html"><i class="fa fa-check"></i><b>C</b> Discrete Random Variables in R</a>
 <ul>
@@ -378,7 +380,7 @@ we may write <span class="math inline">\(X ~\sim~ U(\theta_1,\theta_2)\)</span> 
 <p>In R we access the uniform distribution with <code>unif</code>. For instance, we can generate a random sample of <span class="math inline">\(n\)</span> numbers in the interval <span class="math inline">\([a,b]\)</span> with the <code>runif()</code> command:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="important-continuous-rv.html#cb10-1" tabindex="-1"></a>n<span class="ot">=</span><span class="dv">6</span>; a <span class="ot">=</span> <span class="dv">0</span>; b <span class="ot">=</span> <span class="dv">10</span>;</span>
 <span id="cb10-2"><a href="important-continuous-rv.html#cb10-2" tabindex="-1"></a><span class="fu">runif</span>(n,a,b)</span></code></pre></div>
-<pre><code>## [1] 0.02578737 4.66161065 8.70919503 3.95849271 6.77628340 9.34953408</code></pre>
+<pre><code>## [1] 7.028896 2.876850 2.679954 5.125278 5.633654 6.808357</code></pre>
 <div class="example">
 <p><span id="exm:unlabeled-div-37" class="example"><strong>Example 10.1  (Average value of a function) </strong></span></p>
 <blockquote>
@@ -387,7 +389,7 @@ we may write <span class="math inline">\(X ~\sim~ U(\theta_1,\theta_2)\)</span> 
 <p>Our strategy: Select a large random sample of points in the interval [0,2] and then compute the average of their squares.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="important-continuous-rv.html#cb12-1" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">runif</span>(<span class="dv">1000</span>,<span class="dv">0</span>,<span class="dv">2</span>) <span class="co">#picking 1000 points in [0,2]</span></span>
 <span id="cb12-2"><a href="important-continuous-rv.html#cb12-2" tabindex="-1"></a><span class="fu">mean</span>(x<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
-<pre><code>## [1] 1.398379</code></pre>
+<pre><code>## [1] 1.323479</code></pre>
 <p><strong>Note</strong>: From Calc I, we know the average value of a function <span class="math inline">\(f\)</span> over the interval <span class="math inline">\([a,b]\)</span> is <span class="math display">\[\frac{1}{b-a} \int_a^b f(x)~dx,\]</span>
 so here it’s <span class="math display">\[\frac{1}{2}\int_0^2 x^2~dx = \frac{1}{6} x^3 ~\biggr|_0^2 = 4/3 \approx 1.333.\]</span></p>
 </div>
@@ -558,16 +560,20 @@ A^2 &amp;= \left(\int_{-\infty}^{\infty} e^{-x^2/2}~dx \right)\left(\int_{-\inft
 <p>Some typically skewed right distributions include household incomes in a city, the length of time between malfunctions of some machine, and major league baseball salaries. The gamma probability distribution, which has two parameters <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>, can model such skewed right distributions. The parameter <span class="math inline">\(\alpha\)</span> is sometimes called the <strong>shape</strong> parameter, <span class="math inline">\(\beta\)</span> is called the <strong>scale</strong> parameter, and its reciprocal <span class="math inline">\(1/\beta\)</span> is called the <strong>rate</strong>.</p>
 <p>The density function for a gamma distribution looks formidable, so we’ll take time to go through it carefully.</p>
 <div class="definition">
-<p><span id="def:gamma-distribution" class="definition"><strong>Definition 10.5  </strong></span>A random variable <span class="math inline">\(X\)</span> has a <strong>gamma probability distribution with parameters <span class="math inline">\(\alpha&gt;0\)</span> and <span class="math inline">\(\beta&gt;0\)</span></strong> if and only if it has probability density function
+<p><span id="def:gamma-distribution" class="definition"><strong>Definition 10.5  </strong></span>A random variable <span class="math inline">\(X\)</span> has a <strong>gamma probability distribution with parameters <span class="math inline">\(\alpha&gt;0\)</span> and <span class="math inline">\(\beta&gt;0\)</span></strong>, denoted <span class="math inline">\(\texttt{gamma}(\alpha,\beta)\)</span>, if and only if it has probability density function
 <span class="math display">\[
 f(x)=
 \frac{1}{\beta^\alpha \Gamma(\alpha)}x^{\alpha-1}e^{-(x/\beta)}~~~ \text{ for }x \geq 0~~~ \text{ (and }f(x) = 0\text{ else)}
 \]</span>
-where <span class="math inline">\(\displaystyle\Gamma(\alpha) = \int_0^\infty t^{\alpha-1}e^{-t}~dt\)</span>.
-If <span class="math inline">\(X\)</span> has such a pdf we might say <span class="math inline">\(X\)</span> is <span class="math inline">\(\texttt{gamma}(\alpha,\beta)\)</span>.</p>
+where <span class="math display">\[\Gamma(\alpha) = \int_0^\infty t^{\alpha-1}e^{-t}~dt\]</span> is called the <strong>gamma function</strong>.</p>
 </div>
 <p>Here are plots of three different gamma distributions.</p>
-<p><img src="math340-notes_files/figure-html/3-gamma-plots-1.png" width="480" style="display: block; margin: auto;" /></p>
+<div class="figure"><span style="display:block;" id="fig:gamma-plots"></span>
+<img src="math340-notes_files/figure-html/gamma-plots-1.png" alt="Some gamma density functions" width="480" />
+<p class="caption">
+Figure 10.2: Some gamma density functions
+</p>
+</div>
 <p>The quantity <span class="math inline">\(\Gamma(\alpha)\)</span> is called the <strong>gamma function</strong>, which has some nice features.</p>
 <div class="lemma">
 <p><span id="lem:gamma-fcn-ind-step" class="lemma"><strong>Lemma 10.2  </strong></span>If <span class="math inline">\(n &gt; 0\)</span> then <span class="math inline">\(\Gamma(n+1) = n \cdot \Gamma(n).\)</span></p>

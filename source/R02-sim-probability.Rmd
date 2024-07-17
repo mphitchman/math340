@@ -1,4 +1,4 @@
-# Simulating Probability in R{#R-sim-probability}
+# Simulating Probability in R {#R-sim-probability}
 
 
 
@@ -454,5 +454,229 @@ colnames(df)[1:2]=c("x","Rel_freq")
 kable(t(df),digits=4) %>%
   kable_styling()
 ```
+
+## Seats on an airplane
+
+I Saw this question on twitter in the summer of 2024, and can't find it now, but I think it was posted via the MAA and was question on national exam for grade 8.
+
+> A small airplane has 4 rows of 3 seats. 8 people board and sit randomly among the 12 seats. Then a couple boards. What is the probability they will be able to sit next to each other in the same row?
+
+<!-- my counting techniques answer
+#total possibilities: choose(12,8)
+# 8 possible 'first seats' for the couple (1,2,4,5,7,8,10,or 11), leaving choose(10,8) ways for the other 8 to have been seated.
+# but this over counts since some arrangements have two seating options for the couple (no arrangements have 3 seating options):
+# case 1 for two options: the two options are in separate rows (choose(4,2)*2*2)
+# case 2 for two options: they are in the same row (4*choose(9,8))
+#answer: 20/33
+-->
+
+**Strategy**
+
+It is convenient to use a matrix with 4 rows and 3 columns to represent the seats in the plane. Each entry in the matrix is 0 or 1 depending on whether the seat is empty or occupied.
+
+We randomly assign 8 1s to the 12 entries in the matrix, leaving the remaining 4 spots 0, and then we check to see whether one of the rows has adjacent 0s.
+
+First, here's one way to randomly assign 8 1s and 4 0s to 12 seats (we make a vector with 8 1s and 4 0s, and then take a random permutation of it):
+
+```{r}
+x = sample(c(rep(1,8),rep(0,4)))
+x
+```
+And here's how we can store this vector of length 12 in a $4\times 3$ matrix:
+```{r}
+m=matrix(x,byrow=TRUE,nrow=4)
+m
+```
+
+As the display above suggests, we can extract a value from matrix `m` by indicating its [row,column]:
+
+```{r}
+m[3,2]
+```
+
+One way to check for empty seats next to each other in a given row: See whether the middle entry is 0 AND either the 1st or the third entry is 0. Let's check each of the rows in the arrangement above:
+
+```{r}
+for (row in 1:4){
+  result=ifelse((m[row,2]==0) & (m[row,1]==0 | m[row,3]==0),"seats together!","nope")
+   print(paste("Row",row,result))
+}
+```
+
+Ok, we've got a plan! In the code below, we use `s` to record, in each trial, whether the couple can find seats together (`s` = 1) or they can't (`s` = 0).
+
+**Final code**
+```{r}
+trials = 10000
+results = c()
+for (i in 1:trials){
+  m=matrix(sample(c(rep(1,8),rep(0,4))),byrow=TRUE,nrow=4)
+  s=0
+  for (r in 1:4){
+    if ((sum(m[r,])<=1)&(m[r,2]==0)){
+      s = 1
+      break
+    }
+  }
+  results[i]=s
+}
+sum(results)/trials
+```
+
+This probability seems higher than I first expected it would be, but we can also prove using our counting techniques -we do this in class - that the probability is, in fact, 20/33.
+
+## Drawing names for Homemades
+
+Growing up, I enjoyed a family tradition of exchanging homemade gifts at Christmas. In part, my enjoyment stemmed from the fact that I was the youngest person, by 6 years, in our family of 6. While I would earnestly make and give to some unlucky brother or parent a clay boot I made in the kiln at school, I was likely to receive a far superior gift in return, perhaps a lightweight springboard from my Dad that was just sturdy enough to propel my little body, flipping, into a sea of beanbags in the basement, but not sturdy enough to withstand the weight of a big brother. 
+
+I also enjoyed the secrecy of the homemades: the locked doors behind which people worked, the occasional curious scrap of material left behind on a workbench, or a splash of paint in the utility room that wasn't there earlier. Then there was the celebration of the exchange itself, the pride of giving your gift, the excitement of receiving one, and, after months of speculation, the big reveal as to who everyone drew. 
+
+We would usually draw names in late October.  If anyone drew their own name, we would immediately stop the process, return all names to the hat, and try again. We kept redrawing, as necessary, until everyone drew a name that wasn't theirs. Then we were off and running, guarding the secret of our givee's identity at all costs.
+
+In this example we pursue three questions related to the homemades:
+
+> a) In our family of 6, what is the probability we will have to redraw.
+
+Our approach: Create a family vector (called `family`), and a permutation of `family` (called `draw`) and see whether these two vectors agree in any spot - if so, we need to redraw.
+
+```{r}
+family = c("Dad","Mom","Tom","John","Dave","Mike")
+draw = sample(family)
+redraw = ifelse(sum(family == draw)>0,"yes","no")
+print(paste("Redraw?",redraw))
+```
+Let's check who each person drew to be sure (remember, our code is assuming the ith person in the `family` vector drew the ith person in the `draw` vector)
+
+```{r}
+for (i in 1:6){
+  print(paste(family[i],"drew",draw[i]))
+}
+```
+
+
+We now estimate the probability of needing to redraw as follows:
+
+```{r}
+n=6 #size of family
+family = 1:n #we use numbers, to protect the innocent
+trials=10000
+results = c() #record for each trial a 1 for redraw, 0 for no redraw 
+for (i in 1:trials){
+  draw = sample(family)
+  results[i] = ifelse(sum(family == draw)>0,1,0)
+}
+sum(results)/trials
+```
+About a `r round(sum(results)/trials*100,1)` percent chance we'll need to redraw.
+
+> b) What is the expected number of draws needed until we do not need to redraw?
+
+Now in our simulation we want to redraw until we don't have to, and record how many attempts it took.
+
+```{r}
+n=6 #size of family
+family = 1:n #we use numbers, to protect the innocent
+trials=10000
+results = c() #record for each trial how many attempts it took to get a good draw
+for (i in 1:trials){
+  attempts = 0
+  draw_again = TRUE
+  while (draw_again){
+    attempts = attempts+1
+    draw = sample(family)
+    draw_again = ifelse(sum(family == draw)>0,TRUE,FALSE)
+  }
+  results[i] = attempts
+}
+barplot(table(results))
+```
+
+Cripes! Can you believe it took `r max(results)` draws on one of the trials? Anyway, our estimate for the expected number of draws needed to get the gift-making off the mark is:
+
+```{r}
+sum(results)/trials
+```
+Well THAT number looks somewhat familiar ... .
+
+> c) Over time the family grew as families do until we had 16 in the gift exchange. Does the probability of needing to redraw change substantially with the larger family size?
+
+Let's just repeat **(b)** with $n = 16$.
+
+```{r}
+n=16 #size of family
+family = 1:n #we use numbers, to protect the innocent
+trials=10000
+results = c() #record for each trial how many attempts it took to get a good draw
+for (i in 1:trials){
+  attempts = 0
+  draw_again = TRUE
+  while (draw_again){
+    attempts = attempts+1
+    draw = sample(family)
+    draw_again = ifelse(sum(family == draw)>0,TRUE,FALSE)
+  }
+  results[i] = attempts
+}
+barplot(table(results))
+```
+
+Based on the trials, we estimate the probability of needing a redraw in the larger family to be 
+
+```{r}
+sum(results>1)/trials
+```
+
+and our estimate for the expected number of draws to be
+
+```{r}
+sum(results)/trials
+```
+
+Not much movement in the estimates, it seems.
+
+With a function and a for loop we can streamline the process for estimating both of these values for many different family sizes.
+
+```{r}
+hat_draw_sim <- function(n,trials){
+  # inputs: n - family size; trials - number of trials in simulation
+  # output: a vector with two values based on a number of trials:
+       # - first value: estimated prob of redraw for family size n
+       # - second value: estimated expected number of draws for family size n
+  family = 1:n 
+  results = c() #record for each trial how many attempts it took to get a good draw
+  for (i in 1:trials){
+    attempts = 0
+    draw_again = TRUE
+    while (draw_again){
+      attempts = attempts+1
+      draw = sample(family)
+      draw_again = ifelse(sum(family == draw)>0,TRUE,FALSE)
+    }
+    results[i] = attempts
+  }
+  return(c(sum(results>1)/trials,sum(results)/trials))
+}
+```
+
+
+```{r}
+# run simulation for various family sizes
+family_size = c(2:10,seq(15,50,5))
+prob_redraw = c()
+expected_draws = c()
+for (i in 1:length(family_size)){
+  v=hat_draw_sim(family_size[i],trials=10000)
+  prob_redraw[i] = v[1]
+  expected_draws[i] = v[2]
+}
+#table of results
+kbl(data.frame(family_size,prob_redraw,expected_draws)) %>% kable_styling(full_width=FALSE)
+```
+
+It seems the probability of a redraw and the expected number of draws needed both converge fairly quickly to about 0.63 and 2.72, respectively.
+
+In fact, these values ought to be closely related of one another since "drawing until our first success" sounds like a geometric distribution to me. The probability of success on any given draw is about $p = 1 - .632 = .368$, and the expected value for a geometric distribution is $1/p$, which would be about $1/.368 \approx 2.72$. 
+
+True story: the actual expected value, as $n \to \infty$, is $1/e$.
 
 

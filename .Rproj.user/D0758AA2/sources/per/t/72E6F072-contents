@@ -80,12 +80,15 @@ plot(x,dnorm(x,mu,sigma),type="l",ylab="f(x)")
 
 > Suppose newborn birthweights are normally distributed with mean 7.8 pounds and standard deviation 0.95 pounds.  
   a) What proportion of newborns weight more than 10 pounds?  
+  b) What proportion of newboard weigh between 7 and 9 pounds?
   b) Find the birth weight that marks the bottom 1% of all birthweights.
 
 ```{r}
 # part (a)
 1-pnorm(10,mean=7.8,sd=0.95)
 # part (b)
+pnorm(9,mean=7.8,sd=0.95)-pnorm(7,mean=7.8,sd=0.95)
+# part (c)
 qnorm(.01,mean=7.8, sd=0.95)
 ```
 :::
@@ -228,7 +231,7 @@ print(paste("Estimate for P(X>t+s | X>s):",round(p2,3)))
 
 ## Gamma Distribution `gamma` {#gammaR}
 
-Recall, the gamma probability distribution, $\texttt{gamma}(\alpha,\beta)$ is a family of skeyed right distributions. The parameter $\alpha$ is sometimes called the **shape** parameter, $\beta$ is called the **scale** parameter, and its reciprocal $1/\beta$ is called the **rate**.  Figure \@ref(fig:3-gamma-plots) plots 3 different gamma density functions. In R we refer to a gamma distribution in our `p_`,`q_`,`d_`, and `r_` functions via the shape parameter $\alpha$ and either the rate $1/\beta$ or the  scale $\beta$ parameter. It's good practice to label the inputs. 
+Recall, the gamma probability distribution, $\texttt{gamma}(\alpha,\beta)$ is a family of skewed right distributions. The parameter $\alpha$ is sometimes called the **shape** parameter, $\beta$ is called the **scale** parameter, and its reciprocal $1/\beta$ is called the **rate**.  Figure \@ref(fig:gamma-plots) plots 3 different gamma density functions. In R we refer to a gamma distribution in our `p_`,`q_`,`d_`, and `r_` functions via the shape parameter $\alpha$ and either the rate $1/\beta$ or the  scale $\beta$ parameter. It's good practice to label the inputs. 
 
 > Suppose $X$ is $\texttt{gamma}(a,b)$. In R  $P(X \leq q)$ is given by `pgamma(q,shape=a,rate=1/b)` or `pgamma(q,shape=a,scale=b)` or `pgamma(q,a,1/b)` (if you don't label the two parameters, R assumes (shape,rate)).
 
@@ -342,7 +345,7 @@ mid_sum=function(f,a,b,n){
 
 For instance, `mid_sum(f_pdf,a=0.4,b=1.2,n=4)` computes the area of the 4 rectangles in Figure \@ref(fig:midpoint-sum).  We divide the interval [0.4,1.2] into n=4 equal-width subintervals, and build rectangles having height equal to the function height at the midpoint of each of these subintervals.
 
-```{r,echo=FALSE,label="midpoint-sum",fig.dim=c(4,3)}
+```{r,echo=FALSE,label="midpoint-sum",fig.dim=c(4,3),fig.cap="Four midpoint rectangles"}
 x1=c(seq(0,.399,.001),seq(.4,.599,.001),seq(.6,.799,.001),
      seq(.8,.999,.001),seq(1,1.2,.001),seq(1.201,2,.001))
 y1=c(rep(0,400),rep(f_pdf(.5),200),rep(f_pdf(.7),200),rep(f_pdf(.9),200),
@@ -355,7 +358,7 @@ ggplot()+
   geom_segment(aes(x=0.79,y=0,xend=0.79,yend=f_pdf(0.7)),col="white")+
   geom_segment(aes(x=0.99,y=0,xend=0.99,yend=f_pdf(0.9)),col="white")+
   geom_segment(aes(x=1.2,y=0,xend=1.2,yend=f_pdf(1.1)),col="white")+
-    geom_segment(aes(x=0.5,y=0,xend=0.5,yend=f_pdf(0.5)),col="red",linetype="dashed")+
+  geom_segment(aes(x=0.5,y=0,xend=0.5,yend=f_pdf(0.5)),col="red",linetype="dashed")+
   geom_segment(aes(x=0.7,y=0,xend=0.7,yend=f_pdf(0.7)),col="red",linetype="dashed")+
   geom_segment(aes(x=0.9,y=0,xend=0.9,yend=f_pdf(0.9)),col="red",linetype="dashed")+
   geom_segment(aes(x=1.1,y=0,xend=1.1,yend=f_pdf(1.1)),col="red",linetype="dashed")+

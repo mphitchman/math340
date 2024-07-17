@@ -285,6 +285,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="B.7" data-path="R-sim-probability.html"><a href="R-sim-probability.html#pollsters-R"><i class="fa fa-check"></i><b>B.7</b> Pollsters</a></li>
 <li class="chapter" data-level="B.8" data-path="R-sim-probability.html"><a href="R-sim-probability.html#same-birthday-R"><i class="fa fa-check"></i><b>B.8</b> Matching Birthdays</a></li>
 <li class="chapter" data-level="B.9" data-path="R-sim-probability.html"><a href="R-sim-probability.html#flipping-coins-with-fibonacci"><i class="fa fa-check"></i><b>B.9</b> Flipping Coins with Fibonacci</a></li>
+<li class="chapter" data-level="B.10" data-path="R-sim-probability.html"><a href="R-sim-probability.html#seats-on-an-airplane"><i class="fa fa-check"></i><b>B.10</b> Seats on an airplane</a></li>
+<li class="chapter" data-level="B.11" data-path="R-sim-probability.html"><a href="R-sim-probability.html#drawing-names-for-homemades"><i class="fa fa-check"></i><b>B.11</b> Drawing names for Homemades</a></li>
 </ul></li>
 <li class="chapter" data-level="C" data-path="R-discreteRV.html"><a href="R-discreteRV.html"><i class="fa fa-check"></i><b>C</b> Discrete Random Variables in R</a>
 <ul>
@@ -382,81 +384,85 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>A uniform random variable <span class="math inline">\(X\)</span> over the interval <span class="math inline">\([a,b]\)</span> has density function <span class="math display">\[f(x) = \frac{1}{b-a}, ~~\text{ for all }~~ a \leq x \leq b.\]</span></p>
 <div id="picking-random-numbers" class="section level3 unnumbered hasAnchor">
 <h3>Picking random numbers<a href="R-continuousRV.html#picking-random-numbers" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="R-continuousRV.html#cb249-1" tabindex="-1"></a><span class="fu">runif</span>(<span class="dv">10</span>,<span class="dv">0</span>,<span class="dv">1</span>) <span class="co">#pick 10 random numbers between 0 and 1.</span></span></code></pre></div>
-<pre><code>##  [1] 0.1323390 0.3584236 0.2248297 0.8514790 0.7952791 0.5493535 0.8145825
-##  [8] 0.7535717 0.2014762 0.6800868</code></pre>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="R-continuousRV.html#cb273-1" tabindex="-1"></a><span class="fu">runif</span>(<span class="dv">10</span>,<span class="dv">0</span>,<span class="dv">1</span>) <span class="co">#pick 10 random numbers between 0 and 1.</span></span></code></pre></div>
+<pre><code>##  [1] 0.96988613 0.15103462 0.03326223 0.25013316 0.94286042 0.59981383
+##  [7] 0.50008295 0.86291654 0.02053314 0.17523914</code></pre>
 </div>
 <div id="picking-random-points-in-the-unit-square" class="section level3 unnumbered hasAnchor">
 <h3>Picking random points in the unit square<a href="R-continuousRV.html#picking-random-points-in-the-unit-square" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="R-continuousRV.html#cb251-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">x=</span><span class="fu">runif</span>(<span class="dv">100</span>,<span class="dv">0</span>,<span class="dv">1</span>),</span>
-<span id="cb251-2"><a href="R-continuousRV.html#cb251-2" tabindex="-1"></a>                 <span class="at">y=</span><span class="fu">runif</span>(<span class="dv">100</span>,<span class="dv">0</span>,<span class="dv">1</span>)))<span class="sc">+</span></span>
-<span id="cb251-3"><a href="R-continuousRV.html#cb251-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(x,y),<span class="at">col=</span><span class="st">&quot;steelblue&quot;</span>)<span class="sc">+</span></span>
-<span id="cb251-4"><a href="R-continuousRV.html#cb251-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
-<p><img src="math340-notes_files/figure-html/unnamed-chunk-166-1.png" width="288" /></p>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="R-continuousRV.html#cb275-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">x=</span><span class="fu">runif</span>(<span class="dv">100</span>,<span class="dv">0</span>,<span class="dv">1</span>),</span>
+<span id="cb275-2"><a href="R-continuousRV.html#cb275-2" tabindex="-1"></a>                 <span class="at">y=</span><span class="fu">runif</span>(<span class="dv">100</span>,<span class="dv">0</span>,<span class="dv">1</span>)))<span class="sc">+</span></span>
+<span id="cb275-3"><a href="R-continuousRV.html#cb275-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(x,y),<span class="at">col=</span><span class="st">&quot;steelblue&quot;</span>)<span class="sc">+</span></span>
+<span id="cb275-4"><a href="R-continuousRV.html#cb275-4" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<p><img src="math340-notes_files/figure-html/unnamed-chunk-180-1.png" width="288" /></p>
 </div>
 <div id="estimate-the-value-of-pi" class="section level3 unnumbered hasAnchor">
 <h3>Estimate the value of <span class="math inline">\(\pi\)</span><a href="R-continuousRV.html#estimate-the-value-of-pi" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="R-continuousRV.html#cb252-1" tabindex="-1"></a>points<span class="ot">=</span><span class="dv">5000</span></span>
-<span id="cb252-2"><a href="R-continuousRV.html#cb252-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x=</span><span class="fu">runif</span>(points,<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>),</span>
-<span id="cb252-3"><a href="R-continuousRV.html#cb252-3" tabindex="-1"></a>                 <span class="at">y=</span><span class="fu">runif</span>(points,<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>))</span>
-<span id="cb252-4"><a href="R-continuousRV.html#cb252-4" tabindex="-1"></a>df<span class="sc">$</span>circle <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">sqrt</span>(df<span class="sc">$</span>x<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>df<span class="sc">$</span>y<span class="sc">^</span><span class="dv">2</span>)<span class="sc">&lt;</span><span class="dv">1</span>,<span class="st">&quot;yes&quot;</span>,<span class="st">&quot;no&quot;</span>)</span>
-<span id="cb252-5"><a href="R-continuousRV.html#cb252-5" tabindex="-1"></a><span class="fu">ggplot</span>(df)<span class="sc">+</span></span>
-<span id="cb252-6"><a href="R-continuousRV.html#cb252-6" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(x,y,<span class="at">col=</span>circle),<span class="at">size=</span>.<span class="dv">3</span>)<span class="sc">+</span></span>
-<span id="cb252-7"><a href="R-continuousRV.html#cb252-7" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.1</span>,<span class="fl">1.1</span>))<span class="sc">+</span><span class="fu">ylim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.1</span>,<span class="fl">1.1</span>))<span class="sc">+</span></span>
-<span id="cb252-8"><a href="R-continuousRV.html#cb252-8" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
-<p><img src="math340-notes_files/figure-html/unnamed-chunk-167-1.png" width="384" /></p>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="R-continuousRV.html#cb276-1" tabindex="-1"></a>points<span class="ot">=</span><span class="dv">5000</span></span>
+<span id="cb276-2"><a href="R-continuousRV.html#cb276-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x=</span><span class="fu">runif</span>(points,<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>),</span>
+<span id="cb276-3"><a href="R-continuousRV.html#cb276-3" tabindex="-1"></a>                 <span class="at">y=</span><span class="fu">runif</span>(points,<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb276-4"><a href="R-continuousRV.html#cb276-4" tabindex="-1"></a>df<span class="sc">$</span>circle <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">sqrt</span>(df<span class="sc">$</span>x<span class="sc">^</span><span class="dv">2</span><span class="sc">+</span>df<span class="sc">$</span>y<span class="sc">^</span><span class="dv">2</span>)<span class="sc">&lt;</span><span class="dv">1</span>,<span class="st">&quot;yes&quot;</span>,<span class="st">&quot;no&quot;</span>)</span>
+<span id="cb276-5"><a href="R-continuousRV.html#cb276-5" tabindex="-1"></a><span class="fu">ggplot</span>(df)<span class="sc">+</span></span>
+<span id="cb276-6"><a href="R-continuousRV.html#cb276-6" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(x,y,<span class="at">col=</span>circle),<span class="at">size=</span>.<span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb276-7"><a href="R-continuousRV.html#cb276-7" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.1</span>,<span class="fl">1.1</span>))<span class="sc">+</span><span class="fu">ylim</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.1</span>,<span class="fl">1.1</span>))<span class="sc">+</span></span>
+<span id="cb276-8"><a href="R-continuousRV.html#cb276-8" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<p><img src="math340-notes_files/figure-html/unnamed-chunk-181-1.png" width="384" /></p>
 <p>The area of the square is 2*2 = 4.
 The area of the circle is <span class="math inline">\(\pi (1)^2 = \pi.\)</span> So the ratio<br />
 <span class="math display">\[\text{(area of circle)/(area of square)}=\pi/4,\]</span>
 and we can estimate <span class="math inline">\(\pi\)</span> as follows:
 <span class="math display">\[\pi \approx 4\cdot \frac{\text{points in circle}}{\text{total points}}\]</span></p>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="R-continuousRV.html#cb253-1" tabindex="-1"></a><span class="dv">4</span><span class="sc">*</span><span class="fu">sum</span>(df<span class="sc">$</span>circle<span class="sc">==</span><span class="st">&quot;yes&quot;</span>)<span class="sc">/</span>points <span class="co"># our estimate of pi</span></span></code></pre></div>
-<pre><code>## [1] 3.1464</code></pre>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="R-continuousRV.html#cb277-1" tabindex="-1"></a><span class="dv">4</span><span class="sc">*</span><span class="fu">sum</span>(df<span class="sc">$</span>circle<span class="sc">==</span><span class="st">&quot;yes&quot;</span>)<span class="sc">/</span>points <span class="co"># our estimate of pi</span></span></code></pre></div>
+<pre><code>## [1] 3.1472</code></pre>
 </div>
 </div>
 <div id="normalR" class="section level2 hasAnchor" number="17.2">
 <h2><span class="header-section-number">D.2</span> Normal Distribution <code>norm</code><a href="R-continuousRV.html#normalR" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Thanks to the Central Limit Theorem this distribution has a central role in statistics.</p>
-<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="R-continuousRV.html#cb255-1" tabindex="-1"></a>mu<span class="ot">=</span><span class="dv">10</span>; sigma<span class="ot">=</span><span class="dv">3</span></span>
-<span id="cb255-2"><a href="R-continuousRV.html#cb255-2" tabindex="-1"></a>x<span class="ot">=</span><span class="fu">seq</span>(mu<span class="dv">-4</span><span class="sc">*</span>sigma,mu<span class="sc">+</span><span class="dv">4</span><span class="sc">*</span>sigma,<span class="at">by=</span>.<span class="dv">01</span>)</span>
-<span id="cb255-3"><a href="R-continuousRV.html#cb255-3" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">dnorm</span>(x,mu,sigma),<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;f(x)&quot;</span>)</span></code></pre></div>
-<p><img src="math340-notes_files/figure-html/unnamed-chunk-169-1.png" width="672" /></p>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="R-continuousRV.html#cb279-1" tabindex="-1"></a>mu<span class="ot">=</span><span class="dv">10</span>; sigma<span class="ot">=</span><span class="dv">3</span></span>
+<span id="cb279-2"><a href="R-continuousRV.html#cb279-2" tabindex="-1"></a>x<span class="ot">=</span><span class="fu">seq</span>(mu<span class="dv">-4</span><span class="sc">*</span>sigma,mu<span class="sc">+</span><span class="dv">4</span><span class="sc">*</span>sigma,<span class="at">by=</span>.<span class="dv">01</span>)</span>
+<span id="cb279-3"><a href="R-continuousRV.html#cb279-3" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">dnorm</span>(x,mu,sigma),<span class="at">type=</span><span class="st">&quot;l&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;f(x)&quot;</span>)</span></code></pre></div>
+<p><img src="math340-notes_files/figure-html/unnamed-chunk-183-1.png" width="672" /></p>
 <div class="example">
 <p><span id="exm:normal-weights-R" class="example"><strong>Example D.1  </strong></span></p>
 <blockquote>
 <p>Suppose newborn birthweights are normally distributed with mean 7.8 pounds and standard deviation 0.95 pounds.<br />
 a) What proportion of newborns weight more than 10 pounds?<br />
+b) What proportion of newboard weigh between 7 and 9 pounds?
 b) Find the birth weight that marks the bottom 1% of all birthweights.</p>
 </blockquote>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="R-continuousRV.html#cb256-1" tabindex="-1"></a><span class="co"># part (a)</span></span>
-<span id="cb256-2"><a href="R-continuousRV.html#cb256-2" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span><span class="fu">pnorm</span>(<span class="dv">10</span>,<span class="at">mean=</span><span class="fl">7.8</span>,<span class="at">sd=</span><span class="fl">0.95</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="R-continuousRV.html#cb280-1" tabindex="-1"></a><span class="co"># part (a)</span></span>
+<span id="cb280-2"><a href="R-continuousRV.html#cb280-2" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span><span class="fu">pnorm</span>(<span class="dv">10</span>,<span class="at">mean=</span><span class="fl">7.8</span>,<span class="at">sd=</span><span class="fl">0.95</span>)</span></code></pre></div>
 <pre><code>## [1] 0.01028488</code></pre>
-<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="R-continuousRV.html#cb258-1" tabindex="-1"></a><span class="co"># part (b)</span></span>
-<span id="cb258-2"><a href="R-continuousRV.html#cb258-2" tabindex="-1"></a><span class="fu">qnorm</span>(.<span class="dv">01</span>,<span class="at">mean=</span><span class="fl">7.8</span>, <span class="at">sd=</span><span class="fl">0.95</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="R-continuousRV.html#cb282-1" tabindex="-1"></a><span class="co"># part (b)</span></span>
+<span id="cb282-2"><a href="R-continuousRV.html#cb282-2" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="dv">9</span>,<span class="at">mean=</span><span class="fl">7.8</span>,<span class="at">sd=</span><span class="fl">0.95</span>)<span class="sc">-</span><span class="fu">pnorm</span>(<span class="dv">7</span>,<span class="at">mean=</span><span class="fl">7.8</span>,<span class="at">sd=</span><span class="fl">0.95</span>)</span></code></pre></div>
+<pre><code>## [1] 0.6968693</code></pre>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="R-continuousRV.html#cb284-1" tabindex="-1"></a><span class="co"># part (c)</span></span>
+<span id="cb284-2"><a href="R-continuousRV.html#cb284-2" tabindex="-1"></a><span class="fu">qnorm</span>(.<span class="dv">01</span>,<span class="at">mean=</span><span class="fl">7.8</span>, <span class="at">sd=</span><span class="fl">0.95</span>)</span></code></pre></div>
 <pre><code>## [1] 5.58997</code></pre>
 </div>
 <div id="sampling-distribution-of-a-sample-mean" class="section level3 unnumbered hasAnchor">
 <h3>Sampling Distribution of a sample mean<a href="R-continuousRV.html#sampling-distribution-of-a-sample-mean" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Suppose we have a population of 5000 random numbers between 10 and 20, which should have a uniform looking frequency distribution:</p>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="R-continuousRV.html#cb260-1" tabindex="-1"></a>pop<span class="ot">=</span><span class="fu">runif</span>(<span class="dv">5000</span>,<span class="dv">10</span>,<span class="dv">20</span>)</span>
-<span id="cb260-2"><a href="R-continuousRV.html#cb260-2" tabindex="-1"></a><span class="fu">hist</span>(pop,<span class="at">breaks=</span><span class="dv">15</span>, <span class="at">main=</span><span class="st">&quot;Population Distribution&quot;</span>)</span></code></pre></div>
-<p><img src="math340-notes_files/figure-html/unnamed-chunk-171-1.png" width="672" />
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="R-continuousRV.html#cb286-1" tabindex="-1"></a>pop<span class="ot">=</span><span class="fu">runif</span>(<span class="dv">5000</span>,<span class="dv">10</span>,<span class="dv">20</span>)</span>
+<span id="cb286-2"><a href="R-continuousRV.html#cb286-2" tabindex="-1"></a><span class="fu">hist</span>(pop,<span class="at">breaks=</span><span class="dv">15</span>, <span class="at">main=</span><span class="st">&quot;Population Distribution&quot;</span>)</span></code></pre></div>
+<p><img src="math340-notes_files/figure-html/unnamed-chunk-185-1.png" width="672" />
 Now suppose we draw a sample of size 50 from this population, and compute the sample mean of these 50 values:</p>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="R-continuousRV.html#cb261-1" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">sample</span>(pop,<span class="dv">50</span>))</span></code></pre></div>
-<pre><code>## [1] 14.80707</code></pre>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="R-continuousRV.html#cb287-1" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">sample</span>(pop,<span class="dv">50</span>))</span></code></pre></div>
+<pre><code>## [1] 15.75693</code></pre>
 <p>Now let’s do that game for 10000 trials, and look at the distribution of 10000 sample means:</p>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="R-continuousRV.html#cb263-1" tabindex="-1"></a>trials<span class="ot">=</span><span class="dv">10000</span></span>
-<span id="cb263-2"><a href="R-continuousRV.html#cb263-2" tabindex="-1"></a>results<span class="ot">=</span><span class="fu">c</span>()</span>
-<span id="cb263-3"><a href="R-continuousRV.html#cb263-3" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>trials){</span>
-<span id="cb263-4"><a href="R-continuousRV.html#cb263-4" tabindex="-1"></a>  results<span class="ot">=</span><span class="fu">c</span>(results,<span class="fu">mean</span>(<span class="fu">sample</span>(pop,<span class="dv">50</span>)))</span>
-<span id="cb263-5"><a href="R-continuousRV.html#cb263-5" tabindex="-1"></a>}</span>
-<span id="cb263-6"><a href="R-continuousRV.html#cb263-6" tabindex="-1"></a><span class="fu">hist</span>(results, <span class="at">main=</span><span class="st">&quot;Histogram of sample means&quot;</span>)</span></code></pre></div>
-<p><img src="math340-notes_files/figure-html/unnamed-chunk-173-1.png" width="672" /></p>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="R-continuousRV.html#cb289-1" tabindex="-1"></a>trials<span class="ot">=</span><span class="dv">10000</span></span>
+<span id="cb289-2"><a href="R-continuousRV.html#cb289-2" tabindex="-1"></a>results<span class="ot">=</span><span class="fu">c</span>()</span>
+<span id="cb289-3"><a href="R-continuousRV.html#cb289-3" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>trials){</span>
+<span id="cb289-4"><a href="R-continuousRV.html#cb289-4" tabindex="-1"></a>  results<span class="ot">=</span><span class="fu">c</span>(results,<span class="fu">mean</span>(<span class="fu">sample</span>(pop,<span class="dv">50</span>)))</span>
+<span id="cb289-5"><a href="R-continuousRV.html#cb289-5" tabindex="-1"></a>}</span>
+<span id="cb289-6"><a href="R-continuousRV.html#cb289-6" tabindex="-1"></a><span class="fu">hist</span>(results, <span class="at">main=</span><span class="st">&quot;Histogram of sample means&quot;</span>)</span></code></pre></div>
+<p><img src="math340-notes_files/figure-html/unnamed-chunk-187-1.png" width="672" /></p>
 <p>Look Normal?</p>
-<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="R-continuousRV.html#cb264-1" tabindex="-1"></a>x<span class="ot">=</span><span class="fu">seq</span>(<span class="dv">12</span>,<span class="dv">18</span>,<span class="at">by=</span>.<span class="dv">05</span>)</span>
-<span id="cb264-2"><a href="R-continuousRV.html#cb264-2" tabindex="-1"></a><span class="fu">hist</span>(results, <span class="at">main=</span><span class="st">&quot;Histogram of sample means&quot;</span>,<span class="at">freq=</span><span class="cn">FALSE</span>,<span class="at">breaks=</span><span class="dv">30</span>)</span>
-<span id="cb264-3"><a href="R-continuousRV.html#cb264-3" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x,<span class="dv">15</span>,<span class="dv">10</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">12</span>)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">50</span>)),<span class="at">add=</span><span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="math340-notes_files/figure-html/unnamed-chunk-174-1.png" width="672" /></p>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="R-continuousRV.html#cb290-1" tabindex="-1"></a>x<span class="ot">=</span><span class="fu">seq</span>(<span class="dv">12</span>,<span class="dv">18</span>,<span class="at">by=</span>.<span class="dv">05</span>)</span>
+<span id="cb290-2"><a href="R-continuousRV.html#cb290-2" tabindex="-1"></a><span class="fu">hist</span>(results, <span class="at">main=</span><span class="st">&quot;Histogram of sample means&quot;</span>,<span class="at">freq=</span><span class="cn">FALSE</span>,<span class="at">breaks=</span><span class="dv">30</span>)</span>
+<span id="cb290-3"><a href="R-continuousRV.html#cb290-3" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x,<span class="dv">15</span>,<span class="dv">10</span><span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">12</span>)<span class="sc">/</span><span class="fu">sqrt</span>(<span class="dv">50</span>)),<span class="at">add=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="math340-notes_files/figure-html/unnamed-chunk-188-1.png" width="672" /></p>
 </div>
 </div>
 <div id="expR" class="section level2 hasAnchor" number="17.3">
@@ -474,24 +480,24 @@ Now suppose we draw a sample of size 50 from this population, and compute the sa
 </ol>
 </blockquote>
 <p>Here <span class="math inline">\(X\)</span> is exponential with parameter <span class="math inline">\(\beta = 120\)</span>. The rate associated with this distribution is <span class="math inline">\(1/120\)</span>, so <span class="math inline">\(P(X &gt; 200)\)</span> can be computed with</p>
-<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="R-continuousRV.html#cb265-1" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span><span class="fu">pexp</span>(<span class="dv">200</span>,<span class="at">rate=</span><span class="dv">1</span><span class="sc">/</span><span class="dv">120</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="R-continuousRV.html#cb291-1" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span><span class="fu">pexp</span>(<span class="dv">200</span>,<span class="at">rate=</span><span class="dv">1</span><span class="sc">/</span><span class="dv">120</span>)</span></code></pre></div>
 <pre><code>## [1] 0.1888756</code></pre>
 <p>As a reminder, this probability corresponds to the integral
 <span class="math display">\[\int_{200}^\infty \frac{1}{120}e^{-x/120}~dx\]</span> which corresponds to the shaded area below</p>
-<p><img src="math340-notes_files/figure-html/unnamed-chunk-176-1.png" width="591.36" style="display: block; margin: auto;" /></p>
+<p><img src="math340-notes_files/figure-html/unnamed-chunk-190-1.png" width="591.36" style="display: block; margin: auto;" /></p>
 <blockquote>
 <ol start="2" style="list-style-type: lower-alpha">
 <li>What proportion of lightbulbs last fewer than 5 hours?</li>
 </ol>
 </blockquote>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="R-continuousRV.html#cb267-1" tabindex="-1"></a><span class="fu">pexp</span>(<span class="dv">5</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">120</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="R-continuousRV.html#cb293-1" tabindex="-1"></a><span class="fu">pexp</span>(<span class="dv">5</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">120</span>)</span></code></pre></div>
 <pre><code>## [1] 0.04081054</code></pre>
 <blockquote>
 <ol start="3" style="list-style-type: lower-alpha">
 <li>Find the 5th percentile for this distribution.</li>
 </ol>
 </blockquote>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="R-continuousRV.html#cb269-1" tabindex="-1"></a><span class="fu">qexp</span>(.<span class="dv">05</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">120</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="R-continuousRV.html#cb295-1" tabindex="-1"></a><span class="fu">qexp</span>(.<span class="dv">05</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">120</span>)</span></code></pre></div>
 <pre><code>## [1] 6.155195</code></pre>
 <p>So, 5% of lightbulbs last less than 6.16 hours.</p>
 </div>
@@ -501,9 +507,9 @@ Now suppose we draw a sample of size 50 from this population, and compute the sa
 <p>Suppose <span class="math inline">\(X\)</span> is an exponential random variable with parameter <span class="math inline">\(\beta = 2\)</span>. Sketch the density function <span class="math inline">\(f(x)\)</span> as well as the distribution function <span class="math inline">\(F(x)\)</span>.</p>
 </blockquote>
 <p>The density function is <span class="math inline">\(f(x) = \frac{1}{2}e^{-x/2}\)</span> for <span class="math inline">\(x &gt; 0\)</span>, and we can sketch it by plotting an <span class="math inline">\(x\)</span> vector of many inputs between, say, 0 and 10, and the corresponding values of <code>dexp()</code>:</p>
-<p><img src="math340-notes_files/figure-html/unnamed-chunk-179-1.png" width="591.36" style="display: block; margin: auto;" /></p>
+<p><img src="math340-notes_files/figure-html/unnamed-chunk-193-1.png" width="591.36" style="display: block; margin: auto;" /></p>
 <p>The distribution function, which gives cumulative probability is found by plotting <code>pexp()</code>:</p>
-<p><img src="math340-notes_files/figure-html/unnamed-chunk-180-1.png" width="591.36" style="display: block; margin: auto;" /></p>
+<p><img src="math340-notes_files/figure-html/unnamed-chunk-194-1.png" width="591.36" style="display: block; margin: auto;" /></p>
 </div>
 <div id="a-memoryless-distribution" class="section level3 unnumbered hasAnchor">
 <h3>A Memoryless distribution<a href="R-continuousRV.html#a-memoryless-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -511,20 +517,20 @@ Now suppose we draw a sample of size 50 from this population, and compute the sa
 <p>For the geometric distribution we can interpret the above as follows: the probability of waiting more than <span class="math inline">\(t\)</span> trials to see the first success is the same as waiting more than <span class="math inline">\(t\)</span> additional trials after not seeing a success in the first <span class="math inline">\(s\)</span> trials.</p>
 <p>For the “lifetime of a light-bulb interpretation” of the exponential distribution: However long the light bulb has already lasted, the probability that the light-bulb lasts at least <span class="math inline">\(t\)</span> more hours is the same.</p>
 <p>We can estimate both <span class="math inline">\(P(X&gt;t)\)</span> and <span class="math inline">\(P(X&gt;t+s ~|~ X&gt;s)\)</span> by checking a large random sample from an exponential distribution.</p>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="R-continuousRV.html#cb271-1" tabindex="-1"></a>trials<span class="ot">=</span><span class="dv">10000</span></span>
-<span id="cb271-2"><a href="R-continuousRV.html#cb271-2" tabindex="-1"></a>x<span class="ot">=</span><span class="fu">rexp</span>(trials,<span class="at">rate=</span><span class="dv">1</span><span class="sc">/</span><span class="dv">5</span>)</span>
-<span id="cb271-3"><a href="R-continuousRV.html#cb271-3" tabindex="-1"></a>s<span class="ot">=</span><span class="dv">2</span>; t<span class="ot">=</span><span class="dv">3</span></span>
-<span id="cb271-4"><a href="R-continuousRV.html#cb271-4" tabindex="-1"></a>p1<span class="ot">=</span><span class="fu">sum</span>(x <span class="sc">&gt;</span> t)<span class="sc">/</span>trials <span class="co">#P(X &gt; t)</span></span>
-<span id="cb271-5"><a href="R-continuousRV.html#cb271-5" tabindex="-1"></a>p2<span class="ot">=</span><span class="fu">sum</span>(x[<span class="fu">which</span>(x <span class="sc">&gt;</span> s)]<span class="sc">&gt;</span>s<span class="sc">+</span>t)<span class="sc">/</span><span class="fu">sum</span>(x<span class="sc">&gt;</span>s) <span class="co">#P(X&gt;t+s | X &gt; s)</span></span>
-<span id="cb271-6"><a href="R-continuousRV.html#cb271-6" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;Estimate for P(X&gt;t):&quot;</span>,<span class="fu">round</span>(p1,<span class="dv">3</span>)))</span></code></pre></div>
-<pre><code>## [1] &quot;Estimate for P(X&gt;t): 0.547&quot;</code></pre>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="R-continuousRV.html#cb273-1" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;Estimate for P(X&gt;t+s | X&gt;s):&quot;</span>,<span class="fu">round</span>(p2,<span class="dv">3</span>)))</span></code></pre></div>
-<pre><code>## [1] &quot;Estimate for P(X&gt;t+s | X&gt;s): 0.549&quot;</code></pre>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="R-continuousRV.html#cb297-1" tabindex="-1"></a>trials<span class="ot">=</span><span class="dv">10000</span></span>
+<span id="cb297-2"><a href="R-continuousRV.html#cb297-2" tabindex="-1"></a>x<span class="ot">=</span><span class="fu">rexp</span>(trials,<span class="at">rate=</span><span class="dv">1</span><span class="sc">/</span><span class="dv">5</span>)</span>
+<span id="cb297-3"><a href="R-continuousRV.html#cb297-3" tabindex="-1"></a>s<span class="ot">=</span><span class="dv">2</span>; t<span class="ot">=</span><span class="dv">3</span></span>
+<span id="cb297-4"><a href="R-continuousRV.html#cb297-4" tabindex="-1"></a>p1<span class="ot">=</span><span class="fu">sum</span>(x <span class="sc">&gt;</span> t)<span class="sc">/</span>trials <span class="co">#P(X &gt; t)</span></span>
+<span id="cb297-5"><a href="R-continuousRV.html#cb297-5" tabindex="-1"></a>p2<span class="ot">=</span><span class="fu">sum</span>(x[<span class="fu">which</span>(x <span class="sc">&gt;</span> s)]<span class="sc">&gt;</span>s<span class="sc">+</span>t)<span class="sc">/</span><span class="fu">sum</span>(x<span class="sc">&gt;</span>s) <span class="co">#P(X&gt;t+s | X &gt; s)</span></span>
+<span id="cb297-6"><a href="R-continuousRV.html#cb297-6" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;Estimate for P(X&gt;t):&quot;</span>,<span class="fu">round</span>(p1,<span class="dv">3</span>)))</span></code></pre></div>
+<pre><code>## [1] &quot;Estimate for P(X&gt;t): 0.55&quot;</code></pre>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="R-continuousRV.html#cb299-1" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;Estimate for P(X&gt;t+s | X&gt;s):&quot;</span>,<span class="fu">round</span>(p2,<span class="dv">3</span>)))</span></code></pre></div>
+<pre><code>## [1] &quot;Estimate for P(X&gt;t+s | X&gt;s): 0.554&quot;</code></pre>
 </div>
 </div>
 <div id="gammaR" class="section level2 hasAnchor" number="17.4">
 <h2><span class="header-section-number">D.4</span> Gamma Distribution <code>gamma</code><a href="R-continuousRV.html#gammaR" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Recall, the gamma probability distribution, <span class="math inline">\(\texttt{gamma}(\alpha,\beta)\)</span> is a family of skeyed right distributions. The parameter <span class="math inline">\(\alpha\)</span> is sometimes called the <strong>shape</strong> parameter, <span class="math inline">\(\beta\)</span> is called the <strong>scale</strong> parameter, and its reciprocal <span class="math inline">\(1/\beta\)</span> is called the <strong>rate</strong>. Figure <a href="#fig:3-gamma-plots"><strong>??</strong></a> plots 3 different gamma density functions. In R we refer to a gamma distribution in our <code>p_</code>,<code>q_</code>,<code>d_</code>, and <code>r_</code> functions via the shape parameter <span class="math inline">\(\alpha\)</span> and either the rate <span class="math inline">\(1/\beta\)</span> or the scale <span class="math inline">\(\beta\)</span> parameter. It’s good practice to label the inputs.</p>
+<p>Recall, the gamma probability distribution, <span class="math inline">\(\texttt{gamma}(\alpha,\beta)\)</span> is a family of skewed right distributions. The parameter <span class="math inline">\(\alpha\)</span> is sometimes called the <strong>shape</strong> parameter, <span class="math inline">\(\beta\)</span> is called the <strong>scale</strong> parameter, and its reciprocal <span class="math inline">\(1/\beta\)</span> is called the <strong>rate</strong>. Figure <a href="important-continuous-rv.html#fig:gamma-plots">10.2</a> plots 3 different gamma density functions. In R we refer to a gamma distribution in our <code>p_</code>,<code>q_</code>,<code>d_</code>, and <code>r_</code> functions via the shape parameter <span class="math inline">\(\alpha\)</span> and either the rate <span class="math inline">\(1/\beta\)</span> or the scale <span class="math inline">\(\beta\)</span> parameter. It’s good practice to label the inputs.</p>
 <blockquote>
 <p>Suppose <span class="math inline">\(X\)</span> is <span class="math inline">\(\texttt{gamma}(a,b)\)</span>. In R <span class="math inline">\(P(X \leq q)\)</span> is given by <code>pgamma(q,shape=a,rate=1/b)</code> or <code>pgamma(q,shape=a,scale=b)</code> or <code>pgamma(q,a,1/b)</code> (if you don’t label the two parameters, R assumes (shape,rate)).</p>
 </blockquote>
@@ -536,7 +542,7 @@ Now suppose we draw a sample of size 50 from this population, and compute the sa
 </ol>
 </blockquote>
 <p>This probability corresponds to the area pictured in Figure <a href="R-continuousRV.html#fig:gamma-area">D.1</a>, and can be computed in R, remembering to input the shape parameter <span class="math inline">\(\alpha\)</span> and the rate parameter <span class="math inline">\(1/\beta\)</span>:</p>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="R-continuousRV.html#cb275-1" tabindex="-1"></a><span class="fu">pgamma</span>(<span class="dv">12</span>,<span class="at">shape=</span><span class="dv">3</span>,<span class="at">scale=</span><span class="dv">4</span>)<span class="sc">-</span><span class="fu">pgamma</span>(<span class="dv">4</span>,<span class="at">shape=</span><span class="dv">3</span>,<span class="at">scale=</span><span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="R-continuousRV.html#cb301-1" tabindex="-1"></a><span class="fu">pgamma</span>(<span class="dv">12</span>,<span class="at">shape=</span><span class="dv">3</span>,<span class="at">scale=</span><span class="dv">4</span>)<span class="sc">-</span><span class="fu">pgamma</span>(<span class="dv">4</span>,<span class="at">shape=</span><span class="dv">3</span>,<span class="at">scale=</span><span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## [1] 0.4965085</code></pre>
 <p>Just about a 50% chance that a random value from a <span class="math inline">\(\texttt{gamma}(3,4)\)</span> distribution is between 4 and 12.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:gamma-area"></span>
@@ -550,10 +556,10 @@ Figure D.1: Finding P(4&lt;X&lt;12) for a gamma(3,4) distribution
 <li>Gather a random sample of 1000 values from this distribution, and determine what proportion of them live between 4 and 12.</li>
 </ol>
 </blockquote>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="R-continuousRV.html#cb277-1" tabindex="-1"></a>x<span class="ot">=</span><span class="fu">rgamma</span>(<span class="dv">1000</span>,<span class="dv">3</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">4</span>) <span class="co"># random sample of size 1000 (no parameter names &lt;-&gt; shape,rate)</span></span>
-<span id="cb277-2"><a href="R-continuousRV.html#cb277-2" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">abs</span>(x<span class="dv">-8</span>)<span class="sc">&lt;</span><span class="dv">4</span>) <span class="co"># values in the sample between 4 and 12</span></span></code></pre></div>
-<pre><code>## [1] 494</code></pre>
-<p>Well, 494 is mighty close to half of the 1000 values!</p>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="R-continuousRV.html#cb303-1" tabindex="-1"></a>x<span class="ot">=</span><span class="fu">rgamma</span>(<span class="dv">1000</span>,<span class="dv">3</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">4</span>) <span class="co"># random sample of size 1000 (no parameter names &lt;-&gt; shape,rate)</span></span>
+<span id="cb303-2"><a href="R-continuousRV.html#cb303-2" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">abs</span>(x<span class="dv">-8</span>)<span class="sc">&lt;</span><span class="dv">4</span>) <span class="co"># values in the sample between 4 and 12</span></span></code></pre></div>
+<pre><code>## [1] 461</code></pre>
+<p>Well, 461 is mighty close to half of the 1000 values!</p>
 </div>
 </div>
 <div id="betaR" class="section level2 hasAnchor" number="17.5">
@@ -564,7 +570,7 @@ Figure D.1: Finding P(4&lt;X&lt;12) for a gamma(3,4) distribution
 <blockquote>
 <p>Determine the probability that on any given day, over 1/2 the sales come from new customers.</p>
 </blockquote>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="R-continuousRV.html#cb279-1" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span><span class="fu">pbeta</span>(<span class="fl">0.5</span>,<span class="dv">1</span>,<span class="fl">3.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="R-continuousRV.html#cb305-1" tabindex="-1"></a><span class="dv">1</span><span class="sc">-</span><span class="fu">pbeta</span>(<span class="fl">0.5</span>,<span class="dv">1</span>,<span class="fl">3.5</span>)</span></code></pre></div>
 <pre><code>## [1] 0.08838835</code></pre>
 </div>
 </div>
@@ -576,55 +582,60 @@ Figure D.1: Finding P(4&lt;X&lt;12) for a gamma(3,4) distribution
 <div id="input-the-density-function" class="section level3 unnumbered hasAnchor">
 <h3>Input the density function<a href="R-continuousRV.html#input-the-density-function" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>First build the probability density function (pdf) as a function in R.</p>
-<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="R-continuousRV.html#cb281-1" tabindex="-1"></a>f_pdf <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb281-2"><a href="R-continuousRV.html#cb281-2" tabindex="-1"></a>  <span class="fu">return</span>(<span class="dv">3</span><span class="sc">*</span>(<span class="dv">2</span><span class="sc">-</span>x)<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="dv">8</span>)</span>
-<span id="cb281-3"><a href="R-continuousRV.html#cb281-3" tabindex="-1"></a>  }</span></code></pre></div>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="R-continuousRV.html#cb307-1" tabindex="-1"></a>f_pdf <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb307-2"><a href="R-continuousRV.html#cb307-2" tabindex="-1"></a>  <span class="fu">return</span>(<span class="dv">3</span><span class="sc">*</span>(<span class="dv">2</span><span class="sc">-</span>x)<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="dv">8</span>)</span>
+<span id="cb307-3"><a href="R-continuousRV.html#cb307-3" tabindex="-1"></a>  }</span></code></pre></div>
 </div>
 <div id="visualize-the-density-function" class="section level3 unnumbered hasAnchor">
 <h3>Visualize the density function<a href="R-continuousRV.html#visualize-the-density-function" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We create a vector of inputs <code>x</code> going from 0 to 2 in small increments (the increment is .01 below), to give us many points over the interval of interest [0,2]. Then we <strong>plot the density curve</strong> by plotting these x values against the function values f(x). (<code>type="l"</code> gives us a <strong>l</strong>ine plot instead of a point plot).</p>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="R-continuousRV.html#cb282-1" tabindex="-1"></a>x<span class="ot">=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">2</span>,<span class="at">by=</span>.<span class="dv">01</span>)</span>
-<span id="cb282-2"><a href="R-continuousRV.html#cb282-2" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f_pdf</span>(x),<span class="at">type=</span><span class="st">&quot;l&quot;</span>,</span>
-<span id="cb282-3"><a href="R-continuousRV.html#cb282-3" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;the density function&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="R-continuousRV.html#cb308-1" tabindex="-1"></a>x<span class="ot">=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">2</span>,<span class="at">by=</span>.<span class="dv">01</span>)</span>
+<span id="cb308-2"><a href="R-continuousRV.html#cb308-2" tabindex="-1"></a><span class="fu">plot</span>(x,<span class="fu">f_pdf</span>(x),<span class="at">type=</span><span class="st">&quot;l&quot;</span>,</span>
+<span id="cb308-3"><a href="R-continuousRV.html#cb308-3" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;the density function&quot;</span>)</span></code></pre></div>
 <p><img src="math340-notes_files/figure-html/plot%20pdf-1.png" width="672" /></p>
 </div>
 <div id="estimating-integrals-with-riemann-sums" class="section level3 unnumbered hasAnchor">
 <h3>Estimating Integrals with Riemann Sums<a href="R-continuousRV.html#estimating-integrals-with-riemann-sums" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We know <span class="math inline">\(P(X \geq 1.2)\)</span> corresponds to the area under the density curve between 1.2 and 2. We can estimate areas by computing a Riemann Sum (a sum of many thin rectangle areas approximating the area under the density curve).</p>
 <p>Here’s a function for estimating <span class="math inline">\(\int_a^b f(x)~dx\)</span> with a sum of <span class="math inline">\(n\)</span> rectangle areas, generated using the midpoint rule.</p>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="R-continuousRV.html#cb283-1" tabindex="-1"></a>mid_sum<span class="ot">=</span><span class="cf">function</span>(f,a,b,n){</span>
-<span id="cb283-2"><a href="R-continuousRV.html#cb283-2" tabindex="-1"></a>  <span class="co">#inputs:</span></span>
-<span id="cb283-3"><a href="R-continuousRV.html#cb283-3" tabindex="-1"></a>      <span class="co">#f - function</span></span>
-<span id="cb283-4"><a href="R-continuousRV.html#cb283-4" tabindex="-1"></a>      <span class="co">#a, b - lower and upper bounds of interval</span></span>
-<span id="cb283-5"><a href="R-continuousRV.html#cb283-5" tabindex="-1"></a>      <span class="co">#n - number of subdivisions</span></span>
-<span id="cb283-6"><a href="R-continuousRV.html#cb283-6" tabindex="-1"></a>  <span class="co">#output: The sum of the n rectangle areas whose heights are</span></span>
-<span id="cb283-7"><a href="R-continuousRV.html#cb283-7" tabindex="-1"></a>  <span class="co"># determined by the midpoint rule</span></span>
-<span id="cb283-8"><a href="R-continuousRV.html#cb283-8" tabindex="-1"></a>  dx<span class="ot">=</span>(b<span class="sc">-</span>a)<span class="sc">/</span>n</span>
-<span id="cb283-9"><a href="R-continuousRV.html#cb283-9" tabindex="-1"></a>  ticks<span class="ot">=</span><span class="fu">seq</span>(a<span class="sc">+</span>dx<span class="sc">/</span><span class="dv">2</span>,b,dx)</span>
-<span id="cb283-10"><a href="R-continuousRV.html#cb283-10" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">sum</span>(<span class="fu">f</span>(ticks)<span class="sc">*</span>dx))</span>
-<span id="cb283-11"><a href="R-continuousRV.html#cb283-11" tabindex="-1"></a>}</span></code></pre></div>
-<p>For instance, <code>mid_sum(f_pdf,a=0.4,b=1.2,n=4)</code> computes the area of the 4 rectangles in Figure <a href="#fig:midpoint-sum"><strong>??</strong></a>. We divide the interval [0.4,1.2] into n=4 equal-width subintervals, and build rectangles having height equal to the function height at the midpoint of each of these subintervals.</p>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="R-continuousRV.html#cb309-1" tabindex="-1"></a>mid_sum<span class="ot">=</span><span class="cf">function</span>(f,a,b,n){</span>
+<span id="cb309-2"><a href="R-continuousRV.html#cb309-2" tabindex="-1"></a>  <span class="co">#inputs:</span></span>
+<span id="cb309-3"><a href="R-continuousRV.html#cb309-3" tabindex="-1"></a>      <span class="co">#f - function</span></span>
+<span id="cb309-4"><a href="R-continuousRV.html#cb309-4" tabindex="-1"></a>      <span class="co">#a, b - lower and upper bounds of interval</span></span>
+<span id="cb309-5"><a href="R-continuousRV.html#cb309-5" tabindex="-1"></a>      <span class="co">#n - number of subdivisions</span></span>
+<span id="cb309-6"><a href="R-continuousRV.html#cb309-6" tabindex="-1"></a>  <span class="co">#output: The sum of the n rectangle areas whose heights are</span></span>
+<span id="cb309-7"><a href="R-continuousRV.html#cb309-7" tabindex="-1"></a>  <span class="co"># determined by the midpoint rule</span></span>
+<span id="cb309-8"><a href="R-continuousRV.html#cb309-8" tabindex="-1"></a>  dx<span class="ot">=</span>(b<span class="sc">-</span>a)<span class="sc">/</span>n</span>
+<span id="cb309-9"><a href="R-continuousRV.html#cb309-9" tabindex="-1"></a>  ticks<span class="ot">=</span><span class="fu">seq</span>(a<span class="sc">+</span>dx<span class="sc">/</span><span class="dv">2</span>,b,dx)</span>
+<span id="cb309-10"><a href="R-continuousRV.html#cb309-10" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">sum</span>(<span class="fu">f</span>(ticks)<span class="sc">*</span>dx))</span>
+<span id="cb309-11"><a href="R-continuousRV.html#cb309-11" tabindex="-1"></a>}</span></code></pre></div>
+<p>For instance, <code>mid_sum(f_pdf,a=0.4,b=1.2,n=4)</code> computes the area of the 4 rectangles in Figure <a href="R-continuousRV.html#fig:midpoint-sum">D.2</a>. We divide the interval [0.4,1.2] into n=4 equal-width subintervals, and build rectangles having height equal to the function height at the midpoint of each of these subintervals.</p>
 <pre><code>## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
 ## ℹ Please use `linewidth` instead.
 ## This warning is displayed once every 8 hours.
 ## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
 ## generated.</code></pre>
-<p><img src="math340-notes_files/figure-html/midpoint-sum-1.png" width="384" /></p>
+<div class="figure"><span style="display:block;" id="fig:midpoint-sum"></span>
+<img src="math340-notes_files/figure-html/midpoint-sum-1.png" alt="Four midpoint rectangles" width="384" />
+<p class="caption">
+Figure D.2: Four midpoint rectangles
+</p>
+</div>
 <p>The area of the four rectangles is</p>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="R-continuousRV.html#cb285-1" tabindex="-1"></a><span class="fu">mid_sum</span>(f_pdf,<span class="at">a=</span>.<span class="dv">4</span>,<span class="at">b=</span><span class="fl">1.2</span>,<span class="at">n=</span><span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="R-continuousRV.html#cb311-1" tabindex="-1"></a><span class="fu">mid_sum</span>(f_pdf,<span class="at">a=</span>.<span class="dv">4</span>,<span class="at">b=</span><span class="fl">1.2</span>,<span class="at">n=</span><span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## [1] 0.447</code></pre>
 </div>
 <div id="estimating-probabilities" class="section level3 unnumbered hasAnchor">
 <h3>Estimating Probabilities<a href="R-continuousRV.html#estimating-probabilities" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>So, getting back to our example, if we want to estimate <span class="math inline">\(P(X &gt; 1.2)\)</span> we can compute a midpoint sum - the more rectangles the better. Let’s start with <span class="math inline">\(n = 100\)</span>:</p>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="R-continuousRV.html#cb287-1" tabindex="-1"></a><span class="fu">mid_sum</span>(f_pdf,<span class="fl">1.2</span>,<span class="dv">2</span>,<span class="dv">100</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="R-continuousRV.html#cb313-1" tabindex="-1"></a><span class="fu">mid_sum</span>(f_pdf,<span class="fl">1.2</span>,<span class="dv">2</span>,<span class="dv">100</span>)</span></code></pre></div>
 <pre><code>## [1] 0.0639984</code></pre>
 <p>What if we use <span class="math inline">\(n = 1000\)</span> rectangles?</p>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="R-continuousRV.html#cb289-1" tabindex="-1"></a><span class="fu">mid_sum</span>(f_pdf,<span class="fl">1.2</span>,<span class="dv">2</span>,<span class="dv">1000</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="R-continuousRV.html#cb315-1" tabindex="-1"></a><span class="fu">mid_sum</span>(f_pdf,<span class="fl">1.2</span>,<span class="dv">2</span>,<span class="dv">1000</span>)</span></code></pre></div>
 <pre><code>## [1] 0.06399998</code></pre>
 <p>It seems as if our estimate hasn’t changed much by going from 100 to 1000 subintervals, for this density function.</p>
 <p>To estimate <span class="math inline">\(P(0.5 &lt; X &lt; 1.1)\)</span> we can evaluate</p>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="R-continuousRV.html#cb291-1" tabindex="-1"></a><span class="fu">mid_sum</span>(f_pdf,<span class="fl">0.5</span>,<span class="fl">1.1</span>,<span class="dv">100</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="R-continuousRV.html#cb317-1" tabindex="-1"></a><span class="fu">mid_sum</span>(f_pdf,<span class="fl">0.5</span>,<span class="fl">1.1</span>,<span class="dv">100</span>)</span></code></pre></div>
 <pre><code>## [1] 0.3307493</code></pre>
 </div>
 <div id="the-distribution-function-fx" class="section level3 unnumbered hasAnchor">
@@ -633,17 +644,17 @@ Figure D.1: Finding P(4&lt;X&lt;12) for a gamma(3,4) distribution
 <p>Consider again the random variable <span class="math inline">\(X\)</span> with pdf <span class="math inline">\(f(x) = (3/8)(2-x)^2\)</span> for <span class="math inline">\(0 &lt; x &lt; 2\)</span>.</p>
 <p>For any value of <span class="math inline">\(b\)</span> between 0 and 2, <span class="math display">\[F(b) = \int_0^b f(x)~dx,\]</span>
 which we can numerically approximate with</p>
-<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="R-continuousRV.html#cb293-1" tabindex="-1"></a>F_example <span class="ot">&lt;-</span> <span class="cf">function</span>(b){</span>
-<span id="cb293-2"><a href="R-continuousRV.html#cb293-2" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">mid_sum</span>(f_pdf,<span class="dv">0</span>,b,<span class="dv">100</span>))</span>
-<span id="cb293-3"><a href="R-continuousRV.html#cb293-3" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="R-continuousRV.html#cb319-1" tabindex="-1"></a>F_example <span class="ot">&lt;-</span> <span class="cf">function</span>(b){</span>
+<span id="cb319-2"><a href="R-continuousRV.html#cb319-2" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">mid_sum</span>(f_pdf,<span class="dv">0</span>,b,<span class="dv">100</span>))</span>
+<span id="cb319-3"><a href="R-continuousRV.html#cb319-3" tabindex="-1"></a>}</span></code></pre></div>
 <p>Then we can sketch the graph of the distribution function, for inputs between 0 and 2</p>
-<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="R-continuousRV.html#cb294-1" tabindex="-1"></a>x<span class="ot">=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">2</span>,<span class="at">by=</span>.<span class="dv">01</span>)</span>
-<span id="cb294-2"><a href="R-continuousRV.html#cb294-2" tabindex="-1"></a>y<span class="ot">=</span><span class="fu">c</span>()</span>
-<span id="cb294-3"><a href="R-continuousRV.html#cb294-3" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(x)){</span>
-<span id="cb294-4"><a href="R-continuousRV.html#cb294-4" tabindex="-1"></a>  y<span class="ot">=</span><span class="fu">c</span>(y,<span class="fu">F_example</span>(x[i]))</span>
-<span id="cb294-5"><a href="R-continuousRV.html#cb294-5" tabindex="-1"></a>}</span>
-<span id="cb294-6"><a href="R-continuousRV.html#cb294-6" tabindex="-1"></a><span class="fu">plot</span>(x,y,<span class="at">type=</span><span class="st">&quot;l&quot;</span>,</span>
-<span id="cb294-7"><a href="R-continuousRV.html#cb294-7" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;the distribution function&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="R-continuousRV.html#cb320-1" tabindex="-1"></a>x<span class="ot">=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">2</span>,<span class="at">by=</span>.<span class="dv">01</span>)</span>
+<span id="cb320-2"><a href="R-continuousRV.html#cb320-2" tabindex="-1"></a>y<span class="ot">=</span><span class="fu">c</span>()</span>
+<span id="cb320-3"><a href="R-continuousRV.html#cb320-3" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(x)){</span>
+<span id="cb320-4"><a href="R-continuousRV.html#cb320-4" tabindex="-1"></a>  y<span class="ot">=</span><span class="fu">c</span>(y,<span class="fu">F_example</span>(x[i]))</span>
+<span id="cb320-5"><a href="R-continuousRV.html#cb320-5" tabindex="-1"></a>}</span>
+<span id="cb320-6"><a href="R-continuousRV.html#cb320-6" tabindex="-1"></a><span class="fu">plot</span>(x,y,<span class="at">type=</span><span class="st">&quot;l&quot;</span>,</span>
+<span id="cb320-7"><a href="R-continuousRV.html#cb320-7" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;the distribution function&quot;</span>)</span></code></pre></div>
 <p><img src="math340-notes_files/figure-html/plot%20distn%20fcn-1.png" width="672" /></p>
 </div>
 <div id="estimating-moments" class="section level3 unnumbered hasAnchor">
@@ -651,29 +662,29 @@ which we can numerically approximate with</p>
 <p>Recall, <span class="math inline">\(E(X^n)\)</span> is called the <em><span class="math inline">\(n\)</span>th moment about 0</em> of the distribution. The first moment is the expected value <span class="math inline">\(E(X)\)</span>, and the 2nd and 1st together determine the variance: <span class="math inline">\(V(X) = E(X^2)-E(X)^2.\)</span></p>
 <p>For a continuous random variable <span class="math inline">\(X\)</span> with pdf <span class="math inline">\(f(x)\)</span>, <span class="math display">\[E(X^n) = \int_{-\infty}^\infty x^n \cdot f(x).\]</span></p>
 <p>In R we can numerically estimate these integrals with the <code>mid_sum()</code> function defined above, applied to the integrand <span class="math inline">\(x^n\cdot f(X)\)</span>.</p>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="R-continuousRV.html#cb295-1" tabindex="-1"></a>moment.integrand<span class="ot">&lt;-</span><span class="cf">function</span>(f,n){</span>
-<span id="cb295-2"><a href="R-continuousRV.html#cb295-2" tabindex="-1"></a>  <span class="co">#inputs:</span></span>
-<span id="cb295-3"><a href="R-continuousRV.html#cb295-3" tabindex="-1"></a>      <span class="co"># f - a previously defined pdf</span></span>
-<span id="cb295-4"><a href="R-continuousRV.html#cb295-4" tabindex="-1"></a>      <span class="co"># n - an integer</span></span>
-<span id="cb295-5"><a href="R-continuousRV.html#cb295-5" tabindex="-1"></a>  <span class="co">#output: the integrand function for evaluating E(X^n)</span></span>
-<span id="cb295-6"><a href="R-continuousRV.html#cb295-6" tabindex="-1"></a>  <span class="fu">return</span>(<span class="cf">function</span>(x){<span class="fu">return</span>(x<span class="sc">^</span>n<span class="sc">*</span><span class="fu">f</span>(x))})</span>
-<span id="cb295-7"><a href="R-continuousRV.html#cb295-7" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="R-continuousRV.html#cb321-1" tabindex="-1"></a>moment.integrand<span class="ot">&lt;-</span><span class="cf">function</span>(f,n){</span>
+<span id="cb321-2"><a href="R-continuousRV.html#cb321-2" tabindex="-1"></a>  <span class="co">#inputs:</span></span>
+<span id="cb321-3"><a href="R-continuousRV.html#cb321-3" tabindex="-1"></a>      <span class="co"># f - a previously defined pdf</span></span>
+<span id="cb321-4"><a href="R-continuousRV.html#cb321-4" tabindex="-1"></a>      <span class="co"># n - an integer</span></span>
+<span id="cb321-5"><a href="R-continuousRV.html#cb321-5" tabindex="-1"></a>  <span class="co">#output: the integrand function for evaluating E(X^n)</span></span>
+<span id="cb321-6"><a href="R-continuousRV.html#cb321-6" tabindex="-1"></a>  <span class="fu">return</span>(<span class="cf">function</span>(x){<span class="fu">return</span>(x<span class="sc">^</span>n<span class="sc">*</span><span class="fu">f</span>(x))})</span>
+<span id="cb321-7"><a href="R-continuousRV.html#cb321-7" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div id="expected-value-1" class="section level3 unnumbered hasAnchor">
 <h3>Expected Value<a href="R-continuousRV.html#expected-value-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>For a continuous random variable <span class="math inline">\(X\)</span>, <span class="math display">\[E(X)=\int_{-\infty}^{\infty} x \cdot f(x)~dx.\]</span></p>
 <p>To estimate this integral, we plug the first moment integrand <span class="math inline">\(x \cdot f(x)\)</span> into our Riemann sum function.</p>
-<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="R-continuousRV.html#cb296-1" tabindex="-1"></a>mu<span class="ot">=</span><span class="fu">mid_sum</span>(<span class="fu">moment.integrand</span>(f_pdf,<span class="dv">1</span>),<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">100</span>)</span>
-<span id="cb296-2"><a href="R-continuousRV.html#cb296-2" tabindex="-1"></a>mu</span></code></pre></div>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="R-continuousRV.html#cb322-1" tabindex="-1"></a>mu<span class="ot">=</span><span class="fu">mid_sum</span>(<span class="fu">moment.integrand</span>(f_pdf,<span class="dv">1</span>),<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">100</span>)</span>
+<span id="cb322-2"><a href="R-continuousRV.html#cb322-2" tabindex="-1"></a>mu</span></code></pre></div>
 <pre><code>## [1] 0.500025</code></pre>
 <p>Note: The actual expected value is</p>
 <p><span class="math display">\[\int_0^2 x \cdot (3/8)(2-x)^2~dx = 0.5.\]</span></p>
 <p>We estimate the <strong>variance</strong> knowing that <span class="math inline">\(V(X) = E(X^2)-E(X)^2.\)</span></p>
-<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="R-continuousRV.html#cb298-1" tabindex="-1"></a>EX2<span class="ot">=</span><span class="fu">mid_sum</span>(<span class="fu">moment.integrand</span>(f_pdf,<span class="dv">2</span>),<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">100</span>)</span>
-<span id="cb298-2"><a href="R-continuousRV.html#cb298-2" tabindex="-1"></a>EX2</span></code></pre></div>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="R-continuousRV.html#cb324-1" tabindex="-1"></a>EX2<span class="ot">=</span><span class="fu">mid_sum</span>(<span class="fu">moment.integrand</span>(f_pdf,<span class="dv">2</span>),<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">100</span>)</span>
+<span id="cb324-2"><a href="R-continuousRV.html#cb324-2" tabindex="-1"></a>EX2</span></code></pre></div>
 <pre><code>## [1] 0.4</code></pre>
 <p>So the variance of <span class="math inline">\(X\)</span> is</p>
-<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="R-continuousRV.html#cb300-1" tabindex="-1"></a>EX2<span class="sc">-</span>mu<span class="sc">^</span><span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="R-continuousRV.html#cb326-1" tabindex="-1"></a>EX2<span class="sc">-</span>mu<span class="sc">^</span><span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1] 0.149975</code></pre>
 <p>Note: The actual value of <span class="math inline">\(E(X^2)\)</span> is <span class="math display">\[\int_0^2 x^2 \cdot (3/8)(2-x)^2~dx = 0.4,\]</span>
 so <span class="math inline">\(V(X) = 0.4 - (0.5)^2 = 0.15.\)</span></p>

@@ -285,6 +285,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="B.7" data-path="R-sim-probability.html"><a href="R-sim-probability.html#pollsters-R"><i class="fa fa-check"></i><b>B.7</b> Pollsters</a></li>
 <li class="chapter" data-level="B.8" data-path="R-sim-probability.html"><a href="R-sim-probability.html#same-birthday-R"><i class="fa fa-check"></i><b>B.8</b> Matching Birthdays</a></li>
 <li class="chapter" data-level="B.9" data-path="R-sim-probability.html"><a href="R-sim-probability.html#flipping-coins-with-fibonacci"><i class="fa fa-check"></i><b>B.9</b> Flipping Coins with Fibonacci</a></li>
+<li class="chapter" data-level="B.10" data-path="R-sim-probability.html"><a href="R-sim-probability.html#seats-on-an-airplane"><i class="fa fa-check"></i><b>B.10</b> Seats on an airplane</a></li>
+<li class="chapter" data-level="B.11" data-path="R-sim-probability.html"><a href="R-sim-probability.html#drawing-names-for-homemades"><i class="fa fa-check"></i><b>B.11</b> Drawing names for Homemades</a></li>
 </ul></li>
 <li class="chapter" data-level="C" data-path="R-discreteRV.html"><a href="R-discreteRV.html"><i class="fa fa-check"></i><b>C</b> Discrete Random Variables in R</a>
 <ul>
@@ -377,13 +379,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <p>Let’s look at the actual rolls first:</p>
 <div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="R-sim-probability.html#cb127-1" tabindex="-1"></a>rolls</span></code></pre></div>
-<pre><code>## [1] 5 5 5 8 7</code></pre>
+<pre><code>## [1] 10  9  5  9 10</code></pre>
 <p>We need to check 5 things: Are rolls 1-4 all less than 8, and is roll 5 greater than 8? We can ask these five questions and store the answers in a vector:</p>
 <div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="R-sim-probability.html#cb129-1" tabindex="-1"></a><span class="fu">c</span>(rolls[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]<span class="sc">&lt;</span><span class="dv">8</span>,rolls[<span class="dv">5</span>]<span class="sc">&gt;=</span><span class="dv">8</span>)</span></code></pre></div>
-<pre><code>## [1]  TRUE  TRUE  TRUE FALSE FALSE</code></pre>
+<pre><code>## [1] FALSE FALSE  TRUE FALSE  TRUE</code></pre>
 <p>Recal, the <code>sum()</code> of a logical vector counts the number of TRUE values. We need the sum to be 5 to have a <em>good</em> sequence of 5 rolls.</p>
 <div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="R-sim-probability.html#cb131-1" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">c</span>(rolls[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]<span class="sc">&lt;</span><span class="dv">8</span>,rolls[<span class="dv">5</span>]<span class="sc">&gt;=</span><span class="dv">8</span>))</span></code></pre></div>
-<pre><code>## [1] 3</code></pre>
+<pre><code>## [1] 2</code></pre>
 <p>I think we’re ready!!</p>
 <p><strong>Final Code</strong></p>
 <div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="R-sim-probability.html#cb133-1" tabindex="-1"></a>trials <span class="ot">=</span> <span class="dv">10000</span></span>
@@ -399,10 +401,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="R-sim-probability.html#cb134-1" tabindex="-1"></a><span class="fu">table</span>(results)</span></code></pre></div>
 <pre><code>## results
 ##    0    1    2    3    4    5 
-##   49  547 2110 3644 2937  713</code></pre>
+##   59  555 2013 3650 2966  757</code></pre>
 <p>Based on our simulation, we estimate the probability of a <em>good</em> sequence of 5 rolls by the proportion of time the <code>results</code> vector took a value of 5.</p>
 <div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="R-sim-probability.html#cb136-1" tabindex="-1"></a><span class="fu">sum</span>(results<span class="sc">==</span><span class="st">&quot;5&quot;</span>)<span class="sc">/</span>trials</span></code></pre></div>
-<pre><code>## [1] 0.0713</code></pre>
+<pre><code>## [1] 0.0757</code></pre>
 <p>This estimate is likely very close to what we calculate by our counting tools <span class="math display">\[\frac{7^4\cdot 3}{10^5} \approx .07203.\]</span></p>
 </div>
 <div id="diff-2dice-R" class="section level2 hasAnchor" number="15.2">
@@ -426,8 +428,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="R-sim-probability.html#cb139-1" tabindex="-1"></a><span class="fu">table</span>(results)</span></code></pre></div>
 <pre><code>## results
 ##    0    1    2    3    4    5 
-## 1737 2765 2152 1656 1138  552</code></pre>
-<p>Conclusion: It appears we should expect the difference in the two dice to be 1 about 27.6% of the time.</p>
+## 1647 2885 2163 1653 1083  569</code></pre>
+<p>Conclusion: It appears we should expect the difference in the two dice to be 1 about 28.9% of the time.</p>
 <p>Note: In this example we added to the <code>results</code> vector by specifying <code>results[i]</code> in each trial, as opposed to the concatenation method we followed in the 10-sided die example.</p>
 <p>Referring to the 6x6 grid recording the difference for each of the 36 possible outcomes in Table <a href="discrete-probability-distributions.html#tab:diff-2-dice">3.5</a>, we would find the actual probability equal to 10/36 <span class="math inline">\(\approx\)</span> 0.278.</p>
 </div>
@@ -454,8 +456,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb141-8"><a href="R-sim-probability.html#cb141-8" tabindex="-1"></a><span class="fu">table</span>(heads)</span></code></pre></div>
 <pre><code>## heads
 ##    0    1    2    3    4    5 
-##  289 1528 3200 3100 1598  285</code></pre>
-<p>Conclusion: It appears we should expect to flip exactly 1 heads in 5 tries about 15.3% of the time.</p>
+##  309 1600 3119 3148 1543  281</code></pre>
+<p>Conclusion: It appears we should expect to flip exactly 1 heads in 5 tries about 16% of the time.</p>
 <p>By our counting tools, we can calculate the actual probability of getting exactly one heads in 5 flips as follows:</p>
 <p><span class="math display">\[5\cdot \left(\frac{1}{2}\right)^5 = 0.15625.\]</span>
 <!-- exact answer:  dbinom(1,5,1/2) --></p>
@@ -475,12 +477,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb143-8"><a href="R-sim-probability.html#cb143-8" tabindex="-1"></a>}</span>
 <span id="cb143-9"><a href="R-sim-probability.html#cb143-9" tabindex="-1"></a><span class="fu">table</span>(results)</span></code></pre></div>
 <pre><code>## results
-##    0    1    2    3    4    5    6    7 
-##  341 1530 2790 2745 1691  701  176   26</code></pre>
+##    0    1    2    3    4    5    6    7    8 
+##  409 1598 2635 2830 1669  674  167   16    2</code></pre>
 <p>We can enter <code>sum(results &gt; 5)</code> to see how often we grabbed more than 5 orange marbles in our sample of size 8, and <code>sum(results &gt; 5)/trials</code> is a good estimate of the likelihood of this happening.</p>
-<p>Conclusion: It appears we should expect the more than 5 orange marbles in our sample of 8 about 2% of the time:</p>
+<p>Conclusion: It appears we should expect the more than 5 orange marbles in our sample of 8 about 1.9% of the time:</p>
 <div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="R-sim-probability.html#cb145-1" tabindex="-1"></a><span class="fu">sum</span>(results <span class="sc">&gt;</span> <span class="dv">5</span>)<span class="sc">/</span>trials</span></code></pre></div>
-<pre><code>## [1] 0.0202</code></pre>
+<pre><code>## [1] 0.0185</code></pre>
 <p>This question is a classic “good potatoes/bad potatoes” problem, and by our counting techniques, we know the probability is <span class="math display">\[\frac{\binom{100}{6}\cdot\binom{200}{2}}{\binom{300}{8}}+
 \frac{\binom{100}{7}\cdot\binom{200}{1}}{\binom{300}{8}}+
 \frac{\binom{100}{8}\cdot\binom{200}{0}}{\binom{300}{8}},\]</span>
@@ -507,9 +509,9 @@ which we can evaluate in R as a check:</p>
 <span id="cb149-6"><a href="R-sim-probability.html#cb149-6" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Subgroup 1: &quot;</span>, sub1, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>,</span>
 <span id="cb149-7"><a href="R-sim-probability.html#cb149-7" tabindex="-1"></a>    <span class="st">&quot;Subgroup 2: &quot;</span>, sub2, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>,</span>
 <span id="cb149-8"><a href="R-sim-probability.html#cb149-8" tabindex="-1"></a>    <span class="st">&quot;Subgroup 3: &quot;</span>, sub3, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
-<pre><code>## Subgroup 1: JJJJS
-## Subgroup 2: FSSS
-## Subgroup 3: JFJ</code></pre>
+<pre><code>## Subgroup 1: SSJJJ
+## Subgroup 2: JFSJ
+## Subgroup 3: JFS</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Count the number of first-years in each subgroup, and record these numbers as a vector of length 3:</li>
 </ol>
@@ -541,10 +543,10 @@ which we can evaluate in R as a check:</p>
 <span id="cb155-14"><a href="R-sim-probability.html#cb155-14" tabindex="-1"></a><span class="fu">table</span>(results)</span></code></pre></div>
 <pre><code>## results
 ##    0    1 
-## 7102 2898</code></pre>
+## 7145 2855</code></pre>
 <p>Based on this simulation, we estimate the probability that both first-years end up in the same subgroup as</p>
 <div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="R-sim-probability.html#cb157-1" tabindex="-1"></a><span class="fu">sum</span>(results<span class="sc">==</span><span class="dv">1</span>)<span class="sc">/</span>trials</span></code></pre></div>
-<pre><code>## [1] 0.2898</code></pre>
+<pre><code>## [1] 0.2855</code></pre>
 <p>Using our counting tools to calculate the probability:</p>
 <p><span class="math display">\[\frac{\binom{10}{3~4~3}+\binom{10}{5~2~3}+\binom{10}{5~4~1}}{\binom{12}{5~4~3}}\]</span>
 which evaluates to 7980/27720 <span class="math inline">\(\approx 0.288\)</span>:</p>
@@ -563,7 +565,7 @@ which evaluates to 7980/27720 <span class="math inline">\(\approx 0.288\)</span>
 <div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="R-sim-probability.html#cb161-1" tabindex="-1"></a>plate <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">sample</span>(LETTERS,<span class="dv">3</span>,<span class="at">replace=</span><span class="cn">TRUE</span>),</span>
 <span id="cb161-2"><a href="R-sim-probability.html#cb161-2" tabindex="-1"></a>          <span class="fu">sample</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">9</span>,<span class="dv">3</span>,<span class="at">replace=</span><span class="cn">TRUE</span>))</span>
 <span id="cb161-3"><a href="R-sim-probability.html#cb161-3" tabindex="-1"></a>plate</span></code></pre></div>
-<pre><code>## [1] &quot;W&quot; &quot;W&quot; &quot;S&quot; &quot;6&quot; &quot;6&quot; &quot;7&quot;</code></pre>
+<pre><code>## [1] &quot;L&quot; &quot;Y&quot; &quot;U&quot; &quot;4&quot; &quot;5&quot; &quot;3&quot;</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>We can record the number of “8”s in the plate</li>
 </ol>
@@ -581,10 +583,10 @@ which evaluates to 7980/27720 <span class="math inline">\(\approx 0.288\)</span>
 <span id="cb165-9"><a href="R-sim-probability.html#cb165-9" tabindex="-1"></a><span class="fu">table</span>(results)</span></code></pre></div>
 <pre><code>## results
 ##    0    1    2    3 
-## 7326 2400  266    8</code></pre>
+## 7327 2389  277    7</code></pre>
 <p>Based on this simulation, we estimate the probability of having a plate with exactly 2 “8”s</p>
 <div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="R-sim-probability.html#cb167-1" tabindex="-1"></a><span class="fu">sum</span>(results<span class="sc">==</span><span class="st">&quot;2&quot;</span>)<span class="sc">/</span>trials</span></code></pre></div>
-<pre><code>## [1] 0.0266</code></pre>
+<pre><code>## [1] 0.0277</code></pre>
 <p>Using our counting tools to calculate the probability:</p>
 <p><span class="math display">\[\frac{26\cdot 26\cdot 26 \cdot \binom{3}{2} \cdot 1 \cdot 1 \cdot 9}{26^3\cdot 10^3}= \frac{27}{1000} = 0.027.\]</span></p>
 </div>
@@ -598,7 +600,7 @@ which evaluates to 7980/27720 <span class="math inline">\(\approx 0.288\)</span>
 <span id="cb169-2"><a href="R-sim-probability.html#cb169-2" tabindex="-1"></a><span class="fu">table</span>(one_poll)</span></code></pre></div>
 <pre><code>## one_poll
 ##   D   R 
-## 525 475</code></pre>
+## 538 462</code></pre>
 <p>Of course, the goal is to use the poll to predict the winner of the election.
 We use the <code>sum()</code> command to count how many elements in <code>one_poll</code> equal “D” (use those double equal signs), and the <code>ifelse()</code> command to record the predicted winner.</p>
 <div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="R-sim-probability.html#cb171-1" tabindex="-1"></a><span class="fu">ifelse</span>(<span class="fu">sum</span>(one_poll<span class="sc">==</span><span class="st">&quot;D&quot;</span>) <span class="sc">&gt;</span> <span class="dv">500</span>,<span class="st">&quot;Dem wins&quot;</span>,<span class="st">&quot;Tie or Rep wins&quot;</span>)</span></code></pre></div>
@@ -621,7 +623,7 @@ We use the <code>sum()</code> command to count how many elements in <code>one_po
 <span id="cb173-15"><a href="R-sim-probability.html#cb173-15" tabindex="-1"></a><span class="fu">table</span>(results)</span></code></pre></div>
 <pre><code>## results
 ##        D Tie or R 
-##     8898     1102</code></pre>
+##     8905     1095</code></pre>
 <p>This table gives us a sense of the likelihood that the pollsters plan will result in an accurate prediction of which candidate will win the election. Based on our simulation, that likelihood is about 0.89.</p>
 </div>
 <div id="same-birthday-R" class="section level2 hasAnchor" number="15.8">
@@ -687,16 +689,11 @@ So, the probability that at least two people share the same birthday, which is t
 <span id="cb182-9"><a href="R-sim-probability.html#cb182-9" tabindex="-1"></a>  }</span>
 <span id="cb182-10"><a href="R-sim-probability.html#cb182-10" tabindex="-1"></a>  results[i]<span class="ot">=</span>flips <span class="co">#updates results to include flips required for consec heads in this trial</span></span>
 <span id="cb182-11"><a href="R-sim-probability.html#cb182-11" tabindex="-1"></a>}</span></code></pre></div>
-<p>We note that the maximum number of flips it took to get consecutive Heads in these trials was <code>max(results)</code> = 44! (that’s not a factorial symbol, just me exclaiming). So we don’t list the full table of results here, just the first 10:</p>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="R-sim-probability.html#cb183-1" tabindex="-1"></a><span class="fu">table</span>(results)[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code></pre></div>
-<pre><code>## results
-##    2    3    4    5    6    7    8    9   10   11 
-## 2591 1280 1271  920  730  667  501  393  324  270</code></pre>
-<p>The <strong>relative frequencies</strong> of these results provide our estimate for the probability density function:</p>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="R-sim-probability.html#cb185-1" tabindex="-1"></a><span class="fu">table</span>(results)[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]<span class="sc">/</span>trials</span></code></pre></div>
+<p>We note that the maximum number of flips it took to get consecutive Heads in these trials was <code>max(results)</code> = 43! (that’s not a factorial symbol, just me exclaiming). So we don’t list the full table of results here, just the first 10 relative frequencies, which provide estimates for the probability function:</p>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="R-sim-probability.html#cb183-1" tabindex="-1"></a><span class="fu">table</span>(results)[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]<span class="sc">/</span>trials</span></code></pre></div>
 <pre><code>## results
 ##      2      3      4      5      6      7      8      9     10     11 
-## 0.2591 0.1280 0.1271 0.0920 0.0730 0.0667 0.0501 0.0393 0.0324 0.0270</code></pre>
+## 0.2519 0.1228 0.1268 0.0942 0.0764 0.0639 0.0465 0.0425 0.0337 0.0279</code></pre>
 <p>These values compare closely to the actual probability values <span class="math inline">\(F_{x+1}/2^x\)</span>:</p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -766,34 +763,34 @@ x
 Rel_freq
 </td>
 <td style="text-align:left;">
-0.2591
+0.2519
 </td>
 <td style="text-align:left;">
-0.1280
+0.1228
 </td>
 <td style="text-align:left;">
-0.1271
+0.1268
 </td>
 <td style="text-align:left;">
-0.0920
+0.0942
 </td>
 <td style="text-align:left;">
-0.0730
+0.0764
 </td>
 <td style="text-align:left;">
-0.0667
+0.0639
 </td>
 <td style="text-align:left;">
-0.0501
+0.0465
 </td>
 <td style="text-align:left;">
-0.0393
+0.0425
 </td>
 <td style="text-align:left;">
-0.0324
+0.0337
 </td>
 <td style="text-align:left;">
-0.0270
+0.0279
 </td>
 </tr>
 <tr>
@@ -833,6 +830,399 @@ p(x)
 </tr>
 </tbody>
 </table>
+</div>
+<div id="seats-on-an-airplane" class="section level2 hasAnchor" number="15.10">
+<h2><span class="header-section-number">B.10</span> Seats on an airplane<a href="R-sim-probability.html#seats-on-an-airplane" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>I Saw this question on twitter in the summer of 2024, and can’t find it now, but I think it was posted via the MAA and was question on national exam for grade 8.</p>
+<blockquote>
+<p>A small airplane has 4 rows of 3 seats. 8 people board and sit randomly among the 12 seats. Then a couple boards. What is the probability they will be able to sit next to each other in the same row?</p>
+</blockquote>
+<!-- my counting techniques answer
+#total possibilities: choose(12,8)
+# 8 possible 'first seats' for the couple (1,2,4,5,7,8,10,or 11), leaving choose(10,8) ways for the other 8 to have been seated.
+# but this over counts since some arrangements have two seating options for the couple (no arrangements have 3 seating options):
+# case 1 for two options: the two options are in separate rows (choose(4,2)*2*2)
+# case 2 for two options: they are in the same row (4*choose(9,8))
+#answer: 20/33
+-->
+<p><strong>Strategy</strong></p>
+<p>It is convenient to use a matrix with 4 rows and 3 columns to represent the seats in the plane. Each entry in the matrix is 0 or 1 depending on whether the seat is empty or occupied.</p>
+<p>We randomly assign 8 1s to the 12 entries in the matrix, leaving the remaining 4 spots 0, and then we check to see whether one of the rows has adjacent 0s.</p>
+<p>First, here’s one way to randomly assign 8 1s and 4 0s to 12 seats (we make a vector with 8 1s and 4 0s, and then take a random permutation of it):</p>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="R-sim-probability.html#cb185-1" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">8</span>),<span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">4</span>)))</span>
+<span id="cb185-2"><a href="R-sim-probability.html#cb185-2" tabindex="-1"></a>x</span></code></pre></div>
+<pre><code>##  [1] 1 1 0 0 0 1 1 0 1 1 1 1</code></pre>
+<p>And here’s how we can store this vector of length 12 in a <span class="math inline">\(4\times 3\)</span> matrix:</p>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="R-sim-probability.html#cb187-1" tabindex="-1"></a>m<span class="ot">=</span><span class="fu">matrix</span>(x,<span class="at">byrow=</span><span class="cn">TRUE</span>,<span class="at">nrow=</span><span class="dv">4</span>)</span>
+<span id="cb187-2"><a href="R-sim-probability.html#cb187-2" tabindex="-1"></a>m</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    1    0
+## [2,]    0    0    1
+## [3,]    1    0    1
+## [4,]    1    1    1</code></pre>
+<p>As the display above suggests, we can extract a value from matrix <code>m</code> by indicating its [row,column]:</p>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="R-sim-probability.html#cb189-1" tabindex="-1"></a>m[<span class="dv">3</span>,<span class="dv">2</span>]</span></code></pre></div>
+<pre><code>## [1] 0</code></pre>
+<p>One way to check for empty seats next to each other in a given row: See whether the middle entry is 0 AND either the 1st or the third entry is 0. Let’s check each of the rows in the arrangement above:</p>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="R-sim-probability.html#cb191-1" tabindex="-1"></a><span class="cf">for</span> (row <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>){</span>
+<span id="cb191-2"><a href="R-sim-probability.html#cb191-2" tabindex="-1"></a>  result<span class="ot">=</span><span class="fu">ifelse</span>((m[row,<span class="dv">2</span>]<span class="sc">==</span><span class="dv">0</span>) <span class="sc">&amp;</span> (m[row,<span class="dv">1</span>]<span class="sc">==</span><span class="dv">0</span> <span class="sc">|</span> m[row,<span class="dv">3</span>]<span class="sc">==</span><span class="dv">0</span>),<span class="st">&quot;seats together!&quot;</span>,<span class="st">&quot;nope&quot;</span>)</span>
+<span id="cb191-3"><a href="R-sim-probability.html#cb191-3" tabindex="-1"></a>   <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;Row&quot;</span>,row,result))</span>
+<span id="cb191-4"><a href="R-sim-probability.html#cb191-4" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## [1] &quot;Row 1 nope&quot;
+## [1] &quot;Row 2 seats together!&quot;
+## [1] &quot;Row 3 nope&quot;
+## [1] &quot;Row 4 nope&quot;</code></pre>
+<p>Ok, we’ve got a plan! In the code below, we use <code>s</code> to record, in each trial, whether the couple can find seats together (<code>s</code> = 1) or they can’t (<code>s</code> = 0).</p>
+<p><strong>Final code</strong></p>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="R-sim-probability.html#cb193-1" tabindex="-1"></a>trials <span class="ot">=</span> <span class="dv">10000</span></span>
+<span id="cb193-2"><a href="R-sim-probability.html#cb193-2" tabindex="-1"></a>results <span class="ot">=</span> <span class="fu">c</span>()</span>
+<span id="cb193-3"><a href="R-sim-probability.html#cb193-3" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>trials){</span>
+<span id="cb193-4"><a href="R-sim-probability.html#cb193-4" tabindex="-1"></a>  m<span class="ot">=</span><span class="fu">matrix</span>(<span class="fu">sample</span>(<span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">8</span>),<span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">4</span>))),<span class="at">byrow=</span><span class="cn">TRUE</span>,<span class="at">nrow=</span><span class="dv">4</span>)</span>
+<span id="cb193-5"><a href="R-sim-probability.html#cb193-5" tabindex="-1"></a>  s<span class="ot">=</span><span class="dv">0</span></span>
+<span id="cb193-6"><a href="R-sim-probability.html#cb193-6" tabindex="-1"></a>  <span class="cf">for</span> (r <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>){</span>
+<span id="cb193-7"><a href="R-sim-probability.html#cb193-7" tabindex="-1"></a>    <span class="cf">if</span> ((<span class="fu">sum</span>(m[r,])<span class="sc">&lt;=</span><span class="dv">1</span>)<span class="sc">&amp;</span>(m[r,<span class="dv">2</span>]<span class="sc">==</span><span class="dv">0</span>)){</span>
+<span id="cb193-8"><a href="R-sim-probability.html#cb193-8" tabindex="-1"></a>      s <span class="ot">=</span> <span class="dv">1</span></span>
+<span id="cb193-9"><a href="R-sim-probability.html#cb193-9" tabindex="-1"></a>      <span class="cf">break</span></span>
+<span id="cb193-10"><a href="R-sim-probability.html#cb193-10" tabindex="-1"></a>    }</span>
+<span id="cb193-11"><a href="R-sim-probability.html#cb193-11" tabindex="-1"></a>  }</span>
+<span id="cb193-12"><a href="R-sim-probability.html#cb193-12" tabindex="-1"></a>  results[i]<span class="ot">=</span>s</span>
+<span id="cb193-13"><a href="R-sim-probability.html#cb193-13" tabindex="-1"></a>}</span>
+<span id="cb193-14"><a href="R-sim-probability.html#cb193-14" tabindex="-1"></a><span class="fu">sum</span>(results)<span class="sc">/</span>trials</span></code></pre></div>
+<pre><code>## [1] 0.6138</code></pre>
+<p>This probability seems higher than I first expected it would be, but we can also prove using our counting techniques -we do this in class - that the probability is, in fact, 20/33.</p>
+</div>
+<div id="drawing-names-for-homemades" class="section level2 hasAnchor" number="15.11">
+<h2><span class="header-section-number">B.11</span> Drawing names for Homemades<a href="R-sim-probability.html#drawing-names-for-homemades" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Growing up, I enjoyed a family tradition of exchanging homemade gifts at Christmas. In part, my enjoyment stemmed from the fact that I was the youngest person, by 6 years, in our family of 6. While I would earnestly make and give to some unlucky brother or parent a clay boot I made in the kiln at school, I was likely to receive a far superior gift in return, perhaps a lightweight springboard from my Dad that was just sturdy enough to propel my little body, flipping, into a sea of beanbags in the basement, but not sturdy enough to withstand the weight of a big brother.</p>
+<p>I also enjoyed the secrecy of the homemades: the locked doors behind which people worked, the occasional curious scrap of material left behind on a workbench, or a splash of paint in the utility room that wasn’t there earlier. Then there was the celebration of the exchange itself, the pride of giving your gift, the excitement of receiving one, and, after months of speculation, the big reveal as to who everyone drew.</p>
+<p>We would draw namessome time in late October. If anyone drew their own name, we would immediately stop the process, return all names to the hat, and try again. We kept redrawing, as necessary, until everyone drew a name that wasn’t theirs. Then we were off and running, guarding the secret of our givee’s identity at all costs.</p>
+<p>In this example we pursue three questions related to the homemades:</p>
+<blockquote>
+<ol style="list-style-type: lower-alpha">
+<li>In our family of 6, what is the probability we will have to redraw.</li>
+</ol>
+</blockquote>
+<p>Our approach: Create a family vector (called <code>family</code>), and a permutation of <code>family</code> (called <code>draw</code>) and see whether these two vectors agree in any spot - if so, we need to redraw.</p>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="R-sim-probability.html#cb195-1" tabindex="-1"></a>family <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;Dad&quot;</span>,<span class="st">&quot;Mom&quot;</span>,<span class="st">&quot;Tom&quot;</span>,<span class="st">&quot;John&quot;</span>,<span class="st">&quot;Dave&quot;</span>,<span class="st">&quot;Mike&quot;</span>)</span>
+<span id="cb195-2"><a href="R-sim-probability.html#cb195-2" tabindex="-1"></a>draw <span class="ot">=</span> <span class="fu">sample</span>(family)</span>
+<span id="cb195-3"><a href="R-sim-probability.html#cb195-3" tabindex="-1"></a>redraw <span class="ot">=</span> <span class="fu">ifelse</span>(<span class="fu">sum</span>(family <span class="sc">==</span> draw)<span class="sc">&gt;</span><span class="dv">0</span>,<span class="st">&quot;yes&quot;</span>,<span class="st">&quot;no&quot;</span>)</span>
+<span id="cb195-4"><a href="R-sim-probability.html#cb195-4" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;Redraw?&quot;</span>,redraw))</span></code></pre></div>
+<pre><code>## [1] &quot;Redraw? no&quot;</code></pre>
+<p>Let’s check who each person drew to be sure (remember, our code is assuming the ith person in the <code>family</code> vector drew the ith person in the <code>draw</code> vector)</p>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="R-sim-probability.html#cb197-1" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>){</span>
+<span id="cb197-2"><a href="R-sim-probability.html#cb197-2" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(family[i],<span class="st">&quot;drew&quot;</span>,draw[i]))</span>
+<span id="cb197-3"><a href="R-sim-probability.html#cb197-3" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## [1] &quot;Dad drew Tom&quot;
+## [1] &quot;Mom drew Dad&quot;
+## [1] &quot;Tom drew Mom&quot;
+## [1] &quot;John drew Dave&quot;
+## [1] &quot;Dave drew Mike&quot;
+## [1] &quot;Mike drew John&quot;</code></pre>
+<p>We now estimate the probability of needing to redraw as follows:</p>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="R-sim-probability.html#cb199-1" tabindex="-1"></a>n<span class="ot">=</span><span class="dv">6</span> <span class="co">#size of family</span></span>
+<span id="cb199-2"><a href="R-sim-probability.html#cb199-2" tabindex="-1"></a>family <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span>n <span class="co">#we use numbers, to protect the innocent</span></span>
+<span id="cb199-3"><a href="R-sim-probability.html#cb199-3" tabindex="-1"></a>trials<span class="ot">=</span><span class="dv">10000</span></span>
+<span id="cb199-4"><a href="R-sim-probability.html#cb199-4" tabindex="-1"></a>results <span class="ot">=</span> <span class="fu">c</span>() <span class="co">#record for each trial a 1 for redraw, 0 for no redraw </span></span>
+<span id="cb199-5"><a href="R-sim-probability.html#cb199-5" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>trials){</span>
+<span id="cb199-6"><a href="R-sim-probability.html#cb199-6" tabindex="-1"></a>  draw <span class="ot">=</span> <span class="fu">sample</span>(family)</span>
+<span id="cb199-7"><a href="R-sim-probability.html#cb199-7" tabindex="-1"></a>  results[i] <span class="ot">=</span> <span class="fu">ifelse</span>(<span class="fu">sum</span>(family <span class="sc">==</span> draw)<span class="sc">&gt;</span><span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>)</span>
+<span id="cb199-8"><a href="R-sim-probability.html#cb199-8" tabindex="-1"></a>}</span>
+<span id="cb199-9"><a href="R-sim-probability.html#cb199-9" tabindex="-1"></a><span class="fu">sum</span>(results)<span class="sc">/</span>trials</span></code></pre></div>
+<pre><code>## [1] 0.6381</code></pre>
+<p>About a 63.8 percent chance we’ll need to redraw.</p>
+<blockquote>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>What is the expected number of draws needed until we do not need to redraw?</li>
+</ol>
+</blockquote>
+<p>Now in our simulation we want to redraw until we don’t have to, and record how many attempts it took.</p>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="R-sim-probability.html#cb201-1" tabindex="-1"></a>n<span class="ot">=</span><span class="dv">6</span> <span class="co">#size of family</span></span>
+<span id="cb201-2"><a href="R-sim-probability.html#cb201-2" tabindex="-1"></a>family <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span>n <span class="co">#we use numbers, to protect the innocent</span></span>
+<span id="cb201-3"><a href="R-sim-probability.html#cb201-3" tabindex="-1"></a>trials<span class="ot">=</span><span class="dv">10000</span></span>
+<span id="cb201-4"><a href="R-sim-probability.html#cb201-4" tabindex="-1"></a>results <span class="ot">=</span> <span class="fu">c</span>() <span class="co">#record for each trial how many attempts it took to get a good draw</span></span>
+<span id="cb201-5"><a href="R-sim-probability.html#cb201-5" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>trials){</span>
+<span id="cb201-6"><a href="R-sim-probability.html#cb201-6" tabindex="-1"></a>  attempts <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb201-7"><a href="R-sim-probability.html#cb201-7" tabindex="-1"></a>  draw_again <span class="ot">=</span> <span class="cn">TRUE</span></span>
+<span id="cb201-8"><a href="R-sim-probability.html#cb201-8" tabindex="-1"></a>  <span class="cf">while</span> (draw_again){</span>
+<span id="cb201-9"><a href="R-sim-probability.html#cb201-9" tabindex="-1"></a>    attempts <span class="ot">=</span> attempts<span class="sc">+</span><span class="dv">1</span></span>
+<span id="cb201-10"><a href="R-sim-probability.html#cb201-10" tabindex="-1"></a>    draw <span class="ot">=</span> <span class="fu">sample</span>(family)</span>
+<span id="cb201-11"><a href="R-sim-probability.html#cb201-11" tabindex="-1"></a>    draw_again <span class="ot">=</span> <span class="fu">ifelse</span>(<span class="fu">sum</span>(family <span class="sc">==</span> draw)<span class="sc">&gt;</span><span class="dv">0</span>,<span class="cn">TRUE</span>,<span class="cn">FALSE</span>)</span>
+<span id="cb201-12"><a href="R-sim-probability.html#cb201-12" tabindex="-1"></a>  }</span>
+<span id="cb201-13"><a href="R-sim-probability.html#cb201-13" tabindex="-1"></a>  results[i] <span class="ot">=</span> attempts</span>
+<span id="cb201-14"><a href="R-sim-probability.html#cb201-14" tabindex="-1"></a>}</span>
+<span id="cb201-15"><a href="R-sim-probability.html#cb201-15" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(results))</span></code></pre></div>
+<p><img src="math340-notes_files/figure-html/unnamed-chunk-136-1.png" width="672" /></p>
+<p>Cripes! Can you believe it took 22 draws on one of the trials? Anyway, our estimate for the expected number of draws needed to get the gift-making off the mark is:</p>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="R-sim-probability.html#cb202-1" tabindex="-1"></a><span class="fu">sum</span>(results)<span class="sc">/</span>trials</span></code></pre></div>
+<pre><code>## [1] 2.7186</code></pre>
+<p>Well THAT number looks somewhat familiar … .</p>
+<blockquote>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Over time the family grew as families do until we had 16 in the gift exchange. Does the probability of needing to redraw change substantially with the larger family size?</li>
+</ol>
+</blockquote>
+<p>Let’s just repeat <strong>(b)</strong> with <span class="math inline">\(n = 16\)</span>.</p>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="R-sim-probability.html#cb204-1" tabindex="-1"></a>n<span class="ot">=</span><span class="dv">16</span> <span class="co">#size of family</span></span>
+<span id="cb204-2"><a href="R-sim-probability.html#cb204-2" tabindex="-1"></a>family <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span>n <span class="co">#we use numbers, to protect the innocent</span></span>
+<span id="cb204-3"><a href="R-sim-probability.html#cb204-3" tabindex="-1"></a>trials<span class="ot">=</span><span class="dv">10000</span></span>
+<span id="cb204-4"><a href="R-sim-probability.html#cb204-4" tabindex="-1"></a>results <span class="ot">=</span> <span class="fu">c</span>() <span class="co">#record for each trial how many attempts it took to get a good draw</span></span>
+<span id="cb204-5"><a href="R-sim-probability.html#cb204-5" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>trials){</span>
+<span id="cb204-6"><a href="R-sim-probability.html#cb204-6" tabindex="-1"></a>  attempts <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb204-7"><a href="R-sim-probability.html#cb204-7" tabindex="-1"></a>  draw_again <span class="ot">=</span> <span class="cn">TRUE</span></span>
+<span id="cb204-8"><a href="R-sim-probability.html#cb204-8" tabindex="-1"></a>  <span class="cf">while</span> (draw_again){</span>
+<span id="cb204-9"><a href="R-sim-probability.html#cb204-9" tabindex="-1"></a>    attempts <span class="ot">=</span> attempts<span class="sc">+</span><span class="dv">1</span></span>
+<span id="cb204-10"><a href="R-sim-probability.html#cb204-10" tabindex="-1"></a>    draw <span class="ot">=</span> <span class="fu">sample</span>(family)</span>
+<span id="cb204-11"><a href="R-sim-probability.html#cb204-11" tabindex="-1"></a>    draw_again <span class="ot">=</span> <span class="fu">ifelse</span>(<span class="fu">sum</span>(family <span class="sc">==</span> draw)<span class="sc">&gt;</span><span class="dv">0</span>,<span class="cn">TRUE</span>,<span class="cn">FALSE</span>)</span>
+<span id="cb204-12"><a href="R-sim-probability.html#cb204-12" tabindex="-1"></a>  }</span>
+<span id="cb204-13"><a href="R-sim-probability.html#cb204-13" tabindex="-1"></a>  results[i] <span class="ot">=</span> attempts</span>
+<span id="cb204-14"><a href="R-sim-probability.html#cb204-14" tabindex="-1"></a>}</span>
+<span id="cb204-15"><a href="R-sim-probability.html#cb204-15" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(results))</span></code></pre></div>
+<p><img src="math340-notes_files/figure-html/unnamed-chunk-138-1.png" width="672" /></p>
+<p>Based on the trials, we estimate the probability of needing a redraw in the larger family to be</p>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="R-sim-probability.html#cb205-1" tabindex="-1"></a><span class="fu">sum</span>(results<span class="sc">&gt;</span><span class="dv">1</span>)<span class="sc">/</span>trials</span></code></pre></div>
+<pre><code>## [1] 0.6245</code></pre>
+<p>and our estimate for the expected number of draws to be</p>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="R-sim-probability.html#cb207-1" tabindex="-1"></a><span class="fu">sum</span>(results)<span class="sc">/</span>trials</span></code></pre></div>
+<pre><code>## [1] 2.6937</code></pre>
+<p>Not much movement in the estimates, it seems.</p>
+<p>With a function and a for loop we can streamline the process for estimating both of these values for many different family sizes.</p>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="R-sim-probability.html#cb209-1" tabindex="-1"></a>hat_draw_sim <span class="ot">&lt;-</span> <span class="cf">function</span>(n,trials){</span>
+<span id="cb209-2"><a href="R-sim-probability.html#cb209-2" tabindex="-1"></a>  <span class="co"># inputs: n - family size; trials - number of trials in simulation</span></span>
+<span id="cb209-3"><a href="R-sim-probability.html#cb209-3" tabindex="-1"></a>  <span class="co"># output: a vector with two values based on a number of trials:</span></span>
+<span id="cb209-4"><a href="R-sim-probability.html#cb209-4" tabindex="-1"></a>       <span class="co"># - first value: estimated prob of redraw for family size n</span></span>
+<span id="cb209-5"><a href="R-sim-probability.html#cb209-5" tabindex="-1"></a>       <span class="co"># - second value: estimated expected number of draws for family size n</span></span>
+<span id="cb209-6"><a href="R-sim-probability.html#cb209-6" tabindex="-1"></a>  family <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span>n </span>
+<span id="cb209-7"><a href="R-sim-probability.html#cb209-7" tabindex="-1"></a>  results <span class="ot">=</span> <span class="fu">c</span>() <span class="co">#record for each trial how many attempts it took to get a good draw</span></span>
+<span id="cb209-8"><a href="R-sim-probability.html#cb209-8" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>trials){</span>
+<span id="cb209-9"><a href="R-sim-probability.html#cb209-9" tabindex="-1"></a>    attempts <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb209-10"><a href="R-sim-probability.html#cb209-10" tabindex="-1"></a>    draw_again <span class="ot">=</span> <span class="cn">TRUE</span></span>
+<span id="cb209-11"><a href="R-sim-probability.html#cb209-11" tabindex="-1"></a>    <span class="cf">while</span> (draw_again){</span>
+<span id="cb209-12"><a href="R-sim-probability.html#cb209-12" tabindex="-1"></a>      attempts <span class="ot">=</span> attempts<span class="sc">+</span><span class="dv">1</span></span>
+<span id="cb209-13"><a href="R-sim-probability.html#cb209-13" tabindex="-1"></a>      draw <span class="ot">=</span> <span class="fu">sample</span>(family)</span>
+<span id="cb209-14"><a href="R-sim-probability.html#cb209-14" tabindex="-1"></a>      draw_again <span class="ot">=</span> <span class="fu">ifelse</span>(<span class="fu">sum</span>(family <span class="sc">==</span> draw)<span class="sc">&gt;</span><span class="dv">0</span>,<span class="cn">TRUE</span>,<span class="cn">FALSE</span>)</span>
+<span id="cb209-15"><a href="R-sim-probability.html#cb209-15" tabindex="-1"></a>    }</span>
+<span id="cb209-16"><a href="R-sim-probability.html#cb209-16" tabindex="-1"></a>    results[i] <span class="ot">=</span> attempts</span>
+<span id="cb209-17"><a href="R-sim-probability.html#cb209-17" tabindex="-1"></a>  }</span>
+<span id="cb209-18"><a href="R-sim-probability.html#cb209-18" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">c</span>(<span class="fu">sum</span>(results<span class="sc">&gt;</span><span class="dv">1</span>)<span class="sc">/</span>trials,<span class="fu">sum</span>(results)<span class="sc">/</span>trials))</span>
+<span id="cb209-19"><a href="R-sim-probability.html#cb209-19" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="R-sim-probability.html#cb210-1" tabindex="-1"></a><span class="co"># run simulation for various family sizes</span></span>
+<span id="cb210-2"><a href="R-sim-probability.html#cb210-2" tabindex="-1"></a>family_size <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">10</span>,<span class="fu">seq</span>(<span class="dv">15</span>,<span class="dv">50</span>,<span class="dv">5</span>))</span>
+<span id="cb210-3"><a href="R-sim-probability.html#cb210-3" tabindex="-1"></a>prob_redraw <span class="ot">=</span> <span class="fu">c</span>()</span>
+<span id="cb210-4"><a href="R-sim-probability.html#cb210-4" tabindex="-1"></a>expected_draws <span class="ot">=</span> <span class="fu">c</span>()</span>
+<span id="cb210-5"><a href="R-sim-probability.html#cb210-5" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(family_size)){</span>
+<span id="cb210-6"><a href="R-sim-probability.html#cb210-6" tabindex="-1"></a>  v<span class="ot">=</span><span class="fu">hat_draw_sim</span>(family_size[i],<span class="at">trials=</span><span class="dv">10000</span>)</span>
+<span id="cb210-7"><a href="R-sim-probability.html#cb210-7" tabindex="-1"></a>  prob_redraw[i] <span class="ot">=</span> v[<span class="dv">1</span>]</span>
+<span id="cb210-8"><a href="R-sim-probability.html#cb210-8" tabindex="-1"></a>  expected_draws[i] <span class="ot">=</span> v[<span class="dv">2</span>]</span>
+<span id="cb210-9"><a href="R-sim-probability.html#cb210-9" tabindex="-1"></a>}</span>
+<span id="cb210-10"><a href="R-sim-probability.html#cb210-10" tabindex="-1"></a><span class="co">#table of results</span></span>
+<span id="cb210-11"><a href="R-sim-probability.html#cb210-11" tabindex="-1"></a><span class="fu">kbl</span>(<span class="fu">data.frame</span>(family_size,prob_redraw,expected_draws)) <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>(<span class="at">full_width=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+family_size
+</th>
+<th style="text-align:right;">
+prob_redraw
+</th>
+<th style="text-align:right;">
+expected_draws
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0.4997
+</td>
+<td style="text-align:right;">
+2.0075
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0.6617
+</td>
+<td style="text-align:right;">
+2.9869
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0.6228
+</td>
+<td style="text-align:right;">
+2.6251
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+0.6270
+</td>
+<td style="text-align:right;">
+2.6811
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+0.6338
+</td>
+<td style="text-align:right;">
+2.7201
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+0.6259
+</td>
+<td style="text-align:right;">
+2.6946
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+0.6258
+</td>
+<td style="text-align:right;">
+2.6979
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+0.6270
+</td>
+<td style="text-align:right;">
+2.7155
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+0.6275
+</td>
+<td style="text-align:right;">
+2.7083
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+0.6230
+</td>
+<td style="text-align:right;">
+2.7024
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+0.6355
+</td>
+<td style="text-align:right;">
+2.7574
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+0.6315
+</td>
+<td style="text-align:right;">
+2.6677
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:right;">
+0.6307
+</td>
+<td style="text-align:right;">
+2.7295
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:right;">
+0.6245
+</td>
+<td style="text-align:right;">
+2.6769
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:right;">
+0.6341
+</td>
+<td style="text-align:right;">
+2.7255
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+45
+</td>
+<td style="text-align:right;">
+0.6301
+</td>
+<td style="text-align:right;">
+2.7200
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+0.6323
+</td>
+<td style="text-align:right;">
+2.7342
+</td>
+</tr>
+</tbody>
+</table>
+<p>It seems the probability of a redraw and the expected number of draws needed both converge fairly quickly to about 0.63 and 2.72, respectively.</p>
+<p>In fact, these values ought to be closely related of one another since “drawing until our first success” sounds like a geometric distribution to me. The probability of success on any given draw is about <span class="math inline">\(p = 1 - .632 = .368\)</span>, and the expected value for a geometric distribution is <span class="math inline">\(1/p\)</span>, which would be about <span class="math inline">\(1/.368 \approx 2.72\)</span>.</p>
+<p>True story: the actual expected value, as <span class="math inline">\(n \to \infty\)</span>, is <span class="math inline">\(1/e\)</span>.</p>
 
 </div>
 </div>

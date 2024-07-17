@@ -285,6 +285,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="B.7" data-path="R-sim-probability.html"><a href="R-sim-probability.html#pollsters-R"><i class="fa fa-check"></i><b>B.7</b> Pollsters</a></li>
 <li class="chapter" data-level="B.8" data-path="R-sim-probability.html"><a href="R-sim-probability.html#same-birthday-R"><i class="fa fa-check"></i><b>B.8</b> Matching Birthdays</a></li>
 <li class="chapter" data-level="B.9" data-path="R-sim-probability.html"><a href="R-sim-probability.html#flipping-coins-with-fibonacci"><i class="fa fa-check"></i><b>B.9</b> Flipping Coins with Fibonacci</a></li>
+<li class="chapter" data-level="B.10" data-path="R-sim-probability.html"><a href="R-sim-probability.html#seats-on-an-airplane"><i class="fa fa-check"></i><b>B.10</b> Seats on an airplane</a></li>
+<li class="chapter" data-level="B.11" data-path="R-sim-probability.html"><a href="R-sim-probability.html#drawing-names-for-homemades"><i class="fa fa-check"></i><b>B.11</b> Drawing names for Homemades</a></li>
 </ul></li>
 <li class="chapter" data-level="C" data-path="R-discreteRV.html"><a href="R-discreteRV.html"><i class="fa fa-check"></i><b>C</b> Discrete Random Variables in R</a>
 <ul>
@@ -398,11 +400,11 @@ Assuming that for now, we can say that <span class="math display">\[\hat{\theta}
 <span id="cb29-4"><a href="estimation.html#cb29-4" tabindex="-1"></a>est_1 <span class="ot">=</span> <span class="dv">2</span><span class="sc">*</span><span class="fu">mean</span>(X)</span>
 <span id="cb29-5"><a href="estimation.html#cb29-5" tabindex="-1"></a>est_2 <span class="ot">=</span> (n<span class="sc">+</span><span class="dv">1</span>)<span class="sc">/</span>n<span class="sc">*</span><span class="fu">max</span>(X)</span>
 <span id="cb29-6"><a href="estimation.html#cb29-6" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">round</span>(X,<span class="dv">2</span>))</span></code></pre></div>
-<pre><code>##  [1]  6.15  0.58  6.19  6.04  8.30 10.61 10.33 11.23 10.91 17.22</code></pre>
+<pre><code>##  [1] 16.22 12.81 18.44 17.51 15.38 15.89 14.46 16.80 19.36  1.53</code></pre>
 <p>For this single sample the estimators takes on these values:</p>
 <ul>
-<li>Estimator 1: <span class="math inline">\(\hat{\theta}_1\)</span> = 17.5</li>
-<li>Estimator 2: <span class="math inline">\(\hat{\theta}_2\)</span> = 18.9.</li>
+<li>Estimator 1: <span class="math inline">\(\hat{\theta}_1\)</span> = 29.7</li>
+<li>Estimator 2: <span class="math inline">\(\hat{\theta}_2\)</span> = 21.3.</li>
 </ul>
 <p>The fact that both estimators are unbiased means that in the long run, the average of all the <span class="math inline">\(\hat{\theta}_1\)</span> estimates would approach <span class="math inline">\(\theta\)</span>, and the same is true for the average of the <span class="math inline">\(\hat{\theta}_2\)</span> estimates.</p>
 <p>So, they’re both good estimaors of <span class="math inline">\(\theta\)</span> in that regard. What makes one estimator better is if the <em>variation</em> of the estimates obtained from repeated sampling is smaller for one than the other.</p>
@@ -432,13 +434,13 @@ Figure 13.1: Checking two unbiased estimators for variance
 </div>
 <p>Both estimators have average value near 20. In fact,</p>
 <ul>
-<li><code>mean(dist_1)</code>- = 20.1</li>
-<li><code>mean(dist_2)</code> = 20.07.</li>
+<li><code>mean(dist_1)</code>- = 20</li>
+<li><code>mean(dist_2)</code> = 19.99.</li>
 </ul>
 <p>But the estimator 2 distribution has visibly smaller variance. Indeed,</p>
 <ul>
-<li><code>sd(dist_1)</code> = 3.66</li>
-<li><code>sd(dist_2)</code> = 1.8.</li>
+<li><code>sd(dist_1)</code> = 3.69</li>
+<li><code>sd(dist_2)</code> = 1.88.</li>
 </ul>
 <p>It appears that the better estimator here is the one derived from the maximum value of the data as opposed to the mean of the data.</p>
 </div>

@@ -67,7 +67,7 @@ dbinom(0,5,.3)+dbinom(1,5,.3)+dbinom(2,5,.3)
 
 ### `qbinom()` - quantiles {-}
 
-Recall the definition of quantile (\@ref(quantile)): If $0 < p < 1$, the $p$th quantile of $X$, denoted $\phi_p$, is the smallest value such that $P(X \leq \phi_p) \geq p$. In other words, the value $\phi_p$ marks the smallest value below which one finds 100*p percent of the distribution of $X$.
+Recall the definition of quantile (\@ref(def:quantile)): If $0 < p < 1$, the $p$th quantile of $X$, denoted $\phi_p$, is the smallest value such that $P(X \leq \phi_p) \geq p$. In other words, the value $\phi_p$ marks the smallest value below which one finds 100*p percent of the distribution of $X$.
 
 
 > `qbinom(q,n,p)` returns the quantile $\phi_q$ for $X \sim \texttt{binom}(n,p)$
