@@ -444,14 +444,14 @@ For <span class="math inline">\(x = 0, 1, \ldots, n,\)</span> <span class="math 
 <p><code>rbinom(10,20,.4)</code> will generate a vector that stores a random sample of size 10 drawn from a <span class="math inline">\(\texttt{binom}(20,.4)\)</span> distribution.</p>
 </blockquote>
 <div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="R-discreteRV.html#cb238-1" tabindex="-1"></a><span class="fu">rbinom</span>(<span class="dv">10</span>,<span class="dv">20</span>,.<span class="dv">4</span>)</span></code></pre></div>
-<pre><code>##  [1]  8  7  4  4 10 10 12  7 13  3</code></pre>
+<pre><code>##  [1]  7  8  6  7  6  9 11  6  3  8</code></pre>
 <p>We can use <code>r___</code> to run simulations, and to visualize the shape of a distribution.</p>
 <p>Two useful commands for summarizing data: <code>table()</code> presents the frequency table for the sample, and <code>barplot(table())</code> is a quick way to visualize this frequency table.</p>
 <div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="R-discreteRV.html#cb240-1" tabindex="-1"></a>sim_data <span class="ot">=</span> <span class="fu">rbinom</span>(<span class="dv">1000</span>,<span class="dv">20</span>,.<span class="dv">4</span>) <span class="co"># sample of size 1000 from binom(20,.4).</span></span>
 <span id="cb240-2"><a href="R-discreteRV.html#cb240-2" tabindex="-1"></a><span class="fu">table</span>(sim_data)</span></code></pre></div>
 <pre><code>## sim_data
-##   2   3   4   5   6   7   8   9  10  11  12  13  14  15 
-##   6  14  37  82 114 156 177 150 119  79  44  17   4   1</code></pre>
+##   2   3   4   5   6   7   8   9  10  11  12  13  14 
+##   2  20  35  72 112 180 180 183 106  57  35  14   4</code></pre>
 <div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="R-discreteRV.html#cb242-1" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(sim_data))</span></code></pre></div>
 <p><img src="math340-notes_files/figure-html/unnamed-chunk-163-1.png" width="480" /></p>
 </div>
@@ -498,7 +498,7 @@ For <span class="math inline">\(x = 1, 2, 3, \ldots,\)</span> <span class="math 
 <div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="R-discreteRV.html#cb249-1" tabindex="-1"></a>results<span class="ot">=</span><span class="fu">rgeom</span>(<span class="dv">10000</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">6</span>)<span class="sc">+</span><span class="dv">1</span></span>
 <span id="cb249-2"><a href="R-discreteRV.html#cb249-2" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(results))</span></code></pre></div>
 <p><img src="math340-notes_files/figure-html/unnamed-chunk-167-1.png" width="672" /></p>
-<p>OMG notice from the bar plot that one depressing game required 47 rolls to see my first 4.</p>
+<p>OMG notice from the bar plot that one depressing game required 50 rolls to see my first 4.</p>
 </div>
 </div>
 <div id="negbinomR" class="section level2 hasAnchor" number="17.3">
@@ -868,12 +868,12 @@ Alternatively, the variance can be computed via
 <h3>Sampling<a href="R-discreteRV.html#sampling" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The following code draws a sample of size 10 from our distribution using the weighted probabilities assigned by the probability function:</p>
 <div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="R-discreteRV.html#cb282-1" tabindex="-1"></a><span class="fu">sample</span>(X,<span class="dv">10</span>,<span class="at">replace=</span><span class="cn">TRUE</span>,<span class="at">prob=</span>Px)</span></code></pre></div>
-<pre><code>##  [1] 7 8 6 7 5 8 5 6 9 7</code></pre>
+<pre><code>##  [1] 6 7 9 8 8 9 7 8 6 8</code></pre>
 <p>If we take a large sample, and make a relative frequency table of the results, it should be close to the probability table:</p>
 <div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="R-discreteRV.html#cb284-1" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">table</span>(<span class="fu">sample</span>(X,<span class="dv">10000</span>,<span class="at">replace=</span><span class="cn">TRUE</span>,Px))<span class="sc">/</span>trials,<span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## 
 ##     5     6     7     8     9 
-## 0.375 0.390 1.191 1.509 0.369</code></pre>
+## 0.382 0.383 1.171 1.521 0.377</code></pre>
 </div>
 <div id="discrete-uniform-distribution" class="section level3 hasAnchor" number="17.6.1">
 <h3><span class="header-section-number">C.6.1</span> Discrete Uniform Distribution<a href="R-discreteRV.html#discrete-uniform-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -893,7 +893,7 @@ Alternatively, the variance can be computed via
 <div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="R-discreteRV.html#cb287-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(results))<span class="sc">+</span></span>
 <span id="cb287-2"><a href="R-discreteRV.html#cb287-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x=</span>results,<span class="at">fill=</span>results))<span class="sc">+</span><span class="fu">xlab</span>(<span class="st">&quot;Name&quot;</span>)<span class="sc">+</span><span class="fu">ggtitle</span>(<span class="st">&quot;Pick a seal, any seal!&quot;</span>)<span class="sc">+</span><span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
 <p><img src="math340-notes_files/figure-html/unnamed-chunk-190-1.png" width="384" /></p>
-<p>Way to go Slarftel, you over achiever!</p>
+<p>Way to go Otto, you over achiever!</p>
 </div>
 
 </div>

@@ -2454,7 +2454,7 @@ As an aside, here's code to simulate Chuck-a-luck in R a bunch of times (betting
 \begin{verbatim}
 ## results
 ##   -1    1    2    5 
-## 1239  750  161   10
+## 1258  748  146    8
 \end{verbatim}
 
 \begin{Shaded}
@@ -2464,7 +2464,7 @@ As an aside, here's code to simulate Chuck-a-luck in R a bunch of times (betting
 \end{Shaded}
 
 \begin{verbatim}
-## [1] -0.05416667
+## [1] -0.08240741
 \end{verbatim}
 
 \begin{example}
@@ -3925,7 +3925,7 @@ In R we access the uniform distribution with \texttt{unif}. For instance, we can
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 8.8125533 3.9767428 0.8136621 7.6948940 3.5300695 3.6943150
+## [1] 0.02650601 6.67047161 6.00572568 2.58322919 5.68937549 6.78680174
 \end{verbatim}
 
 \begin{example}[Average value of a function]
@@ -3945,7 +3945,7 @@ Our strategy: Select a large random sample of points in the interval {[}0,2{]} a
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1.334432
+## [1] 1.337468
 \end{verbatim}
 
 \textbf{Note}: From Calc I, we know the average value of a function \(f\) over the interval \([a,b]\) is \[\frac{1}{b-a} \int_a^b f(x)~dx,\]
@@ -4999,7 +4999,7 @@ Let's see how these different estimators do for a particular random sample gener
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 12.09 12.25 10.49  6.05  0.05 10.59 10.91 13.70  2.02  1.47
+##  [1] 14.58 14.62  6.06  9.96  5.61  5.04  9.43 10.00  6.84 17.83
 \end{verbatim}
 
 For this single sample the estimators takes on these values:
@@ -5007,9 +5007,9 @@ For this single sample the estimators takes on these values:
 \begin{itemize}
 \tightlist
 \item
-  Estimator 1: \(\hat{\theta}_1\) = 15.9
+  Estimator 1: \(\hat{\theta}_1\) = 20
 \item
-  Estimator 2: \(\hat{\theta}_2\) = 15.1.
+  Estimator 2: \(\hat{\theta}_2\) = 19.6.
 \end{itemize}
 
 The fact that both estimators are unbiased means that in the long run, the average of all the \(\hat{\theta}_1\) estimates would approach \(\theta,\) and the same is true for the average of the \(\hat{\theta}_2\) estimates.
@@ -5046,9 +5046,9 @@ Both estimators have average value near 20. In fact,
 \begin{itemize}
 \tightlist
 \item
-  \texttt{mean(dist\_1)}- = 19.9
+  \texttt{mean(dist\_1)}- = 20
 \item
-  \texttt{mean(dist\_2)} = 19.99.
+  \texttt{mean(dist\_2)} = 20.07.
 \end{itemize}
 
 But the estimator 2 distribution has visibly smaller variance. Indeed,
@@ -5056,9 +5056,9 @@ But the estimator 2 distribution has visibly smaller variance. Indeed,
 \begin{itemize}
 \tightlist
 \item
-  \texttt{sd(dist\_1)} = 3.6
+  \texttt{sd(dist\_1)} = 3.62
 \item
-  \texttt{sd(dist\_2)} = 1.84.
+  \texttt{sd(dist\_2)} = 1.67.
 \end{itemize}
 
 It appears that the better estimator here is the one derived from the maximum value of the data as opposed to the mean of the data.
@@ -5265,7 +5265,7 @@ Let's put this interval formula to use. Here's a random sample of size 25 drawn 
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 63.37079 73.37223
+## [1] 62.83524 72.75215
 \end{verbatim}
 
 Did our confidence interval actually capture the value of the parameter (64)?
@@ -5295,10 +5295,10 @@ We can check this using R, first writing a little function out of the code above
 \begin{verbatim}
 ## results
 ##  0  1 
-##  4 96
+##  6 94
 \end{verbatim}
 
-In this simulation we drew 100 different random samples of size 25, each time generating a confidence interval for \(\theta\) and found that 96 of the 100 intervals captured \(\theta\). We would expect in the long run that 95\% of such confidence intervals would capture \(\theta\).
+In this simulation we drew 100 different random samples of size 25, each time generating a confidence interval for \(\theta\) and found that 94 of the 100 intervals captured \(\theta\). We would expect in the long run that 95\% of such confidence intervals would capture \(\theta\).
 \end{example}
 
 We have, generally,
@@ -6260,7 +6260,7 @@ For instance, we can draw a random sample of size 2 from \texttt{hr}:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 13 29
+## [1] 30 32
 \end{verbatim}
 
 Here's another example. Let's grab 20 skittles at random from the bag \texttt{skittles} we created in example \ref{exm:skittles} and count how many orange ones we get:
@@ -6275,7 +6275,7 @@ Here's another example. Let's grab 20 skittles at random from the bag \texttt{sk
 \begin{verbatim}
 ## grab
 ##  green orange purple    red yellow 
-##      7      2      1      9      1
+##      6      4      2      5      3
 \end{verbatim}
 
 The \texttt{table()} command counts how many of each color :).
@@ -6289,7 +6289,7 @@ We could have found the orange count directly with
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2
+## [1] 4
 \end{verbatim}
 
 \subsection*{\texorpdfstring{\texttt{sample()} options}{sample() options}}\label{sample-options}
@@ -6343,7 +6343,7 @@ Use \texttt{sample(x)} to generate a \emph{random permutation} of \texttt{x}:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "hedgehog" "dog"      "rabbit"   "cat"
+## [1] "rabbit"   "dog"      "cat"      "hedgehog"
 \end{verbatim}
 
 \subsubsection*{Repeated sampling of 1 element}\label{repeated-sampling-of-1-element}
@@ -6363,7 +6363,7 @@ Example; Draw one animal from the set 1000 different times and summarize the pic
 \begin{verbatim}
 ## picks
 ##      cat      dog hedgehog   rabbit 
-##      271      255      240      234
+##      275      249      243      233
 \end{verbatim}
 
 And the winner is\ldots{} cat!
@@ -6383,7 +6383,7 @@ Or, since we fear rabbits and love dogs, we can do repeated sampling of a single
 \begin{verbatim}
 ## picks2
 ##      cat      dog hedgehog   rabbit 
-##      202      419      294       85
+##      217      386      290      107
 \end{verbatim}
 
 Nice!
@@ -6405,7 +6405,7 @@ Pick 4 students at random from a class of 9 to race around Taylor Hall. (Assumes
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 3 5 6 2
+## [1] 7 5 1 8
 \end{verbatim}
 
 \subsection*{Sample with replacement}\label{sample-with-replacement}
@@ -6423,7 +6423,7 @@ On twelve consecutive days, ask one student at random, in a class of size 9, to 
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 3 3 3 7 1 2 9 3 2 8 8 4
+##  [1] 4 3 6 3 5 4 9 4 8 9 4 1
 \end{verbatim}
 
 \subsection*{Sample with custom probabilities}\label{sample-with-custom-probabilities}
@@ -6457,7 +6457,7 @@ Roll a weighted 6 sided die with the following probability distribution 100 time
 \begin{verbatim}
 ## rolls
 ##  1  2  3  4  5  6 
-## 14  5  6 52 11 12
+## 11 10  5 44 14 16
 \end{verbatim}
 
 \subsection*{Example: Lefties}\label{example-lefties}
@@ -6495,7 +6495,7 @@ A second approach: sample with replacement 45 times from a ``two-sided'' die wit
 \begin{verbatim}
 ## 
 ##  L  R 
-##  3 42
+##  5 40
 \end{verbatim}
 
 A third approach: Use a binomial distribution (later)
@@ -6566,9 +6566,9 @@ statistic & command & result \\
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-mean & \texttt{mean(orange\_counts)} & 21.0631 \\
-standard deviation & \texttt{sd(orange\_counts)} & 3.4885148 \\
-five number summary & \texttt{fivenum(orange\_counts)} & 5, 19, 21, 23, 35 \\
+mean & \texttt{mean(orange\_counts)} & 21.0224 \\
+standard deviation & \texttt{sd(orange\_counts)} & 3.4487516 \\
+five number summary & \texttt{fivenum(orange\_counts)} & 7, 19, 21, 23, 34 \\
 \end{longtable}
 
 \section{Summary of R commands}\label{sampling-commands}
@@ -6635,10 +6635,10 @@ Example with \texttt{x\ =\ 1:6}
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-permutation of \texttt{x} & \texttt{sample(x)\ =} 5, 3, 6, 1, 4, 2 \\
-sample \(n\) elements without replacement & \texttt{sample(x,3)\ =} 1, 3, 6 \\
-sample \(n\) elements with replacement & \texttt{sample(x,5,replace=T)\ =} 3, 5, 2, 6, 2 \\
-sample with custom probabilities & \texttt{sample(x,10,replace=T,prob=\ c(0,.2,0,.5,.1,.2))\ =} 4, 4, 4, 2, 5, 5, 4, 4, 6, 4 \\
+permutation of \texttt{x} & \texttt{sample(x)\ =} 5, 3, 1, 6, 2, 4 \\
+sample \(n\) elements without replacement & \texttt{sample(x,3)\ =} 3, 4, 2 \\
+sample \(n\) elements with replacement & \texttt{sample(x,5,replace=T)\ =} 1, 5, 2, 3, 3 \\
+sample with custom probabilities & \texttt{sample(x,10,replace=T,prob=\ c(0,.2,0,.5,.1,.2))\ =} 2, 2, 4, 6, 4, 6, 4, 4, 4, 4 \\
 \end{longtable}
 
 \chapter{Simulating Probability in R}\label{R-sim-probability}
@@ -6681,11 +6681,11 @@ Results:
 \begin{verbatim}
 ## results
 ##    0    1    2    3    4    5 
-## 1614 2855 2197 1725 1085  524
+## 1676 2744 2227 1654 1138  561
 \end{verbatim}
 
 Conclusion: By computing the ratio \texttt{sum(results==1)/trials}, we obtain our estimate of the probability the two dice to be 1 apart:
-0.2855.
+0.2744.
 
 Referring to the 6x6 grid recording the difference for each of the 36 possible outcomes in Table \ref{tab:diff-2-dice}, we would find the actual probability equal to 10/36 \(\approx\) 0.278.
 
@@ -6715,7 +6715,7 @@ Strategy:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "E" "N" "C" "4" "1" "0"
+## [1] "L" "S" "V" "1" "5" "3"
 \end{verbatim}
 
 Fun!
@@ -6757,7 +6757,7 @@ Fun!
 \begin{verbatim}
 ## results
 ##    0    1    2    3 
-## 7222 2486  282   10
+## 7234 2443  309   14
 \end{verbatim}
 
 Based on this simulation, we estimate the probability of having a plate with exactly 2 ``8''s
@@ -6769,7 +6769,7 @@ Based on this simulation, we estimate the probability of having a plate with exa
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.0282
+## [1] 0.0309
 \end{verbatim}
 
 Using our counting tools to calculate the probability (and we really don't need to keep track of the letters in the plate, but we do):
@@ -6815,7 +6815,7 @@ We can ask these five questions in R and store the answers in a logical vector:
 \end{Shaded}
 
 \begin{verbatim}
-## [1]  TRUE  TRUE  TRUE FALSE FALSE
+## [1]  TRUE FALSE FALSE FALSE FALSE
 \end{verbatim}
 
 Recall, the \texttt{sum()} of a logical vector counts the number of TRUE values. We need the sum to be 5 to have the kind of sequence we want to count.
@@ -6827,7 +6827,7 @@ Recall, the \texttt{sum()} of a logical vector counts the number of TRUE values.
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 3
+## [1] 1
 \end{verbatim}
 
 I think we're ready!!
@@ -6859,10 +6859,10 @@ The results of the simulation:
 \begin{verbatim}
 ## results
 ##    0    1    2    3    4    5 
-##   54  531 2050 3658 3016  691
+##   48  517 2154 3672 2914  695
 \end{verbatim}
 
-Based on our simulation, we estimate the probability in question by the ratio: \texttt{sum(results==5)/trials} = 0.0691.
+Based on our simulation, we estimate the probability in question by the ratio: \texttt{sum(results==5)/trials} = 0.0695.
 
 This estimated probability is likely very close to what we calculate by our counting tools: \[\frac{7^4\cdot 3}{10^5} \approx .07203.\]
 
@@ -6891,7 +6891,7 @@ An urn contains 100 orange and 200 green marbles. If you draw 8 marbles from the
 \begin{verbatim}
 ## results
 ##    0    1    2    3    4    5    6    7 
-##  380 1506 2737 2804 1719  674  158   22
+##  361 1497 2737 2860 1695  674  154   22
 \end{verbatim}
 
 We can enter \texttt{sum(results\ \textgreater{}\ 5)} to see how often we grabbed more than 5 orange marbles in our sample of size 8, and \texttt{sum(results\ \textgreater{}\ 5)/trials} is a good estimate of the likelihood of this happening.
@@ -6905,7 +6905,7 @@ Conclusion: It appears we should expect the more than 5 orange marbles in our sa
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.018
+## [1] 0.0176
 \end{verbatim}
 
 This question is a classic ``good potatoes/bad potatoes'' problem, and by our counting techniques, we know the probability is \[\frac{\binom{100}{6}\cdot\binom{200}{2}}{\binom{300}{8}}+
@@ -6980,12 +6980,12 @@ Summary of results:
 
 \begin{verbatim}
 ## results
-##    1    2    3    4    5    6    7    8    9   10   11   12   13   15 
-##  190 1942 3090 2270 1270  663  296  148   65   30   14   17    3    2
+##    1    2    3    4    5    6    7    8    9   10   11   12   13   14   16 
+##  179 1953 3110 2264 1301  616  301  149   71   30   16    5    3    1    1
 \end{verbatim}
 
-Are you kidding me? In 2 of the trials we saw 15 Heads in a row!?
-Based on these trials, our estimate for the likelihood of seeing a run of at least 5 Heads in 20 flips is \texttt{sum(results\ \textgreater{}=5)/trials} = 0.251.
+Are you kidding me? In 1 of the trials we saw 16 Heads in a row!?
+Based on these trials, our estimate for the likelihood of seeing a run of at least 5 Heads in 20 flips is \texttt{sum(results\ \textgreater{}=5)/trials} = 0.249.
 
 \section{Splitting a set into multiple subsets}\label{partition-set-R}
 
@@ -7017,9 +7017,9 @@ A class has 12 people: 6 juniors, 4 sophomores, and 2 first-years. The class is 
 \end{Shaded}
 
 \begin{verbatim}
-## Subgroup 1: FJFSS
-## Subgroup 2: SJJJ
-## Subgroup 3: JSJ
+## Subgroup 1: JJSJJ
+## Subgroup 2: SSJF
+## Subgroup 3: JSF
 \end{verbatim}
 
 \begin{enumerate}
@@ -7040,7 +7040,7 @@ A class has 12 people: 6 juniors, 4 sophomores, and 2 first-years. The class is 
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2 0 0
+## [1] 0 1 1
 \end{verbatim}
 
 \begin{enumerate}
@@ -7058,7 +7058,7 @@ A class has 12 people: 6 juniors, 4 sophomores, and 2 first-years. The class is 
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1
+## [1] 0
 \end{verbatim}
 
 \textbf{Final Code}
@@ -7087,7 +7087,7 @@ We put it all together now. In particular, we repeat the following process for 1
 \begin{verbatim}
 ## results
 ##    0    1 
-## 7088 2912
+## 7150 2850
 \end{verbatim}
 
 Based on this simulation, we estimate the probability that both first-years end up in the same subgroup as
@@ -7099,7 +7099,7 @@ Based on this simulation, we estimate the probability that both first-years end 
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.2912
+## [1] 0.285
 \end{verbatim}
 
 Using our counting tools to calculate the probability:
@@ -7135,7 +7135,7 @@ First, let's create and summarize a single poll of 1000 people from a population
 \begin{verbatim}
 ## one_poll
 ##   D   R 
-## 531 469
+## 517 483
 \end{verbatim}
 
 Of course, the goal is to use the poll to predict the winner of the election.
@@ -7176,10 +7176,10 @@ Now, our goal is to repeat this sampling and prediction procedure 10000 times, a
 \begin{verbatim}
 ## results
 ##        D Tie or R 
-##     8924     1076
+##     8935     1065
 \end{verbatim}
 
-This table gives us a sense of the likelihood that the pollsters plan will result in an accurate prediction of which candidate will win the election. Based on our simulation, that likelihood is about 0.892.
+This table gives us a sense of the likelihood that the pollsters plan will result in an accurate prediction of which candidate will win the election. Based on our simulation, that likelihood is about 0.893.
 
 \section{Matching Birthdays}\label{same-birthday-R}
 
@@ -7299,7 +7299,7 @@ We can also approximate the probability function by simulation.
 \end{Highlighting}
 \end{Shaded}
 
-We note that the maximum number of flips it took to get consecutive Heads in these trials was \texttt{max(results)} = 49! (that's not a factorial symbol, just me exclaiming). So we don't list the full table of results here, just the first 10 relative frequencies, which provide estimates for the probability function:
+We note that the maximum number of flips it took to get consecutive Heads in these trials was \texttt{max(results)} = 45! (that's not a factorial symbol, just me exclaiming). So we don't list the full table of results here, just the first 10 relative frequencies, which provide estimates for the probability function:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7310,7 +7310,7 @@ We note that the maximum number of flips it took to get consecutive Heads in the
 \begin{verbatim}
 ## results
 ##      2      3      4      5      6      7      8      9     10     11 
-## 0.2535 0.1261 0.1235 0.0892 0.0785 0.0631 0.0508 0.0426 0.0307 0.0254
+## 0.2487 0.1304 0.1263 0.0935 0.0784 0.0633 0.0493 0.0417 0.0289 0.0255
 \end{verbatim}
 
 These values compare closely to the actual probability values \(F_{x+1}/2^x\):
@@ -7321,7 +7321,7 @@ These values compare closely to the actual probability values \(F_{x+1}/2^x\):
 \hline
 x & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11\\
 \hline
-Rel\_freq & 0.2535 & 0.1261 & 0.1235 & 0.0892 & 0.0785 & 0.0631 & 0.0508 & 0.0426 & 0.0307 & 0.0254\\
+Rel\_freq & 0.2487 & 0.1304 & 0.1263 & 0.0935 & 0.0784 & 0.0633 & 0.0493 & 0.0417 & 0.0289 & 0.0255\\
 \hline
 p(x) & 0.2500 & 0.1250 & 0.1250 & 0.0938 & 0.0781 & 0.0625 & 0.0508 & 0.0410 & 0.0332 & 0.0269\\
 \hline
@@ -7350,7 +7350,7 @@ First, here's one way to randomly assign 8 1s and 4 0s to 12 seats (we make a ve
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 0 1 1 0 1 1 0 1 1 0 1 1
+##  [1] 1 0 0 1 1 0 1 1 1 0 1 1
 \end{verbatim}
 
 And here's how we can store this vector of length 12 in a \(4\times 3\) matrix:
@@ -7364,9 +7364,9 @@ And here's how we can store this vector of length 12 in a \(4\times 3\) matrix:
 
 \begin{verbatim}
 ##      [,1] [,2] [,3]
-## [1,]    0    1    1
-## [2,]    0    1    1
-## [3,]    0    1    1
+## [1,]    1    0    0
+## [2,]    1    1    0
+## [3,]    1    1    1
 ## [4,]    0    1    1
 \end{verbatim}
 
@@ -7384,7 +7384,7 @@ Here's one way to check for empty seats next to each other in a given row: See w
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Row 1 nope"
+## [1] "Row 1 seats together!"
 ## [1] "Row 2 nope"
 ## [1] "Row 3 nope"
 ## [1] "Row 4 nope"
@@ -7414,7 +7414,7 @@ Ok, we've got a plan! In the code below, we use \texttt{s} to record, in each tr
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.6126
+## [1] 0.6063
 \end{verbatim}
 
 This probability seems higher than I first expected it would be, but we can also prove using our counting techniques -we do this in class - that the probability is, in fact, 20/33.
@@ -7468,7 +7468,11 @@ Let's check who each person drew to be sure (remember, our code is assuming the 
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Dad drew Dad"
+## [1] "Dad drew Mom"
+## [1] "Mom drew Dad"
+## [1] "Tom drew Mike"
+## [1] "John drew Tom"
+## [1] "Dave drew Dave"
 ## [1] "Dang it! Need to redraw. Names back in the hat."
 \end{verbatim}
 
@@ -7489,7 +7493,7 @@ We now estimate the probability of not needing to redraw as follows:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.3697
+## [1] 0.3705
 \end{verbatim}
 
 About a 37 percent chance of not needing to redraw.
@@ -7528,7 +7532,7 @@ Now in our simulation we want to redraw until we don't have to, and record how m
 
 \includegraphics{math340-notes_files/figure-latex/unnamed-chunk-142-1.pdf}
 
-Cripes! In 1 of the trials we needed 20 draws until no one drew their own name! Anyway, our estimate for the expected number of draws needed to get the gift-making off the mark is:
+Cripes! In 1 of the trials we needed 21 draws until no one drew their own name! Anyway, our estimate for the expected number of draws needed to get the gift-making off the mark is:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7537,7 +7541,7 @@ Cripes! In 1 of the trials we needed 20 draws until no one drew their own name! 
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2.6935
+## [1] 2.7033
 \end{verbatim}
 
 and if that number looks somewhat familiar, I encourage you to read the mathematical addendum at the end of this example.
@@ -7585,7 +7589,7 @@ Based on the trials, we estimate the probability of not needing a redraw in the 
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.3687
+## [1] 0.3664
 \end{verbatim}
 
 and our estimate for the expected number of draws to be
@@ -7597,7 +7601,7 @@ and our estimate for the expected number of draws to be
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2.6934
+## [1] 2.7211
 \end{verbatim}
 
 Not much movement in the estimates, it seems.
@@ -7650,43 +7654,43 @@ With a function and a for loop we can streamline the process for estimating both
 \hline
 family\_size & prob\_redraw & expected\_draws\\
 \hline
-2 & 0.4988 & 2.0005\\
+2 & 0.4985 & 2.0055\\
 \hline
-3 & 0.3380 & 2.9587\\
+3 & 0.3384 & 3.0354\\
 \hline
-4 & 0.3636 & 2.7123\\
+4 & 0.3765 & 2.6489\\
 \hline
-5 & 0.3704 & 2.7430\\
+5 & 0.3739 & 2.6985\\
 \hline
-6 & 0.3649 & 2.7235\\
+6 & 0.3650 & 2.7292\\
 \hline
-7 & 0.3736 & 2.7132\\
+7 & 0.3694 & 2.7123\\
 \hline
-8 & 0.3764 & 2.7052\\
+8 & 0.3660 & 2.7468\\
 \hline
-9 & 0.3665 & 2.7505\\
+9 & 0.3608 & 2.7247\\
 \hline
-10 & 0.3626 & 2.7146\\
+10 & 0.3671 & 2.7127\\
 \hline
-15 & 0.3775 & 2.7089\\
+15 & 0.3720 & 2.6897\\
 \hline
-20 & 0.3647 & 2.7142\\
+20 & 0.3634 & 2.7384\\
 \hline
-25 & 0.3743 & 2.6862\\
+25 & 0.3610 & 2.7262\\
 \hline
-30 & 0.3694 & 2.7259\\
+30 & 0.3723 & 2.7019\\
 \hline
-35 & 0.3649 & 2.7212\\
+35 & 0.3681 & 2.7250\\
 \hline
-40 & 0.3796 & 2.6798\\
+40 & 0.3679 & 2.7265\\
 \hline
-45 & 0.3668 & 2.7160\\
+45 & 0.3674 & 2.7243\\
 \hline
-50 & 0.3700 & 2.6865\\
+50 & 0.3740 & 2.6957\\
 \hline
-55 & 0.3669 & 2.7206\\
+55 & 0.3662 & 2.7100\\
 \hline
-60 & 0.3659 & 2.7305\\
+60 & 0.3699 & 2.7115\\
 \hline
 \end{tabular}
 \end{table}
@@ -7757,7 +7761,7 @@ Creating this game in R requires some work, beginning with the creation of a dec
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "6-clubs"    "J-spades"   "K-clubs"    "Q-diamonds"
+## [1] "J-clubs"  "A-clubs"  "8-spades" "3-hearts"
 \end{verbatim}
 
 Here's code for playing the game with a lot of printed statements to increase the drama of each turn. We do not run the code here, but recommend you copy and paste it into a script in your own session and play a few times to get the feel for it.
@@ -7865,7 +7869,7 @@ Our estimated probability of winning in a game of Idiot's delight:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.32
+## [1] 0.329
 \end{verbatim}
 
 For (b), the likelihood of having a reduction on turn \(k\) (for each \(k = 1,2,\ldots 52\)), we can compare our hand size after turn \(k\) with our hand size after turn \(k-1\).
@@ -8044,7 +8048,7 @@ We can check this:
 \end{Shaded}
 
 \begin{verbatim}
-##  [1]  7  8  9  5  6  9 11 11 11  9
+##  [1]  9  8  8  9  9  6 10  8  9  9
 \end{verbatim}
 
 We can use \texttt{r\_\_\_} to run simulations, and to visualize the shape of a distribution.
@@ -8060,8 +8064,8 @@ Two useful commands for summarizing data: \texttt{table()} presents the frequenc
 
 \begin{verbatim}
 ## sim_data
-##   1   2   3   4   5   6   7   8   9  10  11  12  13  15  16 
-##   1   6   9  23  68 136 181 178 188  90  65  39  12   3   1
+##   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15 
+##   1   4  20  37  70 114 154 192 142 135  75  41  10   3   2
 \end{verbatim}
 
 \begin{Shaded}
@@ -8600,7 +8604,7 @@ The following code draws a sample of size 10 from our distribution using the wei
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 7 5 8 8 8 8 9 7 8 8
+##  [1] 8 8 5 7 5 8 8 7 5 6
 \end{verbatim}
 
 If we take a large sample, and make a relative frequency table of the results, it should be close to the probability table:
@@ -8614,7 +8618,7 @@ If we take a large sample, and make a relative frequency table of the results, i
 \begin{verbatim}
 ## 
 ##     5     6     7     8     9 
-## 0.383 0.373 1.163 1.526 0.389
+## 0.383 0.375 1.176 1.499 0.401
 \end{verbatim}
 
 \subsection{Discrete Uniform Distribution}\label{discrete-uniform-distribution}
@@ -8652,7 +8656,7 @@ The resulting frequency plot should look uniform:
 
 \includegraphics{math340-notes_files/figure-latex/unnamed-chunk-190-1.pdf}
 
-Way to go Slarftel, you over achiever!
+Way to go Pluotika, you over achiever!
 
 \end{example}
 
@@ -8708,8 +8712,8 @@ A uniform random variable \(X\) over the interval \([a,b]\) has density function
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 0.40278356 0.42582576 0.60715240 0.61041372 0.01538657 0.45759926
-##  [7] 0.21881637 0.34626135 0.65106480 0.67295856
+##  [1] 0.02047615 0.77732297 0.71999848 0.56768506 0.47341318 0.05197772
+##  [7] 0.32825031 0.64348235 0.75687427 0.48826314
 \end{verbatim}
 
 \subsection*{Picking random points in the unit square}\label{picking-random-points-in-the-unit-square}
@@ -8757,7 +8761,7 @@ and we can estimate \(\pi\) as follows:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 3.172
+## [1] 3.0856
 \end{verbatim}
 
 \section{\texorpdfstring{Normal Distribution \texttt{norm}}{Normal Distribution norm}}\label{normalR}
@@ -8841,7 +8845,7 @@ Now suppose we draw a sample of size 50 from this population, and compute the sa
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 14.85187
+## [1] 15.58746
 \end{verbatim}
 
 Now let's repeat this process for 10000 trials, and look at the distribution of the 10000 sample means:
@@ -8993,7 +8997,7 @@ We can estimate both \(P(X>t)\) and \(P(X>t+s ~|~ X>s)\) by checking a large ran
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Estimate for P(X>t): 0.549"
+## [1] "Estimate for P(X>t): 0.552"
 \end{verbatim}
 
 \begin{Shaded}
@@ -9003,7 +9007,7 @@ We can estimate both \(P(X>t)\) and \(P(X>t+s ~|~ X>s)\) by checking a large ran
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Estimate for P(X>t+s | X>s): 0.558"
+## [1] "Estimate for P(X>t+s | X>s): 0.541"
 \end{verbatim}
 
 \section{\texorpdfstring{Gamma Distribution \texttt{gamma}}{Gamma Distribution gamma}}\label{gammaR}
@@ -9067,10 +9071,10 @@ Just about a 50\% chance that a random value from a \(\texttt{gamma}(3,4)\) dist
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 476
+## [1] 486
 \end{verbatim}
 
-Well, 476 is mighty close to half of the 1000 values!
+Well, 486 is mighty close to half of the 1000 values!
 \end{example}
 
 \textbf{Exponential distributions are special gamma distributions.} In particular, if we set \(\alpha=1,\) the gamma distribution gamma(1,\(\beta\)) is exactly equal to the exponential distribution exp(\(\beta\)).

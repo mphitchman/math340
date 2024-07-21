@@ -400,8 +400,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="picking-random-numbers" class="section level3 unnumbered hasAnchor">
 <h3>Picking random numbers<a href="R-continuousRV.html#picking-random-numbers" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="R-continuousRV.html#cb288-1" tabindex="-1"></a><span class="fu">runif</span>(<span class="dv">10</span>,<span class="dv">0</span>,<span class="dv">1</span>) <span class="co">#pick 10 random numbers between 0 and 1.</span></span></code></pre></div>
-<pre><code>##  [1] 0.74001366 0.06192684 0.64768391 0.64781014 0.57054783 0.90897650
-##  [7] 0.16670415 0.45684992 0.64497488 0.82486654</code></pre>
+<pre><code>##  [1] 0.552234142 0.730874940 0.676887879 0.667921087 0.245767776 0.465612501
+##  [7] 0.667979054 0.433200398 0.006354385 0.775605822</code></pre>
 </div>
 <div id="picking-random-points-in-the-unit-square" class="section level3 unnumbered hasAnchor">
 <h3>Picking random points in the unit square<a href="R-continuousRV.html#picking-random-points-in-the-unit-square" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -428,7 +428,7 @@ The area of the circle is <span class="math inline">\(\pi (1)^2 = \pi.\)</span> 
 and we can estimate <span class="math inline">\(\pi\)</span> as follows:
 <span class="math display">\[\pi \approx 4\cdot \frac{\text{points in circle}}{\text{total points}}\]</span></p>
 <div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="R-continuousRV.html#cb292-1" tabindex="-1"></a><span class="dv">4</span><span class="sc">*</span><span class="fu">sum</span>(df<span class="sc">$</span>circle<span class="sc">==</span><span class="st">&quot;yes&quot;</span>)<span class="sc">/</span>points <span class="co"># our estimate of pi</span></span></code></pre></div>
-<pre><code>## [1] 3.132</code></pre>
+<pre><code>## [1] 3.16</code></pre>
 </div>
 </div>
 <div id="normalR" class="section level2 hasAnchor" number="18.2">
@@ -464,7 +464,7 @@ b) Find the birth weight that marks the bottom 1% of all birthweights.</p>
 <p><img src="math340-notes_files/figure-html/unnamed-chunk-197-1.png" width="672" />
 Now suppose we draw a sample of size 50 from this population, and compute the sample mean of these 50 values:</p>
 <div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="R-continuousRV.html#cb302-1" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">sample</span>(pop,<span class="dv">50</span>))</span></code></pre></div>
-<pre><code>## [1] 14.71418</code></pre>
+<pre><code>## [1] 14.71836</code></pre>
 <p>Now let’s repeat this process for 10000 trials, and look at the distribution of the 10000 sample means:</p>
 <div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="R-continuousRV.html#cb304-1" tabindex="-1"></a>trials<span class="ot">=</span><span class="dv">10000</span></span>
 <span id="cb304-2"><a href="R-continuousRV.html#cb304-2" tabindex="-1"></a>results<span class="ot">=</span><span class="fu">c</span>()</span>
@@ -538,9 +538,9 @@ Now suppose we draw a sample of size 50 from this population, and compute the sa
 <span id="cb312-4"><a href="R-continuousRV.html#cb312-4" tabindex="-1"></a>p1<span class="ot">=</span><span class="fu">sum</span>(x <span class="sc">&gt;</span> t)<span class="sc">/</span>trials <span class="co">#P(X &gt; t)</span></span>
 <span id="cb312-5"><a href="R-continuousRV.html#cb312-5" tabindex="-1"></a>p2<span class="ot">=</span><span class="fu">sum</span>(x[<span class="fu">which</span>(x <span class="sc">&gt;</span> s)]<span class="sc">&gt;</span>s<span class="sc">+</span>t)<span class="sc">/</span><span class="fu">sum</span>(x<span class="sc">&gt;</span>s) <span class="co">#P(X&gt;t+s | X &gt; s)</span></span>
 <span id="cb312-6"><a href="R-continuousRV.html#cb312-6" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;Estimate for P(X&gt;t):&quot;</span>,<span class="fu">round</span>(p1,<span class="dv">3</span>)))</span></code></pre></div>
-<pre><code>## [1] &quot;Estimate for P(X&gt;t): 0.555&quot;</code></pre>
+<pre><code>## [1] &quot;Estimate for P(X&gt;t): 0.549&quot;</code></pre>
 <div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="R-continuousRV.html#cb314-1" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;Estimate for P(X&gt;t+s | X&gt;s):&quot;</span>,<span class="fu">round</span>(p2,<span class="dv">3</span>)))</span></code></pre></div>
-<pre><code>## [1] &quot;Estimate for P(X&gt;t+s | X&gt;s): 0.557&quot;</code></pre>
+<pre><code>## [1] &quot;Estimate for P(X&gt;t+s | X&gt;s): 0.546&quot;</code></pre>
 </div>
 </div>
 <div id="gammaR" class="section level2 hasAnchor" number="18.4">
@@ -573,8 +573,8 @@ Figure D.1: Finding P(4&lt;X&lt;12) for a gamma(3,4) distribution
 </blockquote>
 <div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="R-continuousRV.html#cb318-1" tabindex="-1"></a>x<span class="ot">=</span><span class="fu">rgamma</span>(<span class="dv">1000</span>,<span class="dv">3</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">4</span>) <span class="co"># random sample of size 1000 (no parameter names &lt;-&gt; shape,rate)</span></span>
 <span id="cb318-2"><a href="R-continuousRV.html#cb318-2" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">abs</span>(x<span class="dv">-8</span>)<span class="sc">&lt;</span><span class="dv">4</span>) <span class="co"># values in the sample between 4 and 12</span></span></code></pre></div>
-<pre><code>## [1] 503</code></pre>
-<p>Well, 503 is mighty close to half of the 1000 values!</p>
+<pre><code>## [1] 500</code></pre>
+<p>Well, 500 is mighty close to half of the 1000 values!</p>
 </div>
 <p><strong>Exponential distributions are special gamma distributions.</strong> In particular, if we set <span class="math inline">\(\alpha=1,\)</span> the gamma distribution gamma(1,<span class="math inline">\(\beta\)</span>) is exactly equal to the exponential distribution exp(<span class="math inline">\(\beta\)</span>).</p>
 <p>So, if <span class="math inline">\(X\)</span> is exponential with mean 10, the following commands all compute <span class="math inline">\(P(X \leq 5)\)</span>.</p>

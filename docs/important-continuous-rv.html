@@ -395,7 +395,7 @@ we may write <span class="math inline">\(X ~\sim~ U(\theta_1,\theta_2)\)</span> 
 <p>In R we access the uniform distribution with <code>unif</code>. For instance, we can generate a random sample of <span class="math inline">\(n\)</span> numbers in the interval <span class="math inline">\([a,b]\)</span> with the <code>runif()</code> command:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="important-continuous-rv.html#cb10-1" tabindex="-1"></a>n<span class="ot">=</span><span class="dv">6</span>; a <span class="ot">=</span> <span class="dv">0</span>; b <span class="ot">=</span> <span class="dv">10</span>;</span>
 <span id="cb10-2"><a href="important-continuous-rv.html#cb10-2" tabindex="-1"></a><span class="fu">runif</span>(n,a,b)</span></code></pre></div>
-<pre><code>## [1] 0.6360234 0.2962364 6.5408146 5.5151840 7.5519277 6.0462098</code></pre>
+<pre><code>## [1] 2.190763 5.178201 4.109791 5.066897 8.867719 6.814807</code></pre>
 <div class="example">
 <p><span id="exm:unlabeled-div-37" class="example"><strong>Example 10.1  (Average value of a function) </strong></span></p>
 <blockquote>
@@ -404,7 +404,7 @@ we may write <span class="math inline">\(X ~\sim~ U(\theta_1,\theta_2)\)</span> 
 <p>Our strategy: Select a large random sample of points in the interval [0,2] and then compute the average of their squares.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="important-continuous-rv.html#cb12-1" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">runif</span>(<span class="dv">1000</span>,<span class="dv">0</span>,<span class="dv">2</span>) <span class="co">#picking 1000 points in [0,2]</span></span>
 <span id="cb12-2"><a href="important-continuous-rv.html#cb12-2" tabindex="-1"></a><span class="fu">mean</span>(x<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
-<pre><code>## [1] 1.272858</code></pre>
+<pre><code>## [1] 1.339345</code></pre>
 <p><strong>Note</strong>: From Calc I, we know the average value of a function <span class="math inline">\(f\)</span> over the interval <span class="math inline">\([a,b]\)</span> is <span class="math display">\[\frac{1}{b-a} \int_a^b f(x)~dx,\]</span>
 so here it’s <span class="math display">\[\frac{1}{2}\int_0^2 x^2~dx = \frac{1}{6} x^3 ~\biggr|_0^2 = 4/3 \approx 1.333.\]</span></p>
 </div>

@@ -376,7 +376,7 @@ Use `sample(x)` to generate a *random permutation* of `x`:
 sample(animals) #default size is the length of the vector
 ```
 
-#### Repeated sampling of 1 element {-}
+#### Repeated sampling of 1 element {-} 
 
 Use `sample()` to simulate picking one elemnt of `animals` $n$ times by setting`size = n` and `replace = TRUE`.
 
