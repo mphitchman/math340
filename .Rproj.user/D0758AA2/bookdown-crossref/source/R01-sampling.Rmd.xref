@@ -1,5 +1,5 @@
 h1:appendix-using-r (APPENDIX) Using R
-h1:sampling-in-r Sampling in R
+h1:sampling-in-R Sampling in R
 h2:vectors-R Data vectors
 h3:vector-types vector types
 h3:matrices Matrices
@@ -17,7 +17,7 @@ h3:letters letters
 h3:rep 
 h3:table 
 h3:seq 
-h2:sampling-in-R Sampling
+h2:sampling-in-R-section Sampling
 h3:sample-options  options
 h4:permutations Permutations
 h4:repeated-sampling-of-1-element Repeated sampling of 1 element

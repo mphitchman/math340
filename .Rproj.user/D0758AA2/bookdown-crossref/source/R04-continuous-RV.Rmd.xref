@@ -8,6 +8,7 @@ h3:sampling-distribution-of-a-sample-mean Sampling Distribution of a sample mean
 h2:expR Exponential Distribution 
 h3:a-memoryless-distribution A Memoryless distribution
 h2:gammaR Gamma Distribution 
+h2:chiR Chi-square Distribution 
 h2:betaR Beta distribution 
 h2:custom-continuous-R Homemade Continuous Random Variables
 h3:input-the-density-function Input the density function

@@ -37,7 +37,7 @@ which doesn't depend on $\theta$. So $U = Y/\theta$ is a pivotal quantity.
 
 Let's use $U$ to build a 95\% confidence interval for $\theta$ based on a sample $X_1, X_2, \ldots, X_n$ drawn from the uniform distribution $U(0,\theta)$.
 
-In particular, we find estimators $\hat{\theta}_L$ and $\hat{\theta}_U$ so that $P(\hat{\theta}_L \leq \theta \leq \hat{\theta}_H) = .95$.
+In particular, we find estimators $\hat{\theta}_L$ and $\hat{\theta}_U$ so that $P(\hat{\theta}_L \leq \theta \leq \hat{\theta}_U) = .95$.
 
 Well, we know the distribution of the pivotal quantity $U = Y/\theta$, where $Y$ is the max of the data, so one solution here is to find constants $a$ and $b$ between 0 and 1 so that 
 
@@ -217,7 +217,7 @@ ggplot()+
   )
 ```
 
-The scene outlined above applies to many situations, thanks to the Central Limit Theorem, including the four common scenarios mention in Chapter \ref@(estimation): 
+The scene outlined above applies to many situations, thanks to the Central Limit Theorem, including the four common scenarios mention in Chapter \@ref(estimation): 
 
   - 1 mean $\mu$, estimated with sample mean $\overline{X}$,
   - 1 proportion $p$, estimate with sample proportion $\hat{p}$,
@@ -360,11 +360,43 @@ where t_{\alpha/2}$ live in a t-distribution with $n_1+n_2-2$ degrees of freedom
 
 
 :::{.example}
+The silver content (% Ag) of a number of Byzantine coins discovered in Cyprus was determined.  Nine of the coins came from the first coinage of the reign of King Manuel, I, Comnenus (1143-1180); and 7 of the coins came from a coinage many years later.  
+ 
+**The data**
 
-COIN EXAMPLE
+```{r}
+Ag1 <- c(5.9,6.8,6.4,7.0,6.6,7.7,7.2,6.9,6.2)
+Ag2 <- c(5.3,5.6,5.5,5.1,6.2,5.8,5.8) 
+```
 
+These data appear in *The Handbook of Small Data Sets* (p. 118), and are based on this article: 
+
+Hendy, M.F. and Charles J.A. (1970), *The production techniques, silver content and circulation history of the twelfth-century Byzantine Trachy.*  Archaeonetry, 12. 13-21)
+
+**The question**
+
+Is there a significant difference in the silver content of coins minted early and late in Manuel's reign?
+
+Let's conduct a small sample confidence interval for the difference in the two population means $\mu_1 - \mu_2$ from the summary statistics:
+
+```{r,echo=FALSE}
+kbl(data.frame(sample = c(1,2),
+               n = c(9,7),
+               xbar = c(6.74, 5.61),
+               s = c(.543,.363))) %>% kable_styling(full_width=FALSE)
+```
+
+The pooled sample standard deviation is then $$s_p = \sqrt{\frac{8\cdot s_1^2 + 6 \cdot s_2^2}{14}} \approx .474,$$
+and for 95\% confidence we use $t^*$ = `qt(.975,14)` = `r round(qt(.975,14),3)`. With all these values we have the following 95\% confidence interval for $\mu_1 = \mu_2$: $$0.62 \text{ to } 1.64.$$
+The entire interval lies above 0, so we have good evidence here of a difference between $\mu_1$ and $\mu_2$.
 :::
 
+Was it reasonable in the previous example to assume the two populations have equal variance? Might differences in silver content in these two eras make it likely that other production differences existed as well (that might make variation in silver content from coin to coin also change)? 
+
+If $\sigma_1^2$ and $\sigma_2^2$ are unknown, sample sizes are samll, and its unreasonalbe to assume $\sigma_1^2$ and $\sigma_2^2$ are equal, one often sees the following (approximate) level $(1-\alpha)$ confidence interval for $\mu_1 - \mu_2$:
+$$\overline{X}_1 - \overline{X}_2 \pm t_{\alpha/2} \cdot \sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}$$ where $t_{\alpha/2}$ lives in a t-distribution with degrees of freedom equal to the minimum of $n_1 - 1$ and $n_2 - 1$.
+So for the coin example, we would use $t^*$ = `qt(.975,6)` = `r round(qt(.975,6),3)`, giving us a wider confidence interval in the end:
+$$0.574 \text{ to } 1.686,$$ but still one that suggests a difference between $\mu_1$ and $\mu_2$.
 
 :::{.example name="Recent Buffalo Snowfall"}
 
@@ -380,6 +412,8 @@ Y = c(158.7,132.4,111.3,100.9,109.1,78.2,88.9,103.8,100.2,74.1,111.8,
 ```
 
 A 95\% confidence interval for the difference $\mu_X-\mu_Y$:
+
+TODO
 
 :::
 

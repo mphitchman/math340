@@ -4,7 +4,6 @@ bookdown::gitbook:
     sharing: false
         #facebook: false
         #twitter: false
-
     toc:
       collapse: section
       before: |

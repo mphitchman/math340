@@ -1,6 +1,6 @@
 # Discrete Probability Distributions
 
-In this chapter we consider chance experiments and develop basic notions of a probability model for such an experiment.  
+In this chapter we develop basic notions of a probability model for a chance experiment.  
 
 ## Sample Space 
 
@@ -37,7 +37,7 @@ The sample space of a chance experiment is called **discrete**\index{sample spac
 If you asked me to pick a random real number from the unit interval $I = [0,1]$, this is a chance experiment with an uncountable sample space, and something we are not considering in this chapter. We focus on such games in Chapter \@ref(continuous-rv). 
 
 ::: {.definition #probability-distribution-function} 
-Given a chance experiment with sample space $S$ that is finite or countably infinite, a **probability distribution function** on the elements of $S$ is a real-valued function $m$ which satisfies these two conditions:
+Given a chance experiment with discrete sample space $S$, a **probability distribution function** on the elements of $S$ is a real-valued function $m$ which satisfies these two conditions:
 
 1. $m(s) \geq 0$ for all $s \in S$, and
 2. $\displaystyle \sum_{s \in S} m(s) = 1.$
@@ -54,7 +54,7 @@ Let's consider our first three chance experiments once more.
 
 3. If we flip a fair coin 3 times, it seems reasonable that each of the 8 possible sequences of three flips in $S$ is equally likely, so we can assign the probability distribution function $m(s) = 1/8$ for each element $s \in S$. 
 
-In the case of a countably infinite sample space (such as shooting free throws until we've made three), defining a valid probability function requires more care: to check that the sum of all $m(s)$ equals 1 requires the evaluation of an infinite series from Calc II. 
+In the case of a countably infinite sample space (such as shooting free throws until we've made three), defining a valid probability function requires more care: to check that the sum of all $m(s)$ equals 1 requires the evaluation of an infinite series. 
 
 ## Discrete Random Variables
 
@@ -192,17 +192,16 @@ Here's one more example of finding probabilities via the sample-point method.
 
 > Four phones are found in a classroom after class. The professor returns them at random to the four students the next class.  Let $X$ denote the number of students who receive the correct phone.  Let's determine the probability distribution for $X$ by the sample-point method.  
 
-The chance experiment here is straight-forward: randomly return 4 phones to the 4 students who own them. 
+The chance experiment here is straight-forward: randomly return 4 phones to the 4 students who own them. We list the basic outcomes as follows:
 
+  - Name the students "a", "b", "c", and "d", and name their phones by the same letter (student "a" owns phone "a", etc). 
+  - Return the phones randomly to the students so that "a" receives the first phone, "b" the second, and so on. 
+ - record the results of the experiment by writing down the phone names in the order in which they were returned.  
+ - For instance, recording "c b a d" would mean student $a$ received phone $c$, student $b$ received phone $b$ (their own phone!), student $c$ received phone $a$, and student $d$ received their own phone, $d$. 
 
-  - Name the students "a", "b", "c", and "d", and assume we return the phones randomly one at a time, in alphabetical order ("a" is the first to receive a phone, "b" next, and so on.)  
-  - Refer to the phones by their owner's name. 
-  - To record the results of the experiment, we simply write down the phones in the order in which they were returned.  
-  - For instance, recording "c b a d" would mean student $a$ received phone $c$, student $b$ received phone $b$ (their own phone!), student $c$ received phone $a$, and student $d$ received their own phone, $d$. 
-  - In this way, the 24 different permutations of the letters "a b c d" listed below correspond to the 24 basic outcomes possible in this experiment. 
-  - For each sample point in the table below, we also record $X$, the number of students to receive their phone back for that sample point.
+In this way, the 24 different permutations of the letters "a b c d" listed in Table \@ref(tab:random-phones-table) correspond to the 24 basic outcomes possible in this experiment. For each basic outcome in the table we also record $X$, the number of students to receive their own phone for that basic outcome.
 
-```{r,echo=FALSE}
+```{r,echo=FALSE,label="random-phones-table", fig.cap="Returning 4 phones at random, X counts how many students receive their own phone."}
 p <- combinat::permn(letters[1:4])
 num_correct <- function(x){sum(x==letters[1:4])}
 X <- lapply(p,num_correct)
@@ -218,7 +217,7 @@ df <- cbind(df1,df_space,df2)
 kable(df,
       align="c",
       col.names = c("a","b","c","d","X"," ","a","b","c","d","X"),
-      caption="Returning 4 phones at random, X counts how many students receive their own phone.") %>%
+      ) %>%
   kable_classic_2(full_width=F) %>%
   column_spec(1,border_left = TRUE) %>%
   column_spec(c(4,5,6,10,11),border_right=TRUE)%>%

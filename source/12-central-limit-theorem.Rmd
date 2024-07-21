@@ -314,58 +314,112 @@ And $$\frac{1}{n}X = \frac{1}{n}\sum_{i=1}^n Y_i.$$ By the Central Limit Theorem
 
 > If $X$ is $\text{binom}(n,p)$ then $X$ is approximately $N(np, \sqrt{np(1-p)})$ for large $n$.
 
-Let's look at a few examples and then fine tune this approximation with a continuity correction.
+Let's look at an example and then fine tune the approximation with a continuity correction.
 
 :::{.example}
 Suppose 44\% of a voting population actually plan to vote for candidate A (though we don't know this :)). If we draw a random sample of $n = 100$ voters, what is the approximate probability that 51 or more of the 100 sampled plan to vote for candidate A?
 
 If we know the size of the population we can answer this question precisely with the hypergeometric distribution:
 
-For instance, suppose the population consists of 10000 voters, and $X$ equals the number of voters in a sample of size 100 that plan to vote for candidate $A. Then for any $x = 0, 1, \ldots, 100$, 
+For instance, suppose the population consists of 10000 voters, and $X$ equals the number of voters in a sample of size 100 that plan to vote for candidate A. Then for any $x = 0, 1, \ldots, 100$, 
 $$p(x) = \frac{\binom{4400}{x}\binom{5600}{100-x}}{\binom{10000}{100}},$$
-and $$P(X \geq 51) = \sum_{x = 51}^100 p(x),$$
+and $$P(X \geq 51) = \sum_{x = 51}^{100} p(x),$$
 and this sum can be calculated in R by:
 ```{r}
 1-phyper(50,4400,5600,100)
 ```
 about a 9.4\% chance.
 
-Notice, if the populatioin is just 1000, the answer to this question would be
-
-```{r}
-1-phyper(50,440,560,100)
-```
+Notice, if the populatioin is just 1000, the answer to this question would be `1-phyper(50,440,560,100)` = `r 1-phyper(50,440,560,100)`. 
 
 
-If we don't know the size of the population, but assume it's big, then the sampling process is close to that of 100 identical Bernoulli trials, where in each case, $p = .44$. In this case, $X$ is binom$(n=100,p=.44), and $P(X \geq 51) is found in R via
+If we don't know the size of the population, but assume it's big, then the sampling process is close to that of 100 identical Bernoulli trials, where in each case, $p = .44$. In this case, $X$ is $\text{binom}(n=100,p=.44)$, and $P(X \geq 51)$ is found in R via
 ```{r}
 1-pbinom(50,100,.44)
 ```
 
 Notice that the binomial approximation here is closer to the actual probability calculated with the hypergeometric distribution for $n = 10000$ than for $n = 1000$.
 
-Finally, let's approximate the likelihood with a normal approximation.
+Finally, let's approximate the likelihood with a normal distribution.
 According to the Central Limit Theorem, $X$ is approximately $N(44,\sqrt{100(.44)(.56)})$, or $N(44,4.964)$.
 So $P(X \geq 51) = 1 - P(X < 51)$ = `1 - pnorm(51,44,4.964)` = `r round(1 - pnorm(51,44,4.964),3)`.
 
-This normal estimate is a little low, and we can improve the estimate by making what is called a *continuity correction*\index{continuity correction}:
+This normal estimate is a little low, and we can improve the estimate by making what is called a *continuity correction*.
+:::
 
-$P(X \geq 51)$ as a binomial probability can be viewed as an area of rectangles, and this area is better approximated with the area under the normal bell-curve by $$\int_{50.5}^{100.5} f(x)~dx$$ as pictured, and this area is 
+### Continuity Correction {-}
 
-(TODO: Add figure)
+Suppose $X$ is $\texttt{binom}(100,.44)$, as in the voting example, and we want to estimate $P(51 \leq X \leq 55)$ by using the normal approximation $N(44,\sqrt{100(.44)(.56)})$. 
+
+The actual binomial probability can be represented as the sum of the 5 rectangle areas in Figure \@ref(fig:continuity-correction). 
+Each rectangle has width 1, and the heights of the rectangles correspond to $P(X = x)$ (binomial probability) for each $x = 51,\ldots,55.$
+We also see in the figure a portion of the $N(44,\sqrt{100(.44)(.56)})$ density curve $f(x)$. The area under $f$ that best approximates the rectangle areas will be the integral with bounds [50.5,55.5] (whose area is shaded in the figure), as opposed to the integral with bounds [51,55].
+
+
+```{r, echo=FALSE,fig.dim=c(5,3),label="continuity-correction",fig.cap="Continuity correction to estimate a binomial probability with a normal curve"}
+p = .44
+n = 100
+mean = n*p 
+sigma = sqrt(n*p*(1-p))
+a = 51
+b = 55
+x=seq(a-1,b+1,.1)
+f = dnorm(x,mean,sigma)
+
+x_rect = seq(a,b,1)
+y_rect = dbinom(x_rect,100,p)
+
+df_curve = data.frame(x,f)
+df_rect = data.frame(x = x_rect,y = y_rect)
+df_area = df_curve %>% filter(x>=a-.5) %>% filter(x <= b+.5)
+
+ggplot()+
+  geom_line(data=df_curve,aes(x=x,y=f))+
+  geom_area(data=df_area,aes(x=x,y=f),fill="red",alpha=.4)+
+  geom_col(data=df_rect,aes(x=x,y=y),width=1,col="blue",fill="white",alpha=.1)+
+  geom_segment(data = data.frame(x=c(50.5,55.5),y1=c(0,0),y2=dnorm(c(50.5,55.5),mean,sigma)),
+               aes(x=x,
+                   xend=x,
+                   y=y1,
+                   yend=y2),
+               col="red")+
+  scale_x_continuous(breaks=51:55)+
+  ylab("")+
+  annotate("text", x=56, y=dnorm(55,mean,sigma), label= "f(x)")+ 
+  theme_get()+
+  theme(axis.text.y = element_blank() , axis.ticks.y = element_blank())
+
+```
+
+
+In other words, to better approximate $P(51\leq X \leq 55)$ with a normal distribution, instead of evaluating $\int_{51}^{55} f(x)~dx$, we should use a continuity correction\index{continuity correction} and evaluate $$\int_{50.5}^{55.5} f(x)~dx.$$
+
+Observe:
+
+- Actual value of $P(51\leq X \leq 55)$:
+  - `sum(dbinom(51:55,100,.44))` = `r round(sum(dbinom(51:55,100,.44)),5)`
+- Normal approximation without continuity correction:             
+  - `pnorm(55,44,4.964)-pnorm(51,44,4.964)` = `r round(pnorm(55,44,4.964)-pnorm(51,44,4.964),5)`
+- Normal approximation with continuity correction:
+  - `pnorm(55.5,44,4.964)-pnorm(50.5,44,4.964)` = `r round(pnorm(55.5,44,4.964)-pnorm(50.5,44,4.964),5)`
+
+
+Now, we return to our voting example and the normal approximation to the probability that at least 51 people in a sample of 100 people will vote for candidate $A$. With a continuity correction, $P(X \geq 51)$ is better approximated with: 
 
 ```{r}
 pnorm(100.5,44,4.964)-pnorm(50.5,44,4.964)
 ```
-:::
+
+Here's one more example.
 
 :::{.example}
-Use continuity correction to estimate $P(51 \leq X \leq 53)$ if $X$ is binom$(100,.5)$. Then 
-$$P(51 \leq X \leq 53) \approx P(50.5 \leq Y \leq 53.5),$$ where $Y \sim N(50,\sqrt{100(.5)(.5)})$.
+Use continuity correction to estimate $P(460 \leq X \leq 480)$ if $X$ is $\texttt{binom}(1000,.5)$. 
 
-(TODO: add figure)
+Well, with a continuity correction
+$$P(460 \leq X \leq 480) \approx P(459.5 \leq Y \leq 480.5),$$ where $Y \sim N(500,\sqrt{1000(.5)(.5)})$.
 
-Actual probability: `pbinom(53,100,.5)-pbinom(50,100,.5)` = `r round(pbinom(53,100,.5)-pbinom(50,100,.5),4)`.
 
-Estimated probability: `pnorm(53.5,50,5)-pnorm(50.5,50,5)` = `r round(pnorm(53.5,50,5)-pnorm(50.5,50,5),4)`.
+- Actual probability: `pbinom(480,1000,.5)-pbinom(460,1000,.5)` = `r round(pbinom(480,1000,.5)-pbinom(460,1000,.5),4)`.
+
+Estimated probability: `pnorm(480.5,500,sqrt(250))-pnorm(459.5,500,sqrt(250))` = `r round(pnorm(480.5,500,sqrt(250))-pnorm(459.5,500,sqrt(250)),4)`.
 :::

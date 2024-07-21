@@ -5,8 +5,8 @@ Here we investigate in R the common, named continuous random variables we encoun
 
 - [Uniform probability distribution](#unifR) | `unif`
 - [Normal probability distribution](#normalR) |  `norm`
-- [Gamma probability distribution](#gammaR) | `gamma`
 - [Exponential probability distribution](#expR) | `exp`
+- [Gamma probability distribution](#gammaR) | `gamma`
 - [Chi-square probability distribution](#chiR) | `chisq`
 - [Beta probability distribution](#betaR) | `beta`
 
@@ -98,7 +98,7 @@ qnorm(.01,mean=7.8, sd=0.95)
 Suppose we have a population of 5000 random numbers between 10 and 20, which should have a uniform looking frequency distribution:
 ```{r}
 pop=runif(5000,10,20)
-hist(pop,breaks=15, main="Population Distribution")
+hist(pop,breaks=20, main="Population Distribution")
 ```
 Now suppose we draw a sample of size 50 from this population, and compute the sample mean of these 50 values:
 
@@ -106,7 +106,7 @@ Now suppose we draw a sample of size 50 from this population, and compute the sa
 mean(sample(pop,50))
 ```
 
-Now let's do that game for 10000 trials, and look at the distribution of 10000 sample means:
+Now let's repeat this process for 10000 trials, and look at the distribution of the 10000 sample means:
 
 ```{r}
 trials=10000
@@ -114,14 +114,14 @@ results=c()
 for (i in 1:trials){
   results=c(results,mean(sample(pop,50)))
 }
-hist(results, main="Histogram of sample means")
+hist(results,breaks=25, main="Histogram of sample means")
 ```
 
 Look Normal?  
 
 ```{r}
-x=seq(12,18,by=.05)
-hist(results, main="Histogram of sample means",freq=FALSE,breaks=30)
+x=seq(13.5,16.5,by=.05)
+hist(results, main="Histogram of sample means",freq=FALSE,breaks=29)
 curve(dnorm(x,15,10/sqrt(12)/sqrt(50)),add=TRUE)
 ```
 
@@ -178,7 +178,7 @@ pexp(5,1/120)
 qexp(.05,1/120)
 ```
 
-So, 5% of lightbulbs last less than `r round(qexp(.05,1/120),2)` hours.
+So, 5% of light bulbs last less than `r round(qexp(.05,1/120),2)` hours.
 :::
 
 :::{.example #sketch-exp-f-and-F}
@@ -278,6 +278,46 @@ sum(abs(x-8)<4) # values in the sample between 4 and 12
 
 Well, `r sum(abs(x-8)<4)` is mighty close to half of the 1000 values!
 :::
+
+**Exponential distributions are special gamma distributions.**  In particular, if we set $\alpha=1$, the gamma distribution gamma(1,$\beta$) is exactly equal to the exponential distribution exp($\beta$).
+
+So, if $X$ is exponential with mean 10, the following commands all compute $P(X \leq 5)$.
+
+`pexp(5,rate=1/10)` = `r pexp(5,rate=1/10)`
+
+`pgamma(5,shape=1,rate=1/10)` = `r pgamma(5,shape=1,rate=1/10)`
+
+`pgamma(5,shape=1,scale=10)` = `r pgamma(5,shape=1,scale=10)`
+
+
+
+## Chi-square Distribution `chisq` {#chiR}
+
+Like the exponential distribution, the chi-square distribution is a special gamma distribution. For a positive integer $\nu$, the **Chi-square probability distribution with degrees of freedom $\nu$**, denoted $\chi^2(\nu)$, is the gamma distribution with $\alpha = \nu/2$ and $\beta=2$.
+
+In R, `pchisq(x,df = v)` and `pgamma(x,shape = v/2,scale = 2)` will return the same value. For example, if $x = 7$ and $v = 10$, we have
+
+`pchisq(7,df = 10)` = `r pchisq(7,10)`, and
+
+`pgamma(7,shape = 5,scale = 2)` = `r pgamma(7,shape = 5,scale = 2)`
+
+Here are plots of three different chi-square distributions.
+
+```{r, echo=FALSE, label="chisq-densities",fig.cap="Three chi-square distributions",fig.dim=c(6.16,3.4),fig.align='center'}
+t=seq(0,30,by=.05)
+x1=dchisq(t,2)
+x2=dchisq(t,5)
+x3=dchisq(t,8)
+ggplot(data.frame(t,x1,x2,x3))+
+  geom_line(aes(t,x1),col="blue")+
+  geom_line(aes(t,x2),col="orange")+
+  geom_line(aes(t,x3),col="brown")+
+  ylim(c(0,.5))+
+  ylab("")+xlab("x")+
+  annotate("text", x = c(3,6,13), y = c(.4,.15,.07), label = c("chisq(2)","chisq(5)","chisq(8)"),col=c("blue","orange","brown"))
+```
+
+
 
 ## Beta distribution `beta` {#betaR}
 

@@ -1,91 +1,20 @@
 # Simulating Probability in R {#R-sim-probability}
 
-
-
-We can use repeated sampling of a chance experiment to estimate the probability of some event. See Section \@ref(sampling-commands) for a review of sampling commands. The examples here were chosen to provide a good range of sampling scenarios that you may find useful in this class, and have been ordered roughly by my view of the complexity of the coding involved.
-
-We start with a good old-fashioned die.
-
-
-## Rolling a 10-sided die {#10sided-die-R}
-
-> We roll a 10 sided die. Find the probability that the first time we roll an 8 or higher is on the 5th roll.
-
-
-**Scratch Work**
-
-1.  Simulate rolling a 10-sided die 5 times. (Sample 5 times with replacement from the vector 1:10.)
-
-```{r}
-die = 1:10
-rolls = sample(die,5,replace=TRUE)
-```
-
-For the purposes of this discussion, let's say a sequence of 5 rolls is *good* if the first 4 rolls are all less than 8, and the last roll is 8 or greater.
-
-2.  We want code to check whether a random sequence of 5 rolls is *good*.
-
-Let's look at the actual rolls first:
-
-```{r}
-rolls
-```
-
-We need to check 5 things: Are rolls 1-4 all less than 8, and is roll 5 greater than 8? We can ask these five questions and store the answers in a vector:
-
-```{r}
-c(rolls[1:4]<8,rolls[5]>=8)
-```
-
-Recal, the `sum()` of a logical vector counts the number of TRUE values. We need the sum to be 5 to have a *good* sequence of 5 rolls.
-
-```{r}
-sum(c(rolls[1:4]<8,rolls[5]>=8))
-```
-
-I think we're ready!!
-
-**Final Code** 
-
-```{r}
-trials = 10000
-results = c() # vector to store results of the trials
-
-die = 1:10
-for (i in 1:trials){
-  rolls = sample(die,5,replace=TRUE) # roll the 10-sided die 5 times
-  good_count=sum(c(rolls[1:4]<8,rolls[5]>=8)) #how many of the 5 rolls "do the right thing"
-  results=c(results,good_count) # update the results vector
-}
-```
-
-The results of the simulation:
-```{r}
-table(results)
-```
-
-Based on our simulation, we estimate the probability of a *good* sequence of 5 rolls by the proportion of time the `results` vector took a value of 5.
-
-```{r}
-sum(results=="5")/trials
-```
-
-This estimate is likely very close to what we calculate by our counting tools $$\frac{7^4\cdot 3}{10^5} \approx .07203.$$
-
+We can use repeated sampling of a chance experiment to estimate the probability of some event. The examples here were chosen to provide an introduction to sampling scenarios that you may find useful in this class (rolling dice, flipping coins, drawing names from a hat, marbles from a box,...). These examples also assume no previous knowledge of R beyond what was covered in Appendix \@ref(sampling-in-R), and have been ordered roughly by my view of the complexity of the coding involved.
 
 
 ## Difference of two dice {#diff-2dice-R}
 
 > If you roll 2 6-sided dice, what's the likelihood that their values are 1 apart.
 
-Strategy: roll the two dice, record the absolute value of their difference, repeat! 
+Our Strategy: roll the two dice, record the absolute value of their difference, repeat! 
 
 Code:
 ```{r}
 trials = 10000
 die_1 = 1:6
 die_2 = 1:6
-results = c()
+results = c() #stores the difference of the two dice each trial
 for (i in 1:trials){
   roll_1 = sample(die_1,1)
   roll_2 = sample(die_2,1)
@@ -99,46 +28,115 @@ Results:
 table(results)
 ```
 
-Conclusion: It appears we should expect the difference in the two dice to be 1 about `r round(100*sum(results==1)/trials,1)`% of the time.
-
-Note: In this example we added to the `results` vector by specifying `results[i]` in each trial, as opposed to the concatenation method we followed in the 10-sided die example.
+Conclusion: By computing the ratio `sum(results==1)/trials`, we obtain our estimate of the probability the two dice to be 1 apart: 
+`r sum(results==1)/trials`.
 
 Referring to the 6x6 grid recording the difference for each of the 36 possible outcomes in Table \@ref(tab:diff-2-dice), we would find the actual probability equal to 10/36 $\approx$ `r round(10/36,3)`.
 
 
+## Oregon License Plates {#license-plates-R}
 
-## Flipping a coin {#flip-coin-R}
+> Classic Oregon license plates consist of 3 letters (A-Z) followed by 3 numbers (0-9). Find the probability that a randomly selected plate has two 8s.
 
-> If you flip a coin 5 times, how likely is it to get exactly 1 heads?
+This is not such an interesting probability question - at least not one we need to simulate - but it's fun to build a random Oregon license plate!
 
-One approach:
+Strategy: 
 
-  - Build a coin vector: `coin = c("H","T")`
-  - Build a vector for recording outcome of five flips: `flips = sample(coin,size=5,replace=TRUE)`
-  - Find how many of these five flips are heads with `sum(flips=="H")`
-  - Repeat!
-
-
-The following code plays this 'flip a coin 5 times' game for 10000 trials, records for each trial how many heads we flipped, and then outputs the frequency table.
-
+1.  Build a random plate. We want three random letters (repeats ok), followed by three random numbers (repeats ok). So, we sample from `LETTERS` 3 times with replacement, then 0:9 three times with replacement. 
 
 ```{r}
-coin = c("H","T")
-trials = 10000 
-heads = c() # vector for storing heads flipped each trial
-for (i in 1:trials){
-  flips = sample(coin,size=5,replace=TRUE)
-  heads[i] = sum(flips == "H")
-}
-table(heads)
+plate = c(sample(LETTERS,3,replace=TRUE),
+          sample(0:9,3,replace=TRUE))
+plate
 ```
 
-Conclusion: It appears we should expect to flip exactly 1 heads in 5 tries about `r round(100*sum(heads==1)/trials,1)`% of the time.
+Fun!
 
-By our counting tools, we can calculate the actual probability of getting exactly one heads in 5 flips as follows:
+2.  Count how many "8"s are in the plate
 
-$$5\cdot \left(\frac{1}{2}\right)^5 = 0.15625.$$
-<!-- exact answer:  dbinom(1,5,1/2) -->
+```{r}
+sum(plate=="8")
+```
+
+**Final Code**
+
+```{r}
+trials = 10000
+results = c()
+for (i in 1:trials){
+  plate = c(sample(LETTERS,3,replace=TRUE),
+            sample(0:9,3,replace=TRUE)) #build a plate
+  eights = sum(plate=="8") # count the 8s
+  results = c(results,eights) # update the results vector
+}
+table(results)
+```
+
+Based on this simulation, we estimate the probability of having a plate with exactly 2 "8"s
+
+```{r}
+sum(results=="2")/trials
+```
+
+Using our counting tools to calculate the probability (and we really don't need to keep track of the letters in the plate, but we do):
+
+$$\frac{26\cdot 26\cdot 26 \cdot \binom{3}{2} \cdot 1 \cdot 1 \cdot 9}{26^3\cdot 10^3}= \frac{27}{1000} = 0.027.$$
+
+## Rolling a 10-sided die {#10sided-die-R}
+
+> We're rolling a fair 10-sided die. Use simulation to estimate the probability that the first time we roll an 8 or higher is on the 5th roll.
+
+**Scratch Work**
+
+1.  Simulate rolling a 10-sided die 5 times. (Sample 5 times with replacement from the vector 1:10.)
+
+```{r}
+die = 1:10
+rolls = sample(die,5,replace=TRUE)
+```
+
+2.  We want code to check whether a random sequence of 5 rolls has these five features: Rolls 1-4 are less than 8, and roll 5 is an 8, 9, or 10.
+
+We can ask these five questions in R and store the answers in a logical vector:
+
+```{r}
+c(rolls[1:4]<8,rolls[5]>=8)
+```
+
+Recall, the `sum()` of a logical vector counts the number of TRUE values. We need the sum to be 5 to have the kind of sequence we want to count.
+
+```{r}
+sum(c(rolls[1:4]<8,rolls[5]>=8)) #does this sum equal 5?
+```
+
+I think we're ready!!
+
+**Final Code** 
+
+```{r}
+trials = 10000
+results = c() #stores how many dice "do the right thing" in each trial
+
+die = 1:10
+for (i in 1:trials){
+  rolls = sample(die,5,replace=TRUE) # roll the 10-sided die 5 times
+  x=sum(c(rolls[1:4]<8,rolls[5]>=8)) #how many dice "do the right thing"
+  results=c(results,x) # update the results vector
+}
+```
+
+The results of the simulation:
+```{r}
+table(results)
+```
+
+Based on our simulation, we estimate the probability in question by the ratio: `sum(results==5)/trials` = `r sum(results==5)/trials`.
+
+This estimated probability is likely very close to what we calculate by our counting tools: $$\frac{7^4\cdot 3}{10^5} \approx .07203.$$
+
+Final note: In this example we added to the `results` vector each iteration by concatenation (`results=c(results,x)`) rather than by specifying `results[i]=x` in each trial, as we did in the difference of two dice example. Either approach works.
+
+
 
 
 ## Marbles from an urn {#marbles-urn-R}
@@ -146,13 +144,13 @@ $$5\cdot \left(\frac{1}{2}\right)^5 = 0.15625.$$
 > An urn contains 100 orange and 200 green marbles. If you draw 8 marbles from the urn at random (without replacement), how likely is it that more than 5 of them are orange?
 
 ```{r}
-urn = rep(c("O","G"),c(100,200))
+urn = rep(c("orange","green"),c(100,200))
 trials = 10000
 results = c()
 for (i in 1:trials){
   grab = sample(urn,8,replace=FALSE)
-  oranges = sum(grab=="O")
-  results[i] = oranges
+  orange_count = sum(grab=="orange")
+  results[i] = orange_count
 }
 table(results)
 ```
@@ -175,6 +173,49 @@ sum(choose(100,6:8)*choose(200,8-6:8)/choose(300,8))
 ```
 
 *Note*: After studying common named discrete probability distributions, we will see that R has a nice built-in command for doing these sorts of computations.
+
+## Tracking runs of Heads in coin flips {#flip-coin-R}
+
+> If you flip a coin 20 times, how likely is it to have a run of at least 5 Heads in a row?
+
+One approach:
+
+  - Build a coin vector: `coin = c("H","T")`
+  - Build a vector for recording the outcomes of twenty flips: `flips = sample(coin,size=20,replace=TRUE)`
+  - Record the longest run of Heads in the sequence.
+  - Repeat many, many times.
+
+
+The following code plays this 'flip a coin 20 times and record the longest run of heads' game for 10000 trials.
+
+```{r}
+coin = c("H","T")
+trials=10000
+results=c() #stores longest run of Heads each trial
+for (i in 1:trials){
+  flips = sample(coin,20,replace=TRUE) #generate the 20 flips
+  run = 0 #marker for current streak of Heads
+  max_run = 0 #stores the longest streak of Heads
+  for (k in 1:20){
+    if (flips[k] == "H"){
+      run = run + 1 #current run increases by 1 if flip k is "H"
+      max_run = max(max_run,run) #checks for new max run
+      }
+    if (flips[k] == "T"){
+      run = 0 #resets current run to 0 if we flip k is "T"
+    }
+    results[i]=max_run
+  }
+}
+```
+
+Summary of results:
+```{r}
+table(results)
+```
+
+Are you kidding me? In `r sum(results==max(results))` of the trials we saw `r max(results)` Heads in a row!?
+Based on these trials, our estimate for the likelihood of seeing a run of at least 5 Heads in 20 flips is `sum(results >=5)/trials` = `r round(sum(results >=5)/trials,3)`.
 
 ## Splitting a set into multiple subsets {#partition-set-R}
 
@@ -252,49 +293,6 @@ which evaluates to 7980/27720 $\approx 0.288$:
 (factorial(10)/(6*24*6)+factorial(10)/(120*2*6)+factorial(10)/(120*24*1))/(factorial(12)/(120*24*6))
 ```
 
-## Oregon License Plates {#license-plates-R}
-
-> Classic Oregon license plates consist of 3 letters (A-Z) followed by 3 numbers (0-9). Find the probability that a randomly selected plate has two 8s.
-
-**Scratch Work**
-
-1.  Build a random plate. We want three random numbers (repeats ok), followed by three random letters (repeats ok). This means we sample from 0-9 with replacement 3 times, then sample from A-Z with replacement 3 times. R comes with some built-in data sets and vectors, and one of them is `LETTERS` (the vector `c('A','B',...,'Z')`).
-
-```{r}
-plate = c(sample(LETTERS,3,replace=TRUE),
-          sample(0:9,3,replace=TRUE))
-plate
-```
-
-2.  We can record the number of "8"s in the plate
-
-```{r}
-sum(plate=="8")
-```
-
-**Final Code**
-
-```{r}
-trials = 10000
-results = c()
-for (i in 1:trials){
-  plate = c(sample(LETTERS,3,replace=TRUE),
-            sample(0:9,3,replace=TRUE)) #build a plate
-  eights = sum(plate=="8") # count the 8s
-  results = c(results,eights) # update the results vector
-}
-table(results)
-```
-
-Based on this simulation, we estimate the probability of having a plate with exactly 2 "8"s
-
-```{r}
-sum(results=="2")/trials
-```
-
-Using our counting tools to calculate the probability:
-
-$$\frac{26\cdot 26\cdot 26 \cdot \binom{3}{2} \cdot 1 \cdot 1 \cdot 9}{26^3\cdot 10^3}= \frac{27}{1000} = 0.027.$$
 
 
 ## Pollsters {#pollsters-R}
@@ -341,7 +339,9 @@ This table gives us a sense of the likelihood that the pollsters plan will resul
 
 ## Matching Birthdays {#same-birthday-R}
 
-> Suppose you ask $n$ random people their birthday (month and day, disregarding year).  What is the probability that at least one of them share your birthday?  What is the probability that at least two of them share the same birthday? (Assume 365 days in a year - ignore leap days.)
+> Suppose you ask $n$ random people their birthday (month and day, disregarding year).  What is the probability that at least one of them shares your birthday?  What is the probability that at least two of them share the same birthday? (Assume 365 days in a year - ignore leap days.)
+
+We do not use R to estimate these probabilities in this example. We find the probabilities exactly, and then use R to analyze them as $n$ changes.
 
 We tackle the first question by first computing the probability that none of the $n$ people share my birthday.  The probability that a random person does not have my birthday is $\frac{364}{365}$, and the probability that $n$ random people all do not have my birthday is $\left(\frac{364}{365}\right)^n$.
 
@@ -459,7 +459,7 @@ kable(t(df),digits=4) %>%
 
 ## Seats on an airplane
 
-I Saw this question on twitter in the summer of 2024, and can't find it now, but I think it was posted via the MAA and was question on national exam for grade 8.
+<!--I Saw this question on twitter in the summer of 2024, and can't find it now, but I think it was posted via the MAA and was question on national exam for grade 8.-->
 
 > A small airplane has 4 rows of 3 seats. 8 people board and sit randomly among the 12 seats. Then a couple boards. What is the probability they will be able to sit next to each other in the same row?
 
@@ -490,17 +490,13 @@ m=matrix(x,byrow=TRUE,nrow=4)
 m
 ```
 
-As the display above suggests, we can extract a value from matrix `m` by indicating its [row,column]:
+As the display above suggests, we can extract a value from matrix `m` by indicating its [row,column]: `m[3,2]` returns the element in row 3, column 2.
 
-```{r}
-m[3,2]
-```
-
-One way to check for empty seats next to each other in a given row: See whether the middle entry is 0 AND either the 1st or the third entry is 0. Let's check each of the rows in the arrangement above:
+Here's one way to check for empty seats next to each other in a given row: See whether the middle entry is 0 AND the sum of the three numbers in the row is less than or equal to 1.
 
 ```{r}
 for (row in 1:4){
-  result=ifelse((m[row,2]==0) & (m[row,1]==0 | m[row,3]==0),"seats together!","nope")
+  result=ifelse(m[row,2]==0 & sum(m[row,])<= 1,"seats together!","nope")
    print(paste("Row",row,result))
 }
 ```
@@ -515,7 +511,7 @@ for (i in 1:trials){
   m=matrix(sample(c(rep(1,8),rep(0,4))),byrow=TRUE,nrow=4)
   s=0
   for (r in 1:4){
-    if ((sum(m[r,])<=1)&(m[r,2]==0)){
+    if (m[r,2]==0&sum(m[r,])<=1){
       s = 1
       break
     }
@@ -539,7 +535,7 @@ In this example we pursue three questions related to the homemades:
 
 > a) In our family of 6, what is the probability we will not have to redraw.
 
-Our approach: Create a family vector (called `family`), and a permutation of `family` (called `draw`). For each $i$, we say Person $i$ in the `family` vector draws person $i$ in the `draw` vector. So, we have to redraw if the two vectors agree at the same location. 
+Our approach: Create a vector called `family`, and a permutation of `family` (called `draw`). For each $i$, Person $i$ in `family` draws person $i$ in `draw`. So, we have to redraw if the two vectors ever agree at the same location. 
 
 ```{r}
 family = c("Dad","Mom","Tom","John","Dave","Mike")
@@ -574,7 +570,7 @@ for (i in 1:trials){
 }
 sum(results)/trials
 ```
-About a `r round(sum(results)/trials*100,1)` percent chance of not to redraw.
+About a `r round(sum(results)/trials*100,1)` percent chance of not needing to redraw.
 
 > b) What is the expected number of draws needed until we do not need to redraw?
 
@@ -598,12 +594,12 @@ for (i in 1:trials){
 barplot(table(results))
 ```
 
-Cripes! Can you believe it took `r max(results)` draws on one of the trials? Anyway, our estimate for the expected number of draws needed to get the gift-making off the mark is:
+Cripes! In `r sum(results==max(results))` of the trials we needed `r max(results)` draws until no one drew their own name! Anyway, our estimate for the expected number of draws needed to get the gift-making off the mark is:
 
 ```{r}
 sum(results)/trials
 ```
-Well THAT number looks somewhat familiar ... .
+and if that number looks somewhat familiar, I encourage you to read the mathematical addendum at the end of this example.
 
 > c) Over time the family grew as families do until we had 16 in the gift exchange. Does the probability of needing to redraw change substantially with the larger family size?
 
@@ -690,6 +686,144 @@ If these numbers seem frustratingly imprecise, I'm glad, and I invite you to rea
 The actual expected number of draws, as $n \to \infty$, is $e$, and the probability of not needing to redraw approaches $1/e$ as $n \to \infty$. 
 
 In part (a) of this question, we are counting derangements of a vector. 
-.A **derangement**\index{permutation!derangement} of a vector is a permutation of it in which no element is in its original position. An element of a permutation is called *fixed points*\index{permutation!fixed point} if it appears in its original position, so a derangement of a vector is a permutation of it with no fixed points. In part (a) we are estimating the probability that a permutation of the `family` vector is a derangement. There is a nice recursive formula for the number of derangements of a vector of size $n$, and it can be used to prove that the probability of drawing a derangement converges to $1/e$ as $n \to \infty$. 
+A **derangement**\index{permutation!derangement} of a vector is a permutation of it in which no element is in its original position. An element of a permutation is called *fixed points*\index{permutation!fixed point} if it appears in its original position, so a derangement of a vector is a permutation of it with no fixed points. In part (a) we are estimating the probability that a permutation of the `family` vector is a derangement. There is a nice recursive formula for the number of derangements of a vector of size $n$, and it can be used to prove that the probability of drawing a derangement converges to $1/e$ as $n \to \infty$. 
 
+## Idiot's Delight {#idiots-delight}
+
+Idiot's delight\index{idiot's delight} is a simple card game without strategy or game play options. Here are the rules:
+
+At the start of the game your *hand* is empty, and the full deck is the *draw pile*.  Your hand will always be an ordered list of cards.
+
+Each turn consists of two steps.
+
+1. *Draw one card* from the draw pile.  This card becomes the first, or "top" card in your hand.
+2. *Check for hand reductions*.  If you have fewer than 4 cards in your hand you can make no reductions.  If you have at least four cards, compare the top card with the fourth card in your hand (fourth from the top). If these cards have the same rank, remove the top four cards from your hand.  If these cards have the same suit, remove the two cards in between (so, the 2nd and 3rd cards in your hand).  Repeat step 2 until no reduction can be made.  When no reduction can be made begin the next turn.
+
+The game ends after you have drawn all cards from the deck and you can make no reductions.  Your *game score* is the size of your hand at the end.  For a regular 52 card deck you *win* if your score is less than 10. 
+
+We have two questions about this game.
+
+> a) Estimate the probability that you win.
+
+> b) Estimate how likely a player will have a reduction on each of the 52 draws that constitute a game. 
+
+Creating this game in R requires some work, beginning with the creation of a deck of cards, and continuing with the creation of some functions to manage the game play. Playing the game for a while might help the reader make sense of the code below. 
+
+```{r}
+#Build a Deck 
+rank = rep(c(2:10,"J","Q","K","A"),4)
+suit = c(rep("clubs",13),rep("diamonds",13),rep("hearts",13),rep("spades",13))
+deck = paste0(rank,"-",suit) #standard deck of cards
+sample(deck,4) #display four random cards
+```
+
+Here's code for playing the game with a lot of printed statements to increase the drama of each turn. We do not run the code here, but recommend you copy and paste it into a script in your own session and play a few times to get the feel for it.
+
+```{r,eval = FALSE}
+#build a deck
+rank = rep(c(2:10,"J","Q","K","A"),4)
+suit = c(rep("clubs",13),rep("diamonds",13),rep("hearts",13),rep("spades",13))
+deck = paste0(rank,"-",suit)
+
+#game functions
+rank <- function(card){ #extracts the rank from the card string
+  return(unlist(strsplit(card,"-"))[1])
+}
+suit <- function(card){ #extracts the suit from the card string
+  return(unlist(strsplit(card,"-"))[2])
+}
+scan <- function(hand){ #scans the hand for hand reductions
+  if (length(hand) <= 3){return(hand)}
+  if (rank(hand[1])==rank(hand[4])){return(hand[-(1:4)])}
+  if (suit(hand[1])==suit(hand[4])){
+      hand <- hand[-(2:3)]
+      hand <- scan(hand)
+  }
+  return(hand)
+}
+
+#play game with commentary
+hand = c()
+draw_pile = sample(deck)#shuffles the deck
+for (k in 1:length(deck)){
+  print(paste("Turn",k,"hand after draw but before scanning:"))
+  hand <- c(draw_pile[k],hand) #add card to hand
+  print(hand)
+  hand <- scan(hand)
+  print('=================')
+}
+print(paste("Game score:",length(hand)))
+```
+
+Here's a play game function that plays the game (without commentary) and returns the size of your hand after each turn.
+```{r}
+play_game <- function(){
+  #build a deck
+  rank = rep(c(2:10,"J","Q","K","A"),4)
+  suit = c(rep("clubs",13),rep("diamonds",13),rep("hearts",13),rep("spades",13))
+  deck = paste0(rank,"-",suit)
+  
+  #game functions
+  rank <- function(card){ #extracts the rank from the card string
+    return(unlist(strsplit(card,"-"))[1])
+    }
+  suit <- function(card){ #extracts the suit from the card string
+    return(unlist(strsplit(card,"-"))[2])
+    }
+  scan <- function(hand){ #scans the hand for hand reductions
+    if (length(hand) <= 3){return(hand)}
+    if (rank(hand[1])==rank(hand[4])){return(hand[-(1:4)])}
+    if (suit(hand[1])==suit(hand[4])){
+      hand <- hand[-(2:3)]
+      hand <- scan(hand)
+      }
+    return(hand)
+    }
+  #play game without comment, returning vector of hand_sizes
+  hand = c()
+  draw_pile = sample(deck)#shuffles the deck
+  hand_size = c()
+  for (k in 1:length(deck)){
+    hand <- c(draw_pile[k],hand) #add card to hand
+    hand <- scan(hand) #look for reductions
+    hand_size[k]=length(hand) #record length of hand after turn k
+    }
+  return(hand_size)
+}
+```
+
+Now we do our simulations. The result of running the `play_game()` function is a vector of length 52, indicating the size of our hand after each of our 52 draws. With the trials below, we concatenate these vectors into one long vector `results` (of length `52*trials`) which we then convert into matrix with 52 columns in such a way that each row of the matrix represents the hand sizes for a single game.
+
+```{r}
+trials = 1000
+results = c()
+for (i in 1:trials){
+  v = play_game() 
+  results = c(results,v)
+}
+M = matrix(results,byrow = TRUE,ncol = 52)
+```
+
+
+The last column of this matrix records each of our final game scores, so the fraction of those values less than 10 answer part (a) for us.
+
+Our estimated probability of winning in a game of Idiot's delight:
+
+```{r}
+sum(M[,52]<10)/trials
+```
+
+For (b), the likelihood of having a reduction on turn $k$ (for each $k = 1,2,\ldots 52$), we can compare our hand size after turn $k$ with our hand size after turn $k-1$.  
+
+We know turns $k = 1, 2, 3$ can have no reductions, but starting with $k = 4$ we might:
+
+```{r}
+reduction = c(0,0,0) # start by recording 0 reductions for turns 1,2,3
+for (k in 4:52){
+  reduction[k] = sum(M[,k]<M[,k-1])
+}
+plot(x=1:52,y=reduction/trials,type='l')
+```
+
+Starting with turn 4 it looks like the likelihood of having a reduction stays roughly constant, at about `r round(mean(reduction[4:52])/trials,2)`.
 
