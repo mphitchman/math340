@@ -126,7 +126,7 @@ For instance, $5! = 5 \cdot 4 \cdot 3 \cdot 2 \cdot 1 = 120$.
 Two notes: 
 
   1. We set $0! = 1$
-  2. Notice that $n! = n \cdot (n-1)!$, so $\displaystyle \frac{n!}{(n-1)!} = n$.
+  2. Notice that $n! = n \cdot (n-1)!,$ so $\displaystyle \frac{n!}{(n-1)!} = n$.
   
 So we have the following formula for $\displaystyle P^n_r$:
 
@@ -141,7 +141,7 @@ Referring to the random phones example \@ref(exm:random-phones), without listing
 
 We let $\displaystyle C^n_r$\index{$\displaystyle C^n_r$} equal the number of ways to choose an unordered arrangement of $r$ distinct elements from a set of $n$ distinct objects. We also let $\displaystyle\binom{n}{k}$ denote this number (read as "n choose r").
 
-For instance, $\displaystyle\binom{4}{2}$ gives how many distinct subsets of size 2 can be formed from a set of size 4, and we see that $\displaystyle\binom{4}{2} = 6$ because one can form 6 distinct subsets of size 2 from the set $\{A,B,C,D\}$: $\{A,B\}$, $\{A,C\}$,$\{A,D\}$, $\{B,C\}$,$\{B,D\}$, $\{C,D\}$.
+For instance, $\displaystyle\binom{4}{2}$ gives how many distinct subsets of size 2 can be formed from a set of size 4, and we see that $\displaystyle\binom{4}{2} = 6$ because one can form 6 distinct subsets of size 2 from the set $\{A,B,C,D\}$: $\{A,B\},$ $\{A,C\},$$\{A,D\},$ $\{B,C\},$$\{B,D\},$ $\{C,D\}$.
 
 We have the following formula for $\displaystyle \binom{n}{r}$:
 
@@ -156,9 +156,9 @@ We may build an ordered list of $r$ distinct elements from a set of $n$ distinct
   1. Choose a combination of size $r$ from the set of size $n$. The number of ways to do this is exactly what we're calling $\binom{n}{r}$.
   2. We may choose a particular ordering of the "unordered" $r$ chosen in step 1 in $r!$ ways.
   
-The result is an ordered arrangement of $r$ chosen from a set of $n$, and the number of such ordered arrangements will be $$\binom{n}{r} \cdot r!$$ by the multiplication principle.
+The result is an ordered arrangement of $r$ chosen from a set of $n,$ and the number of such ordered arrangements will be $$\binom{n}{r} \cdot r!$$ by the multiplication principle.
 
-But we've also denoted the number of ordered arrangments of $r$ from $n$, as $P^n_r$, so $$P^n_r = \binom{n}{r} \cdot r!,$$ and since $P^n_r = n!/(n-r)!$, it follows that 
+But we've also denoted the number of ordered arrangments of $r$ from $n,$ as $P^n_r,$ so $$P^n_r = \binom{n}{r} \cdot r!,$$ and since $P^n_r = n!/(n-r)!,$ it follows that 
 $$C^n_r = \binom{n}{r} = \frac{n!}{(n-r)!\cdot r!}.$$
 :::
 
@@ -168,7 +168,7 @@ Facts about $\displaystyle \binom{n}{r}$ for $n \geq 1$ and $0 \leq r \leq n$:
   1. $\displaystyle \binom{n}{0} = 1$; $\displaystyle \binom{n}{1}=n$; $\displaystyle \binom{n}{n}=1.$
   2. $\displaystyle \binom{n}{r} = \binom{n}{n-r}$.
   3. **Pascal's Formula**\index{Pascal's Formula}: $\displaystyle \binom{n}{r} = \binom{n-1}{r-1} + \binom{n-1}{r}$.
-  4. **Binomial Theorem**\index{Binomial Theorem}: For real numbers $x, y$ and $n\in\mathbb{N}$, $$(x+y)^n = \sum_{r=0}^n \binom{n}{r}x^{n-r}y^r.$$
+  4. **Binomial Theorem**\index{Binomial Theorem}: For real numbers $x, y$ and $n\in\mathbb{N},$ $$(x+y)^n = \sum_{r=0}^n \binom{n}{r}x^{n-r}y^r.$$
   5. $\displaystyle \sum_{r = 0}^n \binom{n}{r} = 2^n.$
   
 :::
@@ -213,7 +213,7 @@ choose(20,5)
 
 The second question is more interesting.  
 
-Let $A$ denote the set of all combinations of size 5 that have at least one bad ear. We want to know the size of $A$, $|A|$. It's actually easier to find $|\overline{A}|$, the size of the complement of $A$; that is, it's easier to count how many combinations of size 5 have zero bad ears.
+Let $A$ denote the set of all combinations of size 5 that have at least one bad ear. We want to know the size of $A,$ $|A|$. It's actually easier to find $|\overline{A}|,$ the size of the complement of $A$; that is, it's easier to count how many combinations of size 5 have zero bad ears.
 
 The entire stand has 20 ears, 3 of which are bad, meaning 17 are good.  So, the number of combinations with 5 good ears (and hence 0 bad ears) is $$|\overline{A}| = \binom{17}{5} = 6188.$$ 
 So, of the 15504 different combinations of 5 we could purchase, 6188 of them have zero bad ears, and 9316 have at least one bad ear.
@@ -377,7 +377,7 @@ We can generalize this scene to $k$ groups for $k \geq 2$.
 
 :::{.definition #multinomial-coefficients}
 Let 
-$$\binom{n}{n_1, n_2, \cdots, n_k}$$ denote the number of ways of partitioning $n$ distinct objects into $k$ groups whose sizes are $n_1, n_2, \ldots, n_k$, where $n_1 + n_2 + \cdots + n_k = n$. These expressions are called **multinomial coefficients**\index{multinomial coefficients}.
+$$\binom{n}{n_1, n_2, \cdots, n_k}$$ denote the number of ways of partitioning $n$ distinct objects into $k$ groups whose sizes are $n_1, n_2, \ldots, n_k,$ where $n_1 + n_2 + \cdots + n_k = n$. These expressions are called **multinomial coefficients**\index{multinomial coefficients}.
 :::
 
 Fact: 
@@ -462,7 +462,7 @@ which is `choose(29,7)` = `r format(choose(29,7),scientific=F)`. Still, I've got
 
 With our counting tools in hand, we can set about calculating the probability that an event $A$ happens without having to first every possible outcome in the sample space. 
 
-Here's the general scene in this section. We have some random experiment with finite sample space $S$, defined in such a way that the probability of each outcome in $S$ is the same. In this case, the probability of any event $A$ will simply be the size of the set $A$ divided by the size of the set $S$:
+Here's the general scene in this section. We have some random experiment with finite sample space $S,$ defined in such a way that the probability of each outcome in $S$ is the same. In this case, the probability of any event $A$ will simply be the size of the set $A$ divided by the size of the set $S$:
 $$P(A) = \frac{|A|}{|S|}.$$
 
 :::{.example #R-D-subcommittees}
@@ -494,7 +494,7 @@ The sample space $S$ consists of all possible ways to choose 3 from 8, and we co
 
 We have $\displaystyle |S| = \binom{8}{3} = 56.$
 
-The event of interest here, $A$, is choosing a combination that contains both "high quality" wines, and  $|A| = \displaystyle \binom{2}{2}\cdot\binom{6}{1} = 6$ (choose both of the high quality wines and choose one of the six budget wines). Thus, 
+The event of interest here, $A,$ is choosing a combination that contains both "high quality" wines, and  $|A| = \displaystyle \binom{2}{2}\cdot\binom{6}{1} = 6$ (choose both of the high quality wines and choose one of the six budget wines). Thus, 
 $$P(A) = \frac{6}{56},$$ about a 10\% chance of picking both high quality wines if, in fact, the expert is simply picking at random.
 
 This probability is useful to know. If the expert does select both the high quality wines, does this suggest to you they know their business?
@@ -540,7 +540,7 @@ A **Straight**\index{poker!Straight} consists of five cards such that all five r
 A **Flush**\index{poker!Flush} consists of five cards such that all five suits are the same and the hand is not a Straight Flush.
 
 
-Here the sample space is $S = \{\text{all possible 5 card hands}\}$, and we know $|S| = \binom{52}{5}$.
+Here the sample space is $S = \{\text{all possible 5 card hands}\},$ and we know $|S| = \binom{52}{5}$.
 
 How many different Straight Flushes are possible. Let's build one in steps, counting choices:
 
@@ -576,7 +576,7 @@ Classic Oregon license plates consist of 3 digits (0-9) followed by three letter
 
 > Find the probability that a randomly selected classic Oregon license plate has two 8s.
 
-The sample space $S$ consists of all possible license plates, and $|S| = 10^3\cdot 26^3$, since order matters for license plates. 
+The sample space $S$ consists of all possible license plates, and $|S| = 10^3\cdot 26^3,$ since order matters for license plates. 
 
 We enumerate the event $A$ of drawing a plate with two 8s as follows: 
 
@@ -590,7 +590,7 @@ So $$P(A) = \frac{3 \cdot 9 \cdot 26^3}{10^3\cdot 26^3} = \frac{27}{1000} = 0.02
 :::{.example #10sided-die}
 > Determine the probability that the first time we roll an 8 or higher with a 10-sided die is on the 5th roll.  
 
-The sample space $S$ consists of all sequences of 5 rolls of the die. For instance, $(4,5,2,9,5)$ is one element of $S$, and $|S| = 10^5$.
+The sample space $S$ consists of all sequences of 5 rolls of the die. For instance, $(4,5,2,9,5)$ is one element of $S,$ and $|S| = 10^5$.
 
 The event of interest is $$A = \{ \text{roll 7 or lower in the first four rolls and 8 or higher on the 5th} \}.$$
 Then $|A| = 7^4 \cdot 3$ (7 choices for the 1st roll, 7 for the second, 7 for the 3rd, 7 for the 4th, and 3 for the 5th).
@@ -610,7 +610,7 @@ The sample space $S$ consists of all possible partitions of the 12 people into t
     &= 27,720.
 \end{align*}
 
-The event of interest, $A$, consists of all partitions in which the two first-years are in the same subgroup. To count $|A|$ we consider three cases:
+The event of interest, $A,$ consists of all partitions in which the two first-years are in the same subgroup. To count $|A|$ we consider three cases:
 
 Case 1: The two first-years are in the subgroup of 5. This means, after placing them in there, we have 10 people left to place in groups of size 3, 4, and 3, and we can do this in $$\binom{10}{3, 4, 3}$$ ways.
 

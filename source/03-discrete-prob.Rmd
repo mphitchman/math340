@@ -21,8 +21,8 @@ We often have some chioce in how to record the possible outcomes of a chance exp
 
   1. $S = \{ H, T \}$ ($H$ for heads, $T$ for tails).
   2. $S = \{1,2,3,4,5,6\}$ (recording the value that is face up after rolling the die.)
-  3. $S = \{HHH,HHT,HTH,THH,HTT,THT,TTH,TTT\}$ (record the result of each flip in order). Alternatively, we might just record how many heads we flipped, in which case $S = \{0,1,2,3\}$, but we lose some information about the experiment in doing so.
-  4. $S = \{111, 1101, 1011, 0111, 11001, 10101, 01101, 10011, 01011, 00111, \ldots \}$, where 0 represents missing a shot, and 1 represents making a shot. 
+  3. $S = \{HHH,HHT,HTH,THH,HTT,THT,TTH,TTT\}$ (record the result of each flip in order). Alternatively, we might just record how many heads we flipped, in which case $S = \{0,1,2,3\},$ but we lose some information about the experiment in doing so.
+  4. $S = \{111, 1101, 1011, 0111, 11001, 10101, 01101, 10011, 01011, 00111, \ldots \},$ where 0 represents missing a shot, and 1 represents making a shot. 
   5. $S = \{0, 1, 2, 3, 4, \ldots \}$.
   
 
@@ -34,12 +34,12 @@ Although infinite, the sample spaces in the last two examples are *countably* in
 The sample space of a chance experiment is called **discrete**\index{sample space!discrete} if the sample space is finite or countably infinite.
 :::
 
-If you asked me to pick a random real number from the unit interval $I = [0,1]$, this is a chance experiment with an uncountable sample space, and something we are not considering in this chapter. We focus on such games in Chapter \@ref(continuous-rv). 
+If you asked me to pick a random real number from the unit interval $I = [0,1],$ this is a chance experiment with an uncountable sample space, and something we are not considering in this chapter. We focus on such games in Chapter \@ref(continuous-rv). 
 
 ::: {.definition #probability-distribution-function} 
-Given a chance experiment with discrete sample space $S$, a **probability distribution function** on the elements of $S$ is a real-valued function $m$ which satisfies these two conditions:
+Given a chance experiment with discrete sample space $S,$ a **probability distribution function** on the elements of $S$ is a real-valued function $m$ which satisfies these two conditions:
 
-1. $m(s) \geq 0$ for all $s \in S$, and
+1. $m(s) \geq 0$ for all $s \in S,$ and
 2. $\displaystyle \sum_{s \in S} m(s) = 1.$
 
 We define the probability of any event $E$ of $S$ to be $$P(E) = \sum_{s \in E} m(s).$$
@@ -48,7 +48,7 @@ We define the probability of any event $E$ of $S$ to be $$P(E) = \sum_{s \in E} 
 
 Let's consider our first three chance experiments once more.
 
-1. If we flip a fair coin once, then $S = \{H,T\}$, and it is reasonable to assign the probabilities $$m(H) = \frac{1}{2}, ~ m(T) = \frac{1}{2}.$$
+1. If we flip a fair coin once, then $S = \{H,T\},$ and it is reasonable to assign the probabilities $$m(H) = \frac{1}{2}, ~ m(T) = \frac{1}{2}.$$
 
 2. If a 6-sided die is balanced, it is reasonable to assign the probabilities $$m(i) = \frac{1}{6}$$ for each $i = 1, 2, 3, 4, 5, 6$.
 
@@ -56,10 +56,10 @@ Let's consider our first three chance experiments once more.
 
 In the case of a countably infinite sample space (such as shooting free throws until we've made three), defining a valid probability function requires more care: to check that the sum of all $m(s)$ equals 1 requires the evaluation of an infinite series. 
 
-## Discrete Random Variables
+## Discrete Random Variables {#discrete-rv-initial}
 
 :::{.definition #random-variable}
-A **discrete random variable**\index{random variable} is a real-valued function defined over a discrete sample space.  We usually let $X$ or $Y$ denote a random variable. Given random variable $X$, the **space of $X$**\index{random variable!space} is the set of possible outcomes for $X$. 
+A **discrete random variable**\index{random variable} is a real-valued function defined over a discrete sample space.  We usually let $X$ or $Y$ denote a random variable. Given random variable $X,$ the **space of $X$**\index{random variable!space} is the set of possible outcomes for $X$. 
 :::
   
 :::{.example #flip-three-times name="Flip a coin 3 times"}
@@ -77,23 +77,23 @@ Or, if we're interested in whether we ever flipped consecutive heads in our 3 fl
     \end{cases}$$
 The space of $Y$ is $\{0,1\}$.
 
-Again, formally, the random variables $X$ and $Y$ are functions whose inputs are elements in $S$, and whose outputs are real numbers. We can display these functions in table form when the sample space is small, as in Table \@ref(tab:flip-3-coins).
+Again, formally, the random variables $X$ and $Y$ are functions whose inputs are elements in $S,$ and whose outputs are real numbers. We can display these functions in table form when the sample space is small, as in Table \@ref(tab:flip-3-coins).
 
 ```{r,echo=FALSE,label="flip-3-coins"}
-kable(t(data.frame(S = c("HHH","HHT","HTH","THH","HTT","THT","TTH","TTT"),
+kbl(t(data.frame(S = c("HHH","HHT","HTH","THH","HTT","THT","TTH","TTT"),
                    X=c(3,2,2,2,1,1,1,0),
                    Y=c(1,1,0,1,0,0,0,0))),align="c",caption="Random variables X and Y associated to the event of flipping a coin 3 times.") %>% kable_styling(full_width=FALSE,latex_options = "hold_position")%>%column_spec(1,border_right=TRUE)
 ```
 :::
 
-If $X$ is a random variable associated to an experiment, and we have a probability distribution function assigned to the sample space $S$, we can naturally ask about the probability that $X$ takes on a particular value $x$. 
+If $X$ is a random variable associated to an experiment, and we have a probability distribution function assigned to the sample space $S,$ we can naturally ask about the probability that $X$ takes on a particular value $x$. 
 
 :::{.definition #prob-distribution-discete-rv}
-The probability that a random variable $X$ takes on value $x$, denoted $P(X = x)$ or $p(x)$, is defined as the sum of the probabilities of all sample points in $S$ that are assigned the value $x$.  The function $p(x)$ is called the **distribution function**\index{distribution function!discrete random variable} of the discrete random variable $X$, and the **probability distribution**\index{probability distribution!discrete random variable} of $X$ refers to the the list of possible values for $x$ along with their associated probabilities $p(x)$ (usually given as a table or function).
+The probability that a random variable $X$ takes on value $x,$ denoted $P(X = x)$ or $p(x),$ is defined as the sum of the probabilities of all sample points in $S$ that are assigned the value $x$.  The function $p(x)$ is called the **distribution function**\index{distribution function!discrete random variable} of the discrete random variable $X,$ and the **probability distribution**\index{probability distribution!discrete random variable} of $X$ refers to the the list of possible values for $x$ along with their associated probabilities $p(x)$ (usually given as a table or function).
 :::
 
 :::{.example #flip-three-times-probs name="Flip a coin 3 times (Part II)"}
-Consider again the "flip a coin three times" Example \@ref(exm:flip-three-times) and the associated random variables $X$ and $Y$, which counted the number of heads flipped, and whether we flipped consecutive heads, respectively.  Table \@ref(tab:flip-3-coins) provides the values for these random variables.
+Consider again the "flip a coin three times" Example \@ref(exm:flip-three-times) and the associated random variables $X$ and $Y,$ which counted the number of heads flipped, and whether we flipped consecutive heads, respectively.  Table \@ref(tab:flip-3-coins) provides the values for these random variables.
 
 We assume $m(s) = 1/8$ for each $s \in S$ (all 8 sequences are equally likely), so we have the following probability distributions:
 
@@ -128,7 +128,7 @@ rownames(df)=as.character(1:6)
 kbl(df,row.names=T,align="c",caption="The sample space for rolling two dice") %>% kable_styling(latex_options = "hold_position")%>% kable_classic_2(full_width=F) %>% row_spec(0,color="blue") %>% column_spec(1,color="red") %>% column_spec(2,border_left = T)
 ```
 
-We may be interested in $X$, the sum of the two dice. The $6 \times 6$ grid is handy for representing this random variable:
+We may be interested in $X,$ the sum of the two dice. The $6 \times 6$ grid is handy for representing this random variable:
 
 ```{r, echo=F}
 X = red + blue
@@ -177,9 +177,9 @@ $$
 Recall the scene:
 
 1) We conduct a chance experiment, to which we associate the sample space $S$ of possible outcomes.
-2) To each sample point $s$ in $S$ we assign a reasonable probability, $m(s)$, that $s$ occurs (being sure that all $m(s)$ are non-negative and that they sum to 1).
+2) To each sample point $s$ in $S$ we assign a reasonable probability, $m(s),$ that $s$ occurs (being sure that all $m(s)$ are non-negative and that they sum to 1).
 3) For any event $A$ associated to this experiment (i.e., $A$ is a subset of $S$), we define $\displaystyle P(A) = \sum_{s \in A} m(s).$
-4) For a random variable $X$ associated to $S$, $P(X = x)$ equals the sum of the $m(s)$ for which $s$ is assigned value $x$.
+4) For a random variable $X$ associated to $S,$ $P(X = x)$ equals the sum of the $m(s)$ for which $s$ is assigned value $x$.
 
 ### Sample Point Method
 
@@ -197,11 +197,11 @@ The chance experiment here is straight-forward: randomly return 4 phones to the 
   - Name the students "a", "b", "c", and "d", and name their phones by the same letter (student "a" owns phone "a", etc). 
   - Return the phones randomly to the students so that "a" receives the first phone, "b" the second, and so on. 
  - record the results of the experiment by writing down the phone names in the order in which they were returned.  
- - For instance, recording "c b a d" would mean student $a$ received phone $c$, student $b$ received phone $b$ (their own phone!), student $c$ received phone $a$, and student $d$ received their own phone, $d$. 
+ - For instance, recording "c b a d" would mean student $a$ received phone $c,$ student $b$ received phone $b$ (their own phone!), student $c$ received phone $a,$ and student $d$ received their own phone, $d$. 
 
-In this way, the 24 different permutations of the letters "a b c d" listed in Table \@ref(tab:random-phones-table) correspond to the 24 basic outcomes possible in this experiment. For each basic outcome in the table we also record $X$, the number of students to receive their own phone for that basic outcome.
+In this way, the 24 different permutations of the letters "a b c d" listed in Table \@ref(tab:phone-table) correspond to the 24 basic outcomes possible in this experiment. For each basic outcome in the table we also record $X,$ the number of students to receive their own phone for that basic outcome.
 
-```{r,echo=FALSE,label="random-phones-table", fig.cap="Returning 4 phones at random, X counts how many students receive their own phone."}
+```{r,echo=FALSE,label="phone-table"}
 p <- combinat::permn(letters[1:4])
 num_correct <- function(x){sum(x==letters[1:4])}
 X <- lapply(p,num_correct)
@@ -214,17 +214,19 @@ df2 <- df2 %>% arrange(a,b,c,d)
 df_space <- data.frame(space=rep("",12))
 df <- cbind(df1,df_space,df2)
 
-kable(df,
-      align="c",
-      col.names = c("a","b","c","d","X"," ","a","b","c","d","X"),
-      ) %>%
+kbl(df,
+    align="c",
+    col.names = c("a","b","c","d","X"," ","a","b","c","d","X"),
+    caption="Returning 4 phones at random, X counts how many students receive their own phone."
+    ) %>%
+  kable_styling(latex_options = "hold_position") %>%
   kable_classic_2(full_width=F) %>%
   column_spec(1,border_left = TRUE) %>%
   column_spec(c(4,5,6,10,11),border_right=TRUE)%>%
   row_spec(0,bold=T)
 ```
 
-If the professor truly returns the phones at random, each of the 24 possible outcomes is equally likely. In other words, for each element $s$ in the sample space $S$, $m(s) = 1/24$. It follows that the probability distribution for $X$ is 
+If the professor truly returns the phones at random, each of the 24 possible outcomes is equally likely. In other words, for each element $s$ in the sample space $S,$ $m(s) = 1/24$. It follows that the probability distribution for $X$ is 
 
 $$
 \begin{array}{c|c|c|c|c|c}

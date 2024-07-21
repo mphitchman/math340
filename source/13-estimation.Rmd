@@ -19,7 +19,7 @@ The **mean square error of $\hat{\theta}_n$**\index{estimator!mean square error 
 A *good* estimator for the parameter $\theta$ is a statistic $\hat{\theta}$ that is unbiased with variance as small as possible. These features of $\hat{\theta}$ would ensure that for any random sample you happen to gather, the value $\hat{\theta}$ you compute from the data is likely to be close to $\theta$ (or at least likelier to be close to $\theta$ than some other statistic).
 
 :::{.example #estimating-uniform-parameter name="Two unbiased estimators for the upper bound of a uniform distribution"}
-Suppose $X_1, X_2, \ldots, X_n$ is an independent random sample drawn from a uniform distribution $U(0,\theta)$, where $\theta$ is unknown.
+Suppose $X_1, X_2, \ldots, X_n$ is an independent random sample drawn from a uniform distribution $U(0,\theta),$ where $\theta$ is unknown.
 So each $X_i$ is a random real number between 0 and $\theta$. 
 
 > How can we estimate the unknown parameter $\theta$ from the data?
@@ -31,13 +31,13 @@ By properties of expected value,
 E(\overline{X}) &= \frac{1}{n}\sum_{i = 1}^n E(X_i) \\
                 &= \frac{1}{n}\sum_{i = 1}^n \frac{\theta}{2}
 \end{align*} 
-since each $X_i$ is $U(0,\theta)$, so $E(X_i) = \frac{0 + \theta}{2}$.
+since each $X_i$ is $U(0,\theta),$ so $E(X_i) = \frac{0 + \theta}{2}$.
 
 It follows that $$E(\overline{X}) = \frac{1}{n} \cdot n \cdot \frac{\theta}{2} = \frac{\theta}{2}.$$
 
-Since $E(\overline{X}) \neq \theta$, the sample mean $\overline{X}$ is not an unbiased estimator for $\theta$. This makes sense. We shouldn't expect the average of the random numbers to be a good estimate of the upper bound of the interval from which the numbers were picked.
+Since $E(\overline{X}) \neq \theta,$ the sample mean $\overline{X}$ is not an unbiased estimator for $\theta$. This makes sense. We shouldn't expect the average of the random numbers to be a good estimate of the upper bound of the interval from which the numbers were picked.
 
-However, $E(\overline{X})$ *does* equal **a constant multiple** of $\theta$, which means we can easily adjust $\overline{X}$ to a statistic that *is* an unbiased estimator for $\theta$:
+However, $E(\overline{X})$ *does* equal **a constant multiple** of $\theta,$ which means we can easily adjust $\overline{X}$ to a statistic that *is* an unbiased estimator for $\theta$:
 
 $$\hat{\theta}_1 = 2\overline{X} \tag{unbiased estimator 1}$$
 **Second Estimator**: Create an estimator from the maximum value of the data, since this max is "closest" to $\theta$ of all the data points.
@@ -61,11 +61,11 @@ For this single sample the estimators takes on these values:
   - Estimator 1: $\hat{\theta}_1$ = `r round(est_1,1)`
   - Estimator 2: $\hat{\theta}_2$ = `r round(est_2,1)`.
   
-The fact that both estimators are unbiased means that in the long run, the average of all the $\hat{\theta}_1$ estimates would approach $\theta$, and the same is true for the average of the $\hat{\theta}_2$ estimates.
+The fact that both estimators are unbiased means that in the long run, the average of all the $\hat{\theta}_1$ estimates would approach $\theta,$ and the same is true for the average of the $\hat{\theta}_2$ estimates.
 
 So, they're both good estimaors of $\theta$ in that regard. What makes one estimator better is if the *variation* of the estimates obtained from repeated sampling is smaller for one than the other. 
 
-Let's simulate drawing 1000 different samples of size $n = 10$,  recording the distribution of values taken by the estimates $\theta_1$ and $\theta_2$, and seeing which distribution has smaller variance.
+Let's simulate drawing 1000 different samples of size $n = 10,$  recording the distribution of values taken by the estimates $\theta_1$ and $\theta_2,$ and seeing which distribution has smaller variance.
 
 
 ```{r, fig.dim=c(4,3),fig.cap="Sampling distributions for two unbiased estimators"}
@@ -102,8 +102,8 @@ It appears that the better estimator here is the one derived from the maximum va
 
 ## Order Statistics {#order-statistics}
 
-If $X_1, X_2, \ldots, X_n$ is a sample drawn from a distribution with density function $f_X(x)$, let $$Y = \text{max}\{X_1, X_2, \ldots, X_n\}.$$
-We can deduce the density function for $Y$ by first writing down the distribution function. For any real number $y$,
+If $X_1, X_2, \ldots, X_n$ is a sample drawn from a distribution with density function $f_X(x),$ let $$Y = \text{max}\{X_1, X_2, \ldots, X_n\}.$$
+We can deduce the density function for $Y$ by first writing down the distribution function. For any real number $y,$
 \begin{align*}
 F_Y(y) &= P(Y \leq y) \\
       &= P(\text{all }X_i \leq y) \\
@@ -112,12 +112,12 @@ F_Y(y) &= P(Y \leq y) \\
 \end{align*}
 We differentiate $F_Y$ with the chain rule to find $f_Y$:
 Thus, $$f_Y = n\left[F_X(y)\right]^{n-1}\cdot f_X(y). \tag{density for the max of sample}$$
-For $X$ is $U(0,\theta)$ as in the previous example, $f_X(x) = 1/\theta$, and $F_X(x) = x/\theta$, for $0 \leq x \leq \theta$. So, the density function for $Y = \text{max}(X_i)$, where $X_i$ is $U(0,\theta)$ is
+For $X$ is $U(0,\theta)$ as in the previous example, $f_X(x) = 1/\theta,$ and $F_X(x) = x/\theta,$ for $0 \leq x \leq \theta$. So, the density function for $Y = \text{max}(X_i),$ where $X_i$ is $U(0,\theta)$ is
 \begin{align*}
 f_Y(y) &= n \left[\frac{y}{\theta}\right]^{n-1} \cdot \frac{1}{\theta}\\
       &= \frac{n}{\theta^n}y^{n-1},
 \end{align*}
-for $0 \leq y \leq \theta$,
+for $0 \leq y \leq \theta,$
 and $$E(Y) = \int_0^\theta y \cdot \frac{n}{\theta^n}y^{n-1}~dy = \cdots = \frac{n}{n+1}\theta,$$
 giving us the result we assumed when defining estimator 2 in the previous example.
 
@@ -127,27 +127,27 @@ In the homework you derive the density function for the minimum of a random samp
 
 We have seen the following strategy for finding unbiased estimators: Try a simple estimator (e.g., $\overline{X}$ or max$(X_i)$) and tweak it so that it becomes unbiased.
 
-### Estimating $\mu$, a population mean
+### Estimating $\mu,$ a population mean
 
 If $X_1, X_2, \ldots, X_n$ is a sample drawn from a distribution with mean $\mu$ and standard deviation $\sigma$ we have seen that the sample mean $\overline{X}$ has $E(\overline{X}) = \mu$ and standard deviation $\sigma/\sqrt{n}$. That is, 
 
-> $\overline{X}$ is an unbiased estimator for $\mu$, and its standard deviation is $\sigma/\sqrt{n}$.
+> $\overline{X}$ is an unbiased estimator for $\mu,$ and its standard deviation is $\sigma/\sqrt{n}$.
 
-### Estimating $p$, a population proportion
+### Estimating $p,$ a population proportion
 
 If $X_1, X_2, \ldots, X_n$ is a sample drawn from a $b(1,n)$ distribution (Bernoulli trial!) and $X = X_1 + X_2 + \cdots + X_n$ equals the number of successes in $n$ trials, then we have seen that $\hat{p} = X/n$ has $E(\hat{p}) = p$ and standard deviation $\displaystyle\sqrt{\frac{p(1-p)}{n}}$. That is, 
 
-> $\hat{p}$ is an unbiased estimator for $p$, and its standard deviation is $\displaystyle\sqrt{\frac{p(1-p)}{n}}$.
+> $\hat{p}$ is an unbiased estimator for $p,$ and its standard deviation is $\displaystyle\sqrt{\frac{p(1-p)}{n}}$.
 
 :::{.example}
-In a sample of 65 Linfield students, 24 are first-generation students.  Estimate $p$, the proportion of all Linfield students that are first-generation, and place a 2 standard deviation bound on the error of estimation.
+In a sample of 65 Linfield students, 24 are first-generation students.  Estimate $p,$ the proportion of all Linfield students that are first-generation, and place a 2 standard deviation bound on the error of estimation.
 
 From our sample, our point estimate for $p$ is $\hat{p} = 24/65 \approx .369.$ We know by the CLT that $$\hat{p} \sim N(p, \sqrt{p(1-p)/n}),$$
 and in a normal distribution, about 95\% of the distribution is within two standard deviations of the mean. In other words, 
 $$P\left(~|\hat{p}-p|<2\cdot\sqrt{p(1-p)/n}~\right) \approx 0.95.$$
-Now we don't know $p$ (in fact, we're trying to estimate it!), so we can't know the value of the standard deviation $\sqrt{p(1-p)/n}.$ However, for large $n$, the expression $\sqrt{x(1-x)/n}$ doesn't change much for nearby inputs, except when the inputs are close to 0 or 1 (try it!). In other words, we can reasonably expect $$\sqrt{\hat{p}(1-\hat{p})/n} ~\approx \sqrt{p(1-p)/n},$$ in which case we can estimate that 
+Now we don't know $p$ (in fact, we're trying to estimate it!), so we can't know the value of the standard deviation $\sqrt{p(1-p)/n}.$ However, for large $n,$ the expression $\sqrt{x(1-x)/n}$ doesn't change much for nearby inputs, except when the inputs are close to 0 or 1 (try it!). In other words, we can reasonably expect $$\sqrt{\hat{p}(1-\hat{p})/n} ~\approx \sqrt{p(1-p)/n},$$ in which case we can estimate that 
 $$P\left(~|\hat{p}-p|<2\cdot\sqrt{\hat{p}(1-\hat{p})/n}~\right) \approx 0.95.$$
-In this problem $\hat{p} \approx .37$, so $2 \cdot \sqrt{p(1-p)/n} \approx 0.12$, so we can say that $$|.37-p| < 0.12$$ with probability about .95, and that
+In this problem $\hat{p} \approx .37,$ so $2 \cdot \sqrt{p(1-p)/n} \approx 0.12,$ so we can say that $$|.37-p| < 0.12$$ with probability about .95, and that
 $$ .25 < p < .49$$ gives a two standard deviation bound on the error of estimation.
 :::
 
@@ -161,7 +161,7 @@ ggplot()+
   theme_get()
 ```
 
-### Estimating $\mu_1 - \mu_2$, the difference of two population means
+### Estimating $\mu_1 - \mu_2,$ the difference of two population means
 
 Suppose we have two independent random samples drawn from distinct normal distributions.
 
@@ -179,9 +179,9 @@ So $\overline{X}-\overline{Y}$ is an unbiased estimator for $\mu_1 - \mu_2$ with
 
 
 
-### Estimating $p_1 - p_2$, the difference of two population proportions
+### Estimating $p_1 - p_2,$ the difference of two population proportions
 
-An unbiased estimator for $p_1-p_2$ is $\hat{p}_1-\hat{p}_2$, where $\hat{p}_i$ equals the sample proportion from a sample of size $n_i$ drawn from population $i$ (which has population proportion $p_i$).
+An unbiased estimator for $p_1-p_2$ is $\hat{p}_1-\hat{p}_2,$ where $\hat{p}_i$ equals the sample proportion from a sample of size $n_i$ drawn from population $i$ (which has population proportion $p_i$).
 
 
 
@@ -192,7 +192,7 @@ One can show that the point estimate $\hat{p}_1 - \hat{p}_2$ is approximately no
 :::{.example name="Two Large Buckets"}
 Each of two large buckets is full of two types of marbles, orange and green. Let $p_i$ denote the proportion of orange marbles in bucket $i$ ($i = 1,2$).
 
-> Estimate $p_1-p_2$, and place a 2 standard deviation bound on the error of estimation.
+> Estimate $p_1-p_2,$ and place a 2 standard deviation bound on the error of estimation.
 
 - Sample 1: $n_1 = 120$ marbles from bucket 1, of which 45 are orange, so $\hat{p}_1 = .375$
 - Sample 2: $n_2 = 80$ marbles from bucket 2, of which 36 are orange, so $\hat{p}_2 = .45$.

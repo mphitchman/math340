@@ -30,7 +30,7 @@
   
   
 <link rel="prev" href="counting.html"/>
-<link rel="next" href="discrete-random-variables-1.html"/>
+<link rel="next" href="discrete-random-variables.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -151,7 +151,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3" data-path="discrete-probability-distributions.html"><a href="discrete-probability-distributions.html"><i class="fa fa-check"></i><b>3</b> Discrete Probability Distributions</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="discrete-probability-distributions.html"><a href="discrete-probability-distributions.html#sample-space"><i class="fa fa-check"></i><b>3.1</b> Sample Space</a></li>
-<li class="chapter" data-level="3.2" data-path="discrete-probability-distributions.html"><a href="discrete-probability-distributions.html#discrete-random-variables"><i class="fa fa-check"></i><b>3.2</b> Discrete Random Variables</a></li>
+<li class="chapter" data-level="3.2" data-path="discrete-probability-distributions.html"><a href="discrete-probability-distributions.html#discrete-rv-initial"><i class="fa fa-check"></i><b>3.2</b> Discrete Random Variables</a></li>
 <li class="chapter" data-level="3.3" data-path="discrete-probability-distributions.html"><a href="discrete-probability-distributions.html#calculating-probabilities"><i class="fa fa-check"></i><b>3.3</b> Calculating Probabilities</a>
 <ul>
 <li class="chapter" data-level="3.3.1" data-path="discrete-probability-distributions.html"><a href="discrete-probability-distributions.html#sample-point-method"><i class="fa fa-check"></i><b>3.3.1</b> Sample Point Method</a></li>
@@ -173,12 +173,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3" data-path="probability-theory.html"><a href="probability-theory.html#event-composition-method"><i class="fa fa-check"></i><b>5.3</b> Event-Composition Method</a></li>
 <li class="chapter" data-level="5.4" data-path="probability-theory.html"><a href="probability-theory.html#bayes-rule"><i class="fa fa-check"></i><b>5.4</b> Bayes’ Rule</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="discrete-random-variables-1.html"><a href="discrete-random-variables-1.html"><i class="fa fa-check"></i><b>6</b> Discrete Random Variables</a>
+<li class="chapter" data-level="6" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html"><i class="fa fa-check"></i><b>6</b> Discrete Random Variables</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="discrete-random-variables-1.html"><a href="discrete-random-variables-1.html#expected-value"><i class="fa fa-check"></i><b>6.1</b> Expected Value</a></li>
-<li class="chapter" data-level="6.2" data-path="discrete-random-variables-1.html"><a href="discrete-random-variables-1.html#variance"><i class="fa fa-check"></i><b>6.2</b> Variance</a></li>
-<li class="chapter" data-level="6.3" data-path="discrete-random-variables-1.html"><a href="discrete-random-variables-1.html#properties-of-expected-value"><i class="fa fa-check"></i><b>6.3</b> Properties of Expected Value</a></li>
-<li class="chapter" data-level="6.4" data-path="discrete-random-variables-1.html"><a href="discrete-random-variables-1.html#tchebysheffs-theorem"><i class="fa fa-check"></i><b>6.4</b> Tchebysheff’s Theorem</a></li>
+<li class="chapter" data-level="6.1" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#expected-value"><i class="fa fa-check"></i><b>6.1</b> Expected Value</a></li>
+<li class="chapter" data-level="6.2" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#variance"><i class="fa fa-check"></i><b>6.2</b> Variance</a></li>
+<li class="chapter" data-level="6.3" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#properties-of-expected-value"><i class="fa fa-check"></i><b>6.3</b> Properties of Expected Value</a></li>
+<li class="chapter" data-level="6.4" data-path="discrete-random-variables.html"><a href="discrete-random-variables.html#tchebysheffs-theorem"><i class="fa fa-check"></i><b>6.4</b> Tchebysheff’s Theorem</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="important-discrete-rv.html"><a href="important-discrete-rv.html"><i class="fa fa-check"></i><b>7</b> Important Discrete Random Variables</a>
 <ul>
@@ -226,10 +226,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.2" data-path="estimation.html"><a href="estimation.html#order-statistics"><i class="fa fa-check"></i><b>13.2</b> Order Statistics</a></li>
 <li class="chapter" data-level="13.3" data-path="estimation.html"><a href="estimation.html#common-unbiased-estimators"><i class="fa fa-check"></i><b>13.3</b> Common Unbiased Estimators</a>
 <ul>
-<li class="chapter" data-level="13.3.1" data-path="estimation.html"><a href="estimation.html#estimating-mu-a-population-mean"><i class="fa fa-check"></i><b>13.3.1</b> Estimating <span class="math inline">\(\mu\)</span>, a population mean</a></li>
-<li class="chapter" data-level="13.3.2" data-path="estimation.html"><a href="estimation.html#estimating-p-a-population-proportion"><i class="fa fa-check"></i><b>13.3.2</b> Estimating <span class="math inline">\(p\)</span>, a population proportion</a></li>
-<li class="chapter" data-level="13.3.3" data-path="estimation.html"><a href="estimation.html#estimating-mu_1---mu_2-the-difference-of-two-population-means"><i class="fa fa-check"></i><b>13.3.3</b> Estimating <span class="math inline">\(\mu_1 - \mu_2\)</span>, the difference of two population means</a></li>
-<li class="chapter" data-level="13.3.4" data-path="estimation.html"><a href="estimation.html#estimating-p_1---p_2-the-difference-of-two-population-proportions"><i class="fa fa-check"></i><b>13.3.4</b> Estimating <span class="math inline">\(p_1 - p_2\)</span>, the difference of two population proportions</a></li>
+<li class="chapter" data-level="13.3.1" data-path="estimation.html"><a href="estimation.html#estimating-mu-a-population-mean"><i class="fa fa-check"></i><b>13.3.1</b> Estimating <span class="math inline">\(\mu,\)</span> a population mean</a></li>
+<li class="chapter" data-level="13.3.2" data-path="estimation.html"><a href="estimation.html#estimating-p-a-population-proportion"><i class="fa fa-check"></i><b>13.3.2</b> Estimating <span class="math inline">\(p,\)</span> a population proportion</a></li>
+<li class="chapter" data-level="13.3.3" data-path="estimation.html"><a href="estimation.html#estimating-mu_1---mu_2-the-difference-of-two-population-means"><i class="fa fa-check"></i><b>13.3.3</b> Estimating <span class="math inline">\(\mu_1 - \mu_2,\)</span> the difference of two population means</a></li>
+<li class="chapter" data-level="13.3.4" data-path="estimation.html"><a href="estimation.html#estimating-p_1---p_2-the-difference-of-two-population-proportions"><i class="fa fa-check"></i><b>13.3.4</b> Estimating <span class="math inline">\(p_1 - p_2,\)</span> the difference of two population proportions</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="confidence-intervals.html"><a href="confidence-intervals.html"><i class="fa fa-check"></i><b>14</b> Confidence Intervals</a>
@@ -378,10 +378,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">5</span> Probability Theory<a href="probability-theory.html#probability-theory" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="conditional-probability-and-independence" class="section level2 hasAnchor" number="5.1">
 <h2><span class="header-section-number">5.1</span> Conditional Probability and Independence<a href="probability-theory.html#conditional-probability-and-independence" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Suppose we have a probability model associated to a sample space <span class="math inline">\(S\)</span>. If we are told some event <span class="math inline">\(B\)</span> has occurred, how would the probability of other events change? Calculating a new probability for event <span class="math inline">\(A\)</span>, given that <span class="math inline">\(B\)</span> has occurred is called a conditional probability, and will be denoted <span class="math inline">\(P(A|B)\)</span>.</p>
+<p>Suppose we have a probability model associated to a sample space <span class="math inline">\(S\)</span>. If we are told some event <span class="math inline">\(B\)</span> has occurred, how would the probability of other events change? Calculating a new probability for event <span class="math inline">\(A,\)</span> given that <span class="math inline">\(B\)</span> has occurred is called a conditional probability, and will be denoted <span class="math inline">\(P(A|B)\)</span>.</p>
 <p>For instance, Let <span class="math inline">\(X\)</span> denote the outcome if we roll a fair six-sided die. Let <span class="math inline">\(A\)</span> be the event that we roll a 4, and <span class="math inline">\(B\)</span> the event that we roll an even number. Since the die is fair, we expect that <span class="math inline">\(P(A) = 1/6\)</span>. Now suppose that the die is rolled and we are told that the event <span class="math inline">\(B\)</span> has occurred. This leaves only three possible outcomes: 2, 4, and 6. The new, conditional probability of <span class="math inline">\(A\)</span> given <span class="math inline">\(B\)</span> would be <span class="math inline">\(P(A|B) = 1/3.\)</span></p>
 <div class="definition">
-<p><span id="def:cond-prob" class="definition"><strong>Definition 5.1  </strong></span>The <strong>conditional probability</strong> of an event <span class="math inline">\(A\)</span>, given that an event <span class="math inline">\(B\)</span> has occurred, denoted <span class="math inline">\(P(A|B)\)</span>, is
+<p><span id="def:cond-prob" class="definition"><strong>Definition 5.1  </strong></span>The <strong>conditional probability</strong> of an event <span class="math inline">\(A,\)</span> given that an event <span class="math inline">\(B\)</span> has occurred, denoted <span class="math inline">\(P(A|B),\)</span> is
 <span class="math display" id="eq:condprob">\[\begin{equation}
   P(A|B) = \frac{P(A \cap B)}{P(B)},
   \tag{5.1}
@@ -390,7 +390,7 @@ provided that <span class="math inline">\(P(B) &gt; 0\)</span>.</p>
 </div>
 <div class="example">
 <p><span id="exm:unlabeled-div-7" class="example"><strong>Example 5.1  </strong></span>For the 2023 Major League Baseball season, 328 hitters had at least 250 plate appearances. In this group, 71% of them hit at least 10 HR for the season, and 31% of them hit at least 20 HR. If you pick a player from this group at random, and you are told they hit over at least 10 HR, what is the probability that they hit at least 20 HR?</p>
-<p>Let <span class="math inline">\(A\)</span> be the event that the player hits at least 20 HR, and <span class="math inline">\(B\)</span> the event that a player hit at least 10. Then we have been asked to find <span class="math inline">\(P(A|B)\)</span>. Note that <span class="math inline">\(A\)</span> is a subset of <span class="math inline">\(B\)</span> (if a player hit at least 20, then they also hit at least 10), so <span class="math inline">\(A \cap B\)</span> = <span class="math inline">\(A\)</span>, and it follows that
+<p>Let <span class="math inline">\(A\)</span> be the event that the player hits at least 20 HR, and <span class="math inline">\(B\)</span> the event that a player hit at least 10. Then we have been asked to find <span class="math inline">\(P(A|B)\)</span>. Note that <span class="math inline">\(A\)</span> is a subset of <span class="math inline">\(B\)</span> (if a player hit at least 20, then they also hit at least 10), so <span class="math inline">\(A \cap B\)</span> = <span class="math inline">\(A,\)</span> and it follows that
 <span class="math display">\[\begin{align*}
 P(A|B) &amp;= \frac{P(A \cap B)}{P(B)} \\
       &amp;= \frac{P(A)}{P(B)} \\
@@ -419,12 +419,12 @@ B &amp;= \{1\}\\
 C &amp;= \{2\}\\
 D &amp;= \{1,2\}
 \end{align*}\]</span></p>
-<p>Then <span class="math inline">\(P(A) = 1/2, P(B) = 1/6, P(C) = 1/6\)</span>, and <span class="math inline">\(P(D) = 1/3.\)</span></p>
+<p>Then <span class="math inline">\(P(A) = 1/2, P(B) = 1/6, P(C) = 1/6,\)</span> and <span class="math inline">\(P(D) = 1/3.\)</span></p>
 <p><strong>Claim 1</strong>: <span class="math inline">\(A\)</span> and <span class="math inline">\(D\)</span> are independent events.</p>
-<p><strong>Reason 1</strong>: Well, <span class="math inline">\(A \cap D = \{1\}\)</span>, so
+<p><strong>Reason 1</strong>: Well, <span class="math inline">\(A \cap D = \{1\},\)</span> so
 <span class="math display">\[P(A~|~D) = \frac{P(A\cap D)}{P(D)} = \frac{1/6}{1/3} = 1/2 = P(A).\]</span>
 <strong>Claim 2</strong>: <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> are not independent events.</p>
-<p><strong>Reason 2</strong>: <span class="math inline">\(B \cap C = \emptyset\)</span>, so <span class="math display">\[P(B~|~C) = \frac{P(B\cap C)}{P(C)} = \frac{0}{1/6} = 0 \neq P(B).\]</span></p>
+<p><strong>Reason 2</strong>: <span class="math inline">\(B \cap C = \emptyset,\)</span> so <span class="math display">\[P(B~|~C) = \frac{P(B\cap C)}{P(C)} = \frac{0}{1/6} = 0 \neq P(B).\]</span></p>
 <p>These simple examples help me remember that for events associated to a sample space,</p>
 <blockquote>
 <p>independent is different than disjoint!</p>
@@ -468,8 +468,8 @@ P(B~|~A) &amp;= \frac{P(A\cap B)}{P(A)} \\
 <p>“Less than 3” means “1 or 2” so <span class="math inline">\(P(A) = P(B) = 2/6 = 1/3.\)</span>
 The question asks for <span class="math inline">\(P(A \cap B).\)</span> Since <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent, <span class="math display">\[P(A \cap B) = P(A)\cdot P(B) = (1/3)\cdot(1/3) = 1/9.\]</span></p>
 <p>We remark that we can also use counting techniques to find this probability directly in Section <a href="counting.html#prob-with-counting-tools">4.6</a>.</p>
-<p>The sample space <span class="math inline">\(S\)</span> of this chance experiment consists of all possible rolls of the two dice. That is, <span class="math inline">\(S\)</span> consists of all ordered pairs of the form <span class="math inline">\((i,j)\)</span> with <span class="math inline">\(i, j \in \mathbb{N}\)</span> and <span class="math inline">\(1\leq i, j \leq 6\)</span>, and <span class="math inline">\(|S| = 6^2\)</span>. The event of interest, <span class="math inline">\(E\)</span>, consists of all rolls <span class="math inline">\((i,j)\)</span> in <span class="math inline">\(S\)</span> such that <span class="math inline">\(i, j \leq 2\)</span>. So, <span class="math inline">\(|E| = 2^2\)</span>, and <span class="math inline">\(P(E) = 4/36 = 1/9\)</span>.</p>
-<p>So, thinking of the chance experiment as a sequence of independent events we calculate the probability of interest as <span class="math inline">\(\frac{2}{6} \cdot \frac{2}{6},\)</span>, and thinking of the probability via the “(outcomes of interest)/(all possible outcomes)” approach we think of the probability as <span class="math inline">\(\frac{2\cdot 2}{6 \cdot 6}\)</span>.</p>
+<p>The sample space <span class="math inline">\(S\)</span> of this chance experiment consists of all possible rolls of the two dice. That is, <span class="math inline">\(S\)</span> consists of all ordered pairs of the form <span class="math inline">\((i,j)\)</span> with <span class="math inline">\(i, j \in \mathbb{N}\)</span> and <span class="math inline">\(1\leq i, j \leq 6,\)</span> and <span class="math inline">\(|S| = 6^2\)</span>. The event of interest, <span class="math inline">\(E,\)</span> consists of all rolls <span class="math inline">\((i,j)\)</span> in <span class="math inline">\(S\)</span> such that <span class="math inline">\(i, j \leq 2\)</span>. So, <span class="math inline">\(|E| = 2^2,\)</span> and <span class="math inline">\(P(E) = 4/36 = 1/9\)</span>.</p>
+<p>So, thinking of the chance experiment as a sequence of independent events we calculate the probability of interest as <span class="math inline">\(\frac{2}{6} \cdot \frac{2}{6},,\)</span> and thinking of the probability via the “(outcomes of interest)/(all possible outcomes)” approach we think of the probability as <span class="math inline">\(\frac{2\cdot 2}{6 \cdot 6}\)</span>.</p>
 </div>
 <div class="example">
 <p><span id="exm:four-on-rolll-8" class="example"><strong>Example 5.5  </strong></span>Roll a regular 6-sided die until a 4 comes up. What is the probability that this occurs on the 8th roll?</p>
@@ -497,9 +497,9 @@ More generally, the probability that our first 4 comes up on roll <span class="m
 <p><span id="unlabeled-div-11" class="proof"><em>Proof</em>. </span></p>
 <ol style="list-style-type: decimal">
 <li><p>This proof follows directly from the definition of conditional probability (<a href="probability-theory.html#def:cond-prob">5.1</a>).</p></li>
-<li><p>For finite sets <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, we know <span class="math display">\[|A \cup B| = |A| + |B| - |A \cap B|,\]</span> from which the result follows.</p></li>
+<li><p>For finite sets <span class="math inline">\(A\)</span> and <span class="math inline">\(B,\)</span> we know <span class="math display">\[|A \cup B| = |A| + |B| - |A \cap B|,\]</span> from which the result follows.</p></li>
 </ol>
-<p>More generally, for any sets <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, the union <span class="math inline">\(A \cup B\)</span> can be decomposed into disjoint sets: <span class="math inline">\(A \cup B = A \cup (\overline{A} \cap B).\)</span>
+<p>More generally, for any sets <span class="math inline">\(A\)</span> and <span class="math inline">\(B,\)</span> the union <span class="math inline">\(A \cup B\)</span> can be decomposed into disjoint sets: <span class="math inline">\(A \cup B = A \cup (\overline{A} \cap B).\)</span>
 So, <span class="math display">\[P(A \cup B) = P(A) + P(\overline{A} \cap B).\]</span></p>
 <p>Similarly, we can decompose the set <span class="math inline">\(B\)</span> into disjoint sets as follows: <span class="math inline">\(B = (\overline{A} \cap B) \cup (A \cap B).\)</span>
 So <span class="math display">\[P(B) = P(\overline{A}\cap B) + P(A \cap B).\]</span>
@@ -543,17 +543,17 @@ P(A_1 \cap A_2 \cap A_3 \cap A_4) &amp;= P(A_1) \cdot P(A_2 ~|~ A_1) \cdot P(A_3
 </div>
 <p>We have three corollaries to Theorem <a href="probability-theory.html#thm:two-prob-laws">5.1</a>.</p>
 <div class="corollary">
-<p><span id="cor:comp-prob" class="corollary"><strong>Corollary 5.1  </strong></span>For any event <span class="math inline">\(A\)</span>, <span class="math display">\[P(\overline{A}) = 1 - P(A).\]</span></p>
+<p><span id="cor:comp-prob" class="corollary"><strong>Corollary 5.1  </strong></span>For any event <span class="math inline">\(A,\)</span> <span class="math display">\[P(\overline{A}) = 1 - P(A).\]</span></p>
 </div>
 <div class="proof">
 <p><span id="unlabeled-div-12" class="proof"><em>Proof</em>. </span>By the additive law, <span class="math display">\[P(A \cup \overline{A}) = P(A) + P(\overline{A})-P(A \cap \overline{A}).\]</span>
-Since <span class="math inline">\(A\cup \overline{A} = S\)</span> and <span class="math inline">\(A \cap \overline{A} = \emptyset\)</span>, <span class="math inline">\(P(A \cup \overline{A}) = 1\)</span> and <span class="math inline">\(P(A \cap \overline{A}) = 0\)</span>, so <span class="math display">\[1 = P(A) + P(\overline{A}),\]</span> and the result follows.</p>
+Since <span class="math inline">\(A\cup \overline{A} = S\)</span> and <span class="math inline">\(A \cap \overline{A} = \emptyset,\)</span> <span class="math inline">\(P(A \cup \overline{A}) = 1\)</span> and <span class="math inline">\(P(A \cap \overline{A}) = 0,\)</span> so <span class="math display">\[1 = P(A) + P(\overline{A}),\]</span> and the result follows.</p>
 </div>
 <div class="corollary">
 <p><span id="cor:unlabeled-div-13" class="corollary"><strong>Corollary 5.2  </strong></span>If <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are disjoint events, then <span class="math inline">\(P(A \cup B) = P(A) + P(B).\)</span></p>
 </div>
 <div class="proof">
-<p><span id="unlabeled-div-14" class="proof"><em>Proof</em>. </span>Since <span class="math inline">\(A\cap B = \emptyset\)</span>, <span class="math inline">\(P(A \cap B) = 0\)</span> and the result follows from the Additive Law of Probability.</p>
+<p><span id="unlabeled-div-14" class="proof"><em>Proof</em>. </span>Since <span class="math inline">\(A\cap B = \emptyset,\)</span> <span class="math inline">\(P(A \cap B) = 0\)</span> and the result follows from the Additive Law of Probability.</p>
 </div>
 <div class="corollary">
 <p><span id="cor:unlabeled-div-15" class="corollary"><strong>Corollary 5.3  </strong></span>For three events <span class="math inline">\(A, B, C\)</span>.</p>
@@ -602,12 +602,12 @@ P(A \cup B \cup C) &amp;= P(A \cup (B \cup C)) \\
 <p>From our handy <span class="math inline">\(6 \times 6\)</span> grid describing all possible sums when rolling 2 dice (Example <a href="discrete-probability-distributions.html#exm:roll2dice">3.3</a>), we know <span class="math display">\[P(A) = \frac{3}{36}, P(B) = \frac{27}{36}.\]</span></p>
 <p>In this game we roll the dice until we roll a 4 or a 7, and we <strong>win</strong> if we roll a 4 before rolling a 7.</p>
 <p>There is no limit to how many rolls we might need in order to win.
-We might win on the 1st roll, or the 2nd roll, or the 3rd roll, or the 4th roll, … etc. In fact, for each <span class="math inline">\(n \in \mathbb{N}\)</span>, we might win on roll <span class="math inline">\(n\)</span>.</p>
+We might win on the 1st roll, or the 2nd roll, or the 3rd roll, or the 4th roll, … etc. In fact, for each <span class="math inline">\(n \in \mathbb{N},\)</span> we might win on roll <span class="math inline">\(n\)</span>.</p>
 <p>Put another way, we can partition the event of winning into a countably infinite collection of mutually disjoint events: winning on roll 1, winning on roll 2, winning on roll 3, etc. Then,
 <span class="math display">\[P(\text{winning}) = \sum_{n=1}^\infty P(\text{winning on roll }n).\]</span></p>
 <p>The probability of winning on the 1st roll is <span class="math inline">\(P(A)\)</span>.</p>
 <p>The probability of winning on the 2nd roll is <span class="math inline">\(P(B) \cdot P(A)\)</span> (no 4 or 7 on 1st roll and yes 4 on the 2nd roll).</p>
-<p>The probability of winning on the 3rd roll is <span class="math inline">\(P(B) \cdot P(B) \cdot P(A)\)</span>, and, more generally, the probability of winning on roll <span class="math inline">\(n\)</span> is <span class="math display">\[P(B)^{n-1}\cdot P(A).\]</span></p>
+<p>The probability of winning on the 3rd roll is <span class="math inline">\(P(B) \cdot P(B) \cdot P(A),\)</span> and, more generally, the probability of winning on roll <span class="math inline">\(n\)</span> is <span class="math display">\[P(B)^{n-1}\cdot P(A).\]</span></p>
 <p>The sum of these probabilities is an honest-to-goodness-living-in-the-wild geometric series:</p>
 <p><span class="math display">\[\begin{align*}
 P(\text{4 before 7}) &amp;= \sum_{n=1}^\infty P(B)^{n-1}P(A)\\
@@ -619,7 +619,7 @@ P(\text{4 before 7}) &amp;= \sum_{n=1}^\infty P(B)^{n-1}P(A)\\
 \sum_{n=0}^\infty r^n = \frac{1}{1-r} \text{ if } |r| &lt; 1
 \tag{5.3}
 \end{equation}\]</span></p>
-<p>Using this formula with <span class="math inline">\(r = 27/36\)</span>, we see the probability that we roll a 4 before a 7 is <span class="math display">\[P(\text{4 before 7}) = \frac{1}{3}.\]</span></p>
+<p>Using this formula with <span class="math inline">\(r = 27/36,\)</span> we see the probability that we roll a 4 before a 7 is <span class="math display">\[P(\text{4 before 7}) = \frac{1}{3}.\]</span></p>
 </div>
 </div>
 <div id="bayes-rule" class="section level2 hasAnchor" number="5.4">
@@ -627,12 +627,12 @@ P(\text{4 before 7}) &amp;= \sum_{n=1}^\infty P(B)^{n-1}P(A)\\
 <div class="definition">
 <p><span id="def:partition" class="definition"><strong>Definition 5.3  </strong></span>A collection <span class="math inline">\(\{B_1, B_2, \ldots, B_n\}\)</span> of nonempty subsets of <span class="math inline">\(S\)</span> is called a <strong>partition</strong> of <span class="math inline">\(S\)</span> provided that</p>
 <ol style="list-style-type: decimal">
-<li><span class="math inline">\(S = B_1 \cup B_2 \cup \cdots \cup B_n\)</span>, and</li>
+<li><span class="math inline">\(S = B_1 \cup B_2 \cup \cdots \cup B_n,\)</span> and</li>
 <li>the collection is pairwise disjoint.</li>
 </ol>
 </div>
 <div class="theorem">
-<p><span id="thm:total-law-prob" class="theorem"><strong>Theorem 5.2  (Law of Total Probability) </strong></span>Assume <span class="math inline">\(\{B_1, B_2, \ldots B_k\}\)</span> is a partition of the sample space <span class="math inline">\(S\)</span>, and <span class="math inline">\(P(B_i) &gt; 0\)</span> for each <span class="math inline">\(i = 1, 2, \ldots k\)</span>. Then for any event <span class="math inline">\(A\)</span>, <span class="math display">\[P(A) = \sum_{i=1}^k P(A~|~B_i)\cdot P(B_i).\]</span></p>
+<p><span id="thm:total-law-prob" class="theorem"><strong>Theorem 5.2  (Law of Total Probability) </strong></span>Assume <span class="math inline">\(\{B_1, B_2, \ldots B_k\}\)</span> is a partition of the sample space <span class="math inline">\(S,\)</span> and <span class="math inline">\(P(B_i) &gt; 0\)</span> for each <span class="math inline">\(i = 1, 2, \ldots k\)</span>. Then for any event <span class="math inline">\(A,\)</span> <span class="math display">\[P(A) = \sum_{i=1}^k P(A~|~B_i)\cdot P(B_i).\]</span></p>
 </div>
 <div class="proof">
 <p><span id="unlabeled-div-17" class="proof"><em>Proof</em>. </span>Notice that as a set,
@@ -666,10 +666,10 @@ A &amp;= A \cap S \\
 <p>What we want: <span class="math inline">\(P(A)\)</span>.</p>
 <p>What we know:</p>
 <ul>
-<li><span class="math inline">\(P(B) = 1/50\)</span>,</li>
-<li><span class="math inline">\(P(C) = 1/5\)</span>,</li>
-<li><span class="math inline">\(P(B \cap C) = 1/100\)</span>,</li>
-<li><span class="math inline">\(P(A ~|~ B \cup C) = 1/3\)</span>, and</li>
+<li><span class="math inline">\(P(B) = 1/50,\)</span></li>
+<li><span class="math inline">\(P(C) = 1/5,\)</span></li>
+<li><span class="math inline">\(P(B \cap C) = 1/100,\)</span></li>
+<li><span class="math inline">\(P(A ~|~ B \cup C) = 1/3,\)</span> and</li>
 <li><span class="math inline">\(P(A ~|~ \overline{B \cup C}) = 1/10.\)</span></li>
 </ul>
 <p>We also know by the additive law of probability that</p>
@@ -719,7 +719,7 @@ Figure 5.2: 1% of population has the disease
 <p>So, it seems to answer the question in this example, it is important to know what percentage of the population have the disease. Baye’s Theorem below tells us that this is all the additional information we need.</p>
 </div>
 <div class="theorem">
-<p><span id="thm:Bayes-rule" class="theorem"><strong>Theorem 5.3  (Bayes' Rule) </strong></span>Assume <span class="math inline">\(\{B_1, B_2, \ldots B_k\}\)</span> is a partition of the sample space <span class="math inline">\(S\)</span>, and <span class="math inline">\(P(B_i) &gt; 0\)</span> for each <span class="math inline">\(i = 1, 2, \ldots k\)</span>. Then for any particular <span class="math inline">\(B_j\)</span>, <span class="math display">\[P(B_j ~|~ A) = \frac{P(A~|~B_j)\cdot P(B_j)}{\sum_{i=1}^k P(A~|~B_i)\cdot P(B_i)}.\]</span></p>
+<p><span id="thm:Bayes-rule" class="theorem"><strong>Theorem 5.3  (Bayes' Rule) </strong></span>Assume <span class="math inline">\(\{B_1, B_2, \ldots B_k\}\)</span> is a partition of the sample space <span class="math inline">\(S,\)</span> and <span class="math inline">\(P(B_i) &gt; 0\)</span> for each <span class="math inline">\(i = 1, 2, \ldots k\)</span>. Then for any particular <span class="math inline">\(B_j,\)</span> <span class="math display">\[P(B_j ~|~ A) = \frac{P(A~|~B_j)\cdot P(B_j)}{\sum_{i=1}^k P(A~|~B_i)\cdot P(B_i)}.\]</span></p>
 </div>
 <div class="example">
 <p><span id="exm:bad-apples" class="example"><strong>Example 5.11  </strong></span>A grocery store has an apple bin. 70% of the apples are Liberty, and 30% are Braeburn. From past experience, we know that 8% of Liberty apples are bad, and 15% of Braeburn apples are bad. Suppose you pick an apple at random and find it is bad. What is the probability that the apple is a Braeburn?</p>
@@ -732,8 +732,8 @@ Figure 5.2: 1% of population has the disease
 </ul>
 <p>We know:</p>
 <ul>
-<li><span class="math inline">\(P(B_1) = .7\)</span>, and <span class="math inline">\(P(B_2) = .3\)</span></li>
-<li><span class="math inline">\(P(A~|~B_1) = .08\)</span>, and <span class="math inline">\(P(A~|~B_2) = .15\)</span>.</li>
+<li><span class="math inline">\(P(B_1) = .7,\)</span> and <span class="math inline">\(P(B_2) = .3\)</span></li>
+<li><span class="math inline">\(P(A~|~B_1) = .08,\)</span> and <span class="math inline">\(P(A~|~B_2) = .15\)</span>.</li>
 </ul>
 <p>We want:</p>
 <ul>
@@ -751,7 +751,7 @@ About a 44% chance that if we drew a bad apple it’s a Braeburn.</p>
 Figure 5.3: Picking an Apple
 </p>
 </div>
-<p>From the diagram, the probability of picking a bad apple is <span class="math inline">\((.7)(.08) + (.3)(.15)\)</span> and the probability of picking a bad Braeburn is <span class="math inline">\((.3)(.15)\)</span>, so the probability of having picked a Braeburn, given we picked a bad apple is <span class="math display">\[\frac{(.3)(.15)}{(.7)(.08) + (.3)(.15)}.\]</span></p>
+<p>From the diagram, the probability of picking a bad apple is <span class="math inline">\((.7)(.08) + (.3)(.15)\)</span> and the probability of picking a bad Braeburn is <span class="math inline">\((.3)(.15),\)</span> so the probability of having picked a Braeburn, given we picked a bad apple is <span class="math display">\[\frac{(.3)(.15)}{(.7)(.08) + (.3)(.15)}.\]</span></p>
 </div>
 <div class="example">
 <p><span id="exm:factory-skill" class="example"><strong>Example 5.12  </strong></span>Two methods, <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are available for teaching a certain skill at a factory. The failure rate for <span class="math inline">\(A\)</span> is 20%, and for <span class="math inline">\(B\)</span> is 10%. However, <span class="math inline">\(B\)</span> is more expensive and is used only 30% of the time (<span class="math inline">\(A\)</span> is used the other 70%). A worker was taught the skill by one of the methods but failed to learn it correctly. What is the probability they were taught by Method <span class="math inline">\(A\)</span>?</p>
@@ -763,7 +763,7 @@ Figure 5.3: Picking an Apple
 </ul>
 <p>We also have <span class="math inline">\(F\)</span> = those who fail to learn the skill correctly.</p>
 <p>We want: <span class="math inline">\(P(A~|~F)\)</span>.</p>
-<p>We know: <span class="math inline">\(P(A) = .7\)</span>, <span class="math inline">\(P(B) = .3\)</span>, <span class="math inline">\(P(F~|~A) = .2\)</span>, and <span class="math inline">\(P(F~|~B) = .1\)</span>.</p>
+<p>We know: <span class="math inline">\(P(A) = .7,\)</span> <span class="math inline">\(P(B) = .3,\)</span> <span class="math inline">\(P(F~|~A) = .2,\)</span> and <span class="math inline">\(P(F~|~B) = .1\)</span>.</p>
 <p>Using Bayes’ Rule,
 <span class="math display">\[\begin{align*}
 P(A~|~F) &amp;= \frac{P(A)\cdot P(F~|~A)}{P(A)\cdot P(F~|~A)+P(B)\cdot P(F~|~B)}\\
@@ -787,7 +787,7 @@ Figure 5.4: Learning by a Method
         </div>
       </div>
 <a href="counting.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="discrete-random-variables-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="discrete-random-variables.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

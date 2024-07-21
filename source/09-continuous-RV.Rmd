@@ -6,7 +6,7 @@ We now turn our attention to continuous random variables.
 ## Distribution Functions
 
 :::{.definition #distribution-function name="Distribution Function of a Random Variable"}
-Let $X$ be a random variable.  **The distribution function**\index{distribution function} of $X$, denoted $F(x)$, is the function defined on all real numbers $x$ such that $$F(x) = P(X \leq x).$$ 
+Let $X$ be a random variable.  **The distribution function**\index{distribution function} of $X,$ denoted $F(x),$ is the function defined on all real numbers $x$ such that $$F(x) = P(X \leq x).$$ 
 :::
 
 :::{.example}
@@ -17,7 +17,7 @@ x & 0 & 1 & 2 & 3 \\ \hline
 p(x) & 1/8 & 3/8 & 3/8 & 1/8 
 \end{array}
 $$
-Note $F(-2.7) = P(X \leq -2.7) = 0$, and $F(1.3) = P(X \leq 1.3) = 1/8 + 3/8 = 4/8$ (since the only $X$ values less than or equal to 1.3 with positive probability are $X=0$ or $X=1$).
+Note $F(-2.7) = P(X \leq -2.7) = 0,$ and $F(1.3) = P(X \leq 1.3) = 1/8 + 3/8 = 4/8$ (since the only $X$ values less than or equal to 1.3 with positive probability are $X=0$ or $X=1$).
 
 The distribution function for $X$ is the following step function:
 
@@ -63,27 +63,27 @@ So the distribution function for any continuous random variable has the followin
 
   - it is continuous,
   - its domain is $(-\infty,\infty)$
-  - as $x$ progresses away from $-\infty$ toward $\infty$, the values of $F(x)$ rise from 0 to 1, never decreasing along the way.
+  - as $x$ progresses away from $-\infty$ toward $\infty,$ the values of $F(x)$ rise from 0 to 1, never decreasing along the way.
 
   
 :::{.definition #pdf-continuous-RV}
-Let $F$ be the distribution for a continuous random variable $X$. Then the derivative of $F$, wherever it exists is called the **probability density function**\index{probability density function!continuous random variable} for $X$. When continuous $X$ has a probability density function, we usually denote it as $f(x)$. 
+Let $F$ be the distribution for a continuous random variable $X$. Then the derivative of $F,$ wherever it exists is called the **probability density function**\index{probability density function!continuous random variable} for $X$. When continuous $X$ has a probability density function, we usually denote it as $f(x)$. 
 :::
 
 The density function $f(x)$ is a theoretical curve for the frequency distribution of a population of measurements.  We'll look at examples shortly.
 
 :::{.theorem #pdf-props name="Properties of a density function"}
-If $f(x)$ is a density function for a continuous random variable $X$, then 
+If $f(x)$ is a density function for a continuous random variable $X,$ then 
 
-  a) $f(x) \geq 0$ for all $x$, and
+  a) $f(x) \geq 0$ for all $x,$ and
   b) $\displaystyle \int_{-\infty}^{\infty} f(x)~dx = 1$.
 :::
 
 *Sketch of Proof*: 
 
-For a) Recall $f(x) = F^\prime(x)$. One feature of any distribution function is that it is never decreasing, so its slope (derivative) is never negative. Since $f(x)$ gives the slope of $F$, $f(x) \geq 0$.
+For a) Recall $f(x) = F^\prime(x)$. One feature of any distribution function is that it is never decreasing, so its slope (derivative) is never negative. Since $f(x)$ gives the slope of $F,$ $f(x) \geq 0$.
 
-For b) $F$ is the antiderivative of $f$, which is useful to know when we integrate $f$. Also, $\displaystyle \int_{-\infty}^{\infty} f(x)~dx$ is an improper integral, which we can tackle by splitting it into two integrals, assuming each of these new integrals converges:
+For b) $F$ is the antiderivative of $f,$ which is useful to know when we integrate $f$. Also, $\displaystyle \int_{-\infty}^{\infty} f(x)~dx$ is an improper integral, which we can tackle by splitting it into two integrals, assuming each of these new integrals converges:
 
 
 \begin{align*}
@@ -136,7 +136,7 @@ ggplot()+
   theme_get()
 ```
 
-Note that $f(x) \geq 0$ for all $x$.  Also, $$\int_{-\infty}^{\infty} f(x)~dx = \int_0^c f(x)~dx$$ (we only have to integrate over intervals in which $f(x) > 0$), and this later integral is the area of a rectangle of width $c$ and height $1/c$, so it has area 1.  Thus, we have a valid pdf!
+Note that $f(x) \geq 0$ for all $x$.  Also, $$\int_{-\infty}^{\infty} f(x)~dx = \int_0^c f(x)~dx$$ (we only have to integrate over intervals in which $f(x) > 0$), and this later integral is the area of a rectangle of width $c$ and height $1/c,$ so it has area 1.  Thus, we have a valid pdf!
 :::
 
 :::{.example}
@@ -154,21 +154,21 @@ It follows that $k = 9$.
 :::
 
 :::{.definition #quantile name="Quantiles"}
-Let $X$ denote a random variable.  If $0 < p < 1$, the $p$th quantile of $X$, denoted $\phi_p$, is the smallest value such that $F(\phi_p) \geq p$.  If $X$ is continuous, $\phi_p$ is the smallest value such that $F(\phi_p) = p$.
+Let $X$ denote a random variable.  If $0 < p < 1,$ the $p$th quantile of $X,$ denoted $\phi_p,$ is the smallest value such that $F(\phi_p) \geq p$.  If $X$ is continuous, $\phi_p$ is the smallest value such that $F(\phi_p) = p$.
 :::
 
 Some special quantiles:
 
-  - $\phi_.25$, denoted $Q1$, is called the first quartile, 
-  - $\phi_.5$, denoted $M$, is called the median of the random variable,
-  - $\phi_.75$, denoted $Q3$, is called the third quartile 
+  - $\phi_.25,$ denoted $Q1,$ is called the first quartile, 
+  - $\phi_.5,$ denoted $M,$ is called the median of the random variable,
+  - $\phi_.75,$ denoted $Q3,$ is called the third quartile 
   
 :::{.theorem}
-If $X$ is a continuous random variable with density function $f$, then for any real numbers $a < b$, 
+If $X$ is a continuous random variable with density function $f,$ then for any real numbers $a < b,$ 
 $$P(a \leq X \leq b) = \int_a^b f(x)~dx.$$
 :::
 
-**Proof Idea**: The distribution function $F$ is an antiderivative of the density function $f$, so using the Fundamental Theorem of Calculus,
+**Proof Idea**: The distribution function $F$ is an antiderivative of the density function $f,$ so using the Fundamental Theorem of Calculus,
 
 \begin{align*}
 \int_a^b f(x)~dx  &= F(b) - F(a) \\
@@ -177,7 +177,7 @@ $$P(a \leq X \leq b) = \int_a^b f(x)~dx.$$
                   &= P(a \leq X \leq b) &\text{ since } P(X = a) = 0
 \end{align*}
 
-**Note**: For any continuous random variable $X$, and $a < b$,
+**Note**: For any continuous random variable $X,$ and $a < b,$
 
 $$P(a < X < b) = P(a \leq X < b) = P(a < X \leq b) = P(a \leq X \leq B)$$ since $P(X = c) = 0$ for any real number $c$.
 
@@ -251,9 +251,9 @@ $$
 \end{align*}
 The limit equals 1 in the end since $1/b \to 0$ as $b \to \infty$.
 
-> **b)** Find $F(x)$, the cumulative probability distribution function.
+> **b)** Find $F(x),$ the cumulative probability distribution function.
 
-By definition, for any real number $x$, $$F(x) = \int_{-\infty}^x f(t)~dt,$$ which, of course, gives the area under $f$ over the interval $(-\infty, x]$. Since $f$ is piece-wise defined, the integrand used in the integral to evaluate $F$ depends on the bounds of the integral.
+By definition, for any real number $x,$ $$F(x) = \int_{-\infty}^x f(t)~dt,$$ which, of course, gives the area under $f$ over the interval $(-\infty, x]$. Since $f$ is piece-wise defined, the integrand used in the integral to evaluate $F$ depends on the bounds of the integral.
 
 $$
 F(x)=
@@ -291,14 +291,14 @@ Well, $$P(1 < X < 3) = \int_1^3 f(x)~dx = F(3)-F(1),$$ by the Fundamental Theore
 ## Expected Value for Continuous Random Variables
 
 :::{.definition #expected-value-continuous}
-If $X$ is a continuous random variable with probability density function $f(x)$, then the **expected value of $X$**\index{expected value!continuous random variable}, denoted $E(X)$, is $$E(X) = \int_{-\infty}^\infty x \cdot f(x)~dx,$$ provided this integral exists. The expected value $E(X)$ is also called the **mean of $X$**\index{mean of a random variable}, and is often denoted as $\mu_X$, or $\mu$ if the random variable $X$ is understood.
+If $X$ is a continuous random variable with probability density function $f(x),$ then the **expected value of $X$**\index{expected value!continuous random variable}, denoted $E(X),$ is $$E(X) = \int_{-\infty}^\infty x \cdot f(x)~dx,$$ provided this integral exists. The expected value $E(X)$ is also called the **mean of $X$**\index{mean of a random variable}, and is often denoted as $\mu_X,$ or $\mu$ if the random variable $X$ is understood.
 
 The **expected value of the function $g(X)$ of $X$** is $$E(g(X)) = \int_{-\infty}^\infty g(x) \cdot f(x)~dx,$$ provided this integral exists.
 
 The **variance of $X$** is $$V(X) = E((X-\mu_X)^2),$$ provided this integral exists.
 :::
 
-As in the discrete case, one can show $V(X) = E(X^2)-E(X)^2$, a working formula for variance which is sometimes easier to use to calculate variance.
+As in the discrete case, one can show $V(X) = E(X^2)-E(X)^2,$ a working formula for variance which is sometimes easier to use to calculate variance.
 
 :::{.example}
 > Find $E(X)$ and $V(X)$ where $X$ is the continuous random variable from Example \@ref(exm:cont-quad-rv).
@@ -332,7 +332,7 @@ V(X)    &= E(X^2) - E(X)^2 \\
 The properties of expected value that held for discrete random variables also hold for continuous random variables.
 
 :::{.theorem #EV-properties-continuous} 
-Suppose $X$ is a continuous random variable, $c \in \mathbb{R}$ is a constant, and $g$, $g_1$, and $g_2$ are functions of $X$.
+Suppose $X$ is a continuous random variable, $c \in \mathbb{R}$ is a constant, and $g,$ $g_1,$ and $g_2$ are functions of $X$.
 
   1. $E(c) = c$.
   2. $E(c\cdot g(X))= cE(g(X))$.
@@ -340,12 +340,12 @@ Suppose $X$ is a continuous random variable, $c \in \mathbb{R}$ is a constant, a
 :::
 
 These results follow immediately from properties of integration. For instance, to prove property 1 we observe
-that for constant $c$, 
+that for constant $c,$ 
 $$E(c) = \int_{-\infty}^\infty c\cdot f(x)~ dx  = c \int_{-\infty}^\infty f(x)~ dx,$$
 and the integral in the last expression equals 1 by definition of a valid probability density function.
 
 :::{.theorem #EV-linear-props}
-Let $X$ be a random variable (discrete or continuous) with $E(X) = \mu$ and $V(X) = \sigma^2$, and let $a, b$ be constants.  Then
+Let $X$ be a random variable (discrete or continuous) with $E(X) = \mu$ and $V(X) = \sigma^2,$ and let $a, b$ be constants.  Then
 
   a) $\displaystyle E(aX + b) = aE(X) + b = a \mu + b.$
   b) $\displaystyle V(aX + b) = a^2V(X) = a^2 \sigma^2.$
@@ -354,7 +354,7 @@ Let $X$ be a random variable (discrete or continuous) with $E(X) = \mu$ and $V(X
 :::{.proof}
 a) This result follows immediately from properties of expected value (Theorems \@ref(thm:EV-properties-continuous) and \@ref(thm:EV-properties-continuous)).
 
-b) Let $Y = aX + b$. Then (a) says that $E(Y) = a \mu + b$, so 
+b) Let $Y = aX + b$. Then (a) says that $E(Y) = a \mu + b,$ so 
 \begin{align*}
 V(Y) &= E((Y-(a\mu + b))^2) \\
     &= E\left(((aX+b)-(a\mu + b))^2\right)\\

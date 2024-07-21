@@ -3,13 +3,13 @@
 
 ## Conditional Probability and Independence
 
-Suppose we have a probability model associated to a sample space $S$. If we are told some event $B$ has occurred, how would the probability of other events change? Calculating a new probability for event $A$, given that $B$ has occurred is called a conditional probability, and will be denoted $P(A|B)$. 
+Suppose we have a probability model associated to a sample space $S$. If we are told some event $B$ has occurred, how would the probability of other events change? Calculating a new probability for event $A,$ given that $B$ has occurred is called a conditional probability, and will be denoted $P(A|B)$. 
 
 For instance,  Let $X$ denote the outcome if we roll a fair six-sided die. Let $A$ be the event that we roll a 4, and $B$ the event that we roll an even number. Since the die is fair, we expect that $P(A) = 1/6$. Now suppose that the die is rolled and we are told that the event $B$ has occurred. This leaves only three possible outcomes: 2, 4, and 6. The new, conditional probability of $A$ given $B$ would be $P(A|B) = 1/3.$
 
 
 :::{.definition #cond-prob}
-The **conditional probability**\index{conditional probability} of an event $A$, given that an event $B$ has occurred, denoted $P(A|B)$, is 
+The **conditional probability**\index{conditional probability} of an event $A,$ given that an event $B$ has occurred, denoted $P(A|B),$ is 
 \begin{equation} 
   P(A|B) = \frac{P(A \cap B)}{P(B)},
   (\#eq:condprob)
@@ -20,7 +20,7 @@ provided that $P(B) > 0$.
 :::{.example}
 For the 2023 Major League Baseball season, 328 hitters had at least 250 plate appearances. In this group, 71\% of them hit at least 10 HR for the season, and 31\% of them hit at least 20 HR. If you pick a player from this group at random, and you are told they hit over at least 10 HR, what is the probability that they hit at least 20 HR?
 
-Let $A$ be the event that the player hits at least 20 HR, and $B$ the event that a player hit at least 10.  Then we have been asked to find $P(A|B)$. Note that $A$ is a subset of $B$ (if a player hit at least 20, then they also hit at least 10), so $A \cap B$ = $A$, and it follows that
+Let $A$ be the event that the player hits at least 20 HR, and $B$ the event that a player hit at least 10.  Then we have been asked to find $P(A|B)$. Note that $A$ is a subset of $B$ (if a player hit at least 20, then they also hit at least 10), so $A \cap B$ = $A,$ and it follows that
 \begin{align*}
 P(A|B) &= \frac{P(A \cap B)}{P(B)} \\
       &= \frac{P(A)}{P(B)} \\
@@ -57,15 +57,15 @@ C &= \{2\}\\
 D &= \{1,2\}
 \end{align*}
 
-Then $P(A) = 1/2, P(B) = 1/6, P(C) = 1/6$, and $P(D) = 1/3.$
+Then $P(A) = 1/2, P(B) = 1/6, P(C) = 1/6,$ and $P(D) = 1/3.$
 
 **Claim 1**: $A$ and $D$ are independent events.
 
-**Reason 1**: Well, $A \cap D = \{1\}$, so 
+**Reason 1**: Well, $A \cap D = \{1\},$ so 
 $$P(A~|~D) = \frac{P(A\cap D)}{P(D)} = \frac{1/6}{1/3} = 1/2 = P(A).$$
 **Claim 2**: $B$ and $C$ are not independent events.
 
-**Reason 2**: $B \cap C = \emptyset$, so $$P(B~|~C) = \frac{P(B\cap C)}{P(C)} = \frac{0}{1/6} = 0 \neq P(B).$$
+**Reason 2**: $B \cap C = \emptyset,$ so $$P(B~|~C) = \frac{P(B\cap C)}{P(C)} = \frac{0}{1/6} = 0 \neq P(B).$$
 
 These simple examples help me remember that for events associated to a sample space,
 
@@ -122,9 +122,9 @@ The question asks for $P(A \cap B).$ Since $A$ and $B$ are independent, $$P(A \c
 
 We remark that we can also use counting techniques to find this probability directly in Section \@ref(prob-with-counting-tools).
 
-The sample space $S$ of this chance experiment consists of all possible rolls of the two dice. That is, $S$ consists of all ordered pairs of the form $(i,j)$ with $i, j \in \mathbb{N}$ and $1\leq i, j \leq 6$, and $|S| = 6^2$. The event of interest, $E$, consists of all rolls $(i,j)$ in $S$ such that $i, j \leq 2$.  So, $|E| = 2^2$, and $P(E) = 4/36 = 1/9$.
+The sample space $S$ of this chance experiment consists of all possible rolls of the two dice. That is, $S$ consists of all ordered pairs of the form $(i,j)$ with $i, j \in \mathbb{N}$ and $1\leq i, j \leq 6,$ and $|S| = 6^2$. The event of interest, $E,$ consists of all rolls $(i,j)$ in $S$ such that $i, j \leq 2$.  So, $|E| = 2^2,$ and $P(E) = 4/36 = 1/9$.
 
-So, thinking of the chance experiment as a sequence of independent events we calculate the probability of interest as $\frac{2}{6} \cdot \frac{2}{6},$, and thinking of the probability via the "(outcomes of interest)/(all possible outcomes)" approach we think of the probability as $\frac{2\cdot 2}{6 \cdot 6}$. 
+So, thinking of the chance experiment as a sequence of independent events we calculate the probability of interest as $\frac{2}{6} \cdot \frac{2}{6},,$ and thinking of the probability via the "(outcomes of interest)/(all possible outcomes)" approach we think of the probability as $\frac{2\cdot 2}{6 \cdot 6}$. 
 :::
 
 :::{.example #four-on-rolll-8}
@@ -155,9 +155,9 @@ $$P(A\cup B) = P(A) + P(B) - P(A \cap B).$$
 
 1. This proof follows directly from the definition of conditional probability (\@ref(def:cond-prob)).
 
-2. For finite sets $A$ and $B$, we know $$|A \cup B| = |A| + |B| - |A \cap B|,$$ from which the result follows.  
+2. For finite sets $A$ and $B,$ we know $$|A \cup B| = |A| + |B| - |A \cap B|,$$ from which the result follows.  
 
-More generally, for any sets $A$ and $B$, the union $A \cup B$ can be decomposed into disjoint sets: $A \cup B = A \cup (\overline{A} \cap B).$
+More generally, for any sets $A$ and $B,$ the union $A \cup B$ can be decomposed into disjoint sets: $A \cup B = A \cup (\overline{A} \cap B).$
 So, $$P(A \cup B) = P(A) + P(\overline{A} \cap B).$$
 
 Similarly, we can decompose the set $B$ into disjoint sets as follows: $B = (\overline{A} \cap B) \cup (A \cap B).$
@@ -221,12 +221,12 @@ By the multiplicative law of probability, the probability that a random 4-digit 
 We have three corollaries to Theorem \@ref(thm:two-prob-laws).
 
 :::{.corollary #comp-prob}
-For any event $A$, $$P(\overline{A}) = 1 - P(A).$$
+For any event $A,$ $$P(\overline{A}) = 1 - P(A).$$
 :::
 
 :::{.proof}
 By the additive law, $$P(A \cup \overline{A}) = P(A) + P(\overline{A})-P(A \cap \overline{A}).$$
-Since $A\cup \overline{A} = S$ and $A \cap \overline{A} = \emptyset$, $P(A \cup \overline{A}) = 1$ and $P(A \cap \overline{A}) = 0$, so $$1 = P(A) + P(\overline{A}),$$ and the result follows.
+Since $A\cup \overline{A} = S$ and $A \cap \overline{A} = \emptyset,$ $P(A \cup \overline{A}) = 1$ and $P(A \cap \overline{A}) = 0,$ so $$1 = P(A) + P(\overline{A}),$$ and the result follows.
 :::
 
 :::{.corollary}
@@ -234,7 +234,7 @@ If $A$ and $B$ are disjoint events, then $P(A \cup B) = P(A) + P(B).$
 :::
 
 :::{.proof}
-Since $A\cap B = \emptyset$, $P(A \cap B) = 0$ and the result follows from the Additive Law of Probability.
+Since $A\cap B = \emptyset,$ $P(A \cap B) = 0$ and the result follows from the Additive Law of Probability.
 :::
 
 :::{.corollary}
@@ -295,7 +295,7 @@ From our handy $6 \times 6$ grid describing all possible sums when rolling 2 dic
 In this game we roll the dice until we roll a 4 or a 7, and we **win** if we roll a 4 before rolling a 7.
 
 There is no limit to how many rolls we might need in order to win.
-We might win on the 1st roll, or the 2nd roll, or the 3rd roll, or the 4th roll, ... etc. In fact, for each $n \in \mathbb{N}$, we might win on roll $n$.
+We might win on the 1st roll, or the 2nd roll, or the 3rd roll, or the 4th roll, ... etc. In fact, for each $n \in \mathbb{N},$ we might win on roll $n$.
 
 Put another way, we can partition the event of winning into a countably infinite collection of mutually disjoint events: winning on roll 1, winning on roll 2, winning on roll 3, etc. Then, 
 $$P(\text{winning}) = \sum_{n=1}^\infty P(\text{winning on roll }n).$$
@@ -304,7 +304,7 @@ The probability of winning on the 1st roll is $P(A)$.
 
 The probability of winning on the 2nd roll is $P(B) \cdot P(A)$ (no 4 or 7 on 1st roll and yes 4 on the 2nd roll).
 
-The probability of winning on the 3rd roll is $P(B) \cdot P(B) \cdot P(A)$, and, more generally, the probability of winning on roll $n$ is $$P(B)^{n-1}\cdot P(A).$$
+The probability of winning on the 3rd roll is $P(B) \cdot P(B) \cdot P(A),$ and, more generally, the probability of winning on roll $n$ is $$P(B)^{n-1}\cdot P(A).$$
 
 The sum of these probabilities is an honest-to-goodness-living-in-the-wild geometric series:
 
@@ -320,7 +320,7 @@ As a reminder, the sum of a geometric series is given by
 (\#eq:geometric-series)
 \end{equation}
 
-Using this formula with $r = 27/36$, we see the probability that we roll a 4 before a 7 is $$P(\text{4 before 7}) = \frac{1}{3}.$$
+Using this formula with $r = 27/36,$ we see the probability that we roll a 4 before a 7 is $$P(\text{4 before 7}) = \frac{1}{3}.$$
 :::
 
 ## Bayes' Rule
@@ -328,12 +328,12 @@ Using this formula with $r = 27/36$, we see the probability that we roll a 4 bef
 :::{.definition #partition}
 A collection $\{B_1, B_2, \ldots, B_n\}$ of nonempty subsets of $S$ is called a **partition**\index{partition} of $S$ provided that
 
-  1. $S = B_1 \cup B_2 \cup \cdots \cup B_n$, and
+  1. $S = B_1 \cup B_2 \cup \cdots \cup B_n,$ and
   2. the collection is pairwise disjoint.
 :::
 
 :::{.theorem #total-law-prob name="Law of Total Probability"}
-Assume $\{B_1, B_2, \ldots B_k\}$ is a partition of the sample space $S$, and $P(B_i) > 0$ for each $i = 1, 2, \ldots k$. Then for any event $A$, $$P(A) = \sum_{i=1}^k P(A~|~B_i)\cdot P(B_i).$$
+Assume $\{B_1, B_2, \ldots B_k\}$ is a partition of the sample space $S,$ and $P(B_i) > 0$ for each $i = 1, 2, \ldots k$. Then for any event $A,$ $$P(A) = \sum_{i=1}^k P(A~|~B_i)\cdot P(B_i).$$
 :::
 
 :::{.proof}
@@ -373,10 +373,10 @@ What we want: $P(A)$.
 
 What we know:
 
-  - $P(B) = 1/50$,
-  - $P(C) = 1/5$,
-  - $P(B \cap C) = 1/100$,
-  - $P(A ~|~ B \cup C) = 1/3$, and
+  - $P(B) = 1/50,$
+  - $P(C) = 1/5,$
+  - $P(B \cap C) = 1/100,$
+  - $P(A ~|~ B \cup C) = 1/3,$ and
   - $P(A ~|~ \overline{B \cup C}) = 1/10.$
   
 We also know by the additive law of probability that
@@ -470,7 +470,7 @@ So, it seems to answer the question in this example, it is important to know wha
 
 
 :::{.theorem #Bayes-rule name="Bayes' Rule"}
-Assume $\{B_1, B_2, \ldots B_k\}$ is a partition of the sample space $S$, and $P(B_i) > 0$ for each $i = 1, 2, \ldots k$. Then for any particular $B_j$, $$P(B_j ~|~ A) = \frac{P(A~|~B_j)\cdot P(B_j)}{\sum_{i=1}^k P(A~|~B_i)\cdot P(B_i)}.$$
+Assume $\{B_1, B_2, \ldots B_k\}$ is a partition of the sample space $S,$ and $P(B_i) > 0$ for each $i = 1, 2, \ldots k$. Then for any particular $B_j,$ $$P(B_j ~|~ A) = \frac{P(A~|~B_j)\cdot P(B_j)}{\sum_{i=1}^k P(A~|~B_i)\cdot P(B_i)}.$$
 :::
 
 :::{.example #bad-apples}
@@ -485,8 +485,8 @@ We define our relevant sets.
   
 We know: 
 
-  - $P(B_1) = .7$, and $P(B_2) = .3$
-  - $P(A~|~B_1) = .08$, and $P(A~|~B_2) = .15$.
+  - $P(B_1) = .7,$ and $P(B_2) = .3$
+  - $P(A~|~B_1) = .08,$ and $P(A~|~B_2) = .15$.
   
 We want: 
 
@@ -523,7 +523,7 @@ ggplot()+
   theme_void()
 ```
 
-From the diagram, the probability of picking a bad apple is $(.7)(.08) + (.3)(.15)$ and the probability of picking a bad Braeburn is $(.3)(.15)$, so the probability of having picked a Braeburn, given we picked a bad apple is $$\frac{(.3)(.15)}{(.7)(.08) + (.3)(.15)}.$$
+From the diagram, the probability of picking a bad apple is $(.7)(.08) + (.3)(.15)$ and the probability of picking a bad Braeburn is $(.3)(.15),$ so the probability of having picked a Braeburn, given we picked a bad apple is $$\frac{(.3)(.15)}{(.7)(.08) + (.3)(.15)}.$$
 :::
 
 :::{.example #factory-skill}
@@ -540,7 +540,7 @@ We also have $F$ = those who fail to learn the skill correctly.
 
 We want: $P(A~|~F)$.
 
-We know: $P(A) = .7$, $P(B) = .3$, $P(F~|~A) = .2$, and $P(F~|~B) = .1$.  
+We know: $P(A) = .7,$ $P(B) = .3,$ $P(F~|~A) = .2,$ and $P(F~|~B) = .1$.  
 
 Using Bayes' Rule, 
 \begin{align*}

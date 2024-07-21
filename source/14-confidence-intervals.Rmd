@@ -8,20 +8,20 @@ Here is the general scene for a **confidence interval**\index{confidence interva
 
 One method for finding confidence intervals is called the **pivotal method**\index{confidence interval!pivotal method}, which leverages a **pivotal quantity**\index{pivotal quantity}, which is a quantity with two features:
 
-1. It is a function of the data $X_1, \ldots, X_n$ and the parameter of interest $\theta$, and
+1. It is a function of the data $X_1, \ldots, X_n$ and the parameter of interest $\theta,$ and
 2. its probability distribution does not depend on $\theta$.
 
 :::{.example}
-If a population mean $\mu$ is the parameter of interest, and we have sample $X_1, \ldots, X_n$, then a good pivotal quantity, assuming $X_i$ is approximately $N(\mu,\sigma)$, is $$T = \frac{\overline{X}-\mu}{S/\sqrt{n}}.$$ It meets both requirements here: it is a function of the data and the parameter $\mu$, and it lives in a $t(n-1)$ distribution, which is independent of $\mu$.
+If a population mean $\mu$ is the parameter of interest, and we have sample $X_1, \ldots, X_n,$ then a good pivotal quantity, assuming $X_i$ is approximately $N(\mu,\sigma),$ is $$T = \frac{\overline{X}-\mu}{S/\sqrt{n}}.$$ It meets both requirements here: it is a function of the data and the parameter $\mu,$ and it lives in a $t(n-1)$ distribution, which is independent of $\mu$.
 :::
 
 :::{.example}
-If a population proportion $p$ is the parameter of interest, and we have sample proportion $\hat{p}$ (from a sample of size $n$), then the pivotal quantity $$Z = \frac{\hat{p}-p}{\sqrt{\hat{p}(1-\hat{p})/n}}$$ is approximately $N(0,1)$, a distribution independent of $p$.
+If a population proportion $p$ is the parameter of interest, and we have sample proportion $\hat{p}$ (from a sample of size $n$), then the pivotal quantity $$Z = \frac{\hat{p}-p}{\sqrt{\hat{p}(1-\hat{p})/n}}$$ is approximately $N(0,1),$ a distribution independent of $p$.
 :::
 
 :::{.example}
 Consider $X_1, \ldots, X_n$ drawn from the uniform distribution $U(0,\theta)$ and $Y = \text{max}(X_1, \ldots, X_n)$. We proved in Example \@ref(exm:estimating-uniform-parameter) that $$F_Y(y) = \left(\frac{y}{\theta}\right)^n ~~~\text{ and }~~~ f_Y(y) = \frac{n}{\theta^n}y^{n-1},$$ for $0 \leq y \leq \theta$. 
-Now, let $U = \frac{1}{\theta}Y$, which is just a function of the data and $\theta$.
+Now, let $U = \frac{1}{\theta}Y,$ which is just a function of the data and $\theta$.
 
 The distribution function for $U$ is
 \begin{align*}
@@ -39,7 +39,7 @@ Let's use $U$ to build a 95\% confidence interval for $\theta$ based on a sample
 
 In particular, we find estimators $\hat{\theta}_L$ and $\hat{\theta}_U$ so that $P(\hat{\theta}_L \leq \theta \leq \hat{\theta}_U) = .95$.
 
-Well, we know the distribution of the pivotal quantity $U = Y/\theta$, where $Y$ is the max of the data, so one solution here is to find constants $a$ and $b$ between 0 and 1 so that 
+Well, we know the distribution of the pivotal quantity $U = Y/\theta,$ where $Y$ is the max of the data, so one solution here is to find constants $a$ and $b$ between 0 and 1 so that 
 
   - $P(U < a) = 0.025$
   - $P(U > b) = 0.025$
@@ -70,7 +70,7 @@ U = y/(.025)^(1/n) #upper bound estimator for 95% CI
 c(L,U) #confidence interval
 ```
 Did our confidence interval actually capture the value of the parameter (64)? 
-The confidence level of 95\% gives us confidence that it does, in this sense: If we were to repeat the sampling procedure a large number of times, each time using our new sample to determine a new confidence interval for $\theta$, then we should expect about 95\% of the intervals to contain the parameter $\theta$.
+The confidence level of 95\% gives us confidence that it does, in this sense: If we were to repeat the sampling procedure a large number of times, each time using our new sample to determine a new confidence interval for $\theta,$ then we should expect about 95\% of the intervals to contain the parameter $\theta$.
 
 We can check this using R, first writing a little function out of the code above for producing the interval.
 
@@ -95,10 +95,10 @@ In this simulation we drew 100 different random samples of size 25, each time ge
 
 We have, generally, 
 
-  - **2-sided confidence intervals for $\theta$**\index{confidence interval!2-sided}: $[\hat{\theta}_L,\hat{\theta}_U]$, where $P(\hat{\theta}_L \leq \theta \leq \hat{\theta}_U)=1-\alpha$, 
+  - **2-sided confidence intervals for $\theta$**\index{confidence interval!2-sided}: $[\hat{\theta}_L,\hat{\theta}_U],$ where $P(\hat{\theta}_L \leq \theta \leq \hat{\theta}_U)=1-\alpha,$ 
   - **1-sided confidence intervals for $\theta$**\index{confidence interval!1-sided}:
-      - $[\hat{\theta}_L,\infty)$, where $P(\hat{\theta}_L \leq \theta)=1-\alpha$,
-      - $(-\infty,\hat{\theta}_U]$, where $P(\theta \leq \hat{\theta}_U)=1-\alpha$.
+      - $[\hat{\theta}_L,\infty),$ where $P(\hat{\theta}_L \leq \theta)=1-\alpha,$
+      - $(-\infty,\hat{\theta}_U],$ where $P(\theta \leq \hat{\theta}_U)=1-\alpha$.
 
 The interval $[\hat{\theta}_L,\infty)$ is called a **lower 1-sided** confidence interval, and in this case $\hat{\theta}_L$ is called the **lower confidence limit**, and $(-\infty,\hat{\theta}_U]$ is called an **upper 1-sided** confidence interval, and in this case $\hat{\theta}_U$ is called the **upper confidence limit**
 
@@ -111,7 +111,7 @@ Goals for a good confidence interval:
 
 Suppose $\theta$ is a parameter and $\hat{\theta}$ is an unbiased estimator of $\theta$ such that $\hat{\theta}$ is $N(\theta,\sigma_{\hat{\theta}})$. Then $$Z = \frac{\hat{\theta}-\theta}{\sigma_{\hat{\theta}}}$$ is $N(0,1)$ a nice pivotal quantity we can use to construct confidence intervals.
 
-Suppose the desired confidence level is $1 - \alpha$ (it is common to let $\alpha = .05$, which corresponds to 95\% confidence).
+Suppose the desired confidence level is $1 - \alpha$ (it is common to let $\alpha = .05,$ which corresponds to 95\% confidence).
 Let $\pm z_{\alpha/2}$ denote the values in the tails of the $N(0,1)$ distribution such that $$P\left(-z_{\alpha/2} \leq Z \leq z_{\alpha/2}\right) = 1-\alpha,$$ as pictured in Figure \@ref(fig:alpha-over-2-tails), where $\pm z_{\alpha/2}$ are denoted z_low and z_high. 
 
 Then
@@ -127,7 +127,7 @@ $$(\hat{\theta}-z_{\alpha/2}\sigma_{\hat{\theta}}~,~\hat{\theta}+z_{\alpha/2}\si
 
 Note that in R,
 
-  - $-z_{\alpha/2} =$ `qnorm`$(\alpha/2)$, and
+  - $-z_{\alpha/2} =$ `qnorm`$(\alpha/2),$ and
   - $z_{\alpha/2} =$ -`qnorm`$(\alpha/2)$ = `qnorm`$(1-\alpha+\alpha/2)$.
   
 
@@ -219,10 +219,10 @@ ggplot()+
 
 The scene outlined above applies to many situations, thanks to the Central Limit Theorem, including the four common scenarios mention in Chapter \@ref(estimation): 
 
-  - 1 mean $\mu$, estimated with sample mean $\overline{X}$,
-  - 1 proportion $p$, estimate with sample proportion $\hat{p}$,
-  - difference of two means $\mu_1-\mu_2$, estimated with $\overline{X_1}-\overline{X_2}$,
-  - difference of two proportions $p_1-p_2$, estimated with $\hat{p_1}-\hat{p_2}$.
+  - 1 mean $\mu,$ estimated with sample mean $\overline{X},$
+  - 1 proportion $p,$ estimate with sample proportion $\hat{p},$
+  - difference of two means $\mu_1-\mu_2,$ estimated with $\overline{X_1}-\overline{X_2},$
+  - difference of two proportions $p_1-p_2,$ estimated with $\hat{p_1}-\hat{p_2}$.
   
 We summarize these confidence intervals here:
 
@@ -244,17 +244,17 @@ Let's work through several examples.
 :::{.example}
 Suppose we gather a sample of size $n = 20$ from a $N(\mu,2)$ population, and find $\overline{x} = 16.3$. Find a 98\% confidence interval for $\mu$.
 
-Here 98\% confidence $\leftrightarrow \alpha = 0.02$, and $z_{\alpha/2} = z_{.01}$ = `qnorm(.99)` = 2.326.
+Here 98\% confidence $\leftrightarrow \alpha = 0.02,$ and $z_{\alpha/2} = z_{.01}$ = `qnorm(.99)` = 2.326.
 
 So our 98\% confidence interval for the population mean $\mu$ is $$\overline{x} \pm 2.326 \cdot \frac{2}{\sqrt{20}},$$
-or $$16.3 \pm 1.04$$, or $$15.26 \text{ to } 17.34.$$ 
+or $$16.3 \pm 1.04,$$ or $$15.26 \text{ to } 17.34.$$ 
 :::
 
 
 :::{.example}
-Suppose in this example we don't know $\sigma = 2$, but in our sample of size 20 from $N(\mu,\sigma)$, $\overline{x} = 16.3$ and $s = 2.13$. Find a 98\% confidence interval for $\mu$.  
+Suppose in this example we don't know $\sigma = 2,$ but in our sample of size 20 from $N(\mu,\sigma),$ $\overline{x} = 16.3$ and $s = 2.13$. Find a 98\% confidence interval for $\mu$.  
 
-Using a sample standard deviation $s$ in place of $\sigma$ requires us to use $t$ instead of $z$. In particular, instead of using $z_{.01} = 2.326$, we must use $t_{.01}(19)$, the value in the t(19) distribution that has 1\% of the distribution greater than it. 
+Using a sample standard deviation $s$ in place of $\sigma$ requires us to use $t$ instead of $z$. In particular, instead of using $z_{.01} = 2.326,$ we must use $t_{.01}(19),$ the value in the t(19) distribution that has 1\% of the distribution greater than it. 
 
 So $t_{.01}(19)$ = `qt(.99,19)` = 2.539. (This t-score will always be larger than the corresponding z-score, making the confidence interval wider than it would have been if we knew $\sigma$.
 
@@ -265,9 +265,9 @@ which simplifies to $$16.3 \pm 1.21,$$ or, equivalently $$15.09 \text{ to } 17.5
 :::
 
 :::{.example}
-In a poll of 500 likely voters, 260 say they support a particular local measure. Based on this sample, find a 90\% confidence interval for $p$, the proportion of all likely voters in favor of this measure.
+In a poll of 500 likely voters, 260 say they support a particular local measure. Based on this sample, find a 90\% confidence interval for $p,$ the proportion of all likely voters in favor of this measure.
 
-We use the large sample confidence interval for $p$. From the data, $n = 500$, $\hat{p} = 260/500 = .52$, and for 90\% confidence $\alpha = 0.1$, so $$z_{\alpha/2} = z_{.05} = 1.645,$$
+We use the large sample confidence interval for $p$. From the data, $n = 500,$ $\hat{p} = 260/500 = .52,$ and for 90\% confidence $\alpha = 0.1,$ so $$z_{\alpha/2} = z_{.05} = 1.645,$$
 (computed in R with `qnorm(.95)`). Now evaluate:
 
 \begin{align*}
@@ -287,14 +287,14 @@ The [Handbook of Small Data Sets](https://www.google.com/books/edition/A_Handboo
 X = c(25,12,31,26,17,15,24,10,16,12)
 ```
 
-Spider webs' angles made with the vertical to the earth's surface have a [von Mises circular distribution](https://en.wikipedia.org/wiki/Von_Mises_distribution) with known mean direction, $\mu$, and $\mu$ varies from species to species. For instance,
+Spider webs' angles made with the vertical to the earth's surface have a [von Mises circular distribution](https://en.wikipedia.org/wiki/Von_Mises_distribution) with known mean direction, $\mu,$ and $\mu$ varies from species to species. For instance,
 
-  - *Isoxya cicatricosa* has $\mu = 28.12^\circ$, while
-  - *Araneus rufipalpus* has $\mu = 15.66^\circ$, obviously.
+  - *Isoxya cicatricosa* has $\mu = 28.12^\circ,$ while
+  - *Araneus rufipalpus* has $\mu = 15.66^\circ,$ obviously.
 
 The question arose (in the article "Sequential analysis for angular data", by Gadsden and Kanji, (1981), *The Statistician*, **30**, 119-129) of which species had constructed the 10 webs whose angles were listed above in the vector `X`.
 
-Treating the data as a simple random sample we can construct a 95\% confidence interval for $\mu$. Since the sample size is small, we use $t_{\alpha/2}$, rather than $z_{\alpha/2}$, where, here $\alpha = .05$. Let's crunch out the interval in R. 
+Treating the data as a simple random sample we can construct a 95\% confidence interval for $\mu$. Since the sample size is small, we use $t_{\alpha/2},$ rather than $z_{\alpha/2},$ where, here $\alpha = .05$. Let's crunch out the interval in R. 
 
 
 ```{r}
@@ -328,7 +328,7 @@ s = sd(X)
 ```
 
 
-For 95\% confidence, $\alpha = .05$, and $z_{\alpha/2} = z_{.025} \approx 1.96.$
+For 95\% confidence, $\alpha = .05,$ and $z_{\alpha/2} = z_{.025} \approx 1.96.$
 
 Since $n$ is large, we use the confidence interval formula below with $s$ plugged in for $\sigma$:
 
@@ -343,19 +343,19 @@ xbar + c(1,-1)*qnorm(.025)*s/sqrt(n)
 ### Confidence Intervals for $\mu_1-\mu_2$ {-}
 
 Suppose we have two samples from two populations:
-  -an independent sample from population 1 which yields $n_1$, $\overline{x}_1$, $s_1$, and
-  -an independent sample from population 1 which yields $n_2$, $\overline{x}_2$, $s_2$.
+  -an independent sample from population 1 which yields $n_1,$ $\overline{x}_1,$ $s_1,$ and
+  -an independent sample from population 1 which yields $n_2,$ $\overline{x}_2,$ $s_2$.
 Moreover, the two samples are independent.
 
 Recall, if Population 1 is $N(\mu_1,\sigma_1)$ and Population 2 is $N(\mu_2,\sigma_2$), then a 95\% confidence interval for $\mu_1-\mu_2$ is
 $$\left(\overline{X_1}-\overline{X_2}\right)\pm z_{\alpha/2} \frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}.$$
-If $\sigma_1$ and $\sigma_2$ are unknown, but $n_1$ and $n_2$ are fairly large, it is reasonable to replace $\sigma_1$ and $\sigma_2$ with $s_1$ and $s_2$, respectively. 
+If $\sigma_1$ and $\sigma_2$ are unknown, but $n_1$ and $n_2$ are fairly large, it is reasonable to replace $\sigma_1$ and $\sigma_2$ with $s_1$ and $s_2,$ respectively. 
 
 If $n_1, n_2$ are small ($\leq 30$) it's better to use a t-distribution.
 
 Let's consider the special case that $\sigma_1$ and $\sigma_2$ are unknown but equal. Letting $\sigma^2$ denote this common value. In this case we consider the pooled sample variance:
-$$s_p^2 = \frac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1+n_2-2}$$ as our (best) estimate of $\sigma^2$. Then our level $(1-\alpha)$ confidence interval for $\mu_1-\mu_2$ is $$\left(\overline{X_1}-\overline{X_2}\right)\pm t_{\alpha/2}S_p \sqrt{frac{1}{n_1} + \frac{1}{n_2}},$$
-where t_{\alpha/2}$ live in a t-distribution with $n_1+n_2-2$ degrees of freedom.
+$$s_p^2 = \frac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1+n_2-2}$$ as our (best) estimate of $\sigma^2$. Then our level $(1-\alpha)$ confidence interval for $\mu_1-\mu_2$ is $$\left(\overline{X_1}-\overline{X_2}\right)\pm t_{\alpha/2}S_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}},$$
+where $t_{\alpha/2}$ live in a t-distribution with $n_1+n_2-2$ degrees of freedom.
 
 
 
@@ -383,7 +383,9 @@ Let's conduct a small sample confidence interval for the difference in the two p
 kbl(data.frame(sample = c(1,2),
                n = c(9,7),
                xbar = c(6.74, 5.61),
-               s = c(.543,.363))) %>% kable_styling(full_width=FALSE)
+               s = c(.543,.363))) %>% 
+  kable_styling(latex_options = "hold_position",
+                full_width=FALSE)
 ```
 
 The pooled sample standard deviation is then $$s_p = \sqrt{\frac{8\cdot s_1^2 + 6 \cdot s_2^2}{14}} \approx .474,$$
@@ -427,13 +429,13 @@ diam = c(2.021,2.002,2.001,2.005,1.990,1.990,2.009,1.983,1.987)
 
 Assume the distribution is normal. Is $\mu \geq 2$?
 
-Let's find a 1-sided lower bound 95\% confidence interval for $\mu$, and see what that gets us.
+Let's find a 1-sided lower bound 95\% confidence interval for $\mu,$ and see what that gets us.
 
 Since $n = 9$ is small and $\sigma$ is unknown, we use the t-distribution.
 
 Summary statistics:
 
-  - $n = 9$,
+  - $n = 9,$
   - $\overline{x}$ = `mean(diam)` = `r round(mean(diam),4)`.
   - $s$ = `sd(diam)` = `r round(sd(diam),4)`
 
@@ -446,7 +448,7 @@ and the lower 1-sided interval is
 \end{align*}
 
 This confidence interval does not convince me that $\mu \geq 2$. 
-(If the interval had been something like $[2.01,\infty)$, then I would be more convinced since we're confident that $\mu$ is within the confidence interval, but with the interval $[1.991,\infty)$, best we can say is we're confident $\mu \geq 1.99$.
+(If the interval had been something like $[2.01,\infty),$ then I would be more convinced since we're confident that $\mu$ is within the confidence interval, but with the interval $[1.991,\infty),$ best we can say is we're confident $\mu \geq 1.99$.
 :::
 
 

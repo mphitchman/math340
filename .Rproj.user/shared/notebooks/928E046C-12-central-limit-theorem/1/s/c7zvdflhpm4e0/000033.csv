@@ -1,2 +1,0 @@
-"0","i <- X >= c_neg & X <= c_pos"
-"0","polygon(c(c_neg,X[i],c_pos), c(0,Y[i],0), col=""lightblue"")"

@@ -7,13 +7,13 @@ For random variable $X$ we have seen that $E(X)$ and $E(X^2)$ provide useful inf
   - $\sigma^2 = E(X^2) - E(X)^2$ gives the variance of the distribution.
   
 :::{.definition #kth-moment-about-origin}
-Let $X$ be a random variable, and $k \geq 1$. The **$k$th moment of $X$ about the origin**\index{moment!about the origin} is $E(X^k)$. More generally, for any constant $c \in \mathbb{R}$, $E((X-c)^k)$ is called the **$k$th moment of $X$ about $x = c$**\index{moment!about $x=c$}.
+Let $X$ be a random variable, and $k \geq 1$. The **$k$th moment of $X$ about the origin**\index{moment!about the origin} is $E(X^k)$. More generally, for any constant $c \in \mathbb{R},$ $E((X-c)^k)$ is called the **$k$th moment of $X$ about $x = c$**\index{moment!about $x=c$}.
 :::
 
 Often times we can encode all the moments of a random variable in an object called a moment-generating function.
 
 :::{.definition #moment-generating-function}
-Let $X$ be a discrete random variable with density function $p(x)$. If there is a positive real number $h$ such that for all $t \in (-h,h)$, $$E(e^{tx})$$ exists and is finite, then the function of $t$ defined by $$m(t) = E(e^{tx})$$ is called the moment-generating function of $X$.
+Let $X$ be a discrete random variable with density function $p(x)$. If there is a positive real number $h$ such that for all $t \in (-h,h),$ $$E(e^{tx})$$ exists and is finite, then the function of $t$ defined by $$m(t) = E(e^{tx})$$ is called the moment-generating function of $X$.
 :::
 
 :::{.example}
@@ -25,7 +25,7 @@ p(x) & .1 & .2 & .3 & .4
 \end{array}
 $$
 
-Then, for any real number $t$,
+Then, for any real number $t,$
 
 \begin{align*}
 m(t) &= E(e^{tx}) \\
@@ -34,7 +34,7 @@ m(t) &= E(e^{tx}) \\
   &= .1 + .2e^t + .3e^{2t} + .4e^{3t},
 \end{align*}
 
-and this sum exists as a finite number for any $-\infty < t < \infty$, so the mgf for $X$ exists.
+and this sum exists as a finite number for any $-\infty < t < \infty,$ so the mgf for $X$ exists.
 :::
 
 How does $m(t)$ **encode the moments** $E(X), E(X^2), E(X^3), \ldots$?
@@ -59,11 +59,11 @@ m^{\prime\prime}(t) &= \frac{d}{dt}\left[m^\prime(t)\right]\\
 
 Evaluating this at $t = 0$ gives $$m^{\prime\prime}(t)=\sum_{\text{all }x} x^2\cdot 1 \cdot p(x) = E(X^2).$$
 
-Continuing in this manner, for any $k \geq 1$, the $k$th derivative of $m(t)$ is $$m^{(k)}(t)=\sum_{\text{all }x} x^k\cdot e^{tx}\cdot p(x),$$ which evaluates to the defintion of $E(X^k)$ when $t = 0$.
+Continuing in this manner, for any $k \geq 1,$ the $k$th derivative of $m(t)$ is $$m^{(k)}(t)=\sum_{\text{all }x} x^k\cdot e^{tx}\cdot p(x),$$ which evaluates to the defintion of $E(X^k)$ when $t = 0$.
 :::
 
 :::{.example #mgf-geometric name="The mgf for a geometric distribution"}
-If $X$ is geometric with parameter $p$, then $$p(x) = (1-p)^{x-1}\cdot p,$$ for $x = 1, 2, 3, \ldots$, and 
+If $X$ is geometric with parameter $p,$ then $$p(x) = (1-p)^{x-1}\cdot p,$$ for $x = 1, 2, 3, \ldots,$ and 
 
 \begin{align*}
 m(t) &= E(e^{tx})\\
@@ -76,7 +76,7 @@ m(t) &= E(e^{tx})\\
 
 
 The last step is true by the geometric series formula, provided $|e^t(1-p)|<1$.
-Since $0\leq |e^t(1-p)| = e^t(1-p)$, the series converges by the geometric series formula if and only if $e^t(1-p) < 1$.  Well, 
+Since $0\leq |e^t(1-p)| = e^t(1-p),$ the series converges by the geometric series formula if and only if $e^t(1-p) < 1$.  Well, 
 
 \begin{align*}
 e^t(1-p) < 1 &\iff e^t < \frac{1}{1-p} \\

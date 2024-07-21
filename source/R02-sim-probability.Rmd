@@ -343,7 +343,7 @@ This table gives us a sense of the likelihood that the pollsters plan will resul
 
 We do not use R to estimate these probabilities in this example. We find the probabilities exactly, and then use R to analyze them as $n$ changes.
 
-We tackle the first question by first computing the probability that none of the $n$ people share my birthday.  The probability that a random person does not have my birthday is $\frac{364}{365}$, and the probability that $n$ random people all do not have my birthday is $\left(\frac{364}{365}\right)^n$.
+We tackle the first question by first computing the probability that none of the $n$ people share my birthday.  The probability that a random person does not have my birthday is $\frac{364}{365},$ and the probability that $n$ random people all do not have my birthday is $\left(\frac{364}{365}\right)^n$.
 
 The *complement* of this event is that at least one of the $n$ people has my birthday, and so the probability of this will be $1- \left(\frac{364}{365}\right)^n$.
 
@@ -411,7 +411,7 @@ ggplot(df_long)+
 
 Let $X$ equal the number of flips required to observe heads on consecutive flips.  For instance, $X = 6$ in the flip sequence "T H T T H H".  The random variable $X$ is discrete, taking on countably infinite values 2, 3, 4, $\ldots$ .
 
-The probability function for $X$ is $$p(x) = \frac{F_{x+1}}{2^x} \text{     for } x = 2, 3, 4, \ldots,$$ where $F_n$ is the $n$th Fibonacci number.  ($F_n$ is defined recursively: $F_1 = F_2 = 1$, and for $n \geq 3$, $F_n = F_{n-1}+F_{n-2}$.)
+The probability function for $X$ is $$p(x) = \frac{F_{x+1}}{2^x} \text{     for } x = 2, 3, 4, \ldots,$$ where $F_n$ is the $n$th Fibonacci number.  ($F_n$ is defined recursively: $F_1 = F_2 = 1,$ and for $n \geq 3,$ $F_n = F_{n-1}+F_{n-2}$.)
 
 Deriving this function requires some satisfying work, which we work through in class.
 
@@ -535,7 +535,7 @@ In this example we pursue three questions related to the homemades:
 
 > a) In our family of 6, what is the probability we will not have to redraw.
 
-Our approach: Create a vector called `family`, and a permutation of `family` (called `draw`). For each $i$, Person $i$ in `family` draws person $i$ in `draw`. So, we have to redraw if the two vectors ever agree at the same location. 
+Our approach: Create a vector called `family`, and a permutation of `family` (called `draw`). For each $i,$ Person $i$ in `family` draws person $i$ in `draw`. So, we have to redraw if the two vectors ever agree at the same location. 
 
 ```{r}
 family = c("Dad","Mom","Tom","John","Dave","Mike")
@@ -678,15 +678,15 @@ kbl(data.frame(family_size,prob_redraw,expected_draws)) %>% kable_styling(full_w
 
 It seems the probability of not needing a redraw and the expected number of draws needed both converge fairly quickly to about 0.37ish and 2.7 ish, respectively.
 
-In fact, these values ought to be closely related of one another since "drawing until our first success" sounds like a geometric distribution to me. The probability of success on any given draw somewher in the neighborhood of $p = .37$, and the expected value for a geometric distribution is $1/p$, which would be about $1/.37$, which puts us in the neighborhood of $2.7$.
+In fact, these values ought to be closely related of one another since "drawing until our first success" sounds like a geometric distribution to me. The probability of success on any given draw somewher in the neighborhood of $p = .37,$ and the expected value for a geometric distribution is $1/p,$ which would be about $1/.37,$ which puts us in the neighborhood of $2.7$.
 If these numbers seem frustratingly imprecise, I'm glad, and I invite you to read the following addendum.
 
 ### Mathematical addendum to the question of drawing names. {-}
 
-The actual expected number of draws, as $n \to \infty$, is $e$, and the probability of not needing to redraw approaches $1/e$ as $n \to \infty$. 
+The actual expected number of draws, as $n \to \infty,$ is $e,$ and the probability of not needing to redraw approaches $1/e$ as $n \to \infty$. 
 
 In part (a) of this question, we are counting derangements of a vector. 
-A **derangement**\index{permutation!derangement} of a vector is a permutation of it in which no element is in its original position. An element of a permutation is called *fixed points*\index{permutation!fixed point} if it appears in its original position, so a derangement of a vector is a permutation of it with no fixed points. In part (a) we are estimating the probability that a permutation of the `family` vector is a derangement. There is a nice recursive formula for the number of derangements of a vector of size $n$, and it can be used to prove that the probability of drawing a derangement converges to $1/e$ as $n \to \infty$. 
+A **derangement**\index{permutation!derangement} of a vector is a permutation of it in which no element is in its original position. An element of a permutation is called *fixed points*\index{permutation!fixed point} if it appears in its original position, so a derangement of a vector is a permutation of it with no fixed points. In part (a) we are estimating the probability that a permutation of the `family` vector is a derangement. There is a nice recursive formula for the number of derangements of a vector of size $n,$ and it can be used to prove that the probability of drawing a derangement converges to $1/e$ as $n \to \infty$. 
 
 ## Idiot's Delight {#idiots-delight}
 

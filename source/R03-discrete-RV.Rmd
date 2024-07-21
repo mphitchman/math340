@@ -30,7 +30,7 @@ Recall, $X \sim \texttt{binom}(n,p)$ means $X$ counts the number of successes in
 **The space of $X$** is $x = 0, 1, \ldots, n$.
 
 **Probability function**  
-For $x = 0, 1, \ldots, n$, $$p(x)=\binom{n}{x}p^x(1-p)^{n-x}.$$
+For $x = 0, 1, \ldots, n,$ $$p(x)=\binom{n}{x}p^x(1-p)^{n-x}.$$
 
 
 **The binomial distribution in R**  
@@ -67,7 +67,7 @@ dbinom(0,5,.3)+dbinom(1,5,.3)+dbinom(2,5,.3)
 
 ### `qbinom()` - quantiles {-}
 
-Recall the definition of quantile (\@ref(def:quantile)): If $0 < p < 1$, the $p$th quantile of $X$, denoted $\phi_p$, is the smallest value such that $P(X \leq \phi_p) \geq p$. In other words, the value $\phi_p$ marks the smallest value below which one finds 100*p percent of the distribution of $X$.
+Recall the definition of quantile (\@ref(def:quantile)): If $0 < p < 1,$ the $p$th quantile of $X,$ denoted $\phi_p,$ is the smallest value such that $P(X \leq \phi_p) \geq p$. In other words, the value $\phi_p$ marks the smallest value below which one finds 100*p percent of the distribution of $X$.
 
 
 > `qbinom(q,n,p)` returns the quantile $\phi_q$ for $X \sim \texttt{binom}(n,p)$
@@ -110,7 +110,7 @@ barplot(table(sim_data))
 ## Geometric `geom` {#geometricR}
 
 **The Scene**  
-Let the random variable $X$ denote the number of identical, independent Bernoulli trials (with probability of success $p$, probability of failure $q = 1-p$) up to and including the first success.
+Let the random variable $X$ denote the number of identical, independent Bernoulli trials (with probability of success $p,$ probability of failure $q = 1-p$) up to and including the first success.
 Then $X$ is called a *geometric random variable* with parameter $p$.
 
 **Notation**  
@@ -119,13 +119,13 @@ $X$  is \texttt{geom}$(p)$.
 **The space of $X$** is $x = 1, 2, \ldots$
 
 **Probability function**  
-For $x = 1, 2, 3, \ldots$, $$p(x)= q^{x-1}p.$$
+For $x = 1, 2, 3, \ldots,$ $$p(x)= q^{x-1}p.$$
 
 **NOTE**: The geometric distribution in R counts failures, not total trials.
 
 In R `geom` counts the number of failures until the first success, not the total number of trials up to and including the first success.  
 
-As with the `binom` distribution, we can use the `d___`, `p___`, `q___`, and `r___` commands to determine probability for particular values of $x$, cumulative probabilities, quantiles, and random samples, respectively.
+As with the `binom` distribution, we can use the `d___`, `p___`, `q___`, and `r___` commands to determine probability for particular values of $x,$ cumulative probabilities, quantiles, and random samples, respectively.
 
 > `dgeom(4,.3)` gives the probability of seeing 4 failures before the first success in a Bernoulli trial in which $p = .3$
 
@@ -150,7 +150,7 @@ and the following line gives the probability of seeing more than 4 failures prio
 
 Strategy: 
 
-  1. Note that this game is a Bernoulli trial, where "success" means rolling a 4 and "failure" means not rolling a four.  So $p = 1/6$, and $q = 5/6$.  
+  1. Note that this game is a Bernoulli trial, where "success" means rolling a 4 and "failure" means not rolling a four.  So $p = 1/6,$ and $q = 5/6$.  
   2. Take a random sample of size 10000 from the `geom` distribution in R with the `rgeom()` method (which records the number of failures, not the number of trials).
   3. Add one to each value in the sample to get the number of trials.
   4. barplot the table!
@@ -166,7 +166,7 @@ OMG notice from the bar plot that one depressing game required `r max(results)` 
 ## Negative Binomial `nbinom` {#negbinomR}
 
 **The Scene**  
-Again, we consider a sequence of Bernoulli trials (probability of success is $p$, probability of failure is $q = 1-p$).  
+Again, we consider a sequence of Bernoulli trials (probability of success is $p,$ probability of failure is $q = 1-p$).  
 
 We let $X$ denote the number of trials in the sequence up to and including the $r$th success, where $r \geq 1$ is a positive integer. Then $X$ is called a *negative binomial random variable* with parameters $p$ and $r$.  
 
@@ -176,7 +176,7 @@ We let $X$ denote the number of trials in the sequence up to and including the $
 **The space of $X$** is $x = r, r+1, r+2, \ldots$
 
 **Probability function**  
-For $x = r, r+1, r+2, \ldots $, $$p(x)= \binom{x-1}{r-1}p^{r}q^{x-r}.$$
+For $x = r, r+1, r+2, \ldots ,$ $$p(x)= \binom{x-1}{r-1}p^{r}q^{x-r}.$$
 
 :::{.example #drill-oil-negbinom-R}  
 A study indicates that an exploratory oil well drilled in a particular region should strike oil with probability 0.2.  Find the probability that the third oil strike comes on the 10th well drilled.
@@ -212,9 +212,9 @@ barplot(table(trial_count),main="X=trials until third success")
 ## Hypergeometric `hyper` {#hyperR}
 
 **The Scene**  
-A finite population has $N$ elements, each of which possesses one of two possible characteristics. Say we have a jar of $N$ marbles, each is either red or black.  Let's say $m$ of them are red and $n$ of them are black (so $m + n = N$). We draw a sample of size $k$, and let $X$ denote the number of red marbles in the jar.  
+A finite population has $N$ elements, each of which possesses one of two possible characteristics. Say we have a jar of $N$ marbles, each is either red or black.  Let's say $m$ of them are red and $n$ of them are black (so $m + n = N$). We draw a sample of size $k,$ and let $X$ denote the number of red marbles in the jar.  
 
-Then $X$ is called a *hypergeometric random variable* with parameters $m$, $n$, and $k$.  
+Then $X$ is called a *hypergeometric random variable* with parameters $m,$ $n,$ and $k$.  
 
 
 **Notation**: $X$ is $\texttt{hyper}(m,n,k)$
@@ -249,7 +249,7 @@ dhyper(x=2,m=4,n=6,k=5)
 
 > A truck has 500 potatoes, 50 of which are bad, the rest are good.  We sample 10.  What is the probability that more than 3 are bad?
 
-If $X$ equals the number of bad potatoes in the sample, then $X$ is hypergeometric with parameters $m = 50$, $n=450$, and $k = 10$.
+If $X$ equals the number of bad potatoes in the sample, then $X$ is hypergeometric with parameters $m = 50,$ $n=450,$ and $k = 10$.
 So $$P(X > 3) = 1 - P(X \leq 3)$$
 which can be calculated with the cumulative probability command `phyper`:
 
@@ -263,7 +263,7 @@ which can be calculated with the cumulative probability command `phyper`:
 ## Poisson `pois` {#poissonR}
 
 **The Scene**  
-The Poisson probability distribution can provide a good model for the number of occurrences $X$ of a rare event in time, space, or some other unit of measure. A Poisson random variable $X$ has one parameter, $\lambda$, which is the average number of occurrences of the rare event in the indicated time (or space, etc.)
+The Poisson probability distribution can provide a good model for the number of occurrences $X$ of a rare event in time, space, or some other unit of measure. A Poisson random variable $X$ has one parameter, $\lambda,$ which is the average number of occurrences of the rare event in the indicated time (or space, etc.)
 
  
 
@@ -373,7 +373,7 @@ We can check in R that the two conditions for a *valid* probability have been me
 
 ### Expected Value of $X$ {-}
 
-Recall if $X$ is a discrete random variable with probability function $p(x)$, then the expected value of $X$ is $$E(X)=\sum_{\text{all }x}x\cdot p(x)$$
+Recall if $X$ is a discrete random variable with probability function $p(x),$ then the expected value of $X$ is $$E(X)=\sum_{\text{all }x}x\cdot p(x)$$
 
 Having defined vectors $X$ and $Px$ in R, we calculate $E(X)$ by running
 

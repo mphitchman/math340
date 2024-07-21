@@ -22,16 +22,16 @@ Some examples:
 :::{.definition #binomial-distribution name="Binomial Distribution"}
 Define the random variable $X$ to equal the number of successes in $n$ independent, identical Bernoulli trials with probability of success on any given trial equal to $p$. Then $X$ is called a **binomial distribution with parameters $n$ and $p$**\index{discrete random variable!binomial}, and $X$ is denoted $\texttt{binom}(n,p)$\index{\texttt{binom}$(n,p)$}.
 
-The space of $X$ equals $\{0,1,\ldots,n\}$, and for $x = 0,1, \ldots, n$, 
+The space of $X$ equals $\{0,1,\ldots,n\},$ and for $x = 0,1, \ldots, n,$ 
 $$p(x) = \binom{n}{x}p^x(1-p)^{n-x}.$$ 
 :::
 
-Does this probability distribution make sense? To find the probability of exactly $x$ successes in $n$ independent Bernoulli trials, we first choose which $x$ of the $n$ trials will be successes (and we have $\binom{n}{x}$ choices here). Then, we know the probability of success on each of these $x$ trials is $p$, and the probability of failure on each of the other $n-x$ trials is $q = 1-p$. Since the trials are independent, the probability of getting exactly $x$ successes and $n-x$ failures is the product $\binom{n}{x}p^x(1-p)^{n-x}.$
+Does this probability distribution make sense? To find the probability of exactly $x$ successes in $n$ independent Bernoulli trials, we first choose which $x$ of the $n$ trials will be successes (and we have $\binom{n}{x}$ choices here). Then, we know the probability of success on each of these $x$ trials is $p,$ and the probability of failure on each of the other $n-x$ trials is $q = 1-p$. Since the trials are independent, the probability of getting exactly $x$ successes and $n-x$ failures is the product $\binom{n}{x}p^x(1-p)^{n-x}.$
 
 Furthermore, by the Binomial Theorem (\@ref(thm:Cnrfacts)), $$\sum_{x = 0}^n p(x) = (p+(1-p))^n = 1.$$
 
 :::{.theorem #binomial-distribution-EandV}
-If $X$ is $\texttt{binom}(n,p)$, $$E(X) = np~~~\text{ and }~~~ V(X) = np(1-p).$$
+If $X$ is $\texttt{binom}(n,p),$ $$E(X) = np~~~\text{ and }~~~ V(X) = np(1-p).$$
 :::
   
 :::{.proof}
@@ -67,7 +67,7 @@ E(X(X-1)) &= \sum_{x=0}^n x(x-1)\binom{n}{x}p^x(1-p)^{n-x} \\
           &= n(n-1)p^2 \sum_{x=2}^n\binom{n-2}{x-2}p^{x-2}(1-p)^{(n-2)-(x-2)}
 \end{align*}
 
-This summation also equals one, since it is the sum of all the probabilities in a $\texttt{binom}(n-2,p)$ distribution, so $E(X(X-1)) = n(n-1)p^2$, and it follows that 
+This summation also equals one, since it is the sum of all the probabilities in a $\texttt{binom}(n-2,p)$ distribution, so $E(X(X-1)) = n(n-1)p^2,$ and it follows that 
 $$E(X^2) = E(X(X-1))+E(X) = n(n-1)p^2 + np.$$
 
 Finally,
@@ -88,11 +88,11 @@ Now, $$P(X \geq 10) = \sum_{x = 10}^{15} \binom{15}{x}\left(\frac{1}{4}\right)^x
 
 **Calculating this sum in R**
 
-R has a nice command for calculating cumulative probabilities of the form $P(X \leq x)$.If $X$ is $\texttt{binom}(n,p)$, then $P(X \leq x)$ is calculated in R by `pbinom(x,n,p)`. So, in the case of the multiple choice test, $P(X \geq 10) = 1 - P(X \leq 9) =$ `1-pbinom(9,15,1/4)`. See Appendix \@ref(R-discreteRV)) for more information on using R to calculate probabilities for the important discrete distributions we encounter in this class. 
+R has a nice command for calculating cumulative probabilities of the form $P(X \leq x)$.If $X$ is $\texttt{binom}(n,p),$ then $P(X \leq x)$ is calculated in R by `pbinom(x,n,p)`. So, in the case of the multiple choice test, $P(X \geq 10) = 1 - P(X \leq 9) =$ `1-pbinom(9,15,1/4)`. See Appendix \@ref(R-discreteRV)) for more information on using R to calculate probabilities for the important discrete distributions we encounter in this class. 
 
 Back to the test, they have less than a 1 in a thousand chance of scoring a 10 or better if they are truly guessing. Note also that the mean for $X$ is $E(X) = 15 \cdot \frac{1}{4} = 3.75$.
 
-What if they can eliminate one of the choices on each problem, and randomly guess between the remaining three choices on each problem? Are they likely to do better? If we let $Y$ denote the score on the test following this approach, then $Y$ is $\texttt{binom}(n=15,p=1/3)$, and the probability of scoring 10 or greater ends up about 10 times better than it was before, but still miniscule:
+What if they can eliminate one of the choices on each problem, and randomly guess between the remaining three choices on each problem? Are they likely to do better? If we let $Y$ denote the score on the test following this approach, then $Y$ is $\texttt{binom}(n=15,p=1/3),$ and the probability of scoring 10 or greater ends up about 10 times better than it was before, but still miniscule:
 
 $$P(Y \geq 10) = \sum_{y = 10}^{15} \binom{15}{y}\left(\frac{1}{3}\right)^y\left(\frac{2}{3}\right)^{15-y} \approx .0085,$$
 The mean score is now $E(Y) = 15\cdot\frac{1}{3} = 5.$ Ok, not great, but it is better, I guess.
@@ -105,7 +105,7 @@ This example is adapted from an exercise in the Grinstead-Snell text. Flint neve
 
 > How does the expected cost of parking 100 times without paying the meter compare with the cost of paying the meter each time?
 
-Assume parking events are independent, identical Bernoulli trials with probability $p = .03$ of getting a ticket. Then the random variable $X$ counting the number of tickets in 100 trials is $\texttt{binom}(100,.03)$, and we note that $E(X) = 100\cdot(.03) = 3$.  
+Assume parking events are independent, identical Bernoulli trials with probability $p = .03$ of getting a ticket. Then the random variable $X$ counting the number of tickets in 100 trials is $\texttt{binom}(100,.03),$ and we note that $E(X) = 100\cdot(.03) = 3$.  
 
 In deciding whether to pay the meter, one idea is to consider the cost associated to the expected number of tickets, which would be \$35.  This amount is higher than the \$25 Flint would pay by chucking in a quarter each time. But this approach doesn't give the full picture. 
 
@@ -120,7 +120,7 @@ C(x)=
 \end{cases}
 $$
  
-Then the expected cost associated with these 100 trials, $E(C)$, is 
+Then the expected cost associated with these 100 trials, $E(C),$ is 
 \begin{align*}
 E(C) &= \sum_{x=0}^{100} C(x)\cdot p(x)\\
     &= C(2)\cdot p(2) + \sum_{x=3}^{100} (10 + 25\cdot(x-2))\cdot p(x) \\
@@ -140,7 +140,7 @@ Yes, Flint is better off putting a quarter in the meter each time for a cost of 
 :::{.example #binomial-oil name="Drilling for Oil"}
 An oil exploration firm in the 1970s wants to finance 10 drilling explorations. They figure each exploration has a probability of success (finding oil) equal to 0.1, and that the 10 operations are independent (success in one is independent of success in any other). The company has \$50,000 in fixed costs prior to doing its first exploration, and anticipates a cost of \$150,000 for each unsuccessful exploration, and a cost of \$300,000 for each successful exploration.  Find the expected total cost to the firm for its 10 explorations.
 
-Let $X$ = number of successful explorations.  Then $X$ is $\texttt{binom}(10,.1)$, and $E(X) = 10 \cdot .1 = 1.$
+Let $X$ = number of successful explorations.  Then $X$ is $\texttt{binom}(10,.1),$ and $E(X) = 10 \cdot .1 = 1.$
 The cost $C$ (in thousands of dollars) can be expressed as a linear function of $X$:
 
 \begin{align*}
@@ -185,7 +185,7 @@ which we can evaluate in R with
 
 :::{.example #binomial-tchebby}
 Suppose $X$ is $\texttt{binom}(60,1/4)$.  Then $\mu = 60\cdot\frac{1}{4} = 15$ and $\sigma^2 = 60\cdot \frac{1}{4} \cdot \frac{3}{4} = 11.25.$
-Tchebbysheff says at least 75\% of the distribution is within 2 standard deviations of the mean, so in this case, at least 75\% of the distribution is between $15 - 2\cdot \sqrt{11.25}$ and $15 + 2\cdot \sqrt{11.25}$, or between 8.3 and 21.7. The actual percentage is closer to 95\%, and it can be found by summing all $p(x)$ for $x$ between 8.29 and 21.7. This sum is calculated in R by
+Tchebbysheff says at least 75\% of the distribution is within 2 standard deviations of the mean, so in this case, at least 75\% of the distribution is between $15 - 2\cdot \sqrt{11.25}$ and $15 + 2\cdot \sqrt{11.25},$ or between 8.3 and 21.7. The actual percentage is closer to 95\%, and it can be found by summing all $p(x)$ for $x$ between 8.29 and 21.7. This sum is calculated in R by
 ```{r}
 pbinom(21.7,60,1/4)-pbinom(8.29,60,1/4)
 ```
@@ -202,7 +202,7 @@ The probability function for $X$ is given by $$p(x) = q^{x-1}\cdot p,$$ for $x =
 Note that $$\sum_{x=0}^\infty p(x) = p + pq + pq^2 + \cdots$$ is a geometric series with $|q| < 1$ so it converges. Moreover, by the geometric series formula\index{geometric series formula}, $$\sum_{n=0}^\infty pq^n = \frac{p}{1-q}.$$
 Thus, all the $p(x)$ sum to 1, and we have a valid probability function.
 
-More generally, for any non-negative integer $k$,
+More generally, for any non-negative integer $k,$
 \begin{align*}
 P(X > k) &= p(X=k+1)+p(X=k+2)+p(X=k+3)+\cdots \\
         &= pq^k + pq^{k+1}+pq^{k+2}+\cdots \\
@@ -211,20 +211,20 @@ P(X > k) &= p(X=k+1)+p(X=k+2)+p(X=k+3)+\cdots \\
         &= q^k.
 \end{align*}
 
-The geometric distribution can be useful when modeling the behavior of lines. For instance, suppose a line of cars waits to pay their parking fee as they exit the airport.  It can be reasonable to assume that over a short interval of time (say 10 seconds), the probability that a car arrives is $p$, and the probability that a car does not arrive is $q = 1-p.$ Then the time $T$ until the next arrival has a geometric distribution, and by the remark above, the probability that no car arrives in the next $k$ time units is $P(T > k) = q^k$.
+The geometric distribution can be useful when modeling the behavior of lines. For instance, suppose a line of cars waits to pay their parking fee as they exit the airport.  It can be reasonable to assume that over a short interval of time (say 10 seconds), the probability that a car arrives is $p,$ and the probability that a car does not arrive is $q = 1-p.$ Then the time $T$ until the next arrival has a geometric distribution, and by the remark above, the probability that no car arrives in the next $k$ time units is $P(T > k) = q^k$.
 
 
 
 
 :::{.theorem #geometric-EandV}
-If $X$ is $\texttt{geom}(p)$ for $0 < p \leq 1$, then $$E(X) = \frac{1}{p}~~~\text{ and }~~~  V(X) = \frac{1-p}{p^2}.$$
+If $X$ is $\texttt{geom}(p)$ for $0 < p \leq 1,$ then $$E(X) = \frac{1}{p}~~~\text{ and }~~~  V(X) = \frac{1-p}{p^2}.$$
 :::
 
 Before proving this theorem we consider the geometric series one more time.
 
 *Geometric Series Intermission*
 
-From Calc II we know that the geometric series $\sum q^x$ converges if and only if $-1 < q < 1$, and that $$\sum_{x = 0}^\infty q^x=\frac{1}{1-q} \tag{provided |q|<1}$$  Thinking of $q$ as a variable, we can differentiate each side with respect to $q$, and the resulting infinite series will still converge for $-1 < q < 1$.
+From Calc II we know that the geometric series $\sum q^x$ converges if and only if $-1 < q < 1,$ and that $$\sum_{x = 0}^\infty q^x=\frac{1}{1-q} \tag{provided |q|<1}$$  Thinking of $q$ as a variable, we can differentiate each side with respect to $q,$ and the resulting infinite series will still converge for $-1 < q < 1$.
 
 \begin{align*}
 \frac{d}{dq}\left[\sum_{x = 0}^\infty q^x\right] &= \frac{d}{dq}\left[\frac{1}{1-q}\right] \\
@@ -256,14 +256,14 @@ We let $X$ count how many seconds (from now) it takes to be sent an email to my 
 Then the probability of not receiving a junk email in the next ten minutes is $$P(X > 600) = q^{600} \approx .0024.$$
 So you're saying there's a chance!
 
-We also note that $E(X) = 1/p = 100$, the average time to get our next junk mail is 100 seconds.
+We also note that $E(X) = 1/p = 100,$ the average time to get our next junk mail is 100 seconds.
 :::
 
 ## Negative Binomial Distribution {#negative-binomial}
 
-Suppose we have a sequence of independent Bernoulli trials, each having probability of success $p$, and we want to know how many trials it takes to get our $r$th success, where $r \geq 1$. 
+Suppose we have a sequence of independent Bernoulli trials, each having probability of success $p,$ and we want to know how many trials it takes to get our $r$th success, where $r \geq 1$. 
 
-For instance, if we set $r = 3$, then $X = 7$ for the following sequence of Bernoulli trials ($S$ stands for success, $F$ for failure)
+For instance, if we set $r = 3,$ then $X = 7$ for the following sequence of Bernoulli trials ($S$ stands for success, $F$ for failure)
 $$F F F S F S S F S F F S \ldots $$
 since the third $S$ occurs on the 7th trial.
 
@@ -281,7 +281,7 @@ $$E(X) = \frac{r}{p} ~~~ \text{ and } ~~~ V(X) = \frac{r(1-p)}{p^2}.$$
 :::{.example}
 > If we roll 2 dice and record the sum, how many rolls, on average, will it take to get our 4th 8?
 
-Well, the probability of rolling a sum of 8 is $p = 5/36$ by our 6x6 dice grid in Example \@ref(exm:roll2dice), and the random variable $X$ counting the number of rolls until we get our 4th 8 is $\texttt{nbinom}(r=4,p=5/36)$, so $$E(X) = \frac{4}{5/36} = 28.8.$$ Would you want to make a bet that it will take me more than 25 rolls to get my 4th 8?
+Well, the probability of rolling a sum of 8 is $p = 5/36$ by our 6x6 dice grid in Example \@ref(exm:roll2dice), and the random variable $X$ counting the number of rolls until we get our 4th 8 is $\texttt{nbinom}(r=4,p=5/36),$ so $$E(X) = \frac{4}{5/36} = 28.8.$$ Would you want to make a bet that it will take me more than 25 rolls to get my 4th 8?
 
 We note that $$V(X) = \frac{4\cdot (31/36)}{(5/36)^2} \approx 178.6,$$ so the standard deviation is $\sigma = \sqrt{V(X)} \approx 13.36$.
 :::
@@ -300,9 +300,9 @@ Suppose we draw a random sample without replacement of size $k$ from the populat
 Let $X$ equal the number of elements in the sample of size $k$ that belong to group 1.
 
 Then $X$ is called a **hypergeometric distribution with parameters $m, n,$ and $k$**\index{discrete random variable!hypergometric}, denoted $\texttt{hyper}(m,n,k)$\index{\texttt{hyper}$(m,n,k)$}.  The space of $X$ is either 
-$x = 0, 1, \ldots, k$ if $m \geq k$, or $0, 1, \ldots, m$ if $m < k$.
+$x = 0, 1, \ldots, k$ if $m \geq k,$ or $0, 1, \ldots, m$ if $m < k$.
 
-For each $x$ in the space of $X$,
+For each $x$ in the space of $X,$
 $$p(x) = \frac{\binom{m}{x}\binom{n}{k-x}}{\binom{N}{k}},$$ where $N = m + n$.
 
 The classic "good potatoes/bad potatoes" Example \@ref(exm:potatoes) has a hypergeometric distribution.
@@ -315,7 +315,7 @@ If $X$ is $\texttt{hyper}(m,n,k)$ then $$E(X) = k\cdot\frac{m}{N}~~~\text{ and }
 
 > Let's say a bag of 120 skittles has 30 orange ones. If we pick 10 at random, what is the probability that we get more than 5 orange ones?
 
-Let $X$ denote the number of orange skittles in our sample. Then $X$ is $\texttt{hyper}(30,90,10)$, and 
+Let $X$ denote the number of orange skittles in our sample. Then $X$ is $\texttt{hyper}(30,90,10),$ and 
 $$P(X>5) = \sum_{x=6}^{10} \frac{\binom{30}{x}\binom{90}{10-x}}{\binom{120}{10}} \approx .0153.$$
 We note that in this example $E(X) = 10 \cdot \frac{30}{120} = 2.5.$
 :::
@@ -323,7 +323,7 @@ We note that in this example $E(X) = 10 \cdot \frac{30}{120} = 2.5.$
 ## Poisson Distribution {#poisson}
 
 **The Scene**  
-The Poisson probability distribution can provide a good model for the number of occurrences $X$ of a rare event in time, space, or some other unit of measure. A Poisson random variable $X$ has one parameter, $\lambda$, which is the average number of occurrences of the rare event in the indicated time (or space, etc.)
+The Poisson probability distribution can provide a good model for the number of occurrences $X$ of a rare event in time, space, or some other unit of measure. A Poisson random variable $X$ has one parameter, $\lambda,$ which is the average number of occurrences of the rare event in the indicated time (or space, etc.)
 
 Some examples that might be well-modeled by a Poisson distribution:
 
@@ -334,12 +334,12 @@ Some examples that might be well-modeled by a Poisson distribution:
   - the number of pitches per baseball in a baseball game;
 
 :::{.definition #poisson-distribution name="Poisson Distribution"}
-A random variable $X$ has a **Poisson probability distribution**\index{discrete random variable!Poisson} with parameter $\lambda > 0$, denoted $\texttt{Poisson}(\lambda)$\index{\texttt{Poisson}$(\lambda)$}, if and only if $$p(x) = \frac{\lambda^x e^{-\lambda}}{x!} ~~~\text{ for } x = 0,1,2, \ldots.$$
+A random variable $X$ has a **Poisson probability distribution**\index{discrete random variable!Poisson} with parameter $\lambda > 0,$ denoted $\texttt{Poisson}(\lambda)$\index{\texttt{Poisson}$(\lambda)$}, if and only if $$p(x) = \frac{\lambda^x e^{-\lambda}}{x!} ~~~\text{ for } x = 0,1,2, \ldots.$$
 :::
 
 We take the time to explain how this probability density function does actually model such things, but first let's check that it is a valid probability density function, and then find $E(X)$ and $V(X)$.
 
-First, since $\lambda > 0$, each $p(x)$ is non-negative. Also, recall the Calc II power series formula for $e^\lambda$ for any real number $\lambda$ is $$e^\lambda = \sum_{k=0}^\infty \frac{\lambda^k}{k!},$$ so we can see that all the probabilities in this distribution sum to 1:
+First, since $\lambda > 0,$ each $p(x)$ is non-negative. Also, recall the Calc II power series formula for $e^\lambda$ for any real number $\lambda$ is $$e^\lambda = \sum_{k=0}^\infty \frac{\lambda^k}{k!},$$ so we can see that all the probabilities in this distribution sum to 1:
 \begin{align*}
 \sum_{x=0}^\infty \frac{\lambda^x e^{-\lambda}}{x!} &= e^{-\lambda} \sum_{x=0}^\infty \frac{\lambda^x}{x!} \\
 &= e^{-\lambda}\cdot e^{\lambda} \\
@@ -348,7 +348,7 @@ First, since $\lambda > 0$, each $p(x)$ is non-negative. Also, recall the Calc I
 
 
 :::{.theorem #poisson-EandV}
-If $X$ is $\texttt{Poisson}(\lambda)$, $E(X) = \lambda$ and $V(X) = \lambda$.
+If $X$ is $\texttt{Poisson}(\lambda),$ $E(X) = \lambda$ and $V(X) = \lambda$.
 :::
 
 :::{.proof}
@@ -367,7 +367,7 @@ E(X) &= \sum_{x=0}^\infty x \cdot p(x) \\
 
 Thus, $\mu = \lambda$.
 
-For $V(X)$, we first find $E(X(X-1))$ in much the same way as we found $E(X)$:
+For $V(X),$ we first find $E(X(X-1))$ in much the same way as we found $E(X)$:
 
 
 \begin{align*}
@@ -420,7 +420,7 @@ The number of website views at a seldom visited website is Poisson with an avera
 
 > What is the probability that the site gets 20 or more visits in a day?
 
-We want $P(X \geq 20)$, an infinite sum, so we use the strategy of finding the complement, with the help of the function `ppois()` (Appendix \@ref(R-discreteRV)) in R for the calculation:
+We want $P(X \geq 20),$ an infinite sum, so we use the strategy of finding the complement, with the help of the function `ppois()` (Appendix \@ref(R-discreteRV)) in R for the calculation:
 
 \begin{align*}
 P(X \geq 20) &= 1 - P(X \leq 19) \\
@@ -436,7 +436,7 @@ If we're interested in modelling the number of instances of some rare event over
   - the probability of 1 instance in a subinterval ("success") equals $p$;
   - the probability of 0 instances ("failure") equals $1-p$.
 
-Then, if $X$ equals the number of instances in the original interval, then $X$ is binomial on $n$ trials with probability of success $p$ on each trial, assuming identical, independent Bernouilli trials. As we increase $n$, breaking the original time period into smaller and smaller subintervals, the corresponding probability $p$ of seeing 1 instance of the event in a subinterval will decrease, but what if $n \cdot p$ remains constant? In this case, let $\lambda = np$ and consider what happens to the probability density function for the $texttt{binom}(n,p)$ distribution:
+Then, if $X$ equals the number of instances in the original interval, then $X$ is binomial on $n$ trials with probability of success $p$ on each trial, assuming identical, independent Bernouilli trials. As we increase $n,$ breaking the original time period into smaller and smaller subintervals, the corresponding probability $p$ of seeing 1 instance of the event in a subinterval will decrease, but what if $n \cdot p$ remains constant? In this case, let $\lambda = np$ and consider what happens to the probability density function for the $texttt{binom}(n,p)$ distribution:
 
 
 \begin{align*}
@@ -452,9 +452,9 @@ First, observe that $(1-\lambda/n)^n \to e^{-\lambda}$ as $n \to \infty$ by one 
 
 Second, observe that $(1-\lambda/n)^{-x} \to 1^{-x} = 1$ since $\lambda/n \to 0$ as $n \to \infty$.
 
-Finally, for any $k \geq 0$, $\lim_{n \to \infty} \frac{n-k}{n} = 1$ so each of the ratios from the third term on converges to 1.
+Finally, for any $k \geq 0,$ $\lim_{n \to \infty} \frac{n-k}{n} = 1$ so each of the ratios from the third term on converges to 1.
 
-So, if $np$ remains constant as $n \to \infty$, then as $n \to \infty$ the binomial distribution $texttt{binom}(n,p)$ approaches the $\texttt{Poisson}(\lambda)$ distribution, where $\lambda = np$. So, the Poisson distribution can be a good model for counting instances of some rare event. 
+So, if $np$ remains constant as $n \to \infty,$ then as $n \to \infty$ the binomial distribution $texttt{binom}(n,p)$ approaches the $\texttt{Poisson}(\lambda)$ distribution, where $\lambda = np$. So, the Poisson distribution can be a good model for counting instances of some rare event. 
 
 The process described above, where subdivision of the interval leads to Bernoulli trials in such a way that $np$ remains constant, is called a Poisson process.  
 
@@ -462,16 +462,16 @@ The process described above, where subdivision of the interval leads to Bernoull
 The process by which an event happens is called a **Poisson process**\index{Poisson process} if the following holds:
 
   1. The dimension over which $X$ is measured can be subdivided into $n$ small pieces, within which the event can occur *at most once*.
-  2. In each small piece, the probability of seeing one occurrence is the same, say $p$, and $p$ is proportional to the length of the sub-interval (as $n$ grows, $p$ shrinks, but $np$ remains constant). 
+  2. In each small piece, the probability of seeing one occurrence is the same, say $p,$ and $p$ is proportional to the length of the sub-interval (as $n$ grows, $p$ shrinks, but $np$ remains constant). 
   3. Occurrences in all the small pieces are independent from one another.
 :::
 
 
 In the limit derivation above we demonstrated the following:
 
-> For large $n$, if we let $\lambda = np$, $\texttt{Poisson}(\lambda) \sim  \texttt{binom}(n,p)$.
+> For large $n,$ if we let $\lambda = np,$ $\texttt{Poisson}(\lambda) \sim  \texttt{binom}(n,p)$.
 
-For instance, in the table below we compare the probabilities for $\texttt{binom}(10,.4)$, $\texttt{binom}(40,.1)$, and $\texttt{binom}(400,.01)$ with those of a $\texttt{Poisson}(4)$ distribution:
+For instance, in the table below we compare the probabilities for $\texttt{binom}(10,.4),$ $\texttt{binom}(40,.1),$ and $\texttt{binom}(400,.01)$ with those of a $\texttt{Poisson}(4)$ distribution:
 
 ```{r,echo=FALSE,label="plot-pois-binom"}
 x=0:7
@@ -491,7 +491,7 @@ Then $P(X \geq 10) = 1 - P(X \leq 9) =$ `1-ppois(9,6)` = `r round(1 - ppois(9,6)
 
 Let's consider this result. If the mean number of accidents per month is still 3, we would expect to observe 10 or more accidents over a two month period about 8 times out of 100, which is unlikely, but not extremely unlikely. Better safe than sorry, I would send out a safety memo and  closely monitor what unfolds over the next month!
 
-Now, if we had 5 more accidents the next month, giving us 15 over a 3 month window, chances of 15 or more over 3 months is $P(X \geq 15)$, where $X$ is $\texttt{Poisson}(9)$. Using R, this probability is `1-ppois(14,9)` = `r round(1 - ppois(14,9),3)`.
+Now, if we had 5 more accidents the next month, giving us 15 over a 3 month window, chances of 15 or more over 3 months is $P(X \geq 15),$ where $X$ is $\texttt{Poisson}(9)$. Using R, this probability is `1-ppois(14,9)` = `r round(1 - ppois(14,9),3)`.
 
 So we have about a 4\% chance of seeing 15 or more over a 3 month window if the mean number of accidents per month is 3. I would investigate whether some practice has changed to make accidents more likely than they used to be.
 :::
@@ -503,12 +503,12 @@ For a certain type of soil the number of wireworms per cubic foot has a Poisson 
 
 OK, this feels like a job for Tchebbysheff.
 
-Here $X$ is Poisson with parameter $\lambda = 100$, so $\mu = 100$ and $\sigma = \sqrt{100} = 10.$
+Here $X$ is Poisson with parameter $\lambda = 100,$ so $\mu = 100$ and $\sigma = \sqrt{100} = 10.$
 
 Thinking of Tchebbysheff's inequality, let's find $k$ so that $1 - 1/k^2 = 5/9$. Then $$P(|X-\mu|<k\sigma)\geq 5/9,$$ meaning at least 5/9ths of the distribution is in the interval $(\mu - k\sigma,\mu+k\sigma)$.
 
 Solving 
-$1 - \frac{1}{k^2} = \frac{5}{9}$ for $k>0$ yields $k = \frac{3}{2}$, so the interval is 85 to 115 wireworms.
+$1 - \frac{1}{k^2} = \frac{5}{9}$ for $k>0$ yields $k = \frac{3}{2},$ so the interval is 85 to 115 wireworms.
 :::
 
 

@@ -21,7 +21,7 @@ This theorem is an immediate consequence of Theorem \@ref(thm:sum-of-normal-rvs)
 :::{.example #house-finch}
 Let $X$ equal the duration of a randomly selected song (in seconds) for a house finch.  Suppose $X$ is normal with unknown mean $\mu$ (we're trying to get a handle on this) and standard deviation $\sigma = 30$ seconds (somehow we know this). A random sample of 25 song durations is observed. Find the probability that the sample mean will be within 5 seconds of the population mean $\mu$.
 
-If $X_1, X_2, \ldots, X_{25}$ denote the 25 song lengths to be observed, each $X_i \sim N(\mu,30)$, so $$\overline{X} \sim N\left(\mu,\frac{30}{\sqrt{25}}\right) = N(\mu,6).$$
+If $X_1, X_2, \ldots, X_{25}$ denote the 25 song lengths to be observed, each $X_i \sim N(\mu,30),$ so $$\overline{X} \sim N\left(\mu,\frac{30}{\sqrt{25}}\right) = N(\mu,6).$$
 We want to know $$P(|\overline{X}-\mu| < 5).$$
 \begin{align*}
 P(|\overline{X}-\mu| < 5) &= P(-5 < \overline{X}-\mu < 5)\\
@@ -35,7 +35,7 @@ A secondary question: How big a sample we we need so that the likelihood of the 
 In this case, we want $n$ so that 
 $$P\left(\frac{-5}{30/\sqrt{n}} < Z < \frac{5}{30/\sqrt{n}}\right) = .95.$$
 Equivalently, we want to find $n$ so that $$P\left(Z < \frac{-5}{30/\sqrt{n}}\right) = .025.$$
-In $N(0,1)$, `qnorm(.025)` = `r round(qnorm(.025),2)`, which means $P(Z < -1.96) = .025$.
+In $N(0,1),$ `qnorm(.025)` = `r round(qnorm(.025),2)`, which means $P(Z < -1.96) = .025$.
 So we want $$\frac{-5}{30/\sqrt{n}} = -1.96,$$ and solving for $n$ and rounding up yields $n = 139$.
 :::
 
@@ -112,9 +112,9 @@ ggplot()+
 Let $Z \sim N(0,1)$ and $W \sim \chi^2(\nu)$. If $Z$ and $W$ are independent then $$\frac{Z}{\sqrt{W/\nu}}$$ is said to have a **t distribution with $\nu$ degrees of freedom.**\index{t distirbution}
 :::
 
-Here's our motivation for looking at such a thing.  Look again at the house finch example (Example \@ref(exm:house-finch)). We took a sample of 25 song lengths to estimate $\mu$, or rather the likelihood that $\overline{x}$ is within 5 seconds of $\mu$, the population mean. In our solution we assumed we know $\sigma$. It is perhaps not reasonable to assume we know $\sigma$ when we're trying to estimate $\mu$!
+Here's our motivation for looking at such a thing.  Look again at the house finch example (Example \@ref(exm:house-finch)). We took a sample of 25 song lengths to estimate $\mu,$ or rather the likelihood that $\overline{x}$ is within 5 seconds of $\mu,$ the population mean. In our solution we assumed we know $\sigma$. It is perhaps not reasonable to assume we know $\sigma$ when we're trying to estimate $\mu$!
 
-So, if we don't know $\sigma$, can we estimate it from the sample? Sure! How about estimating $\sigma$ with $s$, the sample standard deviation?
+So, if we don't know $\sigma,$ can we estimate it from the sample? Sure! How about estimating $\sigma$ with $s,$ the sample standard deviation?
 
 Now, recall in our solution there came a point when we considered a $Z$-score:
 $$z = \frac{\overline{x}-\mu}{\sigma/\sqrt{n}}.$$
@@ -123,7 +123,7 @@ Good question! Check this out:
 
 From Theorem \@ref(thm:standardizing-normal-distributions) $\displaystyle Z =\frac{ \overline{X}-\mu}{\sigma/\sqrt{n}}$ is $N(0,1)$
 
-From Theorem \@ref(thm:sample-variance-chisq), $\displaystyle\frac{(n-1)S^2}{\sigma^2}$ is $\chi^2(n-1)$,
+From Theorem \@ref(thm:sample-variance-chisq), $\displaystyle\frac{(n-1)S^2}{\sigma^2}$ is $\chi^2(n-1),$
 
 So the ratio $\displaystyle\frac{Z}{\sqrt{\frac{(n-1)S^2}{\sigma^2}\big/(n-1)}}$ has a t distribution with $(n-1)$ degrees of freedom!
 
@@ -142,7 +142,7 @@ If $X_1,X_2,\ldots, X_n$ represents a random sample drawn from $N(\mu,\sigma)$ t
   - so $\displaystyle Z = \frac{\overline{X}-\mu}{\sigma/\sqrt{n}}$ is $N(0,1)$
   - while $\displaystyle T = \frac{\overline{X}-\mu}{s/\sqrt{n}}$ is a t distribution with $n-1$ degrees of freedom.
 
-We denote a $t$ distributioin with $k$ degrees of freedom by $t(k)$. The density function for a $t(k)$ distribution, defined for all $-\infty < t < \infty$, is
+We denote a $t$ distributioin with $k$ degrees of freedom by $t(k)$. The density function for a $t(k)$ distribution, defined for all $-\infty < t < \infty,$ is
 $$f(t) = \frac{\Gamma(\frac{k+1}{2})}{\sqrt{k\pi}\Gamma(k/2)}\left(1+\frac{t^2}{2}\right)^{-\left(\frac{k+1}{2}\right)}$$
 
 Suppose $T \sim t(k)$.
@@ -152,8 +152,8 @@ Suppose $T \sim t(k)$.
   1. $E(T) = 0$
   2. The distribution has mode at 0
   3. The distribution is symmetric about the $y$-axis
-  4. it has fatter tails than $N(0,1)$, i.e.,for $a > 0$, $P(t > a) > P(Z > a)$.
-  5. As $k \to \infty$, $t(k) \to N(0,1)$.
+  4. it has fatter tails than $N(0,1),$ i.e.,for $a > 0,$ $P(t > a) > P(Z > a)$.
+  5. As $k \to \infty,$ $t(k) \to N(0,1)$.
   
 
 ```{r, echo=FALSE,fig.dim=c(4,2),label="t-vs-st-norm",fig.cap="A t distribution and N(0,1)"}
@@ -197,7 +197,7 @@ lines(X, Y, lwd = 1.8, col = "red")
 
 :::{.example #t-distribution-practice}
 A forester studying the effects of fertilization on certain pine forests is interested in estimating the average basal area (in ft$^2$) of pine trees.
-Let $X_1, X_2, \ldots, X_9$ denote a random sample of size 9, and suppose $X_i \sim N(\mu,\sigma)$ with $\mu$, $\sigma$ unknown.
+Let $X_1, X_2, \ldots, X_9$ denote a random sample of size 9, and suppose $X_i \sim N(\mu,\sigma)$ with $\mu,$ $\sigma$ unknown.
 
 Find two statistics (i.e., functions of the data) $g_1$ and $g_2$ such that $$P(g_1 \leq \overline{X}-\mu \leq g_2) = .9.$$
 (The statistics $g_1$ and $g_2$ thus give us a range of values we believe with probability .9 captures $\mu$.)
@@ -246,7 +246,7 @@ qt(.95,8) #gives c
 ```
 
 So $$P(-1.86 < T < 1.86) = .9,$$
-where $T = 3(\overline{X}-\mu)/S$, and this allows us to solve the problem:
+where $T = 3(\overline{X}-\mu)/S,$ and this allows us to solve the problem:
 
 \begin{align*}
 .9 &= P(-1.86 < T < 1.86)\\
@@ -257,7 +257,7 @@ where $T = 3(\overline{X}-\mu)/S$, and this allows us to solve the problem:
 
 So $g_1 = -.62S$ and $g_2 = .62S$ work!
 
-In practice, this means that, once we have gathered our data of size $n = 9$, it is "likely" that $\mu$ is captured by the interval $$(\overline{X} - .62S, \overline{X} + .62S).$$
+In practice, this means that, once we have gathered our data of size $n = 9,$ it is "likely" that $\mu$ is captured by the interval $$(\overline{X} - .62S, \overline{X} + .62S).$$
 
 For instance, suppose our data is (units are ft$^2$)
 
@@ -285,8 +285,8 @@ The Central Limit Theorem (CLT) is the mathematical basis for the statistical an
 TODO
 
 :::{.example #clt-use name="Practical Use of the CLT"}
-For large $n$, $$\frac{\overline{X}-\mu}{\sigma/\sqrt{n}} \sim N(0,1)$$ for a random sample taken from any distribution.
-That is, for any distribution (Poisson, binomial, gamma, uniform, ...) with mean $\mu$ and standard deviation $\sigma$, if we take a simple random sample (SRS) of decent size, compute the sample mean, then this mean lives in a distribution that is approximately $N(\mu,\sigma/\sqrt{n})$. Consequently, $$\frac{\overline{X}-\mu}{S/\sqrt{n}}$$ will be approximately $t(n-1)$.
+For large $n,$ $$\frac{\overline{X}-\mu}{\sigma/\sqrt{n}} \sim N(0,1)$$ for a random sample taken from any distribution.
+That is, for any distribution (Poisson, binomial, gamma, uniform, ...) with mean $\mu$ and standard deviation $\sigma,$ if we take a simple random sample (SRS) of decent size, compute the sample mean, then this mean lives in a distribution that is approximately $N(\mu,\sigma/\sqrt{n})$. Consequently, $$\frac{\overline{X}-\mu}{S/\sqrt{n}}$$ will be approximately $t(n-1)$.
 :::
 
 :::{.example #walk-straight name="Can we really walk straight?"}
@@ -307,10 +307,10 @@ We know that $T = \frac{\overline{X}-\mu}{S/\sqrt{n}}$ has a t(19) distribution 
 
 ## Normal Approximation to a binomial distribution
 
-If $X$ is binom$(n,p)$, we can view $X$ as a sum of Bernoulli random variables:
-$X = \sum_{i=1^n}Y_i$ where each $Y_i$ is binom$(1,p)$ [so $P(Y_i = 1) = p$ and $P(Y_i = 0) = 1-p$,  and $$\mu_{Y_i} = p ~~~\text{ and } ~~~ \sigma_{Y_i} = \sqrt{p(1-p)}.$$
+If $X$ is binom$(n,p),$ we can view $X$ as a sum of Bernoulli random variables:
+$X = \sum_{i=1^n}Y_i$ where each $Y_i$ is binom$(1,p)$ [so $P(Y_i = 1) = p$ and $P(Y_i = 0) = 1-p,$  and $$\mu_{Y_i} = p ~~~\text{ and } ~~~ \sigma_{Y_i} = \sqrt{p(1-p)}.$$
 
-And $$\frac{1}{n}X = \frac{1}{n}\sum_{i=1}^n Y_i.$$ By the Central Limit Theorem, for large $n$, it follows that $\frac{1}{n}X$ is approximately $N(p,\sqrt{p(1-p)/n})$. 
+And $$\frac{1}{n}X = \frac{1}{n}\sum_{i=1}^n Y_i.$$ By the Central Limit Theorem, for large $n,$ it follows that $\frac{1}{n}X$ is approximately $N(p,\sqrt{p(1-p)/n})$. 
 
 > If $X$ is $\text{binom}(n,p)$ then $X$ is approximately $N(np, \sqrt{np(1-p)})$ for large $n$.
 
@@ -321,7 +321,7 @@ Suppose 44\% of a voting population actually plan to vote for candidate A (thoug
 
 If we know the size of the population we can answer this question precisely with the hypergeometric distribution:
 
-For instance, suppose the population consists of 10000 voters, and $X$ equals the number of voters in a sample of size 100 that plan to vote for candidate A. Then for any $x = 0, 1, \ldots, 100$, 
+For instance, suppose the population consists of 10000 voters, and $X$ equals the number of voters in a sample of size 100 that plan to vote for candidate A. Then for any $x = 0, 1, \ldots, 100,$ 
 $$p(x) = \frac{\binom{4400}{x}\binom{5600}{100-x}}{\binom{10000}{100}},$$
 and $$P(X \geq 51) = \sum_{x = 51}^{100} p(x),$$
 and this sum can be calculated in R by:
@@ -333,7 +333,7 @@ about a 9.4\% chance.
 Notice, if the populatioin is just 1000, the answer to this question would be `1-phyper(50,440,560,100)` = `r 1-phyper(50,440,560,100)`. 
 
 
-If we don't know the size of the population, but assume it's big, then the sampling process is close to that of 100 identical Bernoulli trials, where in each case, $p = .44$. In this case, $X$ is $\text{binom}(n=100,p=.44)$, and $P(X \geq 51)$ is found in R via
+If we don't know the size of the population, but assume it's big, then the sampling process is close to that of 100 identical Bernoulli trials, where in each case, $p = .44$. In this case, $X$ is $\text{binom}(n=100,p=.44),$ and $P(X \geq 51)$ is found in R via
 ```{r}
 1-pbinom(50,100,.44)
 ```
@@ -341,7 +341,7 @@ If we don't know the size of the population, but assume it's big, then the sampl
 Notice that the binomial approximation here is closer to the actual probability calculated with the hypergeometric distribution for $n = 10000$ than for $n = 1000$.
 
 Finally, let's approximate the likelihood with a normal distribution.
-According to the Central Limit Theorem, $X$ is approximately $N(44,\sqrt{100(.44)(.56)})$, or $N(44,4.964)$.
+According to the Central Limit Theorem, $X$ is approximately $N(44,\sqrt{100(.44)(.56)}),$ or $N(44,4.964)$.
 So $P(X \geq 51) = 1 - P(X < 51)$ = `1 - pnorm(51,44,4.964)` = `r round(1 - pnorm(51,44,4.964),3)`.
 
 This normal estimate is a little low, and we can improve the estimate by making what is called a *continuity correction*.
@@ -349,7 +349,7 @@ This normal estimate is a little low, and we can improve the estimate by making 
 
 ### Continuity Correction {-}
 
-Suppose $X$ is $\texttt{binom}(100,.44)$, as in the voting example, and we want to estimate $P(51 \leq X \leq 55)$ by using the normal approximation $N(44,\sqrt{100(.44)(.56)})$. 
+Suppose $X$ is $\texttt{binom}(100,.44),$ as in the voting example, and we want to estimate $P(51 \leq X \leq 55)$ by using the normal approximation $N(44,\sqrt{100(.44)(.56)})$. 
 
 The actual binomial probability can be represented as the sum of the 5 rectangle areas in Figure \@ref(fig:continuity-correction). 
 Each rectangle has width 1, and the heights of the rectangles correspond to $P(X = x)$ (binomial probability) for each $x = 51,\ldots,55.$
@@ -392,7 +392,7 @@ ggplot()+
 ```
 
 
-In other words, to better approximate $P(51\leq X \leq 55)$ with a normal distribution, instead of evaluating $\int_{51}^{55} f(x)~dx$, we should use a continuity correction\index{continuity correction} and evaluate $$\int_{50.5}^{55.5} f(x)~dx.$$
+In other words, to better approximate $P(51\leq X \leq 55)$ with a normal distribution, instead of evaluating $\int_{51}^{55} f(x)~dx,$ we should use a continuity correction\index{continuity correction} and evaluate $$\int_{50.5}^{55.5} f(x)~dx.$$
 
 Observe:
 

@@ -41,7 +41,7 @@ so here it's $$\frac{1}{2}\int_0^2 x^2~dx = \frac{1}{6} x^3 ~\biggr|_0^2 = 4/3 \
 :::
 
 :::{.theorem #uniform-EandV}
-If $X$ is $U(\theta_1,\theta_2)$, then $$E(X) = \frac{\theta_1 + \theta_2}{2}, ~~~ \text{ and } ~~~ V(X) = \frac{(\theta_2-\theta_1)^2}{12}.$$
+If $X$ is $U(\theta_1,\theta_2),$ then $$E(X) = \frac{\theta_1 + \theta_2}{2}, ~~~ \text{ and } ~~~ V(X) = \frac{(\theta_2-\theta_1)^2}{12}.$$
 :::
 
 :::{.proof}
@@ -91,7 +91,7 @@ First, let's check that the total area under $f(x)$ is 1.
 
 Having done the above integral, we can write down a formula for the cumulative distribution function for an exponential distribution:
 
-If $X$ is $\text{Exp}(\beta)$ then for $x \geq 0$,
+If $X$ is $\text{Exp}(\beta)$ then for $x \geq 0,$
 \begin{align*}
 F(x) &= \int_0^x \frac{1}{\beta}e^{-t/beta}~dt\\
     &= 1 - e^{-x/\beta}.
@@ -112,7 +112,7 @@ P(X < 8) &= F(8)\\
 
 
 :::{.theorem #exponential-EandV}
-If $X$ is $\texttt{Exp}(\beta))$, then $$E(X) = \beta, ~~~ \text{ and } ~~~ V(X) = \beta^2.$$
+If $X$ is $\texttt{Exp}(\beta)),$ then $$E(X) = \beta, ~~~ \text{ and } ~~~ V(X) = \beta^2.$$
 :::
 
 :::{.proof}
@@ -128,9 +128,9 @@ E(X) &= \lim_{b \to \infty}\left[\int_0^b x\cdot\frac{1}{\beta} e^{-x/\beta}~dx\
     &= \lim_{b \to \infty}\left[-xe^{-x/\beta} - \beta e^{-x/\beta}\biggr|_0^b\right]\\
     &= \lim_{b \to \infty}\left[\left(\frac{-b}{e^{b/\beta}} - \frac{\beta}{e^{b/\beta}}\right) - \left(0 - \beta\right)\right].
 \end{align*}
- Since $\displaystyle \frac{b}{e^{b/\beta}} \to 0$ and $\displaystyle \frac{\beta}{e^{b/\beta}} \to 0$ as $b \to \infty$, we have proved that $E(X) = \beta.$
+ Since $\displaystyle \frac{b}{e^{b/\beta}} \to 0$ and $\displaystyle \frac{\beta}{e^{b/\beta}} \to 0$ as $b \to \infty,$ we have proved that $E(X) = \beta.$
  
-To prove that $V(X) = \beta^2$, first find $E(X^2)=\int_0^\infty x^2 f(x)~dx$ by integration by parts, and then use the fact that $V(X) = E(X^2)-E(X)^2$. We leave details to those nostalgic for Calc II. :)
+To prove that $V(X) = \beta^2,$ first find $E(X^2)=\int_0^\infty x^2 f(x)~dx$ by integration by parts, and then use the fact that $V(X) = E(X^2)-E(X)^2$. We leave details to those nostalgic for Calc II. :)
 :::
 
 
@@ -143,7 +143,7 @@ f(x)=\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}, \text{ for } -
 $$
 :::
 
-The graph of a normal density curve is bell-shaped, with peak at $x = \mu$, and inflection points at $x = \mu \pm \sigma$, facts we can readily demonstrate by analyzing the first and second derivative of $f$.
+The graph of a normal density curve is bell-shaped, with peak at $x = \mu,$ and inflection points at $x = \mu \pm \sigma,$ facts we can readily demonstrate by analyzing the first and second derivative of $f$.
 
 
 ```{r, echo=FALSE,fig.dim=c(4,3),label="bell-curve",fig.cap = "A Normal density curve"}
@@ -162,12 +162,12 @@ ggplot()+
 
 
 :::{.theorem #normal-EandV}
-If $X$ is $N(\mu,\sigma)$, then $$E(X) = \mu, ~~~ \text{ and } ~~~ V(X) = \sigma^2.$$
+If $X$ is $N(\mu,\sigma),$ then $$E(X) = \mu, ~~~ \text{ and } ~~~ V(X) = \sigma^2.$$
 :::
 
 
 :::{.definition #standard-normal}
-The **standard normal probability distribution** is $N(0,1)$. If $Z$ is $N(0,1)$, its pdf is $$f(z) = \frac{1}{\sqrt{2\pi}}e^{-z^2/2}, \text{ for all real numbers } z.$$
+The **standard normal probability distribution** is $N(0,1)$. If $Z$ is $N(0,1),$ its pdf is $$f(z) = \frac{1}{\sqrt{2\pi}}e^{-z^2/2}, \text{ for all real numbers } z.$$
 :::
 
 As we shall see, the family of normal distributions $N(\mu,\sigma)$ has a special place of importance in statistics; many distributions have a bell-shape (physical measurements, for instance, such as heights of adult males, weights of newborns, wingspans of adult female bald eagles, \ldots). But its special place of importance in statistics comes from the fact that the distribution of sample means from repeated sampling, as we shall see, are well-modeled by normal distributions.
@@ -230,7 +230,7 @@ lines(X, Y, col='#888888')
 abline(h=0, col='#AAAAAA')
 ```
 
-For instance, in $N(10,3)$, 
+For instance, in $N(10,3),$ 
 
 - Roughly, 68\% of the distribution is between 7 and 13, and
 -  95\% of the distribution is between 4 and 16, and
@@ -238,10 +238,10 @@ For instance, in $N(10,3)$,
 :::
 
 :::{.example #comparing-values-with-z-scores}
-Which is more "impressive": hitting 50 home runs in a season when the league home run distribution is $N(35,9)$, or hitting 35 home runs in a season when the league distribution is $N(24,5)$?
+Which is more "impressive": hitting 50 home runs in a season when the league home run distribution is $N(35,9),$ or hitting 35 home runs in a season when the league distribution is $N(24,5)$?
 
 
-For 50 in $N(35,9)$, $$Z = \frac{50-35}{9} = \frac{5}{3} \approx 1.67.$$ 
+For 50 in $N(35,9),$ $$Z = \frac{50-35}{9} = \frac{5}{3} \approx 1.67.$$ 
 
 ```{r,echo=FALSE,fig.dim=c(5,3)}
 mean=35; sd=9
@@ -256,7 +256,7 @@ text(x=hr,y=.022,hr,col="blue")
 axis(1, at=seq(mean-3*sd, mean+3*sd, sd), pos=0)
 ```
 
-For 35 in $N(24,5)$, $$Z = \frac{35-24}{5} = \frac{11}{5} = 2.2.$$
+For 35 in $N(24,5),$ $$Z = \frac{35-24}{5} = \frac{11}{5} = 2.2.$$
 
 ```{r,echo=FALSE,fig.dim=c(5,3)}
 mean=24; sd=5
@@ -297,25 +297,25 @@ A^2 &= \left(\int_{-\infty}^{\infty} e^{-x^2/2}~dx \right)\left(\int_{-\infty}^{
     &= 2\pi
 \end{align*}
 
-Since $A^2 = 2\pi$, $A = \sqrt{2\pi}$.
+Since $A^2 = 2\pi,$ $A = \sqrt{2\pi}$.
 :::
 
 We have the following corollaries to this lemma.
 
 :::{.corollary}
-The function $f(x) = \frac{1}{\sqrt{2\pi}}e^{-x^2/2}$, for $-\infty < x < \infty$, is a valid probability density function.
+The function $f(x) = \frac{1}{\sqrt{2\pi}}e^{-x^2/2},$ for $-\infty < x < \infty,$ is a valid probability density function.
 :::
 
 :::{.proof}
-Clearly, $f(x) \geq 0$ for all $x$, and the previous lemma ensures that $\int_{-\infty}^\infty f(x)~dx = 1.$. 
+Clearly, $f(x) \geq 0$ for all $x,$ and the previous lemma ensures that $\int_{-\infty}^\infty f(x)~dx = 1.$. 
 :::
 
 :::{.corollary}
-The function $f(x) = \frac{1}{\sigma\sqrt{2\pi}}e^{-(x-\mu)^2/(2\sigma^2)}$, for $-\infty < x <  \infty$, is a valid probability density function.
+The function $f(x) = \frac{1}{\sigma\sqrt{2\pi}}e^{-(x-\mu)^2/(2\sigma^2)},$ for $-\infty < x <  \infty,$ is a valid probability density function.
 :::
 
 :::{.proof}
-Clearly, $f(x) \geq 0$ for all $x$, and after $u$-substitution of $u = (x-\mu)/\sigma$, the previous lemma ensures that $\int_{-\infty}^\infty f(x)~dx = 1$. 
+Clearly, $f(x) \geq 0$ for all $x,$ and after $u$-substitution of $u = (x-\mu)/\sigma,$ the previous lemma ensures that $\int_{-\infty}^\infty f(x)~dx = 1$. 
 :::
 
 
@@ -331,7 +331,7 @@ ggplot(data.frame(x=seq(0,10,by=.02),y=dgamma(seq(0,10,by=.02),2,1)))+
 
 ```
 
-Some typically skewed right distributions include household incomes in a city, the length of time between malfunctions of some machine, and major league baseball salaries. The gamma probability distribution, which has two parameters $\alpha$ and $\beta$, can model such skewed right distributions. The parameter $\alpha$ is sometimes called the **shape** parameter, $\beta$ is called the **scale** parameter, and its reciprocal $1/\beta$ is called the **rate**.  
+Some typically skewed right distributions include household incomes in a city, the length of time between malfunctions of some machine, and major league baseball salaries. The gamma probability distribution, which has two parameters $\alpha$ and $\beta,$ can model such skewed right distributions. The parameter $\alpha$ is sometimes called the **shape** parameter, $\beta$ is called the **scale** parameter, and its reciprocal $1/\beta$ is called the **rate**.  
 
 The density function for a gamma distribution looks formidable, so we'll take time to go through it carefully.
 
@@ -376,7 +376,7 @@ $$
 \Gamma(n+1) = \int_0^\infty t^{(n+1)-1}e^{-t}~dt = \int_0^\infty t^n e^{-t}~dt.
 $$
 
-Let $u = t^n$, and $dv = e^{-t}~dt$.  Then $du = nt^{n-1}~dt$ and $v = -e^{-t}$, and
+Let $u = t^n,$ and $dv = e^{-t}~dt$.  Then $du = nt^{n-1}~dt$ and $v = -e^{-t},$ and
 
 \begin{align*}
 \int_0^\infty t^n e^{-t}~dt &= -t^ne^{-t}\biggr|_0^\infty - \int_0^\infty nt^{n-1}(-e^{-t})~dt \\
@@ -418,7 +418,7 @@ It follows that $\Gamma(n) = (n-1)!$ for all positive integers $n$.
 The family of gamma distributions contain two special sub-families, one of which we've already seen!
 
 :::{.theorem #gamma-EandV}
-If $X$ is $\texttt{gamma}(\alpha,\beta))$, then $$E(X) = \alpha\beta, ~~~ \text{ and } ~~~ V(X) = \alpha\beta^2.$$
+If $X$ is $\texttt{gamma}(\alpha,\beta)),$ then $$E(X) = \alpha\beta, ~~~ \text{ and } ~~~ V(X) = \alpha\beta^2.$$
 :::
 
 We prove this later in Chapter \@ref(mgf).
@@ -426,12 +426,12 @@ We prove this later in Chapter \@ref(mgf).
 :::{.example}
 Where does the peak of the $\texttt{gamma}(\alpha,\beta)$ pdf occur?
 
-This looks like a question for calculus. We can find $f^\prime$, set it to 0, and consider critical points.
+This looks like a question for calculus. We can find $f^\prime,$ set it to 0, and consider critical points.
 
 We leave the details to the reader for now, but find the following results:
 
-  - if $\alpha \leq 1$, $f^\prime(x) < 0$ for all $x > 0$, so $f$ is always decreasing and the peak occurs when $x = 0$.
-  - If $\alpha > 1$, the pdf for $X \sim \texttt{gamma}(\alpha, \beta)$ has its peak at $x = (\alpha-1)\beta.$
+  - if $\alpha \leq 1,$ $f^\prime(x) < 0$ for all $x > 0,$ so $f$ is always decreasing and the peak occurs when $x = 0$.
+  - If $\alpha > 1,$ the pdf for $X \sim \texttt{gamma}(\alpha, \beta)$ has its peak at $x = (\alpha-1)\beta.$
 :::
 
 
@@ -479,7 +479,7 @@ $$
 If $X$ has such a pdf we say that $X$ is $\texttt{beta}(\alpha,\beta)$\index{\texttt{beta}$(\alpha,\beta)$}.
 :::
 
-The gamma function (\@ref(def:gamma-distribution)) appears in this pdf three times.  Recall that for positive integers $n$, $\Gamma(n) = (n-1)!$ so for integer values of $\alpha$ and $\beta$, the beta density function is fairly nice.
+The gamma function (\@ref(def:gamma-distribution)) appears in this pdf three times.  Recall that for positive integers $n,$ $\Gamma(n) = (n-1)!$ so for integer values of $\alpha$ and $\beta,$ the beta density function is fairly nice.
 Indeed, 
 
   - $\displaystyle X \sim \texttt{beta}(1,1) \Rightarrow f(x) = \frac{\Gamma(2)}{\Gamma(1)\Gamma(1)}x^0(1-x)^0 = 1$. Whoa! $\text{beta}(1,1)$ is the uniform distribution $U(0,1).$
@@ -510,5 +510,5 @@ ggplot(data.frame(t,x1,x2,x3))+
 
 
 :::{.theorem #beta-EandV}
-If $X$ is $\texttt{beta}(\alpha,\beta))$, then $$E(X) = \frac{\alpha}{\alpha+\beta}, ~~~ \text{ and } ~~~ V(X) = \frac{\alpha\beta}{(\alpha+\beta)^2(\alpha+\beta+1)}.$$
+If $X$ is $\texttt{beta}(\alpha,\beta)),$ then $$E(X) = \frac{\alpha}{\alpha+\beta}, ~~~ \text{ and } ~~~ V(X) = \frac{\alpha\beta}{(\alpha+\beta)^2(\alpha+\beta+1)}.$$
 :::

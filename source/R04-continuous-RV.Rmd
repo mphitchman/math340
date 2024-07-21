@@ -130,7 +130,7 @@ curve(dnorm(x,15,10/sqrt(12)/sqrt(50)),add=TRUE)
 
 An exponential random variable $X$ with parameter $\beta$ has pdf $$f(x) = \frac{1}{\beta}e^{-x/\beta} ~~\text{ for }~~ x > 0$$
 
-The **mean** of this distribution is $E(X) = \beta$ and the **rate** associated to this distribution is $1/\beta$.  **In R**, we specify the exponential parameter by entering the rate $1/\beta$, not $\beta$ itself. 
+The **mean** of this distribution is $E(X) = \beta$ and the **rate** associated to this distribution is $1/\beta$.  **In R**, we specify the exponential parameter by entering the rate $1/\beta,$ not $\beta$ itself. 
 
 > Suppose $X$ is $\texttt{Exp}(b)$. **In R**, $P(X \leq q)$ is given by `pexp(q,1/b)`  
 
@@ -140,7 +140,7 @@ The life of a lightbulb is exponentially distributed with mean 120 hours.
 
 > a) What is the probability that the lightbulb lasts more than 200 hours?  
 
-Here $X$ is exponential with parameter $\beta = 120$. The rate associated with this distribution is $1/120$, so $P(X > 200)$ can be computed with
+Here $X$ is exponential with parameter $\beta = 120$. The rate associated with this distribution is $1/120,$ so $P(X > 200)$ can be computed with
 
 ```{r}
 1-pexp(200,rate=1/120)
@@ -185,7 +185,7 @@ So, 5% of light bulbs last less than `r round(qexp(.05,1/120),2)` hours.
 
 > Suppose $X$ is an exponential random variable with parameter $\beta = 2$.  Sketch the density function $f(x)$ as well as the distribution function $F(x)$.
 
-The density function is $f(x) = \frac{1}{2}e^{-x/2}$ for $x > 0$, and we can sketch it by plotting an $x$ vector of many inputs between, say, 0 and 10, and the corresponding values of `dexp()`:
+The density function is $f(x) = \frac{1}{2}e^{-x/2}$ for $x > 0,$ and we can sketch it by plotting an $x$ vector of many inputs between, say, 0 and 10, and the corresponding values of `dexp()`:
 
 ```{r, echo=FALSE,fig.dim=c(6.16,3.4),fig.align='center'}
 beta=2
@@ -211,7 +211,7 @@ ggplot(df)+geom_line(aes(x,f),col="blue")+
 
 ### A Memoryless distribution {-}
 
-Along with the geometric distribution, the exponential distribution is *memoryless* in this sense: For any $t,s>0$, $$P(X > t + s~|~X > s) = P(X > t).$$
+Along with the geometric distribution, the exponential distribution is *memoryless* in this sense: For any $t,s>0,$ $$P(X > t + s~|~X > s) = P(X > t).$$
 
 For the geometric distribution we can interpret the above as follows: the probability of waiting more than $t$ trials to see the first success is the same as waiting more than $t$ additional trials after not seeing a success in the first $s$ trials.  
 
@@ -279,7 +279,7 @@ sum(abs(x-8)<4) # values in the sample between 4 and 12
 Well, `r sum(abs(x-8)<4)` is mighty close to half of the 1000 values!
 :::
 
-**Exponential distributions are special gamma distributions.**  In particular, if we set $\alpha=1$, the gamma distribution gamma(1,$\beta$) is exactly equal to the exponential distribution exp($\beta$).
+**Exponential distributions are special gamma distributions.**  In particular, if we set $\alpha=1,$ the gamma distribution gamma(1,$\beta$) is exactly equal to the exponential distribution exp($\beta$).
 
 So, if $X$ is exponential with mean 10, the following commands all compute $P(X \leq 5)$.
 
@@ -293,9 +293,9 @@ So, if $X$ is exponential with mean 10, the following commands all compute $P(X 
 
 ## Chi-square Distribution `chisq` {#chiR}
 
-Like the exponential distribution, the chi-square distribution is a special gamma distribution. For a positive integer $\nu$, the **Chi-square probability distribution with degrees of freedom $\nu$**, denoted $\chi^2(\nu)$, is the gamma distribution with $\alpha = \nu/2$ and $\beta=2$.
+Like the exponential distribution, the chi-square distribution is a special gamma distribution. For a positive integer $\nu,$ the **Chi-square probability distribution with degrees of freedom $\nu$**, denoted $\chi^2(\nu),$ is the gamma distribution with $\alpha = \nu/2$ and $\beta=2$.
 
-In R, `pchisq(x,df = v)` and `pgamma(x,shape = v/2,scale = 2)` will return the same value. For example, if $x = 7$ and $v = 10$, we have
+In R, `pchisq(x,df = v)` and `pgamma(x,shape = v/2,scale = 2)` will return the same value. For example, if $x = 7$ and $v = 10,$ we have
 
 `pchisq(7,df = 10)` = `r pchisq(7,10)`, and
 
@@ -324,7 +324,7 @@ ggplot(data.frame(t,x1,x2,x3))+
 The beta$(\alpha,\beta)$ probability distribution provides a way to model random variables whose possible outcomes are all real numbers between 0 and 1.  Such distributions are useful for modeling proportions.  As with the gamma and normal distributions, this is a 2-parameter family of distributions.  
 
 :::{.example #beta-sales-R}
-Let $X$ denotes the proportion of sales on a particular website that comes from new customers any given day, and suppose from past experience, $X$ is well-modeled with a beta distribution with shape parameters $\alpha = 1$, and $\beta=3.5$.  
+Let $X$ denotes the proportion of sales on a particular website that comes from new customers any given day, and suppose from past experience, $X$ is well-modeled with a beta distribution with shape parameters $\alpha = 1,$ and $\beta=3.5$.  
 
 > Determine the probability that on any given day, over 1/2 the sales come from new customers.
 
@@ -340,7 +340,7 @@ We may wish to study a continuous random variable $X$ from a given probability d
 
 In this case, probabilities such as $P(X > 1.2)$ correspond to areas under the density curve, which are calculated by integration, e.g., $$P(X > 1.2) = \int_{1.2}^2 \frac{3}{8}(2-x)^2~dx.$$
 
-If we can find an antiderivative of $f(x)$, we can find this probability using the fundamental theorem of calculus.  If not, we can always estimate the value of the integral with Riemann sums.  We do this below.
+If we can find an antiderivative of $f(x),$ we can find this probability using the fundamental theorem of calculus.  If not, we can always estimate the value of the integral with Riemann sums.  We do this below.
 
 ### Input the density function {-}
 
@@ -468,9 +468,9 @@ plot(x,y,type="l",
 
 ### Estimating Moments {-}
 
-Recall, $E(X^n)$ is called the *$n$th moment about 0* of the distribution.  The first moment is the expected value $E(X)$, and the 2nd and 1st together determine the variance: $V(X) = E(X^2)-E(X)^2.$
+Recall, $E(X^n)$ is called the *$n$th moment about 0* of the distribution.  The first moment is the expected value $E(X),$ and the 2nd and 1st together determine the variance: $V(X) = E(X^2)-E(X)^2.$
 
-For a continuous random variable $X$ with pdf $f(x)$, $$E(X^n) = \int_{-\infty}^\infty x^n \cdot f(x).$$
+For a continuous random variable $X$ with pdf $f(x),$ $$E(X^n) = \int_{-\infty}^\infty x^n \cdot f(x).$$
 
 In R we can numerically estimate these integrals with the `mid_sum()` function defined above, applied to the integrand $x^n\cdot f(X)$.  
 
@@ -487,7 +487,7 @@ moment.integrand<-function(f,n){
 
 ### Expected Value {-}
 
-For a continuous random variable $X$, $$E(X)=\int_{-\infty}^{\infty} x \cdot f(x)~dx.$$
+For a continuous random variable $X,$ $$E(X)=\int_{-\infty}^{\infty} x \cdot f(x)~dx.$$
 
 To estimate this integral, we plug the first moment integrand $x \cdot f(x)$ into our Riemann sum function.
 ```{r}

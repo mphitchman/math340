@@ -3,9 +3,9 @@
 
 Recall, a random variable $X$ is a real-valued function defined over a sample space associated with a chance experiment.
 
-The **space of $X$**\index{random variable!space} is the set of possible outcomes for $X$, and a **probability model** for $X$ is an assignment $p(x)$ to each $x$ in the space of $X$ such that 
+The **space of $X$**\index{random variable!space} is the set of possible outcomes for $X,$ and a **probability model** for $X$ is an assignment $p(x)$ to each $x$ in the space of $X$ such that 
 
-  - each $p(x) \geq 0$, and 
+  - each $p(x) \geq 0,$ and 
   - the sum of all the $p(x)$ equals 1.
   
 
@@ -18,7 +18,7 @@ Five balls numbered 1 through 5 are placed in a hat. Two balls are randomly sele
   - $X$ is the largest of the two selected balls, and 
   - $Y$ is the sum of the two selected balls.
   
-> Find the space of $X$, the space of $Y$, and reasonable probability models for both random variables.
+> Find the space of $X,$ the space of $Y,$ and reasonable probability models for both random variables.
 
 OK, drawing two balls from five, without replacement, we have $\binom{5}{2} = 10$ possible outcomes. These 10 possible outcomes form the sample space associated with the chance experiment, and we assume each of these 10 outcomes is equally likely.
 
@@ -32,7 +32,7 @@ kbl(t(data.frame(
   Y = c(3,4,5,6,5,6,7,7,8,9))), align="c",caption="Two random variables associated with drawing two balls from a hat.") %>% kable_styling(full_width=FALSE,latex_options = "hold_position") %>% column_spec(1,border_right=TRUE)
 ```
 
-Again, we assume each of the 10 elements in $S$ is equally likely, so the probability that $X = 4$, say, will be the 3/10 since $X$ takes the value 4 for 3 of the 10 elements in $S$.
+Again, we assume each of the 10 elements in $S$ is equally likely, so the probability that $X = 4,$ say, will be the 3/10 since $X$ takes the value 4 for 3 of the 10 elements in $S$.
 
 The probability model for $X$ in table form:
 $$
@@ -62,7 +62,7 @@ Let $X$ equal the number of rolls of a 6-sided die needed to roll your first 4.
 
 The space of $X$ is $\mathbb{N} = \{1, 2, 3, \ldots \}$.
 
-We assume each of the 6 values is equally likely on any given roll, and that the values are independent from roll to roll.  So, the probability of rolling a 4 is 1/6, and the probability of not rolling a 4 is 5/6.  Then, the probability of rolling our first 4 on roll $x$, for each $x \geq 1$, is 
+We assume each of the 6 values is equally likely on any given roll, and that the values are independent from roll to roll.  So, the probability of rolling a 4 is 1/6, and the probability of not rolling a 4 is 5/6.  Then, the probability of rolling our first 4 on roll $x,$ for each $x \geq 1,$ is 
 $$P(X = x) = \left(\frac{5}{6}\right)^{x-1}\cdot\frac{1}{6}.$$
 
 Is this a valid probability model? Certainly each probability is non-negative. Do they all sum to 1? This requires the geometric series formula from Calc II to check:
@@ -77,19 +77,19 @@ Yes!
 
 ## Expected Value
 
-Recall, a random variable is a real-valued function defined over a sample space, usually denoted by $X$ or $Y$, and $X$ is **discrete** if the space of $X$ is finite or countably infinite.
+Recall, a random variable is a real-valued function defined over a sample space, usually denoted by $X$ or $Y,$ and $X$ is **discrete** if the space of $X$ is finite or countably infinite.
 
 :::{.definition #expected-value-discrete}
-If $X$ is a discrete random variable with probability function $p(x)$, then the **expected value of $X$**\index{expected value!discrete random variable}, denoted $E(X)$, is $$E(X) = \sum_{\text{all }x} x \cdot p(x).$$ The expected value $E(X)$ is also called the **mean of $X$**\index{mean of a random variable}, and is often denoted as $\mu_X$, or $\mu$ if the random variable $X$ is understood.
+If $X$ is a discrete random variable with probability function $p(x),$ then the **expected value of $X$**\index{expected value!discrete random variable}, denoted $E(X),$ is $$E(X) = \sum_{\text{all }x} x \cdot p(x).$$ The expected value $E(X)$ is also called the **mean of $X$**\index{mean of a random variable}, and is often denoted as $\mu_X,$ or $\mu$ if the random variable $X$ is understood.
 :::
 
 :::{.example #first-EV}
 
 In example \@ref(exm:draw-2-balls) we defined two random variables associated to the experiment of drawing two balls (numbered from 1 to 5) out of a hat.  
 
-The expected value of $X$, the larger value of the two drawn, is $$E(X) = 2 \cdot 0.1 + 3 \cdot 0.2 + 4 \cdot 0.3 + \cdot 0.4 = 4.$$ So, we should expect that after a large number of repetitions of this game the average value of $X$ is about 4.
+The expected value of $X,$ the larger value of the two drawn, is $$E(X) = 2 \cdot 0.1 + 3 \cdot 0.2 + 4 \cdot 0.3 + \cdot 0.4 = 4.$$ So, we should expect that after a large number of repetitions of this game the average value of $X$ is about 4.
 
-The expected value of $Y$, the sum of the two values drawn, is $$E(Y) = 3 \cdot .1 + 4 \cdot .1 + 5 \cdot .2 + 6 \cdot .2 + 7 \cdot .2 + 8 \cdot .1 + 9 \cdot .1 = 6.$$. We should expect the average value of $Y$ to be about 6 after a large number of repetitions of this game. 
+The expected value of $Y,$ the sum of the two values drawn, is $$E(Y) = 3 \cdot .1 + 4 \cdot .1 + 5 \cdot .2 + 6 \cdot .2 + 7 \cdot .2 + 8 \cdot .1 + 9 \cdot .1 = 6.$$. We should expect the average value of $Y$ to be about 6 after a large number of repetitions of this game. 
 
 In Example \@ref(exm:roll-until-4), the expected number of rolls needed to obtain a 4 is an infinite series:
 $$E(X) = \sum_{x = 1}^\infty x \cdot (5/6)^{x-1} \cdot (1/6).$$
@@ -111,13 +111,13 @@ Let's frame Chuck-a-luck as follows:
 
   - We have the chance experiment of rolling 3 dice. We assume the three dice are distinct colors (red, blue, green).
   - We have sample space $$S = \{(r,b,g)~|~ 1 \leq r, b, g \leq 6 \}$$ ($r$ is the value of the red die, $b$ is the value of the blue die, and $g$ is the value of the green die).
-  - The size of the sample space is $|S| = 6^3 = 216$, and we assume each of these 216 outcomes is equally likely.
+  - The size of the sample space is $|S| = 6^3 = 216,$ and we assume each of these 216 outcomes is equally likely.
   -  For the sake of argument, let's say that our chosen number is 4.
   - We define the random variable $X$ to be the number of 4s we roll.
   - The space of $X$ is $\{0, 1, 2, 3\}$.
 
 
-Now let's find the probability model for $X$, one value of $x$ at a time.
+Now let's find the probability model for $X,$ one value of $x$ at a time.
 
   - $p(0)$ is the probability that all 3 dice are not 4, which is $(5/6)^3 = 125/216.$
   - $p(3)$ is the probability that all 3 dice are 4, which is $(1/6)^3 = 1/216$.
@@ -142,18 +142,18 @@ With the probability model in hand, we can compute the expected value of $X$: $$
 We interpret this result as follows: In a large number of games played, we would expect, on average, 0.5 fours to come up per game played. 
 
 
-This expected value of $X$ doesn't actually answer the original question in this example.  Should we expect to win *money* in the long run? Our calculation hasn't taken into account the dollar amounts attached to the various outcomes. These dollar amounts (1 if $X = 1$, 2 if $X = 2$, 5 if $X = 3$ and -1 if $X = 0$), mathematically, describe a function of $X$ (input is a value from the space of $X$, output is a dollar amount). To decide whether we should expect to win money in the long run, we want to calculate the expected value of *a function* of the random variable $X$.
+This expected value of $X$ doesn't actually answer the original question in this example.  Should we expect to win *money* in the long run? Our calculation hasn't taken into account the dollar amounts attached to the various outcomes. These dollar amounts (1 if $X = 1,$ 2 if $X = 2,$ 5 if $X = 3$ and -1 if $X = 0$), mathematically, describe a function of $X$ (input is a value from the space of $X,$ output is a dollar amount). To decide whether we should expect to win money in the long run, we want to calculate the expected value of *a function* of the random variable $X$.
 
 We can estimate our average expected winnings by playing the game repeatedly, we could play 100 times, or a 1000 times, and see how we do on average (hello R!). Or we can turn to the computation of the theoretical expected winnings per turn  via the following theorem.
 :::
 
 
 :::{.theorem #EV-discrete-fcnRV}
-Let $X$ be a discrete random variable with probability function $p(x)$, and suppose $g(X)$ is a real-valued function of $X$. Then the expected value of $g(X)$ is $$E(g(X)) = \sum_{\text{all }x} g(x) \cdot p(x).$$
+Let $X$ be a discrete random variable with probability function $p(x),$ and suppose $g(X)$ is a real-valued function of $X$. Then the expected value of $g(X)$ is $$E(g(X)) = \sum_{\text{all }x} g(x) \cdot p(x).$$
 :::
 
 :::{.example #Chuckaluck-winnings name="Chuck-a-luck for a living?"}
-Now we focus on our winnings, $W$. $W$ is a function of $X$, and we summarize this function by adding the winnings to the probability model table:
+Now we focus on our winnings, $W$. $W$ is a function of $X,$ and we summarize this function by adding the winnings to the probability model table:
 
 $$
 \begin{array}{c|c|c|c|c}
@@ -207,8 +207,8 @@ E(3X^2 + 1) &= \sum_{\text{all }x} (3x^2 + 1)\cdot p(x)\\
 ## Variance
 
 :::{.definition #variance-discrete}
-If $X$ is a random variable with expected value $E(X) = \mu$, the **variance of $X$**\index{variance}, denoted $V(X)$, is $$V(X) = E((X-\mu)^2).$$
-The variance of $X$ is often denoted $\sigma^2_X$, or $\sigma^2$ if the random variable is understood.  Also, $\sqrt{V(X)}$, denoted $\sigma_X$ or $\sigma$, is called the **standard deviation of $X$**\index{standard deviation!random variable}.
+If $X$ is a random variable with expected value $E(X) = \mu,$ the **variance of $X$**\index{variance}, denoted $V(X),$ is $$V(X) = E((X-\mu)^2).$$
+The variance of $X$ is often denoted $\sigma^2_X,$ or $\sigma^2$ if the random variable is understood.  Also, $\sqrt{V(X)},$ denoted $\sigma_X$ or $\sigma,$ is called the **standard deviation of $X$**\index{standard deviation!random variable}.
 :::
 
 :::{.example #variance-comparison}
@@ -232,7 +232,7 @@ $$
 > Compute the expected value and variance for each random variable.
 
 The expected value of $X$ is $$E(X) = 0 + (1)(.3) + (2)(.3) + (3)(.1) + (4)(.1) = 1.6,$$ and the expected value of $Y$ is $$E(Y) = 0 + (4)(.4) = 1.6,$$
-so the two random variables have the same mean: $E(X) = E(Y)$, or, using the alternate notation, $\mu_X = \mu_Y$.
+so the two random variables have the same mean: $E(X) = E(Y),$ or, using the alternate notation, $\mu_X = \mu_Y$.
 
 The variance of $X$: $$V(X) = E((X-\mu_X)^2) = \sum_{x = 0}^4[(x-1.6)^2\cdot p(x)]= 1.44.$$
 
@@ -263,7 +263,7 @@ grid.arrange(p1,p2,nrow=1)
 
 
 :::{.example #infinite-variance name="Infinite Variance?"}
-There exist discrete random variables with finite mean and infinite variance. Here's one: Recall that the $p$-series $$\sum_{n=1}^\infty \frac{1}{n^p}$$ converges for $p > 1$, and diverges when $p = 1$. Let's suppose the series $$\sum_{n=1}^\infty \frac{1}{n^3} = c.$$ 
+There exist discrete random variables with finite mean and infinite variance. Here's one: Recall that the $p$-series $$\sum_{n=1}^\infty \frac{1}{n^p}$$ converges for $p > 1,$ and diverges when $p = 1$. Let's suppose the series $$\sum_{n=1}^\infty \frac{1}{n^3} = c.$$ 
 (In fact, $c$ equals a known constant close to 1.2, called Apery's constant after the mathematician who proved this constant is irrational.) Consider the discrete random variable $X$ whose distribution function is given by $$p(x) = \frac{1}{cx^3} ~\text{ for }~ x = 1, 2, 3, \ldots.$$
 Then, 
 \begin{align*}
@@ -284,7 +284,7 @@ which diverges as a multiple of the harmonic series. So, $V(X)$ does not exist a
 ## Properties of Expected Value
 
 :::{.theorem #EV-properties-discrete} 
-Suppose $X$ is a discrete random variable, $c \in \mathbb{R}$ is a constant, and $g$, $g_1$, and $g_2$ are functions of $X$.
+Suppose $X$ is a discrete random variable, $c \in \mathbb{R}$ is a constant, and $g,$ $g_1,$ and $g_2$ are functions of $X$.
 
   1. $E(c) = c$.
   2. $E(c\cdot g(X))= cE(g(X))$.
@@ -309,7 +309,7 @@ Let's take the time to prove these properties. Each of them essentially follows 
 
 :::{.proof}
 
-1. Given a constant $c$, we can view this constant as a function of $X$, say $f(x) = c$. Then 
+1. Given a constant $c,$ we can view this constant as a function of $X,$ say $f(x) = c$. Then 
 \begin{align*}
 E(c) &= \sum_{\text{all }x} c \cdot p(x) \\
 &= c \sum_{\text{all }x} p(x)
@@ -334,14 +334,14 @@ E(g_1(x) \pm g_2(x)) &= \sum_{\text{all }x} (g_1(x) \pm g_2(x))\cdot p(x) &\\
 :::
 
 :::{.example #homes-near-firehouse}
-The number $N$ of residential homes that a fire company can serve depends on the distance $r$ (in city blocks) that a fire engine can cover in a fixed period of time. If we assume that $N$ is proportional to the area of a circle $R$ blocks from the fire house, then $$N = k \pi R^2,$$ where $k$ is a constant, and $R$ is a random variable.  For a particular fire company, $k = 8$, and the probability function for $R$ is
+The number $N$ of residential homes that a fire company can serve depends on the distance $r$ (in city blocks) that a fire engine can cover in a fixed period of time. If we assume that $N$ is proportional to the area of a circle $R$ blocks from the fire house, then $$N = k \pi R^2,$$ where $k$ is a constant, and $R$ is a random variable.  For a particular fire company, $k = 8,$ and the probability function for $R$ is
 $$
 \begin{array}{c|c|c|c|c|c|c|c}
 r    &  21 &  22 &  23 &  24 & 25 & 26 \\ \hline
 p(r) & .05 & .20 & .30 & .25 & .15 & .05
 \end{array}
 $$
-Find $E(N)$, the expected number of homes that the fire department can serve.
+Find $E(N),$ the expected number of homes that the fire department can serve.
 
 Well, $$E(N) = E(8\pi R^2) = 8\pi E(R^2),$$
 so 
@@ -389,12 +389,12 @@ E(3 + 2X + 4X^2) &= E(3) + 2E(X) + 4E(X^2) \\
 ## Tchebysheff's Theorem
 
 :::{.theorem #tcheby name="Tchebysheff's Inequality"}
-Let $X$ be a random variable with mean $E(X) = \mu$ and finite variance $V(X) = \sigma^2 > 0$. Then for any constant $k > 0$, 
+Let $X$ be a random variable with mean $E(X) = \mu$ and finite variance $V(X) = \sigma^2 > 0$. Then for any constant $k > 0,$ 
 $$P(|X - \mu| < k\sigma ) \geq 1 - \frac{1}{k^2}.$$\index{Tchebysheff's Inequality}
 Equivalently, $$P(|X - \mu| \geq k\sigma) \leq \frac{1}{k^2}.$$
 :::
 
-For instance, if $k = 2$, Tchebbysheff's inequality says that for any random variable $X$, the probability that $X$ takes a value that is within 2 standard deviations of the mean is at least .75. For many distributions, this proability is closer to .95, but .75 holds for *all* distributions. 
+For instance, if $k = 2,$ Tchebbysheff's inequality says that for any random variable $X,$ the probability that $X$ takes a value that is within 2 standard deviations of the mean is at least .75. For many distributions, this proability is closer to .95, but .75 holds for *all* distributions. 
 Of course, letting $k = 1$ in Tchebbysheff's inequality gives us the trivially true statement that the probability that $X$ takes a value within 1 standard deviation of the mean is at least 0. 
 
 :::{.proof}
@@ -422,8 +422,8 @@ $$P(|X-\mu| \geq k\sigma) \leq \frac{1}{k^2}.$$
 :::
 
 :::{.example #tchebby}
-Suppose $X$ is a random variable with $E(X) = 70$ and $V(X) = 25$, so $\mu = 70$ and $\sigma = \sqrt{25} = 5$. 
-According to Tchebbysheff's inequality with $k = 2$, the probability that $X$ takes a value between 60 and 80 is at least 3/4. Setting $k = 3$, we find the probability that $X$ takes a value between 55 and 85 is at least 8/9.
+Suppose $X$ is a random variable with $E(X) = 70$ and $V(X) = 25,$ so $\mu = 70$ and $\sigma = \sqrt{25} = 5$. 
+According to Tchebbysheff's inequality with $k = 2,$ the probability that $X$ takes a value between 60 and 80 is at least 3/4. Setting $k = 3,$ we find the probability that $X$ takes a value between 55 and 85 is at least 8/9.
 :::
 
 Again, for many distributions, the probability of being within 2 standard deviations of the mean is much higher than .75 (often about .95, in fact), and the probability of being within 3 standard deviations of the mean is much higher than 8/9 (often about .99). 
@@ -449,7 +449,7 @@ Then $$\mu = E(X) = (-1)(.125) + (0)(.75) + (1)(.125) = 0,$$ and
   &= (-1)^2(.125) + 0^2(.75) + 1^2(.125)\\
   &=.25,
 \end{align*}
-So, $\sigma = 0.5$, and 
+So, $\sigma = 0.5,$ and 
 \begin{align*}
 P(|X - \mu| < 2 \sigma) &= P(|X| < 1) \\
 &= P(-1 < X < 1) \\
@@ -464,7 +464,7 @@ x   &  -1 &  0 &  1   \\ \hline
 p(x) & \frac{1}{2k^2} & 1-\frac{1}{k^2} & \frac{1}{2k^2} 
 \end{array}
 $$
-will satisfy $P(|X-\mu|<2\sigma)=1-\frac{1}{k^2}$, demonstrating that the bound in Tchebbyshef's inequality can not be increased.
+will satisfy $P(|X-\mu|<2\sigma)=1-\frac{1}{k^2},$ demonstrating that the bound in Tchebbyshef's inequality can not be increased.
 :::
 
 

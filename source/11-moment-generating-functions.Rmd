@@ -1,12 +1,12 @@
 
 # Moment Generating Functions {#mgf}
 
-Recall by Definition \@ref(def:moment-generating-function), the moment-generating function (mgf) associated with a discrete random variable $X$, should it exist, is given by $$m_X(t) = E(e^{tX})$$ where the function is defined on some open interval of $t$ values containing 0. The same definition applies to continuous random variables. We have seen that this mgf encodes information about $X$: the $k$th derivative of $m$ evaluated at $t = 0$ gives us the $k$th moment. That is, for $k = 1,2,3,\ldots$, 
+Recall by Definition \@ref(def:moment-generating-function), the moment-generating function (mgf) associated with a discrete random variable $X,$ should it exist, is given by $$m_X(t) = E(e^{tX})$$ where the function is defined on some open interval of $t$ values containing 0. The same definition applies to continuous random variables. We have seen that this mgf encodes information about $X$: the $k$th derivative of $m$ evaluated at $t = 0$ gives us the $k$th moment. That is, for $k = 1,2,3,\ldots,$ 
 $$m_X^{(k)}(0) = E(X^k).$$
-In fact, it turns out that the mgf gives us *all* the information about a random variable $X$, per the following theorem, whose proof is beyond the scope of this course.
+In fact, it turns out that the mgf gives us *all* the information about a random variable $X,$ per the following theorem, whose proof is beyond the scope of this course.
 
 :::{.theorem #unique-mgf}
-Let $m_X(t)$ and $m_Y(t)$ denote the mgfs of random variables $X$ and $Y$, respectively. If both mgfs exist and $m_X(t) = m_Y(t)$ for all values of $t$ then $X$ and $Y$ have the same probability distribution.
+Let $m_X(t)$ and $m_Y(t)$ denote the mgfs of random variables $X$ and $Y,$ respectively. If both mgfs exist and $m_X(t) = m_Y(t)$ for all values of $t$ then $X$ and $Y$ have the same probability distribution.
 :::
 
 :::{.example}
@@ -22,9 +22,9 @@ m_Z(t) &= E(e^{tZ})\\
       &= e^{\frac{1}{2}t^2}\left[\frac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty e^{-\frac{1}{2}(z-t)^2}~dz\right]
 \end{align*}
 
-The bracketed portion of this last expression equals 1, for all $t$, since it is the integral of the density function of a $N(t,1)$ distribution, so $$m_Z(t) = e^{\frac{1}{2}t^2},$$ for all $-\infty < t < \infty$.
+The bracketed portion of this last expression equals 1, for all $t,$ since it is the integral of the density function of a $N(t,1)$ distribution, so $$m_Z(t) = e^{\frac{1}{2}t^2},$$ for all $-\infty < t < \infty$.
 
-More generally, for $X \sim N(\mu,\sigma)$, one can show its mgf is 
+More generally, for $X \sim N(\mu,\sigma),$ one can show its mgf is 
 
 \begin{equation} 
   m(t) = e^{\left(\mu t + \frac{\sigma^2}{2}t^2\right)} 
@@ -35,11 +35,11 @@ More generally, for $X \sim N(\mu,\sigma)$, one can show its mgf is
 We now return to the proof of Theorem \@ref(thm:standardizing-normal-distributions), which we restate as the following lemma.
 
 :::{.lemma #Z-is-standard-normal}
-If $X$ is $N(\mu,\sigma)$ and $Z = \frac{X-\mu}{\sigma}$, then $Z$ is $N(0,1)$.
+If $X$ is $N(\mu,\sigma)$ and $Z = \frac{X-\mu}{\sigma},$ then $Z$ is $N(0,1)$.
 :::
 
 :::{.proof}
-Let $X$ be $N(\mu,\sigma)$, and $Z = \frac{X-\mu}{\sigma}$. Then the mgf for $Z$ is
+Let $X$ be $N(\mu,\sigma),$ and $Z = \frac{X-\mu}{\sigma}$. Then the mgf for $Z$ is
 
 \begin{align*}
 m_Z(t) &= E\left[e^{tZ}\right]\\
@@ -56,7 +56,7 @@ m_Z(t) &= e^{-\mu t/\sigma}\cdot e^{\left(\mu (t/\sigma) + \frac{\sigma^2}{2}(t/
       &= e^{t^2/2}
 \end{align*}
 
-But hey! This mgf is the mgf for $N(0,1)$, so by Theorem \@ref(thm:unique-mgf), since $Z = (X-\mu)/\sigma$ and $N(0,1)$ have the same mgf, they have the same probability distribution.
+But hey! This mgf is the mgf for $N(0,1),$ so by Theorem \@ref(thm:unique-mgf), since $Z = (X-\mu)/\sigma$ and $N(0,1)$ have the same mgf, they have the same probability distribution.
 :::
 
 :::{.lemma #Z-square-is-chi-square}
@@ -66,7 +66,7 @@ If $Z$ is $N(0,1)$ then $Z^2$ is $\chi^2(1)$.
 The proof of this lemma is left for now.
 
 :::{.theorem #mgf-sum-of-rvs}
-Let $X_1, X_2, \ldots, X_n$ be independent random variables with mgfs $m_1(t), m_2(t), \ldots m_n(t)$, respectively. If $U = X_1 + X_2 + \cdots + X_n$ then $$m_U(t) = m_1(t) \cdot m_2(t) \cdot ~\cdots~ \cdot m_n(t).$$
+Let $X_1, X_2, \ldots, X_n$ be independent random variables with mgfs $m_1(t), m_2(t), \ldots m_n(t),$ respectively. If $U = X_1 + X_2 + \cdots + X_n$ then $$m_U(t) = m_1(t) \cdot m_2(t) \cdot ~\cdots~ \cdot m_n(t).$$
 :::
 
 *Sketch of Proof*:
@@ -82,35 +82,35 @@ m_U(t) &= E\left[e^{tU}\right]\\
 That the $E[~]$ distributes through the product in line 4 above follows since the $X_i$ are assumed to be independent. The rpoof of this fact would be given in MATH 440.
 
 :::{.theorem #sum-of-normal-rvs}
-Let $X_1, X_2, \ldots, X_n$ be independent normal random variables  with $X_i \sim N(\mu_i, \sigma_i)$, and let $a_1, a_2, \ldots, a_n$ be constants. If $$U = \sum_{i=1}^n a_i X_i,$$ then $U$ is normally distribution with $$\mu = \sum_{i=1}^n a_i \mu_i ~~~ \text{ and } ~~~ \sigma^2 = \sum_{i=1}^n a_i^2 \sigma_i^2.$$ 
+Let $X_1, X_2, \ldots, X_n$ be independent normal random variables  with $X_i \sim N(\mu_i, \sigma_i),$ and let $a_1, a_2, \ldots, a_n$ be constants. If $$U = \sum_{i=1}^n a_i X_i,$$ then $U$ is normally distribution with $$\mu = \sum_{i=1}^n a_i \mu_i ~~~ \text{ and } ~~~ \sigma^2 = \sum_{i=1}^n a_i^2 \sigma_i^2.$$ 
 :::
 
 :::{.proof}
-Since $X_i$ is $N(\mu_i,\sigma_i)$, $X_i$ has mgf $$m_{X_i}(t) = e^{\left(\mu_it + \sigma_i^2t^2/2\right)},$$ and for constant $a_i$, the random variable $a_iX_i$ has mgf $$m_{a_iX_i}(t) =E(e^{a_iX_it}) = m_{X_i}(a_it) = e^{\left(\mu_ia_it + a_i^2\sigma_i^2t^2/2\right)}.$$ 
-Then by Theorem \@ref(thm:mgf-sum-of-rvs) and properties of exponents, for $U = \sum a_i X_i$, 
+Since $X_i$ is $N(\mu_i,\sigma_i),$ $X_i$ has mgf $$m_{X_i}(t) = e^{\left(\mu_it + \sigma_i^2t^2/2\right)},$$ and for constant $a_i,$ the random variable $a_iX_i$ has mgf $$m_{a_iX_i}(t) =E(e^{a_iX_it}) = m_{X_i}(a_it) = e^{\left(\mu_ia_it + a_i^2\sigma_i^2t^2/2\right)}.$$ 
+Then by Theorem \@ref(thm:mgf-sum-of-rvs) and properties of exponents, for $U = \sum a_i X_i,$ 
 \begin{align*}
 m_U(t) &= \prod_{i=1}^n m_{a_iX_i}(t) \\
       &= \prod_{i=1}^n e^{\left(\mu_ia_it + a_i^2\sigma_i^2t^2/2\right)}\\
       &= e^{\left(t\sum a_i\mu_i + \frac{t^2}{2}\sum a_i^2\mu_i^2\right)}
 \end{align*}
 
-But hey! This is the mgf for a normal distribution with mean $\sum a_i \mu$ and variance $\sum a_i^2 \sigma_i^2$, so we have proved the result.
+But hey! This is the mgf for a normal distribution with mean $\sum a_i \mu$ and variance $\sum a_i^2 \sigma_i^2,$ so we have proved the result.
 :::
 
 :::{.theorem #sum-of-squares-of-standard-normal-rvs}
-Let $X_1, X_2, \ldots, X_n$ be independent normal random variables  with $X_i \sim N(\mu_i, \sigma_i)$, and $\displaystyle Z_i = \frac{X_i - \mu_i}{\sigma_i}$ for $i = 1, \ldots, n$.
+Let $X_1, X_2, \ldots, X_n$ be independent normal random variables  with $X_i \sim N(\mu_i, \sigma_i),$ and $\displaystyle Z_i = \frac{X_i - \mu_i}{\sigma_i}$ for $i = 1, \ldots, n$.
 :::
 
 :::{.example}
-Suppose the number of customers arriving at a particular checkout counter in an hour follows a Poisson distribution.  Let $X_1$ record the time until the first arrival, $X_2$, the time between the 1st and 2nd arrival, and so on, up to $X_n$, the time between the $(n-1)$st and $n$th arrival. Then it turns out the $X_i$ are independent, and each is an exponential random variable with density $$f_{X_i}(x_i) = \frac{1}{\theta}e^{-x_i/\theta},$$ for $x_i > 0$ (and 0 else).
+Suppose the number of customers arriving at a particular checkout counter in an hour follows a Poisson distribution.  Let $X_1$ record the time until the first arrival, $X_2,$ the time between the 1st and 2nd arrival, and so on, up to $X_n,$ the time between the $(n-1)$st and $n$th arrival. Then it turns out the $X_i$ are independent, and each is an exponential random variable with density $$f_{X_i}(x_i) = \frac{1}{\theta}e^{-x_i/\theta},$$ for $x_i > 0$ (and 0 else).
 Find the density function for the waiting time $U$ until the $n$th customer arrives.
 
-Well $U = X_1 + X_2 + \cdots + X_n$, so by Theorem \@ref(thm:mgf-sum-of-rvs), $$m_U(t) = m_1(t)\cdot ~\cdots~ \cdot m_n(t) = (1-\theta t)^{-n}.$$
+Well $U = X_1 + X_2 + \cdots + X_n,$ so by Theorem \@ref(thm:mgf-sum-of-rvs), $$m_U(t) = m_1(t)\cdot ~\cdots~ \cdot m_n(t) = (1-\theta t)^{-n}.$$
 But, hey! This is the mgf for a gamma$(\alpha = n, \beta = \theta)$ random variable so by Theorem \@ref(thm:unique-mgf), $U$ *is* gamma$(n,\theta)$. So $$f_U(u) = \frac{1}{(n-1)!\theta^n}u^{n-1}e^{-u/\theta},$$ for $u > 0$ (and 0 else).
 :::
 
 :::{.example}
-If $Y_1$ is $N(10,.5)$ and $Y_2$ is $N(4,.2)$ and $U = 100 + 7Y_1 + 3Y_2$, how is $U$ distributed, and what value marks the 90th percentile for $U$?
+If $Y_1$ is $N(10,.5)$ and $Y_2$ is $N(4,.2)$ and $U = 100 + 7Y_1 + 3Y_2,$ how is $U$ distributed, and what value marks the 90th percentile for $U$?
 
 Theorem \@ref(thm:sum-of-normal-rvs) says that $U$ is normal with $$E(U) = 100 + 7 \cdot 10 + 3 \cdot 4 = 182,$$ and $$V(U) = 0 + 7^2\cdot (.5)^2 + 3^2\cdot(.2)^2 = 12.61,$$ so $\sigma_U = \sqrt{12.61} = 3.55.$
 
@@ -189,7 +189,7 @@ E(K) &= E(\frac{1}{2}mV^2)\\
       &= \frac{1}{2}m E(V^2) \\
       &= \frac{1}{2}m (\sigma_V^2 + \mu_V^2)
 \end{align*}
-Since $V$ is gamme(4,500), $\mu_V = 4 \cdot 500 = 2000$ (as we were told) and $\sigma_V = 4\cdot 500^2$, 
+Since $V$ is gamme(4,500), $\mu_V = 4 \cdot 500 = 2000$ (as we were told) and $\sigma_V = 4\cdot 500^2,$ 
 so $$E(K) = 2500000m \text{ units}.$$
 :::
 
