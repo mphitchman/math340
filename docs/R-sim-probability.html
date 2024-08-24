@@ -384,23 +384,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 <p>Our Strategy: roll the two dice, record the absolute value of their difference, repeat!</p>
 <p>Code:</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="R-sim-probability.html#cb138-1" tabindex="-1"></a>trials <span class="ot">=</span> <span class="dv">10000</span></span>
-<span id="cb138-2"><a href="R-sim-probability.html#cb138-2" tabindex="-1"></a>die_1 <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span></span>
-<span id="cb138-3"><a href="R-sim-probability.html#cb138-3" tabindex="-1"></a>die_2 <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span></span>
-<span id="cb138-4"><a href="R-sim-probability.html#cb138-4" tabindex="-1"></a>results <span class="ot">=</span> <span class="fu">c</span>() <span class="co">#stores the difference of the two dice each trial</span></span>
-<span id="cb138-5"><a href="R-sim-probability.html#cb138-5" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>trials){</span>
-<span id="cb138-6"><a href="R-sim-probability.html#cb138-6" tabindex="-1"></a>  roll_1 <span class="ot">=</span> <span class="fu">sample</span>(die_1,<span class="dv">1</span>)</span>
-<span id="cb138-7"><a href="R-sim-probability.html#cb138-7" tabindex="-1"></a>  roll_2 <span class="ot">=</span> <span class="fu">sample</span>(die_2,<span class="dv">1</span>)</span>
-<span id="cb138-8"><a href="R-sim-probability.html#cb138-8" tabindex="-1"></a>  difference <span class="ot">=</span> <span class="fu">abs</span>(roll_1<span class="sc">-</span>roll_2)</span>
-<span id="cb138-9"><a href="R-sim-probability.html#cb138-9" tabindex="-1"></a>  results[i] <span class="ot">=</span> difference</span>
-<span id="cb138-10"><a href="R-sim-probability.html#cb138-10" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="R-sim-probability.html#cb140-1" tabindex="-1"></a>trials <span class="ot">=</span> <span class="dv">10000</span></span>
+<span id="cb140-2"><a href="R-sim-probability.html#cb140-2" tabindex="-1"></a>die_1 <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span></span>
+<span id="cb140-3"><a href="R-sim-probability.html#cb140-3" tabindex="-1"></a>die_2 <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span></span>
+<span id="cb140-4"><a href="R-sim-probability.html#cb140-4" tabindex="-1"></a>results <span class="ot">=</span> <span class="fu">c</span>() <span class="co">#stores the difference of the two dice each trial</span></span>
+<span id="cb140-5"><a href="R-sim-probability.html#cb140-5" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>trials){</span>
+<span id="cb140-6"><a href="R-sim-probability.html#cb140-6" tabindex="-1"></a>  roll_1 <span class="ot">=</span> <span class="fu">sample</span>(die_1,<span class="dv">1</span>)</span>
+<span id="cb140-7"><a href="R-sim-probability.html#cb140-7" tabindex="-1"></a>  roll_2 <span class="ot">=</span> <span class="fu">sample</span>(die_2,<span class="dv">1</span>)</span>
+<span id="cb140-8"><a href="R-sim-probability.html#cb140-8" tabindex="-1"></a>  difference <span class="ot">=</span> <span class="fu">abs</span>(roll_1<span class="sc">-</span>roll_2)</span>
+<span id="cb140-9"><a href="R-sim-probability.html#cb140-9" tabindex="-1"></a>  results[i] <span class="ot">=</span> difference</span>
+<span id="cb140-10"><a href="R-sim-probability.html#cb140-10" tabindex="-1"></a>}</span></code></pre></div>
 <p>Results:</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="R-sim-probability.html#cb139-1" tabindex="-1"></a><span class="fu">table</span>(results)</span></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="R-sim-probability.html#cb141-1" tabindex="-1"></a><span class="fu">table</span>(results)</span></code></pre></div>
 <pre><code>## results
 ##    0    1    2    3    4    5 
-## 1681 2749 2274 1651 1090  555</code></pre>
+## 1618 2751 2276 1634 1172  549</code></pre>
 <p>Conclusion: By computing the ratio <code>sum(results==1)/trials</code>, we obtain our estimate of the probability the two dice to be 1 apart:
-0.2749.</p>
+0.2751.</p>
 <p>Referring to the 6x6 grid recording the difference for each of the 36 possible outcomes in Table <a href="discrete-probability-distributions.html#tab:diff-2-dice">3.4</a>, we would find the actual probability equal to 10/36 <span class="math inline">\(\approx\)</span> 0.278.</p>
 </div>
 <div id="license-plates-R" class="section level2 hasAnchor" number="16.2">
@@ -413,32 +413,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li>Build a random plate. We want three random letters (repeats ok), followed by three random numbers (repeats ok). So, we sample from <code>LETTERS</code> 3 times with replacement, then 0:9 three times with replacement.</li>
 </ol>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="R-sim-probability.html#cb141-1" tabindex="-1"></a>plate <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">sample</span>(LETTERS,<span class="dv">3</span>,<span class="at">replace=</span><span class="cn">TRUE</span>),</span>
-<span id="cb141-2"><a href="R-sim-probability.html#cb141-2" tabindex="-1"></a>          <span class="fu">sample</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">9</span>,<span class="dv">3</span>,<span class="at">replace=</span><span class="cn">TRUE</span>))</span>
-<span id="cb141-3"><a href="R-sim-probability.html#cb141-3" tabindex="-1"></a>plate</span></code></pre></div>
-<pre><code>## [1] &quot;E&quot; &quot;U&quot; &quot;G&quot; &quot;5&quot; &quot;6&quot; &quot;3&quot;</code></pre>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="R-sim-probability.html#cb143-1" tabindex="-1"></a>plate <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">sample</span>(LETTERS,<span class="dv">3</span>,<span class="at">replace=</span><span class="cn">TRUE</span>),</span>
+<span id="cb143-2"><a href="R-sim-probability.html#cb143-2" tabindex="-1"></a>          <span class="fu">sample</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">9</span>,<span class="dv">3</span>,<span class="at">replace=</span><span class="cn">TRUE</span>))</span>
+<span id="cb143-3"><a href="R-sim-probability.html#cb143-3" tabindex="-1"></a>plate</span></code></pre></div>
+<pre><code>## [1] &quot;V&quot; &quot;A&quot; &quot;G&quot; &quot;6&quot; &quot;5&quot; &quot;0&quot;</code></pre>
 <p>Fun!</p>
 <ol start="2" style="list-style-type: decimal">
 <li>Count how many “8”s are in the plate</li>
 </ol>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="R-sim-probability.html#cb143-1" tabindex="-1"></a><span class="fu">sum</span>(plate<span class="sc">==</span><span class="st">&quot;8&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="R-sim-probability.html#cb145-1" tabindex="-1"></a><span class="fu">sum</span>(plate<span class="sc">==</span><span class="st">&quot;8&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
 <p><strong>Final Code</strong></p>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="R-sim-probability.html#cb145-1" tabindex="-1"></a>trials <span class="ot">=</span> <span class="dv">10000</span></span>
-<span id="cb145-2"><a href="R-sim-probability.html#cb145-2" tabindex="-1"></a>results <span class="ot">=</span> <span class="fu">c</span>()</span>
-<span id="cb145-3"><a href="R-sim-probability.html#cb145-3" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>trials){</span>
-<span id="cb145-4"><a href="R-sim-probability.html#cb145-4" tabindex="-1"></a>  plate <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">sample</span>(LETTERS,<span class="dv">3</span>,<span class="at">replace=</span><span class="cn">TRUE</span>),</span>
-<span id="cb145-5"><a href="R-sim-probability.html#cb145-5" tabindex="-1"></a>            <span class="fu">sample</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">9</span>,<span class="dv">3</span>,<span class="at">replace=</span><span class="cn">TRUE</span>)) <span class="co">#build a plate</span></span>
-<span id="cb145-6"><a href="R-sim-probability.html#cb145-6" tabindex="-1"></a>  eights <span class="ot">=</span> <span class="fu">sum</span>(plate<span class="sc">==</span><span class="st">&quot;8&quot;</span>) <span class="co"># count the 8s</span></span>
-<span id="cb145-7"><a href="R-sim-probability.html#cb145-7" tabindex="-1"></a>  results <span class="ot">=</span> <span class="fu">c</span>(results,eights) <span class="co"># update the results vector</span></span>
-<span id="cb145-8"><a href="R-sim-probability.html#cb145-8" tabindex="-1"></a>}</span>
-<span id="cb145-9"><a href="R-sim-probability.html#cb145-9" tabindex="-1"></a><span class="fu">table</span>(results)</span></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="R-sim-probability.html#cb147-1" tabindex="-1"></a>trials <span class="ot">=</span> <span class="dv">10000</span></span>
+<span id="cb147-2"><a href="R-sim-probability.html#cb147-2" tabindex="-1"></a>results <span class="ot">=</span> <span class="fu">c</span>()</span>
+<span id="cb147-3"><a href="R-sim-probability.html#cb147-3" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>trials){</span>
+<span id="cb147-4"><a href="R-sim-probability.html#cb147-4" tabindex="-1"></a>  plate <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">sample</span>(LETTERS,<span class="dv">3</span>,<span class="at">replace=</span><span class="cn">TRUE</span>),</span>
+<span id="cb147-5"><a href="R-sim-probability.html#cb147-5" tabindex="-1"></a>            <span class="fu">sample</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">9</span>,<span class="dv">3</span>,<span class="at">replace=</span><span class="cn">TRUE</span>)) <span class="co">#build a plate</span></span>
+<span id="cb147-6"><a href="R-sim-probability.html#cb147-6" tabindex="-1"></a>  eights <span class="ot">=</span> <span class="fu">sum</span>(plate<span class="sc">==</span><span class="st">&quot;8&quot;</span>) <span class="co"># count the 8s</span></span>
+<span id="cb147-7"><a href="R-sim-probability.html#cb147-7" tabindex="-1"></a>  results <span class="ot">=</span> <span class="fu">c</span>(results,eights) <span class="co"># update the results vector</span></span>
+<span id="cb147-8"><a href="R-sim-probability.html#cb147-8" tabindex="-1"></a>}</span>
+<span id="cb147-9"><a href="R-sim-probability.html#cb147-9" tabindex="-1"></a><span class="fu">table</span>(results)</span></code></pre></div>
 <pre><code>## results
 ##    0    1    2    3 
-## 7334 2384  274    8</code></pre>
+## 7313 2430  250    7</code></pre>
 <p>Based on this simulation, we estimate the probability of having a plate with exactly 2 “8”s</p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="R-sim-probability.html#cb147-1" tabindex="-1"></a><span class="fu">sum</span>(results<span class="sc">==</span><span class="st">&quot;2&quot;</span>)<span class="sc">/</span>trials</span></code></pre></div>
-<pre><code>## [1] 0.0274</code></pre>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="R-sim-probability.html#cb149-1" tabindex="-1"></a><span class="fu">sum</span>(results<span class="sc">==</span><span class="st">&quot;2&quot;</span>)<span class="sc">/</span>trials</span></code></pre></div>
+<pre><code>## [1] 0.025</code></pre>
 <p>Using our counting tools to calculate the probability (and we really don’t need to keep track of the letters in the plate, but we do):</p>
 <p><span class="math display">\[\frac{26\cdot 26\cdot 26 \cdot \binom{3}{2} \cdot 1 \cdot 1 \cdot 9}{26^3\cdot 10^3}= \frac{27}{1000} = 0.027.\]</span></p>
 </div>
@@ -451,34 +451,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li>Simulate rolling a 10-sided die 5 times. (Sample 5 times with replacement from the vector 1:10.)</li>
 </ol>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="R-sim-probability.html#cb149-1" tabindex="-1"></a>die <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb149-2"><a href="R-sim-probability.html#cb149-2" tabindex="-1"></a>rolls <span class="ot">=</span> <span class="fu">sample</span>(die,<span class="dv">5</span>,<span class="at">replace=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="R-sim-probability.html#cb151-1" tabindex="-1"></a>die <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb151-2"><a href="R-sim-probability.html#cb151-2" tabindex="-1"></a>rolls <span class="ot">=</span> <span class="fu">sample</span>(die,<span class="dv">5</span>,<span class="at">replace=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <ol start="2" style="list-style-type: decimal">
 <li>We want code to check whether a random sequence of 5 rolls has these five features: Rolls 1-4 are less than 8, and roll 5 is an 8, 9, or 10.</li>
 </ol>
 <p>We can ask these five questions in R and store the answers in a logical vector:</p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="R-sim-probability.html#cb150-1" tabindex="-1"></a><span class="fu">c</span>(rolls[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]<span class="sc">&lt;</span><span class="dv">8</span>,rolls[<span class="dv">5</span>]<span class="sc">&gt;=</span><span class="dv">8</span>)</span></code></pre></div>
-<pre><code>## [1] FALSE  TRUE  TRUE  TRUE  TRUE</code></pre>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="R-sim-probability.html#cb152-1" tabindex="-1"></a><span class="fu">c</span>(rolls[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]<span class="sc">&lt;</span><span class="dv">8</span>,rolls[<span class="dv">5</span>]<span class="sc">&gt;=</span><span class="dv">8</span>)</span></code></pre></div>
+<pre><code>## [1]  TRUE FALSE FALSE FALSE FALSE</code></pre>
 <p>Recall, the <code>sum()</code> of a logical vector counts the number of TRUE values. We need the sum to be 5 to have the kind of sequence we want to count.</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="R-sim-probability.html#cb152-1" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">c</span>(rolls[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]<span class="sc">&lt;</span><span class="dv">8</span>,rolls[<span class="dv">5</span>]<span class="sc">&gt;=</span><span class="dv">8</span>)) <span class="co">#does this sum equal 5?</span></span></code></pre></div>
-<pre><code>## [1] 4</code></pre>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="R-sim-probability.html#cb154-1" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">c</span>(rolls[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]<span class="sc">&lt;</span><span class="dv">8</span>,rolls[<span class="dv">5</span>]<span class="sc">&gt;=</span><span class="dv">8</span>)) <span class="co">#does this sum equal 5?</span></span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
 <p>I think we’re ready!!</p>
 <p><strong>Final Code</strong></p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="R-sim-probability.html#cb154-1" tabindex="-1"></a>trials <span class="ot">=</span> <span class="dv">10000</span></span>
-<span id="cb154-2"><a href="R-sim-probability.html#cb154-2" tabindex="-1"></a>results <span class="ot">=</span> <span class="fu">c</span>() <span class="co">#stores how many dice &quot;do the right thing&quot; in each trial</span></span>
-<span id="cb154-3"><a href="R-sim-probability.html#cb154-3" tabindex="-1"></a></span>
-<span id="cb154-4"><a href="R-sim-probability.html#cb154-4" tabindex="-1"></a>die <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb154-5"><a href="R-sim-probability.html#cb154-5" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>trials){</span>
-<span id="cb154-6"><a href="R-sim-probability.html#cb154-6" tabindex="-1"></a>  rolls <span class="ot">=</span> <span class="fu">sample</span>(die,<span class="dv">5</span>,<span class="at">replace=</span><span class="cn">TRUE</span>) <span class="co"># roll the 10-sided die 5 times</span></span>
-<span id="cb154-7"><a href="R-sim-probability.html#cb154-7" tabindex="-1"></a>  x<span class="ot">=</span><span class="fu">sum</span>(<span class="fu">c</span>(rolls[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]<span class="sc">&lt;</span><span class="dv">8</span>,rolls[<span class="dv">5</span>]<span class="sc">&gt;=</span><span class="dv">8</span>)) <span class="co">#how many dice &quot;do the right thing&quot;</span></span>
-<span id="cb154-8"><a href="R-sim-probability.html#cb154-8" tabindex="-1"></a>  results<span class="ot">=</span><span class="fu">c</span>(results,x) <span class="co"># update the results vector</span></span>
-<span id="cb154-9"><a href="R-sim-probability.html#cb154-9" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="R-sim-probability.html#cb156-1" tabindex="-1"></a>trials <span class="ot">=</span> <span class="dv">10000</span></span>
+<span id="cb156-2"><a href="R-sim-probability.html#cb156-2" tabindex="-1"></a>results <span class="ot">=</span> <span class="fu">c</span>() <span class="co">#stores how many dice &quot;do the right thing&quot; in each trial</span></span>
+<span id="cb156-3"><a href="R-sim-probability.html#cb156-3" tabindex="-1"></a></span>
+<span id="cb156-4"><a href="R-sim-probability.html#cb156-4" tabindex="-1"></a>die <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb156-5"><a href="R-sim-probability.html#cb156-5" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>trials){</span>
+<span id="cb156-6"><a href="R-sim-probability.html#cb156-6" tabindex="-1"></a>  rolls <span class="ot">=</span> <span class="fu">sample</span>(die,<span class="dv">5</span>,<span class="at">replace=</span><span class="cn">TRUE</span>) <span class="co"># roll the 10-sided die 5 times</span></span>
+<span id="cb156-7"><a href="R-sim-probability.html#cb156-7" tabindex="-1"></a>  x<span class="ot">=</span><span class="fu">sum</span>(<span class="fu">c</span>(rolls[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]<span class="sc">&lt;</span><span class="dv">8</span>,rolls[<span class="dv">5</span>]<span class="sc">&gt;=</span><span class="dv">8</span>)) <span class="co">#how many dice &quot;do the right thing&quot;</span></span>
+<span id="cb156-8"><a href="R-sim-probability.html#cb156-8" tabindex="-1"></a>  results<span class="ot">=</span><span class="fu">c</span>(results,x) <span class="co"># update the results vector</span></span>
+<span id="cb156-9"><a href="R-sim-probability.html#cb156-9" tabindex="-1"></a>}</span></code></pre></div>
 <p>The results of the simulation:</p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="R-sim-probability.html#cb155-1" tabindex="-1"></a><span class="fu">table</span>(results)</span></code></pre></div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="R-sim-probability.html#cb157-1" tabindex="-1"></a><span class="fu">table</span>(results)</span></code></pre></div>
 <pre><code>## results
 ##    0    1    2    3    4    5 
-##   55  534 2112 3657 2949  693</code></pre>
-<p>Based on our simulation, we estimate the probability in question by the ratio: <code>sum(results==5)/trials</code> = 0.0693.</p>
+##   53  559 1997 3644 2971  776</code></pre>
+<p>Based on our simulation, we estimate the probability in question by the ratio: <code>sum(results==5)/trials</code> = 0.0776.</p>
 <p>This estimated probability is likely very close to what we calculate by our counting tools: <span class="math display">\[\frac{7^4\cdot 3}{10^5} \approx .07203.\]</span></p>
 <p>Final note: In this example we added to the <code>results</code> vector each iteration by concatenation (<code>results=c(results,x)</code>) rather than by specifying <code>results[i]=x</code> in each trial, as we did in the difference of two dice example. Either approach works.</p>
 </div>
@@ -487,27 +487,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <blockquote>
 <p>An urn contains 100 orange and 200 green marbles. If you draw 8 marbles from the urn at random (without replacement), how likely is it that more than 5 of them are orange?</p>
 </blockquote>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="R-sim-probability.html#cb157-1" tabindex="-1"></a>urn <span class="ot">=</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;orange&quot;</span>,<span class="st">&quot;green&quot;</span>),<span class="fu">c</span>(<span class="dv">100</span>,<span class="dv">200</span>))</span>
-<span id="cb157-2"><a href="R-sim-probability.html#cb157-2" tabindex="-1"></a>trials <span class="ot">=</span> <span class="dv">10000</span></span>
-<span id="cb157-3"><a href="R-sim-probability.html#cb157-3" tabindex="-1"></a>results <span class="ot">=</span> <span class="fu">c</span>()</span>
-<span id="cb157-4"><a href="R-sim-probability.html#cb157-4" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>trials){</span>
-<span id="cb157-5"><a href="R-sim-probability.html#cb157-5" tabindex="-1"></a>  grab <span class="ot">=</span> <span class="fu">sample</span>(urn,<span class="dv">8</span>,<span class="at">replace=</span><span class="cn">FALSE</span>)</span>
-<span id="cb157-6"><a href="R-sim-probability.html#cb157-6" tabindex="-1"></a>  orange_count <span class="ot">=</span> <span class="fu">sum</span>(grab<span class="sc">==</span><span class="st">&quot;orange&quot;</span>)</span>
-<span id="cb157-7"><a href="R-sim-probability.html#cb157-7" tabindex="-1"></a>  results[i] <span class="ot">=</span> orange_count</span>
-<span id="cb157-8"><a href="R-sim-probability.html#cb157-8" tabindex="-1"></a>}</span>
-<span id="cb157-9"><a href="R-sim-probability.html#cb157-9" tabindex="-1"></a><span class="fu">table</span>(results)</span></code></pre></div>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="R-sim-probability.html#cb159-1" tabindex="-1"></a>urn <span class="ot">=</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;orange&quot;</span>,<span class="st">&quot;green&quot;</span>),<span class="fu">c</span>(<span class="dv">100</span>,<span class="dv">200</span>))</span>
+<span id="cb159-2"><a href="R-sim-probability.html#cb159-2" tabindex="-1"></a>trials <span class="ot">=</span> <span class="dv">10000</span></span>
+<span id="cb159-3"><a href="R-sim-probability.html#cb159-3" tabindex="-1"></a>results <span class="ot">=</span> <span class="fu">c</span>()</span>
+<span id="cb159-4"><a href="R-sim-probability.html#cb159-4" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>trials){</span>
+<span id="cb159-5"><a href="R-sim-probability.html#cb159-5" tabindex="-1"></a>  grab <span class="ot">=</span> <span class="fu">sample</span>(urn,<span class="dv">8</span>,<span class="at">replace=</span><span class="cn">FALSE</span>)</span>
+<span id="cb159-6"><a href="R-sim-probability.html#cb159-6" tabindex="-1"></a>  orange_count <span class="ot">=</span> <span class="fu">sum</span>(grab<span class="sc">==</span><span class="st">&quot;orange&quot;</span>)</span>
+<span id="cb159-7"><a href="R-sim-probability.html#cb159-7" tabindex="-1"></a>  results[i] <span class="ot">=</span> orange_count</span>
+<span id="cb159-8"><a href="R-sim-probability.html#cb159-8" tabindex="-1"></a>}</span>
+<span id="cb159-9"><a href="R-sim-probability.html#cb159-9" tabindex="-1"></a><span class="fu">table</span>(results)</span></code></pre></div>
 <pre><code>## results
 ##    0    1    2    3    4    5    6    7    8 
-##  379 1471 2808 2784 1705  676  156   20    1</code></pre>
+##  388 1545 2775 2705 1699  686  180   21    1</code></pre>
 <p>We can enter <code>sum(results &gt; 5)</code> to see how often we grabbed more than 5 orange marbles in our sample of size 8, and <code>sum(results &gt; 5)/trials</code> is a good estimate of the likelihood of this happening.</p>
-<p>Conclusion: It appears we should expect the more than 5 orange marbles in our sample of 8 about 1.8% of the time:</p>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="R-sim-probability.html#cb159-1" tabindex="-1"></a><span class="fu">sum</span>(results <span class="sc">&gt;</span> <span class="dv">5</span>)<span class="sc">/</span>trials</span></code></pre></div>
-<pre><code>## [1] 0.0177</code></pre>
+<p>Conclusion: It appears we should expect the more than 5 orange marbles in our sample of 8 about 2% of the time:</p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="R-sim-probability.html#cb161-1" tabindex="-1"></a><span class="fu">sum</span>(results <span class="sc">&gt;</span> <span class="dv">5</span>)<span class="sc">/</span>trials</span></code></pre></div>
+<pre><code>## [1] 0.0202</code></pre>
 <p>This question is a classic “good potatoes/bad potatoes” problem, and by our counting techniques, we know the probability is <span class="math display">\[\frac{\binom{100}{6}\cdot\binom{200}{2}}{\binom{300}{8}}+
 \frac{\binom{100}{7}\cdot\binom{200}{1}}{\binom{300}{8}}+
 \frac{\binom{100}{8}\cdot\binom{200}{0}}{\binom{300}{8}},\]</span>
 which we can evaluate in R as a check:</p>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="R-sim-probability.html#cb161-1" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">choose</span>(<span class="dv">100</span>,<span class="dv">6</span><span class="sc">:</span><span class="dv">8</span>)<span class="sc">*</span><span class="fu">choose</span>(<span class="dv">200</span>,<span class="dv">8-6</span><span class="sc">:</span><span class="dv">8</span>)<span class="sc">/</span><span class="fu">choose</span>(<span class="dv">300</span>,<span class="dv">8</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="R-sim-probability.html#cb163-1" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">choose</span>(<span class="dv">100</span>,<span class="dv">6</span><span class="sc">:</span><span class="dv">8</span>)<span class="sc">*</span><span class="fu">choose</span>(<span class="dv">200</span>,<span class="dv">8-6</span><span class="sc">:</span><span class="dv">8</span>)<span class="sc">/</span><span class="fu">choose</span>(<span class="dv">300</span>,<span class="dv">8</span>))</span></code></pre></div>
 <pre><code>## [1] 0.01830405</code></pre>
 <p><em>Note</em>: After studying common named discrete probability distributions, we will see that R has a nice built-in command for doing these sorts of computations.</p>
 </div>
@@ -524,30 +524,30 @@ which we can evaluate in R as a check:</p>
 <li>Repeat many, many times.</li>
 </ul>
 <p>The following code plays this ‘flip a coin 20 times and record the longest run of heads’ game for 10000 trials.</p>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="R-sim-probability.html#cb163-1" tabindex="-1"></a>coin <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;H&quot;</span>,<span class="st">&quot;T&quot;</span>)</span>
-<span id="cb163-2"><a href="R-sim-probability.html#cb163-2" tabindex="-1"></a>trials<span class="ot">=</span><span class="dv">10000</span></span>
-<span id="cb163-3"><a href="R-sim-probability.html#cb163-3" tabindex="-1"></a>results<span class="ot">=</span><span class="fu">c</span>() <span class="co">#stores longest run of Heads each trial</span></span>
-<span id="cb163-4"><a href="R-sim-probability.html#cb163-4" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>trials){</span>
-<span id="cb163-5"><a href="R-sim-probability.html#cb163-5" tabindex="-1"></a>  flips <span class="ot">=</span> <span class="fu">sample</span>(coin,<span class="dv">20</span>,<span class="at">replace=</span><span class="cn">TRUE</span>) <span class="co">#generate the 20 flips</span></span>
-<span id="cb163-6"><a href="R-sim-probability.html#cb163-6" tabindex="-1"></a>  run <span class="ot">=</span> <span class="dv">0</span> <span class="co">#marker for current streak of Heads</span></span>
-<span id="cb163-7"><a href="R-sim-probability.html#cb163-7" tabindex="-1"></a>  max_run <span class="ot">=</span> <span class="dv">0</span> <span class="co">#stores the longest streak of Heads</span></span>
-<span id="cb163-8"><a href="R-sim-probability.html#cb163-8" tabindex="-1"></a>  <span class="cf">for</span> (k <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>){</span>
-<span id="cb163-9"><a href="R-sim-probability.html#cb163-9" tabindex="-1"></a>    <span class="cf">if</span> (flips[k] <span class="sc">==</span> <span class="st">&quot;H&quot;</span>){</span>
-<span id="cb163-10"><a href="R-sim-probability.html#cb163-10" tabindex="-1"></a>      run <span class="ot">=</span> run <span class="sc">+</span> <span class="dv">1</span> <span class="co">#current run increases by 1 if flip k is &quot;H&quot;</span></span>
-<span id="cb163-11"><a href="R-sim-probability.html#cb163-11" tabindex="-1"></a>      max_run <span class="ot">=</span> <span class="fu">max</span>(max_run,run) <span class="co">#checks for new max run</span></span>
-<span id="cb163-12"><a href="R-sim-probability.html#cb163-12" tabindex="-1"></a>      }</span>
-<span id="cb163-13"><a href="R-sim-probability.html#cb163-13" tabindex="-1"></a>    <span class="cf">if</span> (flips[k] <span class="sc">==</span> <span class="st">&quot;T&quot;</span>){</span>
-<span id="cb163-14"><a href="R-sim-probability.html#cb163-14" tabindex="-1"></a>      run <span class="ot">=</span> <span class="dv">0</span> <span class="co">#resets current run to 0 if we flip k is &quot;T&quot;</span></span>
-<span id="cb163-15"><a href="R-sim-probability.html#cb163-15" tabindex="-1"></a>    }</span>
-<span id="cb163-16"><a href="R-sim-probability.html#cb163-16" tabindex="-1"></a>    results[i]<span class="ot">=</span>max_run</span>
-<span id="cb163-17"><a href="R-sim-probability.html#cb163-17" tabindex="-1"></a>  }</span>
-<span id="cb163-18"><a href="R-sim-probability.html#cb163-18" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="R-sim-probability.html#cb165-1" tabindex="-1"></a>coin <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;H&quot;</span>,<span class="st">&quot;T&quot;</span>)</span>
+<span id="cb165-2"><a href="R-sim-probability.html#cb165-2" tabindex="-1"></a>trials<span class="ot">=</span><span class="dv">10000</span></span>
+<span id="cb165-3"><a href="R-sim-probability.html#cb165-3" tabindex="-1"></a>results<span class="ot">=</span><span class="fu">c</span>() <span class="co">#stores longest run of Heads each trial</span></span>
+<span id="cb165-4"><a href="R-sim-probability.html#cb165-4" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>trials){</span>
+<span id="cb165-5"><a href="R-sim-probability.html#cb165-5" tabindex="-1"></a>  flips <span class="ot">=</span> <span class="fu">sample</span>(coin,<span class="dv">20</span>,<span class="at">replace=</span><span class="cn">TRUE</span>) <span class="co">#generate the 20 flips</span></span>
+<span id="cb165-6"><a href="R-sim-probability.html#cb165-6" tabindex="-1"></a>  run <span class="ot">=</span> <span class="dv">0</span> <span class="co">#marker for current streak of Heads</span></span>
+<span id="cb165-7"><a href="R-sim-probability.html#cb165-7" tabindex="-1"></a>  max_run <span class="ot">=</span> <span class="dv">0</span> <span class="co">#stores the longest streak of Heads</span></span>
+<span id="cb165-8"><a href="R-sim-probability.html#cb165-8" tabindex="-1"></a>  <span class="cf">for</span> (k <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>){</span>
+<span id="cb165-9"><a href="R-sim-probability.html#cb165-9" tabindex="-1"></a>    <span class="cf">if</span> (flips[k] <span class="sc">==</span> <span class="st">&quot;H&quot;</span>){</span>
+<span id="cb165-10"><a href="R-sim-probability.html#cb165-10" tabindex="-1"></a>      run <span class="ot">=</span> run <span class="sc">+</span> <span class="dv">1</span> <span class="co">#current run increases by 1 if flip k is &quot;H&quot;</span></span>
+<span id="cb165-11"><a href="R-sim-probability.html#cb165-11" tabindex="-1"></a>      max_run <span class="ot">=</span> <span class="fu">max</span>(max_run,run) <span class="co">#checks for new max run</span></span>
+<span id="cb165-12"><a href="R-sim-probability.html#cb165-12" tabindex="-1"></a>      }</span>
+<span id="cb165-13"><a href="R-sim-probability.html#cb165-13" tabindex="-1"></a>    <span class="cf">if</span> (flips[k] <span class="sc">==</span> <span class="st">&quot;T&quot;</span>){</span>
+<span id="cb165-14"><a href="R-sim-probability.html#cb165-14" tabindex="-1"></a>      run <span class="ot">=</span> <span class="dv">0</span> <span class="co">#resets current run to 0 if flip k is &quot;T&quot;</span></span>
+<span id="cb165-15"><a href="R-sim-probability.html#cb165-15" tabindex="-1"></a>    }</span>
+<span id="cb165-16"><a href="R-sim-probability.html#cb165-16" tabindex="-1"></a>    results[i]<span class="ot">=</span>max_run</span>
+<span id="cb165-17"><a href="R-sim-probability.html#cb165-17" tabindex="-1"></a>  }</span>
+<span id="cb165-18"><a href="R-sim-probability.html#cb165-18" tabindex="-1"></a>}</span></code></pre></div>
 <p>Summary of results:</p>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="R-sim-probability.html#cb164-1" tabindex="-1"></a><span class="fu">table</span>(results)</span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="R-sim-probability.html#cb166-1" tabindex="-1"></a><span class="fu">table</span>(results)</span></code></pre></div>
 <pre><code>## results
-##    1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16 
-##  160 1948 3108 2294 1219  676  318  151   61   34   12    8    4    2    4    1</code></pre>
-<p>Are you kidding me? In 1 of the trials we saw 16 Heads in a row!?
+##    1    2    3    4    5    6    7    8    9   10   11   12   13   14   15 
+##  163 1849 3184 2312 1305  636  276  151   51   44   14   10    3    1    1</code></pre>
+<p>Are you kidding me? In 1 of the trials we saw 15 Heads in a row!?
 Based on these trials, our estimate for the likelihood of seeing a run of at least 5 Heads in 20 flips is <code>sum(results &gt;=5)/trials</code> = 0.249.</p>
 </div>
 <div id="partition-set-R" class="section level2 hasAnchor" number="16.6">
@@ -560,93 +560,93 @@ Based on these trials, our estimate for the likelihood of seeing a run of at lea
 <li><p>Build the class: <code>class = rep(c("J","S","F"),c(6,4,2))</code></p></li>
 <li><p>Partition the members into three subgroups of size 5, 4, and 3. Our approach: shuffle the <code>class</code> vector (find a random permutation), take the first five in this permutation for subgroup 1, the next 4 for subgroup 2, and the last 3 for subgroup 3.</p></li>
 </ol>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="R-sim-probability.html#cb166-1" tabindex="-1"></a>shuffle <span class="ot">=</span> <span class="fu">sample</span>(class)</span>
-<span id="cb166-2"><a href="R-sim-probability.html#cb166-2" tabindex="-1"></a>sub1 <span class="ot">=</span> shuffle[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span>
-<span id="cb166-3"><a href="R-sim-probability.html#cb166-3" tabindex="-1"></a>sub2 <span class="ot">=</span> shuffle[<span class="dv">6</span><span class="sc">:</span><span class="dv">9</span>]</span>
-<span id="cb166-4"><a href="R-sim-probability.html#cb166-4" tabindex="-1"></a>sub3 <span class="ot">=</span> shuffle[<span class="dv">10</span><span class="sc">:</span><span class="dv">12</span>]</span>
-<span id="cb166-5"><a href="R-sim-probability.html#cb166-5" tabindex="-1"></a><span class="co"># the code below displays the subgroups as a check</span></span>
-<span id="cb166-6"><a href="R-sim-probability.html#cb166-6" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Subgroup 1: &quot;</span>, sub1, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>,</span>
-<span id="cb166-7"><a href="R-sim-probability.html#cb166-7" tabindex="-1"></a>    <span class="st">&quot;Subgroup 2: &quot;</span>, sub2, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>,</span>
-<span id="cb166-8"><a href="R-sim-probability.html#cb166-8" tabindex="-1"></a>    <span class="st">&quot;Subgroup 3: &quot;</span>, sub3, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
-<pre><code>## Subgroup 1: JSSSF
-## Subgroup 2: JFJJ
-## Subgroup 3: JJS</code></pre>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="R-sim-probability.html#cb168-1" tabindex="-1"></a>shuffle <span class="ot">=</span> <span class="fu">sample</span>(class)</span>
+<span id="cb168-2"><a href="R-sim-probability.html#cb168-2" tabindex="-1"></a>sub1 <span class="ot">=</span> shuffle[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span>
+<span id="cb168-3"><a href="R-sim-probability.html#cb168-3" tabindex="-1"></a>sub2 <span class="ot">=</span> shuffle[<span class="dv">6</span><span class="sc">:</span><span class="dv">9</span>]</span>
+<span id="cb168-4"><a href="R-sim-probability.html#cb168-4" tabindex="-1"></a>sub3 <span class="ot">=</span> shuffle[<span class="dv">10</span><span class="sc">:</span><span class="dv">12</span>]</span>
+<span id="cb168-5"><a href="R-sim-probability.html#cb168-5" tabindex="-1"></a><span class="co"># the code below displays the subgroups as a check</span></span>
+<span id="cb168-6"><a href="R-sim-probability.html#cb168-6" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Subgroup 1: &quot;</span>, sub1, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>,</span>
+<span id="cb168-7"><a href="R-sim-probability.html#cb168-7" tabindex="-1"></a>    <span class="st">&quot;Subgroup 2: &quot;</span>, sub2, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>,</span>
+<span id="cb168-8"><a href="R-sim-probability.html#cb168-8" tabindex="-1"></a>    <span class="st">&quot;Subgroup 3: &quot;</span>, sub3, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<pre><code>## Subgroup 1: SSJJJ
+## Subgroup 2: JJFS
+## Subgroup 3: SJF</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Count the number of first-years in each subgroup, and record these numbers as a vector of length 3:</li>
 </ol>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="R-sim-probability.html#cb168-1" tabindex="-1"></a>count <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">sum</span>(sub1<span class="sc">==</span><span class="st">&quot;F&quot;</span>),</span>
-<span id="cb168-2"><a href="R-sim-probability.html#cb168-2" tabindex="-1"></a>            <span class="fu">sum</span>(sub2<span class="sc">==</span><span class="st">&quot;F&quot;</span>),</span>
-<span id="cb168-3"><a href="R-sim-probability.html#cb168-3" tabindex="-1"></a>            <span class="fu">sum</span>(sub3<span class="sc">==</span><span class="st">&quot;F&quot;</span>))</span>
-<span id="cb168-4"><a href="R-sim-probability.html#cb168-4" tabindex="-1"></a><span class="fu">print</span>(count)</span></code></pre></div>
-<pre><code>## [1] 1 1 0</code></pre>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="R-sim-probability.html#cb170-1" tabindex="-1"></a>count <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">sum</span>(sub1<span class="sc">==</span><span class="st">&quot;F&quot;</span>),</span>
+<span id="cb170-2"><a href="R-sim-probability.html#cb170-2" tabindex="-1"></a>            <span class="fu">sum</span>(sub2<span class="sc">==</span><span class="st">&quot;F&quot;</span>),</span>
+<span id="cb170-3"><a href="R-sim-probability.html#cb170-3" tabindex="-1"></a>            <span class="fu">sum</span>(sub3<span class="sc">==</span><span class="st">&quot;F&quot;</span>))</span>
+<span id="cb170-4"><a href="R-sim-probability.html#cb170-4" tabindex="-1"></a><span class="fu">print</span>(count)</span></code></pre></div>
+<pre><code>## [1] 0 1 1</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li>The two first-years are in the same subgroup if and only if <code>count</code> contains a 2. The following code uses an <code>ifelse()</code> command to record 1 if both first-years are in the same group, and 0 if not.</li>
 </ol>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="R-sim-probability.html#cb170-1" tabindex="-1"></a><span class="fu">ifelse</span>(<span class="dv">2</span> <span class="sc">%in%</span> count,<span class="dv">1</span>,<span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="R-sim-probability.html#cb172-1" tabindex="-1"></a><span class="fu">ifelse</span>(<span class="dv">2</span> <span class="sc">%in%</span> count,<span class="dv">1</span>,<span class="dv">0</span>)</span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
 <p><strong>Final Code</strong></p>
 <p>We put it all together now. In particular, we repeat the following process for 10000 trials: Partition the class into the three subgroups, count the “F”s in each subgroup, record 1 if both “F”s find themselves in the same group, and 0 otherwise. We store these 1s and 0s in the vector <code>results</code>.</p>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="R-sim-probability.html#cb172-1" tabindex="-1"></a>class <span class="ot">=</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;J&quot;</span>,<span class="st">&quot;S&quot;</span>,<span class="st">&quot;F&quot;</span>),<span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">4</span>,<span class="dv">2</span>))</span>
-<span id="cb172-2"><a href="R-sim-probability.html#cb172-2" tabindex="-1"></a></span>
-<span id="cb172-3"><a href="R-sim-probability.html#cb172-3" tabindex="-1"></a>trials <span class="ot">=</span> <span class="dv">10000</span></span>
-<span id="cb172-4"><a href="R-sim-probability.html#cb172-4" tabindex="-1"></a>results <span class="ot">=</span> <span class="fu">c</span>()</span>
-<span id="cb172-5"><a href="R-sim-probability.html#cb172-5" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>trials){</span>
-<span id="cb172-6"><a href="R-sim-probability.html#cb172-6" tabindex="-1"></a>  shuffle <span class="ot">=</span> <span class="fu">sample</span>(class) <span class="co">#randomly shuffles the 12 people.</span></span>
-<span id="cb172-7"><a href="R-sim-probability.html#cb172-7" tabindex="-1"></a>  sub1 <span class="ot">=</span> shuffle[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]  <span class="co"># first 5 in the random shuffling go to subgroup 1</span></span>
-<span id="cb172-8"><a href="R-sim-probability.html#cb172-8" tabindex="-1"></a>  sub2 <span class="ot">=</span> shuffle[<span class="dv">6</span><span class="sc">:</span><span class="dv">9</span>] <span class="co"># next 4 to subgroup 2</span></span>
-<span id="cb172-9"><a href="R-sim-probability.html#cb172-9" tabindex="-1"></a>  sub3 <span class="ot">=</span> shuffle[<span class="dv">10</span><span class="sc">:</span><span class="dv">12</span>] <span class="co"># last 3 to subgroup 3</span></span>
-<span id="cb172-10"><a href="R-sim-probability.html#cb172-10" tabindex="-1"></a>  count <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">sum</span>(sub1<span class="sc">==</span><span class="st">&quot;F&quot;</span>),<span class="fu">sum</span>(sub2<span class="sc">==</span><span class="st">&quot;F&quot;</span>),<span class="fu">sum</span>(sub3<span class="sc">==</span><span class="st">&quot;F&quot;</span>))</span>
-<span id="cb172-11"><a href="R-sim-probability.html#cb172-11" tabindex="-1"></a>  <span class="co">#are both &quot;F&quot;s in the same subgroup? We record 1 if &quot;yes&quot;, and 0 if &quot;no&quot;</span></span>
-<span id="cb172-12"><a href="R-sim-probability.html#cb172-12" tabindex="-1"></a>  results[i] <span class="ot">=</span> <span class="fu">ifelse</span>(<span class="dv">2</span> <span class="sc">%in%</span> count,<span class="dv">1</span>,<span class="dv">0</span>)</span>
-<span id="cb172-13"><a href="R-sim-probability.html#cb172-13" tabindex="-1"></a>}</span>
-<span id="cb172-14"><a href="R-sim-probability.html#cb172-14" tabindex="-1"></a><span class="fu">table</span>(results)</span></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="R-sim-probability.html#cb174-1" tabindex="-1"></a>class <span class="ot">=</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;J&quot;</span>,<span class="st">&quot;S&quot;</span>,<span class="st">&quot;F&quot;</span>),<span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">4</span>,<span class="dv">2</span>))</span>
+<span id="cb174-2"><a href="R-sim-probability.html#cb174-2" tabindex="-1"></a></span>
+<span id="cb174-3"><a href="R-sim-probability.html#cb174-3" tabindex="-1"></a>trials <span class="ot">=</span> <span class="dv">10000</span></span>
+<span id="cb174-4"><a href="R-sim-probability.html#cb174-4" tabindex="-1"></a>results <span class="ot">=</span> <span class="fu">c</span>()</span>
+<span id="cb174-5"><a href="R-sim-probability.html#cb174-5" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>trials){</span>
+<span id="cb174-6"><a href="R-sim-probability.html#cb174-6" tabindex="-1"></a>  shuffle <span class="ot">=</span> <span class="fu">sample</span>(class) <span class="co">#randomly shuffles the 12 people.</span></span>
+<span id="cb174-7"><a href="R-sim-probability.html#cb174-7" tabindex="-1"></a>  sub1 <span class="ot">=</span> shuffle[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]  <span class="co"># first 5 in the random shuffling go to subgroup 1</span></span>
+<span id="cb174-8"><a href="R-sim-probability.html#cb174-8" tabindex="-1"></a>  sub2 <span class="ot">=</span> shuffle[<span class="dv">6</span><span class="sc">:</span><span class="dv">9</span>] <span class="co"># next 4 to subgroup 2</span></span>
+<span id="cb174-9"><a href="R-sim-probability.html#cb174-9" tabindex="-1"></a>  sub3 <span class="ot">=</span> shuffle[<span class="dv">10</span><span class="sc">:</span><span class="dv">12</span>] <span class="co"># last 3 to subgroup 3</span></span>
+<span id="cb174-10"><a href="R-sim-probability.html#cb174-10" tabindex="-1"></a>  count <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">sum</span>(sub1<span class="sc">==</span><span class="st">&quot;F&quot;</span>),<span class="fu">sum</span>(sub2<span class="sc">==</span><span class="st">&quot;F&quot;</span>),<span class="fu">sum</span>(sub3<span class="sc">==</span><span class="st">&quot;F&quot;</span>))</span>
+<span id="cb174-11"><a href="R-sim-probability.html#cb174-11" tabindex="-1"></a>  <span class="co">#are both &quot;F&quot;s in the same subgroup? We record 1 if &quot;yes&quot;, and 0 if &quot;no&quot;</span></span>
+<span id="cb174-12"><a href="R-sim-probability.html#cb174-12" tabindex="-1"></a>  results[i] <span class="ot">=</span> <span class="fu">ifelse</span>(<span class="dv">2</span> <span class="sc">%in%</span> count,<span class="dv">1</span>,<span class="dv">0</span>)</span>
+<span id="cb174-13"><a href="R-sim-probability.html#cb174-13" tabindex="-1"></a>}</span>
+<span id="cb174-14"><a href="R-sim-probability.html#cb174-14" tabindex="-1"></a><span class="fu">table</span>(results)</span></code></pre></div>
 <pre><code>## results
 ##    0    1 
-## 7048 2952</code></pre>
+## 7161 2839</code></pre>
 <p>Based on this simulation, we estimate the probability that both first-years end up in the same subgroup as</p>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="R-sim-probability.html#cb174-1" tabindex="-1"></a><span class="fu">sum</span>(results<span class="sc">==</span><span class="dv">1</span>)<span class="sc">/</span>trials</span></code></pre></div>
-<pre><code>## [1] 0.2952</code></pre>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="R-sim-probability.html#cb176-1" tabindex="-1"></a><span class="fu">sum</span>(results<span class="sc">==</span><span class="dv">1</span>)<span class="sc">/</span>trials</span></code></pre></div>
+<pre><code>## [1] 0.2839</code></pre>
 <p>Using our counting tools to calculate the probability:</p>
 <p><span class="math display">\[\frac{\binom{10}{3~4~3}+\binom{10}{5~2~3}+\binom{10}{5~4~1}}{\binom{12}{5~4~3}}\]</span>
 which evaluates to 7980/27720 <span class="math inline">\(\approx 0.288\)</span>:</p>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="R-sim-probability.html#cb176-1" tabindex="-1"></a>(<span class="fu">factorial</span>(<span class="dv">10</span>)<span class="sc">/</span>(<span class="dv">6</span><span class="sc">*</span><span class="dv">24</span><span class="sc">*</span><span class="dv">6</span>)<span class="sc">+</span><span class="fu">factorial</span>(<span class="dv">10</span>)<span class="sc">/</span>(<span class="dv">120</span><span class="sc">*</span><span class="dv">2</span><span class="sc">*</span><span class="dv">6</span>)<span class="sc">+</span><span class="fu">factorial</span>(<span class="dv">10</span>)<span class="sc">/</span>(<span class="dv">120</span><span class="sc">*</span><span class="dv">24</span><span class="sc">*</span><span class="dv">1</span>))<span class="sc">/</span>(<span class="fu">factorial</span>(<span class="dv">12</span>)<span class="sc">/</span>(<span class="dv">120</span><span class="sc">*</span><span class="dv">24</span><span class="sc">*</span><span class="dv">6</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="R-sim-probability.html#cb178-1" tabindex="-1"></a>(<span class="fu">factorial</span>(<span class="dv">10</span>)<span class="sc">/</span>(<span class="dv">6</span><span class="sc">*</span><span class="dv">24</span><span class="sc">*</span><span class="dv">6</span>)<span class="sc">+</span><span class="fu">factorial</span>(<span class="dv">10</span>)<span class="sc">/</span>(<span class="dv">120</span><span class="sc">*</span><span class="dv">2</span><span class="sc">*</span><span class="dv">6</span>)<span class="sc">+</span><span class="fu">factorial</span>(<span class="dv">10</span>)<span class="sc">/</span>(<span class="dv">120</span><span class="sc">*</span><span class="dv">24</span><span class="sc">*</span><span class="dv">1</span>))<span class="sc">/</span>(<span class="fu">factorial</span>(<span class="dv">12</span>)<span class="sc">/</span>(<span class="dv">120</span><span class="sc">*</span><span class="dv">24</span><span class="sc">*</span><span class="dv">6</span>))</span></code></pre></div>
 <pre><code>## [1] 0.2878788</code></pre>
 </div>
 <div id="pollsters-R" class="section level2 hasAnchor" number="16.7">
 <h2><span class="header-section-number">B.7</span> Pollsters<a href="R-sim-probability.html#pollsters-R" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <blockquote>
-<p>In an upcoming election for mayor of a large city, a pollster plans to predict the winner of the popular vote by taking a random sample of 1000 voters and declaring that the winner will be the one obtaining the most votes in his sample. Suppose that 48 percent of the voters plan to vote for the Republican candidate and 52 percent plan to vote for the Democratic candidate. To get some idea of how reasonable the pollster’s plan is, write a program to make this prediction by simulation. Repeat the simulation 1000 times and see how many times the pollster’s prediction would come true.</p>
+<p><em>(From Grinstead Snell Text 1.1 Exercise 12)</em> In an upcoming election for mayor of a large city, a pollster plans to predict the winner of the popular vote by taking a random sample of 1000 voters and declaring that the winner will be the one obtaining the most votes in his sample. Suppose that 48 percent of the voters plan to vote for the Republican candidate and 52 percent plan to vote for the Democratic candidate. To get some idea of how reasonable the pollster’s plan is, write a program to make this prediction by simulation. Repeat the simulation 1000 times and see how many times the pollster’s prediction would come true.</p>
 </blockquote>
 <p>First, let’s create and summarize a single poll of 1000 people from a population in which 52 percent are “D”, and 48 percent are “R”.</p>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="R-sim-probability.html#cb178-1" tabindex="-1"></a>one_poll <span class="ot">=</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;D&quot;</span>,<span class="st">&quot;R&quot;</span>),<span class="dv">1000</span>,<span class="at">replace=</span><span class="cn">TRUE</span>,<span class="at">prob=</span><span class="fu">c</span>(.<span class="dv">52</span>,.<span class="dv">48</span>))</span>
-<span id="cb178-2"><a href="R-sim-probability.html#cb178-2" tabindex="-1"></a><span class="fu">table</span>(one_poll)</span></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="R-sim-probability.html#cb180-1" tabindex="-1"></a>one_poll <span class="ot">=</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;D&quot;</span>,<span class="st">&quot;R&quot;</span>),<span class="dv">1000</span>,<span class="at">replace=</span><span class="cn">TRUE</span>,<span class="at">prob=</span><span class="fu">c</span>(.<span class="dv">52</span>,.<span class="dv">48</span>))</span>
+<span id="cb180-2"><a href="R-sim-probability.html#cb180-2" tabindex="-1"></a><span class="fu">table</span>(one_poll)</span></code></pre></div>
 <pre><code>## one_poll
 ##   D   R 
-## 553 447</code></pre>
+## 512 488</code></pre>
 <p>Of course, the goal is to use the poll to predict the winner of the election.
 We use the <code>sum()</code> command to count how many elements in <code>one_poll</code> equal “D” (use those double equal signs), and the <code>ifelse()</code> command to record the predicted winner.</p>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="R-sim-probability.html#cb180-1" tabindex="-1"></a><span class="fu">ifelse</span>(<span class="fu">sum</span>(one_poll<span class="sc">==</span><span class="st">&quot;D&quot;</span>) <span class="sc">&gt;</span> <span class="dv">500</span>,<span class="st">&quot;Dem wins&quot;</span>,<span class="st">&quot;Tie or Rep wins&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="R-sim-probability.html#cb182-1" tabindex="-1"></a><span class="fu">ifelse</span>(<span class="fu">sum</span>(one_poll<span class="sc">==</span><span class="st">&quot;D&quot;</span>) <span class="sc">&gt;</span> <span class="dv">500</span>,<span class="st">&quot;Dem wins&quot;</span>,<span class="st">&quot;Tie or Rep wins&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Dem wins&quot;</code></pre>
 <p>Now, our goal is to repeat this sampling and prediction procedure 10000 times, and keep track of the predicted winner in each trial.</p>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="R-sim-probability.html#cb182-1" tabindex="-1"></a>dem <span class="ot">=</span> .<span class="dv">52</span> <span class="co">#proportion voting &quot;D&quot;</span></span>
-<span id="cb182-2"><a href="R-sim-probability.html#cb182-2" tabindex="-1"></a>rep <span class="ot">=</span> <span class="dv">1</span> <span class="sc">-</span> dem <span class="co"># proportion voting &quot;R&quot;</span></span>
-<span id="cb182-3"><a href="R-sim-probability.html#cb182-3" tabindex="-1"></a>poll_size <span class="ot">=</span> <span class="dv">1000</span> <span class="co"># poll sample size</span></span>
-<span id="cb182-4"><a href="R-sim-probability.html#cb182-4" tabindex="-1"></a>trials <span class="ot">=</span> <span class="dv">10000</span></span>
-<span id="cb182-5"><a href="R-sim-probability.html#cb182-5" tabindex="-1"></a>results <span class="ot">=</span> <span class="fu">c</span>()</span>
-<span id="cb182-6"><a href="R-sim-probability.html#cb182-6" tabindex="-1"></a></span>
-<span id="cb182-7"><a href="R-sim-probability.html#cb182-7" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>trials){</span>
-<span id="cb182-8"><a href="R-sim-probability.html#cb182-8" tabindex="-1"></a>  poll <span class="ot">=</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;D&quot;</span>,<span class="st">&quot;R&quot;</span>),</span>
-<span id="cb182-9"><a href="R-sim-probability.html#cb182-9" tabindex="-1"></a>                <span class="at">size =</span> poll_size,</span>
-<span id="cb182-10"><a href="R-sim-probability.html#cb182-10" tabindex="-1"></a>                <span class="at">replace =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb182-11"><a href="R-sim-probability.html#cb182-11" tabindex="-1"></a>                <span class="at">prob =</span> <span class="fu">c</span>(dem,rep))</span>
-<span id="cb182-12"><a href="R-sim-probability.html#cb182-12" tabindex="-1"></a>  results<span class="ot">=</span><span class="fu">c</span>(results,</span>
-<span id="cb182-13"><a href="R-sim-probability.html#cb182-13" tabindex="-1"></a>            <span class="fu">ifelse</span>(<span class="fu">sum</span>(poll <span class="sc">==</span> <span class="st">&quot;D&quot;</span>) <span class="sc">&gt;</span> poll_size<span class="sc">/</span><span class="dv">2</span>,<span class="st">&quot;D&quot;</span>,<span class="st">&quot;Tie or R&quot;</span>))</span>
-<span id="cb182-14"><a href="R-sim-probability.html#cb182-14" tabindex="-1"></a>}</span>
-<span id="cb182-15"><a href="R-sim-probability.html#cb182-15" tabindex="-1"></a><span class="fu">table</span>(results)</span></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="R-sim-probability.html#cb184-1" tabindex="-1"></a>dem <span class="ot">=</span> .<span class="dv">52</span> <span class="co">#proportion voting &quot;D&quot;</span></span>
+<span id="cb184-2"><a href="R-sim-probability.html#cb184-2" tabindex="-1"></a>rep <span class="ot">=</span> <span class="dv">1</span> <span class="sc">-</span> dem <span class="co"># proportion voting &quot;R&quot;</span></span>
+<span id="cb184-3"><a href="R-sim-probability.html#cb184-3" tabindex="-1"></a>poll_size <span class="ot">=</span> <span class="dv">1000</span> <span class="co"># poll sample size</span></span>
+<span id="cb184-4"><a href="R-sim-probability.html#cb184-4" tabindex="-1"></a>trials <span class="ot">=</span> <span class="dv">10000</span></span>
+<span id="cb184-5"><a href="R-sim-probability.html#cb184-5" tabindex="-1"></a>results <span class="ot">=</span> <span class="fu">c</span>()</span>
+<span id="cb184-6"><a href="R-sim-probability.html#cb184-6" tabindex="-1"></a></span>
+<span id="cb184-7"><a href="R-sim-probability.html#cb184-7" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>trials){</span>
+<span id="cb184-8"><a href="R-sim-probability.html#cb184-8" tabindex="-1"></a>  poll <span class="ot">=</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;D&quot;</span>,<span class="st">&quot;R&quot;</span>),</span>
+<span id="cb184-9"><a href="R-sim-probability.html#cb184-9" tabindex="-1"></a>                <span class="at">size =</span> poll_size,</span>
+<span id="cb184-10"><a href="R-sim-probability.html#cb184-10" tabindex="-1"></a>                <span class="at">replace =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb184-11"><a href="R-sim-probability.html#cb184-11" tabindex="-1"></a>                <span class="at">prob =</span> <span class="fu">c</span>(dem,rep))</span>
+<span id="cb184-12"><a href="R-sim-probability.html#cb184-12" tabindex="-1"></a>  results<span class="ot">=</span><span class="fu">c</span>(results,</span>
+<span id="cb184-13"><a href="R-sim-probability.html#cb184-13" tabindex="-1"></a>            <span class="fu">ifelse</span>(<span class="fu">sum</span>(poll <span class="sc">==</span> <span class="st">&quot;D&quot;</span>) <span class="sc">&gt;</span> poll_size<span class="sc">/</span><span class="dv">2</span>,<span class="st">&quot;D&quot;</span>,<span class="st">&quot;Tie or R&quot;</span>))</span>
+<span id="cb184-14"><a href="R-sim-probability.html#cb184-14" tabindex="-1"></a>}</span>
+<span id="cb184-15"><a href="R-sim-probability.html#cb184-15" tabindex="-1"></a><span class="fu">table</span>(results)</span></code></pre></div>
 <pre><code>## results
 ##        D Tie or R 
-##     8894     1106</code></pre>
-<p>This table gives us a sense of the likelihood that the pollsters plan will result in an accurate prediction of which candidate will win the election. Based on our simulation, that likelihood is about 0.889.</p>
+##     8922     1078</code></pre>
+<p>This table gives us a sense of the likelihood that the pollsters plan will result in an accurate prediction of which candidate will win the election. Based on our simulation, that likelihood is about 0.892.</p>
 </div>
 <div id="same-birthday-R" class="section level2 hasAnchor" number="16.8">
 <h2><span class="header-section-number">B.8</span> Matching Birthdays<a href="R-sim-probability.html#same-birthday-R" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -657,11 +657,11 @@ We use the <code>sum()</code> command to count how many elements in <code>one_po
 <p>We tackle the first question by first computing the probability that none of the <span class="math inline">\(n\)</span> people share my birthday. The probability that a random person does not have my birthday is <span class="math inline">\(\frac{364}{365},\)</span> and the probability that <span class="math inline">\(n\)</span> random people all do not have my birthday is <span class="math inline">\(\left(\frac{364}{365}\right)^n\)</span>.</p>
 <p>The <em>complement</em> of this event is that at least one of the <span class="math inline">\(n\)</span> people has my birthday, and so the probability of this will be <span class="math inline">\(1- \left(\frac{364}{365}\right)^n\)</span>.</p>
 <p>We can write a function in R to compute this probability for various values of <span class="math inline">\(n\)</span>.</p>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="R-sim-probability.html#cb184-1" tabindex="-1"></a>prob_my_bday <span class="ot">&lt;-</span> <span class="cf">function</span>(n){</span>
-<span id="cb184-2"><a href="R-sim-probability.html#cb184-2" tabindex="-1"></a>  <span class="fu">return</span>(<span class="dv">1</span><span class="sc">-</span>(<span class="dv">364</span><span class="sc">/</span><span class="dv">365</span>)<span class="sc">^</span>n)</span>
-<span id="cb184-3"><a href="R-sim-probability.html#cb184-3" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="R-sim-probability.html#cb186-1" tabindex="-1"></a>prob_my_bday <span class="ot">&lt;-</span> <span class="cf">function</span>(n){</span>
+<span id="cb186-2"><a href="R-sim-probability.html#cb186-2" tabindex="-1"></a>  <span class="fu">return</span>(<span class="dv">1</span><span class="sc">-</span>(<span class="dv">364</span><span class="sc">/</span><span class="dv">365</span>)<span class="sc">^</span>n)</span>
+<span id="cb186-3"><a href="R-sim-probability.html#cb186-3" tabindex="-1"></a>}</span></code></pre></div>
 <p>For instance, in a group of 15 people here’s the probability that someone shares my birthday:</p>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="R-sim-probability.html#cb185-1" tabindex="-1"></a><span class="fu">prob_my_bday</span>(<span class="dv">15</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="R-sim-probability.html#cb187-1" tabindex="-1"></a><span class="fu">prob_my_bday</span>(<span class="dv">15</span>)</span></code></pre></div>
 <pre><code>## [1] 0.04031703</code></pre>
 <p>Not too likely!</p>
 <p>For the second question, we begin by calculating the probability that no one in a group of <span class="math inline">\(n\)</span> people shares the same birthday as anyone else.</p>
@@ -670,30 +670,30 @@ We use the <code>sum()</code> command to count how many elements in <code>one_po
 So, the probability that at least two people share the same birthday, which is the complement of “no one shares the same birthday” is <span class="math display">\[1 - \frac{365\cdot 364 \cdot \cdots \cdot (365-n+1)}{365^n}.\]</span></p>
 <p>For instance, in a group of 6 people, the probability that at least two people share a birthday is <span class="math display">\[1-1 \cdot \frac{364}{365}\cdot\frac{363}{365}\cdot \frac{362}{365}\cdot\frac{361}{365}\cdot\frac{360}{365}\approx0.04.\]</span></p>
 <p>Here’s a function that will compute this probability for any group size <span class="math inline">\(n\)</span>.</p>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="R-sim-probability.html#cb187-1" tabindex="-1"></a>prob_shared_bday <span class="ot">&lt;-</span> <span class="cf">function</span>(n){</span>
-<span id="cb187-2"><a href="R-sim-probability.html#cb187-2" tabindex="-1"></a>  p<span class="ot">=</span><span class="dv">1</span></span>
-<span id="cb187-3"><a href="R-sim-probability.html#cb187-3" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n){</span>
-<span id="cb187-4"><a href="R-sim-probability.html#cb187-4" tabindex="-1"></a>    p<span class="ot">=</span>p<span class="sc">*</span>(<span class="dv">365</span><span class="sc">-</span>i<span class="sc">+</span><span class="dv">1</span>)<span class="sc">/</span><span class="dv">365</span></span>
-<span id="cb187-5"><a href="R-sim-probability.html#cb187-5" tabindex="-1"></a>    }</span>
-<span id="cb187-6"><a href="R-sim-probability.html#cb187-6" tabindex="-1"></a>  <span class="fu">return</span>(<span class="dv">1</span><span class="sc">-</span>p)</span>
-<span id="cb187-7"><a href="R-sim-probability.html#cb187-7" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="R-sim-probability.html#cb189-1" tabindex="-1"></a>prob_shared_bday <span class="ot">&lt;-</span> <span class="cf">function</span>(n){</span>
+<span id="cb189-2"><a href="R-sim-probability.html#cb189-2" tabindex="-1"></a>  p<span class="ot">=</span><span class="dv">1</span></span>
+<span id="cb189-3"><a href="R-sim-probability.html#cb189-3" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n){</span>
+<span id="cb189-4"><a href="R-sim-probability.html#cb189-4" tabindex="-1"></a>    p<span class="ot">=</span>p<span class="sc">*</span>(<span class="dv">365</span><span class="sc">-</span>i<span class="sc">+</span><span class="dv">1</span>)<span class="sc">/</span><span class="dv">365</span></span>
+<span id="cb189-5"><a href="R-sim-probability.html#cb189-5" tabindex="-1"></a>    }</span>
+<span id="cb189-6"><a href="R-sim-probability.html#cb189-6" tabindex="-1"></a>  <span class="fu">return</span>(<span class="dv">1</span><span class="sc">-</span>p)</span>
+<span id="cb189-7"><a href="R-sim-probability.html#cb189-7" tabindex="-1"></a>}</span></code></pre></div>
 <p>For instance, in a group of 15 people here’s the probability that at least two people share a birthday</p>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="R-sim-probability.html#cb188-1" tabindex="-1"></a><span class="fu">prob_shared_bday</span>(<span class="dv">15</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="R-sim-probability.html#cb190-1" tabindex="-1"></a><span class="fu">prob_shared_bday</span>(<span class="dv">15</span>)</span></code></pre></div>
 <pre><code>## [1] 0.2529013</code></pre>
 <p>Whoa! A 25 percent chance! In fact, it turns out we only need 23 people gathered in a room to have a 50 percent chance that two of them share a birthday! Also, with a group of 59 people we have a 99 percent chance of a birthday match: <code>prob_shared_bday(59)</code>=0.993.</p>
 <p>Here’s a graph of these two probabilities for values of <span class="math inline">\(1 \leq n \leq 100\)</span>.</p>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="R-sim-probability.html#cb190-1" tabindex="-1"></a>sh<span class="ot">=</span><span class="fu">c</span>()</span>
-<span id="cb190-2"><a href="R-sim-probability.html#cb190-2" tabindex="-1"></a>my<span class="ot">=</span><span class="fu">c</span>()</span>
-<span id="cb190-3"><a href="R-sim-probability.html#cb190-3" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>){</span>
-<span id="cb190-4"><a href="R-sim-probability.html#cb190-4" tabindex="-1"></a>  sh<span class="ot">=</span><span class="fu">c</span>(sh,<span class="fu">prob_shared_bday</span>(i))</span>
-<span id="cb190-5"><a href="R-sim-probability.html#cb190-5" tabindex="-1"></a>  my<span class="ot">=</span><span class="fu">c</span>(my,<span class="fu">prob_my_bday</span>(i))</span>
-<span id="cb190-6"><a href="R-sim-probability.html#cb190-6" tabindex="-1"></a>}</span>
-<span id="cb190-7"><a href="R-sim-probability.html#cb190-7" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">group_size=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>,<span class="at">my_bday=</span>my,<span class="at">shared_bday=</span>sh)</span>
-<span id="cb190-8"><a href="R-sim-probability.html#cb190-8" tabindex="-1"></a>df_long <span class="ot">&lt;-</span> df<span class="sc">%&gt;%</span> <span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="fu">c</span>(my_bday,shared_bday), <span class="at">names_to =</span> <span class="st">&quot;question&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;probability&quot;</span>)</span>
-<span id="cb190-9"><a href="R-sim-probability.html#cb190-9" tabindex="-1"></a></span>
-<span id="cb190-10"><a href="R-sim-probability.html#cb190-10" tabindex="-1"></a><span class="fu">ggplot</span>(df_long)<span class="sc">+</span></span>
-<span id="cb190-11"><a href="R-sim-probability.html#cb190-11" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>group_size,<span class="at">y=</span>probability,<span class="at">col=</span>question))</span></code></pre></div>
-<p><img src="math340-notes_files/figure-html/unnamed-chunk-131-1.png" width="672" /></p>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="R-sim-probability.html#cb192-1" tabindex="-1"></a>sh<span class="ot">=</span><span class="fu">c</span>()</span>
+<span id="cb192-2"><a href="R-sim-probability.html#cb192-2" tabindex="-1"></a>my<span class="ot">=</span><span class="fu">c</span>()</span>
+<span id="cb192-3"><a href="R-sim-probability.html#cb192-3" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>){</span>
+<span id="cb192-4"><a href="R-sim-probability.html#cb192-4" tabindex="-1"></a>  sh<span class="ot">=</span><span class="fu">c</span>(sh,<span class="fu">prob_shared_bday</span>(i))</span>
+<span id="cb192-5"><a href="R-sim-probability.html#cb192-5" tabindex="-1"></a>  my<span class="ot">=</span><span class="fu">c</span>(my,<span class="fu">prob_my_bday</span>(i))</span>
+<span id="cb192-6"><a href="R-sim-probability.html#cb192-6" tabindex="-1"></a>}</span>
+<span id="cb192-7"><a href="R-sim-probability.html#cb192-7" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">group_size=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>,<span class="at">my_bday=</span>my,<span class="at">shared_bday=</span>sh)</span>
+<span id="cb192-8"><a href="R-sim-probability.html#cb192-8" tabindex="-1"></a>df_long <span class="ot">&lt;-</span> df<span class="sc">%&gt;%</span> <span class="fu">pivot_longer</span>(<span class="at">cols=</span><span class="fu">c</span>(my_bday,shared_bday), <span class="at">names_to =</span> <span class="st">&quot;question&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;probability&quot;</span>)</span>
+<span id="cb192-9"><a href="R-sim-probability.html#cb192-9" tabindex="-1"></a></span>
+<span id="cb192-10"><a href="R-sim-probability.html#cb192-10" tabindex="-1"></a><span class="fu">ggplot</span>(df_long)<span class="sc">+</span></span>
+<span id="cb192-11"><a href="R-sim-probability.html#cb192-11" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>group_size,<span class="at">y=</span>probability,<span class="at">col=</span>question))</span></code></pre></div>
+<p><img src="math340-notes_files/figure-html/unnamed-chunk-132-1.png" width="672" /></p>
 </div>
 <div id="flipping-coins-with-fibonacci" class="section level2 hasAnchor" number="16.9">
 <h2><span class="header-section-number">B.9</span> Flipping Coins with Fibonacci<a href="R-sim-probability.html#flipping-coins-with-fibonacci" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -701,22 +701,22 @@ So, the probability that at least two people share the same birthday, which is t
 <p>The probability function for <span class="math inline">\(X\)</span> is <span class="math display">\[p(x) = \frac{F_{x+1}}{2^x} \text{     for } x = 2, 3, 4, \ldots,\]</span> where <span class="math inline">\(F_n\)</span> is the <span class="math inline">\(n\)</span>th Fibonacci number. (<span class="math inline">\(F_n\)</span> is defined recursively: <span class="math inline">\(F_1 = F_2 = 1,\)</span> and for <span class="math inline">\(n \geq 3,\)</span> <span class="math inline">\(F_n = F_{n-1}+F_{n-2}\)</span>.)</p>
 <p>Deriving this function requires some satisfying work, which we work through in class.</p>
 <p>We can also approximate the probability function by simulation.</p>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="R-sim-probability.html#cb191-1" tabindex="-1"></a>trials <span class="ot">=</span> <span class="dv">10000</span></span>
-<span id="cb191-2"><a href="R-sim-probability.html#cb191-2" tabindex="-1"></a>results <span class="ot">=</span> <span class="fu">c</span>() <span class="co">#stores result</span></span>
-<span id="cb191-3"><a href="R-sim-probability.html#cb191-3" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>trials){</span>
-<span id="cb191-4"><a href="R-sim-probability.html#cb191-4" tabindex="-1"></a>  flips <span class="ot">=</span> <span class="dv">0</span></span>
-<span id="cb191-5"><a href="R-sim-probability.html#cb191-5" tabindex="-1"></a>  consecutive_H <span class="ot">=</span> <span class="dv">0</span></span>
-<span id="cb191-6"><a href="R-sim-probability.html#cb191-6" tabindex="-1"></a>  <span class="cf">while</span> (consecutive_H<span class="sc">&lt;</span><span class="dv">2</span>){</span>
-<span id="cb191-7"><a href="R-sim-probability.html#cb191-7" tabindex="-1"></a>    flips <span class="ot">=</span> flips <span class="sc">+</span> <span class="dv">1</span> <span class="co">#recording flips made in this trial</span></span>
-<span id="cb191-8"><a href="R-sim-probability.html#cb191-8" tabindex="-1"></a>    consecutive_H <span class="ot">=</span> <span class="fu">ifelse</span>(<span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;H&quot;</span>,<span class="st">&quot;T&quot;</span>),<span class="dv">1</span>)<span class="sc">==</span><span class="st">&quot;H&quot;</span>,consecutive_H<span class="sc">+</span><span class="dv">1</span>,<span class="dv">0</span>)</span>
-<span id="cb191-9"><a href="R-sim-probability.html#cb191-9" tabindex="-1"></a>  }</span>
-<span id="cb191-10"><a href="R-sim-probability.html#cb191-10" tabindex="-1"></a>  results[i]<span class="ot">=</span>flips <span class="co">#updates results to include flips required for consec heads in this trial</span></span>
-<span id="cb191-11"><a href="R-sim-probability.html#cb191-11" tabindex="-1"></a>}</span></code></pre></div>
-<p>We note that the maximum number of flips it took to get consecutive Heads in these trials was <code>max(results)</code> = 50! (that’s not a factorial symbol, just me exclaiming). So we don’t list the full table of results here, just the first 10 relative frequencies, which provide estimates for the probability function:</p>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="R-sim-probability.html#cb192-1" tabindex="-1"></a><span class="fu">table</span>(results)[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]<span class="sc">/</span>trials</span></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="R-sim-probability.html#cb193-1" tabindex="-1"></a>trials <span class="ot">=</span> <span class="dv">10000</span></span>
+<span id="cb193-2"><a href="R-sim-probability.html#cb193-2" tabindex="-1"></a>results <span class="ot">=</span> <span class="fu">c</span>() <span class="co">#stores result</span></span>
+<span id="cb193-3"><a href="R-sim-probability.html#cb193-3" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>trials){</span>
+<span id="cb193-4"><a href="R-sim-probability.html#cb193-4" tabindex="-1"></a>  flips <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb193-5"><a href="R-sim-probability.html#cb193-5" tabindex="-1"></a>  consecutive_H <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb193-6"><a href="R-sim-probability.html#cb193-6" tabindex="-1"></a>  <span class="cf">while</span> (consecutive_H<span class="sc">&lt;</span><span class="dv">2</span>){</span>
+<span id="cb193-7"><a href="R-sim-probability.html#cb193-7" tabindex="-1"></a>    flips <span class="ot">=</span> flips <span class="sc">+</span> <span class="dv">1</span> <span class="co">#recording flips made in this trial</span></span>
+<span id="cb193-8"><a href="R-sim-probability.html#cb193-8" tabindex="-1"></a>    consecutive_H <span class="ot">=</span> <span class="fu">ifelse</span>(<span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;H&quot;</span>,<span class="st">&quot;T&quot;</span>),<span class="dv">1</span>)<span class="sc">==</span><span class="st">&quot;H&quot;</span>,consecutive_H<span class="sc">+</span><span class="dv">1</span>,<span class="dv">0</span>)</span>
+<span id="cb193-9"><a href="R-sim-probability.html#cb193-9" tabindex="-1"></a>  }</span>
+<span id="cb193-10"><a href="R-sim-probability.html#cb193-10" tabindex="-1"></a>  results[i]<span class="ot">=</span>flips <span class="co">#updates results to include flips required for consec heads in this trial</span></span>
+<span id="cb193-11"><a href="R-sim-probability.html#cb193-11" tabindex="-1"></a>}</span></code></pre></div>
+<p>We note that the maximum number of flips it took to get consecutive Heads in these trials was <code>max(results)</code> = 46! (that’s not a factorial symbol, just me exclaiming). So we don’t list the full table of results here, just the first 10 relative frequencies, which provide estimates for the probability function:</p>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="R-sim-probability.html#cb194-1" tabindex="-1"></a><span class="fu">table</span>(results)[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]<span class="sc">/</span>trials</span></code></pre></div>
 <pre><code>## results
 ##      2      3      4      5      6      7      8      9     10     11 
-## 0.2530 0.1275 0.1287 0.0945 0.0768 0.0589 0.0496 0.0397 0.0340 0.0249</code></pre>
+## 0.2464 0.1237 0.1274 0.0900 0.0800 0.0598 0.0539 0.0405 0.0350 0.0298</code></pre>
 <p>These values compare closely to the actual probability values <span class="math inline">\(F_{x+1}/2^x\)</span>:</p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -786,34 +786,34 @@ x
 Rel_freq
 </td>
 <td style="text-align:left;">
-0.2530
+0.2464
 </td>
 <td style="text-align:left;">
-0.1275
+0.1237
 </td>
 <td style="text-align:left;">
-0.1287
+0.1274
 </td>
 <td style="text-align:left;">
-0.0945
+0.0900
 </td>
 <td style="text-align:left;">
-0.0768
+0.0800
 </td>
 <td style="text-align:left;">
-0.0589
+0.0598
 </td>
 <td style="text-align:left;">
-0.0496
+0.0539
 </td>
 <td style="text-align:left;">
-0.0397
+0.0405
 </td>
 <td style="text-align:left;">
-0.0340
+0.0350
 </td>
 <td style="text-align:left;">
-0.0249
+0.0298
 </td>
 </tr>
 <tr>
@@ -872,44 +872,44 @@ p(x)
 <p>It is convenient to use a matrix with 4 rows and 3 columns to represent the seats in the plane. Each entry in the matrix is 0 or 1 depending on whether the seat is empty or occupied.</p>
 <p>We randomly assign 8 1s to the 12 entries in the matrix, leaving the remaining 4 spots 0, and then we check to see whether one of the rows has adjacent 0s.</p>
 <p>First, here’s one way to randomly assign 8 1s and 4 0s to 12 seats (we make a vector with 8 1s and 4 0s, and then take a random permutation of it):</p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="R-sim-probability.html#cb194-1" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">8</span>),<span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">4</span>)))</span>
-<span id="cb194-2"><a href="R-sim-probability.html#cb194-2" tabindex="-1"></a>x</span></code></pre></div>
-<pre><code>##  [1] 0 1 1 1 0 1 1 1 1 1 0 0</code></pre>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="R-sim-probability.html#cb196-1" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">8</span>),<span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">4</span>)))</span>
+<span id="cb196-2"><a href="R-sim-probability.html#cb196-2" tabindex="-1"></a>x</span></code></pre></div>
+<pre><code>##  [1] 1 0 0 1 1 1 0 1 1 0 1 1</code></pre>
 <p>And here’s how we can store this vector of length 12 in a <span class="math inline">\(4\times 3\)</span> matrix:</p>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="R-sim-probability.html#cb196-1" tabindex="-1"></a>m<span class="ot">=</span><span class="fu">matrix</span>(x,<span class="at">byrow=</span><span class="cn">TRUE</span>,<span class="at">nrow=</span><span class="dv">4</span>)</span>
-<span id="cb196-2"><a href="R-sim-probability.html#cb196-2" tabindex="-1"></a>m</span></code></pre></div>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="R-sim-probability.html#cb198-1" tabindex="-1"></a>m<span class="ot">=</span><span class="fu">matrix</span>(x,<span class="at">byrow=</span><span class="cn">TRUE</span>,<span class="at">nrow=</span><span class="dv">4</span>)</span>
+<span id="cb198-2"><a href="R-sim-probability.html#cb198-2" tabindex="-1"></a>m</span></code></pre></div>
 <pre><code>##      [,1] [,2] [,3]
-## [1,]    0    1    1
-## [2,]    1    0    1
-## [3,]    1    1    1
-## [4,]    1    0    0</code></pre>
+## [1,]    1    0    0
+## [2,]    1    1    1
+## [3,]    0    1    1
+## [4,]    0    1    1</code></pre>
 <p>As the display above suggests, we can extract a value from matrix <code>m</code> by indicating its [row,column]: <code>m[3,2]</code> returns the element in row 3, column 2.</p>
 <p>Here’s one way to check for empty seats next to each other in a given row: See whether the middle entry is 0 AND the sum of the three numbers in the row is less than or equal to 1.</p>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="R-sim-probability.html#cb198-1" tabindex="-1"></a><span class="cf">for</span> (row <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>){</span>
-<span id="cb198-2"><a href="R-sim-probability.html#cb198-2" tabindex="-1"></a>  result<span class="ot">=</span><span class="fu">ifelse</span>(m[row,<span class="dv">2</span>]<span class="sc">==</span><span class="dv">0</span> <span class="sc">&amp;</span> <span class="fu">sum</span>(m[row,])<span class="sc">&lt;=</span> <span class="dv">1</span>,<span class="st">&quot;seats together!&quot;</span>,<span class="st">&quot;nope&quot;</span>)</span>
-<span id="cb198-3"><a href="R-sim-probability.html#cb198-3" tabindex="-1"></a>   <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;Row&quot;</span>,row,result))</span>
-<span id="cb198-4"><a href="R-sim-probability.html#cb198-4" tabindex="-1"></a>}</span></code></pre></div>
-<pre><code>## [1] &quot;Row 1 nope&quot;
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="R-sim-probability.html#cb200-1" tabindex="-1"></a><span class="cf">for</span> (row <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>){</span>
+<span id="cb200-2"><a href="R-sim-probability.html#cb200-2" tabindex="-1"></a>  result<span class="ot">=</span><span class="fu">ifelse</span>(m[row,<span class="dv">2</span>]<span class="sc">==</span><span class="dv">0</span> <span class="sc">&amp;</span> <span class="fu">sum</span>(m[row,])<span class="sc">&lt;=</span> <span class="dv">1</span>,<span class="st">&quot;seats together!&quot;</span>,<span class="st">&quot;nope&quot;</span>)</span>
+<span id="cb200-3"><a href="R-sim-probability.html#cb200-3" tabindex="-1"></a>   <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;Row&quot;</span>,row,result))</span>
+<span id="cb200-4"><a href="R-sim-probability.html#cb200-4" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## [1] &quot;Row 1 seats together!&quot;
 ## [1] &quot;Row 2 nope&quot;
 ## [1] &quot;Row 3 nope&quot;
-## [1] &quot;Row 4 seats together!&quot;</code></pre>
+## [1] &quot;Row 4 nope&quot;</code></pre>
 <p>Ok, we’ve got a plan! In the code below, we use <code>s</code> to record, in each trial, whether the couple can find seats together (<code>s</code> = 1) or they can’t (<code>s</code> = 0).</p>
 <p><strong>Final code</strong></p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="R-sim-probability.html#cb200-1" tabindex="-1"></a>trials <span class="ot">=</span> <span class="dv">10000</span></span>
-<span id="cb200-2"><a href="R-sim-probability.html#cb200-2" tabindex="-1"></a>results <span class="ot">=</span> <span class="fu">c</span>()</span>
-<span id="cb200-3"><a href="R-sim-probability.html#cb200-3" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>trials){</span>
-<span id="cb200-4"><a href="R-sim-probability.html#cb200-4" tabindex="-1"></a>  m<span class="ot">=</span><span class="fu">matrix</span>(<span class="fu">sample</span>(<span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">8</span>),<span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">4</span>))),<span class="at">byrow=</span><span class="cn">TRUE</span>,<span class="at">nrow=</span><span class="dv">4</span>)</span>
-<span id="cb200-5"><a href="R-sim-probability.html#cb200-5" tabindex="-1"></a>  s<span class="ot">=</span><span class="dv">0</span></span>
-<span id="cb200-6"><a href="R-sim-probability.html#cb200-6" tabindex="-1"></a>  <span class="cf">for</span> (r <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>){</span>
-<span id="cb200-7"><a href="R-sim-probability.html#cb200-7" tabindex="-1"></a>    <span class="cf">if</span> (m[r,<span class="dv">2</span>]<span class="sc">==</span><span class="dv">0</span><span class="sc">&amp;</span><span class="fu">sum</span>(m[r,])<span class="sc">&lt;=</span><span class="dv">1</span>){</span>
-<span id="cb200-8"><a href="R-sim-probability.html#cb200-8" tabindex="-1"></a>      s <span class="ot">=</span> <span class="dv">1</span></span>
-<span id="cb200-9"><a href="R-sim-probability.html#cb200-9" tabindex="-1"></a>      <span class="cf">break</span></span>
-<span id="cb200-10"><a href="R-sim-probability.html#cb200-10" tabindex="-1"></a>    }</span>
-<span id="cb200-11"><a href="R-sim-probability.html#cb200-11" tabindex="-1"></a>  }</span>
-<span id="cb200-12"><a href="R-sim-probability.html#cb200-12" tabindex="-1"></a>  results[i]<span class="ot">=</span>s</span>
-<span id="cb200-13"><a href="R-sim-probability.html#cb200-13" tabindex="-1"></a>}</span>
-<span id="cb200-14"><a href="R-sim-probability.html#cb200-14" tabindex="-1"></a><span class="fu">sum</span>(results)<span class="sc">/</span>trials</span></code></pre></div>
-<pre><code>## [1] 0.6101</code></pre>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="R-sim-probability.html#cb202-1" tabindex="-1"></a>trials <span class="ot">=</span> <span class="dv">10000</span></span>
+<span id="cb202-2"><a href="R-sim-probability.html#cb202-2" tabindex="-1"></a>results <span class="ot">=</span> <span class="fu">c</span>()</span>
+<span id="cb202-3"><a href="R-sim-probability.html#cb202-3" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>trials){</span>
+<span id="cb202-4"><a href="R-sim-probability.html#cb202-4" tabindex="-1"></a>  m<span class="ot">=</span><span class="fu">matrix</span>(<span class="fu">sample</span>(<span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">8</span>),<span class="fu">rep</span>(<span class="dv">0</span>,<span class="dv">4</span>))),<span class="at">byrow=</span><span class="cn">TRUE</span>,<span class="at">nrow=</span><span class="dv">4</span>)</span>
+<span id="cb202-5"><a href="R-sim-probability.html#cb202-5" tabindex="-1"></a>  s<span class="ot">=</span><span class="dv">0</span></span>
+<span id="cb202-6"><a href="R-sim-probability.html#cb202-6" tabindex="-1"></a>  <span class="cf">for</span> (r <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>){</span>
+<span id="cb202-7"><a href="R-sim-probability.html#cb202-7" tabindex="-1"></a>    <span class="cf">if</span> (m[r,<span class="dv">2</span>]<span class="sc">==</span><span class="dv">0</span><span class="sc">&amp;</span><span class="fu">sum</span>(m[r,])<span class="sc">&lt;=</span><span class="dv">1</span>){</span>
+<span id="cb202-8"><a href="R-sim-probability.html#cb202-8" tabindex="-1"></a>      s <span class="ot">=</span> <span class="dv">1</span></span>
+<span id="cb202-9"><a href="R-sim-probability.html#cb202-9" tabindex="-1"></a>      <span class="cf">break</span></span>
+<span id="cb202-10"><a href="R-sim-probability.html#cb202-10" tabindex="-1"></a>    }</span>
+<span id="cb202-11"><a href="R-sim-probability.html#cb202-11" tabindex="-1"></a>  }</span>
+<span id="cb202-12"><a href="R-sim-probability.html#cb202-12" tabindex="-1"></a>  results[i]<span class="ot">=</span>s</span>
+<span id="cb202-13"><a href="R-sim-probability.html#cb202-13" tabindex="-1"></a>}</span>
+<span id="cb202-14"><a href="R-sim-probability.html#cb202-14" tabindex="-1"></a><span class="fu">sum</span>(results)<span class="sc">/</span>trials</span></code></pre></div>
+<pre><code>## [1] 0.6034</code></pre>
 <p>This probability seems higher than I first expected it would be, but we can also prove using our counting techniques -we do this in class - that the probability is, in fact, 20/33.</p>
 </div>
 <div id="drawing-names-for-homemades" class="section level2 hasAnchor" number="16.11">
@@ -924,62 +924,62 @@ p(x)
 </ol>
 </blockquote>
 <p>Our approach: Create a vector called <code>family</code>, and a permutation of <code>family</code> (called <code>draw</code>). For each <span class="math inline">\(i,\)</span> Person <span class="math inline">\(i\)</span> in <code>family</code> draws person <span class="math inline">\(i\)</span> in <code>draw</code>. So, we have to redraw if the two vectors ever agree at the same location.</p>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="R-sim-probability.html#cb202-1" tabindex="-1"></a>family <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;Dad&quot;</span>,<span class="st">&quot;Mom&quot;</span>,<span class="st">&quot;Tom&quot;</span>,<span class="st">&quot;John&quot;</span>,<span class="st">&quot;Dave&quot;</span>,<span class="st">&quot;Mike&quot;</span>)</span>
-<span id="cb202-2"><a href="R-sim-probability.html#cb202-2" tabindex="-1"></a>draw <span class="ot">=</span> <span class="fu">sample</span>(family)</span>
-<span id="cb202-3"><a href="R-sim-probability.html#cb202-3" tabindex="-1"></a>matches <span class="ot">=</span> <span class="fu">sum</span>(family<span class="sc">==</span>draw) <span class="co"># number of locations at which the two vectors agree</span></span>
-<span id="cb202-4"><a href="R-sim-probability.html#cb202-4" tabindex="-1"></a>redraw <span class="ot">=</span> <span class="fu">ifelse</span>(matches<span class="sc">==</span><span class="dv">0</span>,<span class="st">&quot;No.&quot;</span>,<span class="st">&quot;Yes.&quot;</span>)</span>
-<span id="cb202-5"><a href="R-sim-probability.html#cb202-5" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;Redraw?&quot;</span>,redraw))</span></code></pre></div>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="R-sim-probability.html#cb204-1" tabindex="-1"></a>family <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;Dad&quot;</span>,<span class="st">&quot;Mom&quot;</span>,<span class="st">&quot;Tom&quot;</span>,<span class="st">&quot;John&quot;</span>,<span class="st">&quot;Dave&quot;</span>,<span class="st">&quot;Mike&quot;</span>)</span>
+<span id="cb204-2"><a href="R-sim-probability.html#cb204-2" tabindex="-1"></a>draw <span class="ot">=</span> <span class="fu">sample</span>(family)</span>
+<span id="cb204-3"><a href="R-sim-probability.html#cb204-3" tabindex="-1"></a>matches <span class="ot">=</span> <span class="fu">sum</span>(family<span class="sc">==</span>draw) <span class="co"># number of locations at which the two vectors agree</span></span>
+<span id="cb204-4"><a href="R-sim-probability.html#cb204-4" tabindex="-1"></a>redraw <span class="ot">=</span> <span class="fu">ifelse</span>(matches<span class="sc">==</span><span class="dv">0</span>,<span class="st">&quot;No.&quot;</span>,<span class="st">&quot;Yes.&quot;</span>)</span>
+<span id="cb204-5"><a href="R-sim-probability.html#cb204-5" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;Redraw?&quot;</span>,redraw))</span></code></pre></div>
 <pre><code>## [1] &quot;Redraw? No.&quot;</code></pre>
 <p>Let’s check who each person drew to be sure (remember, our code is assuming the ith person in the <code>family</code> vector drew the ith person in the <code>draw</code> vector)</p>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="R-sim-probability.html#cb204-1" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>){</span>
-<span id="cb204-2"><a href="R-sim-probability.html#cb204-2" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(family[i],<span class="st">&quot;drew&quot;</span>,draw[i]))</span>
-<span id="cb204-3"><a href="R-sim-probability.html#cb204-3" tabindex="-1"></a>  <span class="cf">if</span> (family[i]<span class="sc">==</span>draw[i]){</span>
-<span id="cb204-4"><a href="R-sim-probability.html#cb204-4" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">&quot;Dang it! Need to redraw. Names back in the hat.&quot;</span>) </span>
-<span id="cb204-5"><a href="R-sim-probability.html#cb204-5" tabindex="-1"></a>    <span class="cf">break</span>}</span>
-<span id="cb204-6"><a href="R-sim-probability.html#cb204-6" tabindex="-1"></a>}</span></code></pre></div>
-<pre><code>## [1] &quot;Dad drew Mike&quot;
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="R-sim-probability.html#cb206-1" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>){</span>
+<span id="cb206-2"><a href="R-sim-probability.html#cb206-2" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(family[i],<span class="st">&quot;drew&quot;</span>,draw[i]))</span>
+<span id="cb206-3"><a href="R-sim-probability.html#cb206-3" tabindex="-1"></a>  <span class="cf">if</span> (family[i]<span class="sc">==</span>draw[i]){</span>
+<span id="cb206-4"><a href="R-sim-probability.html#cb206-4" tabindex="-1"></a>    <span class="fu">print</span>(<span class="st">&quot;Dang it! Need to redraw. Names back in the hat.&quot;</span>) </span>
+<span id="cb206-5"><a href="R-sim-probability.html#cb206-5" tabindex="-1"></a>    <span class="cf">break</span>}</span>
+<span id="cb206-6"><a href="R-sim-probability.html#cb206-6" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## [1] &quot;Dad drew Tom&quot;
 ## [1] &quot;Mom drew Dave&quot;
-## [1] &quot;Tom drew Mom&quot;
+## [1] &quot;Tom drew Mike&quot;
 ## [1] &quot;John drew Dad&quot;
-## [1] &quot;Dave drew John&quot;
-## [1] &quot;Mike drew Tom&quot;</code></pre>
+## [1] &quot;Dave drew Mom&quot;
+## [1] &quot;Mike drew John&quot;</code></pre>
 <p>We now estimate the probability of not needing to redraw as follows:</p>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="R-sim-probability.html#cb206-1" tabindex="-1"></a>n<span class="ot">=</span><span class="dv">6</span> <span class="co">#size of family</span></span>
-<span id="cb206-2"><a href="R-sim-probability.html#cb206-2" tabindex="-1"></a>family <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span>n <span class="co">#we use numbers, to protect the innocent</span></span>
-<span id="cb206-3"><a href="R-sim-probability.html#cb206-3" tabindex="-1"></a>trials<span class="ot">=</span><span class="dv">10000</span></span>
-<span id="cb206-4"><a href="R-sim-probability.html#cb206-4" tabindex="-1"></a>results <span class="ot">=</span> <span class="fu">c</span>() <span class="co">#record for each trial a 0 for redraw, 1 for no redraw </span></span>
-<span id="cb206-5"><a href="R-sim-probability.html#cb206-5" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>trials){</span>
-<span id="cb206-6"><a href="R-sim-probability.html#cb206-6" tabindex="-1"></a>  draw <span class="ot">=</span> <span class="fu">sample</span>(family)</span>
-<span id="cb206-7"><a href="R-sim-probability.html#cb206-7" tabindex="-1"></a>  results[i] <span class="ot">=</span> <span class="fu">ifelse</span>(<span class="fu">sum</span>(family <span class="sc">==</span> draw)<span class="sc">==</span><span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>)</span>
-<span id="cb206-8"><a href="R-sim-probability.html#cb206-8" tabindex="-1"></a>}</span>
-<span id="cb206-9"><a href="R-sim-probability.html#cb206-9" tabindex="-1"></a><span class="fu">sum</span>(results)<span class="sc">/</span>trials</span></code></pre></div>
-<pre><code>## [1] 0.362</code></pre>
-<p>About a 36.2 percent chance of not needing to redraw.</p>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="R-sim-probability.html#cb208-1" tabindex="-1"></a>n<span class="ot">=</span><span class="dv">6</span> <span class="co">#size of family</span></span>
+<span id="cb208-2"><a href="R-sim-probability.html#cb208-2" tabindex="-1"></a>family <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span>n <span class="co">#we use numbers, to protect the innocent</span></span>
+<span id="cb208-3"><a href="R-sim-probability.html#cb208-3" tabindex="-1"></a>trials<span class="ot">=</span><span class="dv">10000</span></span>
+<span id="cb208-4"><a href="R-sim-probability.html#cb208-4" tabindex="-1"></a>results <span class="ot">=</span> <span class="fu">c</span>() <span class="co">#record for each trial a 0 for redraw, 1 for no redraw </span></span>
+<span id="cb208-5"><a href="R-sim-probability.html#cb208-5" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>trials){</span>
+<span id="cb208-6"><a href="R-sim-probability.html#cb208-6" tabindex="-1"></a>  draw <span class="ot">=</span> <span class="fu">sample</span>(family)</span>
+<span id="cb208-7"><a href="R-sim-probability.html#cb208-7" tabindex="-1"></a>  results[i] <span class="ot">=</span> <span class="fu">ifelse</span>(<span class="fu">sum</span>(family <span class="sc">==</span> draw)<span class="sc">==</span><span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>)</span>
+<span id="cb208-8"><a href="R-sim-probability.html#cb208-8" tabindex="-1"></a>}</span>
+<span id="cb208-9"><a href="R-sim-probability.html#cb208-9" tabindex="-1"></a><span class="fu">sum</span>(results)<span class="sc">/</span>trials</span></code></pre></div>
+<pre><code>## [1] 0.3646</code></pre>
+<p>About a 36.5 percent chance of not needing to redraw.</p>
 <blockquote>
 <ol start="2" style="list-style-type: lower-alpha">
 <li>What is the expected number of draws needed until we do not need to redraw?</li>
 </ol>
 </blockquote>
 <p>Now in our simulation we want to redraw until we don’t have to, and record how many attempts it took.</p>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="R-sim-probability.html#cb208-1" tabindex="-1"></a>n<span class="ot">=</span><span class="dv">6</span> <span class="co">#size of family</span></span>
-<span id="cb208-2"><a href="R-sim-probability.html#cb208-2" tabindex="-1"></a>family <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span>n <span class="co">#we use numbers, to protect the innocent</span></span>
-<span id="cb208-3"><a href="R-sim-probability.html#cb208-3" tabindex="-1"></a>trials<span class="ot">=</span><span class="dv">10000</span></span>
-<span id="cb208-4"><a href="R-sim-probability.html#cb208-4" tabindex="-1"></a>results <span class="ot">=</span> <span class="fu">c</span>() <span class="co">#record for each trial how many attempts it took to get a good draw</span></span>
-<span id="cb208-5"><a href="R-sim-probability.html#cb208-5" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>trials){</span>
-<span id="cb208-6"><a href="R-sim-probability.html#cb208-6" tabindex="-1"></a>  attempts <span class="ot">=</span> <span class="dv">0</span></span>
-<span id="cb208-7"><a href="R-sim-probability.html#cb208-7" tabindex="-1"></a>  draw_again <span class="ot">=</span> <span class="cn">TRUE</span></span>
-<span id="cb208-8"><a href="R-sim-probability.html#cb208-8" tabindex="-1"></a>  <span class="cf">while</span> (draw_again){</span>
-<span id="cb208-9"><a href="R-sim-probability.html#cb208-9" tabindex="-1"></a>    attempts <span class="ot">=</span> attempts<span class="sc">+</span><span class="dv">1</span></span>
-<span id="cb208-10"><a href="R-sim-probability.html#cb208-10" tabindex="-1"></a>    draw <span class="ot">=</span> <span class="fu">sample</span>(family)</span>
-<span id="cb208-11"><a href="R-sim-probability.html#cb208-11" tabindex="-1"></a>    draw_again <span class="ot">=</span> <span class="fu">ifelse</span>(<span class="fu">sum</span>(family <span class="sc">==</span> draw)<span class="sc">&gt;</span><span class="dv">0</span>,<span class="cn">TRUE</span>,<span class="cn">FALSE</span>)</span>
-<span id="cb208-12"><a href="R-sim-probability.html#cb208-12" tabindex="-1"></a>  }</span>
-<span id="cb208-13"><a href="R-sim-probability.html#cb208-13" tabindex="-1"></a>  results[i] <span class="ot">=</span> attempts</span>
-<span id="cb208-14"><a href="R-sim-probability.html#cb208-14" tabindex="-1"></a>}</span>
-<span id="cb208-15"><a href="R-sim-probability.html#cb208-15" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(results))</span></code></pre></div>
-<p><img src="math340-notes_files/figure-html/unnamed-chunk-142-1.png" width="672" /></p>
-<p>Cripes! In 1 of the trials we needed 21 draws until no one drew their own name! Anyway, our estimate for the expected number of draws needed to get the gift-making off the mark is:</p>
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="R-sim-probability.html#cb209-1" tabindex="-1"></a><span class="fu">sum</span>(results)<span class="sc">/</span>trials</span></code></pre></div>
-<pre><code>## [1] 2.7507</code></pre>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="R-sim-probability.html#cb210-1" tabindex="-1"></a>n<span class="ot">=</span><span class="dv">6</span> <span class="co">#size of family</span></span>
+<span id="cb210-2"><a href="R-sim-probability.html#cb210-2" tabindex="-1"></a>family <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span>n <span class="co">#we use numbers, to protect the innocent</span></span>
+<span id="cb210-3"><a href="R-sim-probability.html#cb210-3" tabindex="-1"></a>trials<span class="ot">=</span><span class="dv">10000</span></span>
+<span id="cb210-4"><a href="R-sim-probability.html#cb210-4" tabindex="-1"></a>results <span class="ot">=</span> <span class="fu">c</span>() <span class="co">#record for each trial how many attempts it took to get a good draw</span></span>
+<span id="cb210-5"><a href="R-sim-probability.html#cb210-5" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>trials){</span>
+<span id="cb210-6"><a href="R-sim-probability.html#cb210-6" tabindex="-1"></a>  attempts <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb210-7"><a href="R-sim-probability.html#cb210-7" tabindex="-1"></a>  draw_again <span class="ot">=</span> <span class="cn">TRUE</span></span>
+<span id="cb210-8"><a href="R-sim-probability.html#cb210-8" tabindex="-1"></a>  <span class="cf">while</span> (draw_again){</span>
+<span id="cb210-9"><a href="R-sim-probability.html#cb210-9" tabindex="-1"></a>    attempts <span class="ot">=</span> attempts<span class="sc">+</span><span class="dv">1</span></span>
+<span id="cb210-10"><a href="R-sim-probability.html#cb210-10" tabindex="-1"></a>    draw <span class="ot">=</span> <span class="fu">sample</span>(family)</span>
+<span id="cb210-11"><a href="R-sim-probability.html#cb210-11" tabindex="-1"></a>    draw_again <span class="ot">=</span> <span class="fu">ifelse</span>(<span class="fu">sum</span>(family <span class="sc">==</span> draw)<span class="sc">&gt;</span><span class="dv">0</span>,<span class="cn">TRUE</span>,<span class="cn">FALSE</span>)</span>
+<span id="cb210-12"><a href="R-sim-probability.html#cb210-12" tabindex="-1"></a>  }</span>
+<span id="cb210-13"><a href="R-sim-probability.html#cb210-13" tabindex="-1"></a>  results[i] <span class="ot">=</span> attempts</span>
+<span id="cb210-14"><a href="R-sim-probability.html#cb210-14" tabindex="-1"></a>}</span>
+<span id="cb210-15"><a href="R-sim-probability.html#cb210-15" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(results))</span></code></pre></div>
+<p><img src="math340-notes_files/figure-html/unnamed-chunk-143-1.png" width="672" /></p>
+<p>Cripes! In 1 of the trials we needed 20 draws until no one drew their own name! Anyway, our estimate for the expected number of draws needed to get the gift-making off the mark is:</p>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="R-sim-probability.html#cb211-1" tabindex="-1"></a><span class="fu">sum</span>(results)<span class="sc">/</span>trials</span></code></pre></div>
+<pre><code>## [1] 2.7225</code></pre>
 <p>and if that number looks somewhat familiar, I encourage you to read the mathematical addendum at the end of this example.</p>
 <blockquote>
 <ol start="3" style="list-style-type: lower-alpha">
@@ -987,60 +987,60 @@ p(x)
 </ol>
 </blockquote>
 <p>Let’s just repeat <strong>(b)</strong> with <span class="math inline">\(n = 16\)</span>.</p>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="R-sim-probability.html#cb211-1" tabindex="-1"></a>n<span class="ot">=</span><span class="dv">16</span> <span class="co">#size of family</span></span>
-<span id="cb211-2"><a href="R-sim-probability.html#cb211-2" tabindex="-1"></a>family <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span>n <span class="co">#we use numbers, to protect the innocent</span></span>
-<span id="cb211-3"><a href="R-sim-probability.html#cb211-3" tabindex="-1"></a>trials<span class="ot">=</span><span class="dv">10000</span></span>
-<span id="cb211-4"><a href="R-sim-probability.html#cb211-4" tabindex="-1"></a>results <span class="ot">=</span> <span class="fu">c</span>() <span class="co">#record for each trial how many attempts it took to get a good draw</span></span>
-<span id="cb211-5"><a href="R-sim-probability.html#cb211-5" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>trials){</span>
-<span id="cb211-6"><a href="R-sim-probability.html#cb211-6" tabindex="-1"></a>  attempts <span class="ot">=</span> <span class="dv">0</span></span>
-<span id="cb211-7"><a href="R-sim-probability.html#cb211-7" tabindex="-1"></a>  draw_again <span class="ot">=</span> <span class="cn">TRUE</span></span>
-<span id="cb211-8"><a href="R-sim-probability.html#cb211-8" tabindex="-1"></a>  <span class="cf">while</span> (draw_again){</span>
-<span id="cb211-9"><a href="R-sim-probability.html#cb211-9" tabindex="-1"></a>    attempts <span class="ot">=</span> attempts<span class="sc">+</span><span class="dv">1</span></span>
-<span id="cb211-10"><a href="R-sim-probability.html#cb211-10" tabindex="-1"></a>    draw <span class="ot">=</span> <span class="fu">sample</span>(family)</span>
-<span id="cb211-11"><a href="R-sim-probability.html#cb211-11" tabindex="-1"></a>    draw_again <span class="ot">=</span> <span class="fu">ifelse</span>(<span class="fu">sum</span>(family <span class="sc">==</span> draw)<span class="sc">&gt;</span><span class="dv">0</span>,<span class="cn">TRUE</span>,<span class="cn">FALSE</span>)</span>
-<span id="cb211-12"><a href="R-sim-probability.html#cb211-12" tabindex="-1"></a>  }</span>
-<span id="cb211-13"><a href="R-sim-probability.html#cb211-13" tabindex="-1"></a>  results[i] <span class="ot">=</span> attempts</span>
-<span id="cb211-14"><a href="R-sim-probability.html#cb211-14" tabindex="-1"></a>}</span>
-<span id="cb211-15"><a href="R-sim-probability.html#cb211-15" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(results))</span></code></pre></div>
-<p><img src="math340-notes_files/figure-html/unnamed-chunk-144-1.png" width="672" /></p>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="R-sim-probability.html#cb213-1" tabindex="-1"></a>n<span class="ot">=</span><span class="dv">16</span> <span class="co">#size of family</span></span>
+<span id="cb213-2"><a href="R-sim-probability.html#cb213-2" tabindex="-1"></a>family <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span>n <span class="co">#we use numbers, to protect the innocent</span></span>
+<span id="cb213-3"><a href="R-sim-probability.html#cb213-3" tabindex="-1"></a>trials<span class="ot">=</span><span class="dv">10000</span></span>
+<span id="cb213-4"><a href="R-sim-probability.html#cb213-4" tabindex="-1"></a>results <span class="ot">=</span> <span class="fu">c</span>() <span class="co">#record for each trial how many attempts it took to get a good draw</span></span>
+<span id="cb213-5"><a href="R-sim-probability.html#cb213-5" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>trials){</span>
+<span id="cb213-6"><a href="R-sim-probability.html#cb213-6" tabindex="-1"></a>  attempts <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb213-7"><a href="R-sim-probability.html#cb213-7" tabindex="-1"></a>  draw_again <span class="ot">=</span> <span class="cn">TRUE</span></span>
+<span id="cb213-8"><a href="R-sim-probability.html#cb213-8" tabindex="-1"></a>  <span class="cf">while</span> (draw_again){</span>
+<span id="cb213-9"><a href="R-sim-probability.html#cb213-9" tabindex="-1"></a>    attempts <span class="ot">=</span> attempts<span class="sc">+</span><span class="dv">1</span></span>
+<span id="cb213-10"><a href="R-sim-probability.html#cb213-10" tabindex="-1"></a>    draw <span class="ot">=</span> <span class="fu">sample</span>(family)</span>
+<span id="cb213-11"><a href="R-sim-probability.html#cb213-11" tabindex="-1"></a>    draw_again <span class="ot">=</span> <span class="fu">ifelse</span>(<span class="fu">sum</span>(family <span class="sc">==</span> draw)<span class="sc">&gt;</span><span class="dv">0</span>,<span class="cn">TRUE</span>,<span class="cn">FALSE</span>)</span>
+<span id="cb213-12"><a href="R-sim-probability.html#cb213-12" tabindex="-1"></a>  }</span>
+<span id="cb213-13"><a href="R-sim-probability.html#cb213-13" tabindex="-1"></a>  results[i] <span class="ot">=</span> attempts</span>
+<span id="cb213-14"><a href="R-sim-probability.html#cb213-14" tabindex="-1"></a>}</span>
+<span id="cb213-15"><a href="R-sim-probability.html#cb213-15" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(results))</span></code></pre></div>
+<p><img src="math340-notes_files/figure-html/unnamed-chunk-145-1.png" width="672" /></p>
 <p>Based on the trials, we estimate the probability of not needing a redraw in the larger family to be</p>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="R-sim-probability.html#cb212-1" tabindex="-1"></a><span class="fu">sum</span>(results<span class="sc">==</span><span class="dv">1</span>)<span class="sc">/</span>trials</span></code></pre></div>
-<pre><code>## [1] 0.3606</code></pre>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="R-sim-probability.html#cb214-1" tabindex="-1"></a><span class="fu">sum</span>(results<span class="sc">==</span><span class="dv">1</span>)<span class="sc">/</span>trials</span></code></pre></div>
+<pre><code>## [1] 0.3692</code></pre>
 <p>and our estimate for the expected number of draws to be</p>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="R-sim-probability.html#cb214-1" tabindex="-1"></a><span class="fu">sum</span>(results)<span class="sc">/</span>trials</span></code></pre></div>
-<pre><code>## [1] 2.7394</code></pre>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="R-sim-probability.html#cb216-1" tabindex="-1"></a><span class="fu">sum</span>(results)<span class="sc">/</span>trials</span></code></pre></div>
+<pre><code>## [1] 2.6849</code></pre>
 <p>Not much movement in the estimates, it seems.</p>
 <p>With a function and a for loop we can streamline the process for estimating both of these values for many different family sizes.</p>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="R-sim-probability.html#cb216-1" tabindex="-1"></a>hat_draw_sim <span class="ot">&lt;-</span> <span class="cf">function</span>(n,trials){</span>
-<span id="cb216-2"><a href="R-sim-probability.html#cb216-2" tabindex="-1"></a>  <span class="co"># inputs: n - family size; trials - number of trials in simulation</span></span>
-<span id="cb216-3"><a href="R-sim-probability.html#cb216-3" tabindex="-1"></a>  <span class="co"># output: a vector with two values based on a number of trials:</span></span>
-<span id="cb216-4"><a href="R-sim-probability.html#cb216-4" tabindex="-1"></a>       <span class="co"># - first value: estimated prob of redraw for family size n</span></span>
-<span id="cb216-5"><a href="R-sim-probability.html#cb216-5" tabindex="-1"></a>       <span class="co"># - second value: estimated expected number of draws for family size n</span></span>
-<span id="cb216-6"><a href="R-sim-probability.html#cb216-6" tabindex="-1"></a>  family <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span>n </span>
-<span id="cb216-7"><a href="R-sim-probability.html#cb216-7" tabindex="-1"></a>  results <span class="ot">=</span> <span class="fu">c</span>() <span class="co">#record for each trial how many attempts it took to get a good draw</span></span>
-<span id="cb216-8"><a href="R-sim-probability.html#cb216-8" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>trials){</span>
-<span id="cb216-9"><a href="R-sim-probability.html#cb216-9" tabindex="-1"></a>    attempts <span class="ot">=</span> <span class="dv">0</span></span>
-<span id="cb216-10"><a href="R-sim-probability.html#cb216-10" tabindex="-1"></a>    draw_again <span class="ot">=</span> <span class="cn">TRUE</span></span>
-<span id="cb216-11"><a href="R-sim-probability.html#cb216-11" tabindex="-1"></a>    <span class="cf">while</span> (draw_again){</span>
-<span id="cb216-12"><a href="R-sim-probability.html#cb216-12" tabindex="-1"></a>      attempts <span class="ot">=</span> attempts<span class="sc">+</span><span class="dv">1</span></span>
-<span id="cb216-13"><a href="R-sim-probability.html#cb216-13" tabindex="-1"></a>      draw <span class="ot">=</span> <span class="fu">sample</span>(family)</span>
-<span id="cb216-14"><a href="R-sim-probability.html#cb216-14" tabindex="-1"></a>      draw_again <span class="ot">=</span> <span class="fu">ifelse</span>(<span class="fu">sum</span>(family <span class="sc">==</span> draw)<span class="sc">&gt;</span><span class="dv">0</span>,<span class="cn">TRUE</span>,<span class="cn">FALSE</span>)</span>
-<span id="cb216-15"><a href="R-sim-probability.html#cb216-15" tabindex="-1"></a>    }</span>
-<span id="cb216-16"><a href="R-sim-probability.html#cb216-16" tabindex="-1"></a>    results[i] <span class="ot">=</span> attempts</span>
-<span id="cb216-17"><a href="R-sim-probability.html#cb216-17" tabindex="-1"></a>  }</span>
-<span id="cb216-18"><a href="R-sim-probability.html#cb216-18" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">c</span>(<span class="fu">sum</span>(results<span class="sc">==</span><span class="dv">1</span>)<span class="sc">/</span>trials,<span class="fu">sum</span>(results)<span class="sc">/</span>trials))</span>
-<span id="cb216-19"><a href="R-sim-probability.html#cb216-19" tabindex="-1"></a>}</span></code></pre></div>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="R-sim-probability.html#cb217-1" tabindex="-1"></a><span class="co"># run simulation for various family sizes</span></span>
-<span id="cb217-2"><a href="R-sim-probability.html#cb217-2" tabindex="-1"></a>family_size <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">10</span>,<span class="fu">seq</span>(<span class="dv">15</span>,<span class="dv">60</span>,<span class="dv">5</span>))</span>
-<span id="cb217-3"><a href="R-sim-probability.html#cb217-3" tabindex="-1"></a>prob_redraw <span class="ot">=</span> <span class="fu">c</span>()</span>
-<span id="cb217-4"><a href="R-sim-probability.html#cb217-4" tabindex="-1"></a>expected_draws <span class="ot">=</span> <span class="fu">c</span>()</span>
-<span id="cb217-5"><a href="R-sim-probability.html#cb217-5" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(family_size)){</span>
-<span id="cb217-6"><a href="R-sim-probability.html#cb217-6" tabindex="-1"></a>  v<span class="ot">=</span><span class="fu">hat_draw_sim</span>(family_size[i],<span class="at">trials=</span><span class="dv">10000</span>)</span>
-<span id="cb217-7"><a href="R-sim-probability.html#cb217-7" tabindex="-1"></a>  prob_redraw[i] <span class="ot">=</span> v[<span class="dv">1</span>]</span>
-<span id="cb217-8"><a href="R-sim-probability.html#cb217-8" tabindex="-1"></a>  expected_draws[i] <span class="ot">=</span> v[<span class="dv">2</span>]</span>
-<span id="cb217-9"><a href="R-sim-probability.html#cb217-9" tabindex="-1"></a>}</span>
-<span id="cb217-10"><a href="R-sim-probability.html#cb217-10" tabindex="-1"></a><span class="co">#table of results</span></span>
-<span id="cb217-11"><a href="R-sim-probability.html#cb217-11" tabindex="-1"></a><span class="fu">kbl</span>(<span class="fu">data.frame</span>(family_size,prob_redraw,expected_draws)) <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>(<span class="at">full_width=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="R-sim-probability.html#cb218-1" tabindex="-1"></a>hat_draw_sim <span class="ot">&lt;-</span> <span class="cf">function</span>(n,trials){</span>
+<span id="cb218-2"><a href="R-sim-probability.html#cb218-2" tabindex="-1"></a>  <span class="co"># inputs: n - family size; trials - number of trials in simulation</span></span>
+<span id="cb218-3"><a href="R-sim-probability.html#cb218-3" tabindex="-1"></a>  <span class="co"># output: a vector with two values based on a number of trials:</span></span>
+<span id="cb218-4"><a href="R-sim-probability.html#cb218-4" tabindex="-1"></a>       <span class="co"># - first value: estimated prob of redraw for family size n</span></span>
+<span id="cb218-5"><a href="R-sim-probability.html#cb218-5" tabindex="-1"></a>       <span class="co"># - second value: estimated expected number of draws for family size n</span></span>
+<span id="cb218-6"><a href="R-sim-probability.html#cb218-6" tabindex="-1"></a>  family <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span>n </span>
+<span id="cb218-7"><a href="R-sim-probability.html#cb218-7" tabindex="-1"></a>  results <span class="ot">=</span> <span class="fu">c</span>() <span class="co">#record for each trial how many attempts it took to get a good draw</span></span>
+<span id="cb218-8"><a href="R-sim-probability.html#cb218-8" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>trials){</span>
+<span id="cb218-9"><a href="R-sim-probability.html#cb218-9" tabindex="-1"></a>    attempts <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb218-10"><a href="R-sim-probability.html#cb218-10" tabindex="-1"></a>    draw_again <span class="ot">=</span> <span class="cn">TRUE</span></span>
+<span id="cb218-11"><a href="R-sim-probability.html#cb218-11" tabindex="-1"></a>    <span class="cf">while</span> (draw_again){</span>
+<span id="cb218-12"><a href="R-sim-probability.html#cb218-12" tabindex="-1"></a>      attempts <span class="ot">=</span> attempts<span class="sc">+</span><span class="dv">1</span></span>
+<span id="cb218-13"><a href="R-sim-probability.html#cb218-13" tabindex="-1"></a>      draw <span class="ot">=</span> <span class="fu">sample</span>(family)</span>
+<span id="cb218-14"><a href="R-sim-probability.html#cb218-14" tabindex="-1"></a>      draw_again <span class="ot">=</span> <span class="fu">ifelse</span>(<span class="fu">sum</span>(family <span class="sc">==</span> draw)<span class="sc">&gt;</span><span class="dv">0</span>,<span class="cn">TRUE</span>,<span class="cn">FALSE</span>)</span>
+<span id="cb218-15"><a href="R-sim-probability.html#cb218-15" tabindex="-1"></a>    }</span>
+<span id="cb218-16"><a href="R-sim-probability.html#cb218-16" tabindex="-1"></a>    results[i] <span class="ot">=</span> attempts</span>
+<span id="cb218-17"><a href="R-sim-probability.html#cb218-17" tabindex="-1"></a>  }</span>
+<span id="cb218-18"><a href="R-sim-probability.html#cb218-18" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">c</span>(<span class="fu">sum</span>(results<span class="sc">==</span><span class="dv">1</span>)<span class="sc">/</span>trials,<span class="fu">sum</span>(results)<span class="sc">/</span>trials))</span>
+<span id="cb218-19"><a href="R-sim-probability.html#cb218-19" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="R-sim-probability.html#cb219-1" tabindex="-1"></a><span class="co"># run simulation for various family sizes</span></span>
+<span id="cb219-2"><a href="R-sim-probability.html#cb219-2" tabindex="-1"></a>family_size <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">10</span>,<span class="fu">seq</span>(<span class="dv">15</span>,<span class="dv">60</span>,<span class="dv">5</span>))</span>
+<span id="cb219-3"><a href="R-sim-probability.html#cb219-3" tabindex="-1"></a>prob_redraw <span class="ot">=</span> <span class="fu">c</span>()</span>
+<span id="cb219-4"><a href="R-sim-probability.html#cb219-4" tabindex="-1"></a>expected_draws <span class="ot">=</span> <span class="fu">c</span>()</span>
+<span id="cb219-5"><a href="R-sim-probability.html#cb219-5" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(family_size)){</span>
+<span id="cb219-6"><a href="R-sim-probability.html#cb219-6" tabindex="-1"></a>  v<span class="ot">=</span><span class="fu">hat_draw_sim</span>(family_size[i],<span class="at">trials=</span><span class="dv">10000</span>)</span>
+<span id="cb219-7"><a href="R-sim-probability.html#cb219-7" tabindex="-1"></a>  prob_redraw[i] <span class="ot">=</span> v[<span class="dv">1</span>]</span>
+<span id="cb219-8"><a href="R-sim-probability.html#cb219-8" tabindex="-1"></a>  expected_draws[i] <span class="ot">=</span> v[<span class="dv">2</span>]</span>
+<span id="cb219-9"><a href="R-sim-probability.html#cb219-9" tabindex="-1"></a>}</span>
+<span id="cb219-10"><a href="R-sim-probability.html#cb219-10" tabindex="-1"></a><span class="co">#table of results</span></span>
+<span id="cb219-11"><a href="R-sim-probability.html#cb219-11" tabindex="-1"></a><span class="fu">kbl</span>(<span class="fu">data.frame</span>(family_size,prob_redraw,expected_draws)) <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>(<span class="at">full_width=</span><span class="cn">FALSE</span>)</span></code></pre></div>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
@@ -1061,10 +1061,10 @@ expected_draws
 2
 </td>
 <td style="text-align:right;">
-0.5080
+0.5040
 </td>
 <td style="text-align:right;">
-1.9918
+1.9736
 </td>
 </tr>
 <tr>
@@ -1072,10 +1072,10 @@ expected_draws
 3
 </td>
 <td style="text-align:right;">
-0.3351
+0.3262
 </td>
 <td style="text-align:right;">
-3.0225
+3.0087
 </td>
 </tr>
 <tr>
@@ -1083,10 +1083,10 @@ expected_draws
 4
 </td>
 <td style="text-align:right;">
-0.3720
+0.3755
 </td>
 <td style="text-align:right;">
-2.6620
+2.6629
 </td>
 </tr>
 <tr>
@@ -1094,10 +1094,10 @@ expected_draws
 5
 </td>
 <td style="text-align:right;">
-0.3581
+0.3633
 </td>
 <td style="text-align:right;">
-2.7406
+2.7330
 </td>
 </tr>
 <tr>
@@ -1105,10 +1105,10 @@ expected_draws
 6
 </td>
 <td style="text-align:right;">
-0.3637
+0.3647
 </td>
 <td style="text-align:right;">
-2.7213
+2.7297
 </td>
 </tr>
 <tr>
@@ -1116,10 +1116,10 @@ expected_draws
 7
 </td>
 <td style="text-align:right;">
-0.3746
+0.3681
 </td>
 <td style="text-align:right;">
-2.6929
+2.7180
 </td>
 </tr>
 <tr>
@@ -1127,10 +1127,10 @@ expected_draws
 8
 </td>
 <td style="text-align:right;">
-0.3641
+0.3689
 </td>
 <td style="text-align:right;">
-2.7386
+2.7142
 </td>
 </tr>
 <tr>
@@ -1138,10 +1138,10 @@ expected_draws
 9
 </td>
 <td style="text-align:right;">
-0.3680
+0.3632
 </td>
 <td style="text-align:right;">
-2.7109
+2.7300
 </td>
 </tr>
 <tr>
@@ -1149,10 +1149,10 @@ expected_draws
 10
 </td>
 <td style="text-align:right;">
-0.3673
+0.3754
 </td>
 <td style="text-align:right;">
-2.7273
+2.6944
 </td>
 </tr>
 <tr>
@@ -1160,10 +1160,10 @@ expected_draws
 15
 </td>
 <td style="text-align:right;">
-0.3641
+0.3678
 </td>
 <td style="text-align:right;">
-2.7343
+2.7184
 </td>
 </tr>
 <tr>
@@ -1171,10 +1171,10 @@ expected_draws
 20
 </td>
 <td style="text-align:right;">
-0.3778
+0.3633
 </td>
 <td style="text-align:right;">
-2.6860
+2.7116
 </td>
 </tr>
 <tr>
@@ -1182,10 +1182,10 @@ expected_draws
 25
 </td>
 <td style="text-align:right;">
-0.3731
+0.3594
 </td>
 <td style="text-align:right;">
-2.6947
+2.7363
 </td>
 </tr>
 <tr>
@@ -1193,10 +1193,10 @@ expected_draws
 30
 </td>
 <td style="text-align:right;">
-0.3740
+0.3726
 </td>
 <td style="text-align:right;">
-2.7128
+2.6940
 </td>
 </tr>
 <tr>
@@ -1204,10 +1204,10 @@ expected_draws
 35
 </td>
 <td style="text-align:right;">
-0.3679
+0.3648
 </td>
 <td style="text-align:right;">
-2.7118
+2.7404
 </td>
 </tr>
 <tr>
@@ -1215,10 +1215,10 @@ expected_draws
 40
 </td>
 <td style="text-align:right;">
-0.3643
+0.3672
 </td>
 <td style="text-align:right;">
-2.7169
+2.7364
 </td>
 </tr>
 <tr>
@@ -1226,10 +1226,10 @@ expected_draws
 45
 </td>
 <td style="text-align:right;">
-0.3781
+0.3598
 </td>
 <td style="text-align:right;">
-2.6751
+2.7527
 </td>
 </tr>
 <tr>
@@ -1237,10 +1237,10 @@ expected_draws
 50
 </td>
 <td style="text-align:right;">
-0.3658
+0.3749
 </td>
 <td style="text-align:right;">
-2.6987
+2.7053
 </td>
 </tr>
 <tr>
@@ -1248,10 +1248,10 @@ expected_draws
 55
 </td>
 <td style="text-align:right;">
-0.3705
+0.3724
 </td>
 <td style="text-align:right;">
-2.6915
+2.7381
 </td>
 </tr>
 <tr>
@@ -1259,10 +1259,10 @@ expected_draws
 60
 </td>
 <td style="text-align:right;">
-0.3687
+0.3688
 </td>
 <td style="text-align:right;">
-2.7248
+2.7570
 </td>
 </tr>
 </tbody>
@@ -1299,101 +1299,101 @@ A <strong>derangement</strong> of a vector is a permutation of it in which no el
 </ol>
 </blockquote>
 <p>Creating this game in R requires some work, beginning with the creation of a deck of cards, and continuing with the creation of some functions to manage the game play. Playing the game for a while might help the reader make sense of the code below.</p>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="R-sim-probability.html#cb218-1" tabindex="-1"></a><span class="co">#Build a Deck </span></span>
-<span id="cb218-2"><a href="R-sim-probability.html#cb218-2" tabindex="-1"></a>rank <span class="ot">=</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">10</span>,<span class="st">&quot;J&quot;</span>,<span class="st">&quot;Q&quot;</span>,<span class="st">&quot;K&quot;</span>,<span class="st">&quot;A&quot;</span>),<span class="dv">4</span>)</span>
-<span id="cb218-3"><a href="R-sim-probability.html#cb218-3" tabindex="-1"></a>suit <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;clubs&quot;</span>,<span class="dv">13</span>),<span class="fu">rep</span>(<span class="st">&quot;diamonds&quot;</span>,<span class="dv">13</span>),<span class="fu">rep</span>(<span class="st">&quot;hearts&quot;</span>,<span class="dv">13</span>),<span class="fu">rep</span>(<span class="st">&quot;spades&quot;</span>,<span class="dv">13</span>))</span>
-<span id="cb218-4"><a href="R-sim-probability.html#cb218-4" tabindex="-1"></a>deck <span class="ot">=</span> <span class="fu">paste0</span>(rank,<span class="st">&quot;-&quot;</span>,suit) <span class="co">#standard deck of cards</span></span>
-<span id="cb218-5"><a href="R-sim-probability.html#cb218-5" tabindex="-1"></a><span class="fu">sample</span>(deck,<span class="dv">4</span>) <span class="co">#display four random cards</span></span></code></pre></div>
-<pre><code>## [1] &quot;K-clubs&quot;    &quot;Q-hearts&quot;   &quot;5-diamonds&quot; &quot;7-diamonds&quot;</code></pre>
-<p>Here’s code for playing the game with a lot of printed statements to increase the drama of each turn. We do not run the code here, but recommend you copy and paste it into a script in your own session and play a few times to get the feel for it.</p>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="R-sim-probability.html#cb220-1" tabindex="-1"></a><span class="co">#build a deck</span></span>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="R-sim-probability.html#cb220-1" tabindex="-1"></a><span class="co">#Build a Deck </span></span>
 <span id="cb220-2"><a href="R-sim-probability.html#cb220-2" tabindex="-1"></a>rank <span class="ot">=</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">10</span>,<span class="st">&quot;J&quot;</span>,<span class="st">&quot;Q&quot;</span>,<span class="st">&quot;K&quot;</span>,<span class="st">&quot;A&quot;</span>),<span class="dv">4</span>)</span>
 <span id="cb220-3"><a href="R-sim-probability.html#cb220-3" tabindex="-1"></a>suit <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;clubs&quot;</span>,<span class="dv">13</span>),<span class="fu">rep</span>(<span class="st">&quot;diamonds&quot;</span>,<span class="dv">13</span>),<span class="fu">rep</span>(<span class="st">&quot;hearts&quot;</span>,<span class="dv">13</span>),<span class="fu">rep</span>(<span class="st">&quot;spades&quot;</span>,<span class="dv">13</span>))</span>
-<span id="cb220-4"><a href="R-sim-probability.html#cb220-4" tabindex="-1"></a>deck <span class="ot">=</span> <span class="fu">paste0</span>(rank,<span class="st">&quot;-&quot;</span>,suit)</span>
-<span id="cb220-5"><a href="R-sim-probability.html#cb220-5" tabindex="-1"></a></span>
-<span id="cb220-6"><a href="R-sim-probability.html#cb220-6" tabindex="-1"></a><span class="co">#game functions</span></span>
-<span id="cb220-7"><a href="R-sim-probability.html#cb220-7" tabindex="-1"></a>rank <span class="ot">&lt;-</span> <span class="cf">function</span>(card){ <span class="co">#extracts the rank from the card string</span></span>
-<span id="cb220-8"><a href="R-sim-probability.html#cb220-8" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">unlist</span>(<span class="fu">strsplit</span>(card,<span class="st">&quot;-&quot;</span>))[<span class="dv">1</span>])</span>
-<span id="cb220-9"><a href="R-sim-probability.html#cb220-9" tabindex="-1"></a>}</span>
-<span id="cb220-10"><a href="R-sim-probability.html#cb220-10" tabindex="-1"></a>suit <span class="ot">&lt;-</span> <span class="cf">function</span>(card){ <span class="co">#extracts the suit from the card string</span></span>
-<span id="cb220-11"><a href="R-sim-probability.html#cb220-11" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">unlist</span>(<span class="fu">strsplit</span>(card,<span class="st">&quot;-&quot;</span>))[<span class="dv">2</span>])</span>
-<span id="cb220-12"><a href="R-sim-probability.html#cb220-12" tabindex="-1"></a>}</span>
-<span id="cb220-13"><a href="R-sim-probability.html#cb220-13" tabindex="-1"></a>scan <span class="ot">&lt;-</span> <span class="cf">function</span>(hand){ <span class="co">#scans the hand for hand reductions</span></span>
-<span id="cb220-14"><a href="R-sim-probability.html#cb220-14" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(hand) <span class="sc">&lt;=</span> <span class="dv">3</span>){<span class="fu">return</span>(hand)}</span>
-<span id="cb220-15"><a href="R-sim-probability.html#cb220-15" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">rank</span>(hand[<span class="dv">1</span>])<span class="sc">==</span><span class="fu">rank</span>(hand[<span class="dv">4</span>])){<span class="fu">return</span>(hand[<span class="sc">-</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)])}</span>
-<span id="cb220-16"><a href="R-sim-probability.html#cb220-16" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">suit</span>(hand[<span class="dv">1</span>])<span class="sc">==</span><span class="fu">suit</span>(hand[<span class="dv">4</span>])){</span>
-<span id="cb220-17"><a href="R-sim-probability.html#cb220-17" tabindex="-1"></a>      hand <span class="ot">&lt;-</span> hand[<span class="sc">-</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>)]</span>
-<span id="cb220-18"><a href="R-sim-probability.html#cb220-18" tabindex="-1"></a>      hand <span class="ot">&lt;-</span> <span class="fu">scan</span>(hand)</span>
-<span id="cb220-19"><a href="R-sim-probability.html#cb220-19" tabindex="-1"></a>  }</span>
-<span id="cb220-20"><a href="R-sim-probability.html#cb220-20" tabindex="-1"></a>  <span class="fu">return</span>(hand)</span>
-<span id="cb220-21"><a href="R-sim-probability.html#cb220-21" tabindex="-1"></a>}</span>
-<span id="cb220-22"><a href="R-sim-probability.html#cb220-22" tabindex="-1"></a></span>
-<span id="cb220-23"><a href="R-sim-probability.html#cb220-23" tabindex="-1"></a><span class="co">#play game with commentary</span></span>
-<span id="cb220-24"><a href="R-sim-probability.html#cb220-24" tabindex="-1"></a>hand <span class="ot">=</span> <span class="fu">c</span>()</span>
-<span id="cb220-25"><a href="R-sim-probability.html#cb220-25" tabindex="-1"></a>draw_pile <span class="ot">=</span> <span class="fu">sample</span>(deck)<span class="co">#shuffles the deck</span></span>
-<span id="cb220-26"><a href="R-sim-probability.html#cb220-26" tabindex="-1"></a><span class="cf">for</span> (k <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(deck)){</span>
-<span id="cb220-27"><a href="R-sim-probability.html#cb220-27" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;Turn&quot;</span>,k,<span class="st">&quot;hand after draw but before scanning:&quot;</span>))</span>
-<span id="cb220-28"><a href="R-sim-probability.html#cb220-28" tabindex="-1"></a>  hand <span class="ot">&lt;-</span> <span class="fu">c</span>(draw_pile[k],hand) <span class="co">#add card to hand</span></span>
-<span id="cb220-29"><a href="R-sim-probability.html#cb220-29" tabindex="-1"></a>  <span class="fu">print</span>(hand)</span>
-<span id="cb220-30"><a href="R-sim-probability.html#cb220-30" tabindex="-1"></a>  hand <span class="ot">&lt;-</span> <span class="fu">scan</span>(hand)</span>
-<span id="cb220-31"><a href="R-sim-probability.html#cb220-31" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&#39;=================&#39;</span>)</span>
-<span id="cb220-32"><a href="R-sim-probability.html#cb220-32" tabindex="-1"></a>}</span>
-<span id="cb220-33"><a href="R-sim-probability.html#cb220-33" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;Game score:&quot;</span>,<span class="fu">length</span>(hand)))</span></code></pre></div>
+<span id="cb220-4"><a href="R-sim-probability.html#cb220-4" tabindex="-1"></a>deck <span class="ot">=</span> <span class="fu">paste0</span>(rank,<span class="st">&quot;-&quot;</span>,suit) <span class="co">#standard deck of cards</span></span>
+<span id="cb220-5"><a href="R-sim-probability.html#cb220-5" tabindex="-1"></a><span class="fu">sample</span>(deck,<span class="dv">4</span>) <span class="co">#display four random cards</span></span></code></pre></div>
+<pre><code>## [1] &quot;10-clubs&quot;   &quot;9-diamonds&quot; &quot;9-hearts&quot;   &quot;2-clubs&quot;</code></pre>
+<p>Here’s code for playing the game with a lot of printed statements to increase the drama of each turn. We do not run the code here, but recommend you copy and paste it into a script in your own session and play a few times to get the feel for it.</p>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="R-sim-probability.html#cb222-1" tabindex="-1"></a><span class="co">#build a deck</span></span>
+<span id="cb222-2"><a href="R-sim-probability.html#cb222-2" tabindex="-1"></a>rank <span class="ot">=</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">10</span>,<span class="st">&quot;J&quot;</span>,<span class="st">&quot;Q&quot;</span>,<span class="st">&quot;K&quot;</span>,<span class="st">&quot;A&quot;</span>),<span class="dv">4</span>)</span>
+<span id="cb222-3"><a href="R-sim-probability.html#cb222-3" tabindex="-1"></a>suit <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;clubs&quot;</span>,<span class="dv">13</span>),<span class="fu">rep</span>(<span class="st">&quot;diamonds&quot;</span>,<span class="dv">13</span>),<span class="fu">rep</span>(<span class="st">&quot;hearts&quot;</span>,<span class="dv">13</span>),<span class="fu">rep</span>(<span class="st">&quot;spades&quot;</span>,<span class="dv">13</span>))</span>
+<span id="cb222-4"><a href="R-sim-probability.html#cb222-4" tabindex="-1"></a>deck <span class="ot">=</span> <span class="fu">paste0</span>(rank,<span class="st">&quot;-&quot;</span>,suit)</span>
+<span id="cb222-5"><a href="R-sim-probability.html#cb222-5" tabindex="-1"></a></span>
+<span id="cb222-6"><a href="R-sim-probability.html#cb222-6" tabindex="-1"></a><span class="co">#game functions</span></span>
+<span id="cb222-7"><a href="R-sim-probability.html#cb222-7" tabindex="-1"></a>rank <span class="ot">&lt;-</span> <span class="cf">function</span>(card){ <span class="co">#extracts the rank from the card string</span></span>
+<span id="cb222-8"><a href="R-sim-probability.html#cb222-8" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">unlist</span>(<span class="fu">strsplit</span>(card,<span class="st">&quot;-&quot;</span>))[<span class="dv">1</span>])</span>
+<span id="cb222-9"><a href="R-sim-probability.html#cb222-9" tabindex="-1"></a>}</span>
+<span id="cb222-10"><a href="R-sim-probability.html#cb222-10" tabindex="-1"></a>suit <span class="ot">&lt;-</span> <span class="cf">function</span>(card){ <span class="co">#extracts the suit from the card string</span></span>
+<span id="cb222-11"><a href="R-sim-probability.html#cb222-11" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">unlist</span>(<span class="fu">strsplit</span>(card,<span class="st">&quot;-&quot;</span>))[<span class="dv">2</span>])</span>
+<span id="cb222-12"><a href="R-sim-probability.html#cb222-12" tabindex="-1"></a>}</span>
+<span id="cb222-13"><a href="R-sim-probability.html#cb222-13" tabindex="-1"></a>scan <span class="ot">&lt;-</span> <span class="cf">function</span>(hand){ <span class="co">#scans the hand for hand reductions</span></span>
+<span id="cb222-14"><a href="R-sim-probability.html#cb222-14" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(hand) <span class="sc">&lt;=</span> <span class="dv">3</span>){<span class="fu">return</span>(hand)}</span>
+<span id="cb222-15"><a href="R-sim-probability.html#cb222-15" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">rank</span>(hand[<span class="dv">1</span>])<span class="sc">==</span><span class="fu">rank</span>(hand[<span class="dv">4</span>])){<span class="fu">return</span>(hand[<span class="sc">-</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)])}</span>
+<span id="cb222-16"><a href="R-sim-probability.html#cb222-16" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">suit</span>(hand[<span class="dv">1</span>])<span class="sc">==</span><span class="fu">suit</span>(hand[<span class="dv">4</span>])){</span>
+<span id="cb222-17"><a href="R-sim-probability.html#cb222-17" tabindex="-1"></a>      hand <span class="ot">&lt;-</span> hand[<span class="sc">-</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>)]</span>
+<span id="cb222-18"><a href="R-sim-probability.html#cb222-18" tabindex="-1"></a>      hand <span class="ot">&lt;-</span> <span class="fu">scan</span>(hand)</span>
+<span id="cb222-19"><a href="R-sim-probability.html#cb222-19" tabindex="-1"></a>  }</span>
+<span id="cb222-20"><a href="R-sim-probability.html#cb222-20" tabindex="-1"></a>  <span class="fu">return</span>(hand)</span>
+<span id="cb222-21"><a href="R-sim-probability.html#cb222-21" tabindex="-1"></a>}</span>
+<span id="cb222-22"><a href="R-sim-probability.html#cb222-22" tabindex="-1"></a></span>
+<span id="cb222-23"><a href="R-sim-probability.html#cb222-23" tabindex="-1"></a><span class="co">#play game with commentary</span></span>
+<span id="cb222-24"><a href="R-sim-probability.html#cb222-24" tabindex="-1"></a>hand <span class="ot">=</span> <span class="fu">c</span>()</span>
+<span id="cb222-25"><a href="R-sim-probability.html#cb222-25" tabindex="-1"></a>draw_pile <span class="ot">=</span> <span class="fu">sample</span>(deck)<span class="co">#shuffles the deck</span></span>
+<span id="cb222-26"><a href="R-sim-probability.html#cb222-26" tabindex="-1"></a><span class="cf">for</span> (k <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(deck)){</span>
+<span id="cb222-27"><a href="R-sim-probability.html#cb222-27" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;Turn&quot;</span>,k,<span class="st">&quot;hand after draw but before scanning:&quot;</span>))</span>
+<span id="cb222-28"><a href="R-sim-probability.html#cb222-28" tabindex="-1"></a>  hand <span class="ot">&lt;-</span> <span class="fu">c</span>(draw_pile[k],hand) <span class="co">#add card to hand</span></span>
+<span id="cb222-29"><a href="R-sim-probability.html#cb222-29" tabindex="-1"></a>  <span class="fu">print</span>(hand)</span>
+<span id="cb222-30"><a href="R-sim-probability.html#cb222-30" tabindex="-1"></a>  hand <span class="ot">&lt;-</span> <span class="fu">scan</span>(hand)</span>
+<span id="cb222-31"><a href="R-sim-probability.html#cb222-31" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&#39;=================&#39;</span>)</span>
+<span id="cb222-32"><a href="R-sim-probability.html#cb222-32" tabindex="-1"></a>}</span>
+<span id="cb222-33"><a href="R-sim-probability.html#cb222-33" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;Game score:&quot;</span>,<span class="fu">length</span>(hand)))</span></code></pre></div>
 <p>Here’s a play game function that plays the game (without commentary) and returns the size of your hand after each turn.</p>
-<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="R-sim-probability.html#cb221-1" tabindex="-1"></a>play_game <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
-<span id="cb221-2"><a href="R-sim-probability.html#cb221-2" tabindex="-1"></a>  <span class="co">#build a deck</span></span>
-<span id="cb221-3"><a href="R-sim-probability.html#cb221-3" tabindex="-1"></a>  rank <span class="ot">=</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">10</span>,<span class="st">&quot;J&quot;</span>,<span class="st">&quot;Q&quot;</span>,<span class="st">&quot;K&quot;</span>,<span class="st">&quot;A&quot;</span>),<span class="dv">4</span>)</span>
-<span id="cb221-4"><a href="R-sim-probability.html#cb221-4" tabindex="-1"></a>  suit <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;clubs&quot;</span>,<span class="dv">13</span>),<span class="fu">rep</span>(<span class="st">&quot;diamonds&quot;</span>,<span class="dv">13</span>),<span class="fu">rep</span>(<span class="st">&quot;hearts&quot;</span>,<span class="dv">13</span>),<span class="fu">rep</span>(<span class="st">&quot;spades&quot;</span>,<span class="dv">13</span>))</span>
-<span id="cb221-5"><a href="R-sim-probability.html#cb221-5" tabindex="-1"></a>  deck <span class="ot">=</span> <span class="fu">paste0</span>(rank,<span class="st">&quot;-&quot;</span>,suit)</span>
-<span id="cb221-6"><a href="R-sim-probability.html#cb221-6" tabindex="-1"></a>  </span>
-<span id="cb221-7"><a href="R-sim-probability.html#cb221-7" tabindex="-1"></a>  <span class="co">#game functions</span></span>
-<span id="cb221-8"><a href="R-sim-probability.html#cb221-8" tabindex="-1"></a>  rank <span class="ot">&lt;-</span> <span class="cf">function</span>(card){ <span class="co">#extracts the rank from the card string</span></span>
-<span id="cb221-9"><a href="R-sim-probability.html#cb221-9" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">unlist</span>(<span class="fu">strsplit</span>(card,<span class="st">&quot;-&quot;</span>))[<span class="dv">1</span>])</span>
-<span id="cb221-10"><a href="R-sim-probability.html#cb221-10" tabindex="-1"></a>    }</span>
-<span id="cb221-11"><a href="R-sim-probability.html#cb221-11" tabindex="-1"></a>  suit <span class="ot">&lt;-</span> <span class="cf">function</span>(card){ <span class="co">#extracts the suit from the card string</span></span>
-<span id="cb221-12"><a href="R-sim-probability.html#cb221-12" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">unlist</span>(<span class="fu">strsplit</span>(card,<span class="st">&quot;-&quot;</span>))[<span class="dv">2</span>])</span>
-<span id="cb221-13"><a href="R-sim-probability.html#cb221-13" tabindex="-1"></a>    }</span>
-<span id="cb221-14"><a href="R-sim-probability.html#cb221-14" tabindex="-1"></a>  scan <span class="ot">&lt;-</span> <span class="cf">function</span>(hand){ <span class="co">#scans the hand for hand reductions</span></span>
-<span id="cb221-15"><a href="R-sim-probability.html#cb221-15" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">length</span>(hand) <span class="sc">&lt;=</span> <span class="dv">3</span>){<span class="fu">return</span>(hand)}</span>
-<span id="cb221-16"><a href="R-sim-probability.html#cb221-16" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">rank</span>(hand[<span class="dv">1</span>])<span class="sc">==</span><span class="fu">rank</span>(hand[<span class="dv">4</span>])){<span class="fu">return</span>(hand[<span class="sc">-</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)])}</span>
-<span id="cb221-17"><a href="R-sim-probability.html#cb221-17" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">suit</span>(hand[<span class="dv">1</span>])<span class="sc">==</span><span class="fu">suit</span>(hand[<span class="dv">4</span>])){</span>
-<span id="cb221-18"><a href="R-sim-probability.html#cb221-18" tabindex="-1"></a>      hand <span class="ot">&lt;-</span> hand[<span class="sc">-</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>)]</span>
-<span id="cb221-19"><a href="R-sim-probability.html#cb221-19" tabindex="-1"></a>      hand <span class="ot">&lt;-</span> <span class="fu">scan</span>(hand)</span>
-<span id="cb221-20"><a href="R-sim-probability.html#cb221-20" tabindex="-1"></a>      }</span>
-<span id="cb221-21"><a href="R-sim-probability.html#cb221-21" tabindex="-1"></a>    <span class="fu">return</span>(hand)</span>
-<span id="cb221-22"><a href="R-sim-probability.html#cb221-22" tabindex="-1"></a>    }</span>
-<span id="cb221-23"><a href="R-sim-probability.html#cb221-23" tabindex="-1"></a>  <span class="co">#play game without comment, returning vector of hand_sizes</span></span>
-<span id="cb221-24"><a href="R-sim-probability.html#cb221-24" tabindex="-1"></a>  hand <span class="ot">=</span> <span class="fu">c</span>()</span>
-<span id="cb221-25"><a href="R-sim-probability.html#cb221-25" tabindex="-1"></a>  draw_pile <span class="ot">=</span> <span class="fu">sample</span>(deck)<span class="co">#shuffles the deck</span></span>
-<span id="cb221-26"><a href="R-sim-probability.html#cb221-26" tabindex="-1"></a>  hand_size <span class="ot">=</span> <span class="fu">c</span>()</span>
-<span id="cb221-27"><a href="R-sim-probability.html#cb221-27" tabindex="-1"></a>  <span class="cf">for</span> (k <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(deck)){</span>
-<span id="cb221-28"><a href="R-sim-probability.html#cb221-28" tabindex="-1"></a>    hand <span class="ot">&lt;-</span> <span class="fu">c</span>(draw_pile[k],hand) <span class="co">#add card to hand</span></span>
-<span id="cb221-29"><a href="R-sim-probability.html#cb221-29" tabindex="-1"></a>    hand <span class="ot">&lt;-</span> <span class="fu">scan</span>(hand) <span class="co">#look for reductions</span></span>
-<span id="cb221-30"><a href="R-sim-probability.html#cb221-30" tabindex="-1"></a>    hand_size[k]<span class="ot">=</span><span class="fu">length</span>(hand) <span class="co">#record length of hand after turn k</span></span>
-<span id="cb221-31"><a href="R-sim-probability.html#cb221-31" tabindex="-1"></a>    }</span>
-<span id="cb221-32"><a href="R-sim-probability.html#cb221-32" tabindex="-1"></a>  <span class="fu">return</span>(hand_size)</span>
-<span id="cb221-33"><a href="R-sim-probability.html#cb221-33" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="R-sim-probability.html#cb223-1" tabindex="-1"></a>play_game <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
+<span id="cb223-2"><a href="R-sim-probability.html#cb223-2" tabindex="-1"></a>  <span class="co">#build a deck</span></span>
+<span id="cb223-3"><a href="R-sim-probability.html#cb223-3" tabindex="-1"></a>  rank <span class="ot">=</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">10</span>,<span class="st">&quot;J&quot;</span>,<span class="st">&quot;Q&quot;</span>,<span class="st">&quot;K&quot;</span>,<span class="st">&quot;A&quot;</span>),<span class="dv">4</span>)</span>
+<span id="cb223-4"><a href="R-sim-probability.html#cb223-4" tabindex="-1"></a>  suit <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;clubs&quot;</span>,<span class="dv">13</span>),<span class="fu">rep</span>(<span class="st">&quot;diamonds&quot;</span>,<span class="dv">13</span>),<span class="fu">rep</span>(<span class="st">&quot;hearts&quot;</span>,<span class="dv">13</span>),<span class="fu">rep</span>(<span class="st">&quot;spades&quot;</span>,<span class="dv">13</span>))</span>
+<span id="cb223-5"><a href="R-sim-probability.html#cb223-5" tabindex="-1"></a>  deck <span class="ot">=</span> <span class="fu">paste0</span>(rank,<span class="st">&quot;-&quot;</span>,suit)</span>
+<span id="cb223-6"><a href="R-sim-probability.html#cb223-6" tabindex="-1"></a>  </span>
+<span id="cb223-7"><a href="R-sim-probability.html#cb223-7" tabindex="-1"></a>  <span class="co">#game functions</span></span>
+<span id="cb223-8"><a href="R-sim-probability.html#cb223-8" tabindex="-1"></a>  rank <span class="ot">&lt;-</span> <span class="cf">function</span>(card){ <span class="co">#extracts the rank from the card string</span></span>
+<span id="cb223-9"><a href="R-sim-probability.html#cb223-9" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">unlist</span>(<span class="fu">strsplit</span>(card,<span class="st">&quot;-&quot;</span>))[<span class="dv">1</span>])</span>
+<span id="cb223-10"><a href="R-sim-probability.html#cb223-10" tabindex="-1"></a>    }</span>
+<span id="cb223-11"><a href="R-sim-probability.html#cb223-11" tabindex="-1"></a>  suit <span class="ot">&lt;-</span> <span class="cf">function</span>(card){ <span class="co">#extracts the suit from the card string</span></span>
+<span id="cb223-12"><a href="R-sim-probability.html#cb223-12" tabindex="-1"></a>    <span class="fu">return</span>(<span class="fu">unlist</span>(<span class="fu">strsplit</span>(card,<span class="st">&quot;-&quot;</span>))[<span class="dv">2</span>])</span>
+<span id="cb223-13"><a href="R-sim-probability.html#cb223-13" tabindex="-1"></a>    }</span>
+<span id="cb223-14"><a href="R-sim-probability.html#cb223-14" tabindex="-1"></a>  scan <span class="ot">&lt;-</span> <span class="cf">function</span>(hand){ <span class="co">#scans the hand for hand reductions</span></span>
+<span id="cb223-15"><a href="R-sim-probability.html#cb223-15" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">length</span>(hand) <span class="sc">&lt;=</span> <span class="dv">3</span>){<span class="fu">return</span>(hand)}</span>
+<span id="cb223-16"><a href="R-sim-probability.html#cb223-16" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">rank</span>(hand[<span class="dv">1</span>])<span class="sc">==</span><span class="fu">rank</span>(hand[<span class="dv">4</span>])){<span class="fu">return</span>(hand[<span class="sc">-</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>)])}</span>
+<span id="cb223-17"><a href="R-sim-probability.html#cb223-17" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">suit</span>(hand[<span class="dv">1</span>])<span class="sc">==</span><span class="fu">suit</span>(hand[<span class="dv">4</span>])){</span>
+<span id="cb223-18"><a href="R-sim-probability.html#cb223-18" tabindex="-1"></a>      hand <span class="ot">&lt;-</span> hand[<span class="sc">-</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>)]</span>
+<span id="cb223-19"><a href="R-sim-probability.html#cb223-19" tabindex="-1"></a>      hand <span class="ot">&lt;-</span> <span class="fu">scan</span>(hand)</span>
+<span id="cb223-20"><a href="R-sim-probability.html#cb223-20" tabindex="-1"></a>      }</span>
+<span id="cb223-21"><a href="R-sim-probability.html#cb223-21" tabindex="-1"></a>    <span class="fu">return</span>(hand)</span>
+<span id="cb223-22"><a href="R-sim-probability.html#cb223-22" tabindex="-1"></a>    }</span>
+<span id="cb223-23"><a href="R-sim-probability.html#cb223-23" tabindex="-1"></a>  <span class="co">#play game without comment, returning vector of hand_sizes</span></span>
+<span id="cb223-24"><a href="R-sim-probability.html#cb223-24" tabindex="-1"></a>  hand <span class="ot">=</span> <span class="fu">c</span>()</span>
+<span id="cb223-25"><a href="R-sim-probability.html#cb223-25" tabindex="-1"></a>  draw_pile <span class="ot">=</span> <span class="fu">sample</span>(deck)<span class="co">#shuffles the deck</span></span>
+<span id="cb223-26"><a href="R-sim-probability.html#cb223-26" tabindex="-1"></a>  hand_size <span class="ot">=</span> <span class="fu">c</span>()</span>
+<span id="cb223-27"><a href="R-sim-probability.html#cb223-27" tabindex="-1"></a>  <span class="cf">for</span> (k <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(deck)){</span>
+<span id="cb223-28"><a href="R-sim-probability.html#cb223-28" tabindex="-1"></a>    hand <span class="ot">&lt;-</span> <span class="fu">c</span>(draw_pile[k],hand) <span class="co">#add card to hand</span></span>
+<span id="cb223-29"><a href="R-sim-probability.html#cb223-29" tabindex="-1"></a>    hand <span class="ot">&lt;-</span> <span class="fu">scan</span>(hand) <span class="co">#look for reductions</span></span>
+<span id="cb223-30"><a href="R-sim-probability.html#cb223-30" tabindex="-1"></a>    hand_size[k]<span class="ot">=</span><span class="fu">length</span>(hand) <span class="co">#record length of hand after turn k</span></span>
+<span id="cb223-31"><a href="R-sim-probability.html#cb223-31" tabindex="-1"></a>    }</span>
+<span id="cb223-32"><a href="R-sim-probability.html#cb223-32" tabindex="-1"></a>  <span class="fu">return</span>(hand_size)</span>
+<span id="cb223-33"><a href="R-sim-probability.html#cb223-33" tabindex="-1"></a>}</span></code></pre></div>
 <p>Now we do our simulations. The result of running the <code>play_game()</code> function is a vector of length 52, indicating the size of our hand after each of our 52 draws. With the trials below, we concatenate these vectors into one long vector <code>results</code> (of length <code>52*trials</code>) which we then convert into matrix with 52 columns in such a way that each row of the matrix represents the hand sizes for a single game.</p>
-<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="R-sim-probability.html#cb222-1" tabindex="-1"></a>trials <span class="ot">=</span> <span class="dv">1000</span></span>
-<span id="cb222-2"><a href="R-sim-probability.html#cb222-2" tabindex="-1"></a>results <span class="ot">=</span> <span class="fu">c</span>()</span>
-<span id="cb222-3"><a href="R-sim-probability.html#cb222-3" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>trials){</span>
-<span id="cb222-4"><a href="R-sim-probability.html#cb222-4" tabindex="-1"></a>  v <span class="ot">=</span> <span class="fu">play_game</span>() </span>
-<span id="cb222-5"><a href="R-sim-probability.html#cb222-5" tabindex="-1"></a>  results <span class="ot">=</span> <span class="fu">c</span>(results,v)</span>
-<span id="cb222-6"><a href="R-sim-probability.html#cb222-6" tabindex="-1"></a>}</span>
-<span id="cb222-7"><a href="R-sim-probability.html#cb222-7" tabindex="-1"></a>M <span class="ot">=</span> <span class="fu">matrix</span>(results,<span class="at">byrow =</span> <span class="cn">TRUE</span>,<span class="at">ncol =</span> <span class="dv">52</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="R-sim-probability.html#cb224-1" tabindex="-1"></a>trials <span class="ot">=</span> <span class="dv">1000</span></span>
+<span id="cb224-2"><a href="R-sim-probability.html#cb224-2" tabindex="-1"></a>results <span class="ot">=</span> <span class="fu">c</span>()</span>
+<span id="cb224-3"><a href="R-sim-probability.html#cb224-3" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>trials){</span>
+<span id="cb224-4"><a href="R-sim-probability.html#cb224-4" tabindex="-1"></a>  v <span class="ot">=</span> <span class="fu">play_game</span>() </span>
+<span id="cb224-5"><a href="R-sim-probability.html#cb224-5" tabindex="-1"></a>  results <span class="ot">=</span> <span class="fu">c</span>(results,v)</span>
+<span id="cb224-6"><a href="R-sim-probability.html#cb224-6" tabindex="-1"></a>}</span>
+<span id="cb224-7"><a href="R-sim-probability.html#cb224-7" tabindex="-1"></a>M <span class="ot">=</span> <span class="fu">matrix</span>(results,<span class="at">byrow =</span> <span class="cn">TRUE</span>,<span class="at">ncol =</span> <span class="dv">52</span>)</span></code></pre></div>
 <p>The last column of this matrix records each of our final game scores, so the fraction of those values less than 10 answer part (a) for us.</p>
 <p>Our estimated probability of winning in a game of Idiot’s delight:</p>
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="R-sim-probability.html#cb223-1" tabindex="-1"></a><span class="fu">sum</span>(M[,<span class="dv">52</span>]<span class="sc">&lt;</span><span class="dv">10</span>)<span class="sc">/</span>trials</span></code></pre></div>
-<pre><code>## [1] 0.297</code></pre>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="R-sim-probability.html#cb225-1" tabindex="-1"></a><span class="fu">sum</span>(M[,<span class="dv">52</span>]<span class="sc">&lt;</span><span class="dv">10</span>)<span class="sc">/</span>trials</span></code></pre></div>
+<pre><code>## [1] 0.331</code></pre>
 <p>For (b), the likelihood of having a reduction on turn <span class="math inline">\(k\)</span> (for each <span class="math inline">\(k = 1,2,\ldots 52\)</span>), we can compare our hand size after turn <span class="math inline">\(k\)</span> with our hand size after turn <span class="math inline">\(k-1\)</span>.</p>
 <p>We know turns <span class="math inline">\(k = 1, 2, 3\)</span> can have no reductions, but starting with <span class="math inline">\(k = 4\)</span> we might:</p>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="R-sim-probability.html#cb225-1" tabindex="-1"></a>reduction <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>) <span class="co"># start by recording 0 reductions for turns 1,2,3</span></span>
-<span id="cb225-2"><a href="R-sim-probability.html#cb225-2" tabindex="-1"></a><span class="cf">for</span> (k <span class="cf">in</span> <span class="dv">4</span><span class="sc">:</span><span class="dv">52</span>){</span>
-<span id="cb225-3"><a href="R-sim-probability.html#cb225-3" tabindex="-1"></a>  reduction[k] <span class="ot">=</span> <span class="fu">sum</span>(M[,k]<span class="sc">&lt;</span>M[,k<span class="dv">-1</span>])</span>
-<span id="cb225-4"><a href="R-sim-probability.html#cb225-4" tabindex="-1"></a>}</span>
-<span id="cb225-5"><a href="R-sim-probability.html#cb225-5" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">52</span>,<span class="at">y=</span>reduction<span class="sc">/</span>trials,<span class="at">type=</span><span class="st">&#39;l&#39;</span>)</span></code></pre></div>
-<p><img src="math340-notes_files/figure-html/unnamed-chunk-154-1.png" width="672" /></p>
-<p>Starting with turn 4 it looks like the likelihood of having a reduction stays roughly constant, at about 0.27.</p>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="R-sim-probability.html#cb227-1" tabindex="-1"></a>reduction <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>) <span class="co"># start by recording 0 reductions for turns 1,2,3</span></span>
+<span id="cb227-2"><a href="R-sim-probability.html#cb227-2" tabindex="-1"></a><span class="cf">for</span> (k <span class="cf">in</span> <span class="dv">4</span><span class="sc">:</span><span class="dv">52</span>){</span>
+<span id="cb227-3"><a href="R-sim-probability.html#cb227-3" tabindex="-1"></a>  reduction[k] <span class="ot">=</span> <span class="fu">sum</span>(M[,k]<span class="sc">&lt;</span>M[,k<span class="dv">-1</span>])</span>
+<span id="cb227-4"><a href="R-sim-probability.html#cb227-4" tabindex="-1"></a>}</span>
+<span id="cb227-5"><a href="R-sim-probability.html#cb227-5" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">52</span>,<span class="at">y=</span>reduction<span class="sc">/</span>trials,<span class="at">type=</span><span class="st">&#39;l&#39;</span>)</span></code></pre></div>
+<p><img src="math340-notes_files/figure-html/unnamed-chunk-155-1.png" width="672" /></p>
+<p>Starting with turn 4 it looks like the likelihood of having a reduction stays roughly constant, at about 0.28.</p>
 
 </div>
 </div>
