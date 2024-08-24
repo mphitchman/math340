@@ -202,7 +202,7 @@ for (i in 1:trials){
       max_run = max(max_run,run) #checks for new max run
       }
     if (flips[k] == "T"){
-      run = 0 #resets current run to 0 if we flip k is "T"
+      run = 0 #resets current run to 0 if flip k is "T"
     }
     results[i]=max_run
   }
@@ -297,7 +297,7 @@ which evaluates to 7980/27720 $\approx 0.288$:
 
 ## Pollsters {#pollsters-R}
 
-> In an upcoming election for mayor of a large city, a pollster plans to predict the winner of the popular vote by taking a random sample of 1000 voters and declaring that the winner will be the one obtaining the most votes in his sample. Suppose that 48 percent of the voters plan to vote for the Republican candidate and 52 percent plan to vote for the Democratic candidate. To get some idea of how reasonable the pollster’s plan is, write a program to make this prediction by simulation. Repeat the simulation 1000 times and see how many times the pollster’s prediction would come true. 
+> *(From Grinstead Snell Text 1.1 Exercise 12)* In an upcoming election for mayor of a large city, a pollster plans to predict the winner of the popular vote by taking a random sample of 1000 voters and declaring that the winner will be the one obtaining the most votes in his sample. Suppose that 48 percent of the voters plan to vote for the Republican candidate and 52 percent plan to vote for the Democratic candidate. To get some idea of how reasonable the pollster’s plan is, write a program to make this prediction by simulation. Repeat the simulation 1000 times and see how many times the pollster’s prediction would come true. 
 
 
 
