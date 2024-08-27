@@ -42,7 +42,7 @@ Given a chance experiment with discrete sample space $S,$ a **probability distri
 1. $m(s) \geq 0$ for all $s \in S,$ and
 2. $\displaystyle \sum_{s \in S} m(s) = 1.$
 
-We define the probability of any event $E$ of $S$ to be $$P(E) = \sum_{s \in E} m(s).$$
+We define the **probability of any event** $E$ of $S$ to be $$P(E) = \sum_{s \in E} m(s).$$
 :::
 
 
@@ -50,7 +50,7 @@ Let's consider our first three chance experiments once more.
 
 1. If we flip a fair coin once, then $S = \{H,T\},$ and it is reasonable to assign the probabilities $$m(H) = \frac{1}{2}, ~ m(T) = \frac{1}{2}.$$
 
-2. If a 6-sided die is balanced, it is reasonable to assign the probabilities $$m(i) = \frac{1}{6}$$ for each $i = 1, 2, 3, 4, 5, 6$.
+2. If a 6-sided die is balanced, it is reasonable to assign the probabilities $$m(i) = \frac{1}{6}$$ for each $i = 1, 2, 3, 4, 5, 6$. If we consider the event $E$ to be that we roll a prime number, then $$P(E) = \sum_{s \in E} m(s) = p(2) + p(3) + p(5) = 1/2.$$ 
 
 3. If we flip a fair coin 3 times, it seems reasonable that each of the 8 possible sequences of three flips in $S$ is equally likely, so we can assign the probability distribution function $m(s) = 1/8$ for each element $s \in S$. 
 
