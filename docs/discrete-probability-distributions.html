@@ -410,12 +410,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><span class="math inline">\(m(s) \geq 0\)</span> for all <span class="math inline">\(s \in S,\)</span> and</li>
 <li><span class="math inline">\(\displaystyle \sum_{s \in S} m(s) = 1.\)</span></li>
 </ol>
-<p>We define the probability of any event <span class="math inline">\(E\)</span> of <span class="math inline">\(S\)</span> to be <span class="math display">\[P(E) = \sum_{s \in E} m(s).\]</span></p>
+<p>We define the <strong>probability of any event</strong> <span class="math inline">\(E\)</span> of <span class="math inline">\(S\)</span> to be <span class="math display">\[P(E) = \sum_{s \in E} m(s).\]</span></p>
 </div>
 <p>Let’s consider our first three chance experiments once more.</p>
 <ol style="list-style-type: decimal">
 <li><p>If we flip a fair coin once, then <span class="math inline">\(S = \{H,T\},\)</span> and it is reasonable to assign the probabilities <span class="math display">\[m(H) = \frac{1}{2}, ~ m(T) = \frac{1}{2}.\]</span></p></li>
-<li><p>If a 6-sided die is balanced, it is reasonable to assign the probabilities <span class="math display">\[m(i) = \frac{1}{6}\]</span> for each <span class="math inline">\(i = 1, 2, 3, 4, 5, 6\)</span>.</p></li>
+<li><p>If a 6-sided die is balanced, it is reasonable to assign the probabilities <span class="math display">\[m(i) = \frac{1}{6}\]</span> for each <span class="math inline">\(i = 1, 2, 3, 4, 5, 6\)</span>. If we consider the event <span class="math inline">\(E\)</span> to be that we roll a prime number, then <span class="math display">\[P(E) = \sum_{s \in E} m(s) = p(2) + p(3) + p(5) = 1/2.\]</span></p></li>
 <li><p>If we flip a fair coin 3 times, it seems reasonable that each of the 8 possible sequences of three flips in <span class="math inline">\(S\)</span> is equally likely, so we can assign the probability distribution function <span class="math inline">\(m(s) = 1/8\)</span> for each element <span class="math inline">\(s \in S\)</span>.</p></li>
 </ol>
 <p>In the case of a countably infinite sample space (such as shooting free throws until we’ve made three), defining a valid probability function requires more care: to check that the sum of all <span class="math inline">\(m(s)\)</span> equals 1 requires the evaluation of an infinite series.</p>
