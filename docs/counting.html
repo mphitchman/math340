@@ -709,11 +709,11 @@ counts the number of ways to do this if we treat the groups as distinct, which w
 <p><span id="thm:distribute-identical-balls-into-distinct-bins" class="theorem"><strong>Theorem 4.2  </strong></span>The number of ways to distribute <span class="math inline">\(n\)</span> identical balls into <span class="math inline">\(r\)</span> distinct bins is <span class="math display">\[\binom{n+r-1}{r-1}.\]</span></p>
 </div>
 <div class="proof">
-<p><span id="unlabeled-div-6" class="proof"><em>Proof</em>. </span>Here’s an outline of the proof. Say we have 8 balls and 3 bins. Here’s a schematic of one way to distribute them:</p>
+<p><span id="unlabeled-div-6" class="proof"><em>Proof</em>. </span>Here’s a proof strategy. Consider the following schematic of one way to distribute 8 balls into 3 bins:</p>
 <p><span class="math display">\[\underline{\vert \text{ oo } \vert}~~~\underline{\vert \text{ oooo } \vert} ~~~ \underline{\vert \text{ oo } \vert}\]</span>
-Two balls into the first bin, 4 into the second, and 2 into the third. We can also represent the distribution by pushing the bins together so that they share walls:</p>
+We see two balls go into the first bin, 4 into the second, and 2 into the third. We can also represent this arrangement by pushing the bins together so that they share walls:</p>
 <p><span class="math display">\[\underline{\vert \text{ oo } \vert \text{ oooo } \vert \text{ oo } \vert}\]</span></p>
-<p>In fact, we don’t really need those two outermost walls to communicate the distribution, or the bin bottoms for that matter:</p>
+<p>In fact, we don’t really need those two outermost walls to communicate the arrangement, or the bin bottoms for that matter:</p>
 <p><span class="math display">\[ \text{oo} \vert \text{oooo} \vert \text{oo}\]</span>
 So each distribution of the 8 balls into 3 bins corresponds to an ordered arrangement of 8 balls and 2 “inner walls”, and we have <span class="math inline">\(\displaystyle\binom{10}{2}\)</span> ways to choose the 2 spots for the inner walls from the 10 spots needed to create the arrangement.</p>
 <p>More generally, with <span class="math inline">\(n\)</span> balls and <span class="math inline">\(r\)</span> bins we will have <span class="math inline">\(r-1\)</span> inner walls, which leads us to the formula <span class="math display">\[\binom{n+r-1}{r-1}.\]</span></p>
@@ -744,7 +744,7 @@ which is <code>choose(29,7)</code> = 1560780. Still, I’ve got options.</p>
 </ol>
 <p>So <span class="math inline">\(|A|\)</span> = 5, and using pencil and paper for this one:</p>
 <p><span class="math display">\[\begin{align*}
-P(|A|) &amp;= \frac{5}{(8\cdot 7 \cdot 6 \cdot 5)/4!} \\
+P(A) &amp;= \frac{5}{(8\cdot 7 \cdot 6 \cdot 5)/4!} \\
        &amp;= \frac{4!}{8 \cdot 7 \cdot 6}\\
        &amp;= \frac{4 \cdot 3 \cdot 2}{8 \cdot 7 \cdot 6}\\
        &amp;= \frac{3}{7 \cdot 6}\\
@@ -784,9 +784,9 @@ and the probability of rejecting the sample is
 <div class="example">
 <p><span id="exm:poker-2" class="example"><strong>Example 4.13  (Poker II) </strong></span></p>
 <blockquote>
-<p>Detemrine the probabilty of drawing each of these standard 5 card poker hands: a Straight, a Flush, and a Straight Flush.</p>
+<p>Determine the probabilty of drawing each of these standard 5 card poker hands: a Straight, a Flush, and a Straight Flush.</p>
 </blockquote>
-<p>These poker hands just keep on coming!</p>
+<p>Let’s count some more types of poker hands. (We first looked at poker hands in Example <a href="counting.html#exm:poker">4.7</a>.)</p>
 <p>A <strong>Straight Flush</strong> is a five cards poker hand in which all five suits are the same, and all five ranks form a run (either 2-6, 3-7, 4-8, 5-9, 6-10, 7-J, 8-Q, 9-K, 10-A).</p>
 <p>A <strong>Straight</strong> consists of five cards such that all five ranks form a run and the hand is not a Straight Flush.</p>
 <p>A <strong>Flush</strong> consists of five cards such that all five suits are the same and the hand is not a Straight Flush.</p>
