@@ -432,14 +432,14 @@ The number of ways to distribute $n$ identical balls into $r$ distinct bins is $
 :::
 
 :::{.proof}
-Here's an outline of the proof. Say we have 8 balls and 3 bins. Here's a schematic of one way to distribute them:
+Here's a proof strategy. Consider the following schematic of one way to distribute 8 balls into 3 bins:
 
 $$\underline{\vert \text{ oo } \vert}~~~\underline{\vert \text{ oooo } \vert} ~~~ \underline{\vert \text{ oo } \vert}$$
-Two balls into the first bin, 4 into the second, and 2 into the third. We can also represent the distribution by pushing the bins together so that they share walls:
+We see two balls go into the first bin, 4 into the second, and 2 into the third. We can also represent this arrangement by pushing the bins together so that they share walls:
 
 $$\underline{\vert \text{ oo } \vert \text{ oooo } \vert \text{ oo } \vert}$$
 
-In fact, we don't really need those two outermost walls to communicate the distribution, or the bin bottoms for that matter:
+In fact, we don't really need those two outermost walls to communicate the arrangement, or the bin bottoms for that matter:
 
 $$ \text{oo} \vert \text{oooo} \vert \text{oo}$$
 So each distribution of the 8 balls into 3 bins corresponds to an ordered arrangement of 8 balls and 2 "inner walls", and we have $\displaystyle\binom{10}{2}$ ways to choose the 2 spots for the inner walls from the 10 spots needed to create the arrangement.  
@@ -478,7 +478,7 @@ The event $A$ that all Democrats are in the subcommitte can be enumerated as fol
   So $|A|$ = 5, and using pencil and paper for this one:
 
 \begin{align*}
-P(|A|) &= \frac{5}{(8\cdot 7 \cdot 6 \cdot 5)/4!} \\
+P(A) &= \frac{5}{(8\cdot 7 \cdot 6 \cdot 5)/4!} \\
        &= \frac{4!}{8 \cdot 7 \cdot 6}\\
        &= \frac{4 \cdot 3 \cdot 2}{8 \cdot 7 \cdot 6}\\
        &= \frac{3}{7 \cdot 6}\\
@@ -529,9 +529,9 @@ $$P(A) = \frac{|A|}{|S|} \approx 0.1279.$$
 
 
 :::{.example #poker-2 name="Poker II"}
-> Detemrine the probabilty of drawing each of these standard 5 card poker hands: a Straight, a Flush, and a Straight Flush.
+> Determine the probabilty of drawing each of these standard 5 card poker hands: a Straight, a Flush, and a Straight Flush.
 
-These poker hands just keep on coming!  
+Let's count some more types of poker hands. (We first looked at poker hands in Example \@ref(exm:poker).) 
 
 A **Straight Flush**\index{poker!Straight Flush} is a five cards poker hand in which all five suits are the same, and all five ranks form a run (either 2-6, 3-7, 4-8, 5-9, 6-10, 7-J, 8-Q, 9-K, 10-A).
 
