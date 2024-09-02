@@ -16,7 +16,7 @@ Here's a simple example to illustrate the point:
 
 > How many Major League Baseball teams are there?
 
-Ok, I can do this! Major League Baseball (MLB) is the (dijoint) union of two leagues, the American League (AL), which has 15 teams, and the National League (NL), which also has 15 teams.  So all of Major League Baseball has 15 + 15 = 30 teams!
+Ok, I can do this! Major League Baseball (MLB) is the (disjoint) union of two leagues, the American League (AL), which has 15 teams, and the National League (NL), which also has 15 teams.  So all of Major League Baseball has 15 + 15 = 30 teams!
 
 
 :::{.proposition name="Multiplication Principle"}
@@ -139,7 +139,7 @@ Referring to the random phones example \@ref(exm:random-phones), without listing
 
 ## Combinations
 
-We let $\displaystyle C^n_r$\index{$\displaystyle C^n_r$} equal the number of ways to choose an unordered arrangement of $r$ distinct elements from a set of $n$ distinct objects. We also let $\displaystyle\binom{n}{k}$ denote this number (read as "n choose r").
+We let $\displaystyle C^n_r$\index{$\displaystyle C^n_r$} equal the number of ways to choose an unordered arrangement of $r$ distinct elements from a set of $n$ distinct objects. We also let $\displaystyle\binom{n}{r}$ denote this number (read as "n choose r").
 
 For instance, $\displaystyle\binom{4}{2}$ gives how many distinct subsets of size 2 can be formed from a set of size 4, and we see that $\displaystyle\binom{4}{2} = 6$ because one can form 6 distinct subsets of size 2 from the set $\{A,B,C,D\}$: $\{A,B\},$ $\{A,C\},$$\{A,D\},$ $\{B,C\},$$\{B,D\},$ $\{C,D\}$.
 
