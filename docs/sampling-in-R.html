@@ -246,10 +246,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="A.1" data-path="sampling-in-R.html"><a href="sampling-in-R.html#vectors-R"><i class="fa fa-check"></i><b>A.1</b> Data vectors</a>
 <ul>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#vector-types"><i class="fa fa-check"></i>vector types</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#matrices"><i class="fa fa-check"></i>Matrices</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#matrices"><i class="fa fa-check"></i>matrices</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#data-frames"><i class="fa fa-check"></i>data frames</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#common-vector-commands"><i class="fa fa-check"></i>common vector commands</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#comparison-operators"><i class="fa fa-check"></i>Comparison Operators</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#comparison-operators"><i class="fa fa-check"></i>comparison operators</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#checking-membership"><i class="fa fa-check"></i>checking membership</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sum-and-which"><i class="fa fa-check"></i><code>sum()</code> and <code>which()</code></a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#extracting-elements"><i class="fa fa-check"></i>extracting elements</a></li>
@@ -268,12 +268,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="A.3" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sampling-in-R-section"><i class="fa fa-check"></i><b>A.3</b> Sampling</a>
 <ul>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-options"><i class="fa fa-check"></i><code>sample()</code> options</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-without-replacement"><i class="fa fa-check"></i>Sample without replacement</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-with-replacement"><i class="fa fa-check"></i>Sample with replacement</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-with-custom-probabilities"><i class="fa fa-check"></i>Sample with custom probabilities</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#example-lefties"><i class="fa fa-check"></i>Example: Lefties</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-without-replacement"><i class="fa fa-check"></i>sample without replacement</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-with-replacement"><i class="fa fa-check"></i>sample with replacement</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-with-custom-probabilities"><i class="fa fa-check"></i>sample with custom probabilities</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#example-lefties"><i class="fa fa-check"></i>example: Lefties</a></li>
 </ul></li>
-<li class="chapter" data-level="A.4" data-path="sampling-in-R.html"><a href="sampling-in-R.html#repeated-sampling"><i class="fa fa-check"></i><b>A.4</b> Repeated Sampling</a>
+<li class="chapter" data-level="A.4" data-path="sampling-in-R.html"><a href="sampling-in-R.html#repeated-sampling"><i class="fa fa-check"></i><b>A.4</b> Repeated sampling</a>
 <ul>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#using-a-for-loop"><i class="fa fa-check"></i>using a <code>for</code> loop</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#using-replicate"><i class="fa fa-check"></i>using <code>replicate()</code></a></li>
@@ -398,7 +398,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We may wish to place data vectors into a two-dimensional structure such as a matrix or a data frame.</p>
 </div>
 <div id="matrices" class="section level3 unnumbered hasAnchor">
-<h3>Matrices<a href="sampling-in-R.html#matrices" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3>matrices<a href="sampling-in-R.html#matrices" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Create a matrix from a vector with the <code>matrix()</code> command, specifying how many rows, and whether we enter the data in the matrix by row, or by column.</p>
 <div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="sampling-in-R.html#cb51-1" tabindex="-1"></a><span class="fu">matrix</span>(<span class="fu">c</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;a&quot;</span>,<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;c&quot;</span>,<span class="st">&quot;c&quot;</span>,<span class="st">&quot;c&quot;</span>,<span class="st">&quot;d&quot;</span>,<span class="st">&quot;d&quot;</span>,<span class="st">&quot;d&quot;</span>),<span class="at">nrow =</span> <span class="dv">4</span>,<span class="at">byrow=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>##      [,1] [,2] [,3]
@@ -451,7 +451,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [20] 713 733 745 755</code></pre>
 </div>
 <div id="comparison-operators" class="section level3 unnumbered hasAnchor">
-<h3>Comparison Operators<a href="sampling-in-R.html#comparison-operators" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3>comparison operators<a href="sampling-in-R.html#comparison-operators" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We compare things in R with various comparison operators, each one returning TRUE or FALSE:</p>
 <ul>
 <li>equal to <code>==</code></li>
@@ -478,7 +478,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="checking-membership" class="section level3 unnumbered hasAnchor">
 <h3>checking membership<a href="sampling-in-R.html#checking-membership" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>One can ask whether a particular element is contained in a vector with the <code>%in%</code> command.</p>
+<p>The <code>%in%</code> command can be used to ask whether a particular element is contained in a vector.</p>
 <div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="sampling-in-R.html#cb72-1" tabindex="-1"></a>v <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;bob&quot;</span>,<span class="st">&quot;wilma&quot;</span>,<span class="st">&quot;hedgie&quot;</span>)</span>
 <span id="cb72-2"><a href="sampling-in-R.html#cb72-2" tabindex="-1"></a><span class="st">&quot;frank&quot;</span> <span class="sc">%in%</span> v</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
@@ -641,17 +641,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We use the <code>sample(x,...)</code> command to sample from vector <code>x</code>.</p>
 <p>For instance, we can draw a random sample of size 2 from <code>hr</code>:</p>
 <div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="sampling-in-R.html#cb115-1" tabindex="-1"></a><span class="fu">sample</span>(hr,<span class="dv">2</span>)</span></code></pre></div>
-<pre><code>## [1] 20 44</code></pre>
+<pre><code>## [1] 44 13</code></pre>
 <p>Here’s another example. Let’s grab 20 skittles at random from the bag <code>skittles</code> we created in example <a href="sampling-in-R.html#exm:skittles">A.1</a> and count how many orange ones we get:</p>
 <div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="sampling-in-R.html#cb117-1" tabindex="-1"></a>grab<span class="ot">=</span><span class="fu">sample</span>(skittles,<span class="dv">20</span>)</span>
 <span id="cb117-2"><a href="sampling-in-R.html#cb117-2" tabindex="-1"></a><span class="fu">table</span>(grab)</span></code></pre></div>
 <pre><code>## grab
-##  green orange purple    red yellow 
-##      3      2      1      7      7</code></pre>
+##  green orange    red yellow 
+##      8      4      5      3</code></pre>
 <p>The <code>table()</code> command counts how many of each color :).</p>
 <p>We could have found the orange count directly with</p>
 <div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="sampling-in-R.html#cb119-1" tabindex="-1"></a><span class="fu">sum</span>(grab<span class="sc">==</span><span class="st">&quot;orange&quot;</span>)</span></code></pre></div>
-<pre><code>## [1] 2</code></pre>
+<pre><code>## [1] 4</code></pre>
 <div id="sample-options" class="section level3 unnumbered hasAnchor">
 <h3><code>sample()</code> options<a href="sampling-in-R.html#sample-options" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Typically, we provide the <code>sample()</code> command with 3 or 4 arguments, in this order:</p>
@@ -671,20 +671,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Here are handy special cases, illustrated with this vector:</p>
 <div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="sampling-in-R.html#cb121-1" tabindex="-1"></a>animals <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;cat&quot;</span>,<span class="st">&quot;dog&quot;</span>,<span class="st">&quot;hedgehog&quot;</span>,<span class="st">&quot;rabbit&quot;</span>)</span></code></pre></div>
 <div id="permutations-1" class="section level4 unnumbered hasAnchor">
-<h4>Permutations<a href="sampling-in-R.html#permutations-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<h4>permutations<a href="sampling-in-R.html#permutations-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Use <code>sample(x)</code> to generate a <em>random permutation</em> of <code>x</code>:</p>
 <div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="sampling-in-R.html#cb122-1" tabindex="-1"></a><span class="fu">sample</span>(animals) <span class="co">#default size is the length of the vector</span></span></code></pre></div>
-<pre><code>## [1] &quot;hedgehog&quot; &quot;cat&quot;      &quot;rabbit&quot;   &quot;dog&quot;</code></pre>
+<pre><code>## [1] &quot;hedgehog&quot; &quot;rabbit&quot;   &quot;cat&quot;      &quot;dog&quot;</code></pre>
 </div>
 <div id="repeated-sampling-of-1-element" class="section level4 unnumbered hasAnchor">
-<h4>Repeated sampling of 1 element<a href="sampling-in-R.html#repeated-sampling-of-1-element" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<h4>repeated sampling of 1 element<a href="sampling-in-R.html#repeated-sampling-of-1-element" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Use <code>sample()</code> to simulate picking one elemnt of <code>animals</code> <span class="math inline">\(n\)</span> times by setting<code>size = n</code> and <code>replace = TRUE</code>.</p>
-<p>Example; Draw one animal from the set 1000 different times and summarize the picks with a table.</p>
+<p>Example: Draw one animal from the set 1000 different times and summarize the picks with a table.</p>
 <div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="sampling-in-R.html#cb124-1" tabindex="-1"></a>picks<span class="ot">=</span><span class="fu">sample</span>(animals,<span class="dv">1000</span>,<span class="at">replace=</span><span class="cn">TRUE</span>) </span>
 <span id="cb124-2"><a href="sampling-in-R.html#cb124-2" tabindex="-1"></a><span class="fu">table</span>(picks) </span></code></pre></div>
 <pre><code>## picks
 ##      cat      dog hedgehog   rabbit 
-##      232      234      263      271</code></pre>
+##      238      232      262      268</code></pre>
 <p>And the winner is… rabbit!</p>
 <p>Or, since we fear rabbits and love dogs, we can do repeated sampling of a single element with <strong>custom probabilities</strong>:</p>
 <div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="sampling-in-R.html#cb126-1" tabindex="-1"></a>picks2 <span class="ot">=</span> <span class="fu">sample</span>(animals,</span>
@@ -694,31 +694,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb126-5"><a href="sampling-in-R.html#cb126-5" tabindex="-1"></a><span class="fu">table</span>(picks2)</span></code></pre></div>
 <pre><code>## picks2
 ##      cat      dog hedgehog   rabbit 
-##      173      413      317       97</code></pre>
+##      228      378      276      118</code></pre>
 <p>Nice!</p>
 <p>Remember, the default option for <code>sample()</code> is to sample without replacement, and with equal probabilities.</p>
 </div>
 </div>
 <div id="sample-without-replacement" class="section level3 unnumbered hasAnchor">
-<h3>Sample without replacement<a href="sampling-in-R.html#sample-without-replacement" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3>sample without replacement<a href="sampling-in-R.html#sample-without-replacement" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <blockquote>
 <p><strong>Task</strong>
 Pick 4 students at random from a class of 9 to race around Taylor Hall. (Assumes we have numbered the students 1-9).</p>
 </blockquote>
 <div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="sampling-in-R.html#cb128-1" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>,<span class="dv">4</span>)</span></code></pre></div>
-<pre><code>## [1] 4 1 5 6</code></pre>
+<pre><code>## [1] 9 1 4 3</code></pre>
 </div>
 <div id="sample-with-replacement" class="section level3 unnumbered hasAnchor">
-<h3>Sample with replacement<a href="sampling-in-R.html#sample-with-replacement" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3>sample with replacement<a href="sampling-in-R.html#sample-with-replacement" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <blockquote>
 <p><strong>Task</strong><br />
 On twelve consecutive days, ask one student at random, in a class of size 9, to write a solution on the board.</p>
 </blockquote>
 <div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="sampling-in-R.html#cb130-1" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>,<span class="dv">12</span>,<span class="at">replace=</span><span class="cn">TRUE</span>)</span></code></pre></div>
-<pre><code>##  [1] 7 5 1 4 1 8 8 7 4 7 5 8</code></pre>
+<pre><code>##  [1] 8 5 1 5 2 8 5 4 9 8 4 5</code></pre>
 </div>
 <div id="sample-with-custom-probabilities" class="section level3 unnumbered hasAnchor">
-<h3>Sample with custom probabilities<a href="sampling-in-R.html#sample-with-custom-probabilities" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3>sample with custom probabilities<a href="sampling-in-R.html#sample-with-custom-probabilities" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <blockquote>
 <p><strong>Task</strong><br />
 Roll a weighted 6 sided die with the following probability distribution 100 times and summarize the results.</p>
@@ -754,10 +754,10 @@ Roll a weighted 6 sided die with the following probability distribution 100 time
 <span id="cb132-5"><a href="sampling-in-R.html#cb132-5" tabindex="-1"></a><span class="fu">table</span>(rolls)</span></code></pre></div>
 <pre><code>## rolls
 ##  1  2  3  4  5  6 
-## 16 12  4 45  5 18</code></pre>
+## 18  8  7 45  7 15</code></pre>
 </div>
 <div id="example-lefties" class="section level3 unnumbered hasAnchor">
-<h3>Example: Lefties<a href="sampling-in-R.html#example-lefties" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3>example: Lefties<a href="sampling-in-R.html#example-lefties" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <blockquote>
 <p><strong>Task</strong><br />
 8% of a population is left-handed. Draw a random sample of 45 people from the population and record the number of lefties.</p>
@@ -773,12 +773,12 @@ Roll a weighted 6 sided die with the following probability distribution 100 time
 <span id="cb136-2"><a href="sampling-in-R.html#cb136-2" tabindex="-1"></a><span class="fu">table</span>(<span class="fu">sample</span>(die,<span class="at">size=</span><span class="dv">45</span>,<span class="at">replace=</span><span class="cn">TRUE</span>,<span class="at">prob=</span><span class="fu">c</span>(.<span class="dv">08</span>,.<span class="dv">92</span>)))</span></code></pre></div>
 <pre><code>## 
 ##  L  R 
-##  3 42</code></pre>
+##  2 43</code></pre>
 <p>A third approach: Use a binomial distribution (later)</p>
 </div>
 </div>
 <div id="repeated-sampling" class="section level2 hasAnchor" number="15.4">
-<h2><span class="header-section-number">A.4</span> Repeated Sampling<a href="sampling-in-R.html#repeated-sampling" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">A.4</span> Repeated sampling<a href="sampling-in-R.html#repeated-sampling" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Let’s say we have a huge urn full of orange and blue marbles, and 42% of them are orange. We can use repeated sampling to approximate the <strong>sampling distribution</strong> for the number of orange marbles we would draw in a sample of, say, 50 marbles.
 The sampling distribution provides information about what sorts of orange marble counts should we expect, and how often should we expect these counts?</p>
 <p><em>Repeated sampling</em> can estimate this sampling distribution. Here are two methods for achieving repeated sampling in R.</p>
@@ -818,17 +818,17 @@ The sampling distribution provides information about what sorts of orange marble
 <tr class="odd">
 <td align="left">mean</td>
 <td align="left"><code>mean(orange_counts)</code></td>
-<td align="left">21.0154</td>
+<td align="left">21.0736</td>
 </tr>
 <tr class="even">
 <td align="left">standard deviation</td>
 <td align="left"><code>sd(orange_counts)</code></td>
-<td align="left">3.479134</td>
+<td align="left">3.49096</td>
 </tr>
 <tr class="odd">
 <td align="left">five number summary</td>
 <td align="left"><code>fivenum(orange_counts)</code></td>
-<td align="left">8, 19, 21, 23, 37</td>
+<td align="left">8, 19, 21, 23, 35</td>
 </tr>
 </tbody>
 </table>
@@ -920,19 +920,19 @@ The sampling distribution provides information about what sorts of orange marble
 <tbody>
 <tr class="odd">
 <td align="left">permutation of <code>x</code></td>
-<td align="left"><code>sample(x) =</code> 4, 6, 3, 5, 1, 2</td>
+<td align="left"><code>sample(x) =</code> 4, 1, 6, 5, 3, 2</td>
 </tr>
 <tr class="even">
 <td align="left">sample <span class="math inline">\(n\)</span> elements without replacement</td>
-<td align="left"><code>sample(x,3) =</code> 1, 5, 2</td>
+<td align="left"><code>sample(x,3) =</code> 3, 5, 4</td>
 </tr>
 <tr class="odd">
 <td align="left">sample <span class="math inline">\(n\)</span> elements with replacement</td>
-<td align="left"><code>sample(x,5,replace=T) =</code> 4, 4, 6, 2, 3</td>
+<td align="left"><code>sample(x,5,replace=T) =</code> 4, 6, 6, 3, 4</td>
 </tr>
 <tr class="even">
 <td align="left">sample with custom probabilities</td>
-<td align="left"><code>sample(x,10,replace=T,prob= c(0,.2,0,.5,.1,.2)) =</code> 2, 6, 6, 5, 4, 2, 4, 4, 6, 4</td>
+<td align="left"><code>sample(x,10,replace=T,prob= c(0,.2,0,.5,.1,.2)) =</code> 4, 4, 5, 2, 4, 2, 4, 4, 5, 4</td>
 </tr>
 </tbody>
 </table>
