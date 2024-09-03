@@ -44,7 +44,7 @@ typeof(c(1,2,"potato"))
 
 We may wish to place data vectors into a two-dimensional structure such as a matrix or a data frame.
 
-### Matrices {-}
+### matrices {-}
 
 Create a matrix from a vector with the `matrix()`\index{R!matrix} command, specifying how many rows, and whether we enter the data in the matrix by row, or by column.
 
@@ -99,7 +99,7 @@ diff(hr)
 cumsum(hr)
 ```
 
-### Comparison Operators {-}
+### comparison operators {-}
 
 We compare things in R with various comparison operators, each one returning TRUE or FALSE:
   
@@ -137,7 +137,8 @@ c(1,8,4,6) > 5
 
 ### checking membership {-}
 
-One can ask whether a particular element is contained in a vector with the `%in%` command.
+The `%in%` command can be used to ask whether a particular element is contained in a vector.
+
 ```{r}
 v = c("bob","wilma","hedgie")
 "frank" %in% v
@@ -381,17 +382,17 @@ Here are handy special cases, illustrated with this vector:
 animals = c("cat","dog","hedgehog","rabbit")
 ```
 
-#### Permutations {-}
+#### permutations {-}
 Use `sample(x)` to generate a *random permutation* of `x`:
 ```{r,eval}
 sample(animals) #default size is the length of the vector
 ```
 
-#### Repeated sampling of 1 element {-} 
+#### repeated sampling of 1 element {-} 
 
 Use `sample()` to simulate picking one elemnt of `animals` $n$ times by setting`size = n` and `replace = TRUE`.
 
-Example; Draw one animal from the set 1000 different times and summarize the picks with a table.
+Example: Draw one animal from the set 1000 different times and summarize the picks with a table.
 
 ```{r}
 picks=sample(animals,1000,replace=TRUE) 
@@ -414,7 +415,7 @@ Nice!
 
 Remember, the default option for `sample()` is to sample without replacement, and with equal probabilities. 
 
-### Sample without replacement {-}
+### sample without replacement {-}
 
 > **Task**
 > Pick 4 students at random from a class of 9 to race around Taylor Hall. (Assumes we have numbered the students 1-9).
@@ -423,7 +424,7 @@ Remember, the default option for `sample()` is to sample without replacement, an
 sample(1:9,4)
 ```
 
-### Sample with replacement {-}
+### sample with replacement {-}
 
 > **Task**\
 > On twelve consecutive days, ask one student at random, in a class of size 9, to write a solution on the board.
@@ -432,7 +433,7 @@ sample(1:9,4)
 sample(1:9,12,replace=TRUE)
 ```
 
-### Sample with custom probabilities {-}
+### sample with custom probabilities {-}
 
 > **Task**\
 > Roll a weighted 6 sided die with the following probability distribution 100 times and summarize the results.
@@ -449,7 +450,7 @@ rolls = sample(1:6,
 table(rolls)
 ```
 
-### Example: Lefties {-}
+### example: Lefties {-}
 
 > **Task**\
 > 8% of a population is left-handed. Draw a random sample of 45 people from the population and record the number of lefties.
@@ -470,7 +471,7 @@ table(sample(die,size=45,replace=TRUE,prob=c(.08,.92)))
 
 A third approach: Use a binomial distribution (later)
 
-## Repeated Sampling {#repeated-sampling}
+## Repeated sampling {#repeated-sampling}
 
 Let's say we have a huge urn full of orange and blue marbles, and 42% of them are orange. We can use repeated sampling to approximate the **sampling distribution** for the number of orange marbles we would draw in a sample of, say, 50 marbles.
 The sampling distribution provides information about what sorts of orange marble counts should we expect, and how often should we expect these counts?
