@@ -135,6 +135,17 @@ Logical vectors arise when we give R a proposition involving a vector:
 c(1,8,4,6) > 5
 ```
 
+### checking membership {-}
+
+One can ask whether a particular element is contained in a vector with the `%in%` command.
+```{r}
+v = c("bob","wilma","hedgie")
+"frank" %in% v
+```
+
+```{r}
+"wilma" %in% v
+```
 
 ### `sum()` and `which()` {-}
 
