@@ -488,7 +488,7 @@ P(A) &= \frac{5}{(8\cdot 7 \cdot 6 \cdot 5)/4!} \\
 :::
 
 :::{.example #wine-expert}
-> A wine expert samples 8 wines blindly, two of which are genuinely "high quality," and the others are "budget wines." The expert choses their 3 favorites. If they are really just picking at random, what is the probability that they pick both high quality wines?
+> A wine expert samples 8 wines blindly, two of which are genuinely "high quality," and the others are "budget wines." The expert chooses their 3 favorites. If they are really just picking at random, what is the probability that they pick both high quality wines?
 
 The sample space $S$ consists of all possible ways to choose 3 from 8, and we consider each of these combinations of 3 equally likely.
 
@@ -509,7 +509,7 @@ We have 3000 potatoes, 2925 good potatoes, and 75 bad potatoes.
 
 The sample space $S$ here is all combinations of size 50, so $$|S| = \binom{3000}{50}.$$
 
-The event of interest $A$ is chosing a sample with more than 2 bad potatoes.
+The event of interest $A$ is choosing a sample with more than 2 bad potatoes.
 
 The number of samples of size 50 with 50 good and 0 bad potatoes is: $$\binom{2925}{50} \cdot \binom{75}{0}.$$
 The number of samples of size 50 with 49 good and 1 bad potato is: $$\binom{2925}{49} \cdot \binom{75}{1}.$$
