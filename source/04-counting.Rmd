@@ -412,7 +412,7 @@ We have to build a 7 letter word from the letters in BANANAS.
   3. Choose 2 locations from the remaining 5 for the 2 identical Ns: $\binom{5}{2}$
   4. Choose 3 locations from the remaining 3 for the 3 identical As: $\binom{3}{3} = 1$
   
-All told, we have $7 \cdot 6 \cdot \binom{5}{2} \cdot {3}{3} = 420$ "words".
+All told, we have $7 \cdot 6 \cdot \binom{5}{2} \cdot \binom{3}{3} = 420$ "words".
 
 Alternatively, the number of words equals the multinomial coefficient $$\binom{7}{3, 2, 1, 1} = 420$$ because it counts the number of ways to assign 7 distinct elements (the 7 spots for letters in the word) into four groups of size 3, 2, 1, and 1 (3 locations for the As group, 2 for the Ns, 1 for the B and 1 for the S).
 :::
@@ -460,7 +460,7 @@ which is `choose(29,7)` = `r format(choose(29,7),scientific=F)`. Still, I've got
 
 ## Calculating More Probabilities {#prob-with-counting-tools}
 
-With our counting tools in hand, we can set about calculating the probability that an event $A$ happens without having to first every possible outcome in the sample space. 
+With our counting tools in hand, we can set about calculating the probability that an event $A$ happens without having to first count every possible outcome in the sample space. 
 
 Here's the general scene in this section. We have some random experiment with finite sample space $S,$ defined in such a way that the probability of each outcome in $S$ is the same. In this case, the probability of any event $A$ will simply be the size of the set $A$ divided by the size of the set $S$:
 $$P(A) = \frac{|A|}{|S|}.$$
