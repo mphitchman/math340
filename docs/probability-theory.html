@@ -246,10 +246,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="A.1" data-path="sampling-in-R.html"><a href="sampling-in-R.html#vectors-R"><i class="fa fa-check"></i><b>A.1</b> Data vectors</a>
 <ul>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#vector-types"><i class="fa fa-check"></i>vector types</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#matrices"><i class="fa fa-check"></i>Matrices</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#matrices"><i class="fa fa-check"></i>matrices</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#data-frames"><i class="fa fa-check"></i>data frames</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#common-vector-commands"><i class="fa fa-check"></i>common vector commands</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#comparison-operators"><i class="fa fa-check"></i>Comparison Operators</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#comparison-operators"><i class="fa fa-check"></i>comparison operators</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#checking-membership"><i class="fa fa-check"></i>checking membership</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sum-and-which"><i class="fa fa-check"></i><code>sum()</code> and <code>which()</code></a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#extracting-elements"><i class="fa fa-check"></i>extracting elements</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#comparing-vectors"><i class="fa fa-check"></i>comparing vectors</a></li>
@@ -267,12 +268,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="A.3" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sampling-in-R-section"><i class="fa fa-check"></i><b>A.3</b> Sampling</a>
 <ul>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-options"><i class="fa fa-check"></i><code>sample()</code> options</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-without-replacement"><i class="fa fa-check"></i>Sample without replacement</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-with-replacement"><i class="fa fa-check"></i>Sample with replacement</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-with-custom-probabilities"><i class="fa fa-check"></i>Sample with custom probabilities</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#example-lefties"><i class="fa fa-check"></i>Example: Lefties</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-without-replacement"><i class="fa fa-check"></i>sample without replacement</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-with-replacement"><i class="fa fa-check"></i>sample with replacement</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-with-custom-probabilities"><i class="fa fa-check"></i>sample with custom probabilities</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#example-lefties"><i class="fa fa-check"></i>example: Lefties</a></li>
 </ul></li>
-<li class="chapter" data-level="A.4" data-path="sampling-in-R.html"><a href="sampling-in-R.html#repeated-sampling"><i class="fa fa-check"></i><b>A.4</b> Repeated Sampling</a>
+<li class="chapter" data-level="A.4" data-path="sampling-in-R.html"><a href="sampling-in-R.html#repeated-sampling"><i class="fa fa-check"></i><b>A.4</b> Repeated sampling</a>
 <ul>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#using-a-for-loop"><i class="fa fa-check"></i>using a <code>for</code> loop</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#using-replicate"><i class="fa fa-check"></i>using <code>replicate()</code></a></li>
@@ -434,7 +435,7 @@ D &amp;= \{1,2\}
 <div class="example">
 <p><span id="exm:plumbing" class="example"><strong>Example 5.3  </strong></span>Suppose over the last five years, 10% of all people in a town who have hired a plumber to do some work have been unhappy with the job that was done. One of the plumbers in the town is Frances. Frances has done 40% of the plumbing jobs in town over these five years, and 25% of all plumbing jobs that left the customer unhappy have been done by Frances.</p>
 <blockquote>
-<p>Find the probability that a customer will be unhappy with the results if they hire Francis?</p>
+<p>Find the probability that a customer will be unhappy with the results if they hire Frances?</p>
 </blockquote>
 <p>We begin by translating what we know and what we want into symbols and probability notation.</p>
 <p>Let <span class="math inline">\(S = \{ \text{all plumbing jobs in the town over the last 5 years} \}.\)</span></p>
@@ -455,8 +456,8 @@ P(B~|~A) &amp;= \frac{P(A\cap B)}{P(A)} \\
          &amp;= \frac{(0.25)(0.1)}{(0.4)} \\
          &amp;= 0.0625.
 \end{align*}\]</span></p>
-<p>Ok, there is about a 6 percent chance that a customer will be unhappy with their plumbing job if they hire Francis.</p>
-<p>An irresponsible person who wants to be intentionally misleading could rant in all caps “25 PERCENT OF UNHAPPY CUSTOMERS HIRED FRANCIS!!!” Let’s be better than that. Knowing the full context here, which includes what proportion of the town’s plumbing jobs have gone to Frances, is necessary to establish how effective Frances has been as a plumber these last five years.</p>
+<p>Ok, there is about a 6 percent chance that a customer will be unhappy with their plumbing job if they hire Frances.</p>
+<p>An irresponsible person who wants to be intentionally misleading could rant in all caps “25 PERCENT OF UNHAPPY CUSTOMERS HIRED FRANCES!!!” Let’s be better than that. Knowing the full context here, which includes what proportion of the town’s plumbing jobs have gone to Frances, is necessary to establish how effective Frances has been as a plumber these last five years.</p>
 </div>
 <div class="example">
 <p><span id="exm:unlabeled-div-10" class="example"><strong>Example 5.4  </strong></span></p>
@@ -467,13 +468,13 @@ P(B~|~A) &amp;= \frac{P(A\cap B)}{P(A)} \\
 <p>Let <span class="math inline">\(A = \{ \text{first die is less than 3}\}\)</span> and <span class="math inline">\(B = \{ \text{second die is less than 3}\}.\)</span></p>
 <p>“Less than 3” means “1 or 2” so <span class="math inline">\(P(A) = P(B) = 2/6 = 1/3.\)</span>
 The question asks for <span class="math inline">\(P(A \cap B).\)</span> Since <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent, <span class="math display">\[P(A \cap B) = P(A)\cdot P(B) = (1/3)\cdot(1/3) = 1/9.\]</span></p>
-<p>We remark that we can also use counting techniques to find this probability directly in Section <a href="counting.html#prob-with-counting-tools">4.6</a>.</p>
+<p>We remark that we can also use counting techniques to find this probability directly, as in Section <a href="counting.html#prob-with-counting-tools">4.6</a>, as follows.</p>
 <p>The sample space <span class="math inline">\(S\)</span> of this chance experiment consists of all possible rolls of the two dice. That is, <span class="math inline">\(S\)</span> consists of all ordered pairs of the form <span class="math inline">\((i,j)\)</span> with <span class="math inline">\(i, j \in \mathbb{N}\)</span> and <span class="math inline">\(1\leq i, j \leq 6,\)</span> and <span class="math inline">\(|S| = 6^2\)</span>. The event of interest, <span class="math inline">\(E,\)</span> consists of all rolls <span class="math inline">\((i,j)\)</span> in <span class="math inline">\(S\)</span> such that <span class="math inline">\(i, j \leq 2\)</span>. So, <span class="math inline">\(|E| = 2^2,\)</span> and <span class="math inline">\(P(E) = 4/36 = 1/9\)</span>.</p>
-<p>So, thinking of the chance experiment as a sequence of independent events we calculate the probability of interest as <span class="math inline">\(\frac{2}{6} \cdot \frac{2}{6},,\)</span> and thinking of the probability via the “(outcomes of interest)/(all possible outcomes)” approach we think of the probability as <span class="math inline">\(\frac{2\cdot 2}{6 \cdot 6}\)</span>.</p>
+<p>So, thinking of the chance experiment as a sequence of independent events we calculate the probability of interest as <span class="math inline">\(\frac{2}{6} \cdot \frac{2}{6},\)</span> and thinking of the probability via the “(outcomes of interest)/(all possible outcomes)” approach we think of the probability as <span class="math inline">\(\frac{2\cdot 2}{6 \cdot 6}\)</span>.</p>
 </div>
 <div class="example">
 <p><span id="exm:four-on-rolll-8" class="example"><strong>Example 5.5  </strong></span>Roll a regular 6-sided die until a 4 comes up. What is the probability that this occurs on the 8th roll?</p>
-<p>The values of the rolls are independent events, the probability of not rolling a four on a given roll is 5/6, and the probability of rolling a 4 is 1/6. It follows that the probability of rolling 7 non-4s followed by 1 4 is
+<p>The values of the rolls are independent events, the probability of not rolling a four on a given roll is 5/6, and the probability of rolling a 4 is 1/6. It follows that the probability of rolling 7 non-4s followed by one 4 is
 <span class="math display">\[P(\text{first 4 on roll 8}) = \left(\frac{5}{6}\right)^7 \cdot \left(\frac{1}{6}\right).\]</span>
 More generally, the probability that our first 4 comes up on roll <span class="math inline">\(n\)</span> (for any <span class="math inline">\(n \in \mathbb{N}\)</span>) will be
 <span class="math display">\[P(\text{first 4 on roll }n) = \left(\frac{5}{6}\right)^{n-1} \cdot \left(\frac{1}{6}\right).\]</span></p>
@@ -503,9 +504,9 @@ More generally, the probability that our first 4 comes up on roll <span class="m
 So, <span class="math display">\[P(A \cup B) = P(A) + P(\overline{A} \cap B).\]</span></p>
 <p>Similarly, we can decompose the set <span class="math inline">\(B\)</span> into disjoint sets as follows: <span class="math inline">\(B = (\overline{A} \cap B) \cup (A \cap B).\)</span>
 So <span class="math display">\[P(B) = P(\overline{A}\cap B) + P(A \cap B).\]</span>
-Combining these two probability equations we see <span class="math display">\[P(A \cup B) = P(A) + \left[P(B)-P(A\cap B)\right].\]</span></p>
+Combining these two probability equations we see <span class="math display">\[P(A \cup B) = P(A) + \left[P(B)-P(A\cap B)\right],\]</span> which completes the proof.</p>
 </div>
-<p>For three events, <span class="math inline">\(A_1, A_2, A_3\)</span> it follows that</p>
+<p>Next, consider three events, <span class="math inline">\(A_1, A_2, A_3\)</span>. Notice that</p>
 <p><span class="math display">\[\begin{align*}
 P(A_1 \cap A_2 \cap A_3) &amp;= P((A_1\cap A_2) \cap A_3) \\
                          &amp;= P(A_1 \cap A_2) \cdot P(A_3~|~A_1 \cap A_2)\\
@@ -585,12 +586,12 @@ P(A \cup B \cup C) &amp;= P(A \cup (B \cup C)) \\
 </div>
 <div id="event-composition-method" class="section level2 hasAnchor" number="5.3">
 <h2><span class="header-section-number">5.3</span> Event-Composition Method<a href="probability-theory.html#event-composition-method" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We’ve been using a method called the event-composition method for calculating probabilities associated to an experiment.</p>
+<p>In some examples in this chapter we’ve been using a method for calculating probabilities called the event-composition method, which can be described as follows.</p>
 <blockquote>
 <p><strong>Event-Composition Method</strong>: Describe the sample space and relevant events; write down what information we’re given regarding probabilities etc. via the symbols representing these events; Express what we want to know via these symbols, and use our probability laws to use what we know to determine what we want.</p>
 </blockquote>
 <div class="example">
-<p><span id="exm:craps-4-before-7" class="example"><strong>Example 5.8  </strong></span>Two regular 6-sided dice are rolled and we record the sum.</p>
+<p><span id="exm:craps-4-before-7" class="example"><strong>Example 5.8  </strong></span>Two regular 6-sided dice are rolled until we roll a sum of 4 or a sum of 7.</p>
 <blockquote>
 <p>What is the probability that we roll a 4 before we roll a 7?</p>
 </blockquote>
@@ -599,7 +600,7 @@ P(A \cup B \cup C) &amp;= P(A \cup (B \cup C)) \\
 <li><span class="math inline">\(A\)</span>: we roll a sum of 4; and</li>
 <li><span class="math inline">\(B\)</span>: we do not roll a 4 or 7.</li>
 </ul>
-<p>From our handy <span class="math inline">\(6 \times 6\)</span> grid describing all possible sums when rolling 2 dice (Example <a href="discrete-probability-distributions.html#exm:roll2dice">3.3</a>), we know <span class="math display">\[P(A) = \frac{3}{36}, P(B) = \frac{27}{36}.\]</span></p>
+<p>From our handy <span class="math inline">\(6 \times 6\)</span> grid describing all possible sums when rolling 2 dice (Example <a href="discrete-probability-distributions.html#exm:roll2dice">3.3</a>), we know <span class="math display">\[P(A) = \frac{3}{36}, ~~P(B) = \frac{27}{36}.\]</span></p>
 <p>In this game we roll the dice until we roll a 4 or a 7, and we <strong>win</strong> if we roll a 4 before rolling a 7.</p>
 <p>There is no limit to how many rolls we might need in order to win.
 We might win on the 1st roll, or the 2nd roll, or the 3rd roll, or the 4th roll, … etc. In fact, for each <span class="math inline">\(n \in \mathbb{N},\)</span> we might win on roll <span class="math inline">\(n\)</span>.</p>
@@ -612,14 +613,14 @@ We might win on the 1st roll, or the 2nd roll, or the 3rd roll, or the 4th roll,
 <p><span class="math display">\[\begin{align*}
 P(\text{4 before 7}) &amp;= \sum_{n=1}^\infty P(B)^{n-1}P(A)\\
                      &amp;= P(A)\sum_{n=0}^\infty P(B)^n\\
-                     &amp;= (3/36)\sum_{n=0}^\infty (27/36)^n
+                     &amp;= \frac{3}{36}\sum_{n=0}^\infty \left(\frac{27}{36}\right)^n
 \end{align*}\]</span></p>
 <p>As a reminder, the sum of a geometric series is given by
 <span class="math display" id="eq:geometric-series">\[\begin{equation}
 \sum_{n=0}^\infty r^n = \frac{1}{1-r} \text{ if } |r| &lt; 1
 \tag{5.3}
 \end{equation}\]</span></p>
-<p>Using this formula with <span class="math inline">\(r = 27/36,\)</span> we see the probability that we roll a 4 before a 7 is <span class="math display">\[P(\text{4 before 7}) = \frac{1}{3}.\]</span></p>
+<p>Using this formula with <span class="math inline">\(r = 27/36,\)</span> we see the probability that we roll a 4 before a 7 is <span class="math display">\[P(\text{4 before 7}) = \frac{3}{36}\cdot \frac{1}{1-(27/36)} = \frac{1}{3}.\]</span></p>
 </div>
 </div>
 <div id="bayes-rule" class="section level2 hasAnchor" number="5.4">
@@ -632,7 +633,7 @@ P(\text{4 before 7}) &amp;= \sum_{n=1}^\infty P(B)^{n-1}P(A)\\
 </ol>
 </div>
 <div class="theorem">
-<p><span id="thm:total-law-prob" class="theorem"><strong>Theorem 5.2  (Law of Total Probability) </strong></span>Assume <span class="math inline">\(\{B_1, B_2, \ldots B_k\}\)</span> is a partition of the sample space <span class="math inline">\(S,\)</span> and <span class="math inline">\(P(B_i) &gt; 0\)</span> for each <span class="math inline">\(i = 1, 2, \ldots k\)</span>. Then for any event <span class="math inline">\(A,\)</span> <span class="math display">\[P(A) = \sum_{i=1}^k P(A~|~B_i)\cdot P(B_i).\]</span></p>
+<p><span id="thm:total-law-prob" class="theorem"><strong>Theorem 5.2  (Law of Total Probability) </strong></span>Assume <span class="math inline">\(\{B_1, B_2, \ldots, B_k\}\)</span> is a partition of the sample space <span class="math inline">\(S,\)</span> and <span class="math inline">\(P(B_i) &gt; 0\)</span> for each <span class="math inline">\(i = 1, 2, \ldots k\)</span>. Then for any event <span class="math inline">\(A,\)</span> <span class="math display">\[P(A) = \sum_{i=1}^k P(A~|~B_i)\cdot P(B_i).\]</span></p>
 </div>
 <div class="proof">
 <p><span id="unlabeled-div-17" class="proof"><em>Proof</em>. </span>Notice that as a set,
@@ -719,7 +720,7 @@ Figure 5.2: 1% of population has the disease
 <p>So, it seems to answer the question in this example, it is important to know what percentage of the population have the disease. Baye’s Theorem below tells us that this is all the additional information we need.</p>
 </div>
 <div class="theorem">
-<p><span id="thm:Bayes-rule" class="theorem"><strong>Theorem 5.3  (Bayes' Rule) </strong></span>Assume <span class="math inline">\(\{B_1, B_2, \ldots B_k\}\)</span> is a partition of the sample space <span class="math inline">\(S,\)</span> and <span class="math inline">\(P(B_i) &gt; 0\)</span> for each <span class="math inline">\(i = 1, 2, \ldots k\)</span>. Then for any particular <span class="math inline">\(B_j,\)</span> <span class="math display">\[P(B_j ~|~ A) = \frac{P(A~|~B_j)\cdot P(B_j)}{\sum_{i=1}^k P(A~|~B_i)\cdot P(B_i)}.\]</span></p>
+<p><span id="thm:Bayes-rule" class="theorem"><strong>Theorem 5.3  (Bayes' Rule) </strong></span>Assume <span class="math inline">\(\{B_1, B_2, \ldots, B_k\}\)</span> is a partition of the sample space <span class="math inline">\(S,\)</span> and <span class="math inline">\(P(B_i) &gt; 0\)</span> for each <span class="math inline">\(i = 1, 2, \ldots k\)</span>. Then for any particular <span class="math inline">\(B_j,\)</span> <span class="math display">\[P(B_j ~|~ A) = \frac{P(A~|~B_j)\cdot P(B_j)}{\sum_{i=1}^k P(A~|~B_i)\cdot P(B_i)}.\]</span></p>
 </div>
 <div class="example">
 <p><span id="exm:bad-apples" class="example"><strong>Example 5.11  </strong></span>A grocery store has an apple bin. 70% of the apples are Liberty, and 30% are Braeburn. From past experience, we know that 8% of Liberty apples are bad, and 15% of Braeburn apples are bad. Suppose you pick an apple at random and find it is bad. What is the probability that the apple is a Braeburn?</p>
@@ -740,7 +741,7 @@ Figure 5.2: 1% of population has the disease
 <li><span class="math inline">\(P(B_2 ~|~ A)\)</span>.</li>
 </ul>
 <p>This task calls for Bayes’ Rule.</p>
-<p><span class="math display">\[P(B_2~|~A) = \frac{P(A~|~B_2)\cdot P(B_1)}{P(A~|~B_1)\cdot P(B_2)+P(A~|~B_2)\cdot P(B_2)}.\]</span>
+<p><span class="math display">\[P(B_2~|~A) = \frac{P(A~|~B_2)\cdot P(B_2)}{P(A~|~B_1)\cdot P(B_1)+P(A~|~B_2)\cdot P(B_2)}.\]</span>
 We know each probability in the right-hand side of the equation:
 <span class="math display">\[P(B_2~|~A) = \frac{(.15)(.3)}{(.08)(.7)+(.15)(.3)} \approx .446.\]</span>
 About a 44% chance that if we drew a bad apple it’s a Braeburn.</p>

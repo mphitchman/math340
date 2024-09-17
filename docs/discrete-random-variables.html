@@ -246,10 +246,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="A.1" data-path="sampling-in-R.html"><a href="sampling-in-R.html#vectors-R"><i class="fa fa-check"></i><b>A.1</b> Data vectors</a>
 <ul>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#vector-types"><i class="fa fa-check"></i>vector types</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#matrices"><i class="fa fa-check"></i>Matrices</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#matrices"><i class="fa fa-check"></i>matrices</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#data-frames"><i class="fa fa-check"></i>data frames</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#common-vector-commands"><i class="fa fa-check"></i>common vector commands</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#comparison-operators"><i class="fa fa-check"></i>Comparison Operators</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#comparison-operators"><i class="fa fa-check"></i>comparison operators</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#checking-membership"><i class="fa fa-check"></i>checking membership</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sum-and-which"><i class="fa fa-check"></i><code>sum()</code> and <code>which()</code></a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#extracting-elements"><i class="fa fa-check"></i>extracting elements</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#comparing-vectors"><i class="fa fa-check"></i>comparing vectors</a></li>
@@ -267,12 +268,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="A.3" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sampling-in-R-section"><i class="fa fa-check"></i><b>A.3</b> Sampling</a>
 <ul>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-options"><i class="fa fa-check"></i><code>sample()</code> options</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-without-replacement"><i class="fa fa-check"></i>Sample without replacement</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-with-replacement"><i class="fa fa-check"></i>Sample with replacement</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-with-custom-probabilities"><i class="fa fa-check"></i>Sample with custom probabilities</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#example-lefties"><i class="fa fa-check"></i>Example: Lefties</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-without-replacement"><i class="fa fa-check"></i>sample without replacement</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-with-replacement"><i class="fa fa-check"></i>sample with replacement</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-with-custom-probabilities"><i class="fa fa-check"></i>sample with custom probabilities</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#example-lefties"><i class="fa fa-check"></i>example: Lefties</a></li>
 </ul></li>
-<li class="chapter" data-level="A.4" data-path="sampling-in-R.html"><a href="sampling-in-R.html#repeated-sampling"><i class="fa fa-check"></i><b>A.4</b> Repeated Sampling</a>
+<li class="chapter" data-level="A.4" data-path="sampling-in-R.html"><a href="sampling-in-R.html#repeated-sampling"><i class="fa fa-check"></i><b>A.4</b> Repeated sampling</a>
 <ul>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#using-a-for-loop"><i class="fa fa-check"></i>using a <code>for</code> loop</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#using-replicate"><i class="fa fa-check"></i>using <code>replicate()</code></a></li>
@@ -547,7 +548,7 @@ Yes!</p>
 </div>
 <div class="example">
 <p><span id="exm:first-EV" class="example"><strong>Example 6.3  </strong></span>In example <a href="discrete-random-variables.html#exm:draw-2-balls">6.1</a> we defined two random variables associated to the experiment of drawing two balls (numbered from 1 to 5) out of a hat.</p>
-<p>The expected value of <span class="math inline">\(X,\)</span> the larger value of the two drawn, is <span class="math display">\[E(X) = 2 \cdot 0.1 + 3 \cdot 0.2 + 4 \cdot 0.3 + \cdot 0.4 = 4.\]</span> So, we should expect that after a large number of repetitions of this game the average value of <span class="math inline">\(X\)</span> is about 4.</p>
+<p>The expected value of <span class="math inline">\(X,\)</span> the larger value of the two drawn, is <span class="math display">\[E(X) = 2 \cdot 0.1 + 3 \cdot 0.2 + 4 \cdot 0.3 + 5 \cdot 0.4 = 4.\]</span> So, we should expect that after a large number of repetitions of this game the average value of <span class="math inline">\(X\)</span> is about 4.</p>
 <p>The expected value of <span class="math inline">\(Y,\)</span> the sum of the two values drawn, is <span class="math display">\[E(Y) = 3 \cdot .1 + 4 \cdot .1 + 5 \cdot .2 + 6 \cdot .2 + 7 \cdot .2 + 8 \cdot .1 + 9 \cdot .1 = 6.\]</span>. We should expect the average value of <span class="math inline">\(Y\)</span> to be about 6 after a large number of repetitions of this game.</p>
 <p>In Example <a href="discrete-random-variables.html#exm:roll-until-4">6.2</a>, the expected number of rolls needed to obtain a 4 is an infinite series:
 <span class="math display">\[E(X) = \sum_{x = 1}^\infty x \cdot (5/6)^{x-1} \cdot (1/6).\]</span>
@@ -622,9 +623,9 @@ Then, Theorem <a href="discrete-random-variables.html#thm:EV-discrete-fcnRV">6.1
 <span id="cb4-12"><a href="discrete-random-variables.html#cb4-12" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">table</span>(results))</span></code></pre></div>
 <pre><code>## results
 ##   -1    1    2    5 
-## 1259  739  150   12</code></pre>
+## 1264  750  134   12</code></pre>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="discrete-random-variables.html#cb6-1" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">mean</span>(results))</span></code></pre></div>
-<pre><code>## [1] -0.07407407</code></pre>
+<pre><code>## [1] -0.08611111</code></pre>
 <div class="example">
 <p><span id="exm:unlabeled-div-18" class="example"><strong>Example 6.6  </strong></span>Suppose <span class="math inline">\(X\)</span> has probability model</p>
 <p><span class="math display">\[
@@ -678,14 +679,14 @@ so the two random variables have the same mean: <span class="math inline">\(E(X)
 Then,
 <span class="math display">\[\begin{align*}
 E(X) &amp;= \sum_{x=1}^\infty x \cdot \frac{1}{cx^3}\\
-    &amp;= \frac{1}{c} \sum{x=1}^\infty \frac{1}{x^2} \\
+    &amp;= \frac{1}{c} \sum_{x=1}^\infty \frac{1}{x^2} \\
     &amp;= \frac{\pi^2}{6c},
 \end{align*}\]</span>
 since the <span class="math inline">\(p\)</span>-series <span class="math inline">\(\sum_{n=1}^\infty (1/n^2) = \pi^2/6.\)</span> So, <span class="math inline">\(E(X)\)</span> exists as a finite number.</p>
 <p>However,
 <span class="math display">\[\begin{align*}
 E(X^2) &amp;= \sum_{x=1}^\infty x^2 \cdot \frac{1}{cx^3}\\
-    &amp;= \frac{1}{c} \sum{x=1}^\infty \frac{1}{x},
+    &amp;= \frac{1}{c} \sum_{x=1}^\infty \frac{1}{x},
 \end{align*}\]</span>
 which diverges as a multiple of the harmonic series. So, <span class="math inline">\(V(X)\)</span> does not exist as a finite number.</p>
 </div>
@@ -721,13 +722,13 @@ E(c) &amp;= \sum_{\text{all }x} c \cdot p(x) \\
 </ol>
 <p>Since the sum over all <span class="math inline">\(x\)</span> of <span class="math inline">\(p(x)\)</span> is 1 for any probability model, the result follows.</p>
 <ol start="2" style="list-style-type: decimal">
-<li><p>Here appeal to Theorem <a href="discrete-random-variables.html#thm:EV-discrete-fcnRV">6.1</a>} and arithmetic:
+<li><p>Here appeal to Theorem <a href="discrete-random-variables.html#thm:EV-discrete-fcnRV">6.1</a> and arithmetic:
 <span class="math display">\[\begin{align*}
 E(c\cdot g(X)) &amp;= \sum_{\text{all }x} c \cdot g(x) \cdot p(x) &amp; \\
 &amp;= c \sum_{\text{all }x} g(x) p(x) &amp;\text{by arithmetic}\\
 &amp;= c E(g(X)) &amp;
 \end{align*}\]</span></p></li>
-<li><p>Here we also appeal to Theorem <a href="discrete-random-variables.html#thm:EV-discrete-fcnRV">6.1</a>} and arithmetic:
+<li><p>Here we also appeal to Theorem <a href="discrete-random-variables.html#thm:EV-discrete-fcnRV">6.1</a> and arithmetic:
 <span class="math display">\[\begin{align*}
 E(g_1(x) \pm g_2(x)) &amp;= \sum_{\text{all }x} (g_1(x) \pm g_2(x))\cdot p(x) &amp;\\
 &amp;= \sum_{\text{all }x} (g_1(x) p(x) \pm g_2(x) p(x)) &amp;\text{by arithmetic}\\
@@ -764,10 +765,11 @@ V(X) &amp;= E((X-\mu)^2)\\
      &amp;= E(X^2) - E(2\mu X) + E(\mu^2) &amp;\text{by E() Property 3} \\
      &amp;= E(X^2) - 2\mu E(X) + \mu^2 &amp;\text{by E() Properties 2 and 1}\\
      &amp;= E(X^2) - 2\mu^2 + \mu^2 &amp; \text{since }E(X)=\mu \\
-V(X) &amp;= E(X^2) - \mu^2
+V(X) &amp;= E(X^2) - \mu^2.
 \end{align*}\]</span></p>
 </div>
-<p>This alternate formula for variance also provides us with a way to compute <span class="math inline">\(E(X^2)\)</span> from the expected value and variance of a random variable: <span class="math display">\[E(X^2) = V(X) + \mu^2,\]</span> or using the alternate variance notation:
+<p><br>
+This alternate formula for variance also provides us with a way to compute <span class="math inline">\(E(X^2)\)</span> from the expected value and variance of a random variable: <span class="math display">\[E(X^2) = V(X) + \mu^2,\]</span> or using the alternate variance notation:
 <span class="math display">\[E(X^2) = \sigma^2 + \mu^2.\]</span></p>
 <div class="example">
 <p><span id="exm:unlabeled-div-21" class="example"><strong>Example 6.10  </strong></span>Suppose <span class="math inline">\(X\)</span> is a discrete random variable with expected value <span class="math inline">\(\mu = 5\)</span> and variance <span class="math inline">\(\sigma^2 = 6\)</span>.
