@@ -77,7 +77,7 @@ In this example $A$ and $D$ are independent but not disjoint, while $B$ and $C$ 
 :::{.example #plumbing}
 Suppose over the last five years, 10\% of all people in a town who have hired a plumber to do some work have been unhappy with the job that was done.  One of the plumbers in the town is Frances. Frances has done 40\% of the plumbing jobs in town over these five years, and 25\% of all plumbing jobs that left the customer unhappy have been done by Frances.
 
-> Find the probability that a customer will be unhappy with the results if they hire Francis?
+> Find the probability that a customer will be unhappy with the results if they hire Frances?
 
 We begin by translating what we know and what we want into symbols and probability notation.
 
@@ -105,9 +105,9 @@ P(B~|~A) &= \frac{P(A\cap B)}{P(A)} \\
          &= 0.0625.
 \end{align*}
 
-Ok, there is about a 6 percent chance that a customer will be unhappy with their plumbing job if they hire Francis.
+Ok, there is about a 6 percent chance that a customer will be unhappy with their plumbing job if they hire Frances.
 
-An irresponsible person who wants to be intentionally misleading could rant in all caps "25 PERCENT OF UNHAPPY CUSTOMERS HIRED FRANCIS!!!" Let's be better than that. Knowing the full context here, which includes what proportion of the town's plumbing jobs have gone to Frances, is necessary to establish how effective Frances has been as a plumber these last five years.
+An irresponsible person who wants to be intentionally misleading could rant in all caps "25 PERCENT OF UNHAPPY CUSTOMERS HIRED FRANCES!!!" Let's be better than that. Knowing the full context here, which includes what proportion of the town's plumbing jobs have gone to Frances, is necessary to establish how effective Frances has been as a plumber these last five years.
 :::
 
 :::{.example}
@@ -120,17 +120,17 @@ Let $A = \{ \text{first die is less than 3}\}$ and $B = \{ \text{second die is l
 "Less than 3" means "1 or 2" so $P(A) = P(B) = 2/6 = 1/3.$
 The question asks for $P(A \cap B).$ Since $A$ and $B$ are independent, $$P(A \cap B) = P(A)\cdot P(B) = (1/3)\cdot(1/3) = 1/9.$$
 
-We remark that we can also use counting techniques to find this probability directly in Section \@ref(prob-with-counting-tools).
+We remark that we can also use counting techniques to find this probability directly, as in Section \@ref(prob-with-counting-tools), as follows.
 
 The sample space $S$ of this chance experiment consists of all possible rolls of the two dice. That is, $S$ consists of all ordered pairs of the form $(i,j)$ with $i, j \in \mathbb{N}$ and $1\leq i, j \leq 6,$ and $|S| = 6^2$. The event of interest, $E,$ consists of all rolls $(i,j)$ in $S$ such that $i, j \leq 2$.  So, $|E| = 2^2,$ and $P(E) = 4/36 = 1/9$.
 
-So, thinking of the chance experiment as a sequence of independent events we calculate the probability of interest as $\frac{2}{6} \cdot \frac{2}{6},,$ and thinking of the probability via the "(outcomes of interest)/(all possible outcomes)" approach we think of the probability as $\frac{2\cdot 2}{6 \cdot 6}$. 
+So, thinking of the chance experiment as a sequence of independent events we calculate the probability of interest as $\frac{2}{6} \cdot \frac{2}{6},$ and thinking of the probability via the "(outcomes of interest)/(all possible outcomes)" approach we think of the probability as $\frac{2\cdot 2}{6 \cdot 6}$. 
 :::
 
 :::{.example #four-on-rolll-8}
 Roll a regular 6-sided die until a 4 comes up. What is the probability that this occurs on the 8th roll?
 
-The values of the rolls are independent events, the probability of not rolling a four on a given roll is 5/6, and the probability of rolling a 4 is 1/6. It follows that the probability of rolling 7 non-4s followed by 1 4 is
+The values of the rolls are independent events, the probability of not rolling a four on a given roll is 5/6, and the probability of rolling a 4 is 1/6. It follows that the probability of rolling 7 non-4s followed by one 4 is
 $$P(\text{first 4 on roll 8}) = \left(\frac{5}{6}\right)^7 \cdot \left(\frac{1}{6}\right).$$ 
 More generally, the probability that our first 4 comes up on roll $n$ (for any $n \in \mathbb{N}$) will be 
 $$P(\text{first 4 on roll }n) = \left(\frac{5}{6}\right)^{n-1} \cdot \left(\frac{1}{6}\right).$$ 
@@ -162,10 +162,11 @@ So, $$P(A \cup B) = P(A) + P(\overline{A} \cap B).$$
 
 Similarly, we can decompose the set $B$ into disjoint sets as follows: $B = (\overline{A} \cap B) \cup (A \cap B).$
 So $$P(B) = P(\overline{A}\cap B) + P(A \cap B).$$
-Combining these two probability equations we see $$P(A \cup B) = P(A) + \left[P(B)-P(A\cap B)\right].$$
+Combining these two probability equations we see $$P(A \cup B) = P(A) + \left[P(B)-P(A\cap B)\right],$$ which completes the proof.
 :::
 
-For three events, $A_1, A_2, A_3$ it follows that
+
+Next, consider three events, $A_1, A_2, A_3$. Notice that
 
 
 \begin{align*}
@@ -276,12 +277,12 @@ $$\text{RHS } = P(A) \cdot \frac{P(A \cap B)}{P(A)} \cdot \frac{P(C\cap A\cap B)
 
 ## Event-Composition Method
 
-We've been using a method called the event-composition method for calculating probabilities associated to an experiment.
+In some examples in this chapter we've been using a method for calculating probabilities called the event-composition method, which can be described as follows.
 
 > **Event-Composition Method**:\index{event-composition method} Describe the sample space and relevant events; write down what information we're given regarding probabilities etc. via the symbols representing these events; Express what we want to know via these symbols, and use our probability laws to use what we know to determine what we want.
 
 :::{.example #craps-4-before-7}
-Two regular 6-sided dice are rolled and we record the sum.  
+Two regular 6-sided dice are rolled until we roll a sum of 4 or a sum of 7.  
 
 > What is the probability that we roll a 4 before we roll a 7?
 
@@ -290,7 +291,7 @@ We define two key events:
  - $A$: we roll a sum of 4; and 
  - $B$: we do not roll a 4 or 7.
 
-From our handy $6 \times 6$ grid describing all possible sums when rolling 2 dice (Example \@ref(exm:roll2dice)), we know $$P(A) = \frac{3}{36}, P(B) = \frac{27}{36}.$$
+From our handy $6 \times 6$ grid describing all possible sums when rolling 2 dice (Example \@ref(exm:roll2dice)), we know $$P(A) = \frac{3}{36}, ~~P(B) = \frac{27}{36}.$$
 
 In this game we roll the dice until we roll a 4 or a 7, and we **win** if we roll a 4 before rolling a 7.
 
@@ -311,7 +312,7 @@ The sum of these probabilities is an honest-to-goodness-living-in-the-wild geome
 \begin{align*}
 P(\text{4 before 7}) &= \sum_{n=1}^\infty P(B)^{n-1}P(A)\\
                      &= P(A)\sum_{n=0}^\infty P(B)^n\\
-                     &= (3/36)\sum_{n=0}^\infty (27/36)^n
+                     &= \frac{3}{36}\sum_{n=0}^\infty \left(\frac{27}{36}\right)^n
 \end{align*}
 
 As a reminder, the sum of a geometric series is given by
@@ -320,7 +321,7 @@ As a reminder, the sum of a geometric series is given by
 (\#eq:geometric-series)
 \end{equation}
 
-Using this formula with $r = 27/36,$ we see the probability that we roll a 4 before a 7 is $$P(\text{4 before 7}) = \frac{1}{3}.$$
+Using this formula with $r = 27/36,$ we see the probability that we roll a 4 before a 7 is $$P(\text{4 before 7}) = \frac{3}{36}\cdot \frac{1}{1-(27/36)} = \frac{1}{3}.$$
 :::
 
 ## Bayes' Rule
@@ -333,7 +334,7 @@ A collection $\{B_1, B_2, \ldots, B_n\}$ of nonempty subsets of $S$ is called a 
 :::
 
 :::{.theorem #total-law-prob name="Law of Total Probability"}
-Assume $\{B_1, B_2, \ldots B_k\}$ is a partition of the sample space $S,$ and $P(B_i) > 0$ for each $i = 1, 2, \ldots k$. Then for any event $A,$ $$P(A) = \sum_{i=1}^k P(A~|~B_i)\cdot P(B_i).$$
+Assume $\{B_1, B_2, \ldots, B_k\}$ is a partition of the sample space $S,$ and $P(B_i) > 0$ for each $i = 1, 2, \ldots k$. Then for any event $A,$ $$P(A) = \sum_{i=1}^k P(A~|~B_i)\cdot P(B_i).$$
 :::
 
 :::{.proof}
@@ -470,7 +471,7 @@ So, it seems to answer the question in this example, it is important to know wha
 
 
 :::{.theorem #Bayes-rule name="Bayes' Rule"}
-Assume $\{B_1, B_2, \ldots B_k\}$ is a partition of the sample space $S,$ and $P(B_i) > 0$ for each $i = 1, 2, \ldots k$. Then for any particular $B_j,$ $$P(B_j ~|~ A) = \frac{P(A~|~B_j)\cdot P(B_j)}{\sum_{i=1}^k P(A~|~B_i)\cdot P(B_i)}.$$
+Assume $\{B_1, B_2, \ldots, B_k\}$ is a partition of the sample space $S,$ and $P(B_i) > 0$ for each $i = 1, 2, \ldots k$. Then for any particular $B_j,$ $$P(B_j ~|~ A) = \frac{P(A~|~B_j)\cdot P(B_j)}{\sum_{i=1}^k P(A~|~B_i)\cdot P(B_i)}.$$
 :::
 
 :::{.example #bad-apples}
@@ -494,7 +495,7 @@ We want:
   
 This task calls for Bayes' Rule.
 
-$$P(B_2~|~A) = \frac{P(A~|~B_2)\cdot P(B_1)}{P(A~|~B_1)\cdot P(B_2)+P(A~|~B_2)\cdot P(B_2)}.$$
+$$P(B_2~|~A) = \frac{P(A~|~B_2)\cdot P(B_2)}{P(A~|~B_1)\cdot P(B_1)+P(A~|~B_2)\cdot P(B_2)}.$$
 We know each probability in the right-hand side of the equation:
 $$P(B_2~|~A) = \frac{(.15)(.3)}{(.08)(.7)+(.15)(.3)} \approx .446.$$
 About a 44\% chance that if we drew a bad apple it's a Braeburn.

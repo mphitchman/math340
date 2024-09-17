@@ -87,7 +87,7 @@ If $X$ is a discrete random variable with probability function $p(x),$ then the 
 
 In example \@ref(exm:draw-2-balls) we defined two random variables associated to the experiment of drawing two balls (numbered from 1 to 5) out of a hat.  
 
-The expected value of $X,$ the larger value of the two drawn, is $$E(X) = 2 \cdot 0.1 + 3 \cdot 0.2 + 4 \cdot 0.3 + \cdot 0.4 = 4.$$ So, we should expect that after a large number of repetitions of this game the average value of $X$ is about 4.
+The expected value of $X,$ the larger value of the two drawn, is $$E(X) = 2 \cdot 0.1 + 3 \cdot 0.2 + 4 \cdot 0.3 + 5 \cdot 0.4 = 4.$$ So, we should expect that after a large number of repetitions of this game the average value of $X$ is about 4.
 
 The expected value of $Y,$ the sum of the two values drawn, is $$E(Y) = 3 \cdot .1 + 4 \cdot .1 + 5 \cdot .2 + 6 \cdot .2 + 7 \cdot .2 + 8 \cdot .1 + 9 \cdot .1 = 6.$$. We should expect the average value of $Y$ to be about 6 after a large number of repetitions of this game. 
 
@@ -268,7 +268,7 @@ There exist discrete random variables with finite mean and infinite variance. He
 Then, 
 \begin{align*}
 E(X) &= \sum_{x=1}^\infty x \cdot \frac{1}{cx^3}\\
-    &= \frac{1}{c} \sum{x=1}^\infty \frac{1}{x^2} \\
+    &= \frac{1}{c} \sum_{x=1}^\infty \frac{1}{x^2} \\
     &= \frac{\pi^2}{6c},
 \end{align*}
 since the $p$-series $\sum_{n=1}^\infty (1/n^2) = \pi^2/6.$ So, $E(X)$ exists as a finite number.
@@ -276,7 +276,7 @@ since the $p$-series $\sum_{n=1}^\infty (1/n^2) = \pi^2/6.$ So, $E(X)$ exists as
 However,
 \begin{align*}
 E(X^2) &= \sum_{x=1}^\infty x^2 \cdot \frac{1}{cx^3}\\
-    &= \frac{1}{c} \sum{x=1}^\infty \frac{1}{x},
+    &= \frac{1}{c} \sum_{x=1}^\infty \frac{1}{x},
 \end{align*}
 which diverges as a multiple of the harmonic series. So, $V(X)$ does not exist as a finite number.
 :::
@@ -317,14 +317,14 @@ E(c) &= \sum_{\text{all }x} c \cdot p(x) \\
 
 Since the sum over all $x$ of $p(x)$ is 1 for any probability model, the result follows.
 
-2. Here appeal to Theorem \@ref(thm:EV-discrete-fcnRV)} and arithmetic:
+2. Here appeal to Theorem \@ref(thm:EV-discrete-fcnRV) and arithmetic:
 \begin{align*}
 E(c\cdot g(X)) &= \sum_{\text{all }x} c \cdot g(x) \cdot p(x) & \\
 &= c \sum_{\text{all }x} g(x) p(x) &\text{by arithmetic}\\
 &= c E(g(X)) & 
 \end{align*}
 
-3. Here we also appeal to Theorem \@ref(thm:EV-discrete-fcnRV)} and arithmetic:
+3. Here we also appeal to Theorem \@ref(thm:EV-discrete-fcnRV) and arithmetic:
 \begin{align*}
 E(g_1(x) \pm g_2(x)) &= \sum_{\text{all }x} (g_1(x) \pm g_2(x))\cdot p(x) &\\
 &= \sum_{\text{all }x} (g_1(x) p(x) \pm g_2(x) p(x)) &\text{by arithmetic}\\
@@ -365,10 +365,10 @@ V(X) &= E((X-\mu)^2)\\
      &= E(X^2) - E(2\mu X) + E(\mu^2) &\text{by E() Property 3} \\ 
      &= E(X^2) - 2\mu E(X) + \mu^2 &\text{by E() Properties 2 and 1}\\
      &= E(X^2) - 2\mu^2 + \mu^2 & \text{since }E(X)=\mu \\
-V(X) &= E(X^2) - \mu^2
+V(X) &= E(X^2) - \mu^2.
 \end{align*}
 :::
-
+<br>
 This alternate formula for variance also provides us with a way to compute $E(X^2)$ from the expected value and variance of a random variable: $$E(X^2) = V(X) + \mu^2,$$ or using the alternate variance notation: 
 $$E(X^2) = \sigma^2 + \mu^2.$$
 
