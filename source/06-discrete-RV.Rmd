@@ -394,11 +394,11 @@ $$P(|X - \mu| < k\sigma ) \geq 1 - \frac{1}{k^2}.$$\index{Tchebysheff's Inequali
 Equivalently, $$P(|X - \mu| \geq k\sigma) \leq \frac{1}{k^2}.$$
 :::
 
-For instance, if $k = 2,$ Tchebbysheff's inequality says that for any random variable $X,$ the probability that $X$ takes a value that is within 2 standard deviations of the mean is at least .75. For many distributions, this proability is closer to .95, but .75 holds for *all* distributions. 
-Of course, letting $k = 1$ in Tchebbysheff's inequality gives us the trivially true statement that the probability that $X$ takes a value within 1 standard deviation of the mean is at least 0. 
+For instance, if $k = 2,$ Tchebysheff's inequality says that for any random variable $X,$ the probability that $X$ takes a value that is within 2 standard deviations of the mean is at least .75. For many distributions, this proability is closer to .95, but .75 holds for *all* distributions. 
+Of course, letting $k = 1$ in Tchebysheff's inequality gives us the trivially true statement that the probability that $X$ takes a value within 1 standard deviation of the mean is at least 0. 
 
 :::{.proof}
-We prove Tchebbysheff's inequality in the case for a discrete random variable, and we come back to this theorem after defining continuous random variables.  
+We prove Tchebysheff's inequality in the case for a discrete random variable, and we come back to this theorem after defining continuous random variables.  
 
 Let $k > 0$ be given.
 
@@ -421,16 +421,16 @@ Dividing both sides of the inequality by the positive value  $k^2\sigma^2$ gives
 $$P(|X-\mu| \geq k\sigma) \leq \frac{1}{k^2}.$$
 :::
 
-:::{.example #tchebby}
+:::{.example #tcheby}
 Suppose $X$ is a random variable with $E(X) = 70$ and $V(X) = 25,$ so $\mu = 70$ and $\sigma = \sqrt{25} = 5$. 
-According to Tchebbysheff's inequality with $k = 2,$ the probability that $X$ takes a value between 60 and 80 is at least 3/4. Setting $k = 3,$ we find the probability that $X$ takes a value between 55 and 85 is at least 8/9.
+According to Tchebysheff's inequality with $k = 2,$ the probability that $X$ takes a value between 60 and 80 is at least 3/4. Setting $k = 3,$ we find the probability that $X$ takes a value between 55 and 85 is at least 8/9.
 :::
 
 Again, for many distributions, the probability of being within 2 standard deviations of the mean is much higher than .75 (often about .95, in fact), and the probability of being within 3 standard deviations of the mean is much higher than 8/9 (often about .99). 
 
-Here's a distribution, however, that shows the bound in Tchebbysheff's inequality cannot be improved.
+Here's a distribution, however, that shows the bound in Tchebysheff's inequality cannot be improved.
 
-:::{.example #tchebby-best-bound}
+:::{.example #tcheby-best-bound}
 We show that there exists a probability distribution for which $P(|X-\mu|<2\sigma) = .75$. 
 
 Consider the discrete random variable $X$ whose probability distribution function is 
@@ -464,7 +464,7 @@ x   &  -1 &  0 &  1   \\ \hline
 p(x) & \frac{1}{2k^2} & 1-\frac{1}{k^2} & \frac{1}{2k^2} 
 \end{array}
 $$
-will satisfy $P(|X-\mu|<2\sigma)=1-\frac{1}{k^2},$ demonstrating that the bound in Tchebbyshef's inequality can not be increased.
+will satisfy $P(|X-\mu|<2\sigma)=1-\frac{1}{k^2},$ demonstrating that the bound in Tchebysheff's inequality can not be increased.
 :::
 
 
