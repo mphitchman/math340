@@ -249,7 +249,7 @@ We leave the proof that $V(X) = \frac{1-p}{p^2}$ as an exercise.
 
 :::{.example label="geom-messages" name="Message Received"}
 
-> Assume that, during each second, my junk box receives one email with probability .01 and no email with probability .99. Determine the probability that I will not receive a junk email in the next minute.
+> Assume that, during each second, my junk box receives one email with probability .01 and no email with probability .99. Determine the probability that I will not receive a junk email in the next 10 minutes.
 
 We let $X$ count how many seconds (from now) it takes to be sent an email to my junk box, and we assume $X$ is $\texttt{geom}(p = .01)$. 
 
@@ -436,13 +436,14 @@ If we're interested in modelling the number of instances of some rare event over
   - the probability of 1 instance in a subinterval ("success") equals $p$;
   - the probability of 0 instances ("failure") equals $1-p$.
 
-Then, if $X$ equals the number of instances in the original interval, then $X$ is binomial on $n$ trials with probability of success $p$ on each trial, assuming identical, independent Bernouilli trials. As we increase $n,$ breaking the original time period into smaller and smaller subintervals, the corresponding probability $p$ of seeing 1 instance of the event in a subinterval will decrease, but what if $n \cdot p$ remains constant? In this case, let $\lambda = np$ and consider what happens to the probability density function for the $texttt{binom}(n,p)$ distribution:
+Then, if $X$ equals the number of instances in the original interval, then $X$ is binomial on $n$ trials with probability of success $p$ on each trial, assuming identical, independent Bernouilli trials. As we increase $n,$ breaking the original time period into smaller and smaller subintervals, the corresponding probability $p$ of seeing 1 instance of the event in a subinterval will decrease, but what if $n \cdot p$ remains constant? In this case, let $\lambda = np$ and consider what happens to the probability density function for the $\texttt{binom}(n,p)$ distribution:
 
 
 \begin{align*}
-\lim_{n \to \infty} \binom{n}{x}p^x(1-p)^{n-x} &= \lim_{n \to \infty} \frac{n\cdot(n-1)\cdot \cdots \cdot (n - x + 1)}{x!} \left(\frac{\lambda}{n}\right)^x\left(1-\frac{\lambda}{n}\right)^{n-x} \\
-  &=\lim_{n \to \infty} \frac{\lambda^x}{x!}\cdot\frac{n\cdot(n-1)\cdot \cdots \cdot (n - x + 1)}{n^x}\cdot\left(1-\frac{\lambda}{n}\right)^{n}\left(1-\frac{\lambda}{n}\right)^{-x}\\
-  &=\frac{\lambda^x}{x!}\lim_{n \to \infty}\left(1-\frac{\lambda}{n}\right)^{n}\left(1-\frac{\lambda}{n}\right)^{-x} \cdot \frac{n}{n} \cdot \frac{n-1}{n} \cdot \frac{n-2}{n} \cdot \cdots \cdot \frac{n-x+1}{n}.
+\lim_{n \to \infty} \binom{n}{x}p^x(1-p)^{n-x} \\
+= \lim_{n \to \infty} \frac{n\cdot(n-1)\cdot \cdots \cdot (n - x + 1)}{x!} \left(\frac{\lambda}{n}\right)^x\left(1-\frac{\lambda}{n}\right)^{n-x} \\
+=\lim_{n \to \infty} \frac{\lambda^x}{x!}\cdot\frac{n\cdot(n-1)\cdot \cdots \cdot (n - x + 1)}{n^x}\cdot\left(1-\frac{\lambda}{n}\right)^{n}\left(1-\frac{\lambda}{n}\right)^{-x}\\
+=\frac{\lambda^x}{x!}\lim_{n \to \infty}\left(1-\frac{\lambda}{n}\right)^{n}\left(1-\frac{\lambda}{n}\right)^{-x} \cdot \frac{n}{n} \cdot \frac{n-1}{n} \cdot \frac{n-2}{n} \cdot \cdots \cdot \frac{n-x+1}{n}.
 \end{align*}
 
 Now, we have a limit of a product of many terms. If the limit of each term exists, then the overall limit will be the product of each of the individual limits.
@@ -454,7 +455,7 @@ Second, observe that $(1-\lambda/n)^{-x} \to 1^{-x} = 1$ since $\lambda/n \to 0$
 
 Finally, for any $k \geq 0,$ $\lim_{n \to \infty} \frac{n-k}{n} = 1$ so each of the ratios from the third term on converges to 1.
 
-So, if $np$ remains constant as $n \to \infty,$ then as $n \to \infty$ the binomial distribution $texttt{binom}(n,p)$ approaches the $\texttt{Poisson}(\lambda)$ distribution, where $\lambda = np$. So, the Poisson distribution can be a good model for counting instances of some rare event. 
+So, if $np$ remains constant as $n \to \infty,$ then as $n \to \infty$ the binomial distribution $\texttt{binom}(n,p)$ approaches the $\texttt{Poisson}(\lambda)$ distribution, where $\lambda = np$. So, the Poisson distribution can be a good model for counting instances of some rare event. 
 
 The process described above, where subdivision of the interval leads to Bernoulli trials in such a way that $np$ remains constant, is called a Poisson process.  
 
