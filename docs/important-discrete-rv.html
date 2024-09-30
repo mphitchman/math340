@@ -710,8 +710,8 @@ P(X \geq 20) &amp;= 1 - P(X \leq 19) \\
 </ul>
 <p>Then, if <span class="math inline">\(X\)</span> equals the number of instances in the original interval, then <span class="math inline">\(X\)</span> is binomial on <span class="math inline">\(n\)</span> trials with probability of success <span class="math inline">\(p\)</span> on each trial, assuming identical, independent Bernouilli trials. As we increase <span class="math inline">\(n,\)</span> breaking the original time period into smaller and smaller subintervals, the corresponding probability <span class="math inline">\(p\)</span> of seeing 1 instance of the event in a subinterval will decrease, but what if <span class="math inline">\(n \cdot p\)</span> remains constant? In this case, let <span class="math inline">\(\lambda = np\)</span> and consider what happens to the probability density function for the <span class="math inline">\(\texttt{binom}(n,p)\)</span> distribution:</p>
 <p><span class="math display">\[\begin{align*}
-\lim_{n \to \infty} \binom{n}{x}p^x(1-p)^{n-x} \\
-= \lim_{n \to \infty} \frac{n\cdot(n-1)\cdot \cdots \cdot (n - x + 1)}{x!} \left(\frac{\lambda}{n}\right)^x\left(1-\frac{\lambda}{n}\right)^{n-x} \\
+\lim_{n \to \infty} \binom{n}{x}p^x(1-p)^{n-x} &amp; = \\
+\lim_{n \to \infty} \frac{n\cdot(n-1)\cdot \cdots \cdot (n - x + 1)}{x!} \left(\frac{\lambda}{n}\right)^x\left(1-\frac{\lambda}{n}\right)^{n-x} &amp; \\
 =\lim_{n \to \infty} \frac{\lambda^x}{x!}\cdot\frac{n\cdot(n-1)\cdot \cdots \cdot (n - x + 1)}{n^x}\cdot\left(1-\frac{\lambda}{n}\right)^{n}\left(1-\frac{\lambda}{n}\right)^{-x}\\
 =\frac{\lambda^x}{x!}\lim_{n \to \infty}\left(1-\frac{\lambda}{n}\right)^{n}\left(1-\frac{\lambda}{n}\right)^{-x} \cdot \frac{n}{n} \cdot \frac{n-1}{n} \cdot \frac{n-2}{n} \cdot \cdots \cdot \frac{n-x+1}{n}.
 \end{align*}\]</span></p>
@@ -744,7 +744,7 @@ P(X \geq 20) &amp;= 1 - P(X \leq 19) \\
 x
 </th>
 <th style="text-align:right;">
-binom(10,4)
+binom(10,.4)
 </th>
 <th style="text-align:right;">
 binom(40,.1)
