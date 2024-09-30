@@ -246,10 +246,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="A.1" data-path="sampling-in-R.html"><a href="sampling-in-R.html#vectors-R"><i class="fa fa-check"></i><b>A.1</b> Data vectors</a>
 <ul>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#vector-types"><i class="fa fa-check"></i>vector types</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#matrices"><i class="fa fa-check"></i>Matrices</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#matrices"><i class="fa fa-check"></i>matrices</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#data-frames"><i class="fa fa-check"></i>data frames</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#common-vector-commands"><i class="fa fa-check"></i>common vector commands</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#comparison-operators"><i class="fa fa-check"></i>Comparison Operators</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#comparison-operators"><i class="fa fa-check"></i>comparison operators</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#checking-membership"><i class="fa fa-check"></i>checking membership</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sum-and-which"><i class="fa fa-check"></i><code>sum()</code> and <code>which()</code></a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#extracting-elements"><i class="fa fa-check"></i>extracting elements</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#comparing-vectors"><i class="fa fa-check"></i>comparing vectors</a></li>
@@ -267,12 +268,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="A.3" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sampling-in-R-section"><i class="fa fa-check"></i><b>A.3</b> Sampling</a>
 <ul>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-options"><i class="fa fa-check"></i><code>sample()</code> options</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-without-replacement"><i class="fa fa-check"></i>Sample without replacement</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-with-replacement"><i class="fa fa-check"></i>Sample with replacement</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-with-custom-probabilities"><i class="fa fa-check"></i>Sample with custom probabilities</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#example-lefties"><i class="fa fa-check"></i>Example: Lefties</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-without-replacement"><i class="fa fa-check"></i>sample without replacement</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-with-replacement"><i class="fa fa-check"></i>sample with replacement</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-with-custom-probabilities"><i class="fa fa-check"></i>sample with custom probabilities</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#example-lefties"><i class="fa fa-check"></i>example: Lefties</a></li>
 </ul></li>
-<li class="chapter" data-level="A.4" data-path="sampling-in-R.html"><a href="sampling-in-R.html#repeated-sampling"><i class="fa fa-check"></i><b>A.4</b> Repeated Sampling</a>
+<li class="chapter" data-level="A.4" data-path="sampling-in-R.html"><a href="sampling-in-R.html#repeated-sampling"><i class="fa fa-check"></i><b>A.4</b> Repeated sampling</a>
 <ul>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#using-a-for-loop"><i class="fa fa-check"></i>using a <code>for</code> loop</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#using-replicate"><i class="fa fa-check"></i>using <code>replicate()</code></a></li>
@@ -557,7 +558,7 @@ But this series is exactly the one for which we found a formula in the intermiss
 <div class="example" label="geom-messages">
 <p><span id="exm:unlabeled-div-25" class="example"><strong>Example 7.6  (Message Received) </strong></span></p>
 <blockquote>
-<p>Assume that, during each second, my junk box receives one email with probability .01 and no email with probability .99. Determine the probability that I will not receive a junk email in the next minute.</p>
+<p>Assume that, during each second, my junk box receives one email with probability .01 and no email with probability .99. Determine the probability that I will not receive a junk email in the next 10 minutes.</p>
 </blockquote>
 <p>We let <span class="math inline">\(X\)</span> count how many seconds (from now) it takes to be sent an email to my junk box, and we assume <span class="math inline">\(X\)</span> is <span class="math inline">\(\texttt{geom}(p = .01)\)</span>.</p>
 <p>Then the probability of not receiving a junk email in the next ten minutes is <span class="math display">\[P(X &gt; 600) = q^{600} \approx .0024.\]</span>
@@ -707,17 +708,18 @@ P(X \geq 20) &amp;= 1 - P(X \leq 19) \\
 <li>the probability of 1 instance in a subinterval (“success”) equals <span class="math inline">\(p\)</span>;</li>
 <li>the probability of 0 instances (“failure”) equals <span class="math inline">\(1-p\)</span>.</li>
 </ul>
-<p>Then, if <span class="math inline">\(X\)</span> equals the number of instances in the original interval, then <span class="math inline">\(X\)</span> is binomial on <span class="math inline">\(n\)</span> trials with probability of success <span class="math inline">\(p\)</span> on each trial, assuming identical, independent Bernouilli trials. As we increase <span class="math inline">\(n,\)</span> breaking the original time period into smaller and smaller subintervals, the corresponding probability <span class="math inline">\(p\)</span> of seeing 1 instance of the event in a subinterval will decrease, but what if <span class="math inline">\(n \cdot p\)</span> remains constant? In this case, let <span class="math inline">\(\lambda = np\)</span> and consider what happens to the probability density function for the <span class="math inline">\(texttt{binom}(n,p)\)</span> distribution:</p>
+<p>Then, if <span class="math inline">\(X\)</span> equals the number of instances in the original interval, then <span class="math inline">\(X\)</span> is binomial on <span class="math inline">\(n\)</span> trials with probability of success <span class="math inline">\(p\)</span> on each trial, assuming identical, independent Bernouilli trials. As we increase <span class="math inline">\(n,\)</span> breaking the original time period into smaller and smaller subintervals, the corresponding probability <span class="math inline">\(p\)</span> of seeing 1 instance of the event in a subinterval will decrease, but what if <span class="math inline">\(n \cdot p\)</span> remains constant? In this case, let <span class="math inline">\(\lambda = np\)</span> and consider what happens to the probability density function for the <span class="math inline">\(\texttt{binom}(n,p)\)</span> distribution:</p>
 <p><span class="math display">\[\begin{align*}
-\lim_{n \to \infty} \binom{n}{x}p^x(1-p)^{n-x} &amp;= \lim_{n \to \infty} \frac{n\cdot(n-1)\cdot \cdots \cdot (n - x + 1)}{x!} \left(\frac{\lambda}{n}\right)^x\left(1-\frac{\lambda}{n}\right)^{n-x} \\
-  &amp;=\lim_{n \to \infty} \frac{\lambda^x}{x!}\cdot\frac{n\cdot(n-1)\cdot \cdots \cdot (n - x + 1)}{n^x}\cdot\left(1-\frac{\lambda}{n}\right)^{n}\left(1-\frac{\lambda}{n}\right)^{-x}\\
-  &amp;=\frac{\lambda^x}{x!}\lim_{n \to \infty}\left(1-\frac{\lambda}{n}\right)^{n}\left(1-\frac{\lambda}{n}\right)^{-x} \cdot \frac{n}{n} \cdot \frac{n-1}{n} \cdot \frac{n-2}{n} \cdot \cdots \cdot \frac{n-x+1}{n}.
+\lim_{n \to \infty} \binom{n}{x}p^x(1-p)^{n-x} \\
+= \lim_{n \to \infty} \frac{n\cdot(n-1)\cdot \cdots \cdot (n - x + 1)}{x!} \left(\frac{\lambda}{n}\right)^x\left(1-\frac{\lambda}{n}\right)^{n-x} \\
+=\lim_{n \to \infty} \frac{\lambda^x}{x!}\cdot\frac{n\cdot(n-1)\cdot \cdots \cdot (n - x + 1)}{n^x}\cdot\left(1-\frac{\lambda}{n}\right)^{n}\left(1-\frac{\lambda}{n}\right)^{-x}\\
+=\frac{\lambda^x}{x!}\lim_{n \to \infty}\left(1-\frac{\lambda}{n}\right)^{n}\left(1-\frac{\lambda}{n}\right)^{-x} \cdot \frac{n}{n} \cdot \frac{n-1}{n} \cdot \frac{n-2}{n} \cdot \cdots \cdot \frac{n-x+1}{n}.
 \end{align*}\]</span></p>
 <p>Now, we have a limit of a product of many terms. If the limit of each term exists, then the overall limit will be the product of each of the individual limits.</p>
 <p>First, observe that <span class="math inline">\((1-\lambda/n)^n \to e^{-\lambda}\)</span> as <span class="math inline">\(n \to \infty\)</span> by one of the greatest limits in mathematics: <span class="math display">\[\lim_{n \to \infty}\left(1+\frac{x}{n}\right)^n = e^x\]</span> for any real number <span class="math inline">\(x\)</span>.</p>
 <p>Second, observe that <span class="math inline">\((1-\lambda/n)^{-x} \to 1^{-x} = 1\)</span> since <span class="math inline">\(\lambda/n \to 0\)</span> as <span class="math inline">\(n \to \infty\)</span>.</p>
 <p>Finally, for any <span class="math inline">\(k \geq 0,\)</span> <span class="math inline">\(\lim_{n \to \infty} \frac{n-k}{n} = 1\)</span> so each of the ratios from the third term on converges to 1.</p>
-<p>So, if <span class="math inline">\(np\)</span> remains constant as <span class="math inline">\(n \to \infty,\)</span> then as <span class="math inline">\(n \to \infty\)</span> the binomial distribution <span class="math inline">\(texttt{binom}(n,p)\)</span> approaches the <span class="math inline">\(\texttt{Poisson}(\lambda)\)</span> distribution, where <span class="math inline">\(\lambda = np\)</span>. So, the Poisson distribution can be a good model for counting instances of some rare event.</p>
+<p>So, if <span class="math inline">\(np\)</span> remains constant as <span class="math inline">\(n \to \infty,\)</span> then as <span class="math inline">\(n \to \infty\)</span> the binomial distribution <span class="math inline">\(\texttt{binom}(n,p)\)</span> approaches the <span class="math inline">\(\texttt{Poisson}(\lambda)\)</span> distribution, where <span class="math inline">\(\lambda = np\)</span>. So, the Poisson distribution can be a good model for counting instances of some rare event.</p>
 <p>The process described above, where subdivision of the interval leads to Bernoulli trials in such a way that <span class="math inline">\(np\)</span> remains constant, is called a Poisson process.</p>
 <div class="definition">
 <p><span id="def:def-pois-process" class="definition"><strong>Definition 7.4  </strong></span>The process by which an event happens is called a <strong>Poisson process</strong> if the following holds:</p>
