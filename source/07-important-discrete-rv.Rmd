@@ -440,8 +440,8 @@ Then, if $X$ equals the number of instances in the original interval, then $X$ i
 
 
 \begin{align*}
-\lim_{n \to \infty} \binom{n}{x}p^x(1-p)^{n-x} \\
-= \lim_{n \to \infty} \frac{n\cdot(n-1)\cdot \cdots \cdot (n - x + 1)}{x!} \left(\frac{\lambda}{n}\right)^x\left(1-\frac{\lambda}{n}\right)^{n-x} \\
+\lim_{n \to \infty} \binom{n}{x}p^x(1-p)^{n-x} & = \\
+\lim_{n \to \infty} \frac{n\cdot(n-1)\cdot \cdots \cdot (n - x + 1)}{x!} \left(\frac{\lambda}{n}\right)^x\left(1-\frac{\lambda}{n}\right)^{n-x} & \\
 =\lim_{n \to \infty} \frac{\lambda^x}{x!}\cdot\frac{n\cdot(n-1)\cdot \cdots \cdot (n - x + 1)}{n^x}\cdot\left(1-\frac{\lambda}{n}\right)^{n}\left(1-\frac{\lambda}{n}\right)^{-x}\\
 =\frac{\lambda^x}{x!}\lim_{n \to \infty}\left(1-\frac{\lambda}{n}\right)^{n}\left(1-\frac{\lambda}{n}\right)^{-x} \cdot \frac{n}{n} \cdot \frac{n-1}{n} \cdot \frac{n-2}{n} \cdot \cdots \cdot \frac{n-x+1}{n}.
 \end{align*}
@@ -479,7 +479,7 @@ x=0:7
 df=data.frame(x,"b(10,.4)"=round(dbinom(x,10,.4),4),"b(40,.1)"=round(dbinom(x,40,.1),4),"b(400,.01)"=round(dbinom(x,400,.01),4),"Poisson(4)"=round(dpois(x,4),4))
 df %>%
   kbl(caption = "Approximating a Poisson distn with Binomial distns",
-      col.names=c("x","binom(10,4)","binom(40,.1)","binom(400,.01)","Poisson(4)")) %>%
+      col.names=c("x","binom(10,.4)","binom(40,.1)","binom(400,.01)","Poisson(4)")) %>%
   kable_classic(full_width = F, html_font = "Cambria")
 ```
 
