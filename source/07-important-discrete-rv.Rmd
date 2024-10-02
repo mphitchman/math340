@@ -269,7 +269,7 @@ since the third $S$ occurs on the 7th trial.
 
 Let $X$ equal the number of trials up to and including the trial of the $r$th success. Then $X$ is called a **negative binomial distribution with parameters $r$ and $p$**\index{discrete random variable!negative binomial}, denoted $\texttt{nbinom}(r,p)$\index{\texttt{nbinom}$(r,p)$}.
 
-The space of $X$ is $\{r, r+1, r+2, \ldots\}$ and for $x$ in the space of $X$ the probability function for $X$ is given by $$p(x) = \binom{r-1}{x-1}p^r(1-p)^{x-r}.$$
+The space of $X$ is $\{r, r+1, r+2, \ldots\}$ and for $x$ in the space of $X$ the probability function for $X$ is given by $$p(x) = \binom{x-1}{r-1}p^r(1-p)^{x-r}.$$
 
 Note, that if $r=1$ we just have the friendly geometric distribution.
 
