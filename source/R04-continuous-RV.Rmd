@@ -187,7 +187,16 @@ So, 5% of light bulbs last less than `r round(qexp(.05,1/120),2)` hours.
 
 The density function is $f(x) = \frac{1}{2}e^{-x/2}$ for $x > 0,$ and we can sketch it by plotting an $x$ vector of many inputs between, say, 0 and 10, and the corresponding values of `dexp()`:
 
-```{r, echo=TRUE,fig.dim=c(6.16,3.4),fig.align='center'}
+```
+beta=2
+df = data.frame(x=seq(0,10,by=.01),f=dexp(seq(0,10,by=.01),1/beta))
+ggplot(df)+geom_line(aes(x,f),col="red")+
+  ggtitle(paste0("density function f(x) of an exp(2) random variable"))+
+  ylab("f(x)")+xlab("x")+
+  theme_classic()
+```
+
+```{r, echo=FALSE,fig.dim=c(6.16,3.4),fig.align='center'}
 beta=2
 df = data.frame(x=seq(0,10,by=.01),f=dexp(seq(0,10,by=.01),1/beta))
 ggplot(df)+geom_line(aes(x,f),col="red")+
@@ -198,7 +207,17 @@ ggplot(df)+geom_line(aes(x,f),col="red")+
 
 The distribution function, which gives cumulative probability is found by plotting `pexp()`:
 
-```{r, echo=TRUE,fig.dim=c(6.16,3.4),fig.align='center'}
+```
+beta=2
+df = data.frame(x=seq(0,10,by=.01),f=pexp(seq(0,10,by=.01),1/beta))
+ggplot(df)+geom_line(aes(x,f),col="blue")+
+  ggtitle(paste0("distribution function F(x) of an exp(2) random variable"))+
+  ylab("F(x)")+xlab("x")+
+  theme_classic()
+```
+
+
+```{r, echo=FALSE,fig.dim=c(6.16,3.4),fig.align='center'}
 beta=2
 df = data.frame(x=seq(0,10,by=.01),f=pexp(seq(0,10,by=.01),1/beta))
 ggplot(df)+geom_line(aes(x,f),col="blue")+
