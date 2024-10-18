@@ -401,8 +401,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="picking-random-numbers" class="section level3 unnumbered hasAnchor">
 <h3>Picking random numbers<a href="R-continuousRV.html#picking-random-numbers" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="R-continuousRV.html#cb292-1" tabindex="-1"></a><span class="fu">runif</span>(<span class="dv">10</span>,<span class="dv">0</span>,<span class="dv">1</span>) <span class="co">#pick 10 random numbers between 0 and 1.</span></span></code></pre></div>
-<pre><code>##  [1] 0.7050117 0.6049365 0.4927305 0.4589310 0.8394348 0.4582113 0.3204362
-##  [8] 0.2424023 0.2515608 0.1081020</code></pre>
+<pre><code>##  [1] 0.1591900 0.7015577 0.7841069 0.7203860 0.8977723 0.3531635 0.6545967
+##  [8] 0.9699819 0.5919340 0.6462830</code></pre>
 </div>
 <div id="picking-random-points-in-the-unit-square" class="section level3 unnumbered hasAnchor">
 <h3>Picking random points in the unit square<a href="R-continuousRV.html#picking-random-points-in-the-unit-square" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -429,7 +429,7 @@ The area of the circle is <span class="math inline">\(\pi (1)^2 = \pi.\)</span> 
 and we can estimate <span class="math inline">\(\pi\)</span> as follows:
 <span class="math display">\[\pi \approx 4\cdot \frac{\text{points in circle}}{\text{total points}}\]</span></p>
 <div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="R-continuousRV.html#cb296-1" tabindex="-1"></a><span class="dv">4</span><span class="sc">*</span><span class="fu">sum</span>(df<span class="sc">$</span>circle<span class="sc">==</span><span class="st">&quot;yes&quot;</span>)<span class="sc">/</span>points <span class="co"># our estimate of pi</span></span></code></pre></div>
-<pre><code>## [1] 3.136</code></pre>
+<pre><code>## [1] 3.1432</code></pre>
 </div>
 </div>
 <div id="normalR" class="section level2 hasAnchor" number="18.2">
@@ -465,7 +465,7 @@ b) Find the birth weight that marks the bottom 1% of all birthweights.</p>
 <p><img src="math340-notes_files/figure-html/unnamed-chunk-199-1.png" width="672" />
 Now suppose we draw a sample of size 50 from this population, and compute the sample mean of these 50 values:</p>
 <div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="R-continuousRV.html#cb306-1" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">sample</span>(pop,<span class="dv">50</span>))</span></code></pre></div>
-<pre><code>## [1] 15.06581</code></pre>
+<pre><code>## [1] 14.8684</code></pre>
 <p>Now let’s repeat this process for 10000 trials, and look at the distribution of the 10000 sample means:</p>
 <div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="R-continuousRV.html#cb308-1" tabindex="-1"></a>trials<span class="ot">=</span><span class="dv">10000</span></span>
 <span id="cb308-2"><a href="R-continuousRV.html#cb308-2" tabindex="-1"></a>results<span class="ot">=</span><span class="fu">c</span>()</span>
@@ -523,20 +523,20 @@ Now suppose we draw a sample of size 50 from this population, and compute the sa
 <p>Suppose <span class="math inline">\(X\)</span> is an exponential random variable with parameter <span class="math inline">\(\beta = 2\)</span>. Sketch the density function <span class="math inline">\(f(x)\)</span> as well as the distribution function <span class="math inline">\(F(x)\)</span>.</p>
 </blockquote>
 <p>The density function is <span class="math inline">\(f(x) = \frac{1}{2}e^{-x/2}\)</span> for <span class="math inline">\(x &gt; 0,\)</span> and we can sketch it by plotting an <span class="math inline">\(x\)</span> vector of many inputs between, say, 0 and 10, and the corresponding values of <code>dexp()</code>:</p>
-<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="R-continuousRV.html#cb316-1" tabindex="-1"></a>beta<span class="ot">=</span><span class="dv">2</span></span>
-<span id="cb316-2"><a href="R-continuousRV.html#cb316-2" tabindex="-1"></a>df <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">x=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">10</span>,<span class="at">by=</span>.<span class="dv">01</span>),<span class="at">f=</span><span class="fu">dexp</span>(<span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">10</span>,<span class="at">by=</span>.<span class="dv">01</span>),<span class="dv">1</span><span class="sc">/</span>beta))</span>
-<span id="cb316-3"><a href="R-continuousRV.html#cb316-3" tabindex="-1"></a><span class="fu">ggplot</span>(df)<span class="sc">+</span><span class="fu">geom_line</span>(<span class="fu">aes</span>(x,f),<span class="at">col=</span><span class="st">&quot;red&quot;</span>)<span class="sc">+</span></span>
-<span id="cb316-4"><a href="R-continuousRV.html#cb316-4" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="fu">paste0</span>(<span class="st">&quot;density function f(x) of an exp(2) random variable&quot;</span>))<span class="sc">+</span></span>
-<span id="cb316-5"><a href="R-continuousRV.html#cb316-5" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;f(x)&quot;</span>)<span class="sc">+</span><span class="fu">xlab</span>(<span class="st">&quot;x&quot;</span>)<span class="sc">+</span></span>
-<span id="cb316-6"><a href="R-continuousRV.html#cb316-6" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<pre><code>beta=2
+df = data.frame(x=seq(0,10,by=.01),f=dexp(seq(0,10,by=.01),1/beta))
+ggplot(df)+geom_line(aes(x,f),col=&quot;red&quot;)+
+  ggtitle(paste0(&quot;density function f(x) of an exp(2) random variable&quot;))+
+  ylab(&quot;f(x)&quot;)+xlab(&quot;x&quot;)+
+  theme_classic()</code></pre>
 <p><img src="math340-notes_files/figure-html/unnamed-chunk-207-1.png" width="591.36" style="display: block; margin: auto;" /></p>
 <p>The distribution function, which gives cumulative probability is found by plotting <code>pexp()</code>:</p>
-<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="R-continuousRV.html#cb317-1" tabindex="-1"></a>beta<span class="ot">=</span><span class="dv">2</span></span>
-<span id="cb317-2"><a href="R-continuousRV.html#cb317-2" tabindex="-1"></a>df <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">x=</span><span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">10</span>,<span class="at">by=</span>.<span class="dv">01</span>),<span class="at">f=</span><span class="fu">pexp</span>(<span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">10</span>,<span class="at">by=</span>.<span class="dv">01</span>),<span class="dv">1</span><span class="sc">/</span>beta))</span>
-<span id="cb317-3"><a href="R-continuousRV.html#cb317-3" tabindex="-1"></a><span class="fu">ggplot</span>(df)<span class="sc">+</span><span class="fu">geom_line</span>(<span class="fu">aes</span>(x,f),<span class="at">col=</span><span class="st">&quot;blue&quot;</span>)<span class="sc">+</span></span>
-<span id="cb317-4"><a href="R-continuousRV.html#cb317-4" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="fu">paste0</span>(<span class="st">&quot;distribution function F(x) of an exp(2) random variable&quot;</span>))<span class="sc">+</span></span>
-<span id="cb317-5"><a href="R-continuousRV.html#cb317-5" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;F(x)&quot;</span>)<span class="sc">+</span><span class="fu">xlab</span>(<span class="st">&quot;x&quot;</span>)<span class="sc">+</span></span>
-<span id="cb317-6"><a href="R-continuousRV.html#cb317-6" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<pre><code>beta=2
+df = data.frame(x=seq(0,10,by=.01),f=pexp(seq(0,10,by=.01),1/beta))
+ggplot(df)+geom_line(aes(x,f),col=&quot;blue&quot;)+
+  ggtitle(paste0(&quot;distribution function F(x) of an exp(2) random variable&quot;))+
+  ylab(&quot;F(x)&quot;)+xlab(&quot;x&quot;)+
+  theme_classic()</code></pre>
 <p><img src="math340-notes_files/figure-html/unnamed-chunk-208-1.png" width="591.36" style="display: block; margin: auto;" /></p>
 </div>
 <div id="a-memoryless-distribution" class="section level3 unnumbered hasAnchor">
@@ -551,9 +551,9 @@ Now suppose we draw a sample of size 50 from this population, and compute the sa
 <span id="cb318-4"><a href="R-continuousRV.html#cb318-4" tabindex="-1"></a>p1<span class="ot">=</span><span class="fu">sum</span>(x <span class="sc">&gt;</span> t)<span class="sc">/</span>trials <span class="co">#P(X &gt; t)</span></span>
 <span id="cb318-5"><a href="R-continuousRV.html#cb318-5" tabindex="-1"></a>p2<span class="ot">=</span><span class="fu">sum</span>(x[<span class="fu">which</span>(x <span class="sc">&gt;</span> s)]<span class="sc">&gt;</span>s<span class="sc">+</span>t)<span class="sc">/</span><span class="fu">sum</span>(x<span class="sc">&gt;</span>s) <span class="co">#P(X&gt;t+s | X &gt; s)</span></span>
 <span id="cb318-6"><a href="R-continuousRV.html#cb318-6" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;Estimate for P(X&gt;t):&quot;</span>,<span class="fu">round</span>(p1,<span class="dv">3</span>)))</span></code></pre></div>
-<pre><code>## [1] &quot;Estimate for P(X&gt;t): 0.544&quot;</code></pre>
+<pre><code>## [1] &quot;Estimate for P(X&gt;t): 0.547&quot;</code></pre>
 <div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="R-continuousRV.html#cb320-1" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;Estimate for P(X&gt;t+s | X&gt;s):&quot;</span>,<span class="fu">round</span>(p2,<span class="dv">3</span>)))</span></code></pre></div>
-<pre><code>## [1] &quot;Estimate for P(X&gt;t+s | X&gt;s): 0.546&quot;</code></pre>
+<pre><code>## [1] &quot;Estimate for P(X&gt;t+s | X&gt;s): 0.553&quot;</code></pre>
 </div>
 </div>
 <div id="gammaR" class="section level2 hasAnchor" number="18.4">
@@ -586,8 +586,8 @@ Figure D.1: Finding P(4&lt;X&lt;12) for a gamma(3,4) distribution
 </blockquote>
 <div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="R-continuousRV.html#cb324-1" tabindex="-1"></a>x<span class="ot">=</span><span class="fu">rgamma</span>(<span class="dv">1000</span>,<span class="dv">3</span>,<span class="dv">1</span><span class="sc">/</span><span class="dv">4</span>) <span class="co"># random sample of size 1000 (no parameter names &lt;-&gt; shape,rate)</span></span>
 <span id="cb324-2"><a href="R-continuousRV.html#cb324-2" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">abs</span>(x<span class="dv">-8</span>)<span class="sc">&lt;</span><span class="dv">4</span>) <span class="co"># values in the sample between 4 and 12</span></span></code></pre></div>
-<pre><code>## [1] 525</code></pre>
-<p>Well, 525 is mighty close to half of the 1000 values!</p>
+<pre><code>## [1] 517</code></pre>
+<p>Well, 517 is mighty close to half of the 1000 values!</p>
 </div>
 <p><strong>Exponential distributions are special gamma distributions.</strong> In particular, if we set <span class="math inline">\(\alpha=1,\)</span> the gamma distribution gamma(1,<span class="math inline">\(\beta\)</span>) is exactly equal to the exponential distribution exp(<span class="math inline">\(\beta\)</span>).</p>
 <p>So, if <span class="math inline">\(X\)</span> is exponential with mean 10, the following commands all compute <span class="math inline">\(P(X \leq 5)\)</span>.</p>
