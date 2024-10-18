@@ -246,10 +246,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="A.1" data-path="sampling-in-R.html"><a href="sampling-in-R.html#vectors-R"><i class="fa fa-check"></i><b>A.1</b> Data vectors</a>
 <ul>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#vector-types"><i class="fa fa-check"></i>vector types</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#matrices"><i class="fa fa-check"></i>Matrices</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#matrices"><i class="fa fa-check"></i>matrices</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#data-frames"><i class="fa fa-check"></i>data frames</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#common-vector-commands"><i class="fa fa-check"></i>common vector commands</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#comparison-operators"><i class="fa fa-check"></i>Comparison Operators</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#comparison-operators"><i class="fa fa-check"></i>comparison operators</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#checking-membership"><i class="fa fa-check"></i>checking membership</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sum-and-which"><i class="fa fa-check"></i><code>sum()</code> and <code>which()</code></a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#extracting-elements"><i class="fa fa-check"></i>extracting elements</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#comparing-vectors"><i class="fa fa-check"></i>comparing vectors</a></li>
@@ -267,12 +268,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="A.3" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sampling-in-R-section"><i class="fa fa-check"></i><b>A.3</b> Sampling</a>
 <ul>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-options"><i class="fa fa-check"></i><code>sample()</code> options</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-without-replacement"><i class="fa fa-check"></i>Sample without replacement</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-with-replacement"><i class="fa fa-check"></i>Sample with replacement</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-with-custom-probabilities"><i class="fa fa-check"></i>Sample with custom probabilities</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#example-lefties"><i class="fa fa-check"></i>Example: Lefties</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-without-replacement"><i class="fa fa-check"></i>sample without replacement</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-with-replacement"><i class="fa fa-check"></i>sample with replacement</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-with-custom-probabilities"><i class="fa fa-check"></i>sample with custom probabilities</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#example-lefties"><i class="fa fa-check"></i>example: Lefties</a></li>
 </ul></li>
-<li class="chapter" data-level="A.4" data-path="sampling-in-R.html"><a href="sampling-in-R.html#repeated-sampling"><i class="fa fa-check"></i><b>A.4</b> Repeated Sampling</a>
+<li class="chapter" data-level="A.4" data-path="sampling-in-R.html"><a href="sampling-in-R.html#repeated-sampling"><i class="fa fa-check"></i><b>A.4</b> Repeated sampling</a>
 <ul>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#using-a-for-loop"><i class="fa fa-check"></i>using a <code>for</code> loop</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#using-replicate"><i class="fa fa-check"></i>using <code>replicate()</code></a></li>
@@ -395,7 +396,7 @@ we may write <span class="math inline">\(X ~\sim~ U(\theta_1,\theta_2)\)</span> 
 <p>In R we access the uniform distribution with <code>unif</code>. For instance, we can generate a random sample of <span class="math inline">\(n\)</span> numbers in the interval <span class="math inline">\([a,b]\)</span> with the <code>runif()</code> command:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="important-continuous-rv.html#cb10-1" tabindex="-1"></a>n<span class="ot">=</span><span class="dv">6</span>; a <span class="ot">=</span> <span class="dv">0</span>; b <span class="ot">=</span> <span class="dv">10</span>;</span>
 <span id="cb10-2"><a href="important-continuous-rv.html#cb10-2" tabindex="-1"></a><span class="fu">runif</span>(n,a,b)</span></code></pre></div>
-<pre><code>## [1] 2.190763 5.178201 4.109791 5.066897 8.867719 6.814807</code></pre>
+<pre><code>## [1] 1.929096 6.506391 2.620590 9.160977 6.442329 7.279139</code></pre>
 <div class="example">
 <p><span id="exm:unlabeled-div-37" class="example"><strong>Example 10.1  (Average value of a function) </strong></span></p>
 <blockquote>
@@ -404,7 +405,7 @@ we may write <span class="math inline">\(X ~\sim~ U(\theta_1,\theta_2)\)</span> 
 <p>Our strategy: Select a large random sample of points in the interval [0,2] and then compute the average of their squares.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="important-continuous-rv.html#cb12-1" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">runif</span>(<span class="dv">1000</span>,<span class="dv">0</span>,<span class="dv">2</span>) <span class="co">#picking 1000 points in [0,2]</span></span>
 <span id="cb12-2"><a href="important-continuous-rv.html#cb12-2" tabindex="-1"></a><span class="fu">mean</span>(x<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
-<pre><code>## [1] 1.339345</code></pre>
+<pre><code>## [1] 1.319823</code></pre>
 <p><strong>Note</strong>: From Calc I, we know the average value of a function <span class="math inline">\(f\)</span> over the interval <span class="math inline">\([a,b]\)</span> is <span class="math display">\[\frac{1}{b-a} \int_a^b f(x)~dx,\]</span>
 so here it’s <span class="math display">\[\frac{1}{2}\int_0^2 x^2~dx = \frac{1}{6} x^3 ~\biggr|_0^2 = 4/3 \approx 1.333.\]</span></p>
 </div>
@@ -445,18 +446,18 @@ f(x)=
 <p>First, let’s check that the total area under <span class="math inline">\(f(x)\)</span> is 1.</p>
 <p><span class="math display">\[\begin{align*}
 \int_0^\infty \frac{1}{\beta}e^{-x/\beta}~dx &amp;= \lim_{b\to\infty}\left[\int_0^b \frac{1}{\beta}e^{-x/\beta}~dx\right] \\
-&amp;= \lim_{b\to\infty}\left[-e^{-x/\beta}\biggr|_0^b \right] &amp; \text{(try u-sub.} u=-x/\beta \\
+&amp;= \lim_{b\to\infty}\left[-e^{-x/\beta}\biggr|_0^b \right] &amp; \text{(try u-sub.} u=-x/\beta) \\
 &amp;= \lim_{b \to \infty}\left[1 - \frac{1}{e^{b/\beta}}\right]\\
 &amp;= 1.
 \end{align*}\]</span></p>
 <p>Having done the above integral, we can write down a formula for the cumulative distribution function for an exponential distribution:</p>
-<p>If <span class="math inline">\(X\)</span> is <span class="math inline">\(\text{Exp}(\beta)\)</span> then for <span class="math inline">\(x \geq 0,\)</span>
+<p>If <span class="math inline">\(X\)</span> is <span class="math inline">\(\texttt{Exp}(\beta)\)</span> then for <span class="math inline">\(x \geq 0,\)</span>
 <span class="math display">\[\begin{align*}
-F(x) &amp;= \int_0^x \frac{1}{\beta}e^{-t/beta}~dt\\
+F(x) &amp;= \int_0^x \frac{1}{\beta}e^{-t/\beta}~dt\\
     &amp;= 1 - e^{-x/\beta}.
 \end{align*}\]</span></p>
 <div class="example">
-<p><span id="exm:unlabeled-div-39" class="example"><strong>Example 10.2  </strong></span>Suppose <span class="math inline">\(X\)</span> is (4). Find <span class="math inline">\(P(X &lt; 8)\)</span>.</p>
+<p><span id="exm:unlabeled-div-39" class="example"><strong>Example 10.2  </strong></span>Suppose <span class="math inline">\(X\)</span> is <span class="math inline">\(\texttt{Exp}(\beta)\)</span>. Find <span class="math inline">\(P(X &lt; 8)\)</span>.</p>
 <p>Well,
 <span class="math display">\[\begin{align*}
 P(X &lt; 8) &amp;= F(8)\\
@@ -466,7 +467,7 @@ P(X &lt; 8) &amp;= F(8)\\
 \end{align*}\]</span></p>
 </div>
 <div class="theorem">
-<p><span id="thm:exponential-EandV" class="theorem"><strong>Theorem 10.2  </strong></span>If <span class="math inline">\(X\)</span> is <span class="math inline">\(\texttt{Exp}(\beta)),\)</span> then <span class="math display">\[E(X) = \beta, ~~~ \text{ and } ~~~ V(X) = \beta^2.\]</span></p>
+<p><span id="thm:exponential-EandV" class="theorem"><strong>Theorem 10.2  </strong></span>If <span class="math inline">\(X\)</span> is <span class="math inline">\(\texttt{Exp}(\beta),\)</span> then <span class="math display">\[E(X) = \beta, ~~~ \text{ and } ~~~ V(X) = \beta^2.\]</span></p>
 </div>
 <div class="proof">
 <p><span id="unlabeled-div-40" class="proof"><em>Proof</em>. </span><span class="math display">\[\begin{align*}
@@ -630,7 +631,6 @@ Suppose <span class="math inline">\(\Gamma(k) = (k-1)!\)</span> for some <span c
             &amp;= k!
 \end{align*}\]</span></p>
 <p>It follows that <span class="math inline">\(\Gamma(n) = (n-1)!\)</span> for all positive integers <span class="math inline">\(n\)</span>.</p>
-<p>The family of gamma distributions contain two special sub-families, one of which we’ve already seen!</p>
 <div class="theorem">
 <p><span id="thm:gamma-EandV" class="theorem"><strong>Theorem 10.5  </strong></span>If <span class="math inline">\(X\)</span> is <span class="math inline">\(\texttt{gamma}(\alpha,\beta)),\)</span> then <span class="math display">\[E(X) = \alpha\beta, ~~~ \text{ and } ~~~ V(X) = \alpha\beta^2.\]</span></p>
 </div>
@@ -644,6 +644,7 @@ Suppose <span class="math inline">\(\Gamma(k) = (k-1)!\)</span> for some <span c
 <li>If <span class="math inline">\(\alpha &gt; 1,\)</span> the pdf for <span class="math inline">\(X \sim \texttt{gamma}(\alpha, \beta)\)</span> has its peak at <span class="math inline">\(x = (\alpha-1)\beta.\)</span></li>
 </ul>
 </div>
+<p>The family of gamma distributions contain two special sub-families, one of which we’ve already seen!</p>
 <div id="exponential-distribution-1" class="section level3 hasAnchor" number="10.4.1">
 <h3><span class="header-section-number">10.4.1</span> Exponential Distribution<a href="important-continuous-rv.html#exponential-distribution-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Set <span class="math inline">\(\alpha = 1\)</span> and you will find <span class="math inline">\(\texttt{gamma}(1,\beta) = \texttt{Exp}(\beta),\)</span>
