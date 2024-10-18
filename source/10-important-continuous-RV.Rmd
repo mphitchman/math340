@@ -84,22 +84,22 @@ First, let's check that the total area under $f(x)$ is 1.
 
 \begin{align*}
 \int_0^\infty \frac{1}{\beta}e^{-x/\beta}~dx &= \lim_{b\to\infty}\left[\int_0^b \frac{1}{\beta}e^{-x/\beta}~dx\right] \\
-&= \lim_{b\to\infty}\left[-e^{-x/\beta}\biggr|_0^b \right] & \text{(try u-sub.} u=-x/\beta \\
+&= \lim_{b\to\infty}\left[-e^{-x/\beta}\biggr|_0^b \right] & \text{(try u-sub.} u=-x/\beta) \\
 &= \lim_{b \to \infty}\left[1 - \frac{1}{e^{b/\beta}}\right]\\
 &= 1.
 \end{align*}
 
 Having done the above integral, we can write down a formula for the cumulative distribution function for an exponential distribution:
 
-If $X$ is $\text{Exp}(\beta)$ then for $x \geq 0,$
+If $X$ is $\texttt{Exp}(\beta)$ then for $x \geq 0,$
 \begin{align*}
-F(x) &= \int_0^x \frac{1}{\beta}e^{-t/beta}~dt\\
+F(x) &= \int_0^x \frac{1}{\beta}e^{-t/\beta}~dt\\
     &= 1 - e^{-x/\beta}.
 \end{align*}
 
 
 :::{.example}
-Suppose $X$ is \texttt{Exp}(4). Find $P(X < 8)$.
+Suppose $X$ is $\texttt{Exp}(\beta)$. Find $P(X < 8)$.
 
 Well, 
 \begin{align*}
@@ -112,7 +112,7 @@ P(X < 8) &= F(8)\\
 
 
 :::{.theorem #exponential-EandV}
-If $X$ is $\texttt{Exp}(\beta)),$ then $$E(X) = \beta, ~~~ \text{ and } ~~~ V(X) = \beta^2.$$
+If $X$ is $\texttt{Exp}(\beta),$ then $$E(X) = \beta, ~~~ \text{ and } ~~~ V(X) = \beta^2.$$
 :::
 
 :::{.proof}
@@ -415,7 +415,6 @@ Suppose $\Gamma(k) = (k-1)!$ for some $k \geq 1$. Then
 
 It follows that $\Gamma(n) = (n-1)!$ for all positive integers $n$.
 
-The family of gamma distributions contain two special sub-families, one of which we've already seen!
 
 :::{.theorem #gamma-EandV}
 If $X$ is $\texttt{gamma}(\alpha,\beta)),$ then $$E(X) = \alpha\beta, ~~~ \text{ and } ~~~ V(X) = \alpha\beta^2.$$
@@ -434,6 +433,7 @@ We leave the details to the reader for now, but find the following results:
   - If $\alpha > 1,$ the pdf for $X \sim \texttt{gamma}(\alpha, \beta)$ has its peak at $x = (\alpha-1)\beta.$
 :::
 
+The family of gamma distributions contain two special sub-families, one of which we've already seen!
 
 ### Exponential Distribution
 
