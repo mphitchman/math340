@@ -288,7 +288,7 @@ Suppose $X$ is a discrete random variable, $c \in \mathbb{R}$ is a constant, and
 
   1. $E(c) = c$.
   2. $E(c\cdot g(X))= cE(g(X))$.
-  3. $E(g_1(X) \pm g_2(X)) = E(g_1(X)\pm g_2(X))$.
+  3. $E(g_1(X) \pm g_2(X)) = E(g_1(X))\pm E(g_2(X))$.
 
 :::
 

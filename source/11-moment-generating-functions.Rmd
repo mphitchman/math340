@@ -79,14 +79,14 @@ m_U(t) &= E\left[e^{tU}\right]\\
       &= m_1(t) \cdot m_2(t) \cdot ~\cdots~ \cdot m_n(t)
 \end{align*}
 
-That the $E[~]$ distributes through the product in line 4 above follows since the $X_i$ are assumed to be independent. The rpoof of this fact would be given in MATH 440.
+That the $E[~]$ distributes through the product in line 4 above follows since the $X_i$ are assumed to be independent. The proof of this fact would be given in MATH 440.
 
 :::{.theorem #sum-of-normal-rvs}
 Let $X_1, X_2, \ldots, X_n$ be independent normal random variables  with $X_i \sim N(\mu_i, \sigma_i),$ and let $a_1, a_2, \ldots, a_n$ be constants. If $$U = \sum_{i=1}^n a_i X_i,$$ then $U$ is normally distribution with $$\mu = \sum_{i=1}^n a_i \mu_i ~~~ \text{ and } ~~~ \sigma^2 = \sum_{i=1}^n a_i^2 \sigma_i^2.$$ 
 :::
 
 :::{.proof}
-Since $X_i$ is $N(\mu_i,\sigma_i),$ $X_i$ has mgf $$m_{X_i}(t) = e^{\left(\mu_it + \sigma_i^2t^2/2\right)},$$ and for constant $a_i,$ the random variable $a_iX_i$ has mgf $$m_{a_iX_i}(t) =E(e^{a_iX_it}) = m_{X_i}(a_it) = e^{\left(\mu_ia_it + a_i^2\sigma_i^2t^2/2\right)}.$$ 
+Since $X_i$ is $N(\mu_i,\sigma_i),$ $X_i$ has mgf $$m_{X_i}(t) = e^{\left(\mu_it + \sigma_i^2t^2/2\right)}.$$ For constant $a_i,$ the random variable $a_iX_i$ has mgf $$m_{a_iX_i}(t) =E(e^{a_iX_it}) = m_{X_i}(a_it) = e^{\left(\mu_ia_it + a_i^2\sigma_i^2t^2/2\right)}.$$ 
 Then by Theorem \@ref(thm:mgf-sum-of-rvs) and properties of exponents, for $U = \sum a_i X_i,$ 
 \begin{align*}
 m_U(t) &= \prod_{i=1}^n m_{a_iX_i}(t) \\
@@ -98,7 +98,7 @@ But hey! This is the mgf for a normal distribution with mean $\sum a_i \mu$ and 
 :::
 
 :::{.theorem #sum-of-squares-of-standard-normal-rvs}
-Let $X_1, X_2, \ldots, X_n$ be independent normal random variables  with $X_i \sim N(\mu_i, \sigma_i),$ and $\displaystyle Z_i = \frac{X_i - \mu_i}{\sigma_i}$ for $i = 1, \ldots, n$.
+Let $X_1, X_2, \ldots, X_n$ be independent normal random variables  with $X_i \sim N(\mu_i, \sigma_i),$ and $\displaystyle Z_i = \frac{X_i - \mu_i}{\sigma_i}$ for $i = 1, \ldots, n$. Then $$U = \sum_{i=1}^n Z_i^2$$ is $\chi^2(n)$.
 :::
 
 :::{.example}
@@ -149,7 +149,7 @@ m_X(t) &= E(e^{tX})\\
 
 The last integral above evaluates to 1 because it is the pdf for a $\text{gamma}(\alpha,\beta)$ distribution! After simplifying we obtain $$m_X(t) = (1-\beta t)^{-\alpha}.$$
 
-With the mgf for a gamma random variable in hand, we can know derive its mean and variance, thus proving Theorem \@ref(thm:gamma-EandV).
+With the mgf for a gamma random variable in hand, we can now derive its mean and variance, thus proving Theorem \@ref(thm:gamma-EandV).
 
 \begin{align*}
 m_X^\prime(t) &= -\alpha(1-\beta t)^{-\alpha-1}\cdot(-\beta) \\

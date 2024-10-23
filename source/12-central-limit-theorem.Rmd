@@ -56,6 +56,7 @@ Let's look at a simulation in R to investigate these statements. The simulation 
   1. Draw a random sample of size $25$ from $N(10,2)$
   2. Calculate $\overline{x}$ and $s^2$ from this sample.
   3. Repeat steps 1 and 2 for many trials, and then consider 
+  
     - a frequency plot for $\overline{x}$ (does it look $N(10,0.4)$) 
     - a frequency plot for $\frac{n-1}{\sigma^2}s^2$ (does it look $\chi^2(24)$?)
     - a scatter plot of $\overline{x}$ against $s^2$ (do they look independent?)
