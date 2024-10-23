@@ -246,10 +246,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="A.1" data-path="sampling-in-R.html"><a href="sampling-in-R.html#vectors-R"><i class="fa fa-check"></i><b>A.1</b> Data vectors</a>
 <ul>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#vector-types"><i class="fa fa-check"></i>vector types</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#matrices"><i class="fa fa-check"></i>Matrices</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#matrices"><i class="fa fa-check"></i>matrices</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#data-frames"><i class="fa fa-check"></i>data frames</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#common-vector-commands"><i class="fa fa-check"></i>common vector commands</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#comparison-operators"><i class="fa fa-check"></i>Comparison Operators</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#comparison-operators"><i class="fa fa-check"></i>comparison operators</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#checking-membership"><i class="fa fa-check"></i>checking membership</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sum-and-which"><i class="fa fa-check"></i><code>sum()</code> and <code>which()</code></a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#extracting-elements"><i class="fa fa-check"></i>extracting elements</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#comparing-vectors"><i class="fa fa-check"></i>comparing vectors</a></li>
@@ -267,12 +268,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="A.3" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sampling-in-R-section"><i class="fa fa-check"></i><b>A.3</b> Sampling</a>
 <ul>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-options"><i class="fa fa-check"></i><code>sample()</code> options</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-without-replacement"><i class="fa fa-check"></i>Sample without replacement</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-with-replacement"><i class="fa fa-check"></i>Sample with replacement</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-with-custom-probabilities"><i class="fa fa-check"></i>Sample with custom probabilities</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#example-lefties"><i class="fa fa-check"></i>Example: Lefties</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-without-replacement"><i class="fa fa-check"></i>sample without replacement</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-with-replacement"><i class="fa fa-check"></i>sample with replacement</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-with-custom-probabilities"><i class="fa fa-check"></i>sample with custom probabilities</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#example-lefties"><i class="fa fa-check"></i>example: Lefties</a></li>
 </ul></li>
-<li class="chapter" data-level="A.4" data-path="sampling-in-R.html"><a href="sampling-in-R.html#repeated-sampling"><i class="fa fa-check"></i><b>A.4</b> Repeated Sampling</a>
+<li class="chapter" data-level="A.4" data-path="sampling-in-R.html"><a href="sampling-in-R.html#repeated-sampling"><i class="fa fa-check"></i><b>A.4</b> Repeated sampling</a>
 <ul>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#using-a-for-loop"><i class="fa fa-check"></i>using a <code>for</code> loop</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#using-replicate"><i class="fa fa-check"></i>using <code>replicate()</code></a></li>
@@ -423,35 +424,35 @@ With this we obtain a general form for a 95% confidence interval for <span class
 \end{align*}\]</span></p>
 <p>We see that <span class="math inline">\(\hat{\theta}_L = \frac{Y}{\sqrt[n]{.975}}\)</span> and <span class="math inline">\(\hat{\theta}_U = \frac{Y}{\sqrt[n]{.025}}\)</span>.</p>
 <p>Let’s put this interval formula to use. Here’s a random sample of size 25 drawn in R from a <span class="math inline">\(U(0,64)\)</span> distribution (though let’s pretend we don’t actually know <span class="math inline">\(\theta = 64\)</span> here.)</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="confidence-intervals.html#cb30-1" tabindex="-1"></a>theta <span class="ot">=</span> <span class="dv">64</span></span>
-<span id="cb30-2"><a href="confidence-intervals.html#cb30-2" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">25</span></span>
-<span id="cb30-3"><a href="confidence-intervals.html#cb30-3" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">runif</span>(n,<span class="dv">0</span>,theta)</span>
-<span id="cb30-4"><a href="confidence-intervals.html#cb30-4" tabindex="-1"></a>y <span class="ot">=</span> <span class="fu">max</span>(x)</span>
-<span id="cb30-5"><a href="confidence-intervals.html#cb30-5" tabindex="-1"></a>L <span class="ot">=</span> y<span class="sc">/</span>(.<span class="dv">975</span>)<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span>n) <span class="co">#lower bound estimator for 95% CI</span></span>
-<span id="cb30-6"><a href="confidence-intervals.html#cb30-6" tabindex="-1"></a>U <span class="ot">=</span> y<span class="sc">/</span>(.<span class="dv">025</span>)<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span>n) <span class="co">#upper bound estimator for 95% CI</span></span>
-<span id="cb30-7"><a href="confidence-intervals.html#cb30-7" tabindex="-1"></a><span class="fu">c</span>(L,U) <span class="co">#confidence interval</span></span></code></pre></div>
-<pre><code>## [1] 62.27308 72.10127</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="confidence-intervals.html#cb31-1" tabindex="-1"></a>theta <span class="ot">=</span> <span class="dv">64</span></span>
+<span id="cb31-2"><a href="confidence-intervals.html#cb31-2" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">25</span></span>
+<span id="cb31-3"><a href="confidence-intervals.html#cb31-3" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">runif</span>(n,<span class="dv">0</span>,theta)</span>
+<span id="cb31-4"><a href="confidence-intervals.html#cb31-4" tabindex="-1"></a>y <span class="ot">=</span> <span class="fu">max</span>(x)</span>
+<span id="cb31-5"><a href="confidence-intervals.html#cb31-5" tabindex="-1"></a>L <span class="ot">=</span> y<span class="sc">/</span>(.<span class="dv">975</span>)<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span>n) <span class="co">#lower bound estimator for 95% CI</span></span>
+<span id="cb31-6"><a href="confidence-intervals.html#cb31-6" tabindex="-1"></a>U <span class="ot">=</span> y<span class="sc">/</span>(.<span class="dv">025</span>)<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span>n) <span class="co">#upper bound estimator for 95% CI</span></span>
+<span id="cb31-7"><a href="confidence-intervals.html#cb31-7" tabindex="-1"></a><span class="fu">c</span>(L,U) <span class="co">#confidence interval</span></span></code></pre></div>
+<pre><code>## [1] 53.94643 62.46048</code></pre>
 <p>Did our confidence interval actually capture the value of the parameter (64)?
 The confidence level of 95% gives us confidence that it does, in this sense: If we were to repeat the sampling procedure a large number of times, each time using our new sample to determine a new confidence interval for <span class="math inline">\(\theta,\)</span> then we should expect about 95% of the intervals to contain the parameter <span class="math inline">\(\theta\)</span>.</p>
 <p>We can check this using R, first writing a little function out of the code above for producing the interval.</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="confidence-intervals.html#cb32-1" tabindex="-1"></a>conf_int_for_theta <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">n=</span><span class="dv">25</span>,<span class="at">theta=</span><span class="dv">64</span>){</span>
-<span id="cb32-2"><a href="confidence-intervals.html#cb32-2" tabindex="-1"></a>  x <span class="ot">=</span> <span class="fu">runif</span>(n,<span class="dv">0</span>,theta)</span>
-<span id="cb32-3"><a href="confidence-intervals.html#cb32-3" tabindex="-1"></a>  y <span class="ot">=</span> <span class="fu">max</span>(x)</span>
-<span id="cb32-4"><a href="confidence-intervals.html#cb32-4" tabindex="-1"></a>  L <span class="ot">=</span> y<span class="sc">/</span>(.<span class="dv">975</span>)<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span>n) </span>
-<span id="cb32-5"><a href="confidence-intervals.html#cb32-5" tabindex="-1"></a>  U <span class="ot">=</span> y<span class="sc">/</span>(.<span class="dv">025</span>)<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span>n)</span>
-<span id="cb32-6"><a href="confidence-intervals.html#cb32-6" tabindex="-1"></a>  check <span class="ot">=</span> <span class="fu">ifelse</span>(((L <span class="sc">&lt;=</span> theta)<span class="sc">&amp;</span>(theta <span class="sc">&lt;=</span> U)),<span class="dv">1</span>,<span class="dv">0</span>)<span class="co">#1 if interval captures theta, 0 else</span></span>
-<span id="cb32-7"><a href="confidence-intervals.html#cb32-7" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">c</span>(L,U,check)) <span class="co">#returns the interval and whether it captured theta</span></span>
-<span id="cb32-8"><a href="confidence-intervals.html#cb32-8" tabindex="-1"></a>}</span>
-<span id="cb32-9"><a href="confidence-intervals.html#cb32-9" tabindex="-1"></a></span>
-<span id="cb32-10"><a href="confidence-intervals.html#cb32-10" tabindex="-1"></a>results <span class="ot">=</span> <span class="fu">c</span>() <span class="co"># a vector storing whether interval generated from data captures theta, for 100 trials</span></span>
-<span id="cb32-11"><a href="confidence-intervals.html#cb32-11" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>){</span>
-<span id="cb32-12"><a href="confidence-intervals.html#cb32-12" tabindex="-1"></a>  results[i]<span class="ot">=</span><span class="fu">conf_int_for_theta</span>()[<span class="dv">3</span>]</span>
-<span id="cb32-13"><a href="confidence-intervals.html#cb32-13" tabindex="-1"></a>}</span>
-<span id="cb32-14"><a href="confidence-intervals.html#cb32-14" tabindex="-1"></a><span class="fu">table</span>(results)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="confidence-intervals.html#cb33-1" tabindex="-1"></a>conf_int_for_theta <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">n=</span><span class="dv">25</span>,<span class="at">theta=</span><span class="dv">64</span>){</span>
+<span id="cb33-2"><a href="confidence-intervals.html#cb33-2" tabindex="-1"></a>  x <span class="ot">=</span> <span class="fu">runif</span>(n,<span class="dv">0</span>,theta)</span>
+<span id="cb33-3"><a href="confidence-intervals.html#cb33-3" tabindex="-1"></a>  y <span class="ot">=</span> <span class="fu">max</span>(x)</span>
+<span id="cb33-4"><a href="confidence-intervals.html#cb33-4" tabindex="-1"></a>  L <span class="ot">=</span> y<span class="sc">/</span>(.<span class="dv">975</span>)<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span>n) </span>
+<span id="cb33-5"><a href="confidence-intervals.html#cb33-5" tabindex="-1"></a>  U <span class="ot">=</span> y<span class="sc">/</span>(.<span class="dv">025</span>)<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span>n)</span>
+<span id="cb33-6"><a href="confidence-intervals.html#cb33-6" tabindex="-1"></a>  check <span class="ot">=</span> <span class="fu">ifelse</span>(((L <span class="sc">&lt;=</span> theta)<span class="sc">&amp;</span>(theta <span class="sc">&lt;=</span> U)),<span class="dv">1</span>,<span class="dv">0</span>)<span class="co">#1 if interval captures theta, 0 else</span></span>
+<span id="cb33-7"><a href="confidence-intervals.html#cb33-7" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">c</span>(L,U,check)) <span class="co">#returns the interval and whether it captured theta</span></span>
+<span id="cb33-8"><a href="confidence-intervals.html#cb33-8" tabindex="-1"></a>}</span>
+<span id="cb33-9"><a href="confidence-intervals.html#cb33-9" tabindex="-1"></a></span>
+<span id="cb33-10"><a href="confidence-intervals.html#cb33-10" tabindex="-1"></a>results <span class="ot">=</span> <span class="fu">c</span>() <span class="co"># a vector storing whether interval generated from data captures theta, for 100 trials</span></span>
+<span id="cb33-11"><a href="confidence-intervals.html#cb33-11" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>){</span>
+<span id="cb33-12"><a href="confidence-intervals.html#cb33-12" tabindex="-1"></a>  results[i]<span class="ot">=</span><span class="fu">conf_int_for_theta</span>()[<span class="dv">3</span>]</span>
+<span id="cb33-13"><a href="confidence-intervals.html#cb33-13" tabindex="-1"></a>}</span>
+<span id="cb33-14"><a href="confidence-intervals.html#cb33-14" tabindex="-1"></a><span class="fu">table</span>(results)</span></code></pre></div>
 <pre><code>## results
 ##  0  1 
-##  5 95</code></pre>
-<p>In this simulation we drew 100 different random samples of size 25, each time generating a confidence interval for <span class="math inline">\(\theta\)</span> and found that 95 of the 100 intervals captured <span class="math inline">\(\theta\)</span>. We would expect in the long run that 95% of such confidence intervals would capture <span class="math inline">\(\theta\)</span>.</p>
+##  7 93</code></pre>
+<p>In this simulation we drew 100 different random samples of size 25, each time generating a confidence interval for <span class="math inline">\(\theta\)</span> and found that 93 of the 100 intervals captured <span class="math inline">\(\theta\)</span>. We would expect in the long run that 95% of such confidence intervals would capture <span class="math inline">\(\theta\)</span>.</p>
 </div>
 <p>We have, generally,</p>
 <ul>
@@ -562,7 +563,7 @@ which simplifies to <span class="math display">\[16.3 \pm 1.21,\]</span> or, equ
 </div>
 <div class="example">
 <p><span id="exm:unlabeled-div-68" class="example"><strong>Example 14.7  (Angles of spider webs) </strong></span>The <a href="https://www.google.com/books/edition/A_Handbook_of_Small_Data_Sets/vWu-MJM_obsC?hl=en">Handbook of Small Data Sets</a> published in 1994 has lots of interesting, small data sets. Here’s one small data set:</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="confidence-intervals.html#cb34-1" tabindex="-1"></a>X <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">25</span>,<span class="dv">12</span>,<span class="dv">31</span>,<span class="dv">26</span>,<span class="dv">17</span>,<span class="dv">15</span>,<span class="dv">24</span>,<span class="dv">10</span>,<span class="dv">16</span>,<span class="dv">12</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="confidence-intervals.html#cb35-1" tabindex="-1"></a>X <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">25</span>,<span class="dv">12</span>,<span class="dv">31</span>,<span class="dv">26</span>,<span class="dv">17</span>,<span class="dv">15</span>,<span class="dv">24</span>,<span class="dv">10</span>,<span class="dv">16</span>,<span class="dv">12</span>)</span></code></pre></div>
 <p>Spider webs’ angles made with the vertical to the earth’s surface have a <a href="https://en.wikipedia.org/wiki/Von_Mises_distribution">von Mises circular distribution</a> with known mean direction, <span class="math inline">\(\mu,\)</span> and <span class="math inline">\(\mu\)</span> varies from species to species. For instance,</p>
 <ul>
 <li><em>Isoxya cicatricosa</em> has <span class="math inline">\(\mu = 28.12^\circ,\)</span> while</li>
@@ -570,12 +571,12 @@ which simplifies to <span class="math display">\[16.3 \pm 1.21,\]</span> or, equ
 </ul>
 <p>The question arose (in the article “Sequential analysis for angular data”, by Gadsden and Kanji, (1981), <em>The Statistician</em>, <strong>30</strong>, 119-129) of which species had constructed the 10 webs whose angles were listed above in the vector <code>X</code>.</p>
 <p>Treating the data as a simple random sample we can construct a 95% confidence interval for <span class="math inline">\(\mu\)</span>. Since the sample size is small, we use <span class="math inline">\(t_{\alpha/2},\)</span> rather than <span class="math inline">\(z_{\alpha/2},\)</span> where, here <span class="math inline">\(\alpha = .05\)</span>. Let’s crunch out the interval in R.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="confidence-intervals.html#cb35-1" tabindex="-1"></a><span class="co">#summary statistics</span></span>
-<span id="cb35-2"><a href="confidence-intervals.html#cb35-2" tabindex="-1"></a>n <span class="ot">=</span> <span class="fu">length</span>(X)</span>
-<span id="cb35-3"><a href="confidence-intervals.html#cb35-3" tabindex="-1"></a>xbar <span class="ot">=</span> <span class="fu">mean</span>(X)</span>
-<span id="cb35-4"><a href="confidence-intervals.html#cb35-4" tabindex="-1"></a>s <span class="ot">=</span> <span class="fu">sd</span>(X)</span>
-<span id="cb35-5"><a href="confidence-intervals.html#cb35-5" tabindex="-1"></a>tstar <span class="ot">=</span> <span class="fu">qt</span>(.<span class="dv">975</span>,<span class="dv">9</span>) <span class="co">#we let tstar denote t_{alpha/2}</span></span>
-<span id="cb35-6"><a href="confidence-intervals.html#cb35-6" tabindex="-1"></a>xbar <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="sc">*</span>tstar<span class="sc">*</span>s<span class="sc">/</span><span class="fu">sqrt</span>(n)</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="confidence-intervals.html#cb36-1" tabindex="-1"></a><span class="co">#summary statistics</span></span>
+<span id="cb36-2"><a href="confidence-intervals.html#cb36-2" tabindex="-1"></a>n <span class="ot">=</span> <span class="fu">length</span>(X)</span>
+<span id="cb36-3"><a href="confidence-intervals.html#cb36-3" tabindex="-1"></a>xbar <span class="ot">=</span> <span class="fu">mean</span>(X)</span>
+<span id="cb36-4"><a href="confidence-intervals.html#cb36-4" tabindex="-1"></a>s <span class="ot">=</span> <span class="fu">sd</span>(X)</span>
+<span id="cb36-5"><a href="confidence-intervals.html#cb36-5" tabindex="-1"></a>tstar <span class="ot">=</span> <span class="fu">qt</span>(.<span class="dv">975</span>,<span class="dv">9</span>) <span class="co">#we let tstar denote t_{alpha/2}</span></span>
+<span id="cb36-6"><a href="confidence-intervals.html#cb36-6" tabindex="-1"></a>xbar <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="sc">*</span>tstar<span class="sc">*</span>s<span class="sc">/</span><span class="fu">sqrt</span>(n)</span></code></pre></div>
 <pre><code>## [1] 13.67688 23.92312</code></pre>
 <p>Based on the interval, which contains the known mean for <em>Araneus rufipalpus</em>, but not the known mean <em>Isoxya cicatricosa</em>, we have good evidence that these webs were made by the former type of spider.</p>
 </div>
@@ -588,15 +589,15 @@ which simplifies to <span class="math display">\[16.3 \pm 1.21,\]</span> or, equ
 ## 4 1913  51.1
 ## 5 1914  90.9</code></pre>
 <p>Let’s find a 95% confidence interval for the mean annual snowfall in Buffalo, taking the above snowfall column as a simple random sample of annual snowfall. Here are the summary statistics:</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="confidence-intervals.html#cb38-1" tabindex="-1"></a>X <span class="ot">=</span> snowfall<span class="sc">$</span>snow <span class="co">#snow fall column as vector X</span></span>
-<span id="cb38-2"><a href="confidence-intervals.html#cb38-2" tabindex="-1"></a>n <span class="ot">=</span> <span class="fu">length</span>(X)</span>
-<span id="cb38-3"><a href="confidence-intervals.html#cb38-3" tabindex="-1"></a>xbar <span class="ot">=</span> <span class="fu">mean</span>(X)</span>
-<span id="cb38-4"><a href="confidence-intervals.html#cb38-4" tabindex="-1"></a>s <span class="ot">=</span> <span class="fu">sd</span>(X)</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="confidence-intervals.html#cb39-1" tabindex="-1"></a>X <span class="ot">=</span> snowfall<span class="sc">$</span>snow <span class="co">#snow fall column as vector X</span></span>
+<span id="cb39-2"><a href="confidence-intervals.html#cb39-2" tabindex="-1"></a>n <span class="ot">=</span> <span class="fu">length</span>(X)</span>
+<span id="cb39-3"><a href="confidence-intervals.html#cb39-3" tabindex="-1"></a>xbar <span class="ot">=</span> <span class="fu">mean</span>(X)</span>
+<span id="cb39-4"><a href="confidence-intervals.html#cb39-4" tabindex="-1"></a>s <span class="ot">=</span> <span class="fu">sd</span>(X)</span></code></pre></div>
 <p>For 95% confidence, <span class="math inline">\(\alpha = .05,\)</span> and <span class="math inline">\(z_{\alpha/2} = z_{.025} \approx 1.96.\)</span></p>
 <p>Since <span class="math inline">\(n\)</span> is large, we use the confidence interval formula below with <span class="math inline">\(s\)</span> plugged in for <span class="math inline">\(\sigma\)</span>:</p>
 <p><span class="math display">\[\overline{x} \pm z_{\alpha/2} \cdot  \frac{\sigma}{\sqrt{n}}\]</span>
 and we arrive at the interval</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="confidence-intervals.html#cb39-1" tabindex="-1"></a>xbar <span class="sc">+</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="sc">-</span><span class="dv">1</span>)<span class="sc">*</span><span class="fu">qnorm</span>(.<span class="dv">025</span>)<span class="sc">*</span>s<span class="sc">/</span><span class="fu">sqrt</span>(n)</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="confidence-intervals.html#cb40-1" tabindex="-1"></a>xbar <span class="sc">+</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="sc">-</span><span class="dv">1</span>)<span class="sc">*</span><span class="fu">qnorm</span>(.<span class="dv">025</span>)<span class="sc">*</span>s<span class="sc">/</span><span class="fu">sqrt</span>(n)</span></code></pre></div>
 <pre><code>## [1] 74.43965 86.15400</code></pre>
 </div>
 <div id="confidence-intervals-for-mu_1-mu_2" class="section level3 unnumbered hasAnchor">
@@ -615,8 +616,8 @@ where <span class="math inline">\(t_{\alpha/2}\)</span> live in a t-distribution
 <div class="example">
 <p><span id="exm:unlabeled-div-70" class="example"><strong>Example 14.9  </strong></span>The silver content (% Ag) of a number of Byzantine coins discovered in Cyprus was determined. Nine of the coins came from the first coinage of the reign of King Manuel, I, Comnenus (1143-1180); and 7 of the coins came from a coinage many years later.</p>
 <p><strong>The data</strong></p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="confidence-intervals.html#cb41-1" tabindex="-1"></a>Ag1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">5.9</span>,<span class="fl">6.8</span>,<span class="fl">6.4</span>,<span class="fl">7.0</span>,<span class="fl">6.6</span>,<span class="fl">7.7</span>,<span class="fl">7.2</span>,<span class="fl">6.9</span>,<span class="fl">6.2</span>)</span>
-<span id="cb41-2"><a href="confidence-intervals.html#cb41-2" tabindex="-1"></a>Ag2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">5.3</span>,<span class="fl">5.6</span>,<span class="fl">5.5</span>,<span class="fl">5.1</span>,<span class="fl">6.2</span>,<span class="fl">5.8</span>,<span class="fl">5.8</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="confidence-intervals.html#cb42-1" tabindex="-1"></a>Ag1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">5.9</span>,<span class="fl">6.8</span>,<span class="fl">6.4</span>,<span class="fl">7.0</span>,<span class="fl">6.6</span>,<span class="fl">7.7</span>,<span class="fl">7.2</span>,<span class="fl">6.9</span>,<span class="fl">6.2</span>)</span>
+<span id="cb42-2"><a href="confidence-intervals.html#cb42-2" tabindex="-1"></a>Ag2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">5.3</span>,<span class="fl">5.6</span>,<span class="fl">5.5</span>,<span class="fl">5.1</span>,<span class="fl">6.2</span>,<span class="fl">5.8</span>,<span class="fl">5.8</span>) </span></code></pre></div>
 <p>These data appear in <em>The Handbook of Small Data Sets</em> (p. 118), and are based on this article:</p>
 <p>Hendy, M.F. and Charles J.A. (1970), <em>The production techniques, silver content and circulation history of the twelfth-century Byzantine Trachy.</em> Archaeonetry, 12. 13-21)</p>
 <p><strong>The question</strong></p>
@@ -683,14 +684,14 @@ So for the coin example, we would use <span class="math inline">\(t^*\)</span> =
 <p><span id="exm:unlabeled-div-71" class="example"><strong>Example 14.10  (Recent Buffalo Snowfall) </strong></span>With climate change, it may be unreasonable to assume the average annual snowfall now is the same as it was 100 years ago.</p>
 <p>Let <span class="math inline">\(\mu_1\)</span> denote the “old” mean average annual snowfall (and we assume the data from 1910 to 1972 is a random sample from the “old” population”), and <span class="math inline">\(\mu_2\)</span> denots the “new” mean average annual snowfall in Buffalo (from which the annual snowfall from 2000 to 2021, found at <a href="https://www.buffalo.org/snow">buffalo.or/snow</a>, is a random sample.) Do these data provide evidence that <span class="math inline">\(\mu_1 \neq \mu_2\)</span>?</p>
 <p>Here are the 2001-2022 data:</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="confidence-intervals.html#cb42-1" tabindex="-1"></a>Y <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">158.7</span>,<span class="fl">132.4</span>,<span class="fl">111.3</span>,<span class="fl">100.9</span>,<span class="fl">109.1</span>,<span class="fl">78.2</span>,<span class="fl">88.9</span>,<span class="fl">103.8</span>,<span class="fl">100.2</span>,<span class="fl">74.1</span>,<span class="fl">111.8</span>,</span>
-<span id="cb42-2"><a href="confidence-intervals.html#cb42-2" tabindex="-1"></a>      <span class="fl">36.7</span>,<span class="fl">58.8</span>,<span class="fl">129.9</span>,<span class="fl">112.9</span>,<span class="fl">55.1</span>,<span class="fl">76.1</span>,<span class="fl">112.3</span>,<span class="fl">118.8</span>,<span class="fl">69.2</span>,<span class="fl">77.2</span>,<span class="fl">97.4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="confidence-intervals.html#cb43-1" tabindex="-1"></a>Y <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">158.7</span>,<span class="fl">132.4</span>,<span class="fl">111.3</span>,<span class="fl">100.9</span>,<span class="fl">109.1</span>,<span class="fl">78.2</span>,<span class="fl">88.9</span>,<span class="fl">103.8</span>,<span class="fl">100.2</span>,<span class="fl">74.1</span>,<span class="fl">111.8</span>,</span>
+<span id="cb43-2"><a href="confidence-intervals.html#cb43-2" tabindex="-1"></a>      <span class="fl">36.7</span>,<span class="fl">58.8</span>,<span class="fl">129.9</span>,<span class="fl">112.9</span>,<span class="fl">55.1</span>,<span class="fl">76.1</span>,<span class="fl">112.3</span>,<span class="fl">118.8</span>,<span class="fl">69.2</span>,<span class="fl">77.2</span>,<span class="fl">97.4</span>)</span></code></pre></div>
 <p>A 95% confidence interval for the difference <span class="math inline">\(\mu_X-\mu_Y\)</span>:</p>
 <p>TODO</p>
 </div>
 <div class="example">
 <p><span id="exm:unlabeled-div-72" class="example"><strong>Example 14.11  (A one-sided confidence interval) </strong></span>The measures of the outside diameter <span class="math inline">\(x_i\)</span> (in inches) for 9 grains of the same type:</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="confidence-intervals.html#cb43-1" tabindex="-1"></a>diam <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">2.021</span>,<span class="fl">2.002</span>,<span class="fl">2.001</span>,<span class="fl">2.005</span>,<span class="fl">1.990</span>,<span class="fl">1.990</span>,<span class="fl">2.009</span>,<span class="fl">1.983</span>,<span class="fl">1.987</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="confidence-intervals.html#cb44-1" tabindex="-1"></a>diam <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">2.021</span>,<span class="fl">2.002</span>,<span class="fl">2.001</span>,<span class="fl">2.005</span>,<span class="fl">1.990</span>,<span class="fl">1.990</span>,<span class="fl">2.009</span>,<span class="fl">1.983</span>,<span class="fl">1.987</span>)</span></code></pre></div>
 <p>Assume the distribution is normal. Is <span class="math inline">\(\mu \geq 2\)</span>?</p>
 <p>Let’s find a 1-sided lower bound 95% confidence interval for <span class="math inline">\(\mu,\)</span> and see what that gets us.</p>
 <p>Since <span class="math inline">\(n = 9\)</span> is small and <span class="math inline">\(\sigma\)</span> is unknown, we use the t-distribution.</p>

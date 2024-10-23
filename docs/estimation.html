@@ -246,10 +246,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="A.1" data-path="sampling-in-R.html"><a href="sampling-in-R.html#vectors-R"><i class="fa fa-check"></i><b>A.1</b> Data vectors</a>
 <ul>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#vector-types"><i class="fa fa-check"></i>vector types</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#matrices"><i class="fa fa-check"></i>Matrices</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#matrices"><i class="fa fa-check"></i>matrices</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#data-frames"><i class="fa fa-check"></i>data frames</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#common-vector-commands"><i class="fa fa-check"></i>common vector commands</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#comparison-operators"><i class="fa fa-check"></i>Comparison Operators</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#comparison-operators"><i class="fa fa-check"></i>comparison operators</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#checking-membership"><i class="fa fa-check"></i>checking membership</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sum-and-which"><i class="fa fa-check"></i><code>sum()</code> and <code>which()</code></a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#extracting-elements"><i class="fa fa-check"></i>extracting elements</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#comparing-vectors"><i class="fa fa-check"></i>comparing vectors</a></li>
@@ -267,12 +268,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="A.3" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sampling-in-R-section"><i class="fa fa-check"></i><b>A.3</b> Sampling</a>
 <ul>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-options"><i class="fa fa-check"></i><code>sample()</code> options</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-without-replacement"><i class="fa fa-check"></i>Sample without replacement</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-with-replacement"><i class="fa fa-check"></i>Sample with replacement</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-with-custom-probabilities"><i class="fa fa-check"></i>Sample with custom probabilities</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#example-lefties"><i class="fa fa-check"></i>Example: Lefties</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-without-replacement"><i class="fa fa-check"></i>sample without replacement</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-with-replacement"><i class="fa fa-check"></i>sample with replacement</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-with-custom-probabilities"><i class="fa fa-check"></i>sample with custom probabilities</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#example-lefties"><i class="fa fa-check"></i>example: Lefties</a></li>
 </ul></li>
-<li class="chapter" data-level="A.4" data-path="sampling-in-R.html"><a href="sampling-in-R.html#repeated-sampling"><i class="fa fa-check"></i><b>A.4</b> Repeated Sampling</a>
+<li class="chapter" data-level="A.4" data-path="sampling-in-R.html"><a href="sampling-in-R.html#repeated-sampling"><i class="fa fa-check"></i><b>A.4</b> Repeated sampling</a>
 <ul>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#using-a-for-loop"><i class="fa fa-check"></i>using a <code>for</code> loop</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#using-replicate"><i class="fa fa-check"></i>using <code>replicate()</code></a></li>
@@ -409,38 +410,38 @@ since each <span class="math inline">\(X_i\)</span> is <span class="math inline"
 <p>Let <span class="math inline">\(Y = \max\{X_1, X_2, \ldots, X_n\}.\)</span> We prove below in <a href="estimation.html#order-statistics">13.2</a> that <span class="math display">\[E(Y) = \frac{n}{n+1}\theta.\]</span>
 Assuming that for now, we can say that <span class="math display">\[\hat{\theta}_2 = \frac{n+1}{n}\cdot Y \tag{unbiased estimator 2}\]</span> is also an unbiased estimator for <span class="math inline">\(\theta\)</span>.</p>
 <p>Let’s see how these different estimators do for a particular random sample generated in R.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="estimation.html#cb27-1" tabindex="-1"></a>theta <span class="ot">=</span> <span class="dv">20</span> <span class="co"># we pretend we don&#39;t know this parameter</span></span>
-<span id="cb27-2"><a href="estimation.html#cb27-2" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">10</span> <span class="co"># the size of the sample</span></span>
-<span id="cb27-3"><a href="estimation.html#cb27-3" tabindex="-1"></a>X <span class="ot">=</span> <span class="fu">runif</span>(n,<span class="dv">0</span>,theta) <span class="co"># generate the random sample</span></span>
-<span id="cb27-4"><a href="estimation.html#cb27-4" tabindex="-1"></a>est_1 <span class="ot">=</span> <span class="dv">2</span><span class="sc">*</span><span class="fu">mean</span>(X)</span>
-<span id="cb27-5"><a href="estimation.html#cb27-5" tabindex="-1"></a>est_2 <span class="ot">=</span> (n<span class="sc">+</span><span class="dv">1</span>)<span class="sc">/</span>n<span class="sc">*</span><span class="fu">max</span>(X)</span>
-<span id="cb27-6"><a href="estimation.html#cb27-6" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">round</span>(X,<span class="dv">2</span>))</span></code></pre></div>
-<pre><code>##  [1]  6.99 15.90 13.34 10.15  8.74  0.75 16.61  4.04 19.56 11.77</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="estimation.html#cb28-1" tabindex="-1"></a>theta <span class="ot">=</span> <span class="dv">20</span> <span class="co"># we pretend we don&#39;t know this parameter</span></span>
+<span id="cb28-2"><a href="estimation.html#cb28-2" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">10</span> <span class="co"># the size of the sample</span></span>
+<span id="cb28-3"><a href="estimation.html#cb28-3" tabindex="-1"></a>X <span class="ot">=</span> <span class="fu">runif</span>(n,<span class="dv">0</span>,theta) <span class="co"># generate the random sample</span></span>
+<span id="cb28-4"><a href="estimation.html#cb28-4" tabindex="-1"></a>est_1 <span class="ot">=</span> <span class="dv">2</span><span class="sc">*</span><span class="fu">mean</span>(X)</span>
+<span id="cb28-5"><a href="estimation.html#cb28-5" tabindex="-1"></a>est_2 <span class="ot">=</span> (n<span class="sc">+</span><span class="dv">1</span>)<span class="sc">/</span>n<span class="sc">*</span><span class="fu">max</span>(X)</span>
+<span id="cb28-6"><a href="estimation.html#cb28-6" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">round</span>(X,<span class="dv">2</span>))</span></code></pre></div>
+<pre><code>##  [1] 17.49 10.37  7.87  7.54 16.77  3.46  8.26 18.96 15.56  0.10</code></pre>
 <p>For this single sample the estimators takes on these values:</p>
 <ul>
-<li>Estimator 1: <span class="math inline">\(\hat{\theta}_1\)</span> = 21.6</li>
-<li>Estimator 2: <span class="math inline">\(\hat{\theta}_2\)</span> = 21.5.</li>
+<li>Estimator 1: <span class="math inline">\(\hat{\theta}_1\)</span> = 21.3</li>
+<li>Estimator 2: <span class="math inline">\(\hat{\theta}_2\)</span> = 20.9.</li>
 </ul>
 <p>The fact that both estimators are unbiased means that in the long run, the average of all the <span class="math inline">\(\hat{\theta}_1\)</span> estimates would approach <span class="math inline">\(\theta,\)</span> and the same is true for the average of the <span class="math inline">\(\hat{\theta}_2\)</span> estimates.</p>
 <p>So, they’re both good estimaors of <span class="math inline">\(\theta\)</span> in that regard. What makes one estimator better is if the <em>variation</em> of the estimates obtained from repeated sampling is smaller for one than the other.</p>
 <p>Let’s simulate drawing 1000 different samples of size <span class="math inline">\(n = 10,\)</span> recording the distribution of values taken by the estimates <span class="math inline">\(\theta_1\)</span> and <span class="math inline">\(\theta_2,\)</span> and seeing which distribution has smaller variance.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="estimation.html#cb29-1" tabindex="-1"></a>theta <span class="ot">=</span> <span class="dv">20</span>;n <span class="ot">=</span> <span class="dv">10</span> <span class="co"># the size of the sample in each trial</span></span>
-<span id="cb29-2"><a href="estimation.html#cb29-2" tabindex="-1"></a>trials <span class="ot">=</span> <span class="dv">1000</span> <span class="co"># number of times we take a sample of size n</span></span>
-<span id="cb29-3"><a href="estimation.html#cb29-3" tabindex="-1"></a>dist_1 <span class="ot">=</span> <span class="fu">c</span>() <span class="co"># records estimator 1 values</span></span>
-<span id="cb29-4"><a href="estimation.html#cb29-4" tabindex="-1"></a>dist_2 <span class="ot">=</span> <span class="fu">c</span>() <span class="co"># records estimator 2 values</span></span>
-<span id="cb29-5"><a href="estimation.html#cb29-5" tabindex="-1"></a><span class="co"># run the trials</span></span>
-<span id="cb29-6"><a href="estimation.html#cb29-6" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>trials){</span>
-<span id="cb29-7"><a href="estimation.html#cb29-7" tabindex="-1"></a>  X <span class="ot">=</span> <span class="fu">runif</span>(n,<span class="dv">0</span>,theta) <span class="co"># generate the random sample</span></span>
-<span id="cb29-8"><a href="estimation.html#cb29-8" tabindex="-1"></a>  dist_1[i] <span class="ot">=</span> <span class="dv">2</span><span class="sc">*</span><span class="fu">mean</span>(X)</span>
-<span id="cb29-9"><a href="estimation.html#cb29-9" tabindex="-1"></a>  dist_2[i] <span class="ot">=</span> (n<span class="sc">+</span><span class="dv">1</span>)<span class="sc">/</span>n<span class="sc">*</span><span class="fu">max</span>(X)</span>
-<span id="cb29-10"><a href="estimation.html#cb29-10" tabindex="-1"></a>}</span>
-<span id="cb29-11"><a href="estimation.html#cb29-11" tabindex="-1"></a><span class="co"># create data frame of results for ggplot</span></span>
-<span id="cb29-12"><a href="estimation.html#cb29-12" tabindex="-1"></a>df <span class="ot">=</span> <span class="fu">rbind</span>(<span class="fu">data.frame</span>(<span class="at">estimator =</span> <span class="st">&quot;1&quot;</span>,<span class="at">value =</span> dist_1),</span>
-<span id="cb29-13"><a href="estimation.html#cb29-13" tabindex="-1"></a>           <span class="fu">data.frame</span>(<span class="at">estimator =</span> <span class="st">&quot;2&quot;</span>,<span class="at">value =</span> dist_2))</span>
-<span id="cb29-14"><a href="estimation.html#cb29-14" tabindex="-1"></a><span class="co"># plot</span></span>
-<span id="cb29-15"><a href="estimation.html#cb29-15" tabindex="-1"></a><span class="fu">ggplot</span>(df)<span class="sc">+</span></span>
-<span id="cb29-16"><a href="estimation.html#cb29-16" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x=</span>value,<span class="at">fill=</span>estimator),<span class="at">alpha =</span> .<span class="dv">4</span>)<span class="sc">+</span></span>
-<span id="cb29-17"><a href="estimation.html#cb29-17" tabindex="-1"></a>  <span class="fu">theme_get</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="estimation.html#cb30-1" tabindex="-1"></a>theta <span class="ot">=</span> <span class="dv">20</span>;n <span class="ot">=</span> <span class="dv">10</span> <span class="co"># the size of the sample in each trial</span></span>
+<span id="cb30-2"><a href="estimation.html#cb30-2" tabindex="-1"></a>trials <span class="ot">=</span> <span class="dv">1000</span> <span class="co"># number of times we take a sample of size n</span></span>
+<span id="cb30-3"><a href="estimation.html#cb30-3" tabindex="-1"></a>dist_1 <span class="ot">=</span> <span class="fu">c</span>() <span class="co"># records estimator 1 values</span></span>
+<span id="cb30-4"><a href="estimation.html#cb30-4" tabindex="-1"></a>dist_2 <span class="ot">=</span> <span class="fu">c</span>() <span class="co"># records estimator 2 values</span></span>
+<span id="cb30-5"><a href="estimation.html#cb30-5" tabindex="-1"></a><span class="co"># run the trials</span></span>
+<span id="cb30-6"><a href="estimation.html#cb30-6" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>trials){</span>
+<span id="cb30-7"><a href="estimation.html#cb30-7" tabindex="-1"></a>  X <span class="ot">=</span> <span class="fu">runif</span>(n,<span class="dv">0</span>,theta) <span class="co"># generate the random sample</span></span>
+<span id="cb30-8"><a href="estimation.html#cb30-8" tabindex="-1"></a>  dist_1[i] <span class="ot">=</span> <span class="dv">2</span><span class="sc">*</span><span class="fu">mean</span>(X)</span>
+<span id="cb30-9"><a href="estimation.html#cb30-9" tabindex="-1"></a>  dist_2[i] <span class="ot">=</span> (n<span class="sc">+</span><span class="dv">1</span>)<span class="sc">/</span>n<span class="sc">*</span><span class="fu">max</span>(X)</span>
+<span id="cb30-10"><a href="estimation.html#cb30-10" tabindex="-1"></a>}</span>
+<span id="cb30-11"><a href="estimation.html#cb30-11" tabindex="-1"></a><span class="co"># create data frame of results for ggplot</span></span>
+<span id="cb30-12"><a href="estimation.html#cb30-12" tabindex="-1"></a>df <span class="ot">=</span> <span class="fu">rbind</span>(<span class="fu">data.frame</span>(<span class="at">estimator =</span> <span class="st">&quot;1&quot;</span>,<span class="at">value =</span> dist_1),</span>
+<span id="cb30-13"><a href="estimation.html#cb30-13" tabindex="-1"></a>           <span class="fu">data.frame</span>(<span class="at">estimator =</span> <span class="st">&quot;2&quot;</span>,<span class="at">value =</span> dist_2))</span>
+<span id="cb30-14"><a href="estimation.html#cb30-14" tabindex="-1"></a><span class="co"># plot</span></span>
+<span id="cb30-15"><a href="estimation.html#cb30-15" tabindex="-1"></a><span class="fu">ggplot</span>(df)<span class="sc">+</span></span>
+<span id="cb30-16"><a href="estimation.html#cb30-16" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x=</span>value,<span class="at">fill=</span>estimator),<span class="at">alpha =</span> .<span class="dv">4</span>)<span class="sc">+</span></span>
+<span id="cb30-17"><a href="estimation.html#cb30-17" tabindex="-1"></a>  <span class="fu">theme_get</span>()</span></code></pre></div>
 <div class="figure"><span style="display:block;" id="fig:unnamed-chunk-36"></span>
 <img src="math340-notes_files/figure-html/unnamed-chunk-36-1.png" alt="Sampling distributions for two unbiased estimators" width="384" />
 <p class="caption">
@@ -449,13 +450,13 @@ Figure 13.1: Sampling distributions for two unbiased estimators
 </div>
 <p>Both estimators have average value near 20. In fact,</p>
 <ul>
-<li><code>mean(dist_1)</code>- = 20</li>
-<li><code>mean(dist_2)</code> = 20.01.</li>
+<li><code>mean(dist_1)</code>- = 19.9</li>
+<li><code>mean(dist_2)</code> = 19.9.</li>
 </ul>
 <p>But the estimator 2 distribution has visibly smaller variance. Indeed,</p>
 <ul>
-<li><code>sd(dist_1)</code> = 3.71</li>
-<li><code>sd(dist_2)</code> = 1.84.</li>
+<li><code>sd(dist_1)</code> = 3.63</li>
+<li><code>sd(dist_2)</code> = 1.87.</li>
 </ul>
 <p>It appears that the better estimator here is the one derived from the maximum value of the data as opposed to the mean of the data.</p>
 </div>

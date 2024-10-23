@@ -246,10 +246,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="A.1" data-path="sampling-in-R.html"><a href="sampling-in-R.html#vectors-R"><i class="fa fa-check"></i><b>A.1</b> Data vectors</a>
 <ul>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#vector-types"><i class="fa fa-check"></i>vector types</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#matrices"><i class="fa fa-check"></i>Matrices</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#matrices"><i class="fa fa-check"></i>matrices</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#data-frames"><i class="fa fa-check"></i>data frames</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#common-vector-commands"><i class="fa fa-check"></i>common vector commands</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#comparison-operators"><i class="fa fa-check"></i>Comparison Operators</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#comparison-operators"><i class="fa fa-check"></i>comparison operators</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#checking-membership"><i class="fa fa-check"></i>checking membership</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sum-and-which"><i class="fa fa-check"></i><code>sum()</code> and <code>which()</code></a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#extracting-elements"><i class="fa fa-check"></i>extracting elements</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#comparing-vectors"><i class="fa fa-check"></i>comparing vectors</a></li>
@@ -267,12 +268,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="A.3" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sampling-in-R-section"><i class="fa fa-check"></i><b>A.3</b> Sampling</a>
 <ul>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-options"><i class="fa fa-check"></i><code>sample()</code> options</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-without-replacement"><i class="fa fa-check"></i>Sample without replacement</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-with-replacement"><i class="fa fa-check"></i>Sample with replacement</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-with-custom-probabilities"><i class="fa fa-check"></i>Sample with custom probabilities</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#example-lefties"><i class="fa fa-check"></i>Example: Lefties</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-without-replacement"><i class="fa fa-check"></i>sample without replacement</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-with-replacement"><i class="fa fa-check"></i>sample with replacement</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-with-custom-probabilities"><i class="fa fa-check"></i>sample with custom probabilities</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#example-lefties"><i class="fa fa-check"></i>example: Lefties</a></li>
 </ul></li>
-<li class="chapter" data-level="A.4" data-path="sampling-in-R.html"><a href="sampling-in-R.html#repeated-sampling"><i class="fa fa-check"></i><b>A.4</b> Repeated Sampling</a>
+<li class="chapter" data-level="A.4" data-path="sampling-in-R.html"><a href="sampling-in-R.html#repeated-sampling"><i class="fa fa-check"></i><b>A.4</b> Repeated sampling</a>
 <ul>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#using-a-for-loop"><i class="fa fa-check"></i>using a <code>for</code> loop</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#using-replicate"><i class="fa fa-check"></i>using <code>replicate()</code></a></li>
@@ -437,12 +438,12 @@ m_U(t) &amp;= E\left[e^{tU}\right]\\
       &amp;= E\left[e^{tX_1}\right] \cdot E\left[e^{tX_2}\right] \cdot ~\cdots~ \cdot E\left[e^{tX_n}\right]\\
       &amp;= m_1(t) \cdot m_2(t) \cdot ~\cdots~ \cdot m_n(t)
 \end{align*}\]</span></p>
-<p>That the <span class="math inline">\(E[~]\)</span> distributes through the product in line 4 above follows since the <span class="math inline">\(X_i\)</span> are assumed to be independent. The rpoof of this fact would be given in MATH 440.</p>
+<p>That the <span class="math inline">\(E[~]\)</span> distributes through the product in line 4 above follows since the <span class="math inline">\(X_i\)</span> are assumed to be independent. The proof of this fact would be given in MATH 440.</p>
 <div class="theorem">
 <p><span id="thm:sum-of-normal-rvs" class="theorem"><strong>Theorem 11.3  </strong></span>Let <span class="math inline">\(X_1, X_2, \ldots, X_n\)</span> be independent normal random variables with <span class="math inline">\(X_i \sim N(\mu_i, \sigma_i),\)</span> and let <span class="math inline">\(a_1, a_2, \ldots, a_n\)</span> be constants. If <span class="math display">\[U = \sum_{i=1}^n a_i X_i,\]</span> then <span class="math inline">\(U\)</span> is normally distribution with <span class="math display">\[\mu = \sum_{i=1}^n a_i \mu_i ~~~ \text{ and } ~~~ \sigma^2 = \sum_{i=1}^n a_i^2 \sigma_i^2.\]</span></p>
 </div>
 <div class="proof">
-<p><span id="unlabeled-div-51" class="proof"><em>Proof</em>. </span>Since <span class="math inline">\(X_i\)</span> is <span class="math inline">\(N(\mu_i,\sigma_i),\)</span> <span class="math inline">\(X_i\)</span> has mgf <span class="math display">\[m_{X_i}(t) = e^{\left(\mu_it + \sigma_i^2t^2/2\right)},\]</span> and for constant <span class="math inline">\(a_i,\)</span> the random variable <span class="math inline">\(a_iX_i\)</span> has mgf <span class="math display">\[m_{a_iX_i}(t) =E(e^{a_iX_it}) = m_{X_i}(a_it) = e^{\left(\mu_ia_it + a_i^2\sigma_i^2t^2/2\right)}.\]</span>
+<p><span id="unlabeled-div-51" class="proof"><em>Proof</em>. </span>Since <span class="math inline">\(X_i\)</span> is <span class="math inline">\(N(\mu_i,\sigma_i),\)</span> <span class="math inline">\(X_i\)</span> has mgf <span class="math display">\[m_{X_i}(t) = e^{\left(\mu_it + \sigma_i^2t^2/2\right)}.\]</span> For constant <span class="math inline">\(a_i,\)</span> the random variable <span class="math inline">\(a_iX_i\)</span> has mgf <span class="math display">\[m_{a_iX_i}(t) =E(e^{a_iX_it}) = m_{X_i}(a_it) = e^{\left(\mu_ia_it + a_i^2\sigma_i^2t^2/2\right)}.\]</span>
 Then by Theorem <a href="mgf.html#thm:mgf-sum-of-rvs">11.2</a> and properties of exponents, for <span class="math inline">\(U = \sum a_i X_i,\)</span>
 <span class="math display">\[\begin{align*}
 m_U(t) &amp;= \prod_{i=1}^n m_{a_iX_i}(t) \\
@@ -452,7 +453,7 @@ m_U(t) &amp;= \prod_{i=1}^n m_{a_iX_i}(t) \\
 <p>But hey! This is the mgf for a normal distribution with mean <span class="math inline">\(\sum a_i \mu\)</span> and variance <span class="math inline">\(\sum a_i^2 \sigma_i^2,\)</span> so we have proved the result.</p>
 </div>
 <div class="theorem">
-<p><span id="thm:sum-of-squares-of-standard-normal-rvs" class="theorem"><strong>Theorem 11.4  </strong></span>Let <span class="math inline">\(X_1, X_2, \ldots, X_n\)</span> be independent normal random variables with <span class="math inline">\(X_i \sim N(\mu_i, \sigma_i),\)</span> and <span class="math inline">\(\displaystyle Z_i = \frac{X_i - \mu_i}{\sigma_i}\)</span> for <span class="math inline">\(i = 1, \ldots, n\)</span>.</p>
+<p><span id="thm:sum-of-squares-of-standard-normal-rvs" class="theorem"><strong>Theorem 11.4  </strong></span>Let <span class="math inline">\(X_1, X_2, \ldots, X_n\)</span> be independent normal random variables with <span class="math inline">\(X_i \sim N(\mu_i, \sigma_i),\)</span> and <span class="math inline">\(\displaystyle Z_i = \frac{X_i - \mu_i}{\sigma_i}\)</span> for <span class="math inline">\(i = 1, \ldots, n\)</span>. Then <span class="math display">\[U = \sum_{i=1}^n Z_i^2\]</span> is <span class="math inline">\(\chi^2(n)\)</span>.</p>
 </div>
 <div class="example">
 <p><span id="exm:unlabeled-div-52" class="example"><strong>Example 11.2  </strong></span>Suppose the number of customers arriving at a particular checkout counter in an hour follows a Poisson distribution. Let <span class="math inline">\(X_1\)</span> record the time until the first arrival, <span class="math inline">\(X_2,\)</span> the time between the 1st and 2nd arrival, and so on, up to <span class="math inline">\(X_n,\)</span> the time between the <span class="math inline">\((n-1)\)</span>st and <span class="math inline">\(n\)</span>th arrival. Then it turns out the <span class="math inline">\(X_i\)</span> are independent, and each is an exponential random variable with density <span class="math display">\[f_{X_i}(x_i) = \frac{1}{\theta}e^{-x_i/\theta},\]</span> for <span class="math inline">\(x_i &gt; 0\)</span> (and 0 else).
@@ -492,7 +493,7 @@ m_X(t) &amp;= E(e^{tX})\\
         &amp;= \frac{1}{\beta^\alpha \Gamma(\alpha)} \cdot \left(\frac{1}{1/\beta - t}\right)^\alpha \Gamma(\alpha)
 \end{align*}\]</span></p>
 <p>The last integral above evaluates to 1 because it is the pdf for a <span class="math inline">\(\text{gamma}(\alpha,\beta)\)</span> distribution! After simplifying we obtain <span class="math display">\[m_X(t) = (1-\beta t)^{-\alpha}.\]</span></p>
-<p>With the mgf for a gamma random variable in hand, we can know derive its mean and variance, thus proving Theorem <a href="important-continuous-rv.html#thm:gamma-EandV">10.5</a>.</p>
+<p>With the mgf for a gamma random variable in hand, we can now derive its mean and variance, thus proving Theorem <a href="important-continuous-rv.html#thm:gamma-EandV">10.5</a>.</p>
 <p><span class="math display">\[\begin{align*}
 m_X^\prime(t) &amp;= -\alpha(1-\beta t)^{-\alpha-1}\cdot(-\beta) \\
               &amp;= \alpha\beta(1-\beta t)^{-\alpha-1},
