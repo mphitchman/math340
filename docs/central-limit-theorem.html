@@ -504,7 +504,7 @@ Figure 12.2: Finding the middle 90% of a t(8) distribution
 where <span class="math inline">\(T = 3(\overline{X}-\mu)/S,\)</span> and this allows us to solve the problem:</p>
 <p><span class="math display">\[\begin{align*}
 .9 &amp;= P(-1.86 &lt; T &lt; 1.86)\\
-    &amp;= P(-1.86 &lt; 3(\overline{X}-\mu)/S &lt; 1.86) &lt; 1.86) \\
+    &amp;= P(-1.86 &lt; 3(\overline{X}-\mu)/S &lt; 1.86) \\
     &amp;= P(\frac{-1.86}{3}S &lt; \overline{X}-\mu &lt; \frac{1.86}{3}S )\\
     &amp;= P(-.62 S &lt; \overline{X}-\mu &lt; .62 S)
 \end{align*}\]</span></p>
@@ -546,14 +546,14 @@ That is, for any distribution (Poisson, binomial, gamma, uniform, …) with mean
 <div id="normal-approximation-to-a-binomial-distribution" class="section level2 hasAnchor" number="12.4">
 <h2><span class="header-section-number">12.4</span> Normal Approximation to a binomial distribution<a href="central-limit-theorem.html#normal-approximation-to-a-binomial-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>If <span class="math inline">\(X\)</span> is binom<span class="math inline">\((n,p),\)</span> we can view <span class="math inline">\(X\)</span> as a sum of Bernoulli random variables:
-<span class="math inline">\(X = \sum_{i=1^n}Y_i\)</span> where each <span class="math inline">\(Y_i\)</span> is binom<span class="math inline">\((1,p)\)</span> [so <span class="math inline">\(P(Y_i = 1) = p\)</span> and <span class="math inline">\(P(Y_i = 0) = 1-p,\)</span> and <span class="math display">\[\mu_{Y_i} = p ~~~\text{ and } ~~~ \sigma_{Y_i} = \sqrt{p(1-p)}.\]</span></p>
-<p>And <span class="math display">\[\frac{1}{n}X = \frac{1}{n}\sum_{i=1}^n Y_i.\]</span> By the Central Limit Theorem, for large <span class="math inline">\(n,\)</span> it follows that <span class="math inline">\(\frac{1}{n}X\)</span> is approximately <span class="math inline">\(N(p,\sqrt{p(1-p)/n})\)</span>.</p>
+<span class="math inline">\(X = \sum_{i=1^n}Y_i\)</span> where each <span class="math inline">\(Y_i\)</span> is binom<span class="math inline">\((1,p)\)</span>, which means <span class="math inline">\(P(Y_i = 1) = p,\)</span> <span class="math inline">\(P(Y_i = 0) = 1-p,\)</span> and <span class="math display">\[\mu_{Y_i} = p ~~~\text{ and } ~~~ \sigma_{Y_i} = \sqrt{p(1-p)}.\]</span></p>
+<p>Note also that <span class="math display">\[\frac{1}{n}X = \frac{1}{n}\sum_{i=1}^n Y_i,\]</span> so by the Central Limit Theorem, for large <span class="math inline">\(n,\)</span> it follows that <span class="math inline">\(\frac{1}{n}X\)</span> is approximately <span class="math inline">\(N(p,\sqrt{p(1-p)/n})\)</span>. In short:</p>
 <blockquote>
 <p>If <span class="math inline">\(X\)</span> is <span class="math inline">\(\text{binom}(n,p)\)</span> then <span class="math inline">\(X\)</span> is approximately <span class="math inline">\(N(np, \sqrt{np(1-p)})\)</span> for large <span class="math inline">\(n\)</span>.</p>
 </blockquote>
 <p>Let’s look at an example and then fine tune the approximation with a continuity correction.</p>
 <div class="example">
-<p><span id="exm:unlabeled-div-57" class="example"><strong>Example 12.5  </strong></span>Suppose 44% of a voting population actually plan to vote for candidate A (though we don’t know this :)). If we draw a random sample of <span class="math inline">\(n = 100\)</span> voters, what is the approximate probability that 51 or more of the 100 sampled plan to vote for candidate A?</p>
+<p><span id="exm:unlabeled-div-57" class="example"><strong>Example 12.5  </strong></span>Suppose 44% of a voting population actually plan to vote for candidate A (though we don’t know this :)). If we draw a random sample of <span class="math inline">\(n = 100\)</span> voters, what is the approximate probability that 51 or more of the 100 sampled voters plan to vote for candidate A?</p>
 <p>If we know the size of the population we can answer this question precisely with the hypergeometric distribution:</p>
 <p>For instance, suppose the population consists of 10000 voters, and <span class="math inline">\(X\)</span> equals the number of voters in a sample of size 100 that plan to vote for candidate A. Then for any <span class="math inline">\(x = 0, 1, \ldots, 100,\)</span>
 <span class="math display">\[p(x) = \frac{\binom{4400}{x}\binom{5600}{100-x}}{\binom{10000}{100}},\]</span>
