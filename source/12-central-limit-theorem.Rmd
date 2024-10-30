@@ -251,7 +251,7 @@ where $T = 3(\overline{X}-\mu)/S,$ and this allows us to solve the problem:
 
 \begin{align*}
 .9 &= P(-1.86 < T < 1.86)\\
-    &= P(-1.86 < 3(\overline{X}-\mu)/S < 1.86) < 1.86) \\
+    &= P(-1.86 < 3(\overline{X}-\mu)/S < 1.86) \\
     &= P(\frac{-1.86}{3}S < \overline{X}-\mu < \frac{1.86}{3}S )\\
     &= P(-.62 S < \overline{X}-\mu < .62 S)
 \end{align*}
@@ -309,16 +309,16 @@ We know that $T = \frac{\overline{X}-\mu}{S/\sqrt{n}}$ has a t(19) distribution 
 ## Normal Approximation to a binomial distribution
 
 If $X$ is binom$(n,p),$ we can view $X$ as a sum of Bernoulli random variables:
-$X = \sum_{i=1^n}Y_i$ where each $Y_i$ is binom$(1,p)$ [so $P(Y_i = 1) = p$ and $P(Y_i = 0) = 1-p,$  and $$\mu_{Y_i} = p ~~~\text{ and } ~~~ \sigma_{Y_i} = \sqrt{p(1-p)}.$$
+$X = \sum_{i=1^n}Y_i$ where each $Y_i$ is binom$(1,p)$, which means $P(Y_i = 1) = p,$ $P(Y_i = 0) = 1-p,$  and $$\mu_{Y_i} = p ~~~\text{ and } ~~~ \sigma_{Y_i} = \sqrt{p(1-p)}.$$
 
-And $$\frac{1}{n}X = \frac{1}{n}\sum_{i=1}^n Y_i.$$ By the Central Limit Theorem, for large $n,$ it follows that $\frac{1}{n}X$ is approximately $N(p,\sqrt{p(1-p)/n})$. 
+Note also that $$\frac{1}{n}X = \frac{1}{n}\sum_{i=1}^n Y_i,$$ so by the Central Limit Theorem, for large $n,$ it follows that $\frac{1}{n}X$ is approximately $N(p,\sqrt{p(1-p)/n})$. In short:
 
 > If $X$ is $\text{binom}(n,p)$ then $X$ is approximately $N(np, \sqrt{np(1-p)})$ for large $n$.
 
 Let's look at an example and then fine tune the approximation with a continuity correction.
 
 :::{.example}
-Suppose 44\% of a voting population actually plan to vote for candidate A (though we don't know this :)). If we draw a random sample of $n = 100$ voters, what is the approximate probability that 51 or more of the 100 sampled plan to vote for candidate A?
+Suppose 44\% of a voting population actually plan to vote for candidate A (though we don't know this :)). If we draw a random sample of $n = 100$ voters, what is the approximate probability that 51 or more of the 100 sampled voters plan to vote for candidate A?
 
 If we know the size of the population we can answer this question precisely with the hypergeometric distribution:
 
