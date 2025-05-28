@@ -67,7 +67,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -271,7 +271,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-without-replacement"><i class="fa fa-check"></i>sample without replacement</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-with-replacement"><i class="fa fa-check"></i>sample with replacement</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-with-custom-probabilities"><i class="fa fa-check"></i>sample with custom probabilities</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#example-lefties"><i class="fa fa-check"></i>example: Lefties</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#example-lefties"><i class="fa fa-check"></i>example: lefties</a></li>
 </ul></li>
 <li class="chapter" data-level="A.4" data-path="sampling-in-R.html"><a href="sampling-in-R.html#repeated-sampling"><i class="fa fa-check"></i><b>A.4</b> Repeated sampling</a>
 <ul>
@@ -390,7 +390,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><span id="def:moment-generating-function" class="definition"><strong>Definition 8.2  </strong></span>Let <span class="math inline">\(X\)</span> be a discrete random variable with density function <span class="math inline">\(p(x)\)</span>. If there is a positive real number <span class="math inline">\(h\)</span> such that for all <span class="math inline">\(t \in (-h,h),\)</span> <span class="math display">\[E(e^{tx})\]</span> exists and is finite, then the function of <span class="math inline">\(t\)</span> defined by <span class="math display">\[m(t) = E(e^{tx})\]</span> is called the moment-generating function of <span class="math inline">\(X\)</span>.</p>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-28" class="example"><strong>Example 8.1  </strong></span>Suppose <span class="math inline">\(X\)</span> has the density function
+<p><span id="exm:unlabeled-div-29" class="example"><strong>Example 8.1  </strong></span>Suppose <span class="math inline">\(X\)</span> has the density function
 <span class="math display">\[
 \begin{array}{c|c|c|c|c}
 x &amp; 0 &amp; 1 &amp; 2 &amp; 3  \\ \hline
@@ -412,7 +412,7 @@ m(t) &amp;= E(e^{tx}) \\
 <span class="math display">\[E(X^k) = m^{(k)}(0).\]</span></p>
 </div>
 <div class="proof">
-<p><span id="unlabeled-div-29" class="proof"><em>Proof</em>. </span>Let’s say <span class="math inline">\(X\)</span> is discrete and <span class="math display">\[m(t) = \sum_{\text{all }x} e^{tx}\cdot p(x).\]</span>
+<p><span id="unlabeled-div-30" class="proof"><em>Proof</em>. </span>Let’s say <span class="math inline">\(X\)</span> is discrete and <span class="math display">\[m(t) = \sum_{\text{all }x} e^{tx}\cdot p(x).\]</span>
 Then the derivative of <span class="math inline">\(m(t)\)</span> with respect to the variable <span class="math inline">\(t\)</span> is
 Then <span class="math display">\[m^\prime(t) = \sum_{\text{all }x} x\cdot e^{tx}\cdot p(x),\]</span>
 and letting <span class="math inline">\(t = 0\)</span> we have
@@ -425,6 +425,7 @@ m^{\prime\prime}(t) &amp;= \frac{d}{dt}\left[m^\prime(t)\right]\\
 <p>Evaluating this at <span class="math inline">\(t = 0\)</span> gives <span class="math display">\[m^{\prime\prime}(0)=\sum_{\text{all }x} x^2\cdot 1 \cdot p(x) = E(X^2).\]</span></p>
 <p>Continuing in this manner, for any <span class="math inline">\(k \geq 1,\)</span> the <span class="math inline">\(k\)</span>th derivative of <span class="math inline">\(m(t)\)</span> is <span class="math display">\[m^{(k)}(t)=\sum_{\text{all }x} x^k\cdot e^{tx}\cdot p(x),\]</span> which evaluates to the defintion of <span class="math inline">\(E(X^k)\)</span> when <span class="math inline">\(t = 0\)</span>.</p>
 </div>
+<p><br></p>
 <div class="example">
 <p><span id="exm:mgf-geometric" class="example"><strong>Example 8.2  (The mgf for a geometric distribution) </strong></span>If <span class="math inline">\(X\)</span> is geometric with parameter <span class="math inline">\(p,\)</span> then <span class="math display">\[p(x) = (1-p)^{x-1}\cdot p,\]</span> for <span class="math inline">\(x = 1, 2, 3, \ldots,\)</span> and</p>
 <p><span class="math display">\[\begin{align*}

@@ -67,7 +67,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -271,7 +271,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-without-replacement"><i class="fa fa-check"></i>sample without replacement</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-with-replacement"><i class="fa fa-check"></i>sample with replacement</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-with-custom-probabilities"><i class="fa fa-check"></i>sample with custom probabilities</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#example-lefties"><i class="fa fa-check"></i>example: Lefties</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#example-lefties"><i class="fa fa-check"></i>example: lefties</a></li>
 </ul></li>
 <li class="chapter" data-level="A.4" data-path="sampling-in-R.html"><a href="sampling-in-R.html#repeated-sampling"><i class="fa fa-check"></i><b>A.4</b> Repeated sampling</a>
 <ul>
@@ -384,7 +384,7 @@ In fact, it turns out that the mgf gives us <em>all</em> the information about a
 <p><span id="thm:unique-mgf" class="theorem"><strong>Theorem 11.1  </strong></span>Let <span class="math inline">\(m_X(t)\)</span> and <span class="math inline">\(m_Y(t)\)</span> denote the mgfs of random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y,\)</span> respectively. If both mgfs exist and <span class="math inline">\(m_X(t) = m_Y(t)\)</span> for all values of <span class="math inline">\(t\)</span> then <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> have the same probability distribution.</p>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-49" class="example"><strong>Example 11.1  </strong></span></p>
+<p><span id="exm:unlabeled-div-50" class="example"><strong>Example 11.1  </strong></span></p>
 <blockquote>
 <p>Find the mgf for the standard normal random variable <span class="math inline">\(Z \sim N(0,1)\)</span>.</p>
 </blockquote>
@@ -407,7 +407,7 @@ m_Z(t) &amp;= E(e^{tZ})\\
 <p><span id="lem:Z-is-standard-normal" class="lemma"><strong>Lemma 11.1  </strong></span>If <span class="math inline">\(X\)</span> is <span class="math inline">\(N(\mu,\sigma)\)</span> and <span class="math inline">\(Z = \frac{X-\mu}{\sigma},\)</span> then <span class="math inline">\(Z\)</span> is <span class="math inline">\(N(0,1)\)</span>.</p>
 </div>
 <div class="proof">
-<p><span id="unlabeled-div-50" class="proof"><em>Proof</em>. </span>Let <span class="math inline">\(X\)</span> be <span class="math inline">\(N(\mu,\sigma),\)</span> and <span class="math inline">\(Z = \frac{X-\mu}{\sigma}\)</span>. Then the mgf for <span class="math inline">\(Z\)</span> is</p>
+<p><span id="unlabeled-div-51" class="proof"><em>Proof</em>. </span>Let <span class="math inline">\(X\)</span> be <span class="math inline">\(N(\mu,\sigma),\)</span> and <span class="math inline">\(Z = \frac{X-\mu}{\sigma}\)</span>. Then the mgf for <span class="math inline">\(Z\)</span> is</p>
 <p><span class="math display">\[\begin{align*}
 m_Z(t) &amp;= E\left[e^{tZ}\right]\\
       &amp;= E\left[e^{t\left(\frac{X-\mu}{\sigma}\right)}\right]\\
@@ -423,6 +423,7 @@ m_Z(t) &amp;= e^{-\mu t/\sigma}\cdot e^{\left(\mu (t/\sigma) + \frac{\sigma^2}{2
 \end{align*}\]</span></p>
 <p>But hey! This mgf is the mgf for <span class="math inline">\(N(0,1),\)</span> so by Theorem <a href="mgf.html#thm:unique-mgf">11.1</a>, since <span class="math inline">\(Z = (X-\mu)/\sigma\)</span> and <span class="math inline">\(N(0,1)\)</span> have the same mgf, they have the same probability distribution.</p>
 </div>
+<p><br></p>
 <div class="lemma">
 <p><span id="lem:Z-square-is-chi-square" class="lemma"><strong>Lemma 11.2  </strong></span>If <span class="math inline">\(Z\)</span> is <span class="math inline">\(N(0,1)\)</span> then <span class="math inline">\(Z^2\)</span> is <span class="math inline">\(\chi^2(1)\)</span>.</p>
 </div>
@@ -443,7 +444,7 @@ m_U(t) &amp;= E\left[e^{tU}\right]\\
 <p><span id="thm:sum-of-normal-rvs" class="theorem"><strong>Theorem 11.3  </strong></span>Let <span class="math inline">\(X_1, X_2, \ldots, X_n\)</span> be independent normal random variables with <span class="math inline">\(X_i \sim N(\mu_i, \sigma_i),\)</span> and let <span class="math inline">\(a_1, a_2, \ldots, a_n\)</span> be constants. If <span class="math display">\[U = \sum_{i=1}^n a_i X_i,\]</span> then <span class="math inline">\(U\)</span> is normally distribution with <span class="math display">\[\mu = \sum_{i=1}^n a_i \mu_i ~~~ \text{ and } ~~~ \sigma^2 = \sum_{i=1}^n a_i^2 \sigma_i^2.\]</span></p>
 </div>
 <div class="proof">
-<p><span id="unlabeled-div-51" class="proof"><em>Proof</em>. </span>Since <span class="math inline">\(X_i\)</span> is <span class="math inline">\(N(\mu_i,\sigma_i),\)</span> <span class="math inline">\(X_i\)</span> has mgf <span class="math display">\[m_{X_i}(t) = e^{\left(\mu_it + \sigma_i^2t^2/2\right)}.\]</span> For constant <span class="math inline">\(a_i,\)</span> the random variable <span class="math inline">\(a_iX_i\)</span> has mgf <span class="math display">\[m_{a_iX_i}(t) =E(e^{a_iX_it}) = m_{X_i}(a_it) = e^{\left(\mu_ia_it + a_i^2\sigma_i^2t^2/2\right)}.\]</span>
+<p><span id="unlabeled-div-52" class="proof"><em>Proof</em>. </span>Since <span class="math inline">\(X_i\)</span> is <span class="math inline">\(N(\mu_i,\sigma_i),\)</span> <span class="math inline">\(X_i\)</span> has mgf <span class="math display">\[m_{X_i}(t) = e^{\left(\mu_it + \sigma_i^2t^2/2\right)}.\]</span> For constant <span class="math inline">\(a_i,\)</span> the random variable <span class="math inline">\(a_iX_i\)</span> has mgf <span class="math display">\[m_{a_iX_i}(t) =E(e^{a_iX_it}) = m_{X_i}(a_it) = e^{\left(\mu_ia_it + a_i^2\sigma_i^2t^2/2\right)}.\]</span>
 Then by Theorem <a href="mgf.html#thm:mgf-sum-of-rvs">11.2</a> and properties of exponents, for <span class="math inline">\(U = \sum a_i X_i,\)</span>
 <span class="math display">\[\begin{align*}
 m_U(t) &amp;= \prod_{i=1}^n m_{a_iX_i}(t) \\
@@ -452,24 +453,25 @@ m_U(t) &amp;= \prod_{i=1}^n m_{a_iX_i}(t) \\
 \end{align*}\]</span></p>
 <p>But hey! This is the mgf for a normal distribution with mean <span class="math inline">\(\sum a_i \mu\)</span> and variance <span class="math inline">\(\sum a_i^2 \sigma_i^2,\)</span> so we have proved the result.</p>
 </div>
+<p><br></p>
 <div class="theorem">
 <p><span id="thm:sum-of-squares-of-standard-normal-rvs" class="theorem"><strong>Theorem 11.4  </strong></span>Let <span class="math inline">\(X_1, X_2, \ldots, X_n\)</span> be independent normal random variables with <span class="math inline">\(X_i \sim N(\mu_i, \sigma_i),\)</span> and <span class="math inline">\(\displaystyle Z_i = \frac{X_i - \mu_i}{\sigma_i}\)</span> for <span class="math inline">\(i = 1, \ldots, n\)</span>. Then <span class="math display">\[U = \sum_{i=1}^n Z_i^2\]</span> is <span class="math inline">\(\chi^2(n)\)</span>.</p>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-52" class="example"><strong>Example 11.2  </strong></span>Suppose the number of customers arriving at a particular checkout counter in an hour follows a Poisson distribution. Let <span class="math inline">\(X_1\)</span> record the time until the first arrival, <span class="math inline">\(X_2,\)</span> the time between the 1st and 2nd arrival, and so on, up to <span class="math inline">\(X_n,\)</span> the time between the <span class="math inline">\((n-1)\)</span>st and <span class="math inline">\(n\)</span>th arrival. Then it turns out the <span class="math inline">\(X_i\)</span> are independent, and each is an exponential random variable with density <span class="math display">\[f_{X_i}(x_i) = \frac{1}{\theta}e^{-x_i/\theta},\]</span> for <span class="math inline">\(x_i &gt; 0\)</span> (and 0 else).
+<p><span id="exm:unlabeled-div-53" class="example"><strong>Example 11.2  </strong></span>Suppose the number of customers arriving at a particular checkout counter in an hour follows a Poisson distribution. Let <span class="math inline">\(X_1\)</span> record the time until the first arrival, <span class="math inline">\(X_2,\)</span> the time between the 1st and 2nd arrival, and so on, up to <span class="math inline">\(X_n,\)</span> the time between the <span class="math inline">\((n-1)\)</span>st and <span class="math inline">\(n\)</span>th arrival. Then it turns out the <span class="math inline">\(X_i\)</span> are independent, and each is an exponential random variable with density <span class="math display">\[f_{X_i}(x_i) = \frac{1}{\theta}e^{-x_i/\theta},\]</span> for <span class="math inline">\(x_i &gt; 0\)</span> (and 0 else).
 Find the density function for the waiting time <span class="math inline">\(U\)</span> until the <span class="math inline">\(n\)</span>th customer arrives.</p>
 <p>Well <span class="math inline">\(U = X_1 + X_2 + \cdots + X_n,\)</span> so by Theorem <a href="mgf.html#thm:mgf-sum-of-rvs">11.2</a>, <span class="math display">\[m_U(t) = m_1(t)\cdot ~\cdots~ \cdot m_n(t) = (1-\theta t)^{-n}.\]</span>
 But, hey! This is the mgf for a gamma<span class="math inline">\((\alpha = n, \beta = \theta)\)</span> random variable so by Theorem <a href="mgf.html#thm:unique-mgf">11.1</a>, <span class="math inline">\(U\)</span> <em>is</em> gamma<span class="math inline">\((n,\theta)\)</span>. So <span class="math display">\[f_U(u) = \frac{1}{(n-1)!\theta^n}u^{n-1}e^{-u/\theta},\]</span> for <span class="math inline">\(u &gt; 0\)</span> (and 0 else).</p>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-53" class="example"><strong>Example 11.3  </strong></span>If <span class="math inline">\(Y_1\)</span> is <span class="math inline">\(N(10,.5)\)</span> and <span class="math inline">\(Y_2\)</span> is <span class="math inline">\(N(4,.2)\)</span> and <span class="math inline">\(U = 100 + 7Y_1 + 3Y_2,\)</span> how is <span class="math inline">\(U\)</span> distributed, and what value marks the 90th percentile for <span class="math inline">\(U\)</span>?</p>
+<p><span id="exm:unlabeled-div-54" class="example"><strong>Example 11.3  </strong></span>If <span class="math inline">\(Y_1\)</span> is <span class="math inline">\(N(10,.5)\)</span> and <span class="math inline">\(Y_2\)</span> is <span class="math inline">\(N(4,.2)\)</span> and <span class="math inline">\(U = 100 + 7Y_1 + 3Y_2,\)</span> how is <span class="math inline">\(U\)</span> distributed, and what value marks the 90th percentile for <span class="math inline">\(U\)</span>?</p>
 <p>Theorem <a href="mgf.html#thm:sum-of-normal-rvs">11.3</a> says that <span class="math inline">\(U\)</span> is normal with <span class="math display">\[E(U) = 100 + 7 \cdot 10 + 3 \cdot 4 = 182,\]</span> and <span class="math display">\[V(U) = 0 + 7^2\cdot (.5)^2 + 3^2\cdot(.2)^2 = 12.61,\]</span> so <span class="math inline">\(\sigma_U = \sqrt{12.61} = 3.55.\)</span></p>
 <p>The 90th percentile can be found in R with the <code>qnorm()</code> function:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="mgf.html#cb14-1" tabindex="-1"></a><span class="fu">qnorm</span>(.<span class="dv">9</span>,<span class="at">mean=</span><span class="dv">182</span>,<span class="at">sd=</span><span class="fl">3.55</span>)</span></code></pre></div>
 <pre><code>## [1] 186.5495</code></pre>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-54" class="example"><strong>Example 11.4  </strong></span></p>
+<p><span id="exm:unlabeled-div-55" class="example"><strong>Example 11.4  </strong></span></p>
 <blockquote>
 <p>Find the moment-generating function for <span class="math inline">\(X ~\sim U(\theta_1, \theta_2)\)</span>.</p>
 </blockquote>
@@ -481,7 +483,7 @@ m_X(t) &amp;= E(e^{tX})\\
 \end{align*}\]</span></p>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-55" class="example"><strong>Example 11.5  </strong></span></p>
+<p><span id="exm:unlabeled-div-56" class="example"><strong>Example 11.5  </strong></span></p>
 <blockquote>
 <p>Find the moment-generating function for <span class="math inline">\(X \sim \text{gamma}(\alpha,\beta)\)</span> and compute <span class="math inline">\(E(X)\)</span> and <span class="math inline">\(V(X)\)</span>.</p>
 </blockquote>

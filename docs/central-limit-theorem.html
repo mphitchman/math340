@@ -67,7 +67,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -271,7 +271,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-without-replacement"><i class="fa fa-check"></i>sample without replacement</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-with-replacement"><i class="fa fa-check"></i>sample with replacement</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-with-custom-probabilities"><i class="fa fa-check"></i>sample with custom probabilities</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#example-lefties"><i class="fa fa-check"></i>example: Lefties</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#example-lefties"><i class="fa fa-check"></i>example: lefties</a></li>
 </ul></li>
 <li class="chapter" data-level="A.4" data-path="sampling-in-R.html"><a href="sampling-in-R.html#repeated-sampling"><i class="fa fa-check"></i><b>A.4</b> Repeated sampling</a>
 <ul>
@@ -387,8 +387,9 @@ Prior to picking our actual sample we can consider the function of the random va
 <p><span id="thm:normal-random-sample" class="theorem"><strong>Theorem 12.1  </strong></span>If <span class="math inline">\(X_1, X_2, \ldots, X_n\)</span> represents a random sample taken from a <span class="math inline">\(N(\mu,\sigma)\)</span> distribution, then <span class="math display">\[\overline{X} = \frac{1}{n} \sum_{i=1}^n X_i ~\text{ is }~ N\left(\mu,\frac{\sigma}{\sqrt{n}}\right).\]</span></p>
 </div>
 <div class="proof">
-<p><span id="unlabeled-div-56" class="proof"><em>Proof</em>. </span>This theorem is an immediate consequence of Theorem <a href="mgf.html#thm:sum-of-normal-rvs">11.3</a> where each <span class="math inline">\(a_i = 1/n\)</span>.</p>
+<p><span id="unlabeled-div-57" class="proof"><em>Proof</em>. </span>This theorem is an immediate consequence of Theorem <a href="mgf.html#thm:sum-of-normal-rvs">11.3</a> where each <span class="math inline">\(a_i = 1/n\)</span>.</p>
 </div>
+<p><br></p>
 <div class="example">
 <p><span id="exm:house-finch" class="example"><strong>Example 12.1  </strong></span>Let <span class="math inline">\(X\)</span> equal the duration of a randomly selected song (in seconds) for a house finch. Suppose <span class="math inline">\(X\)</span> is normal with unknown mean <span class="math inline">\(\mu\)</span> (we’re trying to get a handle on this) and standard deviation <span class="math inline">\(\sigma = 30\)</span> seconds (somehow we know this). A random sample of 25 song durations is observed. Find the probability that the sample mean will be within 5 seconds of the population mean <span class="math inline">\(\mu\)</span>.</p>
 <p>If <span class="math inline">\(X_1, X_2, \ldots, X_{25}\)</span> denote the 25 song lengths to be observed, each <span class="math inline">\(X_i \sim N(\mu,30),\)</span> so <span class="math display">\[\overline{X} \sim N\left(\mu,\frac{30}{\sqrt{25}}\right) = N(\mu,6).\]</span>
@@ -553,7 +554,7 @@ That is, for any distribution (Poisson, binomial, gamma, uniform, …) with mean
 </blockquote>
 <p>Let’s look at an example and then fine tune the approximation with a continuity correction.</p>
 <div class="example">
-<p><span id="exm:unlabeled-div-57" class="example"><strong>Example 12.5  </strong></span>Suppose 44% of a voting population actually plan to vote for candidate A (though we don’t know this :)). If we draw a random sample of <span class="math inline">\(n = 100\)</span> voters, what is the approximate probability that 51 or more of the 100 sampled voters plan to vote for candidate A?</p>
+<p><span id="exm:unlabeled-div-58" class="example"><strong>Example 12.5  </strong></span>Suppose 44% of a voting population actually plan to vote for candidate A (though we don’t know this :)). If we draw a random sample of <span class="math inline">\(n = 100\)</span> voters, what is the approximate probability that 51 or more of the 100 sampled voters plan to vote for candidate A?</p>
 <p>If we know the size of the population we can answer this question precisely with the hypergeometric distribution:</p>
 <p>For instance, suppose the population consists of 10000 voters, and <span class="math inline">\(X\)</span> equals the number of voters in a sample of size 100 that plan to vote for candidate A. Then for any <span class="math inline">\(x = 0, 1, \ldots, 100,\)</span>
 <span class="math display">\[p(x) = \frac{\binom{4400}{x}\binom{5600}{100-x}}{\binom{10000}{100}},\]</span>
@@ -605,7 +606,7 @@ Figure 12.3: Continuity correction to estimate a binomial probability with a nor
 <pre><code>## [1] 0.09519473</code></pre>
 <p>Here’s one more example.</p>
 <div class="example">
-<p><span id="exm:unlabeled-div-58" class="example"><strong>Example 12.6  </strong></span>Use continuity correction to estimate <span class="math inline">\(P(460 \leq X \leq 480)\)</span> if <span class="math inline">\(X\)</span> is <span class="math inline">\(\texttt{binom}(1000,.5)\)</span>.</p>
+<p><span id="exm:unlabeled-div-59" class="example"><strong>Example 12.6  </strong></span>Use continuity correction to estimate <span class="math inline">\(P(460 \leq X \leq 480)\)</span> if <span class="math inline">\(X\)</span> is <span class="math inline">\(\texttt{binom}(1000,.5)\)</span>.</p>
 <p>Well, with a continuity correction
 <span class="math display">\[P(460 \leq X \leq 480) \approx P(459.5 \leq Y \leq 480.5),\]</span> where <span class="math inline">\(Y \sim N(500,\sqrt{1000(.5)(.5)})\)</span>.</p>
 <ul>

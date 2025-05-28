@@ -67,7 +67,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -246,10 +246,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="A.1" data-path="sampling-in-R.html"><a href="sampling-in-R.html#vectors-R"><i class="fa fa-check"></i><b>A.1</b> Data vectors</a>
 <ul>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#vector-types"><i class="fa fa-check"></i>vector types</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#matrices"><i class="fa fa-check"></i>Matrices</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#matrices"><i class="fa fa-check"></i>matrices</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#data-frames"><i class="fa fa-check"></i>data frames</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#common-vector-commands"><i class="fa fa-check"></i>common vector commands</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#comparison-operators"><i class="fa fa-check"></i>Comparison Operators</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#comparison-operators"><i class="fa fa-check"></i>comparison operators</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#checking-membership"><i class="fa fa-check"></i>checking membership</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sum-and-which"><i class="fa fa-check"></i><code>sum()</code> and <code>which()</code></a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#extracting-elements"><i class="fa fa-check"></i>extracting elements</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#comparing-vectors"><i class="fa fa-check"></i>comparing vectors</a></li>
@@ -267,12 +268,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="A.3" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sampling-in-R-section"><i class="fa fa-check"></i><b>A.3</b> Sampling</a>
 <ul>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-options"><i class="fa fa-check"></i><code>sample()</code> options</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-without-replacement"><i class="fa fa-check"></i>Sample without replacement</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-with-replacement"><i class="fa fa-check"></i>Sample with replacement</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-with-custom-probabilities"><i class="fa fa-check"></i>Sample with custom probabilities</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#example-lefties"><i class="fa fa-check"></i>Example: Lefties</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-without-replacement"><i class="fa fa-check"></i>sample without replacement</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-with-replacement"><i class="fa fa-check"></i>sample with replacement</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-with-custom-probabilities"><i class="fa fa-check"></i>sample with custom probabilities</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#example-lefties"><i class="fa fa-check"></i>example: lefties</a></li>
 </ul></li>
-<li class="chapter" data-level="A.4" data-path="sampling-in-R.html"><a href="sampling-in-R.html#repeated-sampling"><i class="fa fa-check"></i><b>A.4</b> Repeated Sampling</a>
+<li class="chapter" data-level="A.4" data-path="sampling-in-R.html"><a href="sampling-in-R.html#repeated-sampling"><i class="fa fa-check"></i><b>A.4</b> Repeated sampling</a>
 <ul>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#using-a-for-loop"><i class="fa fa-check"></i>using a <code>for</code> loop</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#using-replicate"><i class="fa fa-check"></i>using <code>replicate()</code></a></li>
@@ -383,7 +384,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><span id="def:distribution-function" class="definition"><strong>Definition 9.1  (Distribution Function of a Random Variable) </strong></span>Let <span class="math inline">\(X\)</span> be a random variable. <strong>The distribution function</strong> of <span class="math inline">\(X,\)</span> denoted <span class="math inline">\(F(x),\)</span> is the function defined on all real numbers <span class="math inline">\(x\)</span> such that <span class="math display">\[F(x) = P(X \leq x).\]</span></p>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-30" class="example"><strong>Example 9.1  </strong></span>Suppose <span class="math inline">\(X\)</span> is the discrete random variable given by density function
+<p><span id="exm:unlabeled-div-31" class="example"><strong>Example 9.1  </strong></span>Suppose <span class="math inline">\(X\)</span> is the discrete random variable given by density function
 <span class="math display">\[
 \begin{array}{c|c|c|c|c}
 x &amp; 0 &amp; 1 &amp; 2 &amp; 3 \\ \hline
@@ -449,7 +450,7 @@ Figure 9.1: Distribution function for X
 &amp;= 1.
 \end{align*}\]</span></p>
 <div class="example">
-<p><span id="exm:unlabeled-div-31" class="example"><strong>Example 9.2  </strong></span>Consider distribution function <span class="math inline">\(F\)</span> pictured below, where <span class="math inline">\(c &gt; 0\)</span> is a fixed constant.</p>
+<p><span id="exm:unlabeled-div-32" class="example"><strong>Example 9.2  </strong></span>Consider distribution function <span class="math inline">\(F\)</span> pictured below, where <span class="math inline">\(c &gt; 0\)</span> is a fixed constant.</p>
 <div class="figure"><span style="display:block;" id="fig:cont-F"></span>
 <img src="math340-notes_files/figure-html/cont-F-1.png" alt="Piece-wise linear distribution function" width="384" />
 <p class="caption">
@@ -476,7 +477,7 @@ Figure 9.3: probability density function for X
 <p>Note that <span class="math inline">\(f(x) \geq 0\)</span> for all <span class="math inline">\(x\)</span>. Also, <span class="math display">\[\int_{-\infty}^{\infty} f(x)~dx = \int_0^c f(x)~dx\]</span> (we only have to integrate over intervals in which <span class="math inline">\(f(x) &gt; 0\)</span>), and this later integral is the area of a rectangle of width <span class="math inline">\(c\)</span> and height <span class="math inline">\(1/c,\)</span> so it has area 1. Thus, we have a valid pdf!</p>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-32" class="example"><strong>Example 9.3  </strong></span>Find the value of <span class="math inline">\(k\)</span> that makes the following function a valid pdf.
+<p><span id="exm:unlabeled-div-33" class="example"><strong>Example 9.3  </strong></span>Find the value of <span class="math inline">\(k\)</span> that makes the following function a valid pdf.
 <span class="math display">\[
 f(x)=
 \begin{cases}
@@ -498,7 +499,7 @@ It follows that <span class="math inline">\(k = 9\)</span>.</p>
 <li><span class="math inline">\(\phi_.75,\)</span> denoted <span class="math inline">\(Q3,\)</span> is called the third quartile</li>
 </ul>
 <div class="theorem">
-<p><span id="thm:unlabeled-div-33" class="theorem"><strong>Theorem 9.3  </strong></span>If <span class="math inline">\(X\)</span> is a continuous random variable with density function <span class="math inline">\(f,\)</span> then for any real numbers <span class="math inline">\(a &lt; b,\)</span>
+<p><span id="thm:unlabeled-div-34" class="theorem"><strong>Theorem 9.3  </strong></span>If <span class="math inline">\(X\)</span> is a continuous random variable with density function <span class="math inline">\(f,\)</span> then for any real numbers <span class="math inline">\(a &lt; b,\)</span>
 <span class="math display">\[P(a \leq X \leq b) = \int_a^b f(x)~dx.\]</span></p>
 </div>
 <p><strong>Proof Idea</strong>: The distribution function <span class="math inline">\(F\)</span> is an antiderivative of the density function <span class="math inline">\(f,\)</span> so using the Fundamental Theorem of Calculus,</p>
@@ -545,7 +546,7 @@ Figure 9.4: A quadratic density function
 </div>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-34" class="example"><strong>Example 9.5  </strong></span>Suppose <span class="math inline">\(X\)</span> has density function
+<p><span id="exm:unlabeled-div-35" class="example"><strong>Example 9.5  </strong></span>Suppose <span class="math inline">\(X\)</span> has density function
 <span class="math display">\[
 f(x)=
 \begin{cases}
@@ -631,6 +632,7 @@ V(X)    &amp;= E(X^2) - E(X)^2 \\
         &amp;= 0.15.
 \end{align*}\]</span></p>
 <p>The properties of expected value that held for discrete random variables also hold for continuous random variables.</p>
+</div>
 <div class="theorem">
 <p><span id="thm:EV-properties-continuous" class="theorem"><strong>Theorem 9.4  </strong></span>Suppose <span class="math inline">\(X\)</span> is a continuous random variable, <span class="math inline">\(c \in \mathbb{R}\)</span> is a constant, and <span class="math inline">\(g,\)</span> <span class="math inline">\(g_1,\)</span> and <span class="math inline">\(g_2\)</span> are functions of <span class="math inline">\(X\)</span>.</p>
 <ol style="list-style-type: decimal">
@@ -651,7 +653,7 @@ and the integral in the last expression equals 1 by definition of a valid probab
 </ol>
 </div>
 <div class="proof">
-<p><span id="unlabeled-div-35" class="proof"><em>Proof</em>. </span></p>
+<p><span id="unlabeled-div-37" class="proof"><em>Proof</em>. </span></p>
 <ol style="list-style-type: lower-alpha">
 <li><p>This result follows immediately from properties of expected value (Theorems <a href="continuous-rv.html#thm:EV-properties-continuous">9.4</a> and <a href="continuous-rv.html#thm:EV-properties-continuous">9.4</a>).</p></li>
 <li><p>Let <span class="math inline">\(Y = aX + b\)</span>. Then (a) says that <span class="math inline">\(E(Y) = a \mu + b,\)</span> so
@@ -664,6 +666,7 @@ V(Y) &amp;= E((Y-(a\mu + b))^2) \\
 But <span class="math inline">\(E\left((X-\mu)^2\right)=V(X)\)</span> by the definition of variance, so the result follows.</p></li>
 </ol>
 </div>
+<p><br></p>
 <div class="example">
 <p><span id="exm:ore-samples" class="example"><strong>Example 9.7  (Ore Sample Impurities) </strong></span>For certain ore samples, the proportion <span class="math inline">\(X\)</span> of impurities per sample is a random variable with density function
 <span class="math display">\[
@@ -698,7 +701,7 @@ and
 <span class="math display">\[V(W) = V(5 - 0.5X) = 0.25V(X) \approx 0.012,\]</span>
 so that the standard deviation is <span class="math inline">\(\sigma = \sqrt{V(W)} ~\approx 0.11\)</span> (about 11 cents).</p>
 </div>
-</div>
+<p>:::</p>
 
 </div>
 </div>

@@ -88,15 +88,17 @@
 \makesavenoteenv{longtable}
 \usepackage{graphicx}
 \makeatletter
-\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
-\makeatother
-% Scale images if necessary, so that they will not overflow the page
-% margins by default, and it is still possible to overwrite the defaults
-% using explicit options in \includegraphics[width, height, ...]{}
-\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
 % Set default figure placement to htbp
-\makeatletter
 \def\fps@figure{htbp}
 \makeatother
 \setlength{\emergencystretch}{3em} % prevent overfull lines
@@ -173,9 +175,6 @@ breakable}
 \usepackage[normalem]{ulem}
 \usepackage{makecell}
 \usepackage{xcolor}
-\ifLuaTeX
-  \usepackage{selnolig}  % disable illegal ligatures
-\fi
 \usepackage[]{natbib}
 \bibliographystyle{apalike}
 \usepackage{bookmark}
@@ -189,7 +188,7 @@ breakable}
 
 \title{MATH 340 Notes}
 \author{Mike Hitchman}
-\date{Fall, 2024}
+\date{Fall, 2025}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}[chapter]
@@ -529,7 +528,7 @@ If you asked me to pick a random real number from the unit interval \(I = [0,1],
   \(\displaystyle \sum_{s \in S} m(s) = 1.\)
 \end{enumerate}
 
-We define the probability of any event \(E\) of \(S\) to be \[P(E) = \sum_{s \in E} m(s).\]
+We define the \textbf{probability of any event} \(E\) of \(S\) to be \[P(E) = \sum_{s \in E} m(s).\]
 \end{definition}
 
 Let's consider our first three chance experiments once more.
@@ -539,7 +538,7 @@ Let's consider our first three chance experiments once more.
 \item
   If we flip a fair coin once, then \(S = \{H,T\},\) and it is reasonable to assign the probabilities \[m(H) = \frac{1}{2}, ~ m(T) = \frac{1}{2}.\]
 \item
-  If a 6-sided die is balanced, it is reasonable to assign the probabilities \[m(i) = \frac{1}{6}\] for each \(i = 1, 2, 3, 4, 5, 6\).
+  If a 6-sided die is balanced, it is reasonable to assign the probabilities \[m(i) = \frac{1}{6}\] for each \(i = 1, 2, 3, 4, 5, 6\). If we consider the event \(E\) to be that we roll a prime number, then \[P(E) = \sum_{s \in E} m(s) = p(2) + p(3) + p(5) = 1/2.\]
 \item
   If we flip a fair coin 3 times, it seems reasonable that each of the 8 possible sequences of three flips in \(S\) is equally likely, so we can assign the probability distribution function \(m(s) = 1/8\) for each element \(s \in S\).
 \end{enumerate}
@@ -840,7 +839,7 @@ Here's a simple example to illustrate the point:
 How many Major League Baseball teams are there?
 \end{quote}
 
-Ok, I can do this! Major League Baseball (MLB) is the (dijoint) union of two leagues, the American League (AL), which has 15 teams, and the National League (NL), which also has 15 teams. So all of Major League Baseball has 15 + 15 = 30 teams!
+Ok, I can do this! Major League Baseball (MLB) is the (disjoint) union of two leagues, the American League (AL), which has 15 teams, and the National League (NL), which also has 15 teams. So all of Major League Baseball has 15 + 15 = 30 teams!
 
 \begin{proposition}[Multiplication Principle]
 Given a set \(A\) with \(m\) elements, and a set \(B\) with \(n\) elements, it is possible to form \(m \cdot n\) pairs containing one element from each set.\index{multiplication principle}
@@ -994,7 +993,7 @@ Referring to the random phones example \ref{exm:random-phones}, without listing 
 
 \section{Combinations}\label{combinations}
 
-We let \(\displaystyle C^n_r\)\index{$\displaystyle C^n_r$} equal the number of ways to choose an unordered arrangement of \(r\) distinct elements from a set of \(n\) distinct objects. We also let \(\displaystyle\binom{n}{k}\) denote this number (read as ``n choose r'').
+We let \(\displaystyle C^n_r\)\index{$\displaystyle C^n_r$} equal the number of ways to choose an unordered arrangement of \(r\) distinct elements from a set of \(n\) distinct objects. We also let \(\displaystyle\binom{n}{r}\) denote this number (read as ``n choose r'').
 
 For instance, \(\displaystyle\binom{4}{2}\) gives how many distinct subsets of size 2 can be formed from a set of size 4, and we see that \(\displaystyle\binom{4}{2} = 6\) because one can form 6 distinct subsets of size 2 from the set \(\{A,B,C,D\}\): \(\{A,B\},\) \(\{A,C\},\)\(\{A,D\},\) \(\{B,C\},\)\(\{B,D\},\) \(\{C,D\}\).
 
@@ -1363,7 +1362,7 @@ We have to build a 7 letter word from the letters in BANANAS.
   Choose 3 locations from the remaining 3 for the 3 identical As: \(\binom{3}{3} = 1\)
 \end{enumerate}
 
-All told, we have \(7 \cdot 6 \cdot \binom{5}{2} \cdot {3}{3} = 420\) ``words''.
+All told, we have \(7 \cdot 6 \cdot \binom{5}{2} \cdot \binom{3}{3} = 420\) ``words''.
 
 Alternatively, the number of words equals the multinomial coefficient \[\binom{7}{3, 2, 1, 1} = 420\] because it counts the number of ways to assign 7 distinct elements (the 7 spots for letters in the word) into four groups of size 3, 2, 1, and 1 (3 locations for the As group, 2 for the Ns, 1 for the B and 1 for the S).
 
@@ -1386,14 +1385,14 @@ To answer this question, we first consider balls and bins.
 \end{theorem}
 
 \begin{proof}
-Here's an outline of the proof. Say we have 8 balls and 3 bins. Here's a schematic of one way to distribute them:
+Here's a proof strategy. Consider the following schematic of one way to distribute 8 balls into 3 bins:
 
 \[\underline{\vert \text{ oo } \vert}~~~\underline{\vert \text{ oooo } \vert} ~~~ \underline{\vert \text{ oo } \vert}\]
-Two balls into the first bin, 4 into the second, and 2 into the third. We can also represent the distribution by pushing the bins together so that they share walls:
+We see two balls go into the first bin, 4 into the second, and 2 into the third. We can also represent this arrangement by pushing the bins together so that they share walls:
 
 \[\underline{\vert \text{ oo } \vert \text{ oooo } \vert \text{ oo } \vert}\]
 
-In fact, we don't really need those two outermost walls to communicate the distribution, or the bin bottoms for that matter:
+In fact, we don't really need those two outermost walls to communicate the arrangement, or the bin bottoms for that matter:
 
 \[ \text{oo} \vert \text{oooo} \vert \text{oo}\]
 So each distribution of the 8 balls into 3 bins corresponds to an ordered arrangement of 8 balls and 2 ``inner walls'', and we have \(\displaystyle\binom{10}{2}\) ways to choose the 2 spots for the inner walls from the 10 spots needed to create the arrangement.
@@ -1414,7 +1413,7 @@ which is \texttt{choose(29,7)} = 1560780. Still, I've got options.
 
 \section{Calculating More Probabilities}\label{prob-with-counting-tools}
 
-With our counting tools in hand, we can set about calculating the probability that an event \(A\) happens without having to first every possible outcome in the sample space.
+With our counting tools in hand, we can set about calculating the probability that an event \(A\) happens without having to first count every possible outcome in the sample space.
 
 Here's the general scene in this section. We have some random experiment with finite sample space \(S,\) defined in such a way that the probability of each outcome in \(S\) is the same. In this case, the probability of any event \(A\) will simply be the size of the set \(A\) divided by the size of the set \(S\):
 \[P(A) = \frac{|A|}{|S|}.\]
@@ -1442,7 +1441,7 @@ The event \(A\) that all Democrats are in the subcommitte can be enumerated as f
 So \(|A|\) = 5, and using pencil and paper for this one:
 
 \begin{align*}
-P(|A|) &= \frac{5}{(8\cdot 7 \cdot 6 \cdot 5)/4!} \\
+P(A) &= \frac{5}{(8\cdot 7 \cdot 6 \cdot 5)/4!} \\
        &= \frac{4!}{8 \cdot 7 \cdot 6}\\
        &= \frac{4 \cdot 3 \cdot 2}{8 \cdot 7 \cdot 6}\\
        &= \frac{3}{7 \cdot 6}\\
@@ -1456,7 +1455,7 @@ P(|A|) &= \frac{5}{(8\cdot 7 \cdot 6 \cdot 5)/4!} \\
 \protect\hypertarget{exm:wine-expert}{}\label{exm:wine-expert}\leavevmode
 
 \begin{quote}
-A wine expert samples 8 wines blindly, two of which are genuinely ``high quality,'' and the others are ``budget wines.'' The expert choses their 3 favorites. If they are really just picking at random, what is the probability that they pick both high quality wines?
+A wine expert samples 8 wines blindly, two of which are genuinely ``high quality,'' and the others are ``budget wines.'' The expert chooses their 3 favorites. If they are really just picking at random, what is the probability that they pick both high quality wines?
 \end{quote}
 
 The sample space \(S\) consists of all possible ways to choose 3 from 8, and we consider each of these combinations of 3 equally likely.
@@ -1481,7 +1480,7 @@ We have 3000 potatoes, 2925 good potatoes, and 75 bad potatoes.
 
 The sample space \(S\) here is all combinations of size 50, so \[|S| = \binom{3000}{50}.\]
 
-The event of interest \(A\) is chosing a sample with more than 2 bad potatoes.
+The event of interest \(A\) is choosing a sample with more than 2 bad potatoes.
 
 The number of samples of size 50 with 50 good and 0 bad potatoes is: \[\binom{2925}{50} \cdot \binom{75}{0}.\]
 The number of samples of size 50 with 49 good and 1 bad potato is: \[\binom{2925}{49} \cdot \binom{75}{1}.\]
@@ -1499,10 +1498,10 @@ and the probability of rejecting the sample is
 \protect\hypertarget{exm:poker-2}{}\label{exm:poker-2}\leavevmode
 
 \begin{quote}
-Detemrine the probabilty of drawing each of these standard 5 card poker hands: a Straight, a Flush, and a Straight Flush.
+Determine the probabilty of drawing each of these standard 5 card poker hands: a Straight, a Flush, and a Straight Flush.
 \end{quote}
 
-These poker hands just keep on coming!
+Let's count some more types of poker hands. (We first looked at poker hands in Example \ref{exm:poker}.)
 
 A \textbf{Straight Flush}\index{poker!Straight Flush} is a five cards poker hand in which all five suits are the same, and all five ranks form a run (either 2-6, 3-7, 4-8, 5-9, 6-10, 7-J, 8-Q, 9-K, 10-A).
 
@@ -1698,7 +1697,7 @@ In this example \(A\) and \(D\) are independent but not disjoint, while \(B\) an
 \protect\hypertarget{exm:plumbing}{}\label{exm:plumbing}Suppose over the last five years, 10\% of all people in a town who have hired a plumber to do some work have been unhappy with the job that was done. One of the plumbers in the town is Frances. Frances has done 40\% of the plumbing jobs in town over these five years, and 25\% of all plumbing jobs that left the customer unhappy have been done by Frances.
 
 \begin{quote}
-Find the probability that a customer will be unhappy with the results if they hire Francis?
+Find the probability that a customer will be unhappy with the results if they hire Frances?
 \end{quote}
 
 We begin by translating what we know and what we want into symbols and probability notation.
@@ -1733,9 +1732,9 @@ P(B~|~A) &= \frac{P(A\cap B)}{P(A)} \\
          &= 0.0625.
 \end{align*}
 
-Ok, there is about a 6 percent chance that a customer will be unhappy with their plumbing job if they hire Francis.
+Ok, there is about a 6 percent chance that a customer will be unhappy with their plumbing job if they hire Frances.
 
-An irresponsible person who wants to be intentionally misleading could rant in all caps ``25 PERCENT OF UNHAPPY CUSTOMERS HIRED FRANCIS!!!'' Let's be better than that. Knowing the full context here, which includes what proportion of the town's plumbing jobs have gone to Frances, is necessary to establish how effective Frances has been as a plumber these last five years.
+An irresponsible person who wants to be intentionally misleading could rant in all caps ``25 PERCENT OF UNHAPPY CUSTOMERS HIRED FRANCES!!!'' Let's be better than that. Knowing the full context here, which includes what proportion of the town's plumbing jobs have gone to Frances, is necessary to establish how effective Frances has been as a plumber these last five years.
 \end{example}
 
 \begin{example}
@@ -1752,18 +1751,18 @@ Let \(A = \{ \text{first die is less than 3}\}\) and \(B = \{ \text{second die i
 ``Less than 3'' means ``1 or 2'' so \(P(A) = P(B) = 2/6 = 1/3.\)
 The question asks for \(P(A \cap B).\) Since \(A\) and \(B\) are independent, \[P(A \cap B) = P(A)\cdot P(B) = (1/3)\cdot(1/3) = 1/9.\]
 
-We remark that we can also use counting techniques to find this probability directly in Section \ref{prob-with-counting-tools}.
+We remark that we can also use counting techniques to find this probability directly, as in Section \ref{prob-with-counting-tools}, as follows.
 
 The sample space \(S\) of this chance experiment consists of all possible rolls of the two dice. That is, \(S\) consists of all ordered pairs of the form \((i,j)\) with \(i, j \in \mathbb{N}\) and \(1\leq i, j \leq 6,\) and \(|S| = 6^2\). The event of interest, \(E,\) consists of all rolls \((i,j)\) in \(S\) such that \(i, j \leq 2\). So, \(|E| = 2^2,\) and \(P(E) = 4/36 = 1/9\).
 
-So, thinking of the chance experiment as a sequence of independent events we calculate the probability of interest as \(\frac{2}{6} \cdot \frac{2}{6},,\) and thinking of the probability via the ``(outcomes of interest)/(all possible outcomes)'' approach we think of the probability as \(\frac{2\cdot 2}{6 \cdot 6}\).
+So, thinking of the chance experiment as a sequence of independent events we calculate the probability of interest as \(\frac{2}{6} \cdot \frac{2}{6},\) and thinking of the probability via the ``(outcomes of interest)/(all possible outcomes)'' approach we think of the probability as \(\frac{2\cdot 2}{6 \cdot 6}\).
 
 \end{example}
 
 \begin{example}
 \protect\hypertarget{exm:four-on-rolll-8}{}\label{exm:four-on-rolll-8}Roll a regular 6-sided die until a 4 comes up. What is the probability that this occurs on the 8th roll?
 
-The values of the rolls are independent events, the probability of not rolling a four on a given roll is 5/6, and the probability of rolling a 4 is 1/6. It follows that the probability of rolling 7 non-4s followed by 1 4 is
+The values of the rolls are independent events, the probability of not rolling a four on a given roll is 5/6, and the probability of rolling a 4 is 1/6. It follows that the probability of rolling 7 non-4s followed by one 4 is
 \[P(\text{first 4 on roll 8}) = \left(\frac{5}{6}\right)^7 \cdot \left(\frac{1}{6}\right).\]
 More generally, the probability that our first 4 comes up on roll \(n\) (for any \(n \in \mathbb{N}\)) will be
 \[P(\text{first 4 on roll }n) = \left(\frac{5}{6}\right)^{n-1} \cdot \left(\frac{1}{6}\right).\]
@@ -1807,11 +1806,11 @@ So, \[P(A \cup B) = P(A) + P(\overline{A} \cap B).\]
 
 Similarly, we can decompose the set \(B\) into disjoint sets as follows: \(B = (\overline{A} \cap B) \cup (A \cap B).\)
 So \[P(B) = P(\overline{A}\cap B) + P(A \cap B).\]
-Combining these two probability equations we see \[P(A \cup B) = P(A) + \left[P(B)-P(A\cap B)\right].\]
+Combining these two probability equations we see \[P(A \cup B) = P(A) + \left[P(B)-P(A\cap B)\right],\] which completes the proof.
 
 \end{proof}
 
-For three events, \(A_1, A_2, A_3\) it follows that
+Next, consider three events, \(A_1, A_2, A_3\). Notice that
 
 \begin{align*}
 P(A_1 \cap A_2 \cap A_3) &= P((A_1\cap A_2) \cap A_3) \\
@@ -1923,14 +1922,14 @@ For the intersection case, by definition of conditional probability the right ha
 
 \section{Event-Composition Method}\label{event-composition-method}
 
-We've been using a method called the event-composition method for calculating probabilities associated to an experiment.
+In some examples in this chapter we've been using a method for calculating probabilities called the event-composition method, which can be described as follows.
 
 \begin{quote}
 \textbf{Event-Composition Method}:\index{event-composition method} Describe the sample space and relevant events; write down what information we're given regarding probabilities etc. via the symbols representing these events; Express what we want to know via these symbols, and use our probability laws to use what we know to determine what we want.
 \end{quote}
 
 \begin{example}
-\protect\hypertarget{exm:craps-4-before-7}{}\label{exm:craps-4-before-7}Two regular 6-sided dice are rolled and we record the sum.
+\protect\hypertarget{exm:craps-4-before-7}{}\label{exm:craps-4-before-7}Two regular 6-sided dice are rolled until we roll a sum of 4 or a sum of 7.
 
 \begin{quote}
 What is the probability that we roll a 4 before we roll a 7?
@@ -1946,7 +1945,7 @@ We define two key events:
   \(B\): we do not roll a 4 or 7.
 \end{itemize}
 
-From our handy \(6 \times 6\) grid describing all possible sums when rolling 2 dice (Example \ref{exm:roll2dice}), we know \[P(A) = \frac{3}{36}, P(B) = \frac{27}{36}.\]
+From our handy \(6 \times 6\) grid describing all possible sums when rolling 2 dice (Example \ref{exm:roll2dice}), we know \[P(A) = \frac{3}{36}, ~~P(B) = \frac{27}{36}.\]
 
 In this game we roll the dice until we roll a 4 or a 7, and we \textbf{win} if we roll a 4 before rolling a 7.
 
@@ -1967,7 +1966,7 @@ The sum of these probabilities is an honest-to-goodness-living-in-the-wild geome
 \begin{align*}
 P(\text{4 before 7}) &= \sum_{n=1}^\infty P(B)^{n-1}P(A)\\
                      &= P(A)\sum_{n=0}^\infty P(B)^n\\
-                     &= (3/36)\sum_{n=0}^\infty (27/36)^n
+                     &= \frac{3}{36}\sum_{n=0}^\infty \left(\frac{27}{36}\right)^n
 \end{align*}
 
 As a reminder, the sum of a geometric series is given by
@@ -1976,7 +1975,7 @@ As a reminder, the sum of a geometric series is given by
 \label{eq:geometric-series}
 \end{equation}
 
-Using this formula with \(r = 27/36,\) we see the probability that we roll a 4 before a 7 is \[P(\text{4 before 7}) = \frac{1}{3}.\]
+Using this formula with \(r = 27/36,\) we see the probability that we roll a 4 before a 7 is \[P(\text{4 before 7}) = \frac{3}{36}\cdot \frac{1}{1-(27/36)} = \frac{1}{3}.\]
 \end{example}
 
 \section{Bayes' Rule}\label{bayes-rule}
@@ -1998,7 +1997,7 @@ A collection \(\{B_1, B_2, \ldots, B_n\}\) of nonempty subsets of \(S\) is calle
 \end{definition}
 
 \begin{theorem}[Law of Total Probability]
-\protect\hypertarget{thm:total-law-prob}{}\label{thm:total-law-prob}Assume \(\{B_1, B_2, \ldots B_k\}\) is a partition of the sample space \(S,\) and \(P(B_i) > 0\) for each \(i = 1, 2, \ldots k\). Then for any event \(A,\) \[P(A) = \sum_{i=1}^k P(A~|~B_i)\cdot P(B_i).\]
+\protect\hypertarget{thm:total-law-prob}{}\label{thm:total-law-prob}Assume \(\{B_1, B_2, \ldots, B_k\}\) is a partition of the sample space \(S,\) and \(P(B_i) > 0\) for each \(i = 1, 2, \ldots k\). Then for any event \(A,\) \[P(A) = \sum_{i=1}^k P(A~|~B_i)\cdot P(B_i).\]
 \end{theorem}
 
 \begin{proof}
@@ -2118,7 +2117,7 @@ It turns out I need more information than I've been given to answer this questio
 
 \begin{figure}
 \centering
-\includegraphics{math340-notes_files/figure-latex/50-50-sick-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/50-50-sick-1.pdf}}
 \caption{\label{fig:50-50-sick}50\% of population has the disease}
 \end{figure}
 
@@ -2128,7 +2127,7 @@ In this scenario, given that I tested positive, there is a 50/55 chance that I h
 
 \begin{figure}
 \centering
-\includegraphics{math340-notes_files/figure-latex/1-99-sick-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/1-99-sick-1.pdf}}
 \caption{\label{fig:1-99-sick}1\% of population has the disease}
 \end{figure}
 
@@ -2138,7 +2137,7 @@ So, it seems to answer the question in this example, it is important to know wha
 \end{example}
 
 \begin{theorem}[Bayes' Rule]
-\protect\hypertarget{thm:Bayes-rule}{}\label{thm:Bayes-rule}Assume \(\{B_1, B_2, \ldots B_k\}\) is a partition of the sample space \(S,\) and \(P(B_i) > 0\) for each \(i = 1, 2, \ldots k\). Then for any particular \(B_j,\) \[P(B_j ~|~ A) = \frac{P(A~|~B_j)\cdot P(B_j)}{\sum_{i=1}^k P(A~|~B_i)\cdot P(B_i)}.\]
+\protect\hypertarget{thm:Bayes-rule}{}\label{thm:Bayes-rule}Assume \(\{B_1, B_2, \ldots, B_k\}\) is a partition of the sample space \(S,\) and \(P(B_i) > 0\) for each \(i = 1, 2, \ldots k\). Then for any particular \(B_j,\) \[P(B_j ~|~ A) = \frac{P(A~|~B_j)\cdot P(B_j)}{\sum_{i=1}^k P(A~|~B_i)\cdot P(B_i)}.\]
 \end{theorem}
 
 \begin{example}
@@ -2178,7 +2177,7 @@ We want:
 
 This task calls for Bayes' Rule.
 
-\[P(B_2~|~A) = \frac{P(A~|~B_2)\cdot P(B_1)}{P(A~|~B_1)\cdot P(B_2)+P(A~|~B_2)\cdot P(B_2)}.\]
+\[P(B_2~|~A) = \frac{P(A~|~B_2)\cdot P(B_2)}{P(A~|~B_1)\cdot P(B_1)+P(A~|~B_2)\cdot P(B_2)}.\]
 We know each probability in the right-hand side of the equation:
 \[P(B_2~|~A) = \frac{(.15)(.3)}{(.08)(.7)+(.15)(.3)} \approx .446.\]
 About a 44\% chance that if we drew a bad apple it's a Braeburn.
@@ -2187,7 +2186,7 @@ We can also use a tree diagram to arrive at this answer:
 
 \begin{figure}
 \centering
-\includegraphics{math340-notes_files/figure-latex/bayes-apple-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/bayes-apple-1.pdf}}
 \caption{\label{fig:bayes-apple}Picking an Apple}
 \end{figure}
 
@@ -2227,7 +2226,7 @@ Given a worker failed to learn the skill, there is about an 82\% chance they had
 
 \begin{figure}
 \centering
-\includegraphics{math340-notes_files/figure-latex/bayes-instruct-method-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/bayes-instruct-method-1.pdf}}
 \caption{\label{fig:bayes-instruct-method}Learning by a Method}
 \end{figure}
 
@@ -2336,17 +2335,17 @@ Recall, a random variable is a real-valued function defined over a sample space,
 \begin{example}
 \protect\hypertarget{exm:first-EV}{}\label{exm:first-EV}In example \ref{exm:draw-2-balls} we defined two random variables associated to the experiment of drawing two balls (numbered from 1 to 5) out of a hat.
 
-The expected value of \(X,\) the larger value of the two drawn, is \[E(X) = 2 \cdot 0.1 + 3 \cdot 0.2 + 4 \cdot 0.3 + \cdot 0.4 = 4.\] So, we should expect that after a large number of repetitions of this game the average value of \(X\) is about 4.
+The expected value of \(X,\) the larger value of the two drawn, is \[E(X) = 2 \cdot 0.1 + 3 \cdot 0.2 + 4 \cdot 0.3 + 5 \cdot 0.4 = 4.\] So, we should expect that after a large number of repetitions of this game the average value of \(X\) is about 4.
 
-The expected value of \(Y,\) the sum of the two values drawn, is \[E(Y) = 3 \cdot .1 + 4 \cdot .1 + 5 \cdot .2 + 6 \cdot .2 + 7 \cdot .2 + 8 \cdot .1 + 9 \cdot .1 = 6.\]. We should expect the average value of \(Y\) to be about 6 after a large number of repetitions of this game.
+The expected value of \(Y,\) the sum of the two values drawn, is \[E(Y) = 3 \cdot .1 + 4 \cdot .1 + 5 \cdot .2 + 6 \cdot .2 + 7 \cdot .2 + 8 \cdot .1 + 9 \cdot .1 = 6.\] We should expect the average value of \(Y\) to be about 6 after a large number of repetitions of this game.
 
-In Example \ref{exm:roll-until-4}, the expected number of rolls needed to obtain a 4 is an infinite series:
-\[E(X) = \sum_{x = 1}^\infty x \cdot (5/6)^{x-1} \cdot (1/6).\]
+In Example \ref{exm:roll-until-4}, the expected number of rolls needed to obtain a 4 is an infinite series
+\[E(X) = \sum_{x = 1}^\infty x \cdot (5/6)^{x-1} \cdot (1/6)\]
 which requires Calc II techniques to evaluate. We do this review in Section \ref{geometric}, but will mention here that this infinite sum is 6. That is, the expected value for the number of rolls to get our first 4 turns out to be 6.
 \end{example}
 
 \begin{example}[Chuck-a-luck]
-\protect\hypertarget{exm:chuckaluck}{}\label{exm:chuckaluck}The game Chuck-a-luck\index{Chuck-a-luck} works like this. Roll 3 dice after choosing a number (1-6). If your chosen number comes up once, you win \$1. If it comes up twice, you win \$2. If it comes up three times, you win \$5. If it doesn't come up at all, you lose \$1.
+\protect\hypertarget{exm:chuckaluck}{}\label{exm:chuckaluck}The game Chuck-a-luck\index{Chuck-a-luck} works like this. Pick a number between 1 and 6, then roll 3 (regular 6-sided) dice. If your chosen number comes up once, you win \$1. If it comes up twice, you win \$2. If it comes up three times, you win \$5. If it doesn't come up at all, you lose \$1.
 
 \begin{quote}
 Would you expect to win in the long run if you played this game lots of times?
@@ -2395,7 +2394,9 @@ Now let's find the probability model for \(X,\) one value of \(x\) at a time.
   \(p(2)\) is found by three cases as well, depending on which die is not 4. We find \(p(2) = 3 \cdot (1/6)^2\cdot (5/6) = 15/216.\)
 \end{itemize}
 
-We can check that these four probabilities add to 1. Check! To summarize, \(X\) has probability function given here in table form:
+We can check that these four probabilities add to 1. Check!
+
+We summarize the probability function for \(X\) in table form:
 
 \[
 \begin{array}{c|c|c|c|c}
@@ -2416,6 +2417,39 @@ We can estimate our average expected winnings by playing the game repeatedly, we
 \begin{theorem}
 \protect\hypertarget{thm:EV-discrete-fcnRV}{}\label{thm:EV-discrete-fcnRV}Let \(X\) be a discrete random variable with probability function \(p(x),\) and suppose \(g(X)\) is a real-valued function of \(X\). Then the expected value of \(g(X)\) is \[E(g(X)) = \sum_{\text{all }x} g(x) \cdot p(x).\]
 \end{theorem}
+
+\begin{proof}
+We assume \(X\) has a finite sample space, say \(x_1, x_2, \ldots, x_n\). Then \(U = g(X)\) is a new random variable with a finite sample space, say \(u_1, u_2, \ldots, u_m\) where \(m \leq n\) (since the function \(g\) might take different input \(x\) values to the same output \(u\), \(m\) might be smaller than \(n\).)
+
+It follows that for each \(u_k\) in \(U\),
+\[P(U = u_k) = \sum_{\text{all}~ x_i ~\text{s.t.}~ g(x_i) = u_k} p(x_i).\]
+
+So, by definition of expected value
+
+\begin{align*}
+E[U] &= \sum_{k = 1}^m u_k\cdot P(U = u_k) \\
+     &= \sum_{k = 1}^m \left[ u_k\cdot \sum_{\text{all}~ x_i ~\text{s.t.}~ g(x_i) = u_k} p(x_i)\right] \\
+     &= \sum_{i = 1}^n g(x_i) p(x_i)
+\end{align*}
+\end{proof}
+
+Here's a simple example illustrating this argument. Suppose \(X\) is a random variable with probability function \(p(x) = x/6\) for \(x = 1, 2, 3\). Consider the following function of \(X\): \(g(X) = (X-2)^2\). Let \(U = g(X)\), which is itself a random variable, and it takes on just 2 values. In particular, \(U\) takes the values 0 and 1, since \(g(1) = 1\), \(g(2) = 0\), and \(g(3) = 1\) (\(U\) is the set of outputs of the function \(g\)).
+
+What is the probability function for \(U\)? By inspection,
+\[P(U = 0) = P(X = 2) = p(2) = 2/6,\]
+and
+
+\[P(U = 1) = P(X = 1 X = 3) = p(1) + p(3) = 1/6 + 3/6 = 4/6.\]
+
+Finally, by definition of expected value of a random variable
+
+\begin{align*}
+E(U) &= \sum_{\text{all} u} u \cdot P(U = u)\\
+     &= 0\cdot P(U = 0) + 1 \cdot P(U = 1) \\
+     &= 0 \cdot p(2) + 1 \cdot (p(1)+p(3)) \\
+     &= g(2) \cdot p(2) + g(1) \cdot p(1) + g(3) \cdot p(3) \\
+     &= sum_{\text{all }x_i} g(x_i)\cdot p(x_i)
+\end{align*}
 
 \begin{example}[Chuck-a-luck for a living?]
 \protect\hypertarget{exm:Chuckaluck-winnings}{}\label{exm:Chuckaluck-winnings}Now we focus on our winnings, \(W\). \(W\) is a function of \(X,\) and we summarize this function by adding the winnings to the probability model table:
@@ -2454,7 +2488,7 @@ As an aside, here's code to simulate Chuck-a-luck in R a bunch of times (betting
 \begin{verbatim}
 ## results
 ##   -1    1    2    5 
-## 1258  748  146    8
+## 1242  744  165    9
 \end{verbatim}
 
 \begin{Shaded}
@@ -2464,7 +2498,7 @@ As an aside, here's code to simulate Chuck-a-luck in R a bunch of times (betting
 \end{Shaded}
 
 \begin{verbatim}
-## [1] -0.08240741
+## [1] -0.05694444
 \end{verbatim}
 
 \begin{example}
@@ -2524,7 +2558,7 @@ The variance of \(Y\) is larger:
 
 The variance of a random variable increases as more of the distribution lies further from \(\mu\). In this example, more of the probability distribution for \(Y\) lies farther away from 1.6, than the distribution of \(X\) does away from its mean (also 1.6).
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-10-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/unnamed-chunk-10-1.pdf}}
 \end{example}
 
 \begin{example}[Infinite Variance?]
@@ -2533,7 +2567,7 @@ The variance of a random variable increases as more of the distribution lies fur
 Then,
 \begin{align*}
 E(X) &= \sum_{x=1}^\infty x \cdot \frac{1}{cx^3}\\
-    &= \frac{1}{c} \sum{x=1}^\infty \frac{1}{x^2} \\
+    &= \frac{1}{c} \sum_{x=1}^\infty \frac{1}{x^2} \\
     &= \frac{\pi^2}{6c},
 \end{align*}
 since the \(p\)-series \(\sum_{n=1}^\infty (1/n^2) = \pi^2/6.\) So, \(E(X)\) exists as a finite number.
@@ -2541,7 +2575,7 @@ since the \(p\)-series \(\sum_{n=1}^\infty (1/n^2) = \pi^2/6.\) So, \(E(X)\) exi
 However,
 \begin{align*}
 E(X^2) &= \sum_{x=1}^\infty x^2 \cdot \frac{1}{cx^3}\\
-    &= \frac{1}{c} \sum{x=1}^\infty \frac{1}{x},
+    &= \frac{1}{c} \sum_{x=1}^\infty \frac{1}{x},
 \end{align*}
 which diverges as a multiple of the harmonic series. So, \(V(X)\) does not exist as a finite number.
 \end{example}
@@ -2561,7 +2595,7 @@ Suppose \(X\) is a discrete random variable, \(c \in \mathbb{R}\) is a constant,
 \item
   \(E(c\cdot g(X))= cE(g(X))\).
 \item
-  \(E(g_1(X) \pm g_2(X)) = E(g_1(X)\pm g_2(X))\).
+  \(E(g_1(X) \pm g_2(X)) = E(g_1(X))\pm E(g_2(X))\).
 \end{enumerate}
 
 \end{theorem}
@@ -2601,14 +2635,14 @@ Since the sum over all \(x\) of \(p(x)\) is 1 for any probability model, the res
 \def\labelenumi{\arabic{enumi}.}
 \setcounter{enumi}{1}
 \item
-  Here appeal to Theorem \ref{thm:EV-discrete-fcnRV}\} and arithmetic:
+  Here appeal to Theorem \ref{thm:EV-discrete-fcnRV} and arithmetic:
   \begin{align*}
   E(c\cdot g(X)) &= \sum_{\text{all }x} c \cdot g(x) \cdot p(x) & \\
   &= c \sum_{\text{all }x} g(x) p(x) &\text{by arithmetic}\\
   &= c E(g(X)) & 
   \end{align*}
 \item
-  Here we also appeal to Theorem \ref{thm:EV-discrete-fcnRV}\} and arithmetic:
+  Here we also appeal to Theorem \ref{thm:EV-discrete-fcnRV} and arithmetic:
   \begin{align*}
   E(g_1(x) \pm g_2(x)) &= \sum_{\text{all }x} (g_1(x) \pm g_2(x))\cdot p(x) &\\
   &= \sum_{\text{all }x} (g_1(x) p(x) \pm g_2(x) p(x)) &\text{by arithmetic}\\
@@ -2650,7 +2684,7 @@ V(X) &= E((X-\mu)^2)\\
      &= E(X^2) - E(2\mu X) + E(\mu^2) &\text{by E() Property 3} \\ 
      &= E(X^2) - 2\mu E(X) + \mu^2 &\text{by E() Properties 2 and 1}\\
      &= E(X^2) - 2\mu^2 + \mu^2 & \text{since }E(X)=\mu \\
-V(X) &= E(X^2) - \mu^2
+V(X) &= E(X^2) - \mu^2.
 \end{align*}
 \end{proof}
 
@@ -2678,11 +2712,11 @@ E(3 + 2X + 4X^2) &= E(3) + 2E(X) + 4E(X^2) \\
 Equivalently, \[P(|X - \mu| \geq k\sigma) \leq \frac{1}{k^2}.\]
 \end{theorem}
 
-For instance, if \(k = 2,\) Tchebbysheff's inequality says that for any random variable \(X,\) the probability that \(X\) takes a value that is within 2 standard deviations of the mean is at least .75. For many distributions, this proability is closer to .95, but .75 holds for \emph{all} distributions.
-Of course, letting \(k = 1\) in Tchebbysheff's inequality gives us the trivially true statement that the probability that \(X\) takes a value within 1 standard deviation of the mean is at least 0.
+For instance, if \(k = 2,\) Tchebysheff's inequality says that for any random variable \(X,\) the probability that \(X\) takes a value that is within 2 standard deviations of the mean is at least .75. For many distributions, this proability is closer to .95, but .75 holds for \emph{all} distributions.
+Of course, letting \(k = 1\) in Tchebysheff's inequality gives us the trivially true statement that the probability that \(X\) takes a value within 1 standard deviation of the mean is at least 0.
 
 \begin{proof}
-We prove Tchebbysheff's inequality in the case for a discrete random variable, and we come back to this theorem after defining continuous random variables.
+We prove Tchebysheff's inequality in the case for a discrete random variable, and we come back to this theorem after defining continuous random variables.
 
 Let \(k > 0\) be given.
 
@@ -2706,16 +2740,16 @@ Dividing both sides of the inequality by the positive value \(k^2\sigma^2\) give
 \end{proof}
 
 \begin{example}
-\protect\hypertarget{exm:tchebby}{}\label{exm:tchebby}Suppose \(X\) is a random variable with \(E(X) = 70\) and \(V(X) = 25,\) so \(\mu = 70\) and \(\sigma = \sqrt{25} = 5\).
-According to Tchebbysheff's inequality with \(k = 2,\) the probability that \(X\) takes a value between 60 and 80 is at least 3/4. Setting \(k = 3,\) we find the probability that \(X\) takes a value between 55 and 85 is at least 8/9.
+\protect\hypertarget{exm:tcheby}{}\label{exm:tcheby}Suppose \(X\) is a random variable with \(E(X) = 70\) and \(V(X) = 25,\) so \(\mu = 70\) and \(\sigma = \sqrt{25} = 5\).
+According to Tchebysheff's inequality with \(k = 2,\) the probability that \(X\) takes a value between 60 and 80 is at least 3/4. Setting \(k = 3,\) we find the probability that \(X\) takes a value between 55 and 85 is at least 8/9.
 \end{example}
 
 Again, for many distributions, the probability of being within 2 standard deviations of the mean is much higher than .75 (often about .95, in fact), and the probability of being within 3 standard deviations of the mean is much higher than 8/9 (often about .99).
 
-Here's a distribution, however, that shows the bound in Tchebbysheff's inequality cannot be improved.
+Here's a distribution, however, that shows the bound in Tchebysheff's inequality cannot be improved.
 
 \begin{example}
-\protect\hypertarget{exm:tchebby-best-bound}{}\label{exm:tchebby-best-bound}We show that there exists a probability distribution for which \(P(|X-\mu|<2\sigma) = .75\).
+\protect\hypertarget{exm:tcheby-best-bound}{}\label{exm:tcheby-best-bound}We show that there exists a probability distribution for which \(P(|X-\mu|<2\sigma) = .75\).
 
 Consider the discrete random variable \(X\) whose probability distribution function is
 
@@ -2747,7 +2781,7 @@ x   &  -1 &  0 &  1   \\ \hline
 p(x) & \frac{1}{2k^2} & 1-\frac{1}{k^2} & \frac{1}{2k^2} 
 \end{array}
 \]
-will satisfy \(P(|X-\mu|<2\sigma)=1-\frac{1}{k^2},\) demonstrating that the bound in Tchebbyshef's inequality can not be increased.
+will satisfy \(P(|X-\mu|<2\sigma)=1-\frac{1}{k^2},\) demonstrating that the bound in Tchebysheff's inequality can not be increased.
 \end{example}
 
 \chapter{Important Discrete Random Variables}\label{important-discrete-rv}
@@ -3015,7 +3049,7 @@ We leave the proof that \(V(X) = \frac{1-p}{p^2}\) as an exercise.
 \leavevmode
 
 \begin{quote}
-Assume that, during each second, my junk box receives one email with probability .01 and no email with probability .99. Determine the probability that I will not receive a junk email in the next minute.
+Assume that, during each second, my junk box receives one email with probability .01 and no email with probability .99. Determine the probability that I will not receive a junk email in the next 10 minutes.
 \end{quote}
 
 We let \(X\) count how many seconds (from now) it takes to be sent an email to my junk box, and we assume \(X\) is \(\texttt{geom}(p = .01)\).
@@ -3037,7 +3071,7 @@ since the third \(S\) occurs on the 7th trial.
 
 Let \(X\) equal the number of trials up to and including the trial of the \(r\)th success. Then \(X\) is called a \textbf{negative binomial distribution with parameters \(r\) and \(p\)}\index{discrete random variable!negative binomial}, denoted \(\texttt{nbinom}(r,p)\)\index{\texttt{nbinom}$(r,p)$}.
 
-The space of \(X\) is \(\{r, r+1, r+2, \ldots\}\) and for \(x\) in the space of \(X\) the probability function for \(X\) is given by \[p(x) = \binom{r-1}{x-1}p^r(1-p)^{x-r}.\]
+The space of \(X\) is \(\{r, r+1, r+2, \ldots\}\) and for \(x\) in the space of \(X\) the probability function for \(X\) is given by \[p(x) = \binom{x-1}{r-1}p^r(1-p)^{x-r}.\]
 
 Note, that if \(r=1\) we just have the friendly geometric distribution.
 
@@ -3230,12 +3264,13 @@ If we're interested in modelling the number of instances of some rare event over
   the probability of 0 instances (``failure'') equals \(1-p\).
 \end{itemize}
 
-Then, if \(X\) equals the number of instances in the original interval, then \(X\) is binomial on \(n\) trials with probability of success \(p\) on each trial, assuming identical, independent Bernouilli trials. As we increase \(n,\) breaking the original time period into smaller and smaller subintervals, the corresponding probability \(p\) of seeing 1 instance of the event in a subinterval will decrease, but what if \(n \cdot p\) remains constant? In this case, let \(\lambda = np\) and consider what happens to the probability density function for the \(texttt{binom}(n,p)\) distribution:
+Then, if \(X\) equals the number of instances in the original interval, then \(X\) is binomial on \(n\) trials with probability of success \(p\) on each trial, assuming identical, independent Bernouilli trials. As we increase \(n,\) breaking the original time period into smaller and smaller subintervals, the corresponding probability \(p\) of seeing 1 instance of the event in a subinterval will decrease, but what if \(n \cdot p\) remains constant? In this case, let \(\lambda = np\) and consider what happens to the probability density function for the \(\texttt{binom}(n,p)\) distribution:
 
 \begin{align*}
-\lim_{n \to \infty} \binom{n}{x}p^x(1-p)^{n-x} &= \lim_{n \to \infty} \frac{n\cdot(n-1)\cdot \cdots \cdot (n - x + 1)}{x!} \left(\frac{\lambda}{n}\right)^x\left(1-\frac{\lambda}{n}\right)^{n-x} \\
-  &=\lim_{n \to \infty} \frac{\lambda^x}{x!}\cdot\frac{n\cdot(n-1)\cdot \cdots \cdot (n - x + 1)}{n^x}\cdot\left(1-\frac{\lambda}{n}\right)^{n}\left(1-\frac{\lambda}{n}\right)^{-x}\\
-  &=\frac{\lambda^x}{x!}\lim_{n \to \infty}\left(1-\frac{\lambda}{n}\right)^{n}\left(1-\frac{\lambda}{n}\right)^{-x} \cdot \frac{n}{n} \cdot \frac{n-1}{n} \cdot \frac{n-2}{n} \cdot \cdots \cdot \frac{n-x+1}{n}.
+\lim_{n \to \infty} \binom{n}{x}p^x(1-p)^{n-x} & = \\
+\lim_{n \to \infty} \frac{n\cdot(n-1)\cdot \cdots \cdot (n - x + 1)}{x!} \left(\frac{\lambda}{n}\right)^x\left(1-\frac{\lambda}{n}\right)^{n-x} & \\
+=\lim_{n \to \infty} \frac{\lambda^x}{x!}\cdot\frac{n\cdot(n-1)\cdot \cdots \cdot (n - x + 1)}{n^x}\cdot\left(1-\frac{\lambda}{n}\right)^{n}\left(1-\frac{\lambda}{n}\right)^{-x}\\
+=\frac{\lambda^x}{x!}\lim_{n \to \infty}\left(1-\frac{\lambda}{n}\right)^{n}\left(1-\frac{\lambda}{n}\right)^{-x} \cdot \frac{n}{n} \cdot \frac{n-1}{n} \cdot \frac{n-2}{n} \cdot \cdots \cdot \frac{n-x+1}{n}.
 \end{align*}
 
 Now, we have a limit of a product of many terms. If the limit of each term exists, then the overall limit will be the product of each of the individual limits.
@@ -3246,7 +3281,7 @@ Second, observe that \((1-\lambda/n)^{-x} \to 1^{-x} = 1\) since \(\lambda/n \to
 
 Finally, for any \(k \geq 0,\) \(\lim_{n \to \infty} \frac{n-k}{n} = 1\) so each of the ratios from the third term on converges to 1.
 
-So, if \(np\) remains constant as \(n \to \infty,\) then as \(n \to \infty\) the binomial distribution \(texttt{binom}(n,p)\) approaches the \(\texttt{Poisson}(\lambda)\) distribution, where \(\lambda = np\). So, the Poisson distribution can be a good model for counting instances of some rare event.
+So, if \(np\) remains constant as \(n \to \infty,\) then as \(n \to \infty\) the binomial distribution \(\texttt{binom}(n,p)\) approaches the \(\texttt{Poisson}(\lambda)\) distribution, where \(\lambda = np\). So, the Poisson distribution can be a good model for counting instances of some rare event.
 
 The process described above, where subdivision of the interval leads to Bernoulli trials in such a way that \(np\) remains constant, is called a Poisson process.
 
@@ -3282,7 +3317,7 @@ For instance, in the table below we compare the probabilities for \(\texttt{bino
 \centering
 \begin{tabular}[t]{r|r|r|r|r}
 \hline
-x & binom(10,4) & binom(40,.1) & binom(400,.01) & Poisson(4)\\
+x & binom(10,.4) & binom(40,.1) & binom(400,.01) & Poisson(4)\\
 \hline
 0 & 0.0060 & 0.0148 & 0.0180 & 0.0183\\
 \hline
@@ -3397,7 +3432,7 @@ m^{\prime\prime}(t) &= \frac{d}{dt}\left[m^\prime(t)\right]\\
   &=\sum_{\text{all }x} x^2\cdot e^{tx}\cdot p(x)
 \end{align*}
 
-Evaluating this at \(t = 0\) gives \[m^{\prime\prime}(t)=\sum_{\text{all }x} x^2\cdot 1 \cdot p(x) = E(X^2).\]
+Evaluating this at \(t = 0\) gives \[m^{\prime\prime}(0)=\sum_{\text{all }x} x^2\cdot 1 \cdot p(x) = E(X^2).\]
 
 Continuing in this manner, for any \(k \geq 1,\) the \(k\)th derivative of \(m(t)\) is \[m^{(k)}(t)=\sum_{\text{all }x} x^k\cdot e^{tx}\cdot p(x),\] which evaluates to the defintion of \(E(X^k)\) when \(t = 0\).
 \end{proof}
@@ -3484,7 +3519,7 @@ F(x)=
 1 &\text{ if } x \geq 3
 \end{cases}
 \]
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-12-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/unnamed-chunk-12-1.pdf}}
 
 Observe that this function \(F(x)\) is defined for all \(-\infty < x < \infty\) (check out those arrows :)). The jumps in the graph indicate that the function \(F\) is not continuous, and the points of discontinuity occur exactly at the values of \(X\) in the probability table for \(X\).
 \end{example}
@@ -3564,7 +3599,7 @@ Consider distribution function \(F\) pictured below, where \(c > 0\) is a fixed 
 
 \begin{figure}
 \centering
-\includegraphics{math340-notes_files/figure-latex/cont-F-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/cont-F-1.pdf}}
 \caption{\label{fig:cont-F}Piece-wise linear distribution function}
 \end{figure}
 
@@ -3583,7 +3618,7 @@ and the graph of \(f\) looks like this:
 
 \begin{figure}
 \centering
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-13-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/unnamed-chunk-13-1.pdf}}
 \caption{\label{fig:unnamed-chunk-13}probability density function for X}
 \end{figure}
 
@@ -3680,7 +3715,7 @@ Even though \(X\) can take any value between 0 and 2, the probability is 7/8 tha
 
 \begin{figure}
 \centering
-\includegraphics{math340-notes_files/figure-latex/quadratic-density-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/quadratic-density-1.pdf}}
 \caption{\label{fig:quadratic-density}A quadratic density function}
 \end{figure}
 
@@ -3733,7 +3768,7 @@ F(x)=
 
 \begin{figure}
 \centering
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-14-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/unnamed-chunk-14-1.pdf}}
 \caption{\label{fig:unnamed-chunk-14}Distribution function for X}
 \end{figure}
 
@@ -3790,6 +3825,8 @@ V(X)    &= E(X^2) - E(X)^2 \\
 \end{align*}
 
 The properties of expected value that held for discrete random variables also hold for continuous random variables.
+
+\end{example}
 
 \begin{theorem}
 \protect\hypertarget{thm:EV-properties-continuous}{}\label{thm:EV-properties-continuous}
@@ -3892,7 +3929,7 @@ and
 so that the standard deviation is \(\sigma = \sqrt{V(W)} ~\approx 0.11\) (about 11 cents).
 \end{example}
 
-\end{example}
+:::
 
 \chapter{Important Continuous Random Variables}\label{important-continuous-rv}
 
@@ -3925,7 +3962,7 @@ In R we access the uniform distribution with \texttt{unif}. For instance, we can
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.02650601 6.67047161 6.00572568 2.58322919 5.68937549 6.78680174
+## [1] 9.366265 4.699564 6.208853 6.012264 5.983060 6.560475
 \end{verbatim}
 
 \begin{example}[Average value of a function]
@@ -3945,7 +3982,7 @@ Our strategy: Select a large random sample of points in the interval {[}0,2{]} a
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1.337468
+## [1] 1.295235
 \end{verbatim}
 
 \textbf{Note}: From Calc I, we know the average value of a function \(f\) over the interval \([a,b]\) is \[\frac{1}{b-a} \int_a^b f(x)~dx,\]
@@ -3996,21 +4033,21 @@ First, let's check that the total area under \(f(x)\) is 1.
 
 \begin{align*}
 \int_0^\infty \frac{1}{\beta}e^{-x/\beta}~dx &= \lim_{b\to\infty}\left[\int_0^b \frac{1}{\beta}e^{-x/\beta}~dx\right] \\
-&= \lim_{b\to\infty}\left[-e^{-x/\beta}\biggr|_0^b \right] & \text{(try u-sub.} u=-x/\beta \\
+&= \lim_{b\to\infty}\left[-e^{-x/\beta}\biggr|_0^b \right] & \text{(try u-sub.} u=-x/\beta) \\
 &= \lim_{b \to \infty}\left[1 - \frac{1}{e^{b/\beta}}\right]\\
 &= 1.
 \end{align*}
 
 Having done the above integral, we can write down a formula for the cumulative distribution function for an exponential distribution:
 
-If \(X\) is \(\text{Exp}(\beta)\) then for \(x \geq 0,\)
+If \(X\) is \(\texttt{Exp}(\beta)\) then for \(x \geq 0,\)
 \begin{align*}
-F(x) &= \int_0^x \frac{1}{\beta}e^{-t/beta}~dt\\
+F(x) &= \int_0^x \frac{1}{\beta}e^{-t/\beta}~dt\\
     &= 1 - e^{-x/\beta}.
 \end{align*}
 
 \begin{example}
-Suppose \(X\) is \texttt{Exp}(4). Find \(P(X < 8)\).
+Suppose \(X\) is \(\texttt{Exp}(\beta)\). Find \(P(X < 8)\).
 
 Well,
 \begin{align*}
@@ -4022,7 +4059,7 @@ P(X < 8) &= F(8)\\
 \end{example}
 
 \begin{theorem}
-\protect\hypertarget{thm:exponential-EandV}{}\label{thm:exponential-EandV}If \(X\) is \(\texttt{Exp}(\beta)),\) then \[E(X) = \beta, ~~~ \text{ and } ~~~ V(X) = \beta^2.\]
+\protect\hypertarget{thm:exponential-EandV}{}\label{thm:exponential-EandV}If \(X\) is \(\texttt{Exp}(\beta),\) then \[E(X) = \beta, ~~~ \text{ and } ~~~ V(X) = \beta^2.\]
 \end{theorem}
 
 \begin{proof}
@@ -4055,7 +4092,7 @@ The graph of a normal density curve is bell-shaped, with peak at \(x = \mu,\) an
 
 \begin{figure}
 \centering
-\includegraphics{math340-notes_files/figure-latex/bell-curve-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/bell-curve-1.pdf}}
 \caption{\label{fig:bell-curve}A Normal density curve}
 \end{figure}
 
@@ -4094,7 +4131,7 @@ In any normal distribution \(N(\mu, \sigma)\):
   About 99.7\% of the distribution is within 2 standard deviations of the mean.
 \end{itemize}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-17-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/unnamed-chunk-17-1.pdf}}
 
 For instance, in \(N(10,3),\)
 
@@ -4115,11 +4152,11 @@ For instance, in \(N(10,3),\)
 
 For 50 in \(N(35,9),\) \[Z = \frac{50-35}{9} = \frac{5}{3} \approx 1.67.\]
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-18-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/unnamed-chunk-18-1.pdf}}
 
 For 35 in \(N(24,5),\) \[Z = \frac{35-24}{5} = \frac{11}{5} = 2.2.\]
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-19-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/unnamed-chunk-19-1.pdf}}
 
 A person hitting 35 HR in a league with distribution \(N(24,5)\) is more extreme (at the high end), and so more impressive in that sense.
 \end{example}
@@ -4171,7 +4208,7 @@ Clearly, \(f(x) \geq 0\) for all \(x,\) and after \(u\)-substitution of \(u = (x
 
 Some random variables are always nonnegative and yield distributions of data that are skewed right, as pictured below.
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-20-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/unnamed-chunk-20-1.pdf}}
 
 Some typically skewed right distributions include household incomes in a city, the length of time between malfunctions of some machine, and major league baseball salaries. The gamma probability distribution, which has two parameters \(\alpha\) and \(\beta,\) can model such skewed right distributions. The parameter \(\alpha\) is sometimes called the \textbf{shape} parameter, \(\beta\) is called the \textbf{scale} parameter, and its reciprocal \(1/\beta\) is called the \textbf{rate}.
 
@@ -4190,7 +4227,7 @@ Here are plots of three different gamma distributions.
 
 \begin{figure}
 \centering
-\includegraphics{math340-notes_files/figure-latex/gamma-plots-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/gamma-plots-1.pdf}}
 \caption{\label{fig:gamma-plots}Some gamma density functions}
 \end{figure}
 
@@ -4248,8 +4285,6 @@ Suppose \(\Gamma(k) = (k-1)!\) for some \(k \geq 1\). Then
 
 It follows that \(\Gamma(n) = (n-1)!\) for all positive integers \(n\).
 
-The family of gamma distributions contain two special sub-families, one of which we've already seen!
-
 \begin{theorem}
 \protect\hypertarget{thm:gamma-EandV}{}\label{thm:gamma-EandV}If \(X\) is \(\texttt{gamma}(\alpha,\beta)),\) then \[E(X) = \alpha\beta, ~~~ \text{ and } ~~~ V(X) = \alpha\beta^2.\]
 \end{theorem}
@@ -4273,6 +4308,8 @@ We leave the details to the reader for now, but find the following results:
 \end{itemize}
 
 \end{example}
+
+The family of gamma distributions contain two special sub-families, one of which we've already seen!
 
 \subsection{Exponential Distribution}\label{exponential-distribution-1}
 
@@ -4323,7 +4360,7 @@ Indeed,
 \end{itemize}
 
 Here are a few beta distributions:
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-22-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/unnamed-chunk-22-1.pdf}}
 
 \begin{theorem}
 \protect\hypertarget{thm:beta-EandV}{}\label{thm:beta-EandV}If \(X\) is \(\texttt{beta}(\alpha,\beta)),\) then \[E(X) = \frac{\alpha}{\alpha+\beta}, ~~~ \text{ and } ~~~ V(X) = \frac{\alpha\beta}{(\alpha+\beta)^2(\alpha+\beta+1)}.\]
@@ -4412,14 +4449,14 @@ m_U(t) &= E\left[e^{tU}\right]\\
       &= m_1(t) \cdot m_2(t) \cdot ~\cdots~ \cdot m_n(t)
 \end{align*}
 
-That the \(E[~]\) distributes through the product in line 4 above follows since the \(X_i\) are assumed to be independent. The rpoof of this fact would be given in MATH 440.
+That the \(E[~]\) distributes through the product in line 4 above follows since the \(X_i\) are assumed to be independent. The proof of this fact would be given in MATH 440.
 
 \begin{theorem}
 \protect\hypertarget{thm:sum-of-normal-rvs}{}\label{thm:sum-of-normal-rvs}Let \(X_1, X_2, \ldots, X_n\) be independent normal random variables with \(X_i \sim N(\mu_i, \sigma_i),\) and let \(a_1, a_2, \ldots, a_n\) be constants. If \[U = \sum_{i=1}^n a_i X_i,\] then \(U\) is normally distribution with \[\mu = \sum_{i=1}^n a_i \mu_i ~~~ \text{ and } ~~~ \sigma^2 = \sum_{i=1}^n a_i^2 \sigma_i^2.\]
 \end{theorem}
 
 \begin{proof}
-Since \(X_i\) is \(N(\mu_i,\sigma_i),\) \(X_i\) has mgf \[m_{X_i}(t) = e^{\left(\mu_it + \sigma_i^2t^2/2\right)},\] and for constant \(a_i,\) the random variable \(a_iX_i\) has mgf \[m_{a_iX_i}(t) =E(e^{a_iX_it}) = m_{X_i}(a_it) = e^{\left(\mu_ia_it + a_i^2\sigma_i^2t^2/2\right)}.\]
+Since \(X_i\) is \(N(\mu_i,\sigma_i),\) \(X_i\) has mgf \[m_{X_i}(t) = e^{\left(\mu_it + \sigma_i^2t^2/2\right)}.\] For constant \(a_i,\) the random variable \(a_iX_i\) has mgf \[m_{a_iX_i}(t) =E(e^{a_iX_it}) = m_{X_i}(a_it) = e^{\left(\mu_ia_it + a_i^2\sigma_i^2t^2/2\right)}.\]
 Then by Theorem \ref{thm:mgf-sum-of-rvs} and properties of exponents, for \(U = \sum a_i X_i,\)
 \begin{align*}
 m_U(t) &= \prod_{i=1}^n m_{a_iX_i}(t) \\
@@ -4431,7 +4468,7 @@ But hey! This is the mgf for a normal distribution with mean \(\sum a_i \mu\) an
 \end{proof}
 
 \begin{theorem}
-\protect\hypertarget{thm:sum-of-squares-of-standard-normal-rvs}{}\label{thm:sum-of-squares-of-standard-normal-rvs}Let \(X_1, X_2, \ldots, X_n\) be independent normal random variables with \(X_i \sim N(\mu_i, \sigma_i),\) and \(\displaystyle Z_i = \frac{X_i - \mu_i}{\sigma_i}\) for \(i = 1, \ldots, n\).
+\protect\hypertarget{thm:sum-of-squares-of-standard-normal-rvs}{}\label{thm:sum-of-squares-of-standard-normal-rvs}Let \(X_1, X_2, \ldots, X_n\) be independent normal random variables with \(X_i \sim N(\mu_i, \sigma_i),\) and \(\displaystyle Z_i = \frac{X_i - \mu_i}{\sigma_i}\) for \(i = 1, \ldots, n\). Then \[U = \sum_{i=1}^n Z_i^2\] is \(\chi^2(n)\).
 \end{theorem}
 
 \begin{example}
@@ -4495,7 +4532,7 @@ m_X(t) &= E(e^{tX})\\
 
 The last integral above evaluates to 1 because it is the pdf for a \(\text{gamma}(\alpha,\beta)\) distribution! After simplifying we obtain \[m_X(t) = (1-\beta t)^{-\alpha}.\]
 
-With the mgf for a gamma random variable in hand, we can know derive its mean and variance, thus proving Theorem \ref{thm:gamma-EandV}.
+With the mgf for a gamma random variable in hand, we can now derive its mean and variance, thus proving Theorem \ref{thm:gamma-EandV}.
 
 \begin{align*}
 m_X^\prime(t) &= -\alpha(1-\beta t)^{-\alpha-1}\cdot(-\beta) \\
@@ -4522,7 +4559,7 @@ We note that this nail gun has the following (alarming?) velocity distribution:
 
 \begin{figure}
 \centering
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-24-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/unnamed-chunk-24-1.pdf}}
 \caption{\label{fig:unnamed-chunk-24}Nail gun velocity distribution}
 \end{figure}
 
@@ -4605,10 +4642,13 @@ Let's look at a simulation in R to investigate these statements. The simulation 
   Calculate \(\overline{x}\) and \(s^2\) from this sample.
 \item
   Repeat steps 1 and 2 for many trials, and then consider
-  - a frequency plot for \(\overline{x}\) (does it look \(N(10,0.4)\))
-  - a frequency plot for \(\frac{n-1}{\sigma^2}s^2\) (does it look \(\chi^2(24)\)?)
-  - a scatter plot of \(\overline{x}\) against \(s^2\) (do they look independent?)
 \end{enumerate}
+
+\begin{verbatim}
+- a frequency plot for $\overline{x}$ (does it look $N(10,0.4)$) 
+- a frequency plot for $\frac{n-1}{\sigma^2}s^2$ (does it look $\chi^2(24)$?)
+- a scatter plot of $\overline{x}$ against $s^2$ (do they look independent?)
+\end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4625,13 +4665,13 @@ Let's look at a simulation in R to investigate these statements. The simulation 
 \end{Shaded}
 
 Plots:
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-26-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/unnamed-chunk-26-1.pdf}}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-27-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/unnamed-chunk-27-1.pdf}}
 
 The scatter plot below suggests no real association between \(\overline{x}\) and \(s^2\).
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-28-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/unnamed-chunk-28-1.pdf}}
 
 \section{T distribution}\label{t-distribution}
 
@@ -4699,7 +4739,7 @@ Suppose \(T \sim t(k)\).
 
 \begin{figure}
 \centering
-\includegraphics{math340-notes_files/figure-latex/t-vs-st-norm-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/t-vs-st-norm-1.pdf}}
 \caption{\label{fig:t-vs-st-norm}A t distribution and N(0,1)}
 \end{figure}
 
@@ -4716,7 +4756,7 @@ Now \(t(8)\) is plotted in figure \ref{fig:t8}, and we can find constants \(c\) 
 
 \begin{figure}
 \centering
-\includegraphics{math340-notes_files/figure-latex/t8-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/t8-1.pdf}}
 \caption{\label{fig:t8}Finding the middle 90\% of a t(8) distribution}
 \end{figure}
 
@@ -4737,7 +4777,7 @@ where \(T = 3(\overline{X}-\mu)/S,\) and this allows us to solve the problem:
 
 \begin{align*}
 .9 &= P(-1.86 < T < 1.86)\\
-    &= P(-1.86 < 3(\overline{X}-\mu)/S < 1.86) < 1.86) \\
+    &= P(-1.86 < 3(\overline{X}-\mu)/S < 1.86) \\
     &= P(\frac{-1.86}{3}S < \overline{X}-\mu < \frac{1.86}{3}S )\\
     &= P(-.62 S < \overline{X}-\mu < .62 S)
 \end{align*}
@@ -4805,9 +4845,9 @@ We know that \(T = \frac{\overline{X}-\mu}{S/\sqrt{n}}\) has a t(19) distributio
 \section{Normal Approximation to a binomial distribution}\label{normal-approximation-to-a-binomial-distribution}
 
 If \(X\) is binom\((n,p),\) we can view \(X\) as a sum of Bernoulli random variables:
-\(X = \sum_{i=1^n}Y_i\) where each \(Y_i\) is binom\((1,p)\) {[}so \(P(Y_i = 1) = p\) and \(P(Y_i = 0) = 1-p,\) and \[\mu_{Y_i} = p ~~~\text{ and } ~~~ \sigma_{Y_i} = \sqrt{p(1-p)}.\]
+\(X = \sum_{i=1^n}Y_i\) where each \(Y_i\) is binom\((1,p)\), which means \(P(Y_i = 1) = p,\) \(P(Y_i = 0) = 1-p,\) and \[\mu_{Y_i} = p ~~~\text{ and } ~~~ \sigma_{Y_i} = \sqrt{p(1-p)}.\]
 
-And \[\frac{1}{n}X = \frac{1}{n}\sum_{i=1}^n Y_i.\] By the Central Limit Theorem, for large \(n,\) it follows that \(\frac{1}{n}X\) is approximately \(N(p,\sqrt{p(1-p)/n})\).
+Note also that \[\frac{1}{n}X = \frac{1}{n}\sum_{i=1}^n Y_i,\] so by the Central Limit Theorem, for large \(n,\) it follows that \(\frac{1}{n}X\) is approximately \(N(p,\sqrt{p(1-p)/n})\). In short:
 
 \begin{quote}
 If \(X\) is \(\text{binom}(n,p)\) then \(X\) is approximately \(N(np, \sqrt{np(1-p)})\) for large \(n\).
@@ -4816,7 +4856,7 @@ If \(X\) is \(\text{binom}(n,p)\) then \(X\) is approximately \(N(np, \sqrt{np(1
 Let's look at an example and then fine tune the approximation with a continuity correction.
 
 \begin{example}
-Suppose 44\% of a voting population actually plan to vote for candidate A (though we don't know this :)). If we draw a random sample of \(n = 100\) voters, what is the approximate probability that 51 or more of the 100 sampled plan to vote for candidate A?
+Suppose 44\% of a voting population actually plan to vote for candidate A (though we don't know this :)). If we draw a random sample of \(n = 100\) voters, what is the approximate probability that 51 or more of the 100 sampled voters plan to vote for candidate A?
 
 If we know the size of the population we can answer this question precisely with the hypergeometric distribution:
 
@@ -4871,7 +4911,7 @@ We also see in the figure a portion of the \(N(44,\sqrt{100(.44)(.56)})\) densit
 
 \begin{figure}
 \centering
-\includegraphics{math340-notes_files/figure-latex/continuity-correction-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/continuity-correction-1.pdf}}
 \caption{\label{fig:continuity-correction}Continuity correction to estimate a binomial probability with a normal curve}
 \end{figure}
 
@@ -4999,7 +5039,7 @@ Let's see how these different estimators do for a particular random sample gener
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 14.58 14.62  6.06  9.96  5.61  5.04  9.43 10.00  6.84 17.83
+##  [1]  5.20 10.78 11.71 18.49 19.50 16.97  2.50  1.03  2.95 14.35
 \end{verbatim}
 
 For this single sample the estimators takes on these values:
@@ -5007,9 +5047,9 @@ For this single sample the estimators takes on these values:
 \begin{itemize}
 \tightlist
 \item
-  Estimator 1: \(\hat{\theta}_1\) = 20
+  Estimator 1: \(\hat{\theta}_1\) = 20.7
 \item
-  Estimator 2: \(\hat{\theta}_2\) = 19.6.
+  Estimator 2: \(\hat{\theta}_2\) = 21.5.
 \end{itemize}
 
 The fact that both estimators are unbiased means that in the long run, the average of all the \(\hat{\theta}_1\) estimates would approach \(\theta,\) and the same is true for the average of the \(\hat{\theta}_2\) estimates.
@@ -5040,7 +5080,7 @@ Let's simulate drawing 1000 different samples of size \(n = 10,\) recording the 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-36-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/unnamed-chunk-36-1.pdf}}
 Both estimators have average value near 20. In fact,
 
 \begin{itemize}
@@ -5048,7 +5088,7 @@ Both estimators have average value near 20. In fact,
 \item
   \texttt{mean(dist\_1)}- = 20
 \item
-  \texttt{mean(dist\_2)} = 20.07.
+  \texttt{mean(dist\_2)} = 20.01.
 \end{itemize}
 
 But the estimator 2 distribution has visibly smaller variance. Indeed,
@@ -5056,9 +5096,9 @@ But the estimator 2 distribution has visibly smaller variance. Indeed,
 \begin{itemize}
 \tightlist
 \item
-  \texttt{sd(dist\_1)} = 3.62
+  \texttt{sd(dist\_1)} = 3.67
 \item
-  \texttt{sd(dist\_2)} = 1.67.
+  \texttt{sd(dist\_2)} = 1.82.
 \end{itemize}
 
 It appears that the better estimator here is the one derived from the maximum value of the data as opposed to the mean of the data.
@@ -5265,7 +5305,7 @@ Let's put this interval formula to use. Here's a random sample of size 25 drawn 
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 62.83524 72.75215
+## [1] 59.25125 68.60253
 \end{verbatim}
 
 Did our confidence interval actually capture the value of the parameter (64)?
@@ -5295,10 +5335,10 @@ We can check this using R, first writing a little function out of the code above
 \begin{verbatim}
 ## results
 ##  0  1 
-##  6 94
+##  4 96
 \end{verbatim}
 
-In this simulation we drew 100 different random samples of size 25, each time generating a confidence interval for \(\theta\) and found that 94 of the 100 intervals captured \(\theta\). We would expect in the long run that 95\% of such confidence intervals would capture \(\theta\).
+In this simulation we drew 100 different random samples of size 25, each time generating a confidence interval for \(\theta\) and found that 96 of the 100 intervals captured \(\theta\). We would expect in the long run that 95\% of such confidence intervals would capture \(\theta\).
 \end{example}
 
 We have, generally,
@@ -5363,7 +5403,7 @@ Note that in R,
 
 \begin{figure}
 \centering
-\includegraphics{math340-notes_files/figure-latex/alpha-over-2-tails-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/alpha-over-2-tails-1.pdf}}
 \caption{\label{fig:alpha-over-2-tails}Finding z scores used to build a 2-sided confidence interval with desired confidence level}
 \end{figure}
 
@@ -5379,13 +5419,13 @@ A level \((1-\alpha)\) \textbf{upper bound for \(\theta\)} is \[\hat{\theta} + z
 
 \begin{figure}
 \centering
-\includegraphics{math340-notes_files/figure-latex/lower-one-sided-CI-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/lower-one-sided-CI-1.pdf}}
 \caption{\label{fig:lower-one-sided-CI}z scores corrsponding to lower 1-sided confidence interval}
 \end{figure}
 
 \begin{figure}
 \centering
-\includegraphics{math340-notes_files/figure-latex/upper-one-sided-CI-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/upper-one-sided-CI-1.pdf}}
 \caption{\label{fig:upper-one-sided-CI}z scores corrsponding to upper 1-sided confidence interval}
 \end{figure}
 
@@ -5740,8 +5780,8 @@ If you mix numbers and strings in a vector, R treats it as a character vector:
 
 We may wish to place data vectors into a two-dimensional structure such as a matrix or a data frame.
 
-\subsection*{Matrices}\label{matrices}
-\addcontentsline{toc}{subsection}{Matrices}
+\subsection*{matrices}\label{matrices}
+\addcontentsline{toc}{subsection}{matrices}
 
 Create a matrix from a vector with the \texttt{matrix()}\index{R!matrix} command, specifying how many rows, and whether we enter the data in the matrix by row, or by column.
 
@@ -5782,25 +5822,25 @@ A data frame links related vectors as columns in an array via the \texttt{data.f
 \NormalTok{a }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"McMinnville"}\NormalTok{,}\StringTok{"Denver"}\NormalTok{,}\StringTok{"Minneapolis"}\NormalTok{,}\StringTok{"Charleston"}\NormalTok{)}
 \NormalTok{x }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\FloatTok{45.21}\NormalTok{,}\FloatTok{39.74}\NormalTok{,}\FloatTok{44.98}\NormalTok{,}\FloatTok{32.78}\NormalTok{)}
 \NormalTok{y }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\FloatTok{123.19}\NormalTok{,}\FloatTok{104.99}\NormalTok{,}\FloatTok{93.26}\NormalTok{,}\FloatTok{79.93}\NormalTok{)}
-\NormalTok{df }\OtherTok{=} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{city =}\NormalTok{ a, }\AttributeTok{lat =}\NormalTok{ x, }\AttributeTok{long =}\NormalTok{ y)}
+\NormalTok{df }\OtherTok{=} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{city =}\NormalTok{ a, }\AttributeTok{latitude =}\NormalTok{ x, }\AttributeTok{longitude =}\NormalTok{ y)}
 \NormalTok{df}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##          city   lat   long
-## 1 McMinnville 45.21 123.19
-## 2      Denver 39.74 104.99
-## 3 Minneapolis 44.98  93.26
-## 4  Charleston 32.78  79.93
+##          city latitude longitude
+## 1 McMinnville    45.21    123.19
+## 2      Denver    39.74    104.99
+## 3 Minneapolis    44.98     93.26
+## 4  Charleston    32.78     79.93
 \end{verbatim}
 
-Data frames are the most common way to manage related data vectors in R.
+Data frames are a common way to manage related data vectors in R.
 
 \subsection*{common vector commands}\label{common-vector-commands}
 \addcontentsline{toc}{subsection}{common vector commands}
 
-Here's a vector of Hank Aaron's home run totals in each of his MLB seasons:
+Here's a vector of Hank Aaron's home run totals in each of his seasons in Major League Baseball:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5854,10 +5894,10 @@ Behold:
 ## [20] 713 733 745 755
 \end{verbatim}
 
-\subsection*{Comparison Operators}\label{comparison-operators}
-\addcontentsline{toc}{subsection}{Comparison Operators}
+\subsection*{comparison operators}\label{comparison-operators}
+\addcontentsline{toc}{subsection}{comparison operators}
 
-We compare things in R with various comparison operators, each one returning TRUE or FALSE:
+We use \emph{comparison operators} to compare things in R and return a value of \texttt{TRUE} or \texttt{FALSE}:
 
 \begin{itemize}
 \tightlist
@@ -5930,6 +5970,32 @@ Logical vectors arise when we give R a proposition involving a vector:
 
 \begin{verbatim}
 ## [1] FALSE  TRUE FALSE  TRUE
+\end{verbatim}
+
+\subsection*{checking membership}\label{checking-membership}
+\addcontentsline{toc}{subsection}{checking membership}
+
+The \texttt{\%in\%} command can be used to ask whether a particular element is contained in a vector.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{v }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"bob"}\NormalTok{,}\StringTok{"wilma"}\NormalTok{,}\StringTok{"hedgie"}\NormalTok{)}
+\StringTok{"frank"} \SpecialCharTok{\%in\%}\NormalTok{ v}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] FALSE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\StringTok{"wilma"} \SpecialCharTok{\%in\%}\NormalTok{ v}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
 \end{verbatim}
 
 \subsection*{\texorpdfstring{\texttt{sum()} and \texttt{which()}}{sum() and which()}}\label{sum-and-which}
@@ -6057,7 +6123,7 @@ and list the matching value(s):
 \subsection*{vector arithmetic}\label{vector-arithmetic}
 \addcontentsline{toc}{subsection}{vector arithmetic}
 
-We can do element-wise arithmetic on two vectors of equal length, such as addition, subtraction, multiplication, divsiion, and exponentiation
+We can do element-wise arithmetic on two vectors of equal length, such as addition, subtraction, multiplication, division, and exponentiation.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6092,7 +6158,7 @@ We also have scalar multiplication,
 ## [1] -8  8 24
 \end{verbatim}
 
-and, don't tell your vector calc prof, but you can add a scalar to each element in a vector:
+and you can add a scalar to each element in a vector:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6187,7 +6253,18 @@ More generally, entering \texttt{a:b} creates a vector of consecutive integers s
 ## [20] "t" "u" "v" "w" "x" "y" "z"
 \end{verbatim}
 
-\texttt{LETTERS} is the capitalized version of the \texttt{letters} vector.
+Want the set of capital letters?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{LETTERS}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M" "N" "O" "P" "Q" "R" "S"
+## [20] "T" "U" "V" "W" "X" "Y" "Z"
+\end{verbatim}
 
 \subsection*{\texorpdfstring{\texttt{rep()}}{rep()}}\label{rep}
 \addcontentsline{toc}{subsection}{\texttt{rep()}}
@@ -6199,7 +6276,7 @@ The \texttt{rep()} command lets us build a vector with lots of repeated elements
 
 Let's say we want to create a \textbf{bag of skittles} with this color distribution: 40 red, 30 orange, 25 yellow, 60 green, and 20 purple.
 
-The \texttt{rep()} command let's us do this quickly:
+The \texttt{rep()} command let's us do this quickly. One approach:
 - first enter the distinct items (as a vector with the \texttt{c()} command!),
 - then enter how many times each occurs (as a vector!):
 
@@ -6211,12 +6288,24 @@ The \texttt{rep()} command let's us do this quickly:
 \end{Highlighting}
 \end{Shaded}
 
+One can also construct this bag of skittles by running
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{skittles }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\StringTok{\textquotesingle{}red\textquotesingle{}}\NormalTok{, }\DecValTok{40}\NormalTok{),}
+             \FunctionTok{rep}\NormalTok{(}\StringTok{\textquotesingle{}orange\textquotesingle{}}\NormalTok{, }\DecValTok{30}\NormalTok{),}
+             \FunctionTok{rep}\NormalTok{(}\StringTok{\textquotesingle{}yellow\textquotesingle{}}\NormalTok{, }\DecValTok{25}\NormalTok{),}
+             \FunctionTok{rep}\NormalTok{(}\StringTok{\textquotesingle{}green\textquotesingle{}}\NormalTok{, }\DecValTok{60}\NormalTok{),}
+             \FunctionTok{rep}\NormalTok{(}\StringTok{\textquotesingle{}purple\textquotesingle{}}\NormalTok{, }\DecValTok{20}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
 \end{example}
 
 \subsection*{\texorpdfstring{\texttt{table()}}{table()}}\label{table}
 \addcontentsline{toc}{subsection}{\texttt{table()}}
 
-The \texttt{table()} command is a handy way to see which unique values are contained in a vector and how often each unique value occurs:
+The \texttt{table()} command is a handy way to see which unique values are contained in a vector and how often each unique value occurs. In otherwords, \texttt{table(v)} gives the frequency distribution for a vector \texttt{v}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6233,16 +6322,28 @@ The \texttt{table()} command is a handy way to see which unique values are conta
 \subsection*{\texorpdfstring{\texttt{seq()}}{seq()}}\label{seq}
 \addcontentsline{toc}{subsection}{\texttt{seq()}}
 
-The \texttt{seq()} command lets us enter an arithmetic progression by entering (first, last, increment).
+The \texttt{seq()} command lets us enter an \emph{arithmetic progression} by entering (first, last, increment).
+
+A few examples
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\AttributeTok{by=}\NormalTok{.}\DecValTok{1}\NormalTok{)}
+\FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\AttributeTok{by=}\NormalTok{.}\DecValTok{1}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
 ##  [1] 0.0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{100}\NormalTok{, }\AttributeTok{by =} \DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1]   0  10  20  30  40  50  60  70  80  90 100
 \end{verbatim}
 
 Ok, now let's get to \textbf{sampling}!
@@ -6251,19 +6352,20 @@ Ok, now let's get to \textbf{sampling}!
 
 We use the \texttt{sample(x,...)} command to sample from vector \texttt{x}.
 
-For instance, we can draw a random sample of size 2 from \texttt{hr}:
+For instance, we can draw a random sample of size 2 from a vector of colors:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{sample}\NormalTok{(hr,}\DecValTok{2}\NormalTok{)}
+\NormalTok{x }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}red\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}pink\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}orange\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}green\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}yellow\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}purple\textquotesingle{}}\NormalTok{)}
+\FunctionTok{sample}\NormalTok{(x,}\DecValTok{2}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 30 32
+## [1] "green"  "purple"
 \end{verbatim}
 
-Here's another example. Let's grab 20 skittles at random from the bag \texttt{skittles} we created in example \ref{exm:skittles} and count how many orange ones we get:
+Here's another example. Let's grab 20 skittles at random from the bag \texttt{skittles} we created in Example \ref{exm:skittles} and count how many orange ones we get:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6275,12 +6377,10 @@ Here's another example. Let's grab 20 skittles at random from the bag \texttt{sk
 \begin{verbatim}
 ## grab
 ##  green orange purple    red yellow 
-##      6      4      2      5      3
+##      9      4      1      5      1
 \end{verbatim}
 
-The \texttt{table()} command counts how many of each color :).
-
-We could have found the orange count directly with
+The \texttt{table()} command counts how many of each color :), which is more than we asked for. We could have found the orange count directly with
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6331,8 +6431,8 @@ Here are handy special cases, illustrated with this vector:
 \end{Highlighting}
 \end{Shaded}
 
-\subsubsection*{Permutations}\label{permutations-1}
-\addcontentsline{toc}{subsubsection}{Permutations}
+\subsubsection*{permutations}\label{permutations-1}
+\addcontentsline{toc}{subsubsection}{permutations}
 
 Use \texttt{sample(x)} to generate a \emph{random permutation} of \texttt{x}:
 
@@ -6343,19 +6443,19 @@ Use \texttt{sample(x)} to generate a \emph{random permutation} of \texttt{x}:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "rabbit"   "dog"      "cat"      "hedgehog"
+## [1] "dog"      "rabbit"   "hedgehog" "cat"
 \end{verbatim}
 
-\subsubsection*{Repeated sampling of 1 element}\label{repeated-sampling-of-1-element}
-\addcontentsline{toc}{subsubsection}{Repeated sampling of 1 element}
+\subsubsection*{repeated sampling of one element}\label{repeated-sampling-of-one-element}
+\addcontentsline{toc}{subsubsection}{repeated sampling of one element}
 
-Use \texttt{sample()} to simulate picking one elemnt of \texttt{animals} \(n\) times by setting\texttt{size\ =\ n} and \texttt{replace\ =\ TRUE}.
+Use \texttt{sample()} to simulate picking one element of \texttt{animals} \(n\) times by setting \texttt{size\ =\ n} and \texttt{replace\ =\ TRUE}.
 
-Example; Draw one animal from the set 1000 different times and summarize the picks with a table.
+Example: Draw one animal from the set 1000 different times and summarize the picks with a table.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{picks}\OtherTok{=}\FunctionTok{sample}\NormalTok{(animals,}\DecValTok{1000}\NormalTok{,}\AttributeTok{replace=}\ConstantTok{TRUE}\NormalTok{) }
+\NormalTok{picks }\OtherTok{=} \FunctionTok{sample}\NormalTok{(animals, }\DecValTok{1000}\NormalTok{, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{) }
 \FunctionTok{table}\NormalTok{(picks) }
 \end{Highlighting}
 \end{Shaded}
@@ -6363,10 +6463,10 @@ Example; Draw one animal from the set 1000 different times and summarize the pic
 \begin{verbatim}
 ## picks
 ##      cat      dog hedgehog   rabbit 
-##      275      249      243      233
+##      263      233      231      273
 \end{verbatim}
 
-And the winner is\ldots{} cat!
+And the winner is\ldots{} rabbit!
 
 Or, since we fear rabbits and love dogs, we can do repeated sampling of a single element with \textbf{custom probabilities}:
 
@@ -6375,7 +6475,7 @@ Or, since we fear rabbits and love dogs, we can do repeated sampling of a single
 \NormalTok{picks2 }\OtherTok{=} \FunctionTok{sample}\NormalTok{(animals,}
                 \AttributeTok{size=}\DecValTok{1000}\NormalTok{,}
                 \AttributeTok{replace=}\ConstantTok{TRUE}\NormalTok{,}
-                \AttributeTok{prob=}\FunctionTok{c}\NormalTok{(.}\DecValTok{2}\NormalTok{,.}\DecValTok{4}\NormalTok{,.}\DecValTok{3}\NormalTok{,.}\DecValTok{1}\NormalTok{))}
+                \AttributeTok{prob=}\FunctionTok{c}\NormalTok{(.}\DecValTok{2}\NormalTok{, .}\DecValTok{4}\NormalTok{, .}\DecValTok{3}\NormalTok{, .}\DecValTok{1}\NormalTok{))}
 \FunctionTok{table}\NormalTok{(picks2)}
 \end{Highlighting}
 \end{Shaded}
@@ -6383,18 +6483,18 @@ Or, since we fear rabbits and love dogs, we can do repeated sampling of a single
 \begin{verbatim}
 ## picks2
 ##      cat      dog hedgehog   rabbit 
-##      217      386      290      107
+##      202      369      317      112
 \end{verbatim}
 
 Nice!
 
 Remember, the default option for \texttt{sample()} is to sample without replacement, and with equal probabilities.
 
-\subsection*{Sample without replacement}\label{sample-without-replacement}
-\addcontentsline{toc}{subsection}{Sample without replacement}
+\subsection*{sample without replacement}\label{sample-without-replacement}
+\addcontentsline{toc}{subsection}{sample without replacement}
 
 \begin{quote}
-\textbf{Task}
+\textbf{Task}:
 Pick 4 students at random from a class of 9 to race around Taylor Hall. (Assumes we have numbered the students 1-9).
 \end{quote}
 
@@ -6405,14 +6505,14 @@ Pick 4 students at random from a class of 9 to race around Taylor Hall. (Assumes
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 7 5 1 8
+## [1] 8 7 1 4
 \end{verbatim}
 
-\subsection*{Sample with replacement}\label{sample-with-replacement}
-\addcontentsline{toc}{subsection}{Sample with replacement}
+\subsection*{sample with replacement}\label{sample-with-replacement}
+\addcontentsline{toc}{subsection}{sample with replacement}
 
 \begin{quote}
-\textbf{Task}\\
+\textbf{Task}:
 On twelve consecutive days, ask one student at random, in a class of size 9, to write a solution on the board.
 \end{quote}
 
@@ -6423,14 +6523,14 @@ On twelve consecutive days, ask one student at random, in a class of size 9, to 
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 4 3 6 3 5 4 9 4 8 9 4 1
+##  [1] 9 2 4 6 8 3 3 9 7 3 9 5
 \end{verbatim}
 
-\subsection*{Sample with custom probabilities}\label{sample-with-custom-probabilities}
-\addcontentsline{toc}{subsection}{Sample with custom probabilities}
+\subsection*{sample with custom probabilities}\label{sample-with-custom-probabilities}
+\addcontentsline{toc}{subsection}{sample with custom probabilities}
 
 \begin{quote}
-\textbf{Task}\\
+\textbf{Task}:
 Roll a weighted 6 sided die with the following probability distribution 100 times and summarize the results.
 \end{quote}
 
@@ -6449,7 +6549,7 @@ Roll a weighted 6 sided die with the following probability distribution 100 time
 \NormalTok{rolls }\OtherTok{=} \FunctionTok{sample}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{6}\NormalTok{,}
                \AttributeTok{size=}\DecValTok{100}\NormalTok{,}
                \AttributeTok{replace=}\ConstantTok{TRUE}\NormalTok{,}
-               \AttributeTok{prob=}\FunctionTok{c}\NormalTok{(.}\DecValTok{2}\NormalTok{,.}\DecValTok{1}\NormalTok{,.}\DecValTok{05}\NormalTok{,.}\DecValTok{4}\NormalTok{,.}\DecValTok{1}\NormalTok{,.}\DecValTok{15}\NormalTok{))}
+               \AttributeTok{prob=}\FunctionTok{c}\NormalTok{(.}\DecValTok{2}\NormalTok{, .}\DecValTok{1}\NormalTok{, .}\DecValTok{05}\NormalTok{, .}\DecValTok{4}\NormalTok{, .}\DecValTok{1}\NormalTok{, .}\DecValTok{15}\NormalTok{))}
 \FunctionTok{table}\NormalTok{(rolls)}
 \end{Highlighting}
 \end{Shaded}
@@ -6457,14 +6557,14 @@ Roll a weighted 6 sided die with the following probability distribution 100 time
 \begin{verbatim}
 ## rolls
 ##  1  2  3  4  5  6 
-## 11 10  5 44 14 16
+## 22  8  4 45  6 15
 \end{verbatim}
 
-\subsection*{Example: Lefties}\label{example-lefties}
-\addcontentsline{toc}{subsection}{Example: Lefties}
+\subsection*{example: lefties}\label{example-lefties}
+\addcontentsline{toc}{subsection}{example: lefties}
 
 \begin{quote}
-\textbf{Task}\\
+\textbf{Task}:
 8\% of a population is left-handed. Draw a random sample of 45 people from the population and record the number of lefties.
 \end{quote}
 
@@ -6480,7 +6580,7 @@ One approach: build a large population with these features and then draw 45 peop
 \begin{verbatim}
 ## 
 ##  L  R 
-##  2 43
+##  4 41
 \end{verbatim}
 
 A second approach: sample with replacement 45 times from a ``two-sided'' die with customized probabilities
@@ -6495,34 +6595,35 @@ A second approach: sample with replacement 45 times from a ``two-sided'' die wit
 \begin{verbatim}
 ## 
 ##  L  R 
-##  5 40
+##  2 43
 \end{verbatim}
 
 A third approach: Use a binomial distribution (later)
 
-\section{Repeated Sampling}\label{repeated-sampling}
+\section{Repeated sampling}\label{repeated-sampling}
 
 Let's say we have a huge urn full of orange and blue marbles, and 42\% of them are orange. We can use repeated sampling to approximate the \textbf{sampling distribution} for the number of orange marbles we would draw in a sample of, say, 50 marbles.
-The sampling distribution provides information about what sorts of orange marble counts should we expect, and how often should we expect these counts?
+The sampling distribution provides information about what sorts of orange marble counts should we expect, and how often should we expect these counts.
 
 \emph{Repeated sampling} can estimate this sampling distribution. Here are two methods for achieving repeated sampling in R.
 
 \subsection*{\texorpdfstring{using a \texttt{for} loop}{using a for loop}}\label{using-a-for-loop}
 \addcontentsline{toc}{subsection}{using a \texttt{for} loop}
 
-The code below creates a vector called \emph{orange\_counts} that, eventually, after the for loop has completed, has 10000 entries. Each entry in this vector gives the number of orange marbles drawn from the urn from a random sample of 50 marbles.
+The code below creates a vector called \texttt{orange\_counts} that, eventually, after the for loop has completed, has 10000 entries. Each entry in this vector gives the number of orange marbles drawn from the urn from a random sample of 50 marbles.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{colors}\OtherTok{=}\FunctionTok{c}\NormalTok{(}\StringTok{"orange"}\NormalTok{,}\StringTok{"blue"}\NormalTok{)}
 \NormalTok{orange\_counts}\OtherTok{=}\FunctionTok{c}\NormalTok{() }\CommentTok{\#a vector for storing the results of each trial}
 \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{10000}\NormalTok{)\{}
-\NormalTok{  orange\_counts[i]}\OtherTok{=}\FunctionTok{sum}\NormalTok{(}\FunctionTok{sample}\NormalTok{(colors,}\DecValTok{50}\NormalTok{,}\AttributeTok{replace=}\ConstantTok{TRUE}\NormalTok{,}\AttributeTok{prob=}\FunctionTok{c}\NormalTok{(.}\DecValTok{42}\NormalTok{,.}\DecValTok{58}\NormalTok{))}\SpecialCharTok{==}\StringTok{"orange"}\NormalTok{)}
+\NormalTok{  grab }\OtherTok{=} \FunctionTok{sample}\NormalTok{(colors, }\DecValTok{50}\NormalTok{, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{prob =} \FunctionTok{c}\NormalTok{(.}\DecValTok{42}\NormalTok{, .}\DecValTok{58}\NormalTok{))}
+\NormalTok{  orange\_counts[i]}\OtherTok{=}\FunctionTok{sum}\NormalTok{(grab }\SpecialCharTok{==} \StringTok{"orange"}\NormalTok{)}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
 
-We know that \texttt{table(orange\_counts)} would display the counts of each of the unique values occuring in \texttt{orange\_counts}. We can visualize these counts with a \texttt{barplot()}:
+We know that \texttt{table(orange\_counts)} displays the counts of each of the unique values occurring in \texttt{orange\_counts}. We can visualize these counts with a \texttt{barplot()}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6530,7 +6631,7 @@ We know that \texttt{table(orange\_counts)} would display the counts of each of 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-96-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/unnamed-chunk-101-1.pdf}}
 
 \subsection*{\texorpdfstring{using \texttt{replicate()}}{using replicate()}}\label{using-replicate}
 \addcontentsline{toc}{subsection}{using \texttt{replicate()}}
@@ -6542,7 +6643,7 @@ The \texttt{replicate()} command essentially does the above for loop for us :) T
 \NormalTok{colors}\OtherTok{=}\FunctionTok{c}\NormalTok{(}\StringTok{"orange"}\NormalTok{,}\StringTok{"blue"}\NormalTok{)}
 \NormalTok{orange\_counts }\OtherTok{=} 
   \FunctionTok{replicate}\NormalTok{(}\DecValTok{10000}\NormalTok{,}
-            \FunctionTok{sum}\NormalTok{(}\FunctionTok{sample}\NormalTok{(colors,}\DecValTok{50}\NormalTok{,}\AttributeTok{replace=}\ConstantTok{TRUE}\NormalTok{,}\AttributeTok{prob=}\FunctionTok{c}\NormalTok{(.}\DecValTok{42}\NormalTok{,.}\DecValTok{58}\NormalTok{)) }\SpecialCharTok{==} \StringTok{"orange"}\NormalTok{)}
+            \FunctionTok{sum}\NormalTok{(}\FunctionTok{sample}\NormalTok{(colors, }\DecValTok{50}\NormalTok{, }\AttributeTok{replace=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{prob=}\FunctionTok{c}\NormalTok{(.}\DecValTok{42}\NormalTok{, .}\DecValTok{58}\NormalTok{)) }\SpecialCharTok{==} \StringTok{"orange"}\NormalTok{)}
 \NormalTok{            )}
 \end{Highlighting}
 \end{Shaded}
@@ -6555,7 +6656,7 @@ Again, we can summarize the \emph{frequency} with which each value of orange\_co
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-98-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/unnamed-chunk-103-1.pdf}}
 
 In addition, we can calculate summary statistics to put numbers to qualitative descriptions of the distribution of values in \texttt{orange\_counts} such as center and spread. These statistics help us answer the question of what sorts of orange counts to expect.
 
@@ -6566,9 +6667,9 @@ statistic & command & result \\
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-mean & \texttt{mean(orange\_counts)} & 21.0224 \\
-standard deviation & \texttt{sd(orange\_counts)} & 3.4487516 \\
-five number summary & \texttt{fivenum(orange\_counts)} & 7, 19, 21, 23, 34 \\
+mean & \texttt{mean(orange\_counts)} & 21.0289 \\
+standard deviation & \texttt{sd(orange\_counts)} & 3.4616561 \\
+five number summary & \texttt{fivenum(orange\_counts)} & 8, 19, 21, 23, 36 \\
 \end{longtable}
 
 \section{Summary of R commands}\label{sampling-commands}
@@ -6577,9 +6678,9 @@ five number summary & \texttt{fivenum(orange\_counts)} & 7, 19, 21, 23, 34 \\
 \addcontentsline{toc}{subsection}{defining vectors}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.0882}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3922}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.5196}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.0882}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3922}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.5196}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Command
@@ -6602,8 +6703,8 @@ Example
 \addcontentsline{toc}{subsection}{summarizing vectors}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.1250}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.8750}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.1250}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.8750}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Command
@@ -6623,8 +6724,8 @@ Description
 \addcontentsline{toc}{subsection}{sampling from vectors}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.4479}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5521}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.4479}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5521}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Sampling Options
@@ -6635,10 +6736,10 @@ Example with \texttt{x\ =\ 1:6}
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-permutation of \texttt{x} & \texttt{sample(x)\ =} 5, 3, 1, 6, 2, 4 \\
-sample \(n\) elements without replacement & \texttt{sample(x,3)\ =} 3, 4, 2 \\
-sample \(n\) elements with replacement & \texttt{sample(x,5,replace=T)\ =} 1, 5, 2, 3, 3 \\
-sample with custom probabilities & \texttt{sample(x,10,replace=T,prob=\ c(0,.2,0,.5,.1,.2))\ =} 2, 2, 4, 6, 4, 6, 4, 4, 4, 4 \\
+permutation of \texttt{x} & \texttt{sample(x)\ =} 6, 3, 1, 5, 2, 4 \\
+sample \(n\) elements without replacement & \texttt{sample(x,3)\ =} 5, 1, 3 \\
+sample \(n\) elements with replacement & \texttt{sample(x,5,replace=T)\ =} 3, 3, 6, 4, 6 \\
+sample with custom probabilities & \texttt{sample(x,10,replace=T,prob=\ c(0,.2,0,.5,.1,.2))\ =} 4, 5, 6, 4, 5, 4, 6, 6, 2, 6 \\
 \end{longtable}
 
 \chapter{Simulating Probability in R}\label{R-sim-probability}
@@ -6648,7 +6749,7 @@ We can use repeated sampling of a chance experiment to estimate the probability 
 \section{Difference of two dice}\label{diff-2dice-R}
 
 \begin{quote}
-If you roll 2 6-sided dice, what's the likelihood that their values are 1 apart.
+If you roll 2 6-sided dice, what is the likelihood that their values are 1 apart.
 \end{quote}
 
 Our Strategy: roll the two dice, record the absolute value of their difference, repeat!
@@ -6660,11 +6761,11 @@ Code:
 \NormalTok{trials }\OtherTok{=} \DecValTok{10000}
 \NormalTok{die\_1 }\OtherTok{=} \DecValTok{1}\SpecialCharTok{:}\DecValTok{6}
 \NormalTok{die\_2 }\OtherTok{=} \DecValTok{1}\SpecialCharTok{:}\DecValTok{6}
-\NormalTok{results }\OtherTok{=} \FunctionTok{c}\NormalTok{() }\CommentTok{\#stores the difference of the two dice each trial}
+\NormalTok{results }\OtherTok{=} \FunctionTok{c}\NormalTok{() }\CommentTok{\#will store the difference of the two dice each trial}
 \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{trials)\{}
-\NormalTok{  roll\_1 }\OtherTok{=} \FunctionTok{sample}\NormalTok{(die\_1,}\DecValTok{1}\NormalTok{)}
-\NormalTok{  roll\_2 }\OtherTok{=} \FunctionTok{sample}\NormalTok{(die\_2,}\DecValTok{1}\NormalTok{)}
-\NormalTok{  difference }\OtherTok{=} \FunctionTok{abs}\NormalTok{(roll\_1}\SpecialCharTok{{-}}\NormalTok{roll\_2)}
+\NormalTok{  roll\_1 }\OtherTok{=} \FunctionTok{sample}\NormalTok{(die\_1, }\DecValTok{1}\NormalTok{)}
+\NormalTok{  roll\_2 }\OtherTok{=} \FunctionTok{sample}\NormalTok{(die\_2, }\DecValTok{1}\NormalTok{)}
+\NormalTok{  difference }\OtherTok{=} \FunctionTok{abs}\NormalTok{(roll\_1 }\SpecialCharTok{{-}}\NormalTok{ roll\_2) }\CommentTok{\#absolute value is abs()}
 \NormalTok{  results[i] }\OtherTok{=}\NormalTok{ difference}
 \NormalTok{\}}
 \end{Highlighting}
@@ -6681,11 +6782,11 @@ Results:
 \begin{verbatim}
 ## results
 ##    0    1    2    3    4    5 
-## 1676 2744 2227 1654 1138  561
+## 1646 2862 2196 1658 1119  519
 \end{verbatim}
 
-Conclusion: By computing the ratio \texttt{sum(results==1)/trials}, we obtain our estimate of the probability the two dice to be 1 apart:
-0.2744.
+Conclusion: By computing the ratio \texttt{sum(results\ ==\ 1)\ /\ trials}, we obtain our estimate of the probability the two dice to be 1 apart:
+0.2862.
 
 Referring to the 6x6 grid recording the difference for each of the 36 possible outcomes in Table \ref{tab:diff-2-dice}, we would find the actual probability equal to 10/36 \(\approx\) 0.278.
 
@@ -6703,19 +6804,19 @@ Strategy:
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Build a random plate. We want three random letters (repeats ok), followed by three random numbers (repeats ok). So, we sample from \texttt{LETTERS} 3 times with replacement, then 0:9 three times with replacement.
+  Build a random plate. We want three random capital letters (repeats ok), followed by three random numbers (repeats ok). So, we sample from \texttt{LETTERS} 3 times with replacement, then 0:9 three times with replacement.
 \end{enumerate}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{plate }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\FunctionTok{sample}\NormalTok{(LETTERS,}\DecValTok{3}\NormalTok{,}\AttributeTok{replace=}\ConstantTok{TRUE}\NormalTok{),}
-          \FunctionTok{sample}\NormalTok{(}\DecValTok{0}\SpecialCharTok{:}\DecValTok{9}\NormalTok{,}\DecValTok{3}\NormalTok{,}\AttributeTok{replace=}\ConstantTok{TRUE}\NormalTok{))}
+\NormalTok{plate }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\FunctionTok{sample}\NormalTok{(LETTERS, }\DecValTok{3}\NormalTok{, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{),}
+          \FunctionTok{sample}\NormalTok{(}\DecValTok{0}\SpecialCharTok{:}\DecValTok{9}\NormalTok{, }\DecValTok{3}\NormalTok{, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{))}
 \NormalTok{plate}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "L" "S" "V" "1" "5" "3"
+## [1] "P" "X" "X" "7" "8" "2"
 \end{verbatim}
 
 Fun!
@@ -6730,12 +6831,12 @@ Fun!
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{sum}\NormalTok{(plate}\SpecialCharTok{==}\StringTok{"8"}\NormalTok{)}
+\FunctionTok{sum}\NormalTok{(plate }\SpecialCharTok{==} \StringTok{"8"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0
+## [1] 1
 \end{verbatim}
 
 \textbf{Final Code}
@@ -6757,7 +6858,7 @@ Fun!
 \begin{verbatim}
 ## results
 ##    0    1    2    3 
-## 7234 2443  309   14
+## 7263 2468  258   11
 \end{verbatim}
 
 Based on this simulation, we estimate the probability of having a plate with exactly 2 ``8''s
@@ -6769,7 +6870,7 @@ Based on this simulation, we estimate the probability of having a plate with exa
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.0309
+## [1] 0.0258
 \end{verbatim}
 
 Using our counting tools to calculate the probability (and we really don't need to keep track of the letters in the plate, but we do):
@@ -6794,7 +6895,7 @@ We're rolling a fair 10-sided die. Use simulation to estimate the probability th
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{die }\OtherTok{=} \DecValTok{1}\SpecialCharTok{:}\DecValTok{10}
-\NormalTok{rolls }\OtherTok{=} \FunctionTok{sample}\NormalTok{(die,}\DecValTok{5}\NormalTok{,}\AttributeTok{replace=}\ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{rolls }\OtherTok{=} \FunctionTok{sample}\NormalTok{(die, }\DecValTok{5}\NormalTok{, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -6810,24 +6911,24 @@ We can ask these five questions in R and store the answers in a logical vector:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{c}\NormalTok{(rolls[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{4}\NormalTok{]}\SpecialCharTok{\textless{}}\DecValTok{8}\NormalTok{,rolls[}\DecValTok{5}\NormalTok{]}\SpecialCharTok{\textgreater{}=}\DecValTok{8}\NormalTok{)}
+\FunctionTok{c}\NormalTok{(rolls[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{4}\NormalTok{] }\SpecialCharTok{\textless{}} \DecValTok{8}\NormalTok{, rolls[}\DecValTok{5}\NormalTok{] }\SpecialCharTok{\textgreater{}=} \DecValTok{8}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1]  TRUE FALSE FALSE FALSE FALSE
+## [1]  TRUE FALSE  TRUE  TRUE  TRUE
 \end{verbatim}
 
 Recall, the \texttt{sum()} of a logical vector counts the number of TRUE values. We need the sum to be 5 to have the kind of sequence we want to count.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{sum}\NormalTok{(}\FunctionTok{c}\NormalTok{(rolls[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{4}\NormalTok{]}\SpecialCharTok{\textless{}}\DecValTok{8}\NormalTok{,rolls[}\DecValTok{5}\NormalTok{]}\SpecialCharTok{\textgreater{}=}\DecValTok{8}\NormalTok{)) }\CommentTok{\#does this sum equal 5?}
+\FunctionTok{sum}\NormalTok{(}\FunctionTok{c}\NormalTok{(rolls[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{4}\NormalTok{] }\SpecialCharTok{\textless{}} \DecValTok{8}\NormalTok{, rolls[}\DecValTok{5}\NormalTok{] }\SpecialCharTok{\textgreater{}=} \DecValTok{8}\NormalTok{)) }\CommentTok{\#does this sum equal 5?}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1
+## [1] 4
 \end{verbatim}
 
 I think we're ready!!
@@ -6859,10 +6960,10 @@ The results of the simulation:
 \begin{verbatim}
 ## results
 ##    0    1    2    3    4    5 
-##   48  517 2154 3672 2914  695
+##   60  588 2021 3746 2886  699
 \end{verbatim}
 
-Based on our simulation, we estimate the probability in question by the ratio: \texttt{sum(results==5)/trials} = 0.0695.
+Based on our simulation, we estimate the probability in question by the ratio: \texttt{sum(results\ ==\ 5)\ /\ trials} = 0.0699.
 
 This estimated probability is likely very close to what we calculate by our counting tools: \[\frac{7^4\cdot 3}{10^5} \approx .07203.\]
 
@@ -6880,8 +6981,8 @@ An urn contains 100 orange and 200 green marbles. If you draw 8 marbles from the
 \NormalTok{trials }\OtherTok{=} \DecValTok{10000}
 \NormalTok{results }\OtherTok{=} \FunctionTok{c}\NormalTok{()}
 \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{trials)\{}
-\NormalTok{  grab }\OtherTok{=} \FunctionTok{sample}\NormalTok{(urn,}\DecValTok{8}\NormalTok{,}\AttributeTok{replace=}\ConstantTok{FALSE}\NormalTok{)}
-\NormalTok{  orange\_count }\OtherTok{=} \FunctionTok{sum}\NormalTok{(grab}\SpecialCharTok{==}\StringTok{"orange"}\NormalTok{)}
+\NormalTok{  grab }\OtherTok{=} \FunctionTok{sample}\NormalTok{(urn, }\DecValTok{8}\NormalTok{, }\AttributeTok{replace =} \ConstantTok{FALSE}\NormalTok{)}
+\NormalTok{  orange\_count }\OtherTok{=} \FunctionTok{sum}\NormalTok{(grab }\SpecialCharTok{==} \StringTok{"orange"}\NormalTok{)}
 \NormalTok{  results[i] }\OtherTok{=}\NormalTok{ orange\_count}
 \NormalTok{\}}
 \FunctionTok{table}\NormalTok{(results)}
@@ -6891,12 +6992,12 @@ An urn contains 100 orange and 200 green marbles. If you draw 8 marbles from the
 \begin{verbatim}
 ## results
 ##    0    1    2    3    4    5    6    7 
-##  361 1497 2737 2860 1695  674  154   22
+##  362 1561 2799 2727 1703  662  155   31
 \end{verbatim}
 
 We can enter \texttt{sum(results\ \textgreater{}\ 5)} to see how often we grabbed more than 5 orange marbles in our sample of size 8, and \texttt{sum(results\ \textgreater{}\ 5)/trials} is a good estimate of the likelihood of this happening.
 
-Conclusion: It appears we should expect the more than 5 orange marbles in our sample of 8 about 1.8\% of the time:
+Conclusion: It appears we should expect the more than 5 orange marbles in our sample of 8 about 1.9\% of the time:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6905,7 +7006,7 @@ Conclusion: It appears we should expect the more than 5 orange marbles in our sa
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.0176
+## [1] 0.0186
 \end{verbatim}
 
 This question is a classic ``good potatoes/bad potatoes'' problem, and by our counting techniques, we know the probability is \[\frac{\binom{100}{6}\cdot\binom{200}{2}}{\binom{300}{8}}+
@@ -6938,7 +7039,7 @@ One approach:
 \item
   Build a coin vector: \texttt{coin\ =\ c("H","T")}
 \item
-  Build a vector for recording the outcomes of twenty flips: \texttt{flips\ =\ sample(coin,size=20,replace=TRUE)}
+  Build a vector for recording the outcomes of twenty flips: \texttt{flips\ =\ sample(coin,\ size\ =\ 20,\ replace\ =\ TRUE)}
 \item
   Record the longest run of Heads in the sequence.
 \item
@@ -6949,23 +7050,24 @@ The following code plays this `flip a coin 20 times and record the longest run o
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{coin }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"H"}\NormalTok{,}\StringTok{"T"}\NormalTok{)}
+\NormalTok{coin }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"Heads"}\NormalTok{,}\StringTok{"Tails"}\NormalTok{)}
 \NormalTok{trials}\OtherTok{=}\DecValTok{10000}
 \NormalTok{results}\OtherTok{=}\FunctionTok{c}\NormalTok{() }\CommentTok{\#stores longest run of Heads each trial}
 \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{trials)\{}
-\NormalTok{  flips }\OtherTok{=} \FunctionTok{sample}\NormalTok{(coin,}\DecValTok{20}\NormalTok{,}\AttributeTok{replace=}\ConstantTok{TRUE}\NormalTok{) }\CommentTok{\#generate the 20 flips}
+\NormalTok{  flips }\OtherTok{=} \FunctionTok{sample}\NormalTok{(coin, }\DecValTok{20}\NormalTok{, }\AttributeTok{replace=}\ConstantTok{TRUE}\NormalTok{) }\CommentTok{\#generate the 20 flips}
 \NormalTok{  run }\OtherTok{=} \DecValTok{0} \CommentTok{\#marker for current streak of Heads}
 \NormalTok{  max\_run }\OtherTok{=} \DecValTok{0} \CommentTok{\#stores the longest streak of Heads}
   \ControlFlowTok{for}\NormalTok{ (k }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{20}\NormalTok{)\{}
-    \ControlFlowTok{if}\NormalTok{ (flips[k] }\SpecialCharTok{==} \StringTok{"H"}\NormalTok{)\{}
-\NormalTok{      run }\OtherTok{=}\NormalTok{ run }\SpecialCharTok{+} \DecValTok{1} \CommentTok{\#current run increases by 1 if flip k is "H"}
-\NormalTok{      max\_run }\OtherTok{=} \FunctionTok{max}\NormalTok{(max\_run,run) }\CommentTok{\#checks for new max run}
+    \ControlFlowTok{if}\NormalTok{ (flips[k] }\SpecialCharTok{==} \StringTok{"Heads"}\NormalTok{)\{}
+\NormalTok{      run }\OtherTok{=}\NormalTok{ run }\SpecialCharTok{+} \DecValTok{1} \CommentTok{\#current run increases by 1 if flip k is "Heads"}
+\NormalTok{      max\_run }\OtherTok{=} \FunctionTok{max}\NormalTok{(max\_run, run) }\CommentTok{\#checks for new max run}
 \NormalTok{      \}}
-    \ControlFlowTok{if}\NormalTok{ (flips[k] }\SpecialCharTok{==} \StringTok{"T"}\NormalTok{)\{}
-\NormalTok{      run }\OtherTok{=} \DecValTok{0} \CommentTok{\#resets current run to 0 if we flip k is "T"}
+    \ControlFlowTok{if}\NormalTok{ (flips[k] }\SpecialCharTok{==} \StringTok{"Tails"}\NormalTok{)\{}
+\NormalTok{      run }\OtherTok{=} \DecValTok{0} \CommentTok{\#resets current run to 0 if flip k is "T"}
 \NormalTok{    \}}
-\NormalTok{    results[i]}\OtherTok{=}\NormalTok{max\_run}
 \NormalTok{  \}}
+  \CommentTok{\# Now that we\textquotesingle{}ve analyzed the 20 flips, record the max run in results}
+\NormalTok{  results[i] }\OtherTok{=}\NormalTok{ max\_run}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
@@ -6980,8 +7082,8 @@ Summary of results:
 
 \begin{verbatim}
 ## results
-##    1    2    3    4    5    6    7    8    9   10   11   12   13   14   16 
-##  179 1953 3110 2264 1301  616  301  149   71   30   16    5    3    1    1
+##    1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16 
+##  187 2007 3074 2239 1258  646  332  139   64   24   18    7    1    1    2    1
 \end{verbatim}
 
 Are you kidding me? In 1 of the trials we saw 16 Heads in a row!?
@@ -7017,9 +7119,9 @@ A class has 12 people: 6 juniors, 4 sophomores, and 2 first-years. The class is 
 \end{Shaded}
 
 \begin{verbatim}
-## Subgroup 1: JJSJJ
-## Subgroup 2: SSJF
-## Subgroup 3: JSF
+## Subgroup 1: JJSFJ
+## Subgroup 2: SSFJ
+## Subgroup 3: JSJ
 \end{verbatim}
 
 \begin{enumerate}
@@ -7032,15 +7134,16 @@ A class has 12 people: 6 juniors, 4 sophomores, and 2 first-years. The class is 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{count }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\FunctionTok{sum}\NormalTok{(sub1}\SpecialCharTok{==}\StringTok{"F"}\NormalTok{),}
-            \FunctionTok{sum}\NormalTok{(sub2}\SpecialCharTok{==}\StringTok{"F"}\NormalTok{),}
-            \FunctionTok{sum}\NormalTok{(sub3}\SpecialCharTok{==}\StringTok{"F"}\NormalTok{))}
+\NormalTok{count }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\FunctionTok{sum}\NormalTok{(sub1 }\SpecialCharTok{==} \StringTok{"F"}\NormalTok{),}
+          \FunctionTok{sum}\NormalTok{(sub2 }\SpecialCharTok{==} \StringTok{"F"}\NormalTok{),}
+          \FunctionTok{sum}\NormalTok{(sub3 }\SpecialCharTok{==} \StringTok{"F"}\NormalTok{)}
+\NormalTok{          )}
 \FunctionTok{print}\NormalTok{(count)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0 1 1
+## [1] 1 1 0
 \end{verbatim}
 
 \begin{enumerate}
@@ -7053,7 +7156,7 @@ A class has 12 people: 6 juniors, 4 sophomores, and 2 first-years. The class is 
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{ifelse}\NormalTok{(}\DecValTok{2} \SpecialCharTok{\%in\%}\NormalTok{ count,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{)}
+\FunctionTok{ifelse}\NormalTok{(}\DecValTok{2} \SpecialCharTok{\%in\%}\NormalTok{ count, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -7076,9 +7179,9 @@ We put it all together now. In particular, we repeat the following process for 1
 \NormalTok{  sub1 }\OtherTok{=}\NormalTok{ shuffle[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{]  }\CommentTok{\# first 5 in the random shuffling go to subgroup 1}
 \NormalTok{  sub2 }\OtherTok{=}\NormalTok{ shuffle[}\DecValTok{6}\SpecialCharTok{:}\DecValTok{9}\NormalTok{] }\CommentTok{\# next 4 to subgroup 2}
 \NormalTok{  sub3 }\OtherTok{=}\NormalTok{ shuffle[}\DecValTok{10}\SpecialCharTok{:}\DecValTok{12}\NormalTok{] }\CommentTok{\# last 3 to subgroup 3}
-\NormalTok{  count }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\FunctionTok{sum}\NormalTok{(sub1}\SpecialCharTok{==}\StringTok{"F"}\NormalTok{),}\FunctionTok{sum}\NormalTok{(sub2}\SpecialCharTok{==}\StringTok{"F"}\NormalTok{),}\FunctionTok{sum}\NormalTok{(sub3}\SpecialCharTok{==}\StringTok{"F"}\NormalTok{))}
+\NormalTok{  count }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\FunctionTok{sum}\NormalTok{(sub1 }\SpecialCharTok{==} \StringTok{"F"}\NormalTok{),}\FunctionTok{sum}\NormalTok{(sub2 }\SpecialCharTok{==} \StringTok{"F"}\NormalTok{),}\FunctionTok{sum}\NormalTok{(sub3 }\SpecialCharTok{==} \StringTok{"F"}\NormalTok{))}
   \CommentTok{\#are both "F"s in the same subgroup? We record 1 if "yes", and 0 if "no"}
-\NormalTok{  results[i] }\OtherTok{=} \FunctionTok{ifelse}\NormalTok{(}\DecValTok{2} \SpecialCharTok{\%in\%}\NormalTok{ count,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{)}
+\NormalTok{  results[i] }\OtherTok{=} \FunctionTok{ifelse}\NormalTok{(}\DecValTok{2} \SpecialCharTok{\%in\%}\NormalTok{ count, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{)}
 \NormalTok{\}}
 \FunctionTok{table}\NormalTok{(results)}
 \end{Highlighting}
@@ -7087,19 +7190,19 @@ We put it all together now. In particular, we repeat the following process for 1
 \begin{verbatim}
 ## results
 ##    0    1 
-## 7150 2850
+## 7087 2913
 \end{verbatim}
 
 Based on this simulation, we estimate the probability that both first-years end up in the same subgroup as
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{sum}\NormalTok{(results}\SpecialCharTok{==}\DecValTok{1}\NormalTok{)}\SpecialCharTok{/}\NormalTok{trials}
+\FunctionTok{sum}\NormalTok{(results }\SpecialCharTok{==} \DecValTok{1}\NormalTok{)}\SpecialCharTok{/}\NormalTok{trials}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.285
+## [1] 0.2913
 \end{verbatim}
 
 Using our counting tools to calculate the probability:
@@ -7120,14 +7223,14 @@ which evaluates to 7980/27720 \(\approx 0.288\):
 \section{Pollsters}\label{pollsters-R}
 
 \begin{quote}
-In an upcoming election for mayor of a large city, a pollster plans to predict the winner of the popular vote by taking a random sample of 1000 voters and declaring that the winner will be the one obtaining the most votes in his sample. Suppose that 48 percent of the voters plan to vote for the Republican candidate and 52 percent plan to vote for the Democratic candidate. To get some idea of how reasonable the pollster's plan is, write a program to make this prediction by simulation. Repeat the simulation 1000 times and see how many times the pollster's prediction would come true.
+\emph{(From Grinstead Snell Text 1.1 Exercise 12)} In an upcoming election for mayor of a large city, a pollster plans to predict the winner of the popular vote by taking a random sample of 1000 voters and declaring that the winner will be the one obtaining the most votes in his sample. Suppose that 48 percent of the voters plan to vote for the Republican candidate and 52 percent plan to vote for the Democratic candidate. To get some idea of how reasonable the pollster's plan is, write a program to make this prediction by simulation. Repeat the simulation 10000 times and see how many times the pollster's prediction would come true.
 \end{quote}
 
 First, let's create and summarize a single poll of 1000 people from a population in which 52 percent are ``D'', and 48 percent are ``R''.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{one\_poll }\OtherTok{=} \FunctionTok{sample}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"D"}\NormalTok{,}\StringTok{"R"}\NormalTok{),}\DecValTok{1000}\NormalTok{,}\AttributeTok{replace=}\ConstantTok{TRUE}\NormalTok{,}\AttributeTok{prob=}\FunctionTok{c}\NormalTok{(.}\DecValTok{52}\NormalTok{,.}\DecValTok{48}\NormalTok{))}
+\NormalTok{one\_poll }\OtherTok{=} \FunctionTok{sample}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"D"}\NormalTok{,}\StringTok{"R"}\NormalTok{), }\DecValTok{1000}\NormalTok{, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{prob=}\FunctionTok{c}\NormalTok{(.}\DecValTok{52}\NormalTok{, .}\DecValTok{48}\NormalTok{))}
 \FunctionTok{table}\NormalTok{(one\_poll)}
 \end{Highlighting}
 \end{Shaded}
@@ -7135,7 +7238,7 @@ First, let's create and summarize a single poll of 1000 people from a population
 \begin{verbatim}
 ## one_poll
 ##   D   R 
-## 517 483
+## 489 511
 \end{verbatim}
 
 Of course, the goal is to use the poll to predict the winner of the election.
@@ -7148,7 +7251,7 @@ We use the \texttt{sum()} command to count how many elements in \texttt{one\_pol
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Dem wins"
+## [1] "Tie or Rep wins"
 \end{verbatim}
 
 Now, our goal is to repeat this sampling and prediction procedure 10000 times, and keep track of the predicted winner in each trial.
@@ -7176,10 +7279,10 @@ Now, our goal is to repeat this sampling and prediction procedure 10000 times, a
 \begin{verbatim}
 ## results
 ##        D Tie or R 
-##     8935     1065
+##     8903     1097
 \end{verbatim}
 
-This table gives us a sense of the likelihood that the pollsters plan will result in an accurate prediction of which candidate will win the election. Based on our simulation, that likelihood is about 0.893.
+This table gives us a sense of the likelihood that the pollsters plan will result in an accurate prediction of which candidate will win the election. Based on our simulation, that likelihood is about 0.89.
 
 \section{Matching Birthdays}\label{same-birthday-R}
 
@@ -7189,7 +7292,7 @@ Suppose you ask \(n\) random people their birthday (month and day, disregarding 
 
 We do not use R to estimate these probabilities in this example. We find the probabilities exactly, and then use R to analyze them as \(n\) changes.
 
-We tackle the first question by first computing the probability that none of the \(n\) people share my birthday. The probability that a random person does not have my birthday is \(\frac{364}{365},\) and the probability that \(n\) random people all do not have my birthday is \(\left(\frac{364}{365}\right)^n\).
+We tackle the first question by first computing the probability that none of the \(n\) people share my birthday. The probability that a random person does not have my birthday is \(\frac{364}{365},\) and the probability that each of \(n\) random people does not have my birthday is \(\left(\frac{364}{365}\right)^n\).
 
 The \emph{complement} of this event is that at least one of the \(n\) people has my birthday, and so the probability of this will be \(1- \left(\frac{364}{365}\right)^n\).
 
@@ -7217,11 +7320,11 @@ For instance, in a group of 15 people here's the probability that someone shares
 
 Not too likely!
 
-For the second question, we begin by calculating the probability that no one in a group of \(n\) people shares the same birthday as anyone else.
+For the second question, we begin by calculating the probability that no one in a group of \(n\) people shares the same birthday as anyone else in the group.
 
 So, we need all \(n\) people to have a different birthday. This probability is found in essentially the same way that you answered \#6 in Homework 2, and it equals
 \[\frac{P^n_r}{365^n}=\frac{365\cdot 364 \cdot \cdots \cdot (365-n+1)}{365^n}.\]
-So, the probability that at least two people share the same birthday, which is the complement of ``no one shares the same birthday'' is \[1 - \frac{365\cdot 364 \cdot \cdots \cdot (365-n+1)}{365^n}.\]
+So, the probability that at least two people share the same birthday, which is the complement of ``no one shares the same birthday'', is \[1 - \frac{365\cdot 364 \cdot \cdots \cdot (365-n+1)}{365^n}.\]
 
 For instance, in a group of 6 people, the probability that at least two people share a birthday is \[1-1 \cdot \frac{364}{365}\cdot\frac{363}{365}\cdot \frac{362}{365}\cdot\frac{361}{365}\cdot\frac{360}{365}\approx0.04.\]
 
@@ -7253,25 +7356,28 @@ For instance, in a group of 15 people here's the probability that at least two p
 
 Whoa! A 25 percent chance! In fact, it turns out we only need 23 people gathered in a room to have a 50 percent chance that two of them share a birthday! Also, with a group of 59 people we have a 99 percent chance of a birthday match: \texttt{prob\_shared\_bday(59)}=0.993.
 
-Here's a graph of these two probabilities for values of \(1 \leq n \leq 100\).
+Here's a graph of these two probabilities for values of \(1 \leq n \leq 100\). The probability of having some shared birthday increases rapidly with \(n\) compared to the probability of someone having my birthday.
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{\#create vector of probabilities for groups of size 1 up to 100}
 \NormalTok{sh}\OtherTok{=}\FunctionTok{c}\NormalTok{()}
 \NormalTok{my}\OtherTok{=}\FunctionTok{c}\NormalTok{()}
 \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{100}\NormalTok{)\{}
-\NormalTok{  sh}\OtherTok{=}\FunctionTok{c}\NormalTok{(sh,}\FunctionTok{prob\_shared\_bday}\NormalTok{(i))}
-\NormalTok{  my}\OtherTok{=}\FunctionTok{c}\NormalTok{(my,}\FunctionTok{prob\_my\_bday}\NormalTok{(i))}
+\NormalTok{  sh}\OtherTok{=}\FunctionTok{c}\NormalTok{(sh, }\FunctionTok{prob\_shared\_bday}\NormalTok{(i))}
+\NormalTok{  my}\OtherTok{=}\FunctionTok{c}\NormalTok{(my, }\FunctionTok{prob\_my\_bday}\NormalTok{(i))}
 \NormalTok{\}}
-\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{group\_size=}\DecValTok{1}\SpecialCharTok{:}\DecValTok{100}\NormalTok{,}\AttributeTok{my\_bday=}\NormalTok{my,}\AttributeTok{shared\_bday=}\NormalTok{sh)}
-\NormalTok{df\_long }\OtherTok{\textless{}{-}}\NormalTok{ df}\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{pivot\_longer}\NormalTok{(}\AttributeTok{cols=}\FunctionTok{c}\NormalTok{(my\_bday,shared\_bday), }\AttributeTok{names\_to =} \StringTok{"question"}\NormalTok{, }\AttributeTok{values\_to =} \StringTok{"probability"}\NormalTok{)}
-
-\FunctionTok{ggplot}\NormalTok{(df\_long)}\SpecialCharTok{+}
-  \FunctionTok{geom\_line}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{group\_size,}\AttributeTok{y=}\NormalTok{probability,}\AttributeTok{col=}\NormalTok{question))}
+\CommentTok{\# a quick line plot for these probabilities as a function of group size}
+\FunctionTok{plot}\NormalTok{(}\AttributeTok{x =} \DecValTok{1}\SpecialCharTok{:}\DecValTok{100}\NormalTok{, sh, }\AttributeTok{col =} \StringTok{\textquotesingle{}red\textquotesingle{}}\NormalTok{,}\AttributeTok{type =} \StringTok{\textquotesingle{}l\textquotesingle{}}\NormalTok{,}
+     \AttributeTok{xlab =} \StringTok{\textquotesingle{}size of group\textquotesingle{}}\NormalTok{, }
+     \AttributeTok{ylab =} \StringTok{\textquotesingle{}probability\textquotesingle{}}\NormalTok{)}
+\FunctionTok{lines}\NormalTok{(}\AttributeTok{x =} \DecValTok{1}\SpecialCharTok{:}\DecValTok{100}\NormalTok{, my, }\AttributeTok{col =} \StringTok{\textquotesingle{}blue\textquotesingle{}}\NormalTok{)}
+\FunctionTok{text}\NormalTok{(}\AttributeTok{x =} \DecValTok{80}\NormalTok{, }\AttributeTok{y =}\NormalTok{ .}\DecValTok{94}\NormalTok{, }\StringTok{\textquotesingle{}shared bday\textquotesingle{}}\NormalTok{,}\AttributeTok{col =} \StringTok{\textquotesingle{}red\textquotesingle{}}\NormalTok{)}
+\FunctionTok{text}\NormalTok{(}\AttributeTok{x =} \DecValTok{80}\NormalTok{, }\AttributeTok{y =}\NormalTok{ .}\DecValTok{12}\NormalTok{, }\StringTok{\textquotesingle{}my bday\textquotesingle{}}\NormalTok{, }\AttributeTok{col =} \StringTok{\textquotesingle{}blue\textquotesingle{}}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-131-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/unnamed-chunk-136-1.pdf}}
 
 \section{Flipping Coins with Fibonacci}\label{flipping-coins-with-fibonacci}
 
@@ -7299,7 +7405,7 @@ We can also approximate the probability function by simulation.
 \end{Highlighting}
 \end{Shaded}
 
-We note that the maximum number of flips it took to get consecutive Heads in these trials was \texttt{max(results)} = 45! (that's not a factorial symbol, just me exclaiming). So we don't list the full table of results here, just the first 10 relative frequencies, which provide estimates for the probability function:
+We note that the maximum number of flips it took to get consecutive Heads in these trials was \texttt{max(results)} = 43! (that's not a factorial symbol, just me exclaiming). So we don't list the full table of results here, just the first 10 relative frequencies, which provide estimates for the probability function:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7310,7 +7416,7 @@ We note that the maximum number of flips it took to get consecutive Heads in the
 \begin{verbatim}
 ## results
 ##      2      3      4      5      6      7      8      9     10     11 
-## 0.2487 0.1304 0.1263 0.0935 0.0784 0.0633 0.0493 0.0417 0.0289 0.0255
+## 0.2417 0.1250 0.1277 0.0952 0.0784 0.0626 0.0546 0.0395 0.0358 0.0280
 \end{verbatim}
 
 These values compare closely to the actual probability values \(F_{x+1}/2^x\):
@@ -7321,7 +7427,7 @@ These values compare closely to the actual probability values \(F_{x+1}/2^x\):
 \hline
 x & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11\\
 \hline
-Rel\_freq & 0.2487 & 0.1304 & 0.1263 & 0.0935 & 0.0784 & 0.0633 & 0.0493 & 0.0417 & 0.0289 & 0.0255\\
+Rel\_freq & 0.2417 & 0.1250 & 0.1277 & 0.0952 & 0.0784 & 0.0626 & 0.0546 & 0.0395 & 0.0358 & 0.0280\\
 \hline
 p(x) & 0.2500 & 0.1250 & 0.1250 & 0.0938 & 0.0781 & 0.0625 & 0.0508 & 0.0410 & 0.0332 & 0.0269\\
 \hline
@@ -7344,13 +7450,13 @@ First, here's one way to randomly assign 8 1s and 4 0s to 12 seats (we make a ve
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{x }\OtherTok{=} \FunctionTok{sample}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{8}\NormalTok{),}\FunctionTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{4}\NormalTok{)))}
+\NormalTok{x }\OtherTok{=} \FunctionTok{sample}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{), }\FunctionTok{c}\NormalTok{(}\DecValTok{8}\NormalTok{,}\DecValTok{4}\NormalTok{)))}
 \NormalTok{x}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 1 0 0 1 1 0 1 1 1 0 1 1
+##  [1] 1 1 1 0 1 0 0 1 1 1 1 0
 \end{verbatim}
 
 And here's how we can store this vector of length 12 in a \(4\times 3\) matrix:
@@ -7364,10 +7470,10 @@ And here's how we can store this vector of length 12 in a \(4\times 3\) matrix:
 
 \begin{verbatim}
 ##      [,1] [,2] [,3]
-## [1,]    1    0    0
-## [2,]    1    1    0
-## [3,]    1    1    1
-## [4,]    0    1    1
+## [1,]    1    1    1
+## [2,]    0    1    0
+## [3,]    0    1    1
+## [4,]    1    1    0
 \end{verbatim}
 
 As the display above suggests, we can extract a value from matrix \texttt{m} by indicating its {[}row,column{]}: \texttt{m{[}3,2{]}} returns the element in row 3, column 2.
@@ -7377,14 +7483,16 @@ Here's one way to check for empty seats next to each other in a given row: See w
 \begin{Shaded}
 \begin{Highlighting}[]
 \ControlFlowTok{for}\NormalTok{ (row }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{4}\NormalTok{)\{}
-\NormalTok{  result}\OtherTok{=}\FunctionTok{ifelse}\NormalTok{(m[row,}\DecValTok{2}\NormalTok{]}\SpecialCharTok{==}\DecValTok{0} \SpecialCharTok{\&} \FunctionTok{sum}\NormalTok{(m[row,])}\SpecialCharTok{\textless{}=} \DecValTok{1}\NormalTok{,}\StringTok{"seats together!"}\NormalTok{,}\StringTok{"nope"}\NormalTok{)}
+\NormalTok{  result}\OtherTok{=}\FunctionTok{ifelse}\NormalTok{(m[row,}\DecValTok{2}\NormalTok{] }\SpecialCharTok{==} \DecValTok{0} \SpecialCharTok{\&} \FunctionTok{sum}\NormalTok{(m[row,]) }\SpecialCharTok{\textless{}=} \DecValTok{1}\NormalTok{,}
+                \StringTok{"seats together!"}\NormalTok{,}
+                \StringTok{"nope"}\NormalTok{)}
    \FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Row"}\NormalTok{,row,result))}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Row 1 seats together!"
+## [1] "Row 1 nope"
 ## [1] "Row 2 nope"
 ## [1] "Row 3 nope"
 ## [1] "Row 4 nope"
@@ -7399,25 +7507,25 @@ Ok, we've got a plan! In the code below, we use \texttt{s} to record, in each tr
 \NormalTok{trials }\OtherTok{=} \DecValTok{10000}
 \NormalTok{results }\OtherTok{=} \FunctionTok{c}\NormalTok{()}
 \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{trials)\{}
-\NormalTok{  m}\OtherTok{=}\FunctionTok{matrix}\NormalTok{(}\FunctionTok{sample}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{8}\NormalTok{),}\FunctionTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{4}\NormalTok{))),}\AttributeTok{byrow=}\ConstantTok{TRUE}\NormalTok{,}\AttributeTok{nrow=}\DecValTok{4}\NormalTok{)}
-\NormalTok{  s}\OtherTok{=}\DecValTok{0}
+\NormalTok{  m}\OtherTok{=}\FunctionTok{matrix}\NormalTok{(}\FunctionTok{sample}\NormalTok{(}\FunctionTok{rep}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{), }\FunctionTok{c}\NormalTok{(}\DecValTok{8}\NormalTok{,}\DecValTok{4}\NormalTok{))),}\AttributeTok{byrow=}\ConstantTok{TRUE}\NormalTok{,}\AttributeTok{nrow=}\DecValTok{4}\NormalTok{)}
+\NormalTok{  s }\OtherTok{=} \DecValTok{0} \CommentTok{\#assume no seats together initially}
   \ControlFlowTok{for}\NormalTok{ (r }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{4}\NormalTok{)\{}
-    \ControlFlowTok{if}\NormalTok{ (m[r,}\DecValTok{2}\NormalTok{]}\SpecialCharTok{==}\DecValTok{0}\SpecialCharTok{\&}\FunctionTok{sum}\NormalTok{(m[r,])}\SpecialCharTok{\textless{}=}\DecValTok{1}\NormalTok{)\{}
+    \ControlFlowTok{if}\NormalTok{ (m[r,}\DecValTok{2}\NormalTok{] }\SpecialCharTok{==} \DecValTok{0} \SpecialCharTok{\&} \FunctionTok{sum}\NormalTok{(m[r,]) }\SpecialCharTok{\textless{}=} \DecValTok{1}\NormalTok{)\{}
 \NormalTok{      s }\OtherTok{=} \DecValTok{1}
-      \ControlFlowTok{break}
+      \ControlFlowTok{break} \CommentTok{\#stop the loop! We found seats together!}
 \NormalTok{    \}}
 \NormalTok{  \}}
-\NormalTok{  results[i]}\OtherTok{=}\NormalTok{s}
+\NormalTok{  results[i] }\OtherTok{=}\NormalTok{ s}
 \NormalTok{\}}
 \FunctionTok{sum}\NormalTok{(results)}\SpecialCharTok{/}\NormalTok{trials}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.6063
+## [1] 0.6143
 \end{verbatim}
 
-This probability seems higher than I first expected it would be, but we can also prove using our counting techniques -we do this in class - that the probability is, in fact, 20/33.
+This probability seems higher than I first expected it would be, but we can also prove using our counting techniques - as an exercies - that the probability is, in fact, 20/33.
 
 \section{Drawing names for Homemades}\label{drawing-names-for-homemades}
 
@@ -7442,9 +7550,9 @@ Our approach: Create a vector called \texttt{family}, and a permutation of \text
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{family }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"Dad"}\NormalTok{,}\StringTok{"Mom"}\NormalTok{,}\StringTok{"Tom"}\NormalTok{,}\StringTok{"John"}\NormalTok{,}\StringTok{"Dave"}\NormalTok{,}\StringTok{"Mike"}\NormalTok{)}
+\NormalTok{family }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"Dad"}\NormalTok{, }\StringTok{"Mom"}\NormalTok{, }\StringTok{"Tom"}\NormalTok{, }\StringTok{"John"}\NormalTok{, }\StringTok{"Dave"}\NormalTok{, }\StringTok{"Mike"}\NormalTok{)}
 \NormalTok{draw }\OtherTok{=} \FunctionTok{sample}\NormalTok{(family)}
-\NormalTok{matches }\OtherTok{=} \FunctionTok{sum}\NormalTok{(family}\SpecialCharTok{==}\NormalTok{draw) }\CommentTok{\# number of locations at which the two vectors agree}
+\NormalTok{matches }\OtherTok{=} \FunctionTok{sum}\NormalTok{(family }\SpecialCharTok{==}\NormalTok{ draw) }\CommentTok{\# number of locations at which the two vectors agree}
 \NormalTok{redraw }\OtherTok{=} \FunctionTok{ifelse}\NormalTok{(matches}\SpecialCharTok{==}\DecValTok{0}\NormalTok{,}\StringTok{"No."}\NormalTok{,}\StringTok{"Yes."}\NormalTok{)}
 \FunctionTok{print}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Redraw?"}\NormalTok{,redraw))}
 \end{Highlighting}
@@ -7468,11 +7576,8 @@ Let's check who each person drew to be sure (remember, our code is assuming the 
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Dad drew Mom"
-## [1] "Mom drew Dad"
-## [1] "Tom drew Mike"
-## [1] "John drew Tom"
-## [1] "Dave drew Dave"
+## [1] "Dad drew Mike"
+## [1] "Mom drew Mom"
 ## [1] "Dang it! Need to redraw. Names back in the hat."
 \end{verbatim}
 
@@ -7486,17 +7591,17 @@ We now estimate the probability of not needing to redraw as follows:
 \NormalTok{results }\OtherTok{=} \FunctionTok{c}\NormalTok{() }\CommentTok{\#record for each trial a 0 for redraw, 1 for no redraw }
 \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{trials)\{}
 \NormalTok{  draw }\OtherTok{=} \FunctionTok{sample}\NormalTok{(family)}
-\NormalTok{  results[i] }\OtherTok{=} \FunctionTok{ifelse}\NormalTok{(}\FunctionTok{sum}\NormalTok{(family }\SpecialCharTok{==}\NormalTok{ draw)}\SpecialCharTok{==}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{)}
+\NormalTok{  results[i] }\OtherTok{=} \FunctionTok{ifelse}\NormalTok{(}\FunctionTok{sum}\NormalTok{(family }\SpecialCharTok{==}\NormalTok{ draw) }\SpecialCharTok{==} \DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{)}
 \NormalTok{\}}
 \FunctionTok{sum}\NormalTok{(results)}\SpecialCharTok{/}\NormalTok{trials}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.3705
+## [1] 0.3628
 \end{verbatim}
 
-About a 37 percent chance of not needing to redraw.
+About a 36.3 percent chance of not needing to redraw.
 
 \begin{quote}
 \begin{enumerate}
@@ -7520,9 +7625,9 @@ Now in our simulation we want to redraw until we don't have to, and record how m
 \NormalTok{  attempts }\OtherTok{=} \DecValTok{0}
 \NormalTok{  draw\_again }\OtherTok{=} \ConstantTok{TRUE}
   \ControlFlowTok{while}\NormalTok{ (draw\_again)\{}
-\NormalTok{    attempts }\OtherTok{=}\NormalTok{ attempts}\SpecialCharTok{+}\DecValTok{1}
+\NormalTok{    attempts }\OtherTok{=}\NormalTok{ attempts }\SpecialCharTok{+} \DecValTok{1}
 \NormalTok{    draw }\OtherTok{=} \FunctionTok{sample}\NormalTok{(family)}
-\NormalTok{    draw\_again }\OtherTok{=} \FunctionTok{ifelse}\NormalTok{(}\FunctionTok{sum}\NormalTok{(family }\SpecialCharTok{==}\NormalTok{ draw)}\SpecialCharTok{\textgreater{}}\DecValTok{0}\NormalTok{,}\ConstantTok{TRUE}\NormalTok{,}\ConstantTok{FALSE}\NormalTok{)}
+\NormalTok{    draw\_again }\OtherTok{=} \FunctionTok{sum}\NormalTok{(family }\SpecialCharTok{==}\NormalTok{ draw) }\SpecialCharTok{\textgreater{}} \DecValTok{0} \CommentTok{\# will return TRUE or FALSE}
 \NormalTok{  \}}
 \NormalTok{  results[i] }\OtherTok{=}\NormalTok{ attempts}
 \NormalTok{\}}
@@ -7530,9 +7635,9 @@ Now in our simulation we want to redraw until we don't have to, and record how m
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-142-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/unnamed-chunk-147-1.pdf}}
 
-Cripes! In 1 of the trials we needed 21 draws until no one drew their own name! Anyway, our estimate for the expected number of draws needed to get the gift-making off the mark is:
+Cripes! In 3 of the trials we needed 20 draws until no one drew their own name! Anyway, our estimate for the expected number of draws needed to get the gift-making off the mark is:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7541,7 +7646,7 @@ Cripes! In 1 of the trials we needed 21 draws until no one drew their own name! 
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2.7033
+## [1] 2.7224
 \end{verbatim}
 
 and if that number looks somewhat familiar, I encourage you to read the mathematical addendum at the end of this example.
@@ -7570,7 +7675,7 @@ Let's just repeat \textbf{(b)} with \(n = 16\).
   \ControlFlowTok{while}\NormalTok{ (draw\_again)\{}
 \NormalTok{    attempts }\OtherTok{=}\NormalTok{ attempts}\SpecialCharTok{+}\DecValTok{1}
 \NormalTok{    draw }\OtherTok{=} \FunctionTok{sample}\NormalTok{(family)}
-\NormalTok{    draw\_again }\OtherTok{=} \FunctionTok{ifelse}\NormalTok{(}\FunctionTok{sum}\NormalTok{(family }\SpecialCharTok{==}\NormalTok{ draw)}\SpecialCharTok{\textgreater{}}\DecValTok{0}\NormalTok{,}\ConstantTok{TRUE}\NormalTok{,}\ConstantTok{FALSE}\NormalTok{)}
+\NormalTok{    draw\_again }\OtherTok{=} \FunctionTok{sum}\NormalTok{(family }\SpecialCharTok{==}\NormalTok{ draw) }\SpecialCharTok{\textgreater{}} \DecValTok{0}
 \NormalTok{  \}}
 \NormalTok{  results[i] }\OtherTok{=}\NormalTok{ attempts}
 \NormalTok{\}}
@@ -7578,7 +7683,7 @@ Let's just repeat \textbf{(b)} with \(n = 16\).
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-144-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/unnamed-chunk-149-1.pdf}}
 
 Based on the trials, we estimate the probability of not needing a redraw in the larger family to be
 
@@ -7589,7 +7694,7 @@ Based on the trials, we estimate the probability of not needing a redraw in the 
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.3664
+## [1] 0.3623
 \end{verbatim}
 
 and our estimate for the expected number of draws to be
@@ -7601,7 +7706,7 @@ and our estimate for the expected number of draws to be
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2.7211
+## [1] 2.7255
 \end{verbatim}
 
 Not much movement in the estimates, it seems.
@@ -7654,43 +7759,43 @@ With a function and a for loop we can streamline the process for estimating both
 \hline
 family\_size & prob\_redraw & expected\_draws\\
 \hline
-2 & 0.4985 & 2.0055\\
+2 & 0.5002 & 2.0022\\
 \hline
-3 & 0.3384 & 3.0354\\
+3 & 0.3313 & 3.0560\\
 \hline
-4 & 0.3765 & 2.6489\\
+4 & 0.3661 & 2.6887\\
 \hline
-5 & 0.3739 & 2.6985\\
+5 & 0.3617 & 2.7340\\
 \hline
-6 & 0.3650 & 2.7292\\
+6 & 0.3729 & 2.7007\\
 \hline
-7 & 0.3694 & 2.7123\\
+7 & 0.3671 & 2.7236\\
 \hline
-8 & 0.3660 & 2.7468\\
+8 & 0.3697 & 2.7416\\
 \hline
-9 & 0.3608 & 2.7247\\
+9 & 0.3678 & 2.6965\\
 \hline
-10 & 0.3671 & 2.7127\\
+10 & 0.3639 & 2.6905\\
 \hline
-15 & 0.3720 & 2.6897\\
+15 & 0.3634 & 2.7022\\
 \hline
-20 & 0.3634 & 2.7384\\
+20 & 0.3622 & 2.7196\\
 \hline
-25 & 0.3610 & 2.7262\\
+25 & 0.3699 & 2.7072\\
 \hline
-30 & 0.3723 & 2.7019\\
+30 & 0.3714 & 2.7097\\
 \hline
-35 & 0.3681 & 2.7250\\
+35 & 0.3741 & 2.6838\\
 \hline
-40 & 0.3679 & 2.7265\\
+40 & 0.3669 & 2.7263\\
 \hline
-45 & 0.3674 & 2.7243\\
+45 & 0.3589 & 2.7252\\
 \hline
-50 & 0.3740 & 2.6957\\
+50 & 0.3690 & 2.7091\\
 \hline
-55 & 0.3662 & 2.7100\\
+55 & 0.3699 & 2.7262\\
 \hline
-60 & 0.3699 & 2.7115\\
+60 & 0.3731 & 2.6993\\
 \hline
 \end{tabular}
 \end{table}
@@ -7761,7 +7866,7 @@ Creating this game in R requires some work, beginning with the creation of a dec
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "J-clubs"  "A-clubs"  "8-spades" "3-hearts"
+## [1] "2-hearts" "5-spades" "3-clubs"  "J-clubs"
 \end{verbatim}
 
 Here's code for playing the game with a lot of printed statements to increase the drama of each turn. We do not run the code here, but recommend you copy and paste it into a script in your own session and play a few times to get the feel for it.
@@ -7869,7 +7974,7 @@ Our estimated probability of winning in a game of Idiot's delight:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.329
+## [1] 0.333
 \end{verbatim}
 
 For (b), the likelihood of having a reduction on turn \(k\) (for each \(k = 1,2,\ldots 52\)), we can compare our hand size after turn \(k\) with our hand size after turn \(k-1\).
@@ -7886,9 +7991,9 @@ We know turns \(k = 1, 2, 3\) can have no reductions, but starting with \(k = 4\
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-154-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/unnamed-chunk-159-1.pdf}}
 
-Starting with turn 4 it looks like the likelihood of having a reduction stays roughly constant, at about 0.27.
+Starting with turn 4 it looks like the likelihood of having a reduction stays roughly constant, at about 0.28.
 
 \chapter{Discrete Random Variables in R}\label{R-discreteRV}
 
@@ -8048,7 +8153,7 @@ We can check this:
 \end{Shaded}
 
 \begin{verbatim}
-##  [1]  9  8  8  9  9  6 10  8  9  9
+##  [1] 10 10  7  7  6  7 10  6  4  7
 \end{verbatim}
 
 We can use \texttt{r\_\_\_} to run simulations, and to visualize the shape of a distribution.
@@ -8064,8 +8169,8 @@ Two useful commands for summarizing data: \texttt{table()} presents the frequenc
 
 \begin{verbatim}
 ## sim_data
-##   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15 
-##   1   4  20  37  70 114 154 192 142 135  75  41  10   3   2
+##   2   3   4   5   6   7   8   9  10  11  12  13  14 
+##   2  22  41  86 123 152 164 157 118  74  35  22   4
 \end{verbatim}
 
 \begin{Shaded}
@@ -8074,7 +8179,7 @@ Two useful commands for summarizing data: \texttt{table()} presents the frequenc
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-163-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/unnamed-chunk-168-1.pdf}}
 
 \section{\texorpdfstring{Geometric \texttt{geom}}{Geometric geom}}\label{geometricR}
 
@@ -8165,9 +8270,9 @@ Strategy:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-167-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/unnamed-chunk-172-1.pdf}}
 
-OMG notice from the bar plot that one depressing game required 57 rolls to see my first 4.
+OMG notice from the bar plot that one depressing game required 54 rolls to see my first 4.
 
 \end{example}
 
@@ -8228,7 +8333,7 @@ Visualizing \(X \sim \texttt{nbinom}(3,.2)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-170-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/unnamed-chunk-175-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -8237,7 +8342,7 @@ Visualizing \(X \sim \texttt{nbinom}(3,.2)\)
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-171-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/unnamed-chunk-176-1.pdf}}
 
 \section{\texorpdfstring{Hypergeometric \texttt{hyper}}{Hypergeometric hyper}}\label{hyperR}
 
@@ -8421,7 +8526,7 @@ Here are the data:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-178-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/unnamed-chunk-183-1.pdf}}
 
 Here's the mean of the data (which gives average \# of scintillations in 72 seconds):
 
@@ -8439,7 +8544,7 @@ Let's compare the observed relative frequencies to the theoretical probabilities
 
 \begin{table}
 \centering
-\caption{\label{tab:unnamed-chunk-180}Fitting data with a Poisson distribution}
+\caption{\label{tab:unnamed-chunk-185}Fitting data with a Poisson distribution}
 \centering
 \begin{tabular}[t]{r|r|r}
 \hline
@@ -8490,7 +8595,7 @@ x & rel\_freq & pois\_prob\\
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-181-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/unnamed-chunk-186-1.pdf}}
 
 \end{example}
 
@@ -8590,7 +8695,7 @@ The following code will give the shape of the probability distribution (with a s
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-186-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/unnamed-chunk-191-1.pdf}}
 
 \subsection*{Sampling}\label{sampling}
 \addcontentsline{toc}{subsection}{Sampling}
@@ -8604,7 +8709,7 @@ The following code draws a sample of size 10 from our distribution using the wei
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 8 8 5 7 5 8 8 7 5 6
+##  [1] 8 5 6 7 6 8 8 8 8 5
 \end{verbatim}
 
 If we take a large sample, and make a relative frequency table of the results, it should be close to the probability table:
@@ -8618,7 +8723,7 @@ If we take a large sample, and make a relative frequency table of the results, i
 \begin{verbatim}
 ## 
 ##     5     6     7     8     9 
-## 0.383 0.375 1.176 1.499 0.401
+## 0.383 0.378 1.173 1.505 0.396
 \end{verbatim}
 
 \subsection{Discrete Uniform Distribution}\label{discrete-uniform-distribution}
@@ -8654,9 +8759,9 @@ The resulting frequency plot should look uniform:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-190-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/unnamed-chunk-195-1.pdf}}
 
-Way to go Pluotika, you over achiever!
+Way to go Otto, you over achiever!
 
 \end{example}
 
@@ -8712,8 +8817,8 @@ A uniform random variable \(X\) over the interval \([a,b]\) has density function
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 0.02047615 0.77732297 0.71999848 0.56768506 0.47341318 0.05197772
-##  [7] 0.32825031 0.64348235 0.75687427 0.48826314
+##  [1] 0.76301559 0.70664093 0.47129321 0.87352893 0.09696022 0.26988854
+##  [7] 0.68006674 0.80062969 0.83159451 0.03964441
 \end{verbatim}
 
 \subsection*{Picking random points in the unit square}\label{picking-random-points-in-the-unit-square}
@@ -8728,7 +8833,7 @@ A uniform random variable \(X\) over the interval \([a,b]\) has density function
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-192-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/unnamed-chunk-197-1.pdf}}
 
 \subsection*{\texorpdfstring{Estimate the value of \(\pi\)}{Estimate the value of \textbackslash pi}}\label{estimate-the-value-of-pi}
 \addcontentsline{toc}{subsection}{Estimate the value of \(\pi\)}
@@ -8746,7 +8851,7 @@ A uniform random variable \(X\) over the interval \([a,b]\) has density function
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-193-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/unnamed-chunk-198-1.pdf}}
 
 The area of the square is 2*2 = 4.
 The area of the circle is \(\pi (1)^2 = \pi.\) So the ratio\\
@@ -8761,7 +8866,7 @@ and we can estimate \(\pi\) as follows:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 3.0856
+## [1] 3.1248
 \end{verbatim}
 
 \section{\texorpdfstring{Normal Distribution \texttt{norm}}{Normal Distribution norm}}\label{normalR}
@@ -8776,7 +8881,7 @@ Thanks to the Central Limit Theorem this distribution has a central role in stat
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-195-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/unnamed-chunk-200-1.pdf}}
 
 \begin{example}
 \protect\hypertarget{exm:normal-weights-R}{}\label{exm:normal-weights-R}\leavevmode
@@ -8835,7 +8940,7 @@ Suppose we have a population of 5000 random numbers between 10 and 20, which sho
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-197-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/unnamed-chunk-202-1.pdf}}
 Now suppose we draw a sample of size 50 from this population, and compute the sample mean of these 50 values:
 
 \begin{Shaded}
@@ -8845,7 +8950,7 @@ Now suppose we draw a sample of size 50 from this population, and compute the sa
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 15.58746
+## [1] 15.04903
 \end{verbatim}
 
 Now let's repeat this process for 10000 trials, and look at the distribution of the 10000 sample means:
@@ -8861,7 +8966,7 @@ Now let's repeat this process for 10000 trials, and look at the distribution of 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-199-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/unnamed-chunk-204-1.pdf}}
 
 Look Normal?
 
@@ -8873,7 +8978,7 @@ Look Normal?
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-200-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/unnamed-chunk-205-1.pdf}}
 
 \section{\texorpdfstring{Exponential Distribution \texttt{exp}}{Exponential Distribution exp}}\label{expR}
 
@@ -8912,7 +9017,7 @@ Here \(X\) is exponential with parameter \(\beta = 120\). The rate associated wi
 As a reminder, this probability corresponds to the integral
 \[\int_{200}^\infty \frac{1}{120}e^{-x/120}~dx\] which corresponds to the shaded area below
 
-\begin{center}\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-202-1} \end{center}
+\begin{center}\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-207-1} \end{center}
 
 \begin{quote}
 \begin{enumerate}
@@ -8966,11 +9071,29 @@ Suppose \(X\) is an exponential random variable with parameter \(\beta = 2\). Sk
 
 The density function is \(f(x) = \frac{1}{2}e^{-x/2}\) for \(x > 0,\) and we can sketch it by plotting an \(x\) vector of many inputs between, say, 0 and 10, and the corresponding values of \texttt{dexp()}:
 
-\begin{center}\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-205-1} \end{center}
+\begin{verbatim}
+beta=2
+df = data.frame(x=seq(0,10,by=.01),f=dexp(seq(0,10,by=.01),1/beta))
+ggplot(df)+geom_line(aes(x,f),col="red")+
+  ggtitle(paste0("density function f(x) of an exp(2) random variable"))+
+  ylab("f(x)")+xlab("x")+
+  theme_classic()
+\end{verbatim}
+
+\begin{center}\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-210-1} \end{center}
 
 The distribution function, which gives cumulative probability is found by plotting \texttt{pexp()}:
 
-\begin{center}\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-206-1} \end{center}
+\begin{verbatim}
+beta=2
+df = data.frame(x=seq(0,10,by=.01),f=pexp(seq(0,10,by=.01),1/beta))
+ggplot(df)+geom_line(aes(x,f),col="blue")+
+  ggtitle(paste0("distribution function F(x) of an exp(2) random variable"))+
+  ylab("F(x)")+xlab("x")+
+  theme_classic()
+\end{verbatim}
+
+\begin{center}\includegraphics{math340-notes_files/figure-latex/unnamed-chunk-211-1} \end{center}
 
 \end{example}
 
@@ -8997,7 +9120,7 @@ We can estimate both \(P(X>t)\) and \(P(X>t+s ~|~ X>s)\) by checking a large ran
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Estimate for P(X>t): 0.552"
+## [1] "Estimate for P(X>t): 0.546"
 \end{verbatim}
 
 \begin{Shaded}
@@ -9007,7 +9130,7 @@ We can estimate both \(P(X>t)\) and \(P(X>t+s ~|~ X>s)\) by checking a large ran
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Estimate for P(X>t+s | X>s): 0.541"
+## [1] "Estimate for P(X>t+s | X>s): 0.534"
 \end{verbatim}
 
 \section{\texorpdfstring{Gamma Distribution \texttt{gamma}}{Gamma Distribution gamma}}\label{gammaR}
@@ -9071,10 +9194,10 @@ Just about a 50\% chance that a random value from a \(\texttt{gamma}(3,4)\) dist
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 486
+## [1] 479
 \end{verbatim}
 
-Well, 486 is mighty close to half of the 1000 values!
+Well, 479 is mighty close to half of the 1000 values!
 \end{example}
 
 \textbf{Exponential distributions are special gamma distributions.} In particular, if we set \(\alpha=1,\) the gamma distribution gamma(1,\(\beta\)) is exactly equal to the exponential distribution exp(\(\beta\)).
@@ -9167,7 +9290,7 @@ We create a vector of inputs \texttt{x} going from 0 to 2 in small increments (t
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/plot pdf-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/plot pdf-1.pdf}}
 
 \subsection*{Estimating Integrals with Riemann Sums}\label{estimating-integrals-with-riemann-sums}
 \addcontentsline{toc}{subsection}{Estimating Integrals with Riemann Sums}
@@ -9204,7 +9327,7 @@ For instance, \texttt{mid\_sum(f\_pdf,a=0.4,b=1.2,n=4)} computes the area of the
 
 \begin{figure}
 \centering
-\includegraphics{math340-notes_files/figure-latex/midpoint-sum-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/midpoint-sum-1.pdf}}
 \caption{\label{fig:midpoint-sum}Four midpoint rectangles}
 \end{figure}
 
@@ -9293,7 +9416,7 @@ Then we can sketch the graph of the distribution function, for inputs between 0 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{math340-notes_files/figure-latex/plot distn fcn-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{math340-notes_files/figure-latex/plot distn fcn-1.pdf}}
 
 \subsection*{Estimating Moments}\label{estimating-moments}
 \addcontentsline{toc}{subsection}{Estimating Moments}

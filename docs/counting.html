@@ -67,7 +67,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -271,7 +271,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-without-replacement"><i class="fa fa-check"></i>sample without replacement</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-with-replacement"><i class="fa fa-check"></i>sample with replacement</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-with-custom-probabilities"><i class="fa fa-check"></i>sample with custom probabilities</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#example-lefties"><i class="fa fa-check"></i>example: Lefties</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#example-lefties"><i class="fa fa-check"></i>example: lefties</a></li>
 </ul></li>
 <li class="chapter" data-level="A.4" data-path="sampling-in-R.html"><a href="sampling-in-R.html#repeated-sampling"><i class="fa fa-check"></i><b>A.4</b> Repeated sampling</a>
 <ul>
@@ -502,6 +502,7 @@ Each digit must be odd (1, 3, 5, 7, or 9), and since the number must be bigger t
 <p>But we’ve also denoted the number of ordered arrangments of <span class="math inline">\(r\)</span> from <span class="math inline">\(n,\)</span> as <span class="math inline">\(P^n_r,\)</span> so <span class="math display">\[P^n_r = \binom{n}{r} \cdot r!,\]</span> and since <span class="math inline">\(P^n_r = n!/(n-r)!,\)</span> it follows that
 <span class="math display">\[C^n_r = \binom{n}{r} = \frac{n!}{(n-r)!\cdot r!}.\]</span></p>
 </div>
+<p><br></p>
 <div class="theorem">
 <p><span id="thm:Cnrfacts" class="theorem"><strong>Theorem 4.1  </strong></span>Facts about <span class="math inline">\(\displaystyle \binom{n}{r}\)</span> for <span class="math inline">\(n \geq 1\)</span> and <span class="math inline">\(0 \leq r \leq n\)</span>:</p>
 <ol style="list-style-type: decimal">
@@ -719,6 +720,7 @@ We see two balls go into the first bin, 4 into the second, and 2 into the third.
 So each distribution of the 8 balls into 3 bins corresponds to an ordered arrangement of 8 balls and 2 “inner walls”, and we have <span class="math inline">\(\displaystyle\binom{10}{2}\)</span> ways to choose the 2 spots for the inner walls from the 10 spots needed to create the arrangement.</p>
 <p>More generally, with <span class="math inline">\(n\)</span> balls and <span class="math inline">\(r\)</span> bins we will have <span class="math inline">\(r-1\)</span> inner walls, which leads us to the formula <span class="math display">\[\binom{n+r-1}{r-1}.\]</span></p>
 </div>
+<p><br></p>
 <p>Let’s return to the Watermelon <em>Jolly Ranchers</em>.</p>
 <p>In this scenario, the friends are the bins, and the candies are the balls, and the number of ways to distribute the candies to the 8 friends is <span class="math inline">\(\displaystyle \binom{30+8-1}{8-1}=\binom{37}{7},\)</span>
 which we can calculate in R: <code>choose(37,7)</code> = 10295472. I’ve got options.</p>

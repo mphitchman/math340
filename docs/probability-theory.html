@@ -67,7 +67,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -271,7 +271,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-without-replacement"><i class="fa fa-check"></i>sample without replacement</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-with-replacement"><i class="fa fa-check"></i>sample with replacement</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-with-custom-probabilities"><i class="fa fa-check"></i>sample with custom probabilities</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#example-lefties"><i class="fa fa-check"></i>example: Lefties</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#example-lefties"><i class="fa fa-check"></i>example: lefties</a></li>
 </ul></li>
 <li class="chapter" data-level="A.4" data-path="sampling-in-R.html"><a href="sampling-in-R.html#repeated-sampling"><i class="fa fa-check"></i><b>A.4</b> Repeated sampling</a>
 <ul>
@@ -506,6 +506,7 @@ So, <span class="math display">\[P(A \cup B) = P(A) + P(\overline{A} \cap B).\]<
 So <span class="math display">\[P(B) = P(\overline{A}\cap B) + P(A \cap B).\]</span>
 Combining these two probability equations we see <span class="math display">\[P(A \cup B) = P(A) + \left[P(B)-P(A\cap B)\right],\]</span> which completes the proof.</p>
 </div>
+<p><br></p>
 <p>Next, consider three events, <span class="math inline">\(A_1, A_2, A_3\)</span>. Notice that</p>
 <p><span class="math display">\[\begin{align*}
 P(A_1 \cap A_2 \cap A_3) &amp;= P((A_1\cap A_2) \cap A_3) \\
@@ -550,12 +551,14 @@ P(A_1 \cap A_2 \cap A_3 \cap A_4) &amp;= P(A_1) \cdot P(A_2 ~|~ A_1) \cdot P(A_3
 <p><span id="unlabeled-div-12" class="proof"><em>Proof</em>. </span>By the additive law, <span class="math display">\[P(A \cup \overline{A}) = P(A) + P(\overline{A})-P(A \cap \overline{A}).\]</span>
 Since <span class="math inline">\(A\cup \overline{A} = S\)</span> and <span class="math inline">\(A \cap \overline{A} = \emptyset,\)</span> <span class="math inline">\(P(A \cup \overline{A}) = 1\)</span> and <span class="math inline">\(P(A \cap \overline{A}) = 0,\)</span> so <span class="math display">\[1 = P(A) + P(\overline{A}),\]</span> and the result follows.</p>
 </div>
+<p><br></p>
 <div class="corollary">
 <p><span id="cor:unlabeled-div-13" class="corollary"><strong>Corollary 5.2  </strong></span>If <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are disjoint events, then <span class="math inline">\(P(A \cup B) = P(A) + P(B).\)</span></p>
 </div>
 <div class="proof">
 <p><span id="unlabeled-div-14" class="proof"><em>Proof</em>. </span>Since <span class="math inline">\(A\cap B = \emptyset,\)</span> <span class="math inline">\(P(A \cap B) = 0\)</span> and the result follows from the Additive Law of Probability.</p>
 </div>
+<p><br></p>
 <div class="corollary">
 <p><span id="cor:unlabeled-div-15" class="corollary"><strong>Corollary 5.3  </strong></span>For three events <span class="math inline">\(A, B, C\)</span>.</p>
 <p>The probability of their union is</p>
@@ -583,6 +586,7 @@ P(A \cup B \cup C) &amp;= P(A \cup (B \cup C)) \\
 <p>For the intersection case, by definition of conditional probability the right hand side of the equation is
 <span class="math display">\[\text{RHS } = P(A) \cdot \frac{P(A \cap B)}{P(A)} \cdot \frac{P(C\cap A\cap B)}{P(A \cap B)},\]</span> and the result follows by cancellation.</p>
 </div>
+<p><br></p>
 </div>
 <div id="event-composition-method" class="section level2 hasAnchor" number="5.3">
 <h2><span class="header-section-number">5.3</span> Event-Composition Method<a href="probability-theory.html#event-composition-method" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -645,6 +649,7 @@ A &amp;= A \cap S \\
 <p>Furthermore, since the <span class="math inline">\(B_i\)</span> are pairwise disjoint, the <span class="math inline">\((A \cap B_i)\)</span> are pairwise dijoint as well, and by the additive law of probability <span class="math display">\[P(A) = \sum_{i = 1}^k P(A \cap B_i).\]</span></p>
 <p>The result then follows since each <span class="math inline">\(P(A \cap B_i) = P(A~|~B_i)\cdot P(B_i)\)</span>.</p>
 </div>
+<p><br></p>
 <div class="example">
 <p><span id="exm:ad-agency" class="example"><strong>Example 5.9  </strong></span>An ad agency notices</p>
 <ul>
