@@ -1,7 +1,7 @@
 --- 
 title: "MATH 340 Notes"
 author: "Mike Hitchman"
-date: "Fall, 2024"
+date: "Fall, 2025"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib, packages.bib]
