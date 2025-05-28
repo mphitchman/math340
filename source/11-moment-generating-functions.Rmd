@@ -59,6 +59,8 @@ m_Z(t) &= e^{-\mu t/\sigma}\cdot e^{\left(\mu (t/\sigma) + \frac{\sigma^2}{2}(t/
 But hey! This mgf is the mgf for $N(0,1),$ so by Theorem \@ref(thm:unique-mgf), since $Z = (X-\mu)/\sigma$ and $N(0,1)$ have the same mgf, they have the same probability distribution.
 :::
 
+<br>
+
 :::{.lemma #Z-square-is-chi-square}
 If $Z$ is $N(0,1)$ then $Z^2$ is $\chi^2(1)$.
 :::
@@ -96,6 +98,8 @@ m_U(t) &= \prod_{i=1}^n m_{a_iX_i}(t) \\
 
 But hey! This is the mgf for a normal distribution with mean $\sum a_i \mu$ and variance $\sum a_i^2 \sigma_i^2,$ so we have proved the result.
 :::
+
+<br>
 
 :::{.theorem #sum-of-squares-of-standard-normal-rvs}
 Let $X_1, X_2, \ldots, X_n$ be independent normal random variables  with $X_i \sim N(\mu_i, \sigma_i),$ and $\displaystyle Z_i = \frac{X_i - \mu_i}{\sigma_i}$ for $i = 1, \ldots, n$. Then $$U = \sum_{i=1}^n Z_i^2$$ is $\chi^2(n)$.

@@ -5,7 +5,7 @@ We can use repeated sampling of a chance experiment to estimate the probability 
 
 ## Difference of two dice {#diff-2dice-R}
 
-> If you roll 2 6-sided dice, what's the likelihood that their values are 1 apart.
+> If you roll 2 6-sided dice, what is the likelihood that their values are 1 apart.
 
 Our Strategy: roll the two dice, record the absolute value of their difference, repeat! 
 
@@ -14,11 +14,11 @@ Code:
 trials = 10000
 die_1 = 1:6
 die_2 = 1:6
-results = c() #stores the difference of the two dice each trial
+results = c() #will store the difference of the two dice each trial
 for (i in 1:trials){
-  roll_1 = sample(die_1,1)
-  roll_2 = sample(die_2,1)
-  difference = abs(roll_1-roll_2)
+  roll_1 = sample(die_1, 1)
+  roll_2 = sample(die_2, 1)
+  difference = abs(roll_1 - roll_2) #absolute value is abs()
   results[i] = difference
 }
 ```
@@ -28,8 +28,8 @@ Results:
 table(results)
 ```
 
-Conclusion: By computing the ratio `sum(results==1)/trials`, we obtain our estimate of the probability the two dice to be 1 apart: 
-`r sum(results==1)/trials`.
+Conclusion: By computing the ratio `sum(results == 1) / trials`, we obtain our estimate of the probability the two dice to be 1 apart: 
+`r sum(results == 1) / trials`.
 
 Referring to the 6x6 grid recording the difference for each of the 36 possible outcomes in Table \@ref(tab:diff-2-dice), we would find the actual probability equal to 10/36 $\approx$ `r round(10/36,3)`.
 
@@ -42,11 +42,11 @@ This is not such an interesting probability question - at least not one we need 
 
 Strategy: 
 
-1.  Build a random plate. We want three random letters (repeats ok), followed by three random numbers (repeats ok). So, we sample from `LETTERS` 3 times with replacement, then 0:9 three times with replacement. 
+1.  Build a random plate. We want three random capital letters (repeats ok), followed by three random numbers (repeats ok). So, we sample from `LETTERS` 3 times with replacement, then 0:9 three times with replacement. 
 
 ```{r}
-plate = c(sample(LETTERS,3,replace=TRUE),
-          sample(0:9,3,replace=TRUE))
+plate = c(sample(LETTERS, 3, replace = TRUE),
+          sample(0:9, 3, replace = TRUE))
 plate
 ```
 
@@ -55,7 +55,7 @@ Fun!
 2.  Count how many "8"s are in the plate
 
 ```{r}
-sum(plate=="8")
+sum(plate == "8")
 ```
 
 **Final Code**
@@ -92,7 +92,7 @@ $$\frac{26\cdot 26\cdot 26 \cdot \binom{3}{2} \cdot 1 \cdot 1 \cdot 9}{26^3\cdot
 
 ```{r}
 die = 1:10
-rolls = sample(die,5,replace=TRUE)
+rolls = sample(die, 5, replace = TRUE)
 ```
 
 2.  We want code to check whether a random sequence of 5 rolls has these five features: Rolls 1-4 are less than 8, and roll 5 is an 8, 9, or 10.
@@ -100,13 +100,13 @@ rolls = sample(die,5,replace=TRUE)
 We can ask these five questions in R and store the answers in a logical vector:
 
 ```{r}
-c(rolls[1:4]<8,rolls[5]>=8)
+c(rolls[1:4] < 8, rolls[5] >= 8)
 ```
 
 Recall, the `sum()` of a logical vector counts the number of TRUE values. We need the sum to be 5 to have the kind of sequence we want to count.
 
 ```{r}
-sum(c(rolls[1:4]<8,rolls[5]>=8)) #does this sum equal 5?
+sum(c(rolls[1:4] < 8, rolls[5] >= 8)) #does this sum equal 5?
 ```
 
 I think we're ready!!
@@ -130,7 +130,7 @@ The results of the simulation:
 table(results)
 ```
 
-Based on our simulation, we estimate the probability in question by the ratio: `sum(results==5)/trials` = `r sum(results==5)/trials`.
+Based on our simulation, we estimate the probability in question by the ratio: `sum(results == 5) / trials` = `r sum(results==5)/trials`.
 
 This estimated probability is likely very close to what we calculate by our counting tools: $$\frac{7^4\cdot 3}{10^5} \approx .07203.$$
 
@@ -148,8 +148,8 @@ urn = rep(c("orange","green"),c(100,200))
 trials = 10000
 results = c()
 for (i in 1:trials){
-  grab = sample(urn,8,replace=FALSE)
-  orange_count = sum(grab=="orange")
+  grab = sample(urn, 8, replace = FALSE)
+  orange_count = sum(grab == "orange")
   results[i] = orange_count
 }
 table(results)
@@ -181,7 +181,7 @@ sum(choose(100,6:8)*choose(200,8-6:8)/choose(300,8))
 One approach:
 
   - Build a coin vector: `coin = c("H","T")`
-  - Build a vector for recording the outcomes of twenty flips: `flips = sample(coin,size=20,replace=TRUE)`
+  - Build a vector for recording the outcomes of twenty flips: `flips = sample(coin, size = 20, replace = TRUE)`
   - Record the longest run of Heads in the sequence.
   - Repeat many, many times.
 
@@ -189,23 +189,24 @@ One approach:
 The following code plays this 'flip a coin 20 times and record the longest run of heads' game for 10000 trials.
 
 ```{r}
-coin = c("H","T")
+coin = c("Heads","Tails")
 trials=10000
 results=c() #stores longest run of Heads each trial
 for (i in 1:trials){
-  flips = sample(coin,20,replace=TRUE) #generate the 20 flips
+  flips = sample(coin, 20, replace=TRUE) #generate the 20 flips
   run = 0 #marker for current streak of Heads
   max_run = 0 #stores the longest streak of Heads
   for (k in 1:20){
-    if (flips[k] == "H"){
-      run = run + 1 #current run increases by 1 if flip k is "H"
-      max_run = max(max_run,run) #checks for new max run
+    if (flips[k] == "Heads"){
+      run = run + 1 #current run increases by 1 if flip k is "Heads"
+      max_run = max(max_run, run) #checks for new max run
       }
-    if (flips[k] == "T"){
+    if (flips[k] == "Tails"){
       run = 0 #resets current run to 0 if flip k is "T"
     }
-    results[i]=max_run
   }
+  # Now that we've analyzed the 20 flips, record the max run in results
+  results[i] = max_run
 }
 ```
 
@@ -226,7 +227,7 @@ Based on these trials, our estimate for the likelihood of seeing a run of at lea
 1.  Build the class: `class = rep(c("J","S","F"),c(6,4,2))`
 
 ```{r,echo=F}
-class = rep(c("J","S","F"),c(6,4,2)) 
+class = rep(c("J", "S", "F"), c(6, 4, 2)) 
 ```
 
 2. Partition the members into three subgroups of size 5, 4, and 3. Our approach: shuffle the `class` vector (find a random permutation), take the first five in this permutation for subgroup 1, the next 4 for subgroup 2, and the last 3 for subgroup 3.
@@ -245,16 +246,17 @@ cat("Subgroup 1: ", sub1, "\n",
 3.  Count the number of first-years in each subgroup, and record these numbers as a vector of length 3:
 
 ```{r}
-count = c(sum(sub1=="F"),
-            sum(sub2=="F"),
-            sum(sub3=="F"))
+count = c(sum(sub1 == "F"),
+          sum(sub2 == "F"),
+          sum(sub3 == "F")
+          )
 print(count)
 ```
 
 4.  The two first-years are in the same subgroup if and only if `count` contains a 2. The following code uses an `ifelse()` command to record 1 if both first-years are in the same group, and 0 if not.
 
 ```{r}
-ifelse(2 %in% count,1,0)
+ifelse(2 %in% count, 1, 0)
 ```
 
 **Final Code**
@@ -271,9 +273,9 @@ for (i in 1:trials){
   sub1 = shuffle[1:5]  # first 5 in the random shuffling go to subgroup 1
   sub2 = shuffle[6:9] # next 4 to subgroup 2
   sub3 = shuffle[10:12] # last 3 to subgroup 3
-  count = c(sum(sub1=="F"),sum(sub2=="F"),sum(sub3=="F"))
+  count = c(sum(sub1 == "F"),sum(sub2 == "F"),sum(sub3 == "F"))
   #are both "F"s in the same subgroup? We record 1 if "yes", and 0 if "no"
-  results[i] = ifelse(2 %in% count,1,0)
+  results[i] = ifelse(2 %in% count, 1, 0)
 }
 table(results)
 ```
@@ -281,7 +283,7 @@ table(results)
 Based on this simulation, we estimate the probability that both first-years end up in the same subgroup as
 
 ```{r}
-sum(results==1)/trials
+sum(results == 1)/trials
 ```
 
 Using our counting tools to calculate the probability:
@@ -297,14 +299,14 @@ which evaluates to 7980/27720 $\approx 0.288$:
 
 ## Pollsters {#pollsters-R}
 
-> *(From Grinstead Snell Text 1.1 Exercise 12)* In an upcoming election for mayor of a large city, a pollster plans to predict the winner of the popular vote by taking a random sample of 1000 voters and declaring that the winner will be the one obtaining the most votes in his sample. Suppose that 48 percent of the voters plan to vote for the Republican candidate and 52 percent plan to vote for the Democratic candidate. To get some idea of how reasonable the pollster’s plan is, write a program to make this prediction by simulation. Repeat the simulation 1000 times and see how many times the pollster’s prediction would come true. 
+> *(From Grinstead Snell Text 1.1 Exercise 12)* In an upcoming election for mayor of a large city, a pollster plans to predict the winner of the popular vote by taking a random sample of 1000 voters and declaring that the winner will be the one obtaining the most votes in his sample. Suppose that 48 percent of the voters plan to vote for the Republican candidate and 52 percent plan to vote for the Democratic candidate. To get some idea of how reasonable the pollster’s plan is, write a program to make this prediction by simulation. Repeat the simulation 10000 times and see how many times the pollster’s prediction would come true. 
 
 
 
 First, let's create and summarize a single poll of 1000 people from a population in which 52 percent are "D", and 48 percent are "R".
 
 ```{r}
-one_poll = sample(c("D","R"),1000,replace=TRUE,prob=c(.52,.48))
+one_poll = sample(c("D","R"), 1000, replace = TRUE, prob=c(.52, .48))
 table(one_poll)
 ```
 
@@ -343,7 +345,7 @@ This table gives us a sense of the likelihood that the pollsters plan will resul
 
 We do not use R to estimate these probabilities in this example. We find the probabilities exactly, and then use R to analyze them as $n$ changes.
 
-We tackle the first question by first computing the probability that none of the $n$ people share my birthday.  The probability that a random person does not have my birthday is $\frac{364}{365},$ and the probability that $n$ random people all do not have my birthday is $\left(\frac{364}{365}\right)^n$.
+We tackle the first question by first computing the probability that none of the $n$ people share my birthday.  The probability that a random person does not have my birthday is $\frac{364}{365},$ and the probability that each of $n$ random people does not have my birthday is $\left(\frac{364}{365}\right)^n$.
 
 The *complement* of this event is that at least one of the $n$ people has my birthday, and so the probability of this will be $1- \left(\frac{364}{365}\right)^n$.
 
@@ -360,13 +362,14 @@ For instance, in a group of 15 people here's the probability that someone shares
 ```{r}
 prob_my_bday(15)
 ```
+
 Not too likely!
 
-For the second question, we begin by calculating the probability that no one in a group of $n$ people shares the same birthday as anyone else.  
+For the second question, we begin by calculating the probability that no one in a group of $n$ people shares the same birthday as anyone else in the group.  
 
 So, we need all $n$ people to have a different birthday.  This probability is found in essentially the same way that you answered #6 in Homework 2, and it equals
 $$\frac{P^n_r}{365^n}=\frac{365\cdot 364 \cdot \cdots \cdot (365-n+1)}{365^n}.$$
-So, the probability that at least two people share the same birthday, which is the complement of "no one shares the same birthday" is $$1 - \frac{365\cdot 364 \cdot \cdots \cdot (365-n+1)}{365^n}.$$ 
+So, the probability that at least two people share the same birthday, which is the complement of "no one shares the same birthday", is $$1 - \frac{365\cdot 364 \cdot \cdots \cdot (365-n+1)}{365^n}.$$ 
 
 For instance, in a group of 6 people, the probability that at least two people share a birthday is $$1-1 \cdot \frac{364}{365}\cdot\frac{363}{365}\cdot \frac{362}{365}\cdot\frac{361}{365}\cdot\frac{360}{365}\approx0.04.$$
 
@@ -390,20 +393,24 @@ prob_shared_bday(15)
 
 Whoa! A 25 percent chance!  In fact, it turns out we only need 23 people gathered in a room to have a 50 percent chance that two of them share a birthday!  Also, with a group of 59 people we have a 99 percent chance of a birthday match: `prob_shared_bday(59)`=`r round(prob_shared_bday(59),3)`.
 
-Here's a graph of these two probabilities for values of $1 \leq n \leq 100$. 
+Here's a graph of these two probabilities for values of $1 \leq n \leq 100$. The probability of having some shared birthday increases rapidly with $n$ compared to the probability of someone having my birthday.
 
-```{r}
+```{r, fig.dim = c(4,4)}
+#create vector of probabilities for groups of size 1 up to 100
 sh=c()
 my=c()
 for (i in 1:100){
-  sh=c(sh,prob_shared_bday(i))
-  my=c(my,prob_my_bday(i))
+  sh=c(sh, prob_shared_bday(i))
+  my=c(my, prob_my_bday(i))
 }
-df <- data.frame(group_size=1:100,my_bday=my,shared_bday=sh)
-df_long <- df%>% pivot_longer(cols=c(my_bday,shared_bday), names_to = "question", values_to = "probability")
+# a quick line plot for these probabilities as a function of group size
+plot(x = 1:100, sh, col = 'red',type = 'l',
+     xlab = 'size of group', 
+     ylab = 'probability')
+lines(x = 1:100, my, col = 'blue')
+text(x = 80, y = .94, 'shared bday',col = 'red')
+text(x = 80, y = .12, 'my bday', col = 'blue')
 
-ggplot(df_long)+
-  geom_line(aes(x=group_size,y=probability,col=question))
 ```
 
 
@@ -481,7 +488,7 @@ We randomly assign 8 1s to the 12 entries in the matrix, leaving the remaining 4
 First, here's one way to randomly assign 8 1s and 4 0s to 12 seats (we make a vector with 8 1s and 4 0s, and then take a random permutation of it):
 
 ```{r}
-x = sample(c(rep(1,8),rep(0,4)))
+x = sample(rep(c(1,0), c(8,4)))
 x
 ```
 And here's how we can store this vector of length 12 in a $4\times 3$ matrix:
@@ -496,7 +503,9 @@ Here's one way to check for empty seats next to each other in a given row: See w
 
 ```{r}
 for (row in 1:4){
-  result=ifelse(m[row,2]==0 & sum(m[row,])<= 1,"seats together!","nope")
+  result=ifelse(m[row,2] == 0 & sum(m[row,]) <= 1,
+                "seats together!",
+                "nope")
    print(paste("Row",row,result))
 }
 ```
@@ -508,20 +517,20 @@ Ok, we've got a plan! In the code below, we use `s` to record, in each trial, wh
 trials = 10000
 results = c()
 for (i in 1:trials){
-  m=matrix(sample(c(rep(1,8),rep(0,4))),byrow=TRUE,nrow=4)
-  s=0
+  m=matrix(sample(rep(c(1,0), c(8,4))),byrow=TRUE,nrow=4)
+  s = 0 #assume no seats together initially
   for (r in 1:4){
-    if (m[r,2]==0&sum(m[r,])<=1){
+    if (m[r,2] == 0 & sum(m[r,]) <= 1){
       s = 1
-      break
+      break #stop the loop! We found seats together!
     }
   }
-  results[i]=s
+  results[i] = s
 }
 sum(results)/trials
 ```
 
-This probability seems higher than I first expected it would be, but we can also prove using our counting techniques -we do this in class - that the probability is, in fact, 20/33.
+This probability seems higher than I first expected it would be, but we can also prove using our counting techniques - as an exercies - that the probability is, in fact, 20/33.
 
 ## Drawing names for Homemades
 
@@ -538,9 +547,9 @@ In this example we pursue three questions related to the homemades:
 Our approach: Create a vector called `family`, and a permutation of `family` (called `draw`). For each $i,$ Person $i$ in `family` draws person $i$ in `draw`. So, we have to redraw if the two vectors ever agree at the same location. 
 
 ```{r}
-family = c("Dad","Mom","Tom","John","Dave","Mike")
+family = c("Dad", "Mom", "Tom", "John", "Dave", "Mike")
 draw = sample(family)
-matches = sum(family==draw) # number of locations at which the two vectors agree
+matches = sum(family == draw) # number of locations at which the two vectors agree
 redraw = ifelse(matches==0,"No.","Yes.")
 print(paste("Redraw?",redraw))
 ```
@@ -566,7 +575,7 @@ trials=10000
 results = c() #record for each trial a 0 for redraw, 1 for no redraw 
 for (i in 1:trials){
   draw = sample(family)
-  results[i] = ifelse(sum(family == draw)==0,1,0)
+  results[i] = ifelse(sum(family == draw) == 0, 1, 0)
 }
 sum(results)/trials
 ```
@@ -585,9 +594,9 @@ for (i in 1:trials){
   attempts = 0
   draw_again = TRUE
   while (draw_again){
-    attempts = attempts+1
+    attempts = attempts + 1
     draw = sample(family)
-    draw_again = ifelse(sum(family == draw)>0,TRUE,FALSE)
+    draw_again = sum(family == draw) > 0 # will return TRUE or FALSE
   }
   results[i] = attempts
 }
@@ -616,7 +625,7 @@ for (i in 1:trials){
   while (draw_again){
     attempts = attempts+1
     draw = sample(family)
-    draw_again = ifelse(sum(family == draw)>0,TRUE,FALSE)
+    draw_again = sum(family == draw) > 0
   }
   results[i] = attempts
 }

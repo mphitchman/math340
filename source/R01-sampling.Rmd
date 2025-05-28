@@ -64,16 +64,16 @@ A data frame links related vectors as columns in an array via the `data.frame()`
 a = c("McMinnville","Denver","Minneapolis","Charleston")
 x = c(45.21,39.74,44.98,32.78)
 y = c(123.19,104.99,93.26,79.93)
-df = data.frame(city = a, lat = x, long = y)
+df = data.frame(city = a, latitude = x, longitude = y)
 df
 ```
 
-Data frames are the most common way to manage related data vectors in R.
+Data frames are a common way to manage related data vectors in R.
 
 
 ### common vector commands {-}
 
-Here's a vector of Hank Aaron's home run totals in each of his MLB seasons:
+Here's a vector of Hank Aaron's home run totals in each of his seasons in Major League Baseball:
 
 ```{r}
 hr = c(13,27,26,44,30,39,40,34,45,44,24,32,44,39,29,44,38,47,34,40,20,12,10)
@@ -101,7 +101,7 @@ cumsum(hr)
 
 ### comparison operators {-}
 
-We compare things in R with various comparison operators, each one returning TRUE or FALSE:
+We use *comparison operators* to compare things in R and return a value of `TRUE` or `FALSE`:
   
   - equal to `==` 
   - not equal to `!=` 
@@ -212,7 +212,7 @@ v[which(v==w)]
 
 ### vector arithmetic {-}
 
-We can do element-wise arithmetic on two vectors of equal length, such as addition, subtraction, multiplication, divsiion, and exponentiation
+We can do element-wise arithmetic on two vectors of equal length, such as addition, subtraction, multiplication, division, and exponentiation.
 
 ```{r}
 v = c(-1,1,3)
@@ -221,7 +221,7 @@ w = c(1,4,5)
 
 
 Operation |  Result |
-----------|:---------------|---------------------------------|
+:----------|:---------------|---------------------------------|
 `v + w` | `r v + w`| |
 `v - w` |  `r v - w`| |
 `v * w` |  `r v * w`| |
@@ -234,7 +234,7 @@ We also have scalar multiplication,
 8*v
 ```
 
-and, don't tell your vector calc prof, but you can add a scalar to each element in a vector:
+and you can add a scalar to each element in a vector:
 ```{r}
 8 + v
 ```
@@ -287,7 +287,12 @@ More generally, entering `a:b` creates a vector of consecutive integers starting
 letters
 ```
 
-`LETTERS` is the capitalized version of the `letters` vector.
+Want the set of capital letters?
+```{r}
+LETTERS
+```
+
+
 
 
 ### `rep()` {-}
@@ -298,7 +303,7 @@ The `rep()` command lets us build a vector with lots of repeated elements.
 :::{.example #skittles}
 Let's say we want to create a **bag of skittles** with this color distribution: 40 red, 30 orange, 25 yellow, 60 green, and 20 purple. 
 
-The `rep()` command let's us do this quickly: 
+The `rep()` command let's us do this quickly. One approach:
   - first enter the distinct items (as a vector with the `c()` command!),
   - then enter how many times each occurs (as a vector!):
 
@@ -307,11 +312,23 @@ skittles = rep(c("red","orange","yellow","green","purple"),
                c(40,30,25,60,20)
                )
 ```
+
+One can also construct this bag of skittles by running
+
+```{r}
+skittles = c(rep('red', 40),
+             rep('orange', 30),
+             rep('yellow', 25),
+             rep('green', 60),
+             rep('purple', 20))
+```
 :::
+
+
 
 ### `table()` {-}
 
-The `table()` command is a handy way to see which unique values are contained in a vector and how often each unique value occurs:
+The `table()` command is a handy way to see which unique values are contained in a vector and how often each unique value occurs. In otherwords, `table(v)` gives the frequency distribution for a vector `v`:
 
 ```{r}
 table(skittles)
@@ -320,12 +337,18 @@ table(skittles)
 
 ### `seq()`  {-}
 
-The `seq()` command lets us enter an arithmetic progression by entering (first, last, increment).
+The `seq()` command lets us enter an *arithmetic progression* by entering (first, last, increment).
+
+A few examples
 
 ```{r}
-seq(0,1,by=.1)
+seq(0, 1, by=.1)
 ```
 
+
+```{r}
+seq(0, 100, by = 10)
+```
 
 
 
@@ -336,28 +359,25 @@ Ok, now let's get to **sampling**!
 
 We use the `sample(x,...)` command to sample from vector `x`.
 
-For instance, we can draw a random sample of size 2 from `hr`: 
+For instance, we can draw a random sample of size 2 from a vector of colors: 
 
 ```{r}
-sample(hr,2)
+x = c('red','pink','orange','green','yellow','purple')
+sample(x,2)
 ```
 
-Here's another example. Let's grab 20 skittles at random from the bag `skittles` we created in example \@ref(exm:skittles) and count how many orange ones we get:
+Here's another example. Let's grab 20 skittles at random from the bag `skittles` we created in Example \@ref(exm:skittles) and count how many orange ones we get:
 
 ```{r}
 grab=sample(skittles,20)
 table(grab)
 ```
 
-The `table()` command counts how many of each color :).
-
-We could have found the orange count directly with
+The `table()` command counts how many of each color :), which is more than we asked for. We could have found the orange count directly with
 
 ```{r}
 sum(grab=="orange")
 ```
-
-
 
 ### `sample()` options {-}
 
@@ -388,14 +408,14 @@ Use `sample(x)` to generate a *random permutation* of `x`:
 sample(animals) #default size is the length of the vector
 ```
 
-#### repeated sampling of 1 element {-} 
+#### repeated sampling of one element {-} 
 
-Use `sample()` to simulate picking one elemnt of `animals` $n$ times by setting`size = n` and `replace = TRUE`.
+Use `sample()` to simulate picking one element of `animals` $n$ times by setting `size = n` and `replace = TRUE`.
 
 Example: Draw one animal from the set 1000 different times and summarize the picks with a table.
 
 ```{r}
-picks=sample(animals,1000,replace=TRUE) 
+picks = sample(animals, 1000, replace = TRUE) 
 table(picks) 
 ```
 
@@ -407,7 +427,7 @@ Or, since we fear rabbits and love dogs, we can do repeated sampling of a single
 picks2 = sample(animals,
                 size=1000,
                 replace=TRUE,
-                prob=c(.2,.4,.3,.1))
+                prob=c(.2, .4, .3, .1))
 table(picks2)
 ```
 
@@ -417,7 +437,7 @@ Remember, the default option for `sample()` is to sample without replacement, an
 
 ### sample without replacement {-}
 
-> **Task**
+> **Task**:
 > Pick 4 students at random from a class of 9 to race around Taylor Hall. (Assumes we have numbered the students 1-9).
 
 ```{r}
@@ -426,7 +446,7 @@ sample(1:9,4)
 
 ### sample with replacement {-}
 
-> **Task**\
+> **Task**:
 > On twelve consecutive days, ask one student at random, in a class of size 9, to write a solution on the board.
 
 ```{r}
@@ -435,7 +455,7 @@ sample(1:9,12,replace=TRUE)
 
 ### sample with custom probabilities {-}
 
-> **Task**\
+> **Task**:
 > Roll a weighted 6 sided die with the following probability distribution 100 times and summarize the results.
 
 | $x$    | 1   | 2   | 3   | 4   | 5   | 6   |
@@ -446,13 +466,13 @@ sample(1:9,12,replace=TRUE)
 rolls = sample(1:6,
                size=100,
                replace=TRUE,
-               prob=c(.2,.1,.05,.4,.1,.15))
+               prob=c(.2, .1, .05, .4, .1, .15))
 table(rolls)
 ```
 
-### example: Lefties {-}
+### example: lefties {-}
 
-> **Task**\
+> **Task**:
 > 8% of a population is left-handed. Draw a random sample of 45 people from the population and record the number of lefties.
 
 One approach: build a large population with these features and then draw 45 people from it without replacement.
@@ -474,23 +494,24 @@ A third approach: Use a binomial distribution (later)
 ## Repeated sampling {#repeated-sampling}
 
 Let's say we have a huge urn full of orange and blue marbles, and 42% of them are orange. We can use repeated sampling to approximate the **sampling distribution** for the number of orange marbles we would draw in a sample of, say, 50 marbles.
-The sampling distribution provides information about what sorts of orange marble counts should we expect, and how often should we expect these counts?
+The sampling distribution provides information about what sorts of orange marble counts should we expect, and how often should we expect these counts.
 
 *Repeated sampling* can estimate this sampling distribution. Here are two methods for achieving repeated sampling in R.
 
 ### using a `for` loop {-}
 
-The code below creates a vector called *orange_counts* that, eventually, after the for loop has completed, has 10000 entries. Each entry in this vector gives the number of orange marbles drawn from the urn from a random sample of 50 marbles.
+The code below creates a vector called `orange_counts` that, eventually, after the for loop has completed, has 10000 entries. Each entry in this vector gives the number of orange marbles drawn from the urn from a random sample of 50 marbles.
 
 ```{r}
 colors=c("orange","blue")
 orange_counts=c() #a vector for storing the results of each trial
 for (i in 1:10000){
-  orange_counts[i]=sum(sample(colors,50,replace=TRUE,prob=c(.42,.58))=="orange")
+  grab = sample(colors, 50, replace = TRUE, prob = c(.42, .58))
+  orange_counts[i]=sum(grab == "orange")
 }
 ```
 
-We know that `table(orange_counts)` would display the counts of each of the unique values occuring in `orange_counts`.  We can visualize these counts with a `barplot()`: 
+We know that `table(orange_counts)` displays the counts of each of the unique values occurring in `orange_counts`.  We can visualize these counts with a `barplot()`: 
 
 ```{r}
 barplot(table(orange_counts))
@@ -504,7 +525,7 @@ The `replicate()` command essentially does the above for loop for us :) The comm
 colors=c("orange","blue")
 orange_counts = 
   replicate(10000,
-            sum(sample(colors,50,replace=TRUE,prob=c(.42,.58)) == "orange")
+            sum(sample(colors, 50, replace=TRUE, prob=c(.42, .58)) == "orange")
             )
 ```
 

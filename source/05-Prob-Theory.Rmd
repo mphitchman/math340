@@ -152,7 +152,6 @@ $$P(A\cup B) = P(A) + P(B) - P(A \cap B).$$
 :::
 
 :::{.proof}
-
 1. This proof follows directly from the definition of conditional probability (\@ref(def:cond-prob)).
 
 2. For finite sets $A$ and $B,$ we know $$|A \cup B| = |A| + |B| - |A \cap B|,$$ from which the result follows.  
@@ -165,6 +164,7 @@ So $$P(B) = P(\overline{A}\cap B) + P(A \cap B).$$
 Combining these two probability equations we see $$P(A \cup B) = P(A) + \left[P(B)-P(A\cap B)\right],$$ which completes the proof.
 :::
 
+<br>
 
 Next, consider three events, $A_1, A_2, A_3$. Notice that
 
@@ -230,6 +230,8 @@ By the additive law, $$P(A \cup \overline{A}) = P(A) + P(\overline{A})-P(A \cap 
 Since $A\cup \overline{A} = S$ and $A \cap \overline{A} = \emptyset,$ $P(A \cup \overline{A}) = 1$ and $P(A \cap \overline{A}) = 0,$ so $$1 = P(A) + P(\overline{A}),$$ and the result follows.
 :::
 
+<br>
+
 :::{.corollary}
 If $A$ and $B$ are disjoint events, then $P(A \cup B) = P(A) + P(B).$
 :::
@@ -237,6 +239,8 @@ If $A$ and $B$ are disjoint events, then $P(A \cup B) = P(A) + P(B).$
 :::{.proof}
 Since $A\cap B = \emptyset,$ $P(A \cap B) = 0$ and the result follows from the Additive Law of Probability.
 :::
+
+<br>
 
 :::{.corollary}
 For three events $A, B, C$.
@@ -274,6 +278,7 @@ For the intersection case, by definition of conditional probability the right ha
 $$\text{RHS } = P(A) \cdot \frac{P(A \cap B)}{P(A)} \cdot \frac{P(C\cap A\cap B)}{P(A \cap B)},$$ and the result follows by cancellation.
 :::
 
+<br>
 
 ## Event-Composition Method
 
@@ -350,6 +355,7 @@ Furthermore, since the $B_i$ are pairwise disjoint, the $(A \cap B_i)$ are pairw
 The result then follows since each $P(A \cap B_i) = P(A~|~B_i)\cdot P(B_i)$. 
 :::
 
+<br>
 
 :::{.example #ad-agency}
 An ad agency notices

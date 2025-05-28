@@ -160,7 +160,10 @@ The result is an ordered arrangement of $r$ chosen from a set of $n,$ and the nu
 
 But we've also denoted the number of ordered arrangments of $r$ from $n,$ as $P^n_r,$ so $$P^n_r = \binom{n}{r} \cdot r!,$$ and since $P^n_r = n!/(n-r)!,$ it follows that 
 $$C^n_r = \binom{n}{r} = \frac{n!}{(n-r)!\cdot r!}.$$
+
 :::
+
+<br>
 
 :::{.theorem #Cnrfacts}
 Facts about $\displaystyle \binom{n}{r}$ for $n \geq 1$ and $0 \leq r \leq n$:
@@ -446,6 +449,8 @@ So each distribution of the 8 balls into 3 bins corresponds to an ordered arrang
 
 More generally, with $n$ balls and $r$ bins we will have $r-1$ inner walls, which leads us to the formula $$\binom{n+r-1}{r-1}.$$
 :::
+
+<br>
 
 Let's return to the Watermelon *Jolly Ranchers*. 
 

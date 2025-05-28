@@ -57,10 +57,12 @@ m^{\prime\prime}(t) &= \frac{d}{dt}\left[m^\prime(t)\right]\\
   &=\sum_{\text{all }x} x^2\cdot e^{tx}\cdot p(x)
 \end{align*}
 
-Evaluating this at $t = 0$ gives $$m^{\prime\prime}(t)=\sum_{\text{all }x} x^2\cdot 1 \cdot p(x) = E(X^2).$$
+Evaluating this at $t = 0$ gives $$m^{\prime\prime}(0)=\sum_{\text{all }x} x^2\cdot 1 \cdot p(x) = E(X^2).$$
 
 Continuing in this manner, for any $k \geq 1,$ the $k$th derivative of $m(t)$ is $$m^{(k)}(t)=\sum_{\text{all }x} x^k\cdot e^{tx}\cdot p(x),$$ which evaluates to the defintion of $E(X^k)$ when $t = 0$.
 :::
+
+<br>
 
 :::{.example #mgf-geometric name="The mgf for a geometric distribution"}
 If $X$ is geometric with parameter $p,$ then $$p(x) = (1-p)^{x-1}\cdot p,$$ for $x = 1, 2, 3, \ldots,$ and 

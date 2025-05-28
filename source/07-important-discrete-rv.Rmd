@@ -79,6 +79,8 @@ V(X) &= E(X^2) - E(X)^2 \\
 \end{align*}
 :::
 
+<br>
+
 :::{.example #binom-mult-choice-test name="Guessing on a multiple choice test"} 
 A multiple choice exam has 15 questions. Each question has 4 possible answers. If a student answers each question with a random guess, what is the probability they will score 10 or higher?
 
@@ -259,6 +261,8 @@ So you're saying there's a chance!
 We also note that $E(X) = 1/p = 100,$ the average time to get our next junk mail is 100 seconds.
 :::
 
+<br>
+
 ## Negative Binomial Distribution {#negative-binomial}
 
 Suppose we have a sequence of independent Bernoulli trials, each having probability of success $p,$ and we want to know how many trials it takes to get our $r$th success, where $r \geq 1$. 
@@ -352,7 +356,6 @@ If $X$ is $\texttt{Poisson}(\lambda),$ $E(X) = \lambda$ and $V(X) = \lambda$.
 :::
 
 :::{.proof}
-
 We tackle the mean first.
 
 \begin{align*} 
@@ -389,6 +392,8 @@ V(X) &= E(X^2) - \mu^2 \\
   &= \lambda.
 \end{align*}
 :::
+
+<br>
 
 :::{.example #poisson-typos}
 Suppose $X$ gives the number of typos per page in a large printed manuscript, and $X$ is Poisson with $\lambda = 2$. Find the probability that a randomly chosen page has (a) fewer than 2 typos, and (b) more than 5 typos.

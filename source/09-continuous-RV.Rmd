@@ -330,6 +330,7 @@ V(X)    &= E(X^2) - E(X)^2 \\
 \end{align*}
 
 The properties of expected value that held for discrete random variables also hold for continuous random variables.
+:::
 
 :::{.theorem #EV-properties-continuous} 
 Suppose $X$ is a continuous random variable, $c \in \mathbb{R}$ is a constant, and $g,$ $g_1,$ and $g_2$ are functions of $X$.
@@ -352,6 +353,7 @@ Let $X$ be a random variable (discrete or continuous) with $E(X) = \mu$ and $V(X
 :::
 
 :::{.proof}
+
 a) This result follows immediately from properties of expected value (Theorems \@ref(thm:EV-properties-continuous) and \@ref(thm:EV-properties-continuous)).
 
 b) Let $Y = aX + b$. Then (a) says that $E(Y) = a \mu + b,$ so 
@@ -362,7 +364,10 @@ V(Y) &= E((Y-(a\mu + b))^2) \\
     &= a^2 E\left((X-\mu)^2\right)
 \end{align*}
 But $E\left((X-\mu)^2\right)=V(X)$ by the definition of variance, so the result follows.
+
 :::
+
+<br>
 
 :::{.example #ore-samples name="Ore Sample Impurities"}
 For certain ore samples, the proportion $X$ of impurities per sample is a random variable with density function

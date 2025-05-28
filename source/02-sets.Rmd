@@ -112,7 +112,7 @@ x \in \overline{A \cup B} &\iff x \notin A \cup B & \text{ by def'n of complemen
 
 It follows that $\overline{A \cup B} \subseteq \overline{A} \cap \overline{B}$ and $\overline{A} \cap \overline{B} \subseteq \overline{A \cup B},$ so the two sets are equal.
 :::
-
+<p>
 
 ## Set sizes {#size-of-sets}
 

@@ -67,6 +67,8 @@ One can show similarly, that $$E(X^2) = \int_{\theta_1}^{\theta_2} x^2 \cdot \fr
 so that $$V(X) = E(X^2) - E(X)^2 = \frac{(\theta_2-\theta_1)^2}{12}.$$ The fun algebra details are left to the reader.
 :::
 
+<br>
+
 ## Exponential Distribution
 
 The exponential distribution is often used to model experiments that aim to investigate: How long until something happens?
@@ -116,7 +118,6 @@ If $X$ is $\texttt{Exp}(\beta),$ then $$E(X) = \beta, ~~~ \text{ and } ~~~ V(X) 
 :::
 
 :::{.proof}
-
 \begin{align*}
 E(X)&= \int_0^\infty x\cdot\frac{1}{\beta} e^{-x/\beta}~dx \\
     &= \lim_{b \to \infty}\left[\int_0^b x\cdot\frac{1}{\beta} e^{-x/\beta}~dx\right]
@@ -133,6 +134,7 @@ E(X) &= \lim_{b \to \infty}\left[\int_0^b x\cdot\frac{1}{\beta} e^{-x/\beta}~dx\
 To prove that $V(X) = \beta^2,$ first find $E(X^2)=\int_0^\infty x^2 f(x)~dx$ by integration by parts, and then use the fact that $V(X) = E(X^2)-E(X)^2$. We leave details to those nostalgic for Calc II. :)
 :::
 
+<br>
 
 ## Normal Distribution {#normal}
 
@@ -300,6 +302,8 @@ A^2 &= \left(\int_{-\infty}^{\infty} e^{-x^2/2}~dx \right)\left(\int_{-\infty}^{
 Since $A^2 = 2\pi,$ $A = \sqrt{2\pi}$.
 :::
 
+<br>
+
 We have the following corollaries to this lemma.
 
 :::{.corollary}
@@ -310,6 +314,8 @@ The function $f(x) = \frac{1}{\sqrt{2\pi}}e^{-x^2/2},$ for $-\infty < x < \infty
 Clearly, $f(x) \geq 0$ for all $x,$ and the previous lemma ensures that $\int_{-\infty}^\infty f(x)~dx = 1.$. 
 :::
 
+<br>
+
 :::{.corollary}
 The function $f(x) = \frac{1}{\sigma\sqrt{2\pi}}e^{-(x-\mu)^2/(2\sigma^2)},$ for $-\infty < x <  \infty,$ is a valid probability density function.
 :::
@@ -318,7 +324,7 @@ The function $f(x) = \frac{1}{\sigma\sqrt{2\pi}}e^{-(x-\mu)^2/(2\sigma^2)},$ for
 Clearly, $f(x) \geq 0$ for all $x,$ and after $u$-substitution of $u = (x-\mu)/\sigma,$ the previous lemma ensures that $\int_{-\infty}^\infty f(x)~dx = 1$. 
 :::
 
-
+<br>
 
 ## Gamma Distribution
 Some random variables are always nonnegative and yield distributions of data that are skewed right, as pictured below.
@@ -387,6 +393,8 @@ Apply l'hopital's rule to see that the limit term above evaluates to 0, and note
 Thus, we have 
 $$ \Gamma(n+1) = n \cdot \Gamma(n).$$
 :::
+
+<br>
 
 This lemma provides us with the following
 

@@ -18,6 +18,8 @@ If $X_1, X_2, \ldots, X_n$ represents a random sample taken from a $N(\mu,\sigma
 This theorem is an immediate consequence of Theorem \@ref(thm:sum-of-normal-rvs) where each $a_i = 1/n$.
 :::
 
+<br>
+
 :::{.example #house-finch}
 Let $X$ equal the duration of a randomly selected song (in seconds) for a house finch.  Suppose $X$ is normal with unknown mean $\mu$ (we're trying to get a handle on this) and standard deviation $\sigma = 30$ seconds (somehow we know this). A random sample of 25 song durations is observed. Find the probability that the sample mean will be within 5 seconds of the population mean $\mu$.
 
