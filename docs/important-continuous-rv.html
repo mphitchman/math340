@@ -67,7 +67,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -271,7 +271,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-without-replacement"><i class="fa fa-check"></i>sample without replacement</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-with-replacement"><i class="fa fa-check"></i>sample with replacement</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-with-custom-probabilities"><i class="fa fa-check"></i>sample with custom probabilities</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#example-lefties"><i class="fa fa-check"></i>example: Lefties</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#example-lefties"><i class="fa fa-check"></i>example: lefties</a></li>
 </ul></li>
 <li class="chapter" data-level="A.4" data-path="sampling-in-R.html"><a href="sampling-in-R.html#repeated-sampling"><i class="fa fa-check"></i><b>A.4</b> Repeated sampling</a>
 <ul>
@@ -396,16 +396,16 @@ we may write <span class="math inline">\(X ~\sim~ U(\theta_1,\theta_2)\)</span> 
 <p>In R we access the uniform distribution with <code>unif</code>. For instance, we can generate a random sample of <span class="math inline">\(n\)</span> numbers in the interval <span class="math inline">\([a,b]\)</span> with the <code>runif()</code> command:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="important-continuous-rv.html#cb10-1" tabindex="-1"></a>n<span class="ot">=</span><span class="dv">6</span>; a <span class="ot">=</span> <span class="dv">0</span>; b <span class="ot">=</span> <span class="dv">10</span>;</span>
 <span id="cb10-2"><a href="important-continuous-rv.html#cb10-2" tabindex="-1"></a><span class="fu">runif</span>(n,a,b)</span></code></pre></div>
-<pre><code>## [1] 9.2849294 0.9548520 6.5919561 0.2542456 6.8493623 8.4471413</code></pre>
+<pre><code>## [1] 0.6752981 4.7381703 4.5299607 0.3695944 1.3498511 8.7572118</code></pre>
 <div class="example">
 <p><span id="exm:unlabeled-div-37" class="example"><strong>Example 10.1  (Average value of a function) </strong></span></p>
 <blockquote>
 <p>Use R to estimate the average value of <span class="math inline">\(f(x) = x^2\)</span> over the interval [0,2].</p>
 </blockquote>
 <p>Our strategy: Select a large random sample of points in the interval [0,2] and then compute the average of their squares.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="important-continuous-rv.html#cb12-1" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">runif</span>(<span class="dv">1000</span>,<span class="dv">0</span>,<span class="dv">2</span>) <span class="co">#picking 1000 points in [0,2]</span></span>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="important-continuous-rv.html#cb12-1" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">runif</span>(<span class="dv">10000</span>,<span class="dv">0</span>,<span class="dv">2</span>) <span class="co">#picking 1000 points in [0,2]</span></span>
 <span id="cb12-2"><a href="important-continuous-rv.html#cb12-2" tabindex="-1"></a><span class="fu">mean</span>(x<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
-<pre><code>## [1] 1.284942</code></pre>
+<pre><code>## [1] 1.322371</code></pre>
 <p><strong>Note</strong>: From Calc I, we know the average value of a function <span class="math inline">\(f\)</span> over the interval <span class="math inline">\([a,b]\)</span> is <span class="math display">\[\frac{1}{b-a} \int_a^b f(x)~dx,\]</span>
 so here it’s <span class="math display">\[\frac{1}{2}\int_0^2 x^2~dx = \frac{1}{6} x^3 ~\biggr|_0^2 = 4/3 \approx 1.333.\]</span></p>
 </div>
@@ -432,6 +432,7 @@ E(X) &amp;= \int_{\theta_1}^{\theta_2} x \cdot \frac{1}{\theta_2-\theta_1}~dx\\
 <p>One can show similarly, that <span class="math display">\[E(X^2) = \int_{\theta_1}^{\theta_2} x^2 \cdot \frac{1}{\theta_2-\theta_1}~dx = \cdots =  \frac{\theta_2^2 + \theta_1\theta_2 + \theta_1^2}{3},\]</span>
 so that <span class="math display">\[V(X) = E(X^2) - E(X)^2 = \frac{(\theta_2-\theta_1)^2}{12}.\]</span> The fun algebra details are left to the reader.</p>
 </div>
+<p><br></p>
 </div>
 <div id="exponential-distribution" class="section level2 hasAnchor" number="10.2">
 <h2><span class="header-section-number">10.2</span> Exponential Distribution<a href="important-continuous-rv.html#exponential-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -483,6 +484,7 @@ E(X) &amp;= \lim_{b \to \infty}\left[\int_0^b x\cdot\frac{1}{\beta} e^{-x/\beta}
 Since <span class="math inline">\(\displaystyle \frac{b}{e^{b/\beta}} \to 0\)</span> and <span class="math inline">\(\displaystyle \frac{\beta}{e^{b/\beta}} \to 0\)</span> as <span class="math inline">\(b \to \infty,\)</span> we have proved that <span class="math inline">\(E(X) = \beta.\)</span></p>
 <p>To prove that <span class="math inline">\(V(X) = \beta^2,\)</span> first find <span class="math inline">\(E(X^2)=\int_0^\infty x^2 f(x)~dx\)</span> by integration by parts, and then use the fact that <span class="math inline">\(V(X) = E(X^2)-E(X)^2\)</span>. We leave details to those nostalgic for Calc II. :)</p>
 </div>
+<p><br></p>
 </div>
 <div id="normal" class="section level2 hasAnchor" number="10.3">
 <h2><span class="header-section-number">10.3</span> Normal Distribution<a href="important-continuous-rv.html#normal" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -555,19 +557,22 @@ A^2 &amp;= \left(\int_{-\infty}^{\infty} e^{-x^2/2}~dx \right)\left(\int_{-\inft
 \end{align*}\]</span></p>
 <p>Since <span class="math inline">\(A^2 = 2\pi,\)</span> <span class="math inline">\(A = \sqrt{2\pi}\)</span>.</p>
 </div>
+<p><br></p>
 <p>We have the following corollaries to this lemma.</p>
 <div class="corollary">
 <p><span id="cor:unlabeled-div-43" class="corollary"><strong>Corollary 10.1  </strong></span>The function <span class="math inline">\(f(x) = \frac{1}{\sqrt{2\pi}}e^{-x^2/2},\)</span> for <span class="math inline">\(-\infty &lt; x &lt; \infty,\)</span> is a valid probability density function.</p>
 </div>
 <div class="proof">
-<p><span id="unlabeled-div-44" class="proof"><em>Proof</em>. </span>Clearly, <span class="math inline">\(f(x) \geq 0\)</span> for all <span class="math inline">\(x,\)</span> and the previous lemma ensures that <span class="math inline">\(\int_{-\infty}^\infty f(x)~dx = 1.\)</span>.</p>
+<p><span id="unlabeled-div-44" class="proof"><em>Proof</em>. </span>Clearly, <span class="math inline">\(f(x) \geq 0\)</span> for all <span class="math inline">\(x,\)</span> and the previous lemma ensures that <span class="math inline">\(\int_{-\infty}^\infty f(x)~dx = 1.\)</span></p>
 </div>
+<p><br></p>
 <div class="corollary">
 <p><span id="cor:unlabeled-div-45" class="corollary"><strong>Corollary 10.2  </strong></span>The function <span class="math inline">\(f(x) = \frac{1}{\sigma\sqrt{2\pi}}e^{-(x-\mu)^2/(2\sigma^2)},\)</span> for <span class="math inline">\(-\infty &lt; x &lt;  \infty,\)</span> is a valid probability density function.</p>
 </div>
 <div class="proof">
 <p><span id="unlabeled-div-46" class="proof"><em>Proof</em>. </span>Clearly, <span class="math inline">\(f(x) \geq 0\)</span> for all <span class="math inline">\(x,\)</span> and after <span class="math inline">\(u\)</span>-substitution of <span class="math inline">\(u = (x-\mu)/\sigma,\)</span> the previous lemma ensures that <span class="math inline">\(\int_{-\infty}^\infty f(x)~dx = 1\)</span>.</p>
 </div>
+<p><br></p>
 </div>
 <div id="gamma-distribution" class="section level2 hasAnchor" number="10.4">
 <h2><span class="header-section-number">10.4</span> Gamma Distribution<a href="important-continuous-rv.html#gamma-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -609,6 +614,7 @@ First note,
 Thus, we have
 <span class="math display">\[ \Gamma(n+1) = n \cdot \Gamma(n).\]</span></p>
 </div>
+<p><br></p>
 <p>This lemma provides us with the following</p>
 <blockquote>
 <p><strong>Fun Fact</strong>:
@@ -661,7 +667,7 @@ because their density functions are identical. So exponential distributions are 
 </div>
 <div id="beta-distribution" class="section level2 hasAnchor" number="10.5">
 <h2><span class="header-section-number">10.5</span> Beta Distribution<a href="important-continuous-rv.html#beta-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The beta probability distribution provides a way to model random variables whose possible outcomes are all real numbers between 0 and 1. Such distributions are useful for modeling proportions. As with the gamma and normal distributions, this is a 2-parameter family of distributions. Altering the parameters <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> gives us, well, different shapes for the density curves.</p>
+<p>The beta probability distribution provides a way to model random variables whose possible outcomes are all real numbers between 0 and 1. Such distributions are useful for modeling proportions. As with the gamma and normal distributions, this is a 2-parameter family of distributions. Altering the parameters <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> gives us different shapes for the density curves.</p>
 <div class="definition">
 <p><span id="def:beta-distribution" class="definition"><strong>Definition 10.7  </strong></span>A random variable <span class="math inline">\(X\)</span> has a <strong>beta probability distribution with parameters <span class="math inline">\(\alpha&gt;0\)</span> and <span class="math inline">\(\beta&gt;0\)</span></strong> if and only if it has probability density function
 <span class="math display">\[
@@ -670,18 +676,18 @@ f(x)=
 \]</span></p>
 <p>If <span class="math inline">\(X\)</span> has such a pdf we say that <span class="math inline">\(X\)</span> is <span class="math inline">\(\texttt{beta}(\alpha,\beta)\)</span>.</p>
 </div>
-<p>The gamma function (<a href="important-continuous-rv.html#def:gamma-distribution">10.5</a>) appears in this pdf three times. Recall that for positive integers <span class="math inline">\(n,\)</span> <span class="math inline">\(\Gamma(n) = (n-1)!\)</span> so for integer values of <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta,\)</span> the beta density function is fairly nice.
-Indeed,</p>
+<p>The gamma function (<a href="important-continuous-rv.html#def:gamma-distribution">10.5</a>) appears in this pdf three times. Recall that for positive integers <span class="math inline">\(n,\)</span> <span class="math inline">\(\Gamma(n) = (n-1)!\)</span> so for integer values of <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta,\)</span> the beta density function is fairly nice. In fact, <span class="math inline">\(\text{beta}(1,1)\)</span> is the uniform distribution <span class="math inline">\(U(0,1)\)</span>!</p>
+<p>Indeed,</p>
 <ul>
-<li><span class="math inline">\(\displaystyle X \sim \texttt{beta}(1,1) \Rightarrow f(x) = \frac{\Gamma(2)}{\Gamma(1)\Gamma(1)}x^0(1-x)^0 = 1\)</span>. Whoa! <span class="math inline">\(\text{beta}(1,1)\)</span> is the uniform distribution <span class="math inline">\(U(0,1).\)</span></li>
+<li><span class="math inline">\(\displaystyle X \sim \texttt{beta}(1,1) \Rightarrow f(x) = \frac{\Gamma(2)}{\Gamma(1)\Gamma(1)}x^0(1-x)^0 = 1\)</span>.</li>
 <li><span class="math inline">\(\displaystyle X \sim \texttt{beta}(1,2) \Rightarrow f(x) = 2(1-x)\)</span>.</li>
 <li><span class="math inline">\(\displaystyle X \sim \texttt{beta}(2,1) \Rightarrow f(x) = 2x\)</span>.</li>
 <li><span class="math inline">\(\displaystyle X \sim \texttt{beta}(2,2) \Rightarrow f(x) = 6x(1-x)\)</span>.</li>
 <li><span class="math inline">\(\displaystyle X \sim \texttt{beta}(n,1) \Rightarrow f(x) = nx^{n-1}\)</span>.</li>
 <li><span class="math inline">\(\displaystyle X \sim \texttt{beta}(1,n) \Rightarrow f(x) = n(1-x)^{n-1}\)</span>.</li>
 </ul>
-<p>Here are a few beta distributions:
-<img src="math340-notes_files/figure-html/unnamed-chunk-22-1.png" width="480" /></p>
+<p>Here are a few beta distributions:</p>
+<p><img src="math340-notes_files/figure-html/unnamed-chunk-22-1.png" width="480" /></p>
 <div class="theorem">
 <p><span id="thm:beta-EandV" class="theorem"><strong>Theorem 10.6  </strong></span>If <span class="math inline">\(X\)</span> is <span class="math inline">\(\texttt{beta}(\alpha,\beta)),\)</span> then <span class="math display">\[E(X) = \frac{\alpha}{\alpha+\beta}, ~~~ \text{ and } ~~~ V(X) = \frac{\alpha\beta}{(\alpha+\beta)^2(\alpha+\beta+1)}.\]</span></p>
 </div>

@@ -387,13 +387,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>its probability distribution does not depend on <span class="math inline">\(\theta\)</span>.</li>
 </ol>
 <div class="example">
-<p><span id="exm:unlabeled-div-63" class="example"><strong>Example 14.1  </strong></span>If a population mean <span class="math inline">\(\mu\)</span> is the parameter of interest, and we have sample <span class="math inline">\(X_1, \ldots, X_n,\)</span> then a good pivotal quantity, assuming <span class="math inline">\(X_i\)</span> is approximately <span class="math inline">\(N(\mu,\sigma),\)</span> is <span class="math display">\[T = \frac{\overline{X}-\mu}{S/\sqrt{n}}.\]</span> It meets both requirements here: it is a function of the data and the parameter <span class="math inline">\(\mu,\)</span> and it lives in a <span class="math inline">\(t(n-1)\)</span> distribution, which is independent of <span class="math inline">\(\mu\)</span>.</p>
+<p><span id="exm:unlabeled-div-62" class="example"><strong>Example 14.1  </strong></span>If a population mean <span class="math inline">\(\mu\)</span> is the parameter of interest, and we have sample <span class="math inline">\(X_1, \ldots, X_n,\)</span> then a good pivotal quantity, assuming <span class="math inline">\(X_i\)</span> is approximately <span class="math inline">\(N(\mu,\sigma),\)</span> is <span class="math display">\[T = \frac{\overline{X}-\mu}{S/\sqrt{n}}.\]</span> It meets both requirements here: it is a function of the data and the parameter <span class="math inline">\(\mu,\)</span> and it lives in a <span class="math inline">\(t(n-1)\)</span> distribution, which is independent of <span class="math inline">\(\mu\)</span>.</p>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-64" class="example"><strong>Example 14.2  </strong></span>If a population proportion <span class="math inline">\(p\)</span> is the parameter of interest, and we have sample proportion <span class="math inline">\(\hat{p}\)</span> (from a sample of size <span class="math inline">\(n\)</span>), then the pivotal quantity <span class="math display">\[Z = \frac{\hat{p}-p}{\sqrt{\hat{p}(1-\hat{p})/n}}\]</span> is approximately <span class="math inline">\(N(0,1),\)</span> a distribution independent of <span class="math inline">\(p\)</span>.</p>
+<p><span id="exm:unlabeled-div-63" class="example"><strong>Example 14.2  </strong></span>If a population proportion <span class="math inline">\(p\)</span> is the parameter of interest, and we have sample proportion <span class="math inline">\(\hat{p}\)</span> (from a sample of size <span class="math inline">\(n\)</span>), then the pivotal quantity <span class="math display">\[Z = \frac{\hat{p}-p}{\sqrt{\hat{p}(1-\hat{p})/n}}\]</span> is approximately <span class="math inline">\(N(0,1),\)</span> a distribution independent of <span class="math inline">\(p\)</span>.</p>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-65" class="example"><strong>Example 14.3  </strong></span>Consider <span class="math inline">\(X_1, \ldots, X_n\)</span> drawn from the uniform distribution <span class="math inline">\(U(0,\theta)\)</span> and <span class="math inline">\(Y = \text{max}(X_1, \ldots, X_n)\)</span>. We proved in Example <a href="estimation.html#exm:estimating-uniform-parameter">13.1</a> that <span class="math display">\[F_Y(y) = \left(\frac{y}{\theta}\right)^n ~~~\text{ and }~~~ f_Y(y) = \frac{n}{\theta^n}y^{n-1},\]</span> for <span class="math inline">\(0 \leq y \leq \theta\)</span>.
+<p><span id="exm:unlabeled-div-64" class="example"><strong>Example 14.3  </strong></span>Consider <span class="math inline">\(X_1, \ldots, X_n\)</span> drawn from the uniform distribution <span class="math inline">\(U(0,\theta)\)</span> and <span class="math inline">\(Y = \text{max}(X_1, \ldots, X_n)\)</span>. We proved in Example <a href="estimation.html#exm:estimating-uniform-parameter">13.1</a> that <span class="math display">\[F_Y(y) = \left(\frac{y}{\theta}\right)^n ~~~\text{ and }~~~ f_Y(y) = \frac{n}{\theta^n}y^{n-1},\]</span> for <span class="math inline">\(0 \leq y \leq \theta\)</span>.
 Now, let <span class="math inline">\(U = \frac{1}{\theta}Y,\)</span> which is just a function of the data and <span class="math inline">\(\theta\)</span>.</p>
 <p>The distribution function for <span class="math inline">\(U\)</span> is
 <span class="math display">\[\begin{align*}
@@ -431,7 +431,7 @@ With this we obtain a general form for a 95% confidence interval for <span class
 <span id="cb31-5"><a href="confidence-intervals.html#cb31-5" tabindex="-1"></a>L <span class="ot">=</span> y<span class="sc">/</span>(.<span class="dv">975</span>)<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span>n) <span class="co">#lower bound estimator for 95% CI</span></span>
 <span id="cb31-6"><a href="confidence-intervals.html#cb31-6" tabindex="-1"></a>U <span class="ot">=</span> y<span class="sc">/</span>(.<span class="dv">025</span>)<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span>n) <span class="co">#upper bound estimator for 95% CI</span></span>
 <span id="cb31-7"><a href="confidence-intervals.html#cb31-7" tabindex="-1"></a><span class="fu">c</span>(L,U) <span class="co">#confidence interval</span></span></code></pre></div>
-<pre><code>## [1] 62.86716 72.78911</code></pre>
+<pre><code>## [1] 61.99960 71.78463</code></pre>
 <p>Did our confidence interval actually capture the value of the parameter (64)?
 The confidence level of 95% gives us confidence that it does, in this sense: If we were to repeat the sampling procedure a large number of times, each time using our new sample to determine a new confidence interval for <span class="math inline">\(\theta,\)</span> then we should expect about 95% of the intervals to contain the parameter <span class="math inline">\(\theta\)</span>.</p>
 <p>We can check this using R, first writing a little function out of the code above for producing the interval.</p>
@@ -451,8 +451,8 @@ The confidence level of 95% gives us confidence that it does, in this sense: If 
 <span id="cb33-14"><a href="confidence-intervals.html#cb33-14" tabindex="-1"></a><span class="fu">table</span>(results)</span></code></pre></div>
 <pre><code>## results
 ##  0  1 
-##  4 96</code></pre>
-<p>In this simulation we drew 100 different random samples of size 25, each time generating a confidence interval for <span class="math inline">\(\theta\)</span> and found that 96 of the 100 intervals captured <span class="math inline">\(\theta\)</span>. We would expect in the long run that 95% of such confidence intervals would capture <span class="math inline">\(\theta\)</span>.</p>
+##  7 93</code></pre>
+<p>In this simulation we drew 100 different random samples of size 25, each time generating a confidence interval for <span class="math inline">\(\theta\)</span> and found that 93 of the 100 intervals captured <span class="math inline">\(\theta\)</span>. We would expect in the long run that 95% of such confidence intervals would capture <span class="math inline">\(\theta\)</span>.</p>
 </div>
 <p>We have, generally,</p>
 <ul>
@@ -537,13 +537,13 @@ For small sample sizes, when <span class="math inline">\(\sigma\)</span> is unkn
 </blockquote>
 <p>Let’s work through several examples.</p>
 <div class="example">
-<p><span id="exm:unlabeled-div-66" class="example"><strong>Example 14.4  </strong></span>Suppose we gather a sample of size <span class="math inline">\(n = 20\)</span> from a <span class="math inline">\(N(\mu,2)\)</span> population, and find <span class="math inline">\(\overline{x} = 16.3\)</span>. Find a 98% confidence interval for <span class="math inline">\(\mu\)</span>.</p>
+<p><span id="exm:unlabeled-div-65" class="example"><strong>Example 14.4  </strong></span>Suppose we gather a sample of size <span class="math inline">\(n = 20\)</span> from a <span class="math inline">\(N(\mu,2)\)</span> population, and find <span class="math inline">\(\overline{x} = 16.3\)</span>. Find a 98% confidence interval for <span class="math inline">\(\mu\)</span>.</p>
 <p>Here 98% confidence <span class="math inline">\(\leftrightarrow \alpha = 0.02,\)</span> and <span class="math inline">\(z_{\alpha/2} = z_{.01}\)</span> = <code>qnorm(.99)</code> = 2.326.</p>
 <p>So our 98% confidence interval for the population mean <span class="math inline">\(\mu\)</span> is <span class="math display">\[\overline{x} \pm 2.326 \cdot \frac{2}{\sqrt{20}},\]</span>
 or <span class="math display">\[16.3 \pm 1.04,\]</span> or <span class="math display">\[15.26 \text{ to } 17.34.\]</span></p>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-67" class="example"><strong>Example 14.5  </strong></span>Suppose in this example we don’t know <span class="math inline">\(\sigma = 2,\)</span> but in our sample of size 20 from <span class="math inline">\(N(\mu,\sigma),\)</span> <span class="math inline">\(\overline{x} = 16.3\)</span> and <span class="math inline">\(s = 2.13\)</span>. Find a 98% confidence interval for <span class="math inline">\(\mu\)</span>.</p>
+<p><span id="exm:unlabeled-div-66" class="example"><strong>Example 14.5  </strong></span>Suppose in this example we don’t know <span class="math inline">\(\sigma = 2,\)</span> but in our sample of size 20 from <span class="math inline">\(N(\mu,\sigma),\)</span> <span class="math inline">\(\overline{x} = 16.3\)</span> and <span class="math inline">\(s = 2.13\)</span>. Find a 98% confidence interval for <span class="math inline">\(\mu\)</span>.</p>
 <p>Using a sample standard deviation <span class="math inline">\(s\)</span> in place of <span class="math inline">\(\sigma\)</span> requires us to use <span class="math inline">\(t\)</span> instead of <span class="math inline">\(z\)</span>. In particular, instead of using <span class="math inline">\(z_{.01} = 2.326,\)</span> we must use <span class="math inline">\(t_{.01}(19),\)</span> the value in the t(19) distribution that has 1% of the distribution greater than it.</p>
 <p>So <span class="math inline">\(t_{.01}(19)\)</span> = <code>qt(.99,19)</code> = 2.539. (This t-score will always be larger than the corresponding z-score, making the confidence interval wider than it would have been if we knew <span class="math inline">\(\sigma\)</span>.</p>
 <p>Our confidence interval looks like:
@@ -551,7 +551,7 @@ or <span class="math display">\[16.3 \pm 1.04,\]</span> or <span class="math dis
 which simplifies to <span class="math display">\[16.3 \pm 1.21,\]</span> or, equivalently <span class="math display">\[15.09 \text{ to } 17.51.\]</span></p>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-68" class="example"><strong>Example 14.6  </strong></span>In a poll of 500 likely voters, 260 say they support a particular local measure. Based on this sample, find a 90% confidence interval for <span class="math inline">\(p,\)</span> the proportion of all likely voters in favor of this measure.</p>
+<p><span id="exm:unlabeled-div-67" class="example"><strong>Example 14.6  </strong></span>In a poll of 500 likely voters, 260 say they support a particular local measure. Based on this sample, find a 90% confidence interval for <span class="math inline">\(p,\)</span> the proportion of all likely voters in favor of this measure.</p>
 <p>We use the large sample confidence interval for <span class="math inline">\(p\)</span>. From the data, <span class="math inline">\(n = 500,\)</span> <span class="math inline">\(\hat{p} = 260/500 = .52,\)</span> and for 90% confidence <span class="math inline">\(\alpha = 0.1,\)</span> so <span class="math display">\[z_{\alpha/2} = z_{.05} = 1.645,\]</span>
 (computed in R with <code>qnorm(.95)</code>). Now evaluate:</p>
 <p><span class="math display">\[\begin{align*}
@@ -562,7 +562,7 @@ which simplifies to <span class="math display">\[16.3 \pm 1.21,\]</span> or, equ
 <p>It looks like it will be a close vote! We do not have convincing evidence, really, that <span class="math inline">\(p &gt; .5\)</span> since .5 lands inside the interval.</p>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-69" class="example"><strong>Example 14.7  (Angles of spider webs) </strong></span>The <a href="https://www.google.com/books/edition/A_Handbook_of_Small_Data_Sets/vWu-MJM_obsC?hl=en">Handbook of Small Data Sets</a> published in 1994 has lots of interesting, small data sets. Here’s one small data set:</p>
+<p><span id="exm:unlabeled-div-68" class="example"><strong>Example 14.7  (Angles of spider webs) </strong></span>The <a href="https://www.google.com/books/edition/A_Handbook_of_Small_Data_Sets/vWu-MJM_obsC?hl=en">Handbook of Small Data Sets</a> published in 1994 has lots of interesting, small data sets. Here’s one small data set:</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="confidence-intervals.html#cb35-1" tabindex="-1"></a>X <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">25</span>,<span class="dv">12</span>,<span class="dv">31</span>,<span class="dv">26</span>,<span class="dv">17</span>,<span class="dv">15</span>,<span class="dv">24</span>,<span class="dv">10</span>,<span class="dv">16</span>,<span class="dv">12</span>)</span></code></pre></div>
 <p>Spider webs’ angles made with the vertical to the earth’s surface have a <a href="https://en.wikipedia.org/wiki/Von_Mises_distribution">von Mises circular distribution</a> with known mean direction, <span class="math inline">\(\mu,\)</span> and <span class="math inline">\(\mu\)</span> varies from species to species. For instance,</p>
 <ul>
@@ -581,7 +581,7 @@ which simplifies to <span class="math display">\[16.3 \pm 1.21,\]</span> or, equ
 <p>Based on the interval, which contains the known mean for <em>Araneus rufipalpus</em>, but not the known mean <em>Isoxya cicatricosa</em>, we have good evidence that these webs were made by the former type of spider.</p>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-70" class="example"><strong>Example 14.8  (Annual Snowfall in Buffalo, NY) </strong></span>Here’s another data set from the Handbook of Small Data Sets: The annual snowfall in Buffalo, NY (in inches) for the 63 years from 1910 to 1972.</p>
+<p><span id="exm:unlabeled-div-69" class="example"><strong>Example 14.8  (Annual Snowfall in Buffalo, NY) </strong></span>Here’s another data set from the Handbook of Small Data Sets: The annual snowfall in Buffalo, NY (in inches) for the 63 years from 1910 to 1972.</p>
 <pre><code>##   year  snow
 ## 1 1910 126.4
 ## 2 1911  82.4
@@ -614,7 +614,7 @@ If <span class="math inline">\(\sigma_1\)</span> and <span class="math inline">\
 <span class="math display">\[s_p^2 = \frac{(n_1-1)s_1^2 + (n_2-1)s_2^2}{n_1+n_2-2}\]</span> as our (best) estimate of <span class="math inline">\(\sigma^2\)</span>. Then our level <span class="math inline">\((1-\alpha)\)</span> confidence interval for <span class="math inline">\(\mu_1-\mu_2\)</span> is <span class="math display">\[\left(\overline{X_1}-\overline{X_2}\right)\pm t_{\alpha/2}S_p \sqrt{\frac{1}{n_1} + \frac{1}{n_2}},\]</span>
 where <span class="math inline">\(t_{\alpha/2}\)</span> live in a t-distribution with <span class="math inline">\(n_1+n_2-2\)</span> degrees of freedom.</p>
 <div class="example">
-<p><span id="exm:unlabeled-div-71" class="example"><strong>Example 14.9  </strong></span>The silver content (% Ag) of a number of Byzantine coins discovered in Cyprus was determined. Nine of the coins came from the first coinage of the reign of King Manuel, I, Comnenus (1143-1180); and 7 of the coins came from a coinage many years later.</p>
+<p><span id="exm:unlabeled-div-70" class="example"><strong>Example 14.9  </strong></span>The silver content (% Ag) of a number of Byzantine coins discovered in Cyprus was determined. Nine of the coins came from the first coinage of the reign of King Manuel, I, Comnenus (1143-1180); and 7 of the coins came from a coinage many years later.</p>
 <p><strong>The data</strong></p>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="confidence-intervals.html#cb42-1" tabindex="-1"></a>Ag1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">5.9</span>,<span class="fl">6.8</span>,<span class="fl">6.4</span>,<span class="fl">7.0</span>,<span class="fl">6.6</span>,<span class="fl">7.7</span>,<span class="fl">7.2</span>,<span class="fl">6.9</span>,<span class="fl">6.2</span>)</span>
 <span id="cb42-2"><a href="confidence-intervals.html#cb42-2" tabindex="-1"></a>Ag2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">5.3</span>,<span class="fl">5.6</span>,<span class="fl">5.5</span>,<span class="fl">5.1</span>,<span class="fl">6.2</span>,<span class="fl">5.8</span>,<span class="fl">5.8</span>) </span></code></pre></div>
@@ -681,7 +681,7 @@ The entire interval lies above 0, so we have good evidence here of a difference 
 So for the coin example, we would use <span class="math inline">\(t^*\)</span> = <code>qt(.975,6)</code> = 2.447, giving us a wider confidence interval in the end:
 <span class="math display">\[0.574 \text{ to } 1.686,\]</span> but still one that suggests a difference between <span class="math inline">\(\mu_1\)</span> and <span class="math inline">\(\mu_2\)</span>.</p>
 <div class="example">
-<p><span id="exm:unlabeled-div-72" class="example"><strong>Example 14.10  (Recent Buffalo Snowfall) </strong></span>With climate change, it may be unreasonable to assume the average annual snowfall now is the same as it was 100 years ago.</p>
+<p><span id="exm:unlabeled-div-71" class="example"><strong>Example 14.10  (Recent Buffalo Snowfall) </strong></span>With climate change, it may be unreasonable to assume the average annual snowfall now is the same as it was 100 years ago.</p>
 <p>Let <span class="math inline">\(\mu_1\)</span> denote the “old” mean average annual snowfall (and we assume the data from 1910 to 1972 is a random sample from the “old” population”), and <span class="math inline">\(\mu_2\)</span> denots the “new” mean average annual snowfall in Buffalo (from which the annual snowfall from 2000 to 2021, found at <a href="https://www.buffalo.org/snow">buffalo.or/snow</a>, is a random sample.) Do these data provide evidence that <span class="math inline">\(\mu_1 \neq \mu_2\)</span>?</p>
 <p>Here are the 2001-2022 data:</p>
 <div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="confidence-intervals.html#cb43-1" tabindex="-1"></a>Y <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">158.7</span>,<span class="fl">132.4</span>,<span class="fl">111.3</span>,<span class="fl">100.9</span>,<span class="fl">109.1</span>,<span class="fl">78.2</span>,<span class="fl">88.9</span>,<span class="fl">103.8</span>,<span class="fl">100.2</span>,<span class="fl">74.1</span>,<span class="fl">111.8</span>,</span>
@@ -690,7 +690,7 @@ So for the coin example, we would use <span class="math inline">\(t^*\)</span> =
 <p>TODO</p>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-73" class="example"><strong>Example 14.11  (A one-sided confidence interval) </strong></span>The measures of the outside diameter <span class="math inline">\(x_i\)</span> (in inches) for 9 grains of the same type:</p>
+<p><span id="exm:unlabeled-div-72" class="example"><strong>Example 14.11  (A one-sided confidence interval) </strong></span>The measures of the outside diameter <span class="math inline">\(x_i\)</span> (in inches) for 9 grains of the same type:</p>
 <div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="confidence-intervals.html#cb44-1" tabindex="-1"></a>diam <span class="ot">=</span> <span class="fu">c</span>(<span class="fl">2.021</span>,<span class="fl">2.002</span>,<span class="fl">2.001</span>,<span class="fl">2.005</span>,<span class="fl">1.990</span>,<span class="fl">1.990</span>,<span class="fl">2.009</span>,<span class="fl">1.983</span>,<span class="fl">1.987</span>)</span></code></pre></div>
 <p>Assume the distribution is normal. Is <span class="math inline">\(\mu \geq 2\)</span>?</p>
 <p>Let’s find a 1-sided lower bound 95% confidence interval for <span class="math inline">\(\mu,\)</span> and see what that gets us.</p>

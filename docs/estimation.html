@@ -384,7 +384,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><span id="def:statistic" class="definition"><strong>Definition 13.1  </strong></span>A <strong>statistic</strong> is any function of a random sample <span class="math inline">\(X_1, X_2, \ldots X_n\)</span> drawn from a population.</p>
 </div>
 <div class="definition">
-<p><span id="def:unlabeled-div-60" class="definition"><strong>Definition 13.2  </strong></span>A statistic <span class="math inline">\(\hat{\theta}\)</span> based on a random sample <span class="math inline">\(X_1, X_2, \ldots X_n\)</span> is an <strong>unbiased estimator</strong> of the population parameter <span class="math inline">\(\theta\)</span> if <span class="math inline">\(E(\hat{\theta}) = \theta\)</span>.</p>
+<p><span id="def:unlabeled-div-59" class="definition"><strong>Definition 13.2  </strong></span>A statistic <span class="math inline">\(\hat{\theta}\)</span> based on a random sample <span class="math inline">\(X_1, X_2, \ldots X_n\)</span> is an <strong>unbiased estimator</strong> of the population parameter <span class="math inline">\(\theta\)</span> if <span class="math inline">\(E(\hat{\theta}) = \theta\)</span>.</p>
 <p>The <strong>bias of <span class="math inline">\(\hat{\theta}_n\)</span></strong> is <span class="math inline">\(B(\hat{\theta}) = E(\hat{\theta})-\theta\)</span>.</p>
 <p>The <strong>mean square error of <span class="math inline">\(\hat{\theta}_n\)</span></strong> is MSE<span class="math inline">\((\hat{\theta}) = E[(\hat{\theta}-\theta)^2]\)</span>.</p>
 </div>
@@ -416,11 +416,11 @@ Assuming that for now, we can say that <span class="math display">\[\hat{\theta}
 <span id="cb28-4"><a href="estimation.html#cb28-4" tabindex="-1"></a>est_1 <span class="ot">=</span> <span class="dv">2</span><span class="sc">*</span><span class="fu">mean</span>(X)</span>
 <span id="cb28-5"><a href="estimation.html#cb28-5" tabindex="-1"></a>est_2 <span class="ot">=</span> (n<span class="sc">+</span><span class="dv">1</span>)<span class="sc">/</span>n<span class="sc">*</span><span class="fu">max</span>(X)</span>
 <span id="cb28-6"><a href="estimation.html#cb28-6" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">round</span>(X,<span class="dv">2</span>))</span></code></pre></div>
-<pre><code>##  [1]  5.53 14.27 11.17 10.33  9.70 15.71  4.80  6.99 17.14  6.53</code></pre>
+<pre><code>##  [1] 13.47 13.74 12.24  8.86  8.65 12.61  5.67  5.69  9.13  8.77</code></pre>
 <p>For this single sample the estimators takes on these values:</p>
 <ul>
-<li>Estimator 1: <span class="math inline">\(\hat{\theta}_1\)</span> = 20.4</li>
-<li>Estimator 2: <span class="math inline">\(\hat{\theta}_2\)</span> = 18.9.</li>
+<li>Estimator 1: <span class="math inline">\(\hat{\theta}_1\)</span> = 19.8</li>
+<li>Estimator 2: <span class="math inline">\(\hat{\theta}_2\)</span> = 15.1.</li>
 </ul>
 <p>The fact that both estimators are unbiased means that in the long run, the average of all the <span class="math inline">\(\hat{\theta}_1\)</span> estimates would approach <span class="math inline">\(\theta,\)</span> and the same is true for the average of the <span class="math inline">\(\hat{\theta}_2\)</span> estimates.</p>
 <p>So, they’re both good estimaors of <span class="math inline">\(\theta\)</span> in that regard. What makes one estimator better is if the <em>variation</em> of the estimates obtained from repeated sampling is smaller for one than the other.</p>
@@ -450,13 +450,13 @@ Figure 13.1: Sampling distributions for two unbiased estimators
 </div>
 <p>Both estimators have average value near 20. In fact,</p>
 <ul>
-<li><code>mean(dist_1)</code>- = 20</li>
-<li><code>mean(dist_2)</code> = 20.06.</li>
+<li><code>mean(dist_1)</code>- = 19.8</li>
+<li><code>mean(dist_2)</code> = 20.03.</li>
 </ul>
 <p>But the estimator 2 distribution has visibly smaller variance. Indeed,</p>
 <ul>
-<li><code>sd(dist_1)</code> = 3.68</li>
-<li><code>sd(dist_2)</code> = 1.9.</li>
+<li><code>sd(dist_1)</code> = 3.65</li>
+<li><code>sd(dist_2)</code> = 1.86.</li>
 </ul>
 <p>It appears that the better estimator here is the one derived from the maximum value of the data as opposed to the mean of the data.</p>
 </div>
@@ -500,7 +500,7 @@ giving us the result we assumed when defining estimator 2 in the previous exampl
 <p><span class="math inline">\(\hat{p}\)</span> is an unbiased estimator for <span class="math inline">\(p,\)</span> and its standard deviation is <span class="math inline">\(\displaystyle\sqrt{\frac{p(1-p)}{n}}\)</span>.</p>
 </blockquote>
 <div class="example">
-<p><span id="exm:unlabeled-div-61" class="example"><strong>Example 13.2  </strong></span>In a sample of 65 Linfield students, 24 are first-generation students. Estimate <span class="math inline">\(p,\)</span> the proportion of all Linfield students that are first-generation, and place a 2 standard deviation bound on the error of estimation.</p>
+<p><span id="exm:unlabeled-div-60" class="example"><strong>Example 13.2  </strong></span>In a sample of 65 Linfield students, 24 are first-generation students. Estimate <span class="math inline">\(p,\)</span> the proportion of all Linfield students that are first-generation, and place a 2 standard deviation bound on the error of estimation.</p>
 <p>From our sample, our point estimate for <span class="math inline">\(p\)</span> is <span class="math inline">\(\hat{p} = 24/65 \approx .369.\)</span> We know by the CLT that <span class="math display">\[\hat{p} \sim N(p, \sqrt{p(1-p)/n}),\]</span>
 and in a normal distribution, about 95% of the distribution is within two standard deviations of the mean. In other words,
 <span class="math display">\[P\left(~|\hat{p}-p|&lt;2\cdot\sqrt{p(1-p)/n}~\right) \approx 0.95.\]</span>
@@ -530,7 +530,7 @@ Since <span class="math inline">\(\overline{X}-\overline{Y}\)</span> is a linear
 <p>An unbiased estimator for <span class="math inline">\(p_1-p_2\)</span> is <span class="math inline">\(\hat{p}_1-\hat{p}_2,\)</span> where <span class="math inline">\(\hat{p}_i\)</span> equals the sample proportion from a sample of size <span class="math inline">\(n_i\)</span> drawn from population <span class="math inline">\(i\)</span> (which has population proportion <span class="math inline">\(p_i\)</span>).</p>
 <p>One can show that the point estimate <span class="math inline">\(\hat{p}_1 - \hat{p}_2\)</span> is approximately normal with mean <span class="math inline">\(p_1-p_2\)</span> and standard deviation <span class="math inline">\(\displaystyle \sqrt{\frac{p_1(1-p_1)}{n_1}+\frac{p_2(1-p_2)}{n_2}}\)</span> for reasonably sized samples (more on this later). For now lets consider an example.</p>
 <div class="example">
-<p><span id="exm:unlabeled-div-62" class="example"><strong>Example 13.3  (Two Large Buckets) </strong></span>Each of two large buckets is full of two types of marbles, orange and green. Let <span class="math inline">\(p_i\)</span> denote the proportion of orange marbles in bucket <span class="math inline">\(i\)</span> (<span class="math inline">\(i = 1,2\)</span>).</p>
+<p><span id="exm:unlabeled-div-61" class="example"><strong>Example 13.3  (Two Large Buckets) </strong></span>Each of two large buckets is full of two types of marbles, orange and green. Let <span class="math inline">\(p_i\)</span> denote the proportion of orange marbles in bucket <span class="math inline">\(i\)</span> (<span class="math inline">\(i = 1,2\)</span>).</p>
 <blockquote>
 <p>Estimate <span class="math inline">\(p_1-p_2,\)</span> and place a 2 standard deviation bound on the error of estimation.</p>
 </blockquote>

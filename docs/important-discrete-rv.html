@@ -67,7 +67,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -271,7 +271,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-without-replacement"><i class="fa fa-check"></i>sample without replacement</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-with-replacement"><i class="fa fa-check"></i>sample with replacement</a></li>
 <li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#sample-with-custom-probabilities"><i class="fa fa-check"></i>sample with custom probabilities</a></li>
-<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#example-lefties"><i class="fa fa-check"></i>example: Lefties</a></li>
+<li class="chapter" data-level="" data-path="sampling-in-R.html"><a href="sampling-in-R.html#example-lefties"><i class="fa fa-check"></i>example: lefties</a></li>
 </ul></li>
 <li class="chapter" data-level="A.4" data-path="sampling-in-R.html"><a href="sampling-in-R.html#repeated-sampling"><i class="fa fa-check"></i><b>A.4</b> Repeated sampling</a>
 <ul>
@@ -398,12 +398,12 @@ In examples we work through, it will from time to time be convenient to compute 
 <span class="math display">\[p(x) = \binom{n}{x}p^x(1-p)^{n-x}.\]</span></p>
 </div>
 <p>Does this probability distribution make sense? To find the probability of exactly <span class="math inline">\(x\)</span> successes in <span class="math inline">\(n\)</span> independent Bernoulli trials, we first choose which <span class="math inline">\(x\)</span> of the <span class="math inline">\(n\)</span> trials will be successes (and we have <span class="math inline">\(\binom{n}{x}\)</span> choices here). Then, we know the probability of success on each of these <span class="math inline">\(x\)</span> trials is <span class="math inline">\(p,\)</span> and the probability of failure on each of the other <span class="math inline">\(n-x\)</span> trials is <span class="math inline">\(q = 1-p\)</span>. Since the trials are independent, the probability of getting exactly <span class="math inline">\(x\)</span> successes and <span class="math inline">\(n-x\)</span> failures is the product <span class="math inline">\(\binom{n}{x}p^x(1-p)^{n-x}.\)</span></p>
-<p>Furthermore, by the Binomial Theorem (<a href="counting.html#thm:Cnrfacts">4.1</a>), <span class="math display">\[\sum_{x = 0}^n p(x) = (p+(1-p))^n = 1.\]</span></p>
+<p>Furthermore, the sum of all the probabilities is 1. Indeed, by the Binomial Theorem (<a href="counting.html#thm:Cnrfacts">4.1</a>), <span class="math display">\[\sum_{x = 0}^n p(x) = (p+(1-p))^n = 1.\]</span></p>
 <div class="theorem">
 <p><span id="thm:binomial-distribution-EandV" class="theorem"><strong>Theorem 7.1  </strong></span>If <span class="math inline">\(X\)</span> is <span class="math inline">\(\texttt{binom}(n,p),\)</span> <span class="math display">\[E(X) = np~~~\text{ and }~~~ V(X) = np(1-p).\]</span></p>
 </div>
 <div class="proof">
-<p><span id="unlabeled-div-23" class="proof"><em>Proof</em>. </span>From the definition of expected value,</p>
+<p><span id="unlabeled-div-24" class="proof"><em>Proof</em>. </span>From the definition of expected value,</p>
 <p><span class="math display">\[\begin{align*}
 E(X) &amp;= \sum_{x=0}^n x \cdot p(x) \\
      &amp;= \sum_{x=1}^n x \cdot p(x) &amp; \text{since the } x = 0 \text{ term is  } 0 \\
@@ -411,11 +411,11 @@ E(X) &amp;= \sum_{x=0}^n x \cdot p(x) \\
      &amp;= \sum_{x=1}^n x \frac{n!}{(n-x)!x!} p^x (1-p)^{n-x} \\
      &amp;= \sum_{x=1}^n \frac{n!}{(n-x)!(x-1)!} p^x (1-p)^{n-x} &amp;\text{cancelling an } x\\
      &amp;= np \sum_{x=1}^n \frac{(n-1)!}{(n-x)!(x-1)!}p^{x-1}(1-p)^{n-x} &amp;\text{ pull out }n\text{ from }n!\text{ and one }p\\
-     &amp;= np \sum_{x=1}^n \binom{n-1}{x-1}p^{x-1}(1-p)^{(n-1)-(x-1)}
+     &amp;= np \sum_{x=1}^n \binom{n-1}{x-1}p^{x-1}(1-p)^{(n-1)-(x-1)}.
 \end{align*}\]</span></p>
-<p>Hey! The summation term equals 1 since it is the sum of all the probabilities in a <span class="math inline">\(\texttt{binom}(n-1,p)\)</span> distrtibution!</p>
+<p>Notice that the summation term in the last expression equals 1 since it is the sum of all the probabilities in a <span class="math inline">\(\texttt{binom}(n-1,p)\)</span> distribution!</p>
 <p>Thus <span class="math inline">\(E(X) = np\)</span>.</p>
-<p>To prove the <span class="math inline">\(V(X)\)</span> formula, it is helpful to first observe the following</p>
+<p>To prove the <span class="math inline">\(V(X)\)</span> formula, it is helpful to first observe that</p>
 <p><span class="math display">\[E(X(X-1)) = E(X^2-X) = E(X^2)-E(X),\]</span> so
 <span class="math display">\[E(X^2) = E(X(X-1))+E(X).\]</span>
 We computed <span class="math inline">\(E(X)\)</span> above, and <span class="math inline">\(E(X(X-1))\)</span> can be determined similarly:</p>
@@ -425,57 +425,64 @@ E(X(X-1)) &amp;= \sum_{x=0}^n x(x-1)\binom{n}{x}p^x(1-p)^{n-x} \\
           &amp;= \sum_{x=2}^n x(x-1)\frac{n!}{(n-x)!x!}p^x(1-p)^{n-x} \\
           &amp;= \sum_{x=2}^n \frac{n!}{(n-x)!(x-2)!}p^x(1-p)^{n-x} \\
           &amp;= n(n-1)p^2 \sum_{x=2}^n \frac{(n-2)!}{(n-x)!(x-2)!}p^{x-2}(1-p)^{n-x} \\
-          &amp;= n(n-1)p^2 \sum_{x=2}^n\binom{n-2}{x-2}p^{x-2}(1-p)^{(n-2)-(x-2)}
+          &amp;= n(n-1)p^2 \sum_{x=2}^n\binom{n-2}{x-2}p^{x-2}(1-p)^{(n-2)-(x-2)}.
 \end{align*}\]</span></p>
-<p>This summation also equals one, since it is the sum of all the probabilities in a <span class="math inline">\(\texttt{binom}(n-2,p)\)</span> distribution, so <span class="math inline">\(E(X(X-1)) = n(n-1)p^2,\)</span> and it follows that
+<p>The summation in the last expression also equals 1, since it is the sum of all the probabilities in a <span class="math inline">\(\texttt{binom}(n-2,p)\)</span> distribution, so <span class="math inline">\(E(X(X-1)) = n(n-1)p^2,\)</span> and it follows that
 <span class="math display">\[E(X^2) = E(X(X-1))+E(X) = n(n-1)p^2 + np.\]</span></p>
 <p>Finally,
 <span class="math display">\[\begin{align*}
 V(X) &amp;= E(X^2) - E(X)^2 \\
      &amp;= n(n-1)p^2 + np - (np)^2 \\
      &amp;= n^2p^2 - np^2 + np - n^2p^2 \\
-     &amp;= np(1-p)
+     &amp;= np(1-p).
 \end{align*}\]</span></p>
+<p>This completes the proof.</p>
 </div>
+<p><br></p>
 <div class="example">
 <p><span id="exm:binom-mult-choice-test" class="example"><strong>Example 7.1  (Guessing on a multiple choice test) </strong></span>A multiple choice exam has 15 questions. Each question has 4 possible answers. If a student answers each question with a random guess, what is the probability they will score 10 or higher?</p>
 <p>Let <span class="math inline">\(X\)</span> = the score on the test. Then, <span class="math inline">\(X\)</span> is <span class="math inline">\(\texttt{binom}(n=15,p=1/4)\)</span>.</p>
 <p>Now, <span class="math display">\[P(X \geq 10) = \sum_{x = 10}^{15} \binom{15}{x}\left(\frac{1}{4}\right)^x\left(\frac{3}{4}\right)^{15-x} \approx .0008.\]</span></p>
 <p><strong>Calculating this sum in R</strong></p>
-<p>R has a nice command for calculating cumulative probabilities of the form <span class="math inline">\(P(X \leq x)\)</span>.If <span class="math inline">\(X\)</span> is <span class="math inline">\(\texttt{binom}(n,p),\)</span> then <span class="math inline">\(P(X \leq x)\)</span> is calculated in R by <code>pbinom(x,n,p)</code>. So, in the case of the multiple choice test, <span class="math inline">\(P(X \geq 10) = 1 - P(X \leq 9) =\)</span> <code>1-pbinom(9,15,1/4)</code>. See Appendix <a href="R-discreteRV.html#R-discreteRV">C</a>) for more information on using R to calculate probabilities for the important discrete distributions we encounter in this class.</p>
-<p>Back to the test, they have less than a 1 in a thousand chance of scoring a 10 or better if they are truly guessing. Note also that the mean for <span class="math inline">\(X\)</span> is <span class="math inline">\(E(X) = 15 \cdot \frac{1}{4} = 3.75\)</span>.</p>
-<p>What if they can eliminate one of the choices on each problem, and randomly guess between the remaining three choices on each problem? Are they likely to do better? If we let <span class="math inline">\(Y\)</span> denote the score on the test following this approach, then <span class="math inline">\(Y\)</span> is <span class="math inline">\(\texttt{binom}(n=15,p=1/3),\)</span> and the probability of scoring 10 or greater ends up about 10 times better than it was before, but still miniscule:</p>
+<p>R has a nice command for calculating cumulative probabilities of the form <span class="math inline">\(P(X \leq x)\)</span>.</p>
+<blockquote>
+<p>If <span class="math inline">\(X\)</span> is <span class="math inline">\(\texttt{binom}(n,p),\)</span> then <span class="math inline">\(P(X \leq x)\)</span> is calculated in R by <code>pbinom(x,n,p)</code>.</p>
+</blockquote>
+<p>So, in the case of the multiple choice test, <span class="math inline">\(P(X \geq 10) = 1 - P(X \leq 9) =\)</span> <code>1-pbinom(9,15,1/4)</code>. See Appendix <a href="R-discreteRV.html#R-discreteRV">C</a> for more information on using R to calculate probabilities for the important discrete distributions we encounter in this class.</p>
+<p>Back to the multiple choice test, a student who guesses on all 15 questions has less than a 1 in a thousand chance of scoring a 10 or better. Note also that the expected score for such a student is <span class="math inline">\(E(X) = 15 \cdot \frac{1}{4} = 3.75\)</span>.</p>
+<p>Now suppose the student can eliminate one of the choices on each problem, and then randomly guess between the remaining three choices on each problem. Are they likely to do better? If we let <span class="math inline">\(Y\)</span> denote the score on the test following this approach, then <span class="math inline">\(Y\)</span> is <span class="math inline">\(\texttt{binom}(n=15,p=1/3),\)</span> and the probability of scoring 10 or greater ends up about 10 times better than it was before, but it is still minuscule:</p>
 <p><span class="math display">\[P(Y \geq 10) = \sum_{y = 10}^{15} \binom{15}{y}\left(\frac{1}{3}\right)^y\left(\frac{2}{3}\right)^{15-y} \approx .0085,\]</span>
 The mean score is now <span class="math inline">\(E(Y) = 15\cdot\frac{1}{3} = 5.\)</span> Ok, not great, but it is better, I guess.</p>
 </div>
 <div class="example">
-<p><span id="exm:parking-meter" class="example"><strong>Example 7.2  (Pay the meter?) </strong></span>This example is adapted from an exercise in the Grinstead-Snell text. Flint never puts money in a 25-cent parking meter downtown. He assumes that there is a probability of .03 that he will be caught. The first offense costs nothing, the second costs 10 dollars, and subsequent offenses cost 25 dollars each.</p>
+<p><span id="exm:parking-meter" class="example"><strong>Example 7.2  (Pay the meter?) </strong></span>This example is adapted from an exercise in the Grinstead-Snell text.</p>
+<p>Flint never puts money in a 25-cent parking meter downtown. He assumes that there is a probability of .03 that he will be caught. The first offense costs nothing, the second costs 10 dollars, and subsequent offenses cost 25 dollars each.</p>
 <blockquote>
 <p>How does the expected cost of parking 100 times without paying the meter compare with the cost of paying the meter each time?</p>
 </blockquote>
-<p>Assume parking events are independent, identical Bernoulli trials with probability <span class="math inline">\(p = .03\)</span> of getting a ticket. Then the random variable <span class="math inline">\(X\)</span> counting the number of tickets in 100 trials is <span class="math inline">\(\texttt{binom}(100,.03),\)</span> and we note that <span class="math inline">\(E(X) = 100\cdot(.03) = 3\)</span>.</p>
+<p>We assume parking events are independent, identical Bernoulli trials with probability <span class="math inline">\(p = .03\)</span> of getting a ticket. Then the random variable <span class="math inline">\(X\)</span> counting the number of tickets in 100 trials is <span class="math inline">\(\texttt{binom}(100,.03),\)</span> and we note that <span class="math inline">\(E(X) = 100\cdot(.03) = 3\)</span>.</p>
 <p>In deciding whether to pay the meter, one idea is to consider the cost associated to the expected number of tickets, which would be $35. This amount is higher than the $25 Flint would pay by chucking in a quarter each time. But this approach doesn’t give the full picture.</p>
 <p>Instead, let’s determine the expected cost associated to parking 100 times without paying the meter. If Flint never pays the meter, the parking cost <span class="math inline">\(C\)</span> of these 100 trials is the following function of <span class="math inline">\(X\)</span>:</p>
 <p><span class="math display">\[
 C(x)=
 \begin{cases}
 0 &amp;\text{ if }x = 0,1 \\
-10  &amp;\text{ if } x = 2 \\
-10+25(x-2) &amp;\text{ if } x \geq 3
+10+25(x-2) &amp;\text{ if } x \geq 2
 \end{cases}
 \]</span></p>
 <p>Then the expected cost associated with these 100 trials, <span class="math inline">\(E(C),\)</span> is
 <span class="math display">\[\begin{align*}
 E(C) &amp;= \sum_{x=0}^{100} C(x)\cdot p(x)\\
-    &amp;= C(2)\cdot p(2) + \sum_{x=3}^{100} (10 + 25\cdot(x-2))\cdot p(x) \\
-    &amp;= 10\cdot p(2) + \sum_{x=3}^{100} (25x - 40)\cdot p(x) \\
-    &amp;= 10\cdot p(2)  + \left(E(25X-40) - \sum_{x=0}^{2} (25x - 40)\cdot p(x)\right)\\
-    &amp;= 10\cdot p(2) + [25\cdot E(X) - 40] - \left(-40\cdot p(0) -15 \cdot p(1)+ 10*p(2)\right)\\
-    &amp;= [25 E(X) - 40] + 40 \cdot p(0) + 15 \cdot p(1) \\
-    &amp;= [(25 \cdot 3) - 40] + 40\cdot(.97)^{100} + 15\cdot 100(.03)(.97)^{99} \\
+     &amp;= C(0)\cdot p(0) + c(1) \cdot p(1) + \sum_{x=2}^{100} (25x - 40) \cdot p(x) \\
+     &amp;= \sum_{x=2}^{100} (25x - 40) \cdot p(x) \\
+     &amp;= \sum_{x=0}^{100} (25x - 40) \cdot p(x) - \sum_{x = 0}^2 )(25x-40) \cdot p(x) \\
+     &amp;= E(25X - 40) - \left (-40\cdot p(0) + -15\cdot p(1)\right) \\
+     &amp;= 25\cdot E(X) - 40 + 40 \cdot p(0) + 15 \cdot p(1) \\
+     &amp;= 25 \cdot 3) - 40 + 40\cdot(.97)^{100} + 15\cdot 100(.03)(.97)^{99} \\
     &amp;\approx 39.10.
 \end{align*}\]</span></p>
-<p>Yes, Flint is better off putting a quarter in the meter each time for a cost of $25 in parking. But never tell Flint the odds.</p>
+<p>So the expected cost of parking 100 times without paying the meter is $39.10, a different amount than $35, which is the cost associated with obtaining the expected number of tickets.</p>
+<p>Either way, Flint is likely better off putting a quarter in the meter each time for a cost of $25 in parking. Then again, never tell Flint the odds.</p>
 </div>
 <div class="example">
 <p><span id="exm:binomial-oil" class="example"><strong>Example 7.3  (Drilling for Oil) </strong></span>An oil exploration firm in the 1970s wants to finance 10 drilling explorations. They figure each exploration has a probability of success (finding oil) equal to 0.1, and that the 10 operations are independent (success in one is independent of success in any other). The company has $50,000 in fixed costs prior to doing its first exploration, and anticipates a cost of $150,000 for each unsuccessful exploration, and a cost of $300,000 for each successful exploration. Find the expected total cost to the firm for its 10 explorations.</p>
@@ -520,7 +527,7 @@ Tchebbysheff says at least 75% of the distribution is within 2 standard deviatio
 </div>
 <div id="geometric" class="section level2 hasAnchor" number="7.2">
 <h2><span class="header-section-number">7.2</span> Geometric Distributions<a href="important-discrete-rv.html#geometric" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Suppose we have a sequence of Bernoulli trials, independent, with probability of success <span class="math inline">\(p\)</span> on each trial. Let <span class="math inline">\(X\)</span> equal the number of trials up to and including the trial of the first success. Then <span class="math inline">\(X\)</span> is called a <strong>geometric distribution with parameter <span class="math inline">\(p\)</span></strong>, denoted <span class="math inline">\(\texttt{geom}(p)\)</span>.</p>
+<p>Suppose we have a sequence of identical, independent Bernoulli trials with probability of success <span class="math inline">\(p\)</span> on each trial. Let <span class="math inline">\(X\)</span> equal the number of trials up to and including the trial of the first success. Then <span class="math inline">\(X\)</span> is called a <strong>geometric distribution with parameter <span class="math inline">\(p\)</span></strong>, denoted <span class="math inline">\(\texttt{geom}(p)\)</span>.</p>
 <p>The probability function for <span class="math inline">\(X\)</span> is given by <span class="math display">\[p(x) = q^{x-1}\cdot p,\]</span> for <span class="math inline">\(x = 1, 2, 3, \ldots,\)</span> where, again, <span class="math inline">\(q = 1-p\)</span>.</p>
 <p>Note that <span class="math display">\[\sum_{x=0}^\infty p(x) = p + pq + pq^2 + \cdots\]</span> is a geometric series with <span class="math inline">\(|q| &lt; 1\)</span> so it converges. Moreover, by the geometric series formula, <span class="math display">\[\sum_{n=0}^\infty pq^n = \frac{p}{1-q}.\]</span>
 Thus, all the <span class="math inline">\(p(x)\)</span> sum to 1, and we have a valid probability function.</p>
@@ -547,7 +554,7 @@ P(X &gt; k) &amp;= p(X=k+1)+p(X=k+2)+p(X=k+3)+\cdots \\
 \end{align*}\]</span></p>
 <p><em>This ends the geometric series intermission.</em></p>
 <div class="proof">
-<p><span id="unlabeled-div-24" class="proof"><em>Proof</em>. </span>By definition of expected value,
+<p><span id="unlabeled-div-25" class="proof"><em>Proof</em>. </span>By definition of expected value,
 <span class="math display">\[\begin{align*}
 E(X) &amp;= \sum_{x=1}^\infty x \cdot q^{x-1}\cdot p \\
 &amp;= p \sum_{x=1}^\infty x \cdot q^{x-1}.
@@ -556,7 +563,7 @@ But this series is exactly the one for which we found a formula in the intermiss
 <p>We leave the proof that <span class="math inline">\(V(X) = \frac{1-p}{p^2}\)</span> as an exercise.</p>
 </div>
 <div class="example" label="geom-messages">
-<p><span id="exm:unlabeled-div-25" class="example"><strong>Example 7.6  (Message Received) </strong></span></p>
+<p><span id="exm:unlabeled-div-26" class="example"><strong>Example 7.6  (Message Received) </strong></span></p>
 <blockquote>
 <p>Assume that, during each second, my junk box receives one email with probability .01 and no email with probability .99. Determine the probability that I will not receive a junk email in the next 10 minutes.</p>
 </blockquote>
@@ -565,6 +572,7 @@ But this series is exactly the one for which we found a formula in the intermiss
 So you’re saying there’s a chance!</p>
 <p>We also note that <span class="math inline">\(E(X) = 1/p = 100,\)</span> the average time to get our next junk mail is 100 seconds.</p>
 </div>
+<p><br></p>
 </div>
 <div id="negative-binomial" class="section level2 hasAnchor" number="7.3">
 <h2><span class="header-section-number">7.3</span> Negative Binomial Distribution<a href="important-discrete-rv.html#negative-binomial" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -580,7 +588,7 @@ since the third <span class="math inline">\(S\)</span> occurs on the 7th trial.<
 <span class="math display">\[E(X) = \frac{r}{p} ~~~ \text{ and } ~~~ V(X) = \frac{r(1-p)}{p^2}.\]</span></p>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-26" class="example"><strong>Example 7.7  </strong></span></p>
+<p><span id="exm:unlabeled-div-27" class="example"><strong>Example 7.7  </strong></span></p>
 <blockquote>
 <p>If we roll 2 dice and record the sum, how many rolls, on average, will it take to get our 4th 8?</p>
 </blockquote>
@@ -642,7 +650,7 @@ The Poisson probability distribution can provide a good model for the number of 
 <p><span id="thm:poisson-EandV" class="theorem"><strong>Theorem 7.5  </strong></span>If <span class="math inline">\(X\)</span> is <span class="math inline">\(\texttt{Poisson}(\lambda),\)</span> <span class="math inline">\(E(X) = \lambda\)</span> and <span class="math inline">\(V(X) = \lambda\)</span>.</p>
 </div>
 <div class="proof">
-<p><span id="unlabeled-div-27" class="proof"><em>Proof</em>. </span>We tackle the mean first.</p>
+<p><span id="unlabeled-div-28" class="proof"><em>Proof</em>. </span>We tackle the mean first.</p>
 <p><span class="math display">\[\begin{align*}
 E(X) &amp;= \sum_{x=0}^\infty x \cdot p(x) \\
      &amp;= \sum_{x=1}^\infty x \cdot \frac{\lambda^x e^{-\lambda}}{x!} &amp; \text{since }x=1 \text{ term is } 0\\
@@ -671,6 +679,7 @@ V(X) &amp;= E(X^2) - \mu^2 \\
   &amp;= \lambda.
 \end{align*}\]</span></p>
 </div>
+<p><br></p>
 <div class="example">
 <p><span id="exm:poisson-typos" class="example"><strong>Example 7.9  </strong></span>Suppose <span class="math inline">\(X\)</span> gives the number of typos per page in a large printed manuscript, and <span class="math inline">\(X\)</span> is Poisson with <span class="math inline">\(\lambda = 2\)</span>. Find the probability that a randomly chosen page has (a) fewer than 2 typos, and (b) more than 5 typos.</p>
 <p>Part (a) asks for</p>

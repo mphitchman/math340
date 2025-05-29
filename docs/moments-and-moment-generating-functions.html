@@ -383,14 +383,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><span class="math inline">\(\sigma^2 = E(X^2) - E(X)^2\)</span> gives the variance of the distribution.</li>
 </ul>
 <div class="definition">
-<p><span id="def:kth-moment-about-origin" class="definition"><strong>Definition 8.1  </strong></span>Let <span class="math inline">\(X\)</span> be a random variable, and <span class="math inline">\(k \geq 1\)</span>. The <strong><span class="math inline">\(k\)</span>th moment of <span class="math inline">\(X\)</span> about the origin</strong> is <span class="math inline">\(E(X^k)\)</span>. More generally, for any constant <span class="math inline">\(c \in \mathbb{R},\)</span> <span class="math inline">\(E((X-c)^k)\)</span> is called the <strong><span class="math inline">\(k\)</span>th moment of <span class="math inline">\(X\)</span> about <span class="math inline">\(x = c\)</span></strong>.</p>
+<p><span id="def:kth-moment-about-origin" class="definition"><strong>Definition 8.1  </strong></span>Let <span class="math inline">\(X\)</span> be a random variable. For any integer <span class="math inline">\(k \geq 1\)</span>, <span class="math inline">\(E(X^k)\)</span> is called the <strong>k<span class="math inline">\(^{\text{th}}\)</span> moment of <span class="math inline">\(X\)</span> about the origin</strong>. More generally, for any constant <span class="math inline">\(c \in \mathbb{R},\)</span> <span class="math inline">\(E((X-c)^k)\)</span> is called the <strong>k<span class="math inline">\(^{\text{th}}\)</span> moment of <span class="math inline">\(X\)</span> about <span class="math inline">\(x = c\)</span></strong>.</p>
 </div>
-<p>Often times we can encode all the moments of a random variable in an object called a moment-generating function.</p>
+<p>Often we can encode all the moments of a random variable in an object called a moment-generating function.</p>
 <div class="definition">
-<p><span id="def:moment-generating-function" class="definition"><strong>Definition 8.2  </strong></span>Let <span class="math inline">\(X\)</span> be a discrete random variable with density function <span class="math inline">\(p(x)\)</span>. If there is a positive real number <span class="math inline">\(h\)</span> such that for all <span class="math inline">\(t \in (-h,h),\)</span> <span class="math display">\[E(e^{tx})\]</span> exists and is finite, then the function of <span class="math inline">\(t\)</span> defined by <span class="math display">\[m(t) = E(e^{tx})\]</span> is called the moment-generating function of <span class="math inline">\(X\)</span>.</p>
+<p><span id="def:moment-generating-function" class="definition"><strong>Definition 8.2  </strong></span>Let <span class="math inline">\(X\)</span> be a discrete random variable with density function <span class="math inline">\(p(x)\)</span>. If there is a positive real number <span class="math inline">\(h\)</span> such that for all <span class="math inline">\(t \in (-h,h),\)</span> <span class="math display">\[E(e^{tx})\]</span> exists and is finite, then the function of <span class="math inline">\(t\)</span> defined by <span class="math display">\[m(t) = E(e^{tx})\]</span> is called the <strong>moment-generating function</strong> of <span class="math inline">\(X\)</span>.</p>
 </div>
 <div class="example">
-<p><span id="exm:unlabeled-div-29" class="example"><strong>Example 8.1  </strong></span>Suppose <span class="math inline">\(X\)</span> has the density function
+<p><span id="exm:mgf-from-small-density" class="example"><strong>Example 8.1  </strong></span>Suppose <span class="math inline">\(X\)</span> has the density function
 <span class="math display">\[
 \begin{array}{c|c|c|c|c}
 x &amp; 0 &amp; 1 &amp; 2 &amp; 3  \\ \hline
@@ -412,7 +412,7 @@ m(t) &amp;= E(e^{tx}) \\
 <span class="math display">\[E(X^k) = m^{(k)}(0).\]</span></p>
 </div>
 <div class="proof">
-<p><span id="unlabeled-div-30" class="proof"><em>Proof</em>. </span>Let’s say <span class="math inline">\(X\)</span> is discrete and <span class="math display">\[m(t) = \sum_{\text{all }x} e^{tx}\cdot p(x).\]</span>
+<p><span id="unlabeled-div-29" class="proof"><em>Proof</em>. </span>Let’s say <span class="math inline">\(X\)</span> is discrete and <span class="math display">\[m(t) = \sum_{\text{all }x} e^{tx}\cdot p(x).\]</span>
 Then the derivative of <span class="math inline">\(m(t)\)</span> with respect to the variable <span class="math inline">\(t\)</span> is
 Then <span class="math display">\[m^\prime(t) = \sum_{\text{all }x} x\cdot e^{tx}\cdot p(x),\]</span>
 and letting <span class="math inline">\(t = 0\)</span> we have
@@ -427,12 +427,13 @@ m^{\prime\prime}(t) &amp;= \frac{d}{dt}\left[m^\prime(t)\right]\\
 </div>
 <p><br></p>
 <div class="example">
-<p><span id="exm:mgf-geometric" class="example"><strong>Example 8.2  (The mgf for a geometric distribution) </strong></span>If <span class="math inline">\(X\)</span> is geometric with parameter <span class="math inline">\(p,\)</span> then <span class="math display">\[p(x) = (1-p)^{x-1}\cdot p,\]</span> for <span class="math inline">\(x = 1, 2, 3, \ldots,\)</span> and</p>
+<p><span id="exm:mgf-geometric" class="example"><strong>Example 8.2  (The mgf for a geometric distribution) </strong></span>We determine the moment-generating function for a geometric distribtion.</p>
+<p>If <span class="math inline">\(X\)</span> is geometric with parameter <span class="math inline">\(p,\)</span> then <span class="math display">\[p(x) = (1-p)^{x-1}\cdot p,\]</span> for <span class="math inline">\(x = 1, 2, 3, \ldots,\)</span> and</p>
 <p><span class="math display">\[\begin{align*}
 m(t) &amp;= E(e^{tx})\\
   &amp;= \sum_{x = 1}^\infty e^{tx}(1-p)^{x-1}\cdot p\\
   &amp;= pe^t \sum_{x=1}^\infty e^{t(x-1)}(1-p)^{x-1} &amp;\text{since }e^t\cdot e^{t(x-1)} = e^{tx}\\
-  &amp;= pe^t \sum_{x=1}^\infty[e^t(1-p)]^{x-1}
+  &amp;= pe^t \sum_{x=1}^\infty[e^t(1-p)]^{x-1} \\
   &amp;= pe^t \sum_{k=0}^\infty[e^t(1-p)]^{k} &amp;\text{where }k=x-1 \text{ is a change of index}\\
   &amp;= pe^t\frac{1}{1-e^t(1-p)}
 \end{align*}\]</span></p>
@@ -445,23 +446,28 @@ e^t(1-p) &lt; 1 &amp;\iff e^t &lt; \frac{1}{1-p} \\
 <p>In other words, yes, there exists an interval containing 0 for which <span class="math inline">\(m(t)\)</span> exists for all <span class="math inline">\(t\)</span> in the interval.</p>
 </div>
 <div class="example">
-<p><span id="exm:mgf-poisson" class="example"><strong>Example 8.3  (The mgf for a Poisson distribution) </strong></span>Find the mgf of a Poisson random variable <span class="math inline">\(X\)</span> with parameter <span class="math inline">\(\lambda\)</span>. Since we’re considering a Poisson distribution, our strategy for finding the mgf will be to work our expectation to look like a power series for <span class="math inline">\(e^{\text{junk}}\)</span>.</p>
-<p>Strategy: Work our series to include <span class="math display">\[\sum_{x=0}^\infty\frac{(\text{junk})^x}{x!}\]</span> since this converges to <span class="math inline">\(e^{\text{junk}}\)</span>.</p>
+<p><span id="exm:mgf-poisson" class="example"><strong>Example 8.3  (The mgf for a Poisson distribution) </strong></span>We determine the moment-generating function of a Poisson random variable <span class="math inline">\(X\)</span> with parameter <span class="math inline">\(\lambda\)</span>.</p>
+<p>Our strategy for finding the moment-generating function in this case will be to work our expectation to look like a power series for <span class="math inline">\(e^{\text{junk}}\)</span>.</p>
+<p>That is, we aim to make <span class="math inline">\(E(e^{tx})\)</span> look like <span class="math inline">\(\displaystyle \sum_{x=0}^\infty\frac{(\text{junk})^x}{x!}\)</span>, since we know from Calc II that for any input <code>junk</code> not involving <span class="math inline">\(x\)</span>, <span class="math display">\[\sum_{x=0}^\infty\frac{(\text{junk})^x}{x!} = e^{\text{junk}}.\]</span></p>
+<p>Here we go!</p>
 <p><span class="math display">\[\begin{align*}
 m(t) &amp;= E(e^{tx})\\
   &amp;= \sum_{x = 0}^\infty e^{tx}\frac{\lambda^x e^{-\lambda}}{x!}\\
   &amp;= e^{-\lambda} \sum_{x=0}^\infty \frac{(\lambda e^t)^x}{x!} &amp;\text{here it is!}\\
-  &amp;= e^{-\lambda}e^{[\lambda e^t]} &amp;\text{for all } -\infty &lt; t &lt; \infty\\
+  &amp;= e^{-\lambda}e^{(\lambda e^t)} &amp;\text{for all } -\infty &lt; t &lt; \infty\\
   &amp;= e^{\lambda(e^t-1)}.
 \end{align*}\]</span></p>
-<p>Let’s derive our <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span> formulas for a Poisson random variable using the mgf.</p>
+<p>So, the moment-generating function for a Poisson random variable <span class="math inline">\(X\)</span> with parameter <span class="math inline">\(\lambda\)</span> is
+<span class="math display">\[m(t) = e^{\lambda(e^t-1)}.\]</span></p>
+<p>Let’s derive our <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span> formulas for a Poisson random variable using the moment-generating function.</p>
 <p>The first derivative is
 <span class="math display">\[m^\prime(t) = e^{\lambda(e^t-1)} \cdot \lambda e^t,\]</span>
 and <span class="math inline">\(m^\prime(0) = e^{\lambda(1-1)}\cdot \lambda e^0 = \lambda.\)</span></p>
 <p>The second derivative is
 <span class="math display">\[m^{\prime\prime}(t) = (e^{\lambda(e^t-1)} \cdot \lambda e^t) \cdot \lambda e^t + e^{\lambda(e^t-1)} \cdot \lambda e^t,\]</span>
 so <span class="math display">\[m^{\prime\prime}(0) = \lambda^2 + \lambda.\]</span></p>
-<p>Now <span class="math display">\[\mu = m^\prime(0) = \lambda,\]</span> check! And, <span class="math display">\[\sigma^2 = m^{\prime\prime}(0) - [m^\prime(0)]^2 = (\lambda^2 + \lambda) - \lambda^2 = \lambda,\]</span>
+<p>Now <span class="math display">\[\mu = m^\prime(0) = \lambda,\]</span> check!</p>
+<p>And, <span class="math display">\[\sigma^2 = m^{\prime\prime}(0) - [m^\prime(0)]^2 = (\lambda^2 + \lambda) - \lambda^2 = \lambda.\]</span>
 check again!</p>
 </div>
 
