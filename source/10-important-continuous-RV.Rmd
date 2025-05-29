@@ -32,7 +32,7 @@ runif(n,a,b)
 Our strategy: Select a large random sample of points in the interval [0,2] and then compute the average of their squares.
 
 ```{r}
-x = runif(1000,0,2) #picking 1000 points in [0,2]
+x = runif(10000,0,2) #picking 1000 points in [0,2]
 mean(x^2)
 ```
 
@@ -311,7 +311,7 @@ The function $f(x) = \frac{1}{\sqrt{2\pi}}e^{-x^2/2},$ for $-\infty < x < \infty
 :::
 
 :::{.proof}
-Clearly, $f(x) \geq 0$ for all $x,$ and the previous lemma ensures that $\int_{-\infty}^\infty f(x)~dx = 1.$. 
+Clearly, $f(x) \geq 0$ for all $x,$ and the previous lemma ensures that $\int_{-\infty}^\infty f(x)~dx = 1.$
 :::
 
 <br>
@@ -474,7 +474,7 @@ ggplot(data.frame(t,x1,x2,x3))+
 
 ## Beta Distribution
 
-The beta probability distribution provides a way to model random variables whose possible outcomes are all real numbers between 0 and 1.  Such distributions are useful for modeling proportions.  As with the gamma and normal distributions, this is a 2-parameter family of distributions.  Altering the parameters $\alpha$ and $\beta$ gives us, well, different shapes for the density curves.
+The beta probability distribution provides a way to model random variables whose possible outcomes are all real numbers between 0 and 1.  Such distributions are useful for modeling proportions.  As with the gamma and normal distributions, this is a 2-parameter family of distributions.  Altering the parameters $\alpha$ and $\beta$ gives us different shapes for the density curves.
 
 
 :::{.definition #beta-distribution}
@@ -487,10 +487,11 @@ $$
 If $X$ has such a pdf we say that $X$ is $\texttt{beta}(\alpha,\beta)$\index{\texttt{beta}$(\alpha,\beta)$}.
 :::
 
-The gamma function (\@ref(def:gamma-distribution)) appears in this pdf three times.  Recall that for positive integers $n,$ $\Gamma(n) = (n-1)!$ so for integer values of $\alpha$ and $\beta,$ the beta density function is fairly nice.
+The gamma function (\@ref(def:gamma-distribution)) appears in this pdf three times.  Recall that for positive integers $n,$ $\Gamma(n) = (n-1)!$ so for integer values of $\alpha$ and $\beta,$ the beta density function is fairly nice. In fact, $\text{beta}(1,1)$ is the uniform distribution $U(0,1)$!
+
 Indeed, 
 
-  - $\displaystyle X \sim \texttt{beta}(1,1) \Rightarrow f(x) = \frac{\Gamma(2)}{\Gamma(1)\Gamma(1)}x^0(1-x)^0 = 1$. Whoa! $\text{beta}(1,1)$ is the uniform distribution $U(0,1).$
+  - $\displaystyle X \sim \texttt{beta}(1,1) \Rightarrow f(x) = \frac{\Gamma(2)}{\Gamma(1)\Gamma(1)}x^0(1-x)^0 = 1$. 
   - $\displaystyle X \sim \texttt{beta}(1,2) \Rightarrow f(x) = 2(1-x)$.
   - $\displaystyle X \sim \texttt{beta}(2,1) \Rightarrow f(x) = 2x$.
   - $\displaystyle X \sim \texttt{beta}(2,2) \Rightarrow f(x) = 6x(1-x)$.
@@ -498,6 +499,7 @@ Indeed,
   - $\displaystyle X \sim \texttt{beta}(1,n) \Rightarrow f(x) = n(1-x)^{n-1}$.
 
 Here are a few beta distributions:
+
 ```{r,echo=FALSE,fig.dim=c(5,3)}
 t=seq(0,1,by=.01)
 x1=dbeta(t,4,1)

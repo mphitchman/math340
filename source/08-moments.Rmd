@@ -7,16 +7,16 @@ For random variable $X$ we have seen that $E(X)$ and $E(X^2)$ provide useful inf
   - $\sigma^2 = E(X^2) - E(X)^2$ gives the variance of the distribution.
   
 :::{.definition #kth-moment-about-origin}
-Let $X$ be a random variable, and $k \geq 1$. The **$k$th moment of $X$ about the origin**\index{moment!about the origin} is $E(X^k)$. More generally, for any constant $c \in \mathbb{R},$ $E((X-c)^k)$ is called the **$k$th moment of $X$ about $x = c$**\index{moment!about $x=c$}.
+Let $X$ be a random variable. For any integer $k \geq 1$, $E(X^k)$ is called the **k$^{\text{th}}$ moment of $X$ about the origin**\index{moment!about the origin}. More generally, for any constant $c \in \mathbb{R},$ $E((X-c)^k)$ is called the **k$^{\text{th}}$ moment of $X$ about $x = c$**\index{moment!about $x=c$}.
 :::
 
-Often times we can encode all the moments of a random variable in an object called a moment-generating function.
+Often we can encode all the moments of a random variable in an object called a moment-generating function.
 
 :::{.definition #moment-generating-function}
-Let $X$ be a discrete random variable with density function $p(x)$. If there is a positive real number $h$ such that for all $t \in (-h,h),$ $$E(e^{tx})$$ exists and is finite, then the function of $t$ defined by $$m(t) = E(e^{tx})$$ is called the moment-generating function of $X$.
+Let $X$ be a discrete random variable with density function $p(x)$. If there is a positive real number $h$ such that for all $t \in (-h,h),$ $$E(e^{tx})$$ exists and is finite, then the function of $t$ defined by $$m(t) = E(e^{tx})$$ is called the **moment-generating function**\index{moment-generating function} of $X$.
 :::
 
-:::{.example}
+:::{.example #mgf-from-small-density}
 Suppose $X$ has the density function 
 $$
 \begin{array}{c|c|c|c|c}
@@ -64,14 +64,18 @@ Continuing in this manner, for any $k \geq 1,$ the $k$th derivative of $m(t)$ is
 
 <br>
 
+
+
 :::{.example #mgf-geometric name="The mgf for a geometric distribution"}
+We determine the moment-generating function for a geometric distribtion.
+
 If $X$ is geometric with parameter $p,$ then $$p(x) = (1-p)^{x-1}\cdot p,$$ for $x = 1, 2, 3, \ldots,$ and 
 
 \begin{align*}
 m(t) &= E(e^{tx})\\
   &= \sum_{x = 1}^\infty e^{tx}(1-p)^{x-1}\cdot p\\
   &= pe^t \sum_{x=1}^\infty e^{t(x-1)}(1-p)^{x-1} &\text{since }e^t\cdot e^{t(x-1)} = e^{tx}\\
-  &= pe^t \sum_{x=1}^\infty[e^t(1-p)]^{x-1}
+  &= pe^t \sum_{x=1}^\infty[e^t(1-p)]^{x-1} \\
   &= pe^t \sum_{k=0}^\infty[e^t(1-p)]^{k} &\text{where }k=x-1 \text{ is a change of index}\\
   &= pe^t\frac{1}{1-e^t(1-p)} 
 \end{align*}
@@ -89,28 +93,38 @@ In other words, yes, there exists an interval containing 0 for which $m(t)$ exis
 :::
 
 :::{.example #mgf-poisson name="The mgf for a Poisson distribution"}
-Find the mgf of a Poisson random variable $X$ with parameter $\lambda$. Since we're considering a Poisson distribution, our strategy for finding the mgf will be to work our expectation to look like a power series for $e^{\text{junk}}$. 
+We determine the moment-generating function of a Poisson random variable $X$ with parameter $\lambda$. 
 
-Strategy: Work our series to include $$\sum_{x=0}^\infty\frac{(\text{junk})^x}{x!}$$ since this converges to $e^{\text{junk}}$.
+Our strategy for finding the moment-generating function in this case will be to work our expectation to look like a power series for $e^{\text{junk}}$. 
+
+That is, we aim to make $E(e^{tx})$ look like $\displaystyle \sum_{x=0}^\infty\frac{(\text{junk})^x}{x!}$, since we know from Calc II that for any input `junk` not involving $x$,  $$\sum_{x=0}^\infty\frac{(\text{junk})^x}{x!} = e^{\text{junk}}.$$
+
+Here we go!
 
 \begin{align*}
 m(t) &= E(e^{tx})\\
   &= \sum_{x = 0}^\infty e^{tx}\frac{\lambda^x e^{-\lambda}}{x!}\\
   &= e^{-\lambda} \sum_{x=0}^\infty \frac{(\lambda e^t)^x}{x!} &\text{here it is!}\\
-  &= e^{-\lambda}e^{[\lambda e^t]} &\text{for all } -\infty < t < \infty\\
+  &= e^{-\lambda}e^{(\lambda e^t)} &\text{for all } -\infty < t < \infty\\
   &= e^{\lambda(e^t-1)}.
 \end{align*}
 
-Let's derive our $\mu$ and $\sigma$ formulas for a Poisson random variable using the mgf.
+So, the moment-generating function for a Poisson random variable $X$ with parameter $\lambda$ is 
+$$m(t) = e^{\lambda(e^t-1)}.$$
+
+Let's derive our $\mu$ and $\sigma$ formulas for a Poisson random variable using the moment-generating function.
 
 The first derivative is 
 $$m^\prime(t) = e^{\lambda(e^t-1)} \cdot \lambda e^t,$$
 and $m^\prime(0) = e^{\lambda(1-1)}\cdot \lambda e^0 = \lambda.$ 
 
+
 The second derivative is 
 $$m^{\prime\prime}(t) = (e^{\lambda(e^t-1)} \cdot \lambda e^t) \cdot \lambda e^t + e^{\lambda(e^t-1)} \cdot \lambda e^t,$$
 so $$m^{\prime\prime}(0) = \lambda^2 + \lambda.$$
 
-Now $$\mu = m^\prime(0) = \lambda,$$ check!  And, $$\sigma^2 = m^{\prime\prime}(0) - [m^\prime(0)]^2 = (\lambda^2 + \lambda) - \lambda^2 = \lambda,$$
+Now $$\mu = m^\prime(0) = \lambda,$$ check!  
+
+And, $$\sigma^2 = m^{\prime\prime}(0) - [m^\prime(0)]^2 = (\lambda^2 + \lambda) - \lambda^2 = \lambda.$$
 check again!
 :::

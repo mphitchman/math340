@@ -26,9 +26,9 @@ The space of $X$ equals $\{0,1,\ldots,n\},$ and for $x = 0,1, \ldots, n,$
 $$p(x) = \binom{n}{x}p^x(1-p)^{n-x}.$$ 
 :::
 
-Does this probability distribution make sense? To find the probability of exactly $x$ successes in $n$ independent Bernoulli trials, we first choose which $x$ of the $n$ trials will be successes (and we have $\binom{n}{x}$ choices here). Then, we know the probability of success on each of these $x$ trials is $p,$ and the probability of failure on each of the other $n-x$ trials is $q = 1-p$. Since the trials are independent, the probability of getting exactly $x$ successes and $n-x$ failures is the product $\binom{n}{x}p^x(1-p)^{n-x}.$
+Does this probability distribution make sense? To find the probability of exactly $x$ successes in $n$ independent Bernoulli trials, we first choose which $x$ of the $n$ trials will be successes (and we have $\binom{n}{x}$ choices here). Then, we know the probability of success on each of these $x$ trials is $p,$ and the probability of failure on each of the other $n-x$ trials is $q = 1-p$. Since the trials are independent, the probability of getting exactly $x$ successes and $n-x$ failures is the product $\binom{n}{x}p^x(1-p)^{n-x}.$ 
 
-Furthermore, by the Binomial Theorem (\@ref(thm:Cnrfacts)), $$\sum_{x = 0}^n p(x) = (p+(1-p))^n = 1.$$
+Furthermore, the sum of all the probabilities is 1. Indeed, by the Binomial Theorem (\@ref(thm:Cnrfacts)), $$\sum_{x = 0}^n p(x) = (p+(1-p))^n = 1.$$
 
 :::{.theorem #binomial-distribution-EandV}
 If $X$ is $\texttt{binom}(n,p),$ $$E(X) = np~~~\text{ and }~~~ V(X) = np(1-p).$$
@@ -44,14 +44,14 @@ E(X) &= \sum_{x=0}^n x \cdot p(x) \\
      &= \sum_{x=1}^n x \frac{n!}{(n-x)!x!} p^x (1-p)^{n-x} \\
      &= \sum_{x=1}^n \frac{n!}{(n-x)!(x-1)!} p^x (1-p)^{n-x} &\text{cancelling an } x\\
      &= np \sum_{x=1}^n \frac{(n-1)!}{(n-x)!(x-1)!}p^{x-1}(1-p)^{n-x} &\text{ pull out }n\text{ from }n!\text{ and one }p\\
-     &= np \sum_{x=1}^n \binom{n-1}{x-1}p^{x-1}(1-p)^{(n-1)-(x-1)}
+     &= np \sum_{x=1}^n \binom{n-1}{x-1}p^{x-1}(1-p)^{(n-1)-(x-1)}.
 \end{align*}
 
-Hey! The summation term equals 1 since it is the sum of all the probabilities in a $\texttt{binom}(n-1,p)$ distrtibution!
+Notice that the summation term in the last expression equals 1 since it is the sum of all the probabilities in a $\texttt{binom}(n-1,p)$ distribution!
 
 Thus $E(X) = np$.
 
-To prove the $V(X)$ formula, it is helpful to first observe the following
+To prove the $V(X)$ formula, it is helpful to first observe that
 
 $$E(X(X-1)) = E(X^2-X) = E(X^2)-E(X),$$ so 
 $$E(X^2) = E(X(X-1))+E(X).$$
@@ -64,10 +64,10 @@ E(X(X-1)) &= \sum_{x=0}^n x(x-1)\binom{n}{x}p^x(1-p)^{n-x} \\
           &= \sum_{x=2}^n x(x-1)\frac{n!}{(n-x)!x!}p^x(1-p)^{n-x} \\
           &= \sum_{x=2}^n \frac{n!}{(n-x)!(x-2)!}p^x(1-p)^{n-x} \\
           &= n(n-1)p^2 \sum_{x=2}^n \frac{(n-2)!}{(n-x)!(x-2)!}p^{x-2}(1-p)^{n-x} \\
-          &= n(n-1)p^2 \sum_{x=2}^n\binom{n-2}{x-2}p^{x-2}(1-p)^{(n-2)-(x-2)}
+          &= n(n-1)p^2 \sum_{x=2}^n\binom{n-2}{x-2}p^{x-2}(1-p)^{(n-2)-(x-2)}.
 \end{align*}
 
-This summation also equals one, since it is the sum of all the probabilities in a $\texttt{binom}(n-2,p)$ distribution, so $E(X(X-1)) = n(n-1)p^2,$ and it follows that 
+The summation in the last expression also equals 1, since it is the sum of all the probabilities in a $\texttt{binom}(n-2,p)$ distribution, so $E(X(X-1)) = n(n-1)p^2,$ and it follows that 
 $$E(X^2) = E(X(X-1))+E(X) = n(n-1)p^2 + np.$$
 
 Finally,
@@ -75,8 +75,10 @@ Finally,
 V(X) &= E(X^2) - E(X)^2 \\
      &= n(n-1)p^2 + np - (np)^2 \\
      &= n^2p^2 - np^2 + np - n^2p^2 \\
-     &= np(1-p)
+     &= np(1-p).
 \end{align*}
+
+This completes the proof.
 :::
 
 <br>
@@ -90,11 +92,15 @@ Now, $$P(X \geq 10) = \sum_{x = 10}^{15} \binom{15}{x}\left(\frac{1}{4}\right)^x
 
 **Calculating this sum in R**
 
-R has a nice command for calculating cumulative probabilities of the form $P(X \leq x)$.If $X$ is $\texttt{binom}(n,p),$ then $P(X \leq x)$ is calculated in R by `pbinom(x,n,p)`. So, in the case of the multiple choice test, $P(X \geq 10) = 1 - P(X \leq 9) =$ `1-pbinom(9,15,1/4)`. See Appendix \@ref(R-discreteRV)) for more information on using R to calculate probabilities for the important discrete distributions we encounter in this class. 
+R has a nice command for calculating cumulative probabilities of the form $P(X \leq x)$.
 
-Back to the test, they have less than a 1 in a thousand chance of scoring a 10 or better if they are truly guessing. Note also that the mean for $X$ is $E(X) = 15 \cdot \frac{1}{4} = 3.75$.
+> If $X$ is $\texttt{binom}(n,p),$ then $P(X \leq x)$ is calculated in R by `pbinom(x,n,p)`. 
 
-What if they can eliminate one of the choices on each problem, and randomly guess between the remaining three choices on each problem? Are they likely to do better? If we let $Y$ denote the score on the test following this approach, then $Y$ is $\texttt{binom}(n=15,p=1/3),$ and the probability of scoring 10 or greater ends up about 10 times better than it was before, but still miniscule:
+So, in the case of the multiple choice test, $P(X \geq 10) = 1 - P(X \leq 9) =$ `1-pbinom(9,15,1/4)`. See Appendix \@ref(R-discreteRV) for more information on using R to calculate probabilities for the important discrete distributions we encounter in this class. 
+
+Back to the multiple choice test, a student who guesses on all 15 questions has less than a 1 in a thousand chance of scoring a 10 or better. Note also that the expected score for such a student is $E(X) = 15 \cdot \frac{1}{4} = 3.75$.
+
+Now suppose the student can eliminate one of the choices on each problem, and then randomly guess between the remaining three choices on each problem. Are they likely to do better? If we let $Y$ denote the score on the test following this approach, then $Y$ is $\texttt{binom}(n=15,p=1/3),$ and the probability of scoring 10 or greater ends up about 10 times better than it was before, but it is still minuscule:
 
 $$P(Y \geq 10) = \sum_{y = 10}^{15} \binom{15}{y}\left(\frac{1}{3}\right)^y\left(\frac{2}{3}\right)^{15-y} \approx .0085,$$
 The mean score is now $E(Y) = 15\cdot\frac{1}{3} = 5.$ Ok, not great, but it is better, I guess.
@@ -103,13 +109,15 @@ The mean score is now $E(Y) = 15\cdot\frac{1}{3} = 5.$ Ok, not great, but it is 
 
 
 :::{.example #parking-meter name="Pay the meter?"}
-This example is adapted from an exercise in the Grinstead-Snell text. Flint never puts money in a 25-cent parking meter downtown. He assumes that there is a probability of .03 that he will be caught. The first offense costs nothing, the second costs 10 dollars, and subsequent offenses cost 25 dollars each. 
+This example is adapted from an exercise in the Grinstead-Snell text.
+
+Flint never puts money in a 25-cent parking meter downtown. He assumes that there is a probability of .03 that he will be caught. The first offense costs nothing, the second costs 10 dollars, and subsequent offenses cost 25 dollars each. 
 
 > How does the expected cost of parking 100 times without paying the meter compare with the cost of paying the meter each time?
 
-Assume parking events are independent, identical Bernoulli trials with probability $p = .03$ of getting a ticket. Then the random variable $X$ counting the number of tickets in 100 trials is $\texttt{binom}(100,.03),$ and we note that $E(X) = 100\cdot(.03) = 3$.  
+We assume parking events are independent, identical Bernoulli trials with probability $p = .03$ of getting a ticket. Then the random variable $X$ counting the number of tickets in 100 trials is $\texttt{binom}(100,.03),$ and we note that $E(X) = 100\cdot(.03) = 3$.  
 
-In deciding whether to pay the meter, one idea is to consider the cost associated to the expected number of tickets, which would be \$35.  This amount is higher than the \$25 Flint would pay by chucking in a quarter each time. But this approach doesn't give the full picture. 
+In deciding whether to pay the meter, one idea is to consider the cost associated to the expected number of tickets, which would be \$35. This amount is higher than the \$25 Flint would pay by chucking in a quarter each time. But this approach doesn't give the full picture. 
 
 Instead, let's determine the expected cost associated to parking 100 times without paying the meter. If Flint never pays the meter, the parking cost $C$ of these 100 trials is the following function of $X$:
 
@@ -117,24 +125,25 @@ $$
 C(x)=
 \begin{cases}
 0 &\text{ if }x = 0,1 \\
-10  &\text{ if } x = 2 \\
-10+25(x-2) &\text{ if } x \geq 3 
+10+25(x-2) &\text{ if } x \geq 2 
 \end{cases}
 $$
  
 Then the expected cost associated with these 100 trials, $E(C),$ is 
 \begin{align*}
 E(C) &= \sum_{x=0}^{100} C(x)\cdot p(x)\\
-    &= C(2)\cdot p(2) + \sum_{x=3}^{100} (10 + 25\cdot(x-2))\cdot p(x) \\
-    &= 10\cdot p(2) + \sum_{x=3}^{100} (25x - 40)\cdot p(x) \\
-    &= 10\cdot p(2)  + \left(E(25X-40) - \sum_{x=0}^{2} (25x - 40)\cdot p(x)\right)\\
-    &= 10\cdot p(2) + [25\cdot E(X) - 40] - \left(-40\cdot p(0) -15 \cdot p(1)+ 10*p(2)\right)\\
-    &= [25 E(X) - 40] + 40 \cdot p(0) + 15 \cdot p(1) \\
-    &= [(25 \cdot 3) - 40] + 40\cdot(.97)^{100} + 15\cdot 100(.03)(.97)^{99} \\
+     &= C(0)\cdot p(0) + c(1) \cdot p(1) + \sum_{x=2}^{100} (25x - 40) \cdot p(x) \\
+     &= \sum_{x=2}^{100} (25x - 40) \cdot p(x) \\
+     &= \sum_{x=0}^{100} (25x - 40) \cdot p(x) - \sum_{x = 0}^2 )(25x-40) \cdot p(x) \\
+     &= E(25X - 40) - \left (-40\cdot p(0) + -15\cdot p(1)\right) \\
+     &= 25\cdot E(X) - 40 + 40 \cdot p(0) + 15 \cdot p(1) \\
+     &= 25 \cdot 3) - 40 + 40\cdot(.97)^{100} + 15\cdot 100(.03)(.97)^{99} \\
     &\approx 39.10.
 \end{align*}
 
-Yes, Flint is better off putting a quarter in the meter each time for a cost of \$25 in parking. But never tell Flint the odds.
+So the expected cost of parking 100 times without paying the meter is \$39.10, a different amount than \$35, which is the cost associated with obtaining the expected number of tickets.
+
+Either way, Flint is likely better off putting a quarter in the meter each time for a cost of \$25 in parking. Then again, never tell Flint the odds.
 :::
 
 
@@ -197,7 +206,7 @@ pbinom(21.7,60,1/4)-pbinom(8.29,60,1/4)
 
 ## Geometric Distributions {#geometric}
 
-Suppose we have a sequence of Bernoulli trials, independent, with probability of success $p$ on each trial. Let $X$ equal the number of trials up to and including the trial of the first success.  Then $X$ is called a **geometric distribution with parameter $p$**\index{discrete random variable!geometric}, denoted $\texttt{geom}(p)$\index{\texttt{geom}$(p)$}. 
+Suppose we have a sequence of identical, independent Bernoulli trials with probability of success $p$ on each trial. Let $X$ equal the number of trials up to and including the trial of the first success.  Then $X$ is called a **geometric distribution with parameter $p$**\index{discrete random variable!geometric}, denoted $\texttt{geom}(p)$\index{\texttt{geom}$(p)$}. 
 
 The probability function for $X$ is given by $$p(x) = q^{x-1}\cdot p,$$ for $x = 1, 2, 3, \ldots,$ where, again, $q = 1-p$.
 
